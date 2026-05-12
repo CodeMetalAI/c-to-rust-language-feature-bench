@@ -1,0 +1,1 @@
+Pathfinding-domain variant of combined_features: same structure and logic, with names and comments drawn from a 2-D tile-map kernel. Terrain cost array seeds struct field values so every section depends on the others being correct.

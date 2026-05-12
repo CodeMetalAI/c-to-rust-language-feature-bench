@@ -3,6 +3,7 @@
  */
 
 #include <stddef.h>
+#include <stdio.h>
 
 int main(void) {
   int x[3][5];
@@ -27,5 +28,6 @@ int main(void) {
   if ((ptrdiff_t)(p1 - p0) != 5)
     return 2;
 
+  printf("PASS\n");
   return 0;
 }
