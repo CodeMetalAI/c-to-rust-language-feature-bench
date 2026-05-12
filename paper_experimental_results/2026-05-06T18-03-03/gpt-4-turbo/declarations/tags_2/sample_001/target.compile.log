@@ -1,0 +1,14 @@
+error[E0506]: cannot assign to `b.s1p` because it is borrowed
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/tags_2/sample_001/target.rs:16:5
+   |
+15 |     a.s2p = Some(&b);
+   |                  -- `b.s1p` is borrowed here
+16 |     b.s1p = Some(&a);
+   |     ^^^^^^^^^^^^^^^^ `b.s1p` is assigned to here but it was already borrowed
+17 |
+18 |     if a.s2p.unwrap().v2 != 20 {
+   |        ----- borrow later used here
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0506`.

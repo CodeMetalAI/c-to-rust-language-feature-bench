@@ -1,0 +1,64 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_5/sample_003/target.rs:28:5
+   |
+28 | /     unsafe {
+29 | |         let mut x = RNG_STATE;
+30 | |         x ^= x << 13;
+31 | |         x ^= x >> 17;
+...  |
+34 | |         x
+35 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_5/sample_003/target.rs:47:5
+   |
+46 |   const VAL_XYZ: [[[usize; 10]; 9]; 10] = [
+   |                                     -- help: consider specifying the actual array length: `1`
+47 | /     [
+48 | |         [vxyz(1, 0, 0), vxyz(1, 0, 1), vxyz(1, 0, 2), vxyz(1, 0, 3), vxyz(1, 0, 4), vxyz(1, 0, 5), vxyz(1, 0, 6), vxyz(1, 0, 7), vxyz(1, 0, 8), vxyz(1, 0, 9)],
+49 | |         // ... initialized for all combinations of a (1-9) and b (0-9)
+50 | |     ],
+   | |_____^ expected an array with a size of 9, found one with a size of 1
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_5/sample_003/target.rs:54:34
+   |
+54 |   const VAL_YZ: [[usize; 10]; 9] = [
+   |  _____________________________-____^
+   | |                             |
+   | |                             help: consider specifying the actual array length: `1`
+55 | |     [vyz(1, 0), vyz(1, 1), vyz(1, 2), vyz(1, 3), vyz(1, 4), vyz(1, 5), vyz(1, 6), vyz(1, 7), vyz(1, 8), vyz(1, 9)],
+56 | |     // ... repeat for b = 2 to 9
+57 | | ];
+   | |_^ expected an array with a size of 9, found one with a size of 1
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_5/sample_003/target.rs:59:34
+   |
+59 |   const VAL_XZ: [[usize; 10]; 9] = [
+   |  _____________________________-____^
+   | |                             |
+   | |                             help: consider specifying the actual array length: `1`
+60 | |     [vxz(1, 0), vxz(1, 1), vxz(1, 2), vxz(1, 3), vxz(1, 4), vxz(1, 5), vxz(1, 6), vxz(1, 7), vxz(1, 8), vxz(1, 9)],
+61 | |     // ... repeat for a = 2 to 9
+62 | | ];
+   | |_^ expected an array with a size of 9, found one with a size of 1
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_5/sample_003/target.rs:64:34
+   |
+64 |   const VAL_XY: [[usize; 10]; 9] = [
+   |  _____________________________-____^
+   | |                             |
+   | |                             help: consider specifying the actual array length: `1`
+65 | |     [vxy(1, 0), vxy(1, 1), vxy(1, 2), vxy(1, 3), vxy(1, 4), vxy(1, 5), vxy(1, 6), vxy(1, 7), vxy(1, 8), vxy(1, 9)],
+66 | |     // ... repeat for a = 2 to 9
+67 | | ];
+   | |_^ expected an array with a size of 9, found one with a size of 1
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

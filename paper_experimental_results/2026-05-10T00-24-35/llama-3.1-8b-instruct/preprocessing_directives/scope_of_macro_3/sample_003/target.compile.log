@@ -1,0 +1,46 @@
+error: unexpected end of macro invocation
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_003/target.rs:57:27
+   |
+37 | macro_rules! r {
+   | -------------- when calling this macro
+...
+57 |         String::from(r!(4,)),
+   |                           ^ missing tokens in macro arguments
+   |
+note: while trying to match meta-variable `$y:expr`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_003/target.rs:38:16
+   |
+38 |     ( $x:expr, $y:expr ) => {
+   |                ^^^^^^^
+
+error: no rules expected `,`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_003/target.rs:58:25
+   |
+37 | macro_rules! r {
+   | -------------- when calling this macro
+...
+58 |         String::from(r!(, 5)),
+   |                         ^ no rules expected this token in macro call
+   |
+note: while trying to match meta-variable `$x:expr`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_003/target.rs:38:7
+   |
+38 |     ( $x:expr, $y:expr ) => {
+   |       ^^^^^^^
+
+error: no rules expected `,`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_003/target.rs:59:25
+   |
+37 | macro_rules! r {
+   | -------------- when calling this macro
+...
+59 |         String::from(r!(,)),
+   |                         ^ no rules expected this token in macro call
+   |
+note: while trying to match meta-variable `$x:expr`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_003/target.rs:38:7
+   |
+38 |     ( $x:expr, $y:expr ) => {
+   |       ^^^^^^^
+
+error: aborting due to 3 previous errors

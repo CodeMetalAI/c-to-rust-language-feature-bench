@@ -1,0 +1,38 @@
+error[E0423]: expected function, found macro `std::mem::offset_of`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_3/sample_002/target.rs:14:20
+   |
+14 |     let offset_i = std::mem::offset_of::<s, int_struct>();
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a function
+
+error[E0423]: expected function, found macro `std::mem::offset_of`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_3/sample_002/target.rs:15:20
+   |
+15 |     let offset_a = std::mem::offset_of::<s, [i32; 4]>();
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a function
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_3/sample_002/target.rs:26:5
+   |
+26 | /     unsafe {
+27 | |         let ptr = p.as_mut_ptr();
+28 | |         (*ptr).i = 7;
+29 | |         (*ptr).a[0] = 11;
+...  |
+35 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_3/sample_002/target.rs:18:16
+   |
+12 | fn main() {
+   |          - expected `()` because of default return type
+...
+18 |         return 1;
+   |                ^ expected `()`, found integer
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0423.
+For more information about an error, try `rustc --explain E0308`.

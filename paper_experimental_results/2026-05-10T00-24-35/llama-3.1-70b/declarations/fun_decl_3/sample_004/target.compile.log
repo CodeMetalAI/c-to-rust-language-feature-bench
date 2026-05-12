@@ -1,0 +1,33 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_004/target.rs:24:5
+   |
+24 |     unsafe { g_seed = pf(t) + k };
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_004/target.rs:25:9
+   |
+25 |     if (unsafe { g_seed } & 1) == 0 {
+   |         ^^^^^^^^^^^^^^^^^
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_004/target.rs:10:5
+   |
+10 |     g_seed + x + 1000
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_004/target.rs:14:5
+   |
+14 |     g_seed + x - 2000
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

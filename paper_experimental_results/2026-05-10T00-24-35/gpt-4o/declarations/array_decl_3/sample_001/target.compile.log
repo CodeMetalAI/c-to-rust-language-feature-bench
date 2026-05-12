@@ -1,0 +1,165 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:37:14
+   |
+37 |     let nn = unsafe { N as usize };
+   |              ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:38:14
+   |
+38 |     let mm = unsafe { M as usize };
+   |              ^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:62:9
+   |
+62 |         unsafe { GATE = 1 };
+   |         ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:66:9
+   |
+66 |         unsafe { GATE = 2 };
+   |         ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:71:5
+   |
+71 | /     unsafe {
+72 | |         N = 6;
+73 | |         M = N + 1;
+...  |
+76 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:79:5
+   |
+79 | /     unsafe {
+80 | |         if GATE != 0 {
+81 | |             std::process::exit(1);
+82 | |         }
+83 | |     }
+   | |_____^
+
+error[E0277]: the size for values of type `[[i32; 6]]` cannot be known at compilation time
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:8:59
+  |
+8 | fn check_a(nn: usize, mm: usize, a: &[[[i32; 6]; 6]], p: &[[[i32; 6]]]) -> i32 {
+  |                                                           ^^^^^^^^^^^^ doesn't have a size known at compile-time
+  |
+  = help: the trait `Sized` is not implemented for `[[i32; 6]]`
+  = note: slice and array elements must have `Sized` type
+
+error[E0277]: the size for values of type `[[[i32; 6]; 6]]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:21:38
+   |
+21 | fn check_c(nn: usize, mm: usize, c: &[[[[i32; 6]; 6]]], r: &[[[[i32; 6]; 6]]]) -> i32 {
+   |                                      ^^^^^^^^^^^^^^^^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[[[i32; 6]; 6]]`
+   = note: slice and array elements must have `Sized` type
+
+error[E0277]: the size for values of type `[[i32; 6]]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:12:34
+   |
+12 |                 if a[i][j][k] != p[i][j][k] + i as i32 {
+   |                                  ^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[[i32; 6]]`
+   = note: required for `[[[i32; 6]]]` to implement `Index<_>`
+
+error[E0277]: the size for values of type `[[[i32; 6]; 6]]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:26:24
+   |
+26 |                     if c[i][j][u][v] != r[i][j][u][v] {
+   |                        ^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[[[i32; 6]; 6]]`
+   = note: required for `[[[[i32; 6]; 6]]]` to implement `Index<_>`
+
+error[E0277]: the size for values of type `[[[i32; 6]; 6]]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:26:41
+   |
+26 |                     if c[i][j][u][v] != r[i][j][u][v] {
+   |                                         ^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[[[i32; 6]; 6]]`
+   = note: required for `[[[[i32; 6]; 6]]]` to implement `Index<_>`
+
+error[E0277]: the size for values of type `[[i32; 6]]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:61:28
+   |
+61 |     if check_a(nn, mm, &a, &a) != 0 {
+   |                            ^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[[i32; 6]]`
+   = note: slice and array elements must have `Sized` type
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:61:8
+   |
+61 |     if check_a(nn, mm, &a, &a) != 0 {
+   |        ^^^^^^^
+   |
+note: expected `&[[[i32; 6]; 6]]`, found `&Vec<Vec<Vec<i32>>>`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:61:24
+   |
+61 |     if check_a(nn, mm, &a, &a) != 0 {
+   |                        ^^
+   = note: expected reference `&[[[i32; 6]; 6]]`
+              found reference `&Vec<Vec<Vec<i32>>>`
+note: expected `&[[[i32; 6]]]`, found `&Vec<Vec<Vec<i32>>>`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:61:28
+   |
+61 |     if check_a(nn, mm, &a, &a) != 0 {
+   |                            ^^
+   = note: expected reference `&[[[i32; 6]]]`
+              found reference `&Vec<Vec<Vec<i32>>>`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:8:4
+   |
+ 8 | fn check_a(nn: usize, mm: usize, a: &[[[i32; 6]; 6]], p: &[[[i32; 6]]]) -> i32 {
+   |    ^^^^^^^                       -------------------  ----------------
+
+error[E0277]: the size for values of type `[[[i32; 6]; 6]]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:65:24
+   |
+65 |     if check_c(nn, mm, &c, &c) != 0 {
+   |                        ^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[[[i32; 6]; 6]]`
+   = note: slice and array elements must have `Sized` type
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:65:8
+   |
+65 |     if check_c(nn, mm, &c, &c) != 0 {
+   |        ^^^^^^^
+   |
+note: expected `&[[[[i32; 6]; 6]]]`, found `&Vec<Vec<Vec<Vec<i32>>>>`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:65:24
+   |
+65 |     if check_c(nn, mm, &c, &c) != 0 {
+   |                        ^^
+   = note: expected reference `&[[[[i32; 6]; 6]]]`
+              found reference `&Vec<Vec<Vec<Vec<i32>>>>`
+note: expected `&[[[[i32; 6]; 6]]]`, found `&Vec<Vec<Vec<Vec<i32>>>>`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:65:28
+   |
+65 |     if check_c(nn, mm, &c, &c) != 0 {
+   |                            ^^
+   = note: expected reference `&[[[[i32; 6]; 6]]]`
+              found reference `&Vec<Vec<Vec<Vec<i32>>>>`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_3/sample_001/target.rs:21:4
+   |
+21 | fn check_c(nn: usize, mm: usize, c: &[[[[i32; 6]; 6]]], r: &[[[[i32; 6]; 6]]]) -> i32 {
+   |    ^^^^^^^                       ---------------------  ---------------------
+
+error: aborting due to 15 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,101 @@
+warning: unused import: `std::mem`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:34:9
+   |
+34 |         f(n, p, q);
+   |         ^    -  - expected `&mut [i32]`, found `&mut [usize]`
+   |              |
+   |              expected `&mut [i32]`, found `&mut [usize]`
+   |
+   = note: expected mutable reference `&mut [i32]`
+              found mutable reference `&mut [usize]`
+   = note: expected mutable reference `&mut [i32]`
+              found mutable reference `&mut [usize]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:3:4
+   |
+ 3 | fn f(n: usize, p: &mut [i32], q: &mut [i32]) {
+   |    ^           -------------  -------------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:36:12
+   |
+36 |         if!check_range_eq(&buf[..n], &snapshot[off..n], n) {
+   |            ^^^^^^^^^^^^^^ ---------  ----------------- expected `&[i32]`, found `&[usize]`
+   |                           |
+   |                           expected `&[i32]`, found `&[usize]`
+   |
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:9:4
+   |
+ 9 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^ ---------  ---------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:40:12
+   |
+40 |         if!check_range_eq(&buf[off..n], &snapshot[off..n], n) {
+   |            ^^^^^^^^^^^^^^ ------------  ----------------- expected `&[i32]`, found `&[usize]`
+   |                           |
+   |                           expected `&[i32]`, found `&[usize]`
+   |
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:9:4
+   |
+ 9 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^ ---------  ---------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:60:9
+   |
+60 |         f(n, p, q);
+   |         ^    -  - expected `&mut [i32]`, found `&mut [usize]`
+   |              |
+   |              expected `&mut [i32]`, found `&mut [usize]`
+   |
+   = note: expected mutable reference `&mut [i32]`
+              found mutable reference `&mut [usize]`
+   = note: expected mutable reference `&mut [i32]`
+              found mutable reference `&mut [usize]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:3:4
+   |
+ 3 | fn f(n: usize, p: &mut [i32], q: &mut [i32]) {
+   |    ^           -------------  -------------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:62:12
+   |
+62 |         if!check_range_eq(&buf[off..n], &buf[..n], n) {
+   |            ^^^^^^^^^^^^^^ ------------  --------- expected `&[i32]`, found `&[usize]`
+   |                           |
+   |                           expected `&[i32]`, found `&[usize]`
+   |
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:9:4
+   |
+ 9 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^ ---------  ---------
+
+error: aborting due to 5 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0308`.

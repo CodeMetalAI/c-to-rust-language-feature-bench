@@ -1,0 +1,71 @@
+warning: unused imports: `AtomicI16 as AtomicShort`, `AtomicI32 as AtomicInt`, and `AtomicI64 as AtomicLongLong`
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:4:36
+  |
+4 | use std::sync::atomic::{AtomicPtr, AtomicI16 as AtomicShort, AtomicI32 as AtomicInt, AtomicI64 as AtomicLongLong};
+  |                                    ^^^^^^^^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `std::sync::atomic::AtomicUsize`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:12:9
+   |
+12 |     use std::sync::atomic::AtomicUsize;
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused macro definition: `test_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:16:18
+   |
+16 |     macro_rules! test_atomic {
+   |                  ^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_macros)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:278:22
+    |
+278 |     let init_bytes = unsafe { mem::transmute::<&S, &[u8; mem::size_of::<S>()]>(&init) };
+    |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:279:22
+    |
+279 |     let copy_bytes = unsafe { mem::transmute::<&S, &[u8; mem::size_of::<S>()]>(&copy) };
+    |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:288:23
+    |
+288 |     let copy2_bytes = unsafe { mem::transmute::<&S, &[u8; mem::size_of::<S>()]>(&copy2) };
+    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:294:23
+    |
+294 |     let copy3_bytes = unsafe { mem::transmute::<&S, &[u8; mem::size_of::<S>()]>(&copy3) };
+    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:300:23
+    |
+300 |     let copy4_bytes = unsafe { mem::transmute::<&S, &[u8; mem::size_of::<S>()]>(&copy4) };
+    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused variable: `value`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:11:54
+   |
+11 | fn test_simple_assign<T: PartialEq + Copy + Default>(value: T) {
+   |                                                      ^^^^^ help: if this is intentional, prefix it with an underscore: `_value`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `test_simple_assign` is never used
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:11:4
+   |
+11 | fn test_simple_assign<T: PartialEq + Copy + Default>(value: T) {
+   |    ^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 5 previous errors; 5 warnings emitted

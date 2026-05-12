@@ -1,0 +1,23 @@
+warning: value assigned to `col` is never read
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/enum_specifiers/sample_003/target.rs:67:5
+   |
+67 |     col = Hue::Winedark;
+   |     ^^^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+error[E0506]: cannot assign to `col` because it is borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/enum_specifiers/sample_003/target.rs:67:5
+   |
+54 |     let cp = &col;
+   |              ---- `col` is borrowed here
+...
+67 |     col = Hue::Winedark;
+   |     ^^^^^^^^^^^^^^^^^^^ `col` is assigned to here but it was already borrowed
+68 |     if check_vals(cp) != 13 {
+   |                   -- borrow later used here
+
+error: aborting due to 1 previous error; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0506`.

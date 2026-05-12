@@ -1,0 +1,38 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/external_definitions/fun_defs_2/sample_004/target.rs:31:16
+   |
+26 | fn main() {
+   |          - expected `()` because of default return type
+...
+31 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/external_definitions/fun_defs_2/sample_004/target.rs:45:5
+   |
+26 | fn main() {
+   |          - expected `()` because of default return type
+...
+45 |     0
+   |     ^ expected `()`, found integer
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/external_definitions/fun_defs_2/sample_004/target.rs:4:5
+  |
+4 |     COUNTER += 7;
+  |     ^^^^^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/external_definitions/fun_defs_2/sample_004/target.rs:5:5
+  |
+5 |     COUNTER
+  |     ^^^^^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0133, E0308.
+For more information about an error, try `rustc --explain E0133`.

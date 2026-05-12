@@ -1,0 +1,149 @@
+error[E0428]: the name `S` is defined multiple times
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_001/target.rs:46:1
+   |
+16 | static mut S: [u8; std::mem::align_of::<MaxAlign>()] = [0; std::mem::align_of::<MaxAlign>()];
+   | --------------------------------------------------------------------------------------------- previous definition of the value `S` here
+...
+46 | struct S;
+   | ^^^^^^^^^ `S` redefined here
+   |
+   = note: `S` must be defined only once in the value namespace of this module
+
+error: expected identifier, found keyword `as`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_001/target.rs:38:19
+   |
+38 | #[repr(C, align(E as usize))]
+   |                   ^^ expected identifier, found keyword
+
+error: expected one of `(`, `)`, `,`, `::`, or `=`, found keyword `as`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_001/target.rs:38:19
+   |
+38 | #[repr(C, align(E as usize))]
+   |                  -^^ expected one of `(`, `)`, `,`, `::`, or `=`
+   |                  |
+   |                  help: missing `,`
+
+error: expected one of `(`, `)`, `,`, `::`, or `=`, found `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_001/target.rs:38:22
+   |
+38 | #[repr(C, align(E as usize))]
+   |                     -^^^^^ expected one of `(`, `)`, `,`, `::`, or `=`
+   |                     |
+   |                     help: missing `,`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_001/target.rs:50:9
+   |
+50 |         unsafe { abort(); }
+   |         ^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_001/target.rs:53:9
+   |
+53 |         unsafe { abort(); }
+   |         ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_001/target.rs:56:9
+   |
+56 |         unsafe { abort(); }
+   |         ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_001/target.rs:59:9
+   |
+59 |         unsafe { abort(); }
+   |         ^^^^^^^^^^^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_001/target.rs:10:17
+   |
+10 | #[repr(C, align(max))]
+   |                 ^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_001/target.rs:15:17
+   |
+15 | #[repr(C, align(max))]
+   |                 ^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` takes exactly one argument in parentheses
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_001/target.rs:38:11
+   |
+38 | #[repr(C, align(E as usize))]
+   |           ^^^^^^^^^^^^^^^^^
+
+error[E0589]: invalid `repr(align)` attribute: not a power of two
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_001/target.rs:45:17
+   |
+45 | #[repr(C, align(0))]
+   |                 ^
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_001/target.rs:15:8
+   |
+15 | #[repr(C, align(max))]
+   |        ^
+16 | static mut S: [u8; std::mem::align_of::<MaxAlign>()] = [0; std::mem::align_of::<MaxAlign>()];
+   | --------------------------------------------------------------------------------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_001/target.rs:38:8
+   |
+38 | #[repr(C, align(E as usize))]
+   |        ^
+39 | static mut Y: i32 = 0;
+   | ---------------------- not a struct, enum, or union
+
+warning: the feature `align_offset` has been stable since 1.36.0 and no longer requires an attribute to enable
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_001/target.rs:1:12
+  |
+1 | #![feature(align_offset)]
+  |            ^^^^^^^^^^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_001/target.rs:35:9
+   |
+35 |     E = std::mem::align_of::<MaxAlign>(),
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `isize`, found `usize`
+
+error[E0133]: call to unsafe function `strcmp` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_001/target.rs:49:8
+   |
+49 |     if strcmp("_Alignas\0".as_ptr(), "_Alignas\0".as_ptr())!= 0 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: call to unsafe function `strcmp` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_001/target.rs:52:8
+   |
+52 |     if strcmp("_Alignof\0".as_ptr(), "_Alignof\0".as_ptr())!= 0 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: call to unsafe function `strcmp` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_001/target.rs:55:8
+   |
+55 |     if strcmp("1\0".as_ptr(), "1\0".as_ptr())!= 0 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: call to unsafe function `strcmp` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_001/target.rs:58:8
+   |
+58 |     if strcmp("1\0".as_ptr(), "1\0".as_ptr())!= 0 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: aborting due to 19 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0133, E0308, E0428, E0517, E0589, E0693.
+For more information about an error, try `rustc --explain E0133`.

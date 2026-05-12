@@ -1,0 +1,51 @@
+error[E0425]: cannot find value `abort` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/c11-generic-1/sample_001/target.rs:27:24
+   |
+27 |     check(type_switch(&abort as &dyn Any, 0));
+   |                        ^^^^^ not found in this scope
+   |
+help: consider importing this function
+   |
+57 + use std::process::abort;
+   |
+
+error[E0599]: no method named `is` found for reference `&T` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/c11-generic-1/sample_001/target.rs:45:20
+   |
+45 |         _ if value.is::<i32>() => 0,
+   |                    ^^ method not found in `&T`
+
+error[E0599]: no method named `is` found for reference `&T` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/c11-generic-1/sample_001/target.rs:46:20
+   |
+46 |         _ if value.is::<f64>() => 1,
+   |                    ^^ method not found in `&T`
+
+error[E0599]: no method named `is` found for reference `&T` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/c11-generic-1/sample_001/target.rs:47:20
+   |
+47 |         _ if value.is::<[i32; 1]>() => 0,
+   |                    ^^ method not found in `&T`
+
+error[E0599]: no method named `is` found for reference `&T` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/c11-generic-1/sample_001/target.rs:48:20
+   |
+48 |         _ if value.is::<[i32; 1]>() => 1,
+   |                    ^^ method not found in `&T`
+
+error[E0599]: no method named `is` found for reference `&T` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/c11-generic-1/sample_001/target.rs:49:20
+   |
+49 |         _ if value.is::<fn()>() => 0,
+   |                    ^^ method not found in `&T`
+
+error[E0599]: no method named `is` found for reference `&T` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/c11-generic-1/sample_001/target.rs:50:20
+   |
+50 |         _ if value.is::<i16>() => 0,
+   |                    ^^ method not found in `&T`
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0425, E0599.
+For more information about an error, try `rustc --explain E0425`.

@@ -1,0 +1,17 @@
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_4/sample_002/target.rs:71:27
+   |
+55 |         let p1 = &mut x[..];
+   |                       - mutable borrow occurs here
+...
+71 |                 if !same(&x[8..24], &expect) {
+   |                           ^ immutable borrow occurs here
+...
+81 |         copy_restrict(8, &mut p1[0..8], &q1[24..]);
+   |                               -- mutable borrow later used here
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0502`.

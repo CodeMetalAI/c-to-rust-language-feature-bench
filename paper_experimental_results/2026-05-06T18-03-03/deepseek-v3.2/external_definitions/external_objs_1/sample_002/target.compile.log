@@ -1,0 +1,48 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/external_definitions/external_objs_1/sample_002/target.rs:13:5
+   |
+13 | /     unsafe {
+14 | |         if I1 != 1 {
+15 | |             std::process::exit(1);
+...  |
+62 | |         std::process::exit(0);
+63 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/external_definitions/external_objs_1/sample_002/target.rs:7:32
+  |
+7 | static mut P_I1: *const i32 = &I1 as *const i32;
+  |                                ^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/external_definitions/external_objs_1/sample_002/target.rs:8:32
+  |
+8 | static mut P_I2: *const i32 = &I2 as *const i32;
+  |                                ^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/external_definitions/external_objs_1/sample_002/target.rs:9:32
+  |
+9 | static mut P_I4: *const i32 = &I4 as *const i32;
+  |                                ^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/external_definitions/external_objs_1/sample_002/target.rs:10:32
+   |
+10 | static mut P_I5: *const i32 = &I5 as *const i32;
+   |                                ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

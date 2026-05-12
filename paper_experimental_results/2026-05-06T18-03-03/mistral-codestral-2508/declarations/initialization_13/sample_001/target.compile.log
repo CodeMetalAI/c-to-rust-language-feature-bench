@@ -1,0 +1,33 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/initialization_13/sample_001/target.rs:11:8
+   |
+11 |     if unsafe { x.any_member } != 42 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/initialization_13/sample_001/target.rs:17:12
+   |
+17 |         if unsafe { y.u_member } != 7 {
+   |            ^^^^^^^^^^^^^^^^^^^^^
+
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/initialization_13/sample_001/target.rs:9:9
+  |
+9 |     let mut x = U { any_member: 42 };
+  |         ----^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/initialization_13/sample_001/target.rs:16:13
+   |
+16 |         let mut y = U { u_member: 7 };
+   |             ----^
+   |             |
+   |             help: remove this `mut`
+
+error: aborting due to 2 previous errors; 2 warnings emitted

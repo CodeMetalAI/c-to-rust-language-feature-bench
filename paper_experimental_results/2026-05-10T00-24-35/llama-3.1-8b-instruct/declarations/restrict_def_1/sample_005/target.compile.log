@@ -1,0 +1,93 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_005/target.rs:24:9
+   |
+24 |         unsafe { *p.offset(i as isize) = base + i; }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_005/target.rs:30:9
+   |
+30 |         unsafe { *p.offset(i as isize) += k; }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_005/target.rs:37:14
+   |
+37 |         s += unsafe { *p.offset(i as isize) };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_005/target.rs:24:49
+   |
+24 |         unsafe { *p.offset(i as isize) = base + i; }
+   |                                                 ^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_005/target.rs:24:47
+   |
+24 |         unsafe { *p.offset(i as isize) = base + i; }
+   |                                               ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_005/target.rs:46:40
+   |
+46 |     let a = choose_view(&UNION_BANK_A, which_a);
+   |             -----------                ^^^^^^^ expected `bool`, found integer
+   |             |
+   |             arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_005/target.rs:14:4
+   |
+14 | fn choose_view(u: &UnionBank, which: bool) -> *mut i32 {
+   |    ^^^^^^^^^^^                -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_005/target.rs:47:40
+   |
+47 |     let b = choose_view(&UNION_BANK_B, which_b);
+   |             -----------                ^^^^^^^ expected `bool`, found integer
+   |             |
+   |             arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_005/target.rs:14:4
+   |
+14 | fn choose_view(u: &UnionBank, which: bool) -> *mut i32 {
+   |    ^^^^^^^^^^^                -----------
+
+error[E0596]: cannot borrow `u.right` as mutable, as it is behind a `&` reference
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_005/target.rs:16:9
+   |
+16 |         u.right.as_mut_ptr()
+   |         ^^^^^^^ `u` is a `&` reference, so the data it refers to cannot be borrowed as mutable
+   |
+help: consider changing this to be a mutable reference
+   |
+14 | fn choose_view(u: &mut UnionBank, which: bool) -> *mut i32 {
+   |                    +++
+
+error[E0596]: cannot borrow `u.left` as mutable, as it is behind a `&` reference
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_005/target.rs:18:9
+   |
+18 |         u.left.as_mut_ptr()
+   |         ^^^^^^ `u` is a `&` reference, so the data it refers to cannot be borrowed as mutable
+   |
+help: consider changing this to be a mutable reference
+   |
+14 | fn choose_view(u: &mut UnionBank, which: bool) -> *mut i32 {
+   |                    +++
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0596.
+For more information about an error, try `rustc --explain E0277`.

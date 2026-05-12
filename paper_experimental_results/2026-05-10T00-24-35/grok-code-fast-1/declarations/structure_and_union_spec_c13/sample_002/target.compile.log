@@ -1,0 +1,233 @@
+error[E0599]: no method named `try_into` found for slice `[u8]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c13/sample_002/target.rs:35:52
+    |
+ 35 |     let b = i32::from_le_bytes(o.union_field[0..4].try_into().unwrap());
+    |                                                    ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[u8]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 35 -     let b = i32::from_le_bytes(o.union_field[0..4].try_into().unwrap());
+ 35 +     let b = i32::from_le_bytes(o.union_field[0..4].into().unwrap());
+    |
+
+error[E0599]: no method named `try_into` found for slice `[u8]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c13/sample_002/target.rs:39:55
+    |
+ 39 |     let deep = i32::from_le_bytes(o.union_field[4..8].try_into().unwrap());
+    |                                                       ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[u8]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 39 -     let deep = i32::from_le_bytes(o.union_field[4..8].try_into().unwrap());
+ 39 +     let deep = i32::from_le_bytes(o.union_field[4..8].into().unwrap());
+    |
+
+error[E0599]: no method named `try_into` found for slice `[u8]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c13/sample_002/target.rs:43:54
+    |
+ 43 |     let c = i32::from_le_bytes(o.union_field[12..16].try_into().unwrap());
+    |                                                      ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[u8]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 43 -     let c = i32::from_le_bytes(o.union_field[12..16].try_into().unwrap());
+ 43 +     let c = i32::from_le_bytes(o.union_field[12..16].into().unwrap());
+    |
+
+error[E0599]: no method named `try_into` found for slice `[u8]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c13/sample_002/target.rs:50:56
+    |
+ 50 |     let tail_x = i32::from_le_bytes(o.tail_union[0..4].try_into().unwrap());
+    |                                                        ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[u8]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 50 -     let tail_x = i32::from_le_bytes(o.tail_union[0..4].try_into().unwrap());
+ 50 +     let tail_x = i32::from_le_bytes(o.tail_union[0..4].into().unwrap());
+    |
+
+error[E0599]: no method named `try_into` found for slice `[u8]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c13/sample_002/target.rs:54:56
+    |
+ 54 |     let tail_y = i32::from_le_bytes(o.tail_union[4..8].try_into().unwrap());
+    |                                                        ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[u8]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 54 -     let tail_y = i32::from_le_bytes(o.tail_union[4..8].try_into().unwrap());
+ 54 +     let tail_y = i32::from_le_bytes(o.tail_union[4..8].into().unwrap());
+    |
+
+error[E0599]: no method named `try_into` found for slice `[u8]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c13/sample_002/target.rs:71:52
+    |
+ 71 |     let x = i32::from_le_bytes(o.union_field[4..8].try_into().unwrap());
+    |                                                    ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[u8]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 71 -     let x = i32::from_le_bytes(o.union_field[4..8].try_into().unwrap());
+ 71 +     let x = i32::from_le_bytes(o.union_field[4..8].into().unwrap());
+    |
+
+error[E0599]: no method named `try_into` found for slice `[u8]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c13/sample_002/target.rs:82:53
+    |
+ 82 |     let y = i32::from_le_bytes(o.union_field[8..12].try_into().unwrap());
+    |                                                     ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[u8]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 82 -     let y = i32::from_le_bytes(o.union_field[8..12].try_into().unwrap());
+ 82 +     let y = i32::from_le_bytes(o.union_field[8..12].into().unwrap());
+    |
+
+error[E0599]: no method named `try_into` found for slice `[u8]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c13/sample_002/target.rs:90:56
+    |
+ 90 |     let tail_p = i32::from_le_bytes(o.tail_union[4..8].try_into().unwrap());
+    |                                                        ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[u8]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 90 -     let tail_p = i32::from_le_bytes(o.tail_union[4..8].try_into().unwrap());
+ 90 +     let tail_p = i32::from_le_bytes(o.tail_union[4..8].into().unwrap());
+    |
+
+error[E0599]: no method named `try_into` found for slice `[u8]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c13/sample_002/target.rs:94:57
+    |
+ 94 |     let tail_q = i32::from_le_bytes(o.tail_union[8..12].try_into().unwrap());
+    |                                                         ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[u8]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 94 -     let tail_q = i32::from_le_bytes(o.tail_union[8..12].try_into().unwrap());
+ 94 +     let tail_q = i32::from_le_bytes(o.tail_union[8..12].into().unwrap());
+    |
+
+error[E0599]: no method named `try_into` found for slice `[u8]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c13/sample_002/target.rs:100:56
+    |
+100 |     let tail_y = i32::from_le_bytes(o.tail_union[4..8].try_into().unwrap());
+    |                                                        ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[u8]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+100 -     let tail_y = i32::from_le_bytes(o.tail_union[4..8].try_into().unwrap());
+100 +     let tail_y = i32::from_le_bytes(o.tail_union[4..8].into().unwrap());
+    |
+
+error: aborting due to 10 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

@@ -1,0 +1,74 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_c8/sample_002/target.rs:8:15
+  |
+8 |   let p_end = unsafe { p_last.offset(1) };
+  |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_c8/sample_002/target.rs:17:16
+   |
+17 |   let p_back = unsafe { p4.offset(-3 * std::mem::size_of::<i32>()) };
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_c8/sample_002/target.rs:22:20
+   |
+22 |   let p_from_end = unsafe { p_end.offset(-1) };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `offset` found for reference `&{integer}` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_c8/sample_002/target.rs:5:15
+  |
+5 |   let p2 = p0.offset(2 * std::mem::size_of::<i32>());
+  |               ^^^^^^ method not found in `&{integer}`
+
+error[E0599]: no method named `offset` found for reference `&{integer}` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_c8/sample_002/target.rs:8:31
+  |
+8 |   let p_end = unsafe { p_last.offset(1) };
+  |                               ^^^^^^ method not found in `&{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_c8/sample_002/target.rs:11:12
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+11 |     return 1;
+   |            ^ expected `()`, found integer
+
+error[E0277]: the trait bound `usize: Neg` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_c8/sample_002/target.rs:17:35
+   |
+17 |   let p_back = unsafe { p4.offset(-3 * std::mem::size_of::<i32>()) };
+   |                                   ^^ the trait `Neg` is not implemented for `usize`
+   |
+help: consider specifying an integer type that can be negative
+   |
+17 |   let p_back = unsafe { p4.offset(-3isize * std::mem::size_of::<i32>()) };
+   |                                     +++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_c8/sample_002/target.rs:30:32
+    |
+ 30 |   if (p0 as *const i32).offset(5 * std::mem::size_of::<i32>()) != p_end {
+    |                         ------ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `isize`, found `usize`
+    |                         |
+    |                         arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:401:25
+    |
+401 |     pub const unsafe fn offset(self, count: isize) -> *const T
+    |                         ^^^^^^
+help: you can convert a `usize` to an `isize` and panic if the converted value doesn't fit
+    |
+ 30 |   if (p0 as *const i32).offset((5 * std::mem::size_of::<i32>()).try_into().unwrap()) != p_end {
+    |                                +                              +++++++++++++++++++++
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0599.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,29 @@
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:9:14
+  |
+9 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+error[E0599]: no method named `hash` found for struct `TypeId` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:6:33
+    |
+  6 |     std::any::TypeId::of::<T>().hash() as usize
+    |                                 ^^^^ method not found in `TypeId`
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/hash/mod.rs:199:8
+    |
+199 |     fn hash<H: Hasher>(&self, state: &mut H);
+    |        ---- the method is available for `TypeId` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Hash` which provides `hash` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::hash::Hash;
+    |
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0277, E0599.
+For more information about an error, try `rustc --explain E0277`.

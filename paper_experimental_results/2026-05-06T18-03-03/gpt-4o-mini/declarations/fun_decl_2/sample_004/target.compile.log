@@ -1,0 +1,90 @@
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/fun_decl_2/sample_004/target.rs:45:14
+   |
+45 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/fun_decl_2/sample_004/target.rs:53:19
+   |
+53 |     let mut sel = hmix(v[0], v[5]) & 3;
+   |                   ^^^^ ----  ---- expected `i32`, found `usize`
+   |                        |
+   |                        expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/fun_decl_2/sample_004/target.rs:1:4
+   |
+ 1 | fn hmix(a: i32, b: i32) -> i32 {
+   |    ^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+53 |     let mut sel = hmix(v[0].try_into().unwrap(), v[5]) & 3;
+   |                            ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+53 |     let mut sel = hmix(v[0], v[5].try_into().unwrap()) & 3;
+   |                                  ++++++++++++++++++++
+
+error[E0277]: the type `[usize]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/fun_decl_2/sample_004/target.rs:58:26
+   |
+58 |     let (x, y) = (&mut v[sel], &mut v[sel + 1]);
+   |                          ^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[usize]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[usize]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[usize; 6]` to implement `Index<i32>`
+
+error[E0277]: the type `[usize]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/fun_decl_2/sample_004/target.rs:58:39
+   |
+58 |     let (x, y) = (&mut v[sel], &mut v[sel + 1]);
+   |                                       ^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[usize]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[usize]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[usize; 6]` to implement `Index<i32>`
+
+error[E0277]: the type `[&dyn for<'a, 'b> Fn(&'a mut i32, &'b mut i32) -> i32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/fun_decl_2/sample_004/target.rs:62:24
+   |
+62 |     let out = run(apfi[sel], x, y);
+   |                        ^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[&dyn for<'a, 'b> Fn(&'a mut i32, &'b mut i32) -> i32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[&dyn for<'a, 'b> Fn(&'a mut i32, &'b mut i32) -> i32]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[&dyn for<'a, 'b> Fn(&'a mut i32, &'b mut i32) -> i32; 3]` to implement `Index<i32>`
+
+error[E0277]: the type `[&dyn for<'a, 'b> Fn(&'a mut i32, &'b mut i32) -> i32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/fun_decl_2/sample_004/target.rs:94:13
+   |
+94 |     if apfi[sel] as *const _ == std::ptr::null() {
+   |             ^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[&dyn for<'a, 'b> Fn(&'a mut i32, &'b mut i32) -> i32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[&dyn for<'a, 'b> Fn(&'a mut i32, &'b mut i32) -> i32]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[&dyn for<'a, 'b> Fn(&'a mut i32, &'b mut i32) -> i32; 3]` to implement `Index<i32>`
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,30 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/declarations/type_def_2/sample_005/target.rs:24:5
+   |
+24 | /     unsafe {
+25 | |         (*p).x += 3;
+26 | |         (*p).x
+27 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/declarations/type_def_2/sample_005/target.rs:84:9
+   |
+84 | /         unsafe {
+85 | |             if (*r).x != 30 {
+86 | |                 std::process::exit(9);
+87 | |             }
+88 | |         }
+   | |_________^
+
+error[E0606]: casting `&S2` as `*mut S2` is invalid
+  --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/declarations/type_def_2/sample_005/target.rs:83:17
+   |
+83 |         let r = &c as Tp2;
+   |                 ^^^^^^^^^
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0606`.

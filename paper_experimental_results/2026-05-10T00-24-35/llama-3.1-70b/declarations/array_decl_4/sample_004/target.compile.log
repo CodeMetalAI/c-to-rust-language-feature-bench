@@ -1,0 +1,143 @@
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_004/target.rs:30:17
+   |
+30 |                 backing[i][j] = c[i][j] + d[(i + j) % m];
+   |                 ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_004/target.rs:34:9
+   |
+34 |         sink ^= checksum_2d(m, &backing);
+   |         ^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_004/target.rs:34:33
+   |
+34 |         sink ^= checksum_2d(m, &backing);
+   |                                 ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_004/target.rs:49:13
+   |
+49 |     fvla(m, &x);
+   |     ----    ^^ expected `&[[i32; 9]; 9]`, found `&[[usize; 9]; 9]`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&[[i32; 9]; 9]`
+              found reference `&[[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_004/target.rs:22:8
+   |
+22 |     fn fvla(m: usize, c: &[[i32; 9]; 9]) {
+   |        ^^^^           -----------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_004/target.rs:58:23
+   |
+58 |     if checksum_2d(m, &backing) != checksum_2d(m, &expect) {
+   |        -----------    ^^^^^^^^ expected `&[[i32; 9]; 9]`, found `&[[usize; 9]; 9]`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&[[i32; 9]; 9]`
+              found reference `&[[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_004/target.rs:12:8
+   |
+12 |     fn checksum_2d(m: usize, a: &[[i32; 9]; 9]) -> i32 {
+   |        ^^^^^^^^^^^           -----------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_004/target.rs:58:51
+   |
+58 |     if checksum_2d(m, &backing) != checksum_2d(m, &expect) {
+   |                                    -----------    ^^^^^^^ expected `&[[i32; 9]; 9]`, found `&[[usize; 9]; 9]`
+   |                                    |
+   |                                    arguments to this function are incorrect
+   |
+   = note: expected reference `&[[i32; 9]; 9]`
+              found reference `&[[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_004/target.rs:12:8
+   |
+12 |     fn checksum_2d(m: usize, a: &[[i32; 9]; 9]) -> i32 {
+   |        ^^^^^^^^^^^           -----------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_004/target.rs:62:13
+   |
+62 |     fvla(m, &y);
+   |     ----    ^^ expected `&[[i32; 9]; 9]`, found `&[[usize; 9]; 9]`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&[[i32; 9]; 9]`
+              found reference `&[[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_004/target.rs:22:8
+   |
+22 |     fn fvla(m: usize, c: &[[i32; 9]; 9]) {
+   |        ^^^^           -----------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_004/target.rs:71:23
+   |
+71 |     if checksum_2d(m, &backing) != checksum_2d(m, &expect2) {
+   |        -----------    ^^^^^^^^ expected `&[[i32; 9]; 9]`, found `&[[usize; 9]; 9]`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&[[i32; 9]; 9]`
+              found reference `&[[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_004/target.rs:12:8
+   |
+12 |     fn checksum_2d(m: usize, a: &[[i32; 9]; 9]) -> i32 {
+   |        ^^^^^^^^^^^           -----------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_004/target.rs:71:51
+   |
+71 |     if checksum_2d(m, &backing) != checksum_2d(m, &expect2) {
+   |                                    -----------    ^^^^^^^^ expected `&[[i32; 9]; 9]`, found `&[[usize; 9]; 9]`
+   |                                    |
+   |                                    arguments to this function are incorrect
+   |
+   = note: expected reference `&[[i32; 9]; 9]`
+              found reference `&[[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_004/target.rs:12:8
+   |
+12 |     fn checksum_2d(m: usize, a: &[[i32; 9]; 9]) -> i32 {
+   |        ^^^^^^^^^^^           -----------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_004/target.rs:30:43
+   |
+30 |                 backing[i][j] = c[i][j] + d[(i + j) % m];
+   |                                           ^^^^^^^^^^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_004/target.rs:30:41
+   |
+30 |                 backing[i][j] = c[i][j] + d[(i + j) % m];
+   |                                         ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error: aborting due to 11 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0434.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,39 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_001/target.rs:30:13
+   |
+30 |     let p = unsafe { &mut *p_ptr };
+   |             ^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_001/target.rs:55:13
+   |
+55 | /             unsafe {
+56 | |                 ptr::write(data_ptr.add(i as usize), v);
+57 | |                 let val = ptr::read(data_ptr.add(i as usize));
+58 | |                 ptr::write(data_ptr.add(i as usize), val + 0);
+59 | |             }
+   | |_____________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_001/target.rs:69:22
+   |
+69 |             p.sum += unsafe { ptr::read(data_ptr.add(i as usize)) };
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_001/target.rs:89:13
+   |
+89 |     let p = unsafe { &mut *p_ptr };
+   |             ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: type alias `U8` is never used
+ --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_001/target.rs:4:6
+  |
+4 | type U8 = u8;
+  |      ^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 4 previous errors; 1 warning emitted

@@ -1,0 +1,41 @@
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:195:24
+    |
+195 |     let b2 = Cell::new(unsafe { &I as *const i32 });
+    |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:201:20
+    |
+201 |     if b2.get() != unsafe { &I as *const i32 } {
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:205:20
+    |
+205 |     if a2.get() != unsafe { &I as *const i32 } {
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:14:30
+   |
+14 |     test_simple_assign_arith(1u64 << 63);
+   |     ------------------------ ^^^^^^^^^^ expected `i64`, found `u64`
+   |     |
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:22:4
+   |
+22 | fn test_simple_assign_arith(value: i64) {
+   |    ^^^^^^^^^^^^^^^^^^^^^^^^ ----------
+help: you can convert a `u64` to an `i64` and panic if the converted value doesn't fit
+   |
+14 |     test_simple_assign_arith((1u64 << 63).try_into().unwrap());
+   |                              +          +++++++++++++++++++++
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

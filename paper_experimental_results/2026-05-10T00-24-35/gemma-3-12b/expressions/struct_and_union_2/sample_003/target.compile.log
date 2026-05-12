@@ -1,0 +1,86 @@
+warning: type `s` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/struct_and_union_2/sample_003/target.rs:2:8
+  |
+2 | struct s {
+  |        ^ help: convert the identifier to upper camel case (notice the capitalization): `S`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error[E0283]: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/struct_and_union_2/sample_003/target.rs:12:9
+   |
+12 |     (p).into(); // Avoid unused variable warning
+   |         ^^^^
+   |
+   = note: cannot satisfy `_: From<&i32>`
+   = note: required for `&i32` to implement `Into<_>`
+help: try using a fully qualified path to specify the expected types
+   |
+12 -     (p).into(); // Avoid unused variable warning
+12 +     <&i32 as Into<T>>::into((p)); // Avoid unused variable warning
+   |
+
+error[E0283]: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/struct_and_union_2/sample_003/target.rs:16:9
+   |
+16 |     (p).into(); // Avoid unused variable warning
+   |         ^^^^
+   |
+   = note: cannot satisfy `_: From<&i32>`
+   = note: required for `&i32` to implement `Into<_>`
+help: try using a fully qualified path to specify the expected types
+   |
+16 -     (p).into(); // Avoid unused variable warning
+16 +     <&i32 as Into<T>>::into((p)); // Avoid unused variable warning
+   |
+
+error[E0283]: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/struct_and_union_2/sample_003/target.rs:20:9
+   |
+20 |     (p).into(); // Avoid unused variable warning
+   |         ^^^^
+   |
+   = note: cannot satisfy `_: From<&i32>`
+   = note: required for `&i32` to implement `Into<_>`
+help: try using a fully qualified path to specify the expected types
+   |
+20 -     (p).into(); // Avoid unused variable warning
+20 +     <&i32 as Into<T>>::into((p)); // Avoid unused variable warning
+   |
+
+error[E0283]: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/struct_and_union_2/sample_003/target.rs:24:9
+   |
+24 |     (p).into(); // Avoid unused variable warning
+   |         ^^^^
+   |
+   = note: cannot satisfy `_: From<&i32>`
+   = note: required for `&i32` to implement `Into<_>`
+help: try using a fully qualified path to specify the expected types
+   |
+24 -     (p).into(); // Avoid unused variable warning
+24 +     <&i32 as Into<T>>::into((p)); // Avoid unused variable warning
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/struct_and_union_2/sample_003/target.rs:38:16
+   |
+27 | fn main() {
+   |          - expected `()` because of default return type
+...
+38 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/struct_and_union_2/sample_003/target.rs:66:5
+   |
+27 | fn main() {
+   |          - expected `()` because of default return type
+...
+66 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 6 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0283, E0308.
+For more information about an error, try `rustc --explain E0283`.

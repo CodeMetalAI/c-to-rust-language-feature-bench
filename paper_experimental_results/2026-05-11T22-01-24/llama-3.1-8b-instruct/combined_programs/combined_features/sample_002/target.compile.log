@@ -1,0 +1,65 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/llama-3.1-8b-instruct/combined_programs/combined_features/sample_002/target.rs:46:23
+   |
+46 |             x[i][j] = i + j;
+   |             -------   ^^^^^ expected `i32`, found `usize`
+   |             |
+   |             expected due to the type of this binding
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/llama-3.1-8b-instruct/combined_programs/combined_features/sample_002/target.rs:53:34
+   |
+53 |             let b = *(&x[i][0] + j);
+   |                                  ^ expected `i32`, found `usize`
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-11T22-01-24/llama-3.1-8b-instruct/combined_programs/combined_features/sample_002/target.rs:53:21
+   |
+53 |             let b = *(&x[i][0] + j);
+   |                     ^^^^^^^^^^^^^^^ can't be dereferenced
+
+error[E0277]: cannot add `usize` to `&i32`
+  --> benchmark_results/2026-05-11T22-01-24/llama-3.1-8b-instruct/combined_programs/combined_features/sample_002/target.rs:53:32
+   |
+53 |             let b = *(&x[i][0] + j);
+   |                                ^ no implementation for `&i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `&i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-11T22-01-24/llama-3.1-8b-instruct/combined_programs/combined_features/sample_002/target.rs:110:11
+    |
+110 |     *tp = &a;
+    |     ---   ^^ expected `S1`, found `&S1`
+    |     |
+    |     expected due to the type of this binding
+    |
+help: consider removing the borrow
+    |
+110 -     *tp = &a;
+110 +     *tp = a;
+    |
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-11T22-01-24/llama-3.1-8b-instruct/combined_programs/combined_features/sample_002/target.rs:138:14
+    |
+138 |         *r = &mut c;
+    |         --   ^^^^^^ expected `S2`, found `&mut S2`
+    |         |
+    |         expected due to the type of this binding
+    |
+help: consider removing the borrow
+    |
+138 -         *r = &mut c;
+138 +         *r = c;
+    |
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0614.
+For more information about an error, try `rustc --explain E0277`.

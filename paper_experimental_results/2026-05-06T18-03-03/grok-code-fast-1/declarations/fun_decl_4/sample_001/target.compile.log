@@ -1,0 +1,32 @@
+error: generic parameters may not be used in const operations
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_4/sample_001/target.rs:25:62
+   |
+25 | fn addscalar<const N: usize, const M: usize>(a: &mut [[f64; {N * M + 300}]; N], x: f64) {
+   |                                                              ^ cannot perform const operation using `N`
+   |
+   = help: const parameters may only be used as standalone arguments here, i.e. `N`
+   = help: add `#![feature(generic_const_exprs)]` to allow generic const expressions
+
+error: generic parameters may not be used in const operations
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_4/sample_001/target.rs:25:66
+   |
+25 | fn addscalar<const N: usize, const M: usize>(a: &mut [[f64; {N * M + 300}]; N], x: f64) {
+   |                                                                  ^ cannot perform const operation using `M`
+   |
+   = help: const parameters may only be used as standalone arguments here, i.e. `M`
+   = help: add `#![feature(generic_const_exprs)]` to allow generic const expressions
+
+warning: unnecessary braces around const expression
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_4/sample_001/target.rs:25:61
+   |
+25 | fn addscalar<const N: usize, const M: usize>(a: &mut [[f64; {N * M + 300}]; N], x: f64) {
+   |                                                             ^           ^
+   |
+   = note: `#[warn(unused_braces)]` (part of `#[warn(unused)]`) on by default
+help: remove these braces
+   |
+25 - fn addscalar<const N: usize, const M: usize>(a: &mut [[f64; {N * M + 300}]; N], x: f64) {
+25 + fn addscalar<const N: usize, const M: usize>(a: &mut [[f64; N * M + 300]; N], x: f64) {
+   |
+
+error: aborting due to 2 previous errors; 1 warning emitted

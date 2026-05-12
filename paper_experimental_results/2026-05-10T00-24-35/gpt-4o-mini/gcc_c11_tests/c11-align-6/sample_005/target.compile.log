@@ -1,0 +1,22 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-align-6/sample_005/target.rs:7:36
+  |
+7 |         let x = Wrapper { c: 0, v: unsafe { std::mem::zeroed() } };
+  |                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error[E0282]: type annotations needed for `Wrapper<_>`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-align-6/sample_005/target.rs:7:13
+  |
+7 |         let x = Wrapper { c: 0, v: unsafe { std::mem::zeroed() } };
+  |             ^   -------------------------------------------------- type must be known at this point
+  |
+help: consider giving `x` an explicit type, where the type for type parameter `T` is specified
+  |
+7 |         let x: Wrapper<T> = Wrapper { c: 0, v: unsafe { std::mem::zeroed() } };
+  |              ++++++++++++
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0282`.

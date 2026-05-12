@@ -1,0 +1,67 @@
+error[E0599]: no method named `call` found for struct `Callback<T>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_3/sample_001/target.rs:23:6
+   |
+ 8 | struct Callback<T> {
+   | ------------------ method `call` not found for this struct
+...
+23 |   cb.call(x)
+   |      ^^^^ method not found in `Callback<T>`
+   |
+   = note: the method was found for
+           - `Callback<i32>`
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `call`, perhaps you need to implement it:
+           candidate #1: `Fn`
+help: one of the expressions' fields has a method of the same name
+   |
+23 |   cb.cb.call(x)
+   |      +++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_3/sample_001/target.rs:27:3
+   |
+27 | /   match s {
+28 | |     Tag::T(a) => a as i32,
+29 | |     Tag::Const(_) => 0,
+30 | |     Tag::R(b) => b as i32,
+31 | |   } * 100 + match s {
+   | |   ^- help: consider using a semicolon here
+   | |___|
+   |     expected `()`, found `i32`
+
+error[E0614]: type `{integer}` cannot be dereferenced
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_3/sample_001/target.rs:31:5
+   |
+31 |   } * 100 + match s {
+   |     ^^^^^ can't be dereferenced
+   |
+help: parentheses are required to parse this as an expression
+   |
+27 ~   (match s {
+28 |     Tag::T(a) => a as i32,
+29 |     Tag::Const(_) => 0,
+30 |     Tag::R(b) => b as i32,
+31 ~   }) * 100 + match s {
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_3/sample_001/target.rs:39:22
+   |
+38 | fn f(cb: impl Fn(i32) -> i32) -> i32 {
+   |          ------------------- found this type parameter
+39 |   call_cb(Callback { cb }, 9)
+   |                      ^^ expected fn pointer, found type parameter `impl Fn(i32) -> i32`
+   |
+   = note:  expected fn pointer `fn(i32) -> i32`
+           found type parameter `impl Fn(i32) -> i32`
+
+error[E0609]: no field `r` on type `Tag`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_3/sample_001/target.rs:44:5
+   |
+44 |   s.r = 31;
+   |     ^ unknown field
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0599, E0609, E0614.
+For more information about an error, try `rustc --explain E0308`.

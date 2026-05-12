@@ -1,0 +1,33 @@
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-5.2-codex/expressions/function_calls/sample_001/target.rs:78:14
+   |
+78 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0502]: cannot borrow `st` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-5.2-codex/expressions/function_calls/sample_001/target.rs:34:21
+   |
+34 |             st.logv[st.logn] = id;
+   |             --------^^------
+   |             |       |
+   |             |       immutable borrow occurs here
+   |             mutable borrow occurs here
+   |             mutable borrow later used here
+   |
+help: try adding a local storing this...
+  --> benchmark_results/2026-05-10T00-24-35/gpt-5.2-codex/expressions/function_calls/sample_001/target.rs:34:21
+   |
+34 |             st.logv[st.logn] = id;
+   |                     ^^^^^^^
+help: ...and then using that local here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-5.2-codex/expressions/function_calls/sample_001/target.rs:34:13
+   |
+34 |             st.logv[st.logn] = id;
+   |             ^^^^^^^^^^^^^^^^
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0277, E0502.
+For more information about an error, try `rustc --explain E0277`.

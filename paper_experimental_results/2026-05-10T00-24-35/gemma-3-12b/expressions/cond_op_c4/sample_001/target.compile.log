@@ -1,0 +1,51 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/cond_op_c4/sample_001/target.rs:3:5
+  |
+3 | /     unsafe {
+4 | |         g = gval;
+5 | |         ret
+6 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: `if` and `else` have incompatible types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/cond_op_c4/sample_001/target.rs:17:9
+   |
+13 |       let x = if set_g_return(1, 1) != 0 {
+   |  _____________-
+14 | |         g == 1
+   | |         ------ expected because of this
+15 | |     } else {
+16 | |         set_g_return(2, 1);
+17 | |         0
+   | |         ^ expected `bool`, found integer
+18 | |     };
+   | |_____- `if` and `else` have incompatible types
+
+error[E0308]: `if` and `else` have incompatible types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/cond_op_c4/sample_001/target.rs:31:9
+   |
+27 |       let x = if set_g_return(1, 0) != 0 {
+   |  _____________-
+28 | |         set_g_return(2, 1);
+29 | |         0
+   | |         - expected because of this
+30 | |     } else {
+31 | |         g == 1
+   | |         ^^^^^^ expected integer, found `bool`
+32 | |     };
+   | |_____- `if` and `else` have incompatible types
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/cond_op_c4/sample_001/target.rs:40:5
+   |
+ 9 | fn main() {
+   |          - expected `()` because of default return type
+...
+40 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

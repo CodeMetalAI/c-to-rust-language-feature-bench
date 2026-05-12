@@ -1,0 +1,114 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_005/target.rs:12:5
+   |
+12 | /     unsafe {
+13 | |         if n == 0 {
+14 | |             return Some(POOL.as_mut_ptr().add(OFF));
+...  |
+27 | |         Some(p)
+28 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_005/target.rs:35:32
+   |
+35 |         v: v_pointer.map(|ptr| unsafe { Box::from_raw(std::slice::from_raw_parts_mut(ptr as *mut f32, n as usize)) }),
+   |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_005/target.rs:79:5
+   |
+79 | /     unsafe {
+80 | |         if (H & 1) == 0 {
+81 | |             return 6;
+82 | |         }
+83 | |     }
+   | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_005/target.rs:53:14
+   |
+53 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_005/target.rs:35:12
+   |
+35 |         v: v_pointer.map(|ptr| unsafe { Box::from_raw(std::slice::from_raw_parts_mut(ptr as *mut f32, n as usize)) }),
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Option<Box<[f32; 16]>>`, found `Option<Box<[f32]>>`
+   |
+   = note: expected enum `Option<Box<[f32; 16]>>`
+              found enum `Option<Box<[f32]>>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_005/target.rs:68:14
+   |
+68 |     fill_vec(a.v.as_mut().unwrap(), a.n, 1.0);
+   |     -------- ^^^^^^^^^^^^^^^^^^^^^ expected `&mut [f32]`, found `&mut Box<[f32; 16]>`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut [f32]`
+              found mutable reference `&mut Box<[f32; 16]>`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_005/target.rs:39:4
+   |
+39 | fn fill_vec(p: &mut [f32], n: i32, base: f32) {
+   |    ^^^^^^^^ -------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_005/target.rs:69:14
+   |
+69 |     fill_vec(b.v.as_mut().unwrap(), b.n, 100.0);
+   |     -------- ^^^^^^^^^^^^^^^^^^^^^ expected `&mut [f32]`, found `&mut Box<[f32; 16]>`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut [f32]`
+              found mutable reference `&mut Box<[f32; 16]>`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_005/target.rs:39:4
+   |
+39 | fn fill_vec(p: &mut [f32], n: i32, base: f32) {
+   |    ^^^^^^^^ -------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_005/target.rs:71:30
+   |
+71 |     if !close_enough(sum_vec(a.v.as_ref().unwrap(), a.n), 1.0 * 16.0 + (15.0 * 16.0) / 2.0) {
+   |                      ------- ^^^^^^^^^^^^^^^^^^^^^ expected `&[f32]`, found `&Box<[f32; 16]>`
+   |                      |
+   |                      arguments to this function are incorrect
+   |
+   = note: expected reference `&[f32]`
+              found reference `&Box<[f32; 16]>`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_005/target.rs:45:4
+   |
+45 | fn sum_vec(p: &[f32], n: i32) -> f32 {
+   |    ^^^^^^^ ---------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_005/target.rs:75:30
+   |
+75 |     if !close_enough(sum_vec(b.v.as_ref().unwrap(), b.n), 100.0 * 16.0 + (15.0 * 16.0) / 2.0) {
+   |                      ------- ^^^^^^^^^^^^^^^^^^^^^ expected `&[f32]`, found `&Box<[f32; 16]>`
+   |                      |
+   |                      arguments to this function are incorrect
+   |
+   = note: expected reference `&[f32]`
+              found reference `&Box<[f32; 16]>`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_005/target.rs:45:4
+   |
+45 | fn sum_vec(p: &[f32], n: i32) -> f32 {
+   |    ^^^^^^^ ---------
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

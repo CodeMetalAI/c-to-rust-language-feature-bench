@@ -1,0 +1,104 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_2/sample_004/target.rs:22:17
+   |
+22 |             p = unsafe { &mut *p.add(1) };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_2/sample_004/target.rs:23:17
+   |
+23 |             q = unsafe { &mut *q.add(1) };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_2/sample_004/target.rs:54:17
+   |
+54 |             p = unsafe { &mut *p.add(1) };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_2/sample_004/target.rs:55:17
+   |
+55 |             q = unsafe { &mut *q.add(1) };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_2/sample_004/target.rs:7:18
+  |
+7 |         buf[i] = i * 11 + 3;
+  |         ------   ^^^^^^^^^^ expected `i32`, found `usize`
+  |         |
+  |         expected due to the type of this binding
+
+error[E0599]: no method named `add` found for mutable reference `&mut i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_2/sample_004/target.rs:22:34
+   |
+22 |             p = unsafe { &mut *p.add(1) };
+   |                                  ^^^ method not found in `&mut i32`
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::ops::Add;
+   |
+
+error[E0599]: no method named `add` found for mutable reference `&mut i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_2/sample_004/target.rs:23:34
+   |
+23 |             q = unsafe { &mut *q.add(1) };
+   |                                  ^^^ method not found in `&mut i32`
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::ops::Add;
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_2/sample_004/target.rs:28:20
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+28 |             return 1;
+   |                    ^ expected `()`, found integer
+
+error[E0599]: no method named `add` found for mutable reference `&mut i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_2/sample_004/target.rs:54:34
+   |
+54 |             p = unsafe { &mut *p.add(1) };
+   |                                  ^^^ method not found in `&mut i32`
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::ops::Add;
+   |
+
+error[E0599]: no method named `add` found for mutable reference `&mut i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_2/sample_004/target.rs:55:34
+   |
+55 |             q = unsafe { &mut *q.add(1) };
+   |                                  ^^^ method not found in `&mut i32`
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::ops::Add;
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_2/sample_004/target.rs:64:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+64 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 11 previous errors
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.

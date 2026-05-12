@@ -1,0 +1,27 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/simple_asgn_3/sample_005/target.rs:6:5
+   |
+ 6 | /     unsafe {
+ 7 | |         p = &mut c as *mut u8;
+ 8 | |         cpp = &mut p as *mut *mut u8 as *mut *const u8;
+ 9 | |         *cpp = &c as *const u8;
+10 | |         *p = 0;
+11 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0596]: cannot borrow `c` as mutable, as it is not declared as mutable
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/simple_asgn_3/sample_005/target.rs:7:13
+  |
+7 |         p = &mut c as *mut u8;
+  |             ^^^^^^ cannot borrow as mutable
+  |
+help: consider changing this to be mutable
+  |
+3 |     let mut c: u8 = b'A';
+  |         +++
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0596`.

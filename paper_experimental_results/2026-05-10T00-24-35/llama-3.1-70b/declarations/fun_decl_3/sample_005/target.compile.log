@@ -1,0 +1,112 @@
+error: `Trait(...)` syntax does not support c_variadic parameters
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_005/target.rs:11:25
+   |
+11 | type VFunc = dyn Fn(i32,...) -> i32;
+   |                         ^^^ help: remove the `...`
+
+error: `Trait(...)` syntax does not support c_variadic parameters
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_005/target.rs:26:32
+   |
+26 |             &v0 as &dyn Fn(i32,...) -> i32
+   |                                ^^^ help: remove the `...`
+
+error: `Trait(...)` syntax does not support c_variadic parameters
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_005/target.rs:28:32
+   |
+28 |             &v1 as &dyn Fn(i32,...) -> i32
+   |                                ^^^ help: remove the `...`
+
+error: `Trait(...)` syntax does not support c_variadic parameters
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_005/target.rs:33:33
+   |
+33 | fn call_through(pf: &dyn Fn(i32,...) -> i32, x: i32) -> i32 {
+   |                                 ^^^ help: remove the `...`
+
+error: `Trait(...)` syntax does not support c_variadic parameters
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_005/target.rs:41:25
+   |
+41 |     let vf: &dyn Fn(i32,...) -> i32 = fpfi(cb0, 17);
+   |                         ^^^ help: remove the `...`
+
+error: `Trait(...)` syntax does not support c_variadic parameters
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_005/target.rs:46:33
+   |
+46 |     if vf == &v0 as &dyn Fn(i32,...) -> i32 {
+   |                                 ^^^ help: remove the `...`
+
+error: `Trait(...)` syntax does not support c_variadic parameters
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_005/target.rs:68:25
+   |
+68 |     let vf: &dyn Fn(i32,...) -> i32 = fpfi(cb1, 8);
+   |                         ^^^ help: remove the `...`
+
+error: `Trait(...)` syntax does not support c_variadic parameters
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_005/target.rs:73:33
+   |
+73 |     if vf == &v0 as &dyn Fn(i32,...) -> i32 {
+   |                                 ^^^ help: remove the `...`
+
+error: defining functions with C-variadic arguments is only allowed for free functions with the "C" or "C-unwind" calling convention
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_005/target.rs:13:15
+   |
+13 | fn v0(x: i32, _:...) -> i32 {
+   |               ^^^^^
+
+error: defining functions with C-variadic arguments is only allowed for free functions with the "C" or "C-unwind" calling convention
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_005/target.rs:17:15
+   |
+17 | fn v1(x: i32, _:...) -> i32 {
+   |               ^^^^^
+
+error[E0658]: C-variadic functions are unstable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_005/target.rs:13:1
+   |
+13 | / fn v0(x: i32, _:...) -> i32 {
+14 | |     unsafe { G_SEED + x + 1000 }
+15 | | }
+   | |_^
+   |
+   = note: see issue #44930 <https://github.com/rust-lang/rust/issues/44930> for more information
+   = help: add `#![feature(c_variadic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: C-variadic functions are unstable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_005/target.rs:17:1
+   |
+17 | / fn v1(x: i32, _:...) -> i32 {
+18 | |     unsafe { G_SEED + x - 2000 }
+19 | | }
+   | |_^
+   |
+   = note: see issue #44930 <https://github.com/rust-lang/rust/issues/44930> for more information
+   = help: add `#![feature(c_variadic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_005/target.rs:14:5
+   |
+14 |     unsafe { G_SEED + x + 1000 }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_005/target.rs:18:5
+   |
+18 |     unsafe { G_SEED + x - 2000 }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_005/target.rs:23:5
+   |
+23 | /     unsafe {
+24 | |         G_SEED = pf(t) + k;
+25 | |         if (G_SEED & 1) == 0 {
+26 | |             &v0 as &dyn Fn(i32,...) -> i32
+...  |
+30 | |     }
+   | |_____^
+
+error: aborting due to 15 previous errors
+
+For more information about this error, try `rustc --explain E0658`.

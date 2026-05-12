@@ -1,0 +1,58 @@
+error[E0425]: cannot find value `g` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_AND_op_c4/sample_004/target.rs:22:5
+   |
+22 |     g = gval;
+   |     ^
+   |
+help: you might have meant to introduce a new binding
+   |
+22 |     let g = gval;
+   |     +++
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_AND_op_c4/sample_004/target.rs:6:8
+  |
+6 |     if set_g_return(0, 0) && y += 1 {
+  |        ^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_AND_op_c4/sample_004/target.rs:6:30
+  |
+6 |     if set_g_return(0, 0) && y += 1 {
+  |                              ^ expected `bool`, found integer
+
+error[E0368]: binary assignment operation `+=` cannot be applied to type `bool`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_AND_op_c4/sample_004/target.rs:6:8
+  |
+6 |     if set_g_return(0, 0) && y += 1 {
+  |        -----------------------^^^^^
+  |        |
+  |        cannot use `+=` on type `bool`
+
+error[E0067]: invalid left-hand side of assignment
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_AND_op_c4/sample_004/target.rs:6:32
+  |
+6 |     if set_g_return(0, 0) && y += 1 {
+  |        ----------------------- ^^
+  |        |
+  |        cannot assign to this expression
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_AND_op_c4/sample_004/target.rs:7:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+7 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_AND_op_c4/sample_004/target.rs:14:10
+   |
+14 |     if !(set_g_return(1, 1) && g == 1) {
+   |          ^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0067, E0308, E0368, E0425.
+For more information about an error, try `rustc --explain E0067`.

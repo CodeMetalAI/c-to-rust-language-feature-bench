@@ -1,0 +1,87 @@
+error[E0599]: no method named `hash` found for struct `TypeId` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/conversions/bool_char_int_c1/sample_005/target.rs:2:33
+    |
+  2 |     std::any::TypeId::of::<T>().hash(&mut std::hash::BuildHasherDefault::<std::collections::hash_map::DefaultHasher>::default().build_hasher...
+    |                                 ^^^^ method not found in `TypeId`
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/hash/mod.rs:199:8
+    |
+199 |     fn hash<H: Hasher>(&self, state: &mut H);
+    |        ---- the method is available for `TypeId` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Hash` which provides `hash` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::hash::Hash;
+    |
+
+error[E0599]: no method named `build_hasher` found for struct `BuildHasherDefault<H>` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/conversions/bool_char_int_c1/sample_005/target.rs:2:129
+    |
+  2 | ...sh_map::DefaultHasher>::default().build_hasher()) as u32
+    |                                      ^^^^^^^^^^^^ method not found in `BuildHasherDefault<DefaultHasher>`
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/hash/mod.rs:656:8
+    |
+656 |     fn build_hasher(&self) -> Self::Hasher;
+    |        ------------ the method is available for `BuildHasherDefault<DefaultHasher>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: trait `BuildHasher` which provides `build_hasher` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::hash::BuildHasher;
+    |
+
+warning: unused variable: `bool_type`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/conversions/bool_char_int_c1/sample_005/target.rs:10:9
+   |
+10 |     let bool_type = type_id(true);
+   |         ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_bool_type`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `char_type`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/conversions/bool_char_int_c1/sample_005/target.rs:11:9
+   |
+11 |     let char_type = type_id('a');
+   |         ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_char_type`
+
+warning: unused variable: `i8_type`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/conversions/bool_char_int_c1/sample_005/target.rs:12:9
+   |
+12 |     let i8_type = type_id(0i8);
+   |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_i8_type`
+
+warning: unused variable: `u8_type`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/conversions/bool_char_int_c1/sample_005/target.rs:13:9
+   |
+13 |     let u8_type = type_id(0u8);
+   |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_u8_type`
+
+warning: unused variable: `i16_type`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/conversions/bool_char_int_c1/sample_005/target.rs:14:9
+   |
+14 |     let i16_type = type_id(0i16);
+   |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_i16_type`
+
+warning: unused variable: `u16_type`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/conversions/bool_char_int_c1/sample_005/target.rs:15:9
+   |
+15 |     let u16_type = type_id(0u16);
+   |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_u16_type`
+
+warning: unused variable: `isize_type`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/conversions/bool_char_int_c1/sample_005/target.rs:22:9
+   |
+22 |     let isize_type = type_id(0isize);
+   |         ^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_isize_type`
+
+warning: unused variable: `usize_type`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/conversions/bool_char_int_c1/sample_005/target.rs:23:9
+   |
+23 |     let usize_type = type_id(0usize);
+   |         ^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_usize_type`
+
+error: aborting due to 2 previous errors; 8 warnings emitted
+
+For more information about this error, try `rustc --explain E0599`.

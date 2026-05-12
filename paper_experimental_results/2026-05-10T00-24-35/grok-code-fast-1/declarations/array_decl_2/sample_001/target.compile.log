@@ -1,0 +1,32 @@
+error: cast cannot be followed by a method call
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/array_decl_2/sample_001/target.rs:60:46
+   |
+60 |             if ha_a.as_ptr() as *const u8 != y.as_ptr() as *const u8.add(offset_a) {
+   |                                              ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: try surrounding the expression in parentheses
+   |
+60 |             if ha_a.as_ptr() as *const u8 != (y.as_ptr() as *const u8).add(offset_a) {
+   |                                              +                       +
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/array_decl_2/sample_001/target.rs:59:9
+   |
+59 | /         unsafe {
+60 | |             if ha_a.as_ptr() as *const u8 != y.as_ptr() as *const u8.add(offset_a) {
+61 | |                 std::process::exit(7);
+62 | |             }
+63 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+warning: unused variable: `ha_tag`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/array_decl_2/sample_001/target.rs:56:13
+   |
+56 |         let ha_tag = y[0];
+   |             ^^^^^^ help: if this is intentional, prefix it with an underscore: `_ha_tag`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 2 previous errors; 1 warning emitted

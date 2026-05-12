@@ -1,0 +1,16 @@
+error[E0277]: the size for values of type `str` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3_b/sample_001/target.rs:30:16
+   |
+30 |     if type_id(s) != 3 {
+   |                ^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `str`
+   = note: required for the cast from `&str` to `&(dyn Any + 'static)`
+help: consider borrowing the value, since `&&str` can be coerced into `&(dyn Any + 'static)`
+   |
+30 |     if type_id(&s) != 3 {
+   |                +
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0277`.

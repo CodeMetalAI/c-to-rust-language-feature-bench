@@ -1,0 +1,101 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:12:23
+   |
+12 |         p[i] = base + i * 5 + 1;
+   |                       ^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:12:21
+   |
+12 |         p[i] = base + i * 5 + 1;
+   |                     ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:47:12
+   |
+47 |         if GATE4 {
+   |            ^^^^^ expected `bool`, found `i32`
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:51:13
+   |
+51 |             copy_restrict(16, p2, q2);
+   |             ^^^^^^^^^^^^^
+   |
+note: expected `&mut [i32]`, found `*mut i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:51:31
+   |
+51 |             copy_restrict(16, p2, q2);
+   |                               ^^
+   = note: expected mutable reference `&mut [i32]`
+                    found raw pointer `*mut i32`
+note: expected `&mut [i32]`, found `*mut i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:51:35
+   |
+51 |             copy_restrict(16, p2, q2);
+   |                                   ^^
+   = note: expected mutable reference `&mut [i32]`
+                    found raw pointer `*mut i32`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:4:4
+   |
+ 4 | fn copy_restrict(n: usize, p: &mut [i32], q: &mut [i32]) {
+   |    ^^^^^^^^^^^^^           -------------  -------------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:81:9
+   |
+81 |         copy_restrict(8, p1, q1.offset(24));
+   |         ^^^^^^^^^^^^^
+   |
+note: expected `&mut [i32]`, found `*mut i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:81:26
+   |
+81 |         copy_restrict(8, p1, q1.offset(24));
+   |                          ^^
+   = note: expected mutable reference `&mut [i32]`
+                    found raw pointer `*mut i32`
+note: expected `&mut [i32]`, found `*mut i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:81:30
+   |
+81 |         copy_restrict(8, p1, q1.offset(24));
+   |                              ^^^^^^^^^^^^^
+   = note: expected mutable reference `&mut [i32]`
+                    found raw pointer `*mut i32`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:4:4
+   |
+ 4 | fn copy_restrict(n: usize, p: &mut [i32], q: &mut [i32]) {
+   |    ^^^^^^^^^^^^^           -------------  -------------
+
+warning: unused variable: `n`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:4:18
+  |
+4 | fn copy_restrict(n: usize, p: &mut [i32], q: &mut [i32]) {
+  |                  ^ help: if this is intentional, prefix it with an underscore: `_n`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `n`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:16:31
+   |
+16 | fn same(a: &[i32], b: &[i32], n: usize) -> bool {
+   |                               ^ help: if this is intentional, prefix it with an underscore: `_n`
+
+warning: unused variable: `n`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:25:19
+   |
+25 | fn sum(a: &[i32], n: usize) -> i32 {
+   |                   ^ help: if this is intentional, prefix it with an underscore: `_n`
+
+error: aborting due to 5 previous errors; 3 warnings emitted
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

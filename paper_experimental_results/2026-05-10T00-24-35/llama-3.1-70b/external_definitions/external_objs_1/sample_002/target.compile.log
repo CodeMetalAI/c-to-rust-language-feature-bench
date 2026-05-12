@@ -1,0 +1,134 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_002/target.rs:11:8
+   |
+11 |     if unsafe { i1 }!= 1 {
+   |        ^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_002/target.rs:14:8
+   |
+14 |     if unsafe { i2 }!= 2 {
+   |        ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_002/target.rs:17:8
+   |
+17 |     if unsafe { i3 }!= 3 {
+   |        ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_002/target.rs:21:8
+   |
+21 |     if unsafe { i4 }!= 0 {
+   |        ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_002/target.rs:24:8
+   |
+24 |     if unsafe { i5 }!= 0 {
+   |        ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_002/target.rs:46:5
+   |
+46 | /     unsafe {
+47 | |         i1 = 10;
+48 | |         i2 = 20;
+49 | |         i4 = 30;
+50 | |         i5 = 40;
+51 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_002/target.rs:53:8
+   |
+53 |     if unsafe { *p_i1 }!= 10 {
+   |        ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_002/target.rs:56:8
+   |
+56 |     if unsafe { *p_i2 }!= 20 {
+   |        ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_002/target.rs:59:8
+   |
+59 |     if unsafe { *p_i4 }!= 30 {
+   |        ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_002/target.rs:62:8
+   |
+62 |     if unsafe { *p_i5 }!= 40 {
+   |        ^^^^^^^^^^^^^^^^
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_002/target.rs:28:21
+   |
+28 |     let p_i1 = &mut i1 as *mut i32;
+   |                     ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_002/target.rs:29:21
+   |
+29 |     let p_i2 = &mut i2 as *mut i32;
+   |                     ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_002/target.rs:30:21
+   |
+30 |     let p_i4 = &mut i4 as *mut i32;
+   |                     ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_002/target.rs:31:21
+   |
+31 |     let p_i5 = &mut i5 as *mut i32;
+   |                     ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_002/target.rs:33:29
+   |
+33 |     if p_i1 as usize!= &mut i1 as *mut i32 as usize {
+   |                             ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_002/target.rs:36:29
+   |
+36 |     if p_i2 as usize!= &mut i2 as *mut i32 as usize {
+   |                             ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_002/target.rs:39:29
+   |
+39 |     if p_i4 as usize!= &mut i4 as *mut i32 as usize {
+   |                             ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_002/target.rs:42:29
+   |
+42 |     if p_i5 as usize!= &mut i5 as *mut i32 as usize {
+   |                             ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 18 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

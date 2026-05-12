@@ -1,0 +1,95 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_4/sample_002/target.rs:58:13
+   |
+58 |     fvla(m, &mut x, &mut backing, &mut sink);
+   |     ----    ^^^^^^ expected `&mut [[i32; 9]; 9]`, found `&mut [[usize; 9]; 9]`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut [[i32; 9]; 9]`
+              found mutable reference `&mut [[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_4/sample_002/target.rs:25:8
+   |
+25 |     fn fvla(m: usize, c: &mut [[i32; 9]; 9], backing: &mut [[i32; 9]; 9], sink: &mut i32) {
+   |        ^^^^           ---------------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_4/sample_002/target.rs:67:51
+   |
+67 |     if checksum_2d(m, &backing) != checksum_2d(m, &expect) {
+   |                                    -----------    ^^^^^^^ expected `&[[i32; 9]; 9]`, found `&[[usize; 9]; 9]`
+   |                                    |
+   |                                    arguments to this function are incorrect
+   |
+   = note: expected reference `&[[i32; 9]; 9]`
+              found reference `&[[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_4/sample_002/target.rs:15:8
+   |
+15 |     fn checksum_2d(m: usize, a: &[[i32; 9]; 9]) -> i32 {
+   |        ^^^^^^^^^^^           -----------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_4/sample_002/target.rs:71:13
+   |
+71 |     fvla(m, &mut y, &mut backing, &mut sink);
+   |     ----    ^^^^^^ expected `&mut [[i32; 9]; 9]`, found `&mut [[usize; 9]; 9]`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut [[i32; 9]; 9]`
+              found mutable reference `&mut [[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_4/sample_002/target.rs:25:8
+   |
+25 |     fn fvla(m: usize, c: &mut [[i32; 9]; 9], backing: &mut [[i32; 9]; 9], sink: &mut i32) {
+   |        ^^^^           ---------------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_4/sample_002/target.rs:80:51
+   |
+80 |     if checksum_2d(m, &backing) != checksum_2d(m, &expect2) {
+   |                                    -----------    ^^^^^^^^ expected `&[[i32; 9]; 9]`, found `&[[usize; 9]; 9]`
+   |                                    |
+   |                                    arguments to this function are incorrect
+   |
+   = note: expected reference `&[[i32; 9]; 9]`
+              found reference `&[[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_4/sample_002/target.rs:15:8
+   |
+15 |     fn checksum_2d(m: usize, a: &[[i32; 9]; 9]) -> i32 {
+   |        ^^^^^^^^^^^           -----------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_4/sample_002/target.rs:10:33
+   |
+10 |                 backing[i][j] = (i + 1) * 100 + (j + 1);
+   |                 -------------   ^^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+   |                 |
+   |                 expected due to the type of this binding
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_4/sample_002/target.rs:37:37
+   |
+37 |                 q[i][j] = s[i][j] + d[(i + j) % m];
+   |                                     ^^^^^^^^^^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_4/sample_002/target.rs:37:35
+   |
+37 |                 q[i][j] = s[i][j] + d[(i + j) % m];
+   |                                   ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,60 @@
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `num_complex`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/gcc_c11_tests/c11-align-2/sample_004/target.rs:36:67
+   |
+36 |     let _cld: AlignedComplexLongDouble = AlignedComplexLongDouble(num_complex::Complex64::new(0.0, 0.0));
+   |                                                                   ^^^^^^^^^^^ use of unresolved module or unlinked crate `num_complex`
+   |
+   = help: you might be missing a crate named `num_complex`
+
+error[E0412]: cannot find type `short` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/gcc_c11_tests/c11-align-2/sample_004/target.rs:11:25
+   |
+11 |     struct AlignedShort(short);
+   |                         ^^^^^
+   |                         |
+   |                         not found in this scope
+   |                         help: perhaps you intended to use this type: `i16`
+
+error[E0412]: cannot find type `short` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/gcc_c11_tests/c11-align-2/sample_004/target.rs:65:37
+   |
+65 |     assert_eq!(std::mem::align_of::<short>(), 2);
+   |                                     ^^^^^
+   |                                     |
+   |                                     not found in this scope
+   |                                     help: perhaps you intended to use this type: `i16`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/gcc_c11_tests/c11-align-2/sample_004/target.rs:8:39
+  |
+8 |     let _c: AlignedChar = AlignedChar(0);
+  |                           ----------- ^ expected `char`, found `u8`
+  |                           |
+  |                           arguments to this struct are incorrect
+  |
+note: tuple struct defined here
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/gcc_c11_tests/c11-align-2/sample_004/target.rs:7:12
+  |
+7 |     struct AlignedChar(char);
+  |            ^^^^^^^^^^^
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `num_complex`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/gcc_c11_tests/c11-align-2/sample_004/target.rs:35:37
+   |
+35 |     struct AlignedComplexLongDouble(num_complex::Complex64);
+   |                                     ^^^^^^^^^^^ use of unresolved module or unlinked crate `num_complex`
+   |
+   = help: you might be missing a crate named `num_complex`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `num_complex`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/gcc_c11_tests/c11-align-2/sample_004/target.rs:70:37
+   |
+70 |     assert_eq!(std::mem::align_of::<num_complex::Complex64>(), 8);
+   |                                     ^^^^^^^^^^^ use of unresolved module or unlinked crate `num_complex`
+   |
+   = help: you might be missing a crate named `num_complex`
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0308, E0412, E0433.
+For more information about an error, try `rustc --explain E0308`.

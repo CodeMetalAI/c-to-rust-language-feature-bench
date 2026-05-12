@@ -1,0 +1,24 @@
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/initialization_8/sample_001/target.rs:1:14
+  |
+1 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+error[E0599]: no method named `replace_range` found for reference `&str` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/initialization_8/sample_001/target.rs:14:18
+    |
+ 14 |     let t = t[0].replace_range(2..3, "y");
+    |                  ^^^^^^^^^^^^^
+    |
+help: there is a method `replacen` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/str.rs:323:5
+    |
+323 |     pub fn replacen<P: Pattern>(&self, pat: P, to: &str, count: usize) -> String {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0277, E0599.
+For more information about an error, try `rustc --explain E0277`.

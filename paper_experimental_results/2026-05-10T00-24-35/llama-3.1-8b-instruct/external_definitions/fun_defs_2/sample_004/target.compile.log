@@ -1,0 +1,51 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/external_definitions/fun_defs_2/sample_004/target.rs:23:20
+   |
+ 4 |     let f = || {
+   |             -- the found closure
+...
+23 |     let r1 = g_ptr(f);
+   |              ----- ^ expected fn pointer, found closure
+   |              |
+   |              arguments to this function are incorrect
+   |
+   = note: expected fn pointer `fn() -> i32`
+                 found closure `{closure@benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/external_definitions/fun_defs_2/sample_004/target.rs:4:13: 4:15}`
+note: closures can only be coerced to `fn` types if they do not capture any variables
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/external_definitions/fun_defs_2/sample_004/target.rs:5:9
+   |
+ 5 |         counter += 7;
+   |         ^^^^^^^ `counter` captured here
+note: closure parameter defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/external_definitions/fun_defs_2/sample_004/target.rs:9:18
+   |
+ 9 |     let g_ptr = |func: fn() -> i32| {
+   |                  ^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/external_definitions/fun_defs_2/sample_004/target.rs:33:20
+   |
+ 4 |     let f = || {
+   |             -- the found closure
+...
+33 |     let r2 = g_fun(f);
+   |              ----- ^ expected fn pointer, found closure
+   |              |
+   |              arguments to this function are incorrect
+   |
+   = note: expected fn pointer `fn() -> i32`
+                 found closure `{closure@benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/external_definitions/fun_defs_2/sample_004/target.rs:4:13: 4:15}`
+note: closures can only be coerced to `fn` types if they do not capture any variables
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/external_definitions/fun_defs_2/sample_004/target.rs:5:9
+   |
+ 5 |         counter += 7;
+   |         ^^^^^^^ `counter` captured here
+note: closure parameter defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/external_definitions/fun_defs_2/sample_004/target.rs:15:18
+   |
+15 |     let g_fun = |func: fn() -> i32| {
+   |                  ^^^^^^^^^^^^^^^^^
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

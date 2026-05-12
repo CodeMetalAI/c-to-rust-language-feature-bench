@@ -1,0 +1,90 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_004/target.rs:12:5
+   |
+12 | /     unsafe {
+13 | |         if n == 0 {
+14 | |             return Some(POOL.as_mut_ptr().add(OFF));
+...  |
+27 | |         Some(p)
+28 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_004/target.rs:33:21
+   |
+33 |         let slice = unsafe { std::slice::from_raw_parts_mut(ptr as *mut f32, n as usize) };
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_004/target.rs:85:5
+   |
+85 | /     unsafe {
+86 | |         if (H & 1) == 0 {
+87 | |             return 6;
+88 | |         }
+89 | |     }
+   | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_004/target.rs:59:14
+   |
+59 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0277]: the trait bound `Box<[f32; 16]>: From<&mut [f32]>` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_004/target.rs:34:9
+   |
+34 |         Box::from(slice)
+   |         ^^^ the trait `From<&mut [f32]>` is not implemented for `Box<[f32; 16]>`
+   |
+   = help: the following other types implement trait `From<T>`:
+             `Box<ByteStr>` implements `From<Box<[u8]>>`
+             `Box<CStr>` implements `From<&CStr>`
+             `Box<CStr>` implements `From<&mut CStr>`
+             `Box<CStr>` implements `From<CString>`
+             `Box<CStr>` implements `From<Cow<'_, CStr>>`
+             `Box<OsStr>` implements `From<&OsStr>`
+             `Box<OsStr>` implements `From<&mut OsStr>`
+             `Box<OsStr>` implements `From<Cow<'_, OsStr>>`
+           and 25 others
+
+error[E0599]: no method named `as_ptr` found for enum `Option<T>` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_004/target.rs:70:12
+    |
+ 70 |     if a.v.as_ptr() == b.v.as_ptr() {
+    |            ^^^^^^ method not found in `Option<Box<[f32; 16]>>`
+    |
+note: the method `as_ptr` exists on the type `Box<[f32; 16]>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/slice/mod.rs:724:5
+    |
+724 |     pub const fn as_ptr(&self) -> *const T {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: consider using `Option::expect` to unwrap the `Box<[f32; 16]>` value, panicking if the value is an `Option::None`
+    |
+ 70 |     if a.v.expect("REASON").as_ptr() == b.v.as_ptr() {
+    |           +++++++++++++++++
+
+error[E0599]: no method named `as_ptr` found for enum `Option<T>` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_004/target.rs:70:28
+    |
+ 70 |     if a.v.as_ptr() == b.v.as_ptr() {
+    |                            ^^^^^^ method not found in `Option<Box<[f32; 16]>>`
+    |
+note: the method `as_ptr` exists on the type `Box<[f32; 16]>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/slice/mod.rs:724:5
+    |
+724 |     pub const fn as_ptr(&self) -> *const T {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: consider using `Option::expect` to unwrap the `Box<[f32; 16]>` value, panicking if the value is an `Option::None`
+    |
+ 70 |     if a.v.as_ptr() == b.v.expect("REASON").as_ptr() {
+    |                           +++++++++++++++++
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0277, E0599.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,68 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_4b/sample_004/target.rs:13:5
+   |
+13 | /     unsafe {
+14 | |         if n == 0 {
+15 | |             return POOL.as_mut_ptr().add(OFF);
+...  |
+28 | |         p
+29 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_4b/sample_004/target.rs:40:9
+   |
+40 | /         unsafe {
+41 | |             *p.offset(i as isize) = base + i as f32;
+42 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_4b/sample_004/target.rs:51:9
+   |
+51 | /         unsafe {
+52 | |             s += *p.offset(i as isize);
+53 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_4b/sample_004/target.rs:93:5
+   |
+93 | /     unsafe {
+94 | |         if (H & 1u64) == 0u64 {
+95 | |             std::process::exit(6);
+96 | |         }
+97 | |     }
+   | |_____^
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_4b/sample_004/target.rs:15:20
+   |
+15 |             return POOL.as_mut_ptr().add(OFF);
+   |                    ^^^^^^^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_4b/sample_004/target.rs:18:22
+   |
+18 |         if OFF + n > POOL.len() {
+   |                      ^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_4b/sample_004/target.rs:22:17
+   |
+22 |         let p = POOL.as_mut_ptr().add(OFF);
+   |                 ^^^^^^^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+
+error: aborting due to 4 previous errors; 3 warnings emitted

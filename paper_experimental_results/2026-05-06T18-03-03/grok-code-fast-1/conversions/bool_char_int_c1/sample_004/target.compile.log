@@ -1,0 +1,61 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/conversions/bool_char_int_c1/sample_004/target.rs:96:37
+   |
+96 |     if !expect_type(type_id!(0i32 + 0i64), 9) {
+   |                                     ^^^^ expected `i32`, found `i64`
+
+error[E0277]: cannot add `i64` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/conversions/bool_char_int_c1/sample_004/target.rs:96:35
+   |
+96 |     if !expect_type(type_id!(0i32 + 0i64), 9) {
+   |                                   ^ no implementation for `i32 + i64`
+   |
+   = help: the trait `Add<i64>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/conversions/bool_char_int_c1/sample_004/target.rs:99:37
+   |
+99 |     if !expect_type(type_id!(0i64 + 0i128), 11) {
+   |                                     ^^^^^ expected `i64`, found `i128`
+
+error[E0277]: cannot add `i128` to `i64`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/conversions/bool_char_int_c1/sample_004/target.rs:99:35
+   |
+99 |     if !expect_type(type_id!(0i64 + 0i128), 11) {
+   |                                   ^ no implementation for `i64 + i128`
+   |
+   = help: the trait `Add<i128>` is not implemented for `i64`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i64` implements `Add<i64>`
+             `&i64` implements `Add`
+             `i64` implements `Add<&i64>`
+             `i64` implements `Add`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/conversions/bool_char_int_c1/sample_004/target.rs:102:37
+    |
+102 |     if !expect_type(type_id!(0i32 + 0i128), 11) {
+    |                                     ^^^^^ expected `i32`, found `i128`
+
+error[E0277]: cannot add `i128` to `i32`
+   --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/conversions/bool_char_int_c1/sample_004/target.rs:102:35
+    |
+102 |     if !expect_type(type_id!(0i32 + 0i128), 11) {
+    |                                   ^ no implementation for `i32 + i128`
+    |
+    = help: the trait `Add<i128>` is not implemented for `i32`
+    = help: the following other types implement trait `Add<Rhs>`:
+              `&i32` implements `Add<i32>`
+              `&i32` implements `Add`
+              `i32` implements `Add<&i32>`
+              `i32` implements `Add`
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

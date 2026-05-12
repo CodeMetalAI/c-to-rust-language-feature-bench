@@ -1,0 +1,15 @@
+error[E0615]: attempted to take value of method `target` on type `Logger`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/function_calls/sample_002/target.rs:65:22
+   |
+65 |     let rc = (logger.target)(logger.f1(), logger.f2() + logger.f3() + logger.f4());
+   |                      ^^^^^^ method, not a field
+   |
+help: remove wrapping parentheses to call the method
+   |
+65 -     let rc = (logger.target)(logger.f1(), logger.f2() + logger.f3() + logger.f4());
+65 +     let rc = logger.target(logger.f1(), logger.f2() + logger.f3() + logger.f4());
+   |
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0615`.

@@ -1,0 +1,39 @@
+warning: type `uptr` should have an upper camel case name
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_001/target.rs:4:6
+  |
+4 | type uptr = usize;
+  |      ^^^^ help: convert the identifier to upper camel case (notice the capitalization): `Uptr`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error[E0384]: cannot assign twice to immutable variable `r`
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_001/target.rs:151:5
+    |
+146 |     r = check_designated_init();
+    |     --------------------------- first assignment to `r`
+...
+151 |     r = check_union_aliasing_via_flattened_names();
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot assign twice to immutable variable
+    |
+help: consider making this binding mutable
+    |
+144 |     let mut r;
+    |         +++
+
+error[E0384]: cannot assign twice to immutable variable `r`
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_001/target.rs:156:5
+    |
+146 |     r = check_designated_init();
+    |     --------------------------- first assignment to `r`
+...
+156 |     r = check_addressability();
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot assign twice to immutable variable
+    |
+help: consider making this binding mutable
+    |
+144 |     let mut r;
+    |         +++
+
+error: aborting due to 2 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0384`.

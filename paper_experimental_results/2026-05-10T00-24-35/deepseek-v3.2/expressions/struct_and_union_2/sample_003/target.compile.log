@@ -1,0 +1,94 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_2/sample_003/target.rs:28:5
+   |
+28 | /     unsafe {
+29 | |         f(&mut S_STATIC.i);
+30 | |         f4(&S_STATIC.ci);
+31 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_2/sample_003/target.rs:36:5
+   |
+36 | /     unsafe {
+37 | |         f2(&mut VS.i);
+38 | |         g(&VS.ci);
+39 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_2/sample_003/target.rs:41:5
+   |
+41 | /     unsafe {
+42 | |         if S_STATIC.i != 1 {
+43 | |             std::process::exit(1);
+...  |
+48 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_2/sample_003/target.rs:57:5
+   |
+57 | /     unsafe {
+58 | |         if VS.i != 5 {
+59 | |             std::process::exit(5);
+...  |
+74 | |     }
+   | |_____^
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_2/sample_003/target.rs:29:11
+   |
+29 |         f(&mut S_STATIC.i);
+   |           ^^^^^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw mut` instead to create a raw pointer
+   |
+29 |         f(&raw mut S_STATIC.i);
+   |            +++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_2/sample_003/target.rs:30:12
+   |
+30 |         f4(&S_STATIC.ci);
+   |            ^^^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+30 |         f4(&raw const S_STATIC.ci);
+   |             +++++++++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_2/sample_003/target.rs:37:12
+   |
+37 |         f2(&mut VS.i);
+   |            ^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+37 |         f2(&raw mut VS.i);
+   |             +++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_2/sample_003/target.rs:38:11
+   |
+38 |         g(&VS.ci);
+   |           ^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+38 |         g(&raw const VS.ci);
+   |            +++++++++
+
+error: aborting due to 4 previous errors; 4 warnings emitted

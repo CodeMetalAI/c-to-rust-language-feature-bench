@@ -1,0 +1,38 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_3/sample_005/target.rs:22:13
+   |
+22 |     let p = unsafe { std::alloc::alloc(layout) as *mut S };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_3/sample_005/target.rs:28:5
+   |
+28 | /     unsafe {
+29 | |         (*p).i = 7;
+30 | |         let a_ptr = (*p).a.as_mut_ptr();
+31 | |         *a_ptr.add(0) = 11;
+...  |
+38 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_3/sample_005/target.rs:40:5
+   |
+40 | /     unsafe {
+41 | |         std::alloc::dealloc(p as *mut u8, layout);
+42 | |     }
+   | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_3/sample_005/target.rs:8:14
+  |
+8 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

@@ -1,0 +1,30 @@
+fn main() -> i32 {
+    let x = 7;
+    let p: *const i32 = &x;
+
+    if &x as *const i32 != p {
+        return 1;
+    }
+
+    if &(*p) != p {
+        return 2;
+    }
+
+    let a = [10, 20, 30];
+
+    if &a[0] != a.as_ptr() {
+        return 3;
+    }
+    if &a[1] != unsafe { a.as_ptr().add(1) } {
+        return 4;
+    }
+    if &a[2] != unsafe { a.as_ptr().add(2) } {
+        return 5;
+    }
+
+    if unsafe { *(a.as_ptr().add(1)) } != 20 {
+        return 6;
+    }
+
+    0
+}

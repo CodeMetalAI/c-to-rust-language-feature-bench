@@ -1,0 +1,439 @@
+error: in expressions, `_` can only be used on the left-hand side of an assignment
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:59:35
+   |
+59 |     match std::any::Any::type_id(&_) {
+   |                                   ^ `_` not allowed here
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `_Bool`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:11:30
+   |
+11 |     if !expect_type(type_id(&_Bool::from(true) + 0), 7) {
+   |                              ^^^^^ use of unresolved module or unlinked crate `_Bool`
+   |
+   = help: you might be missing a crate named `_Bool`
+
+error[E0369]: cannot add `{integer}` to `&char`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:14:42
+   |
+14 |     if !expect_type(type_id(&(1 as char) + 0), 7) {
+   |                             ------------ ^ - {integer}
+   |                             |
+   |                             &char
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:17:29
+   |
+17 |     if !expect_type(type_id(&(1 as i8) + 0), 7) {
+   |                     ------- ^^^^^^^^^^^^^^ expected `&_`, found `i8`
+   |                     |
+   |                     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `i8`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:58:4
+   |
+58 | fn type_id<T: std::any::Any + Copy>(_: &T) -> i32 {
+   |    ^^^^^^^                          -----
+help: consider borrowing here
+   |
+17 |     if !expect_type(type_id(&(&(1 as i8) + 0)), 7) {
+   |                             ++              +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:20:29
+   |
+20 |     if !expect_type(type_id(&(1 as u8) + 0), 7) {
+   |                     ------- ^^^^^^^^^^^^^^ expected `&_`, found `u8`
+   |                     |
+   |                     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `u8`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:58:4
+   |
+58 | fn type_id<T: std::any::Any + Copy>(_: &T) -> i32 {
+   |    ^^^^^^^                          -----
+help: consider borrowing here
+   |
+20 |     if !expect_type(type_id(&(&(1 as u8) + 0)), 7) {
+   |                             ++              +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:23:29
+   |
+23 |     if !expect_type(type_id(&(1 as i16) + 0), 7) {
+   |                     ------- ^^^^^^^^^^^^^^^ expected `&_`, found `i16`
+   |                     |
+   |                     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `i16`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:58:4
+   |
+58 | fn type_id<T: std::any::Any + Copy>(_: &T) -> i32 {
+   |    ^^^^^^^                          -----
+help: consider borrowing here
+   |
+23 |     if !expect_type(type_id(&(&(1 as i16) + 0)), 7) {
+   |                             ++               +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:26:29
+   |
+26 |     if !expect_type(type_id(&(1 as u16) + 0), 7) {
+   |                     ------- ^^^^^^^^^^^^^^^ expected `&_`, found `u16`
+   |                     |
+   |                     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `u16`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:58:4
+   |
+58 | fn type_id<T: std::any::Any + Copy>(_: &T) -> i32 {
+   |    ^^^^^^^                          -----
+help: consider borrowing here
+   |
+26 |     if !expect_type(type_id(&(&(1 as u16) + 0)), 7) {
+   |                             ++               +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:30:43
+   |
+30 |     if !expect_type(type_id(&(0 as i32) + 0 as u32), 8) {
+   |                                           ^^^^^^^^ expected `i32`, found `u32`
+
+error[E0277]: cannot add `u32` to `&i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:30:41
+   |
+30 |     if !expect_type(type_id(&(0 as i32) + 0 as u32), 8) {
+   |                                         ^ no implementation for `&i32 + u32`
+   |
+   = help: the trait `Add<u32>` is not implemented for `&i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:30:29
+   |
+30 |     if !expect_type(type_id(&(0 as i32) + 0 as u32), 8) {
+   |                     ------- ^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `i32`
+   |                     |
+   |                     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:58:4
+   |
+58 | fn type_id<T: std::any::Any + Copy>(_: &T) -> i32 {
+   |    ^^^^^^^                          -----
+help: consider borrowing here
+   |
+30 |     if !expect_type(type_id(&(&(0 as i32) + 0 as u32)), 8) {
+   |                             ++                      +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:33:43
+   |
+33 |     if !expect_type(type_id(&(0 as i64) + 0 as u64), 10) {
+   |                                           ^^^^^^^^ expected `i64`, found `u64`
+
+error[E0277]: cannot add `u64` to `&i64`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:33:41
+   |
+33 |     if !expect_type(type_id(&(0 as i64) + 0 as u64), 10) {
+   |                                         ^ no implementation for `&i64 + u64`
+   |
+   = help: the trait `Add<u64>` is not implemented for `&i64`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i64` implements `Add<i64>`
+             `&i64` implements `Add`
+             `i64` implements `Add<&i64>`
+             `i64` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:33:29
+   |
+33 |     if !expect_type(type_id(&(0 as i64) + 0 as u64), 10) {
+   |                     ------- ^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `i64`
+   |                     |
+   |                     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `i64`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:58:4
+   |
+58 | fn type_id<T: std::any::Any + Copy>(_: &T) -> i32 {
+   |    ^^^^^^^                          -----
+help: consider borrowing here
+   |
+33 |     if !expect_type(type_id(&(&(0 as i64) + 0 as u64)), 10) {
+   |                             ++                      +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:36:43
+   |
+36 |     if !expect_type(type_id(&(0 as i64) + 0 as u64), 10) {
+   |                                           ^^^^^^^^ expected `i64`, found `u64`
+
+error[E0277]: cannot add `u64` to `&i64`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:36:41
+   |
+36 |     if !expect_type(type_id(&(0 as i64) + 0 as u64), 10) {
+   |                                         ^ no implementation for `&i64 + u64`
+   |
+   = help: the trait `Add<u64>` is not implemented for `&i64`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i64` implements `Add<i64>`
+             `&i64` implements `Add`
+             `i64` implements `Add<&i64>`
+             `i64` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:36:29
+   |
+36 |     if !expect_type(type_id(&(0 as i64) + 0 as u64), 10) {
+   |                     ------- ^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `i64`
+   |                     |
+   |                     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `i64`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:58:4
+   |
+58 | fn type_id<T: std::any::Any + Copy>(_: &T) -> i32 {
+   |    ^^^^^^^                          -----
+help: consider borrowing here
+   |
+36 |     if !expect_type(type_id(&(&(0 as i64) + 0 as u64)), 10) {
+   |                             ++                      +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:40:43
+   |
+40 |     if !expect_type(type_id(&(0 as i32) + 0 as i64), 9) {
+   |                                           ^^^^^^^^ expected `i32`, found `i64`
+
+error[E0277]: cannot add `i64` to `&i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:40:41
+   |
+40 |     if !expect_type(type_id(&(0 as i32) + 0 as i64), 9) {
+   |                                         ^ no implementation for `&i32 + i64`
+   |
+   = help: the trait `Add<i64>` is not implemented for `&i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:40:29
+   |
+40 |     if !expect_type(type_id(&(0 as i32) + 0 as i64), 9) {
+   |                     ------- ^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `i32`
+   |                     |
+   |                     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:58:4
+   |
+58 | fn type_id<T: std::any::Any + Copy>(_: &T) -> i32 {
+   |    ^^^^^^^                          -----
+help: consider borrowing here
+   |
+40 |     if !expect_type(type_id(&(&(0 as i32) + 0 as i64)), 9) {
+   |                             ++                      +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:43:29
+   |
+43 |     if !expect_type(type_id(&(0 as i64) + 0 as i64), 11) {
+   |                     ------- ^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `i64`
+   |                     |
+   |                     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `i64`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:58:4
+   |
+58 | fn type_id<T: std::any::Any + Copy>(_: &T) -> i32 {
+   |    ^^^^^^^                          -----
+help: consider borrowing here
+   |
+43 |     if !expect_type(type_id(&(&(0 as i64) + 0 as i64)), 11) {
+   |                             ++                      +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:46:43
+   |
+46 |     if !expect_type(type_id(&(0 as i32) + 0 as i64), 11) {
+   |                                           ^^^^^^^^ expected `i32`, found `i64`
+
+error[E0277]: cannot add `i64` to `&i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:46:41
+   |
+46 |     if !expect_type(type_id(&(0 as i32) + 0 as i64), 11) {
+   |                                         ^ no implementation for `&i32 + i64`
+   |
+   = help: the trait `Add<i64>` is not implemented for `&i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:46:29
+   |
+46 |     if !expect_type(type_id(&(0 as i32) + 0 as i64), 11) {
+   |                     ------- ^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `i32`
+   |                     |
+   |                     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:58:4
+   |
+58 | fn type_id<T: std::any::Any + Copy>(_: &T) -> i32 {
+   |    ^^^^^^^                          -----
+help: consider borrowing here
+   |
+46 |     if !expect_type(type_id(&(&(0 as i32) + 0 as i64)), 11) {
+   |                             ++                      +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:50:48
+   |
+50 |     if !expect_type(type_id(&(E::NEG as i32) + 0 as u32), type_id(&(0 as i32) + 0 as u32)) {
+   |                                                ^^^^^^^^ expected `i32`, found `u32`
+
+error[E0277]: cannot add `u32` to `&i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:50:46
+   |
+50 |     if !expect_type(type_id(&(E::NEG as i32) + 0 as u32), type_id(&(0 as i32) + 0 as u32)) {
+   |                                              ^ no implementation for `&i32 + u32`
+   |
+   = help: the trait `Add<u32>` is not implemented for `&i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:50:29
+   |
+50 |     if !expect_type(type_id(&(E::NEG as i32) + 0 as u32), type_id(&(0 as i32) + 0 as u32)) {
+   |                     ------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `i32`
+   |                     |
+   |                     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:58:4
+   |
+58 | fn type_id<T: std::any::Any + Copy>(_: &T) -> i32 {
+   |    ^^^^^^^                          -----
+help: consider borrowing here
+   |
+50 |     if !expect_type(type_id(&(&(E::NEG as i32) + 0 as u32)), type_id(&(0 as i32) + 0 as u32)) {
+   |                             ++                           +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:50:81
+   |
+50 |     if !expect_type(type_id(&(E::NEG as i32) + 0 as u32), type_id(&(0 as i32) + 0 as u32)) {
+   |                                                                                 ^^^^^^^^ expected `i32`, found `u32`
+
+error[E0277]: cannot add `u32` to `&i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:50:79
+   |
+50 |     if !expect_type(type_id(&(E::NEG as i32) + 0 as u32), type_id(&(0 as i32) + 0 as u32)) {
+   |                                                                               ^ no implementation for `&i32 + u32`
+   |
+   = help: the trait `Add<u32>` is not implemented for `&i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:50:67
+   |
+50 |     if !expect_type(type_id(&(E::NEG as i32) + 0 as u32), type_id(&(0 as i32) + 0 as u32)) {
+   |                                                           ------- ^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `i32`
+   |                                                           |
+   |                                                           arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:58:4
+   |
+58 | fn type_id<T: std::any::Any + Copy>(_: &T) -> i32 {
+   |    ^^^^^^^                          -----
+help: consider borrowing here
+   |
+50 |     if !expect_type(type_id(&(E::NEG as i32) + 0 as u32), type_id(&(&(0 as i32) + 0 as u32))) {
+   |                                                                   ++                      +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:53:29
+   |
+53 |     if !expect_type(type_id(&(E::NEG as i32) + 0), type_id(&(0 as i32) + 0)) {
+   |                     ------- ^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `i32`
+   |                     |
+   |                     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:58:4
+   |
+58 | fn type_id<T: std::any::Any + Copy>(_: &T) -> i32 {
+   |    ^^^^^^^                          -----
+help: consider borrowing here
+   |
+53 |     if !expect_type(type_id(&(&(E::NEG as i32) + 0)), type_id(&(0 as i32) + 0)) {
+   |                             ++                    +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:53:60
+   |
+53 |     if !expect_type(type_id(&(E::NEG as i32) + 0), type_id(&(0 as i32) + 0)) {
+   |                                                    ------- ^^^^^^^^^^^^^^^ expected `&_`, found `i32`
+   |                                                    |
+   |                                                    arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:58:4
+   |
+58 | fn type_id<T: std::any::Any + Copy>(_: &T) -> i32 {
+   |    ^^^^^^^                          -----
+help: consider borrowing here
+   |
+53 |     if !expect_type(type_id(&(E::NEG as i32) + 0), type_id(&(&(0 as i32) + 0))) {
+   |                                                            ++               +
+
+error: aborting due to 31 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0369, E0433.
+For more information about an error, try `rustc --explain E0277`.

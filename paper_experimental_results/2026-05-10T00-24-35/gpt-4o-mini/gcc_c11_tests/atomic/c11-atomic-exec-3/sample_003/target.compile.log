@@ -1,0 +1,544 @@
+error[E0277]: the trait bound `&mut {integer}: Copy` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:53:5
+   |
+53 |     test_incdec_type(&mut ia[1], |a| {
+   |     ^^^^^^^^^^^^^^^^ the trait `Copy` is not implemented for `&mut {integer}`
+   |
+   = help: the following other types implement trait `Copy`:
+             f128
+             f16
+             f32
+             f64
+             i128
+             i16
+             i32
+             i64
+           and 8 others
+note: required by a bound in `test_incdec_type`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:12
+   |
+ 4 |     fn test_incdec_type<T>(value: T, pre_op: fn(&AtomicUsize) -> T, post_op: fn(&AtomicUsize) -> T, pre_p: bool, change: isize) 
+   |        ---------------- required by a bound in this function
+ 5 |     where
+ 6 |         T: Copy + std::ops::AddAssign + std::ops::SubAssign + std::convert::From<isize> + std::cmp::PartialEq,
+   |            ^^^^ required by this bound in `test_incdec_type`
+
+error[E0277]: cannot add-assign `&mut {integer}` to `&mut {integer}`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:53:5
+   |
+53 |     test_incdec_type(&mut ia[1], |a| {
+   |     ^^^^^^^^^^^^^^^^ the trait `AddAssign` is not implemented for `&mut {integer}`
+   |
+   = note: the trait bound `&mut {integer}: AddAssign` is not satisfied
+note: required by a bound in `test_incdec_type`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:19
+   |
+ 4 |     fn test_incdec_type<T>(value: T, pre_op: fn(&AtomicUsize) -> T, post_op: fn(&AtomicUsize) -> T, pre_p: bool, change: isize) 
+   |        ---------------- required by a bound in this function
+ 5 |     where
+ 6 |         T: Copy + std::ops::AddAssign + std::ops::SubAssign + std::convert::From<isize> + std::cmp::PartialEq,
+   |                   ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec_type`
+help: consider mutably borrowing here
+   |
+53 |     &mut test_incdec_type(&mut ia[1], |a| {
+   |     ++++
+
+error[E0277]: cannot subtract-assign `&mut {integer}` from `&mut {integer}`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:53:5
+   |
+53 |     test_incdec_type(&mut ia[1], |a| {
+   |     ^^^^^^^^^^^^^^^^ the trait `SubAssign` is not implemented for `&mut {integer}`
+   |
+   = note: the trait bound `&mut {integer}: SubAssign` is not satisfied
+note: required by a bound in `test_incdec_type`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:41
+   |
+ 4 |     fn test_incdec_type<T>(value: T, pre_op: fn(&AtomicUsize) -> T, post_op: fn(&AtomicUsize) -> T, pre_p: bool, change: isize) 
+   |        ---------------- required by a bound in this function
+ 5 |     where
+ 6 |         T: Copy + std::ops::AddAssign + std::ops::SubAssign + std::convert::From<isize> + std::cmp::PartialEq,
+   |                                         ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec_type`
+help: consider mutably borrowing here
+   |
+53 |     &mut test_incdec_type(&mut ia[1], |a| {
+   |     ++++
+
+error[E0277]: the trait bound `&mut {integer}: From<isize>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:53:5
+   |
+53 |     test_incdec_type(&mut ia[1], |a| {
+   |     ^^^^^^^^^^^^^^^^ the trait `From<isize>` is not implemented for `&mut {integer}`
+   |
+note: required by a bound in `test_incdec_type`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:63
+   |
+ 4 |     fn test_incdec_type<T>(value: T, pre_op: fn(&AtomicUsize) -> T, post_op: fn(&AtomicUsize) -> T, pre_p: bool, change: isize) 
+   |        ---------------- required by a bound in this function
+ 5 |     where
+ 6 |         T: Copy + std::ops::AddAssign + std::ops::SubAssign + std::convert::From<isize> + std::cmp::PartialEq,
+   |                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec_type`
+help: consider mutably borrowing here
+   |
+53 |     &mut test_incdec_type(&mut ia[1], |a| {
+   |     ++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:55:9
+   |
+55 |         a.load(Ordering::SeqCst)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^ expected `&mut {integer}`, found `usize`
+   |
+help: consider mutably borrowing here
+   |
+55 |         &mut a.load(Ordering::SeqCst)
+   |         ++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:56:12
+   |
+56 |     }, |a| a.load(Ordering::SeqCst), true, 1);
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^ expected `&mut {integer}`, found `usize`
+   |
+help: consider mutably borrowing here
+   |
+56 |     }, |a| &mut a.load(Ordering::SeqCst), true, 1);
+   |            ++++
+
+error[E0277]: the trait bound `&mut {integer}: Copy` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:58:5
+   |
+58 |     test_incdec_type(&mut ia[1], |a| {
+   |     ^^^^^^^^^^^^^^^^ the trait `Copy` is not implemented for `&mut {integer}`
+   |
+   = help: the following other types implement trait `Copy`:
+             f128
+             f16
+             f32
+             f64
+             i128
+             i16
+             i32
+             i64
+           and 8 others
+note: required by a bound in `test_incdec_type`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:12
+   |
+ 4 |     fn test_incdec_type<T>(value: T, pre_op: fn(&AtomicUsize) -> T, post_op: fn(&AtomicUsize) -> T, pre_p: bool, change: isize) 
+   |        ---------------- required by a bound in this function
+ 5 |     where
+ 6 |         T: Copy + std::ops::AddAssign + std::ops::SubAssign + std::convert::From<isize> + std::cmp::PartialEq,
+   |            ^^^^ required by this bound in `test_incdec_type`
+
+error[E0277]: cannot add-assign `&mut {integer}` to `&mut {integer}`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:58:5
+   |
+58 |     test_incdec_type(&mut ia[1], |a| {
+   |     ^^^^^^^^^^^^^^^^ the trait `AddAssign` is not implemented for `&mut {integer}`
+   |
+   = note: the trait bound `&mut {integer}: AddAssign` is not satisfied
+note: required by a bound in `test_incdec_type`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:19
+   |
+ 4 |     fn test_incdec_type<T>(value: T, pre_op: fn(&AtomicUsize) -> T, post_op: fn(&AtomicUsize) -> T, pre_p: bool, change: isize) 
+   |        ---------------- required by a bound in this function
+ 5 |     where
+ 6 |         T: Copy + std::ops::AddAssign + std::ops::SubAssign + std::convert::From<isize> + std::cmp::PartialEq,
+   |                   ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec_type`
+help: consider mutably borrowing here
+   |
+58 |     &mut test_incdec_type(&mut ia[1], |a| {
+   |     ++++
+
+error[E0277]: cannot subtract-assign `&mut {integer}` from `&mut {integer}`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:58:5
+   |
+58 |     test_incdec_type(&mut ia[1], |a| {
+   |     ^^^^^^^^^^^^^^^^ the trait `SubAssign` is not implemented for `&mut {integer}`
+   |
+   = note: the trait bound `&mut {integer}: SubAssign` is not satisfied
+note: required by a bound in `test_incdec_type`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:41
+   |
+ 4 |     fn test_incdec_type<T>(value: T, pre_op: fn(&AtomicUsize) -> T, post_op: fn(&AtomicUsize) -> T, pre_p: bool, change: isize) 
+   |        ---------------- required by a bound in this function
+ 5 |     where
+ 6 |         T: Copy + std::ops::AddAssign + std::ops::SubAssign + std::convert::From<isize> + std::cmp::PartialEq,
+   |                                         ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec_type`
+help: consider mutably borrowing here
+   |
+58 |     &mut test_incdec_type(&mut ia[1], |a| {
+   |     ++++
+
+error[E0277]: the trait bound `&mut {integer}: From<isize>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:58:5
+   |
+58 |     test_incdec_type(&mut ia[1], |a| {
+   |     ^^^^^^^^^^^^^^^^ the trait `From<isize>` is not implemented for `&mut {integer}`
+   |
+note: required by a bound in `test_incdec_type`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:63
+   |
+ 4 |     fn test_incdec_type<T>(value: T, pre_op: fn(&AtomicUsize) -> T, post_op: fn(&AtomicUsize) -> T, pre_p: bool, change: isize) 
+   |        ---------------- required by a bound in this function
+ 5 |     where
+ 6 |         T: Copy + std::ops::AddAssign + std::ops::SubAssign + std::convert::From<isize> + std::cmp::PartialEq,
+   |                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec_type`
+help: consider mutably borrowing here
+   |
+58 |     &mut test_incdec_type(&mut ia[1], |a| {
+   |     ++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:60:9
+   |
+60 |         a.load(Ordering::SeqCst)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^ expected `&mut {integer}`, found `usize`
+   |
+help: consider mutably borrowing here
+   |
+60 |         &mut a.load(Ordering::SeqCst)
+   |         ++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:61:12
+   |
+61 |     }, |a| a.load(Ordering::SeqCst), true, -1);
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^ expected `&mut {integer}`, found `usize`
+   |
+help: consider mutably borrowing here
+   |
+61 |     }, |a| &mut a.load(Ordering::SeqCst), true, -1);
+   |            ++++
+
+error[E0277]: the trait bound `&mut {integer}: Copy` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:63:5
+   |
+63 |     test_incdec_type(&mut ia[1], |a| a.load(Ordering::SeqCst), |a| {
+   |     ^^^^^^^^^^^^^^^^ the trait `Copy` is not implemented for `&mut {integer}`
+   |
+   = help: the following other types implement trait `Copy`:
+             f128
+             f16
+             f32
+             f64
+             i128
+             i16
+             i32
+             i64
+           and 8 others
+note: required by a bound in `test_incdec_type`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:12
+   |
+ 4 |     fn test_incdec_type<T>(value: T, pre_op: fn(&AtomicUsize) -> T, post_op: fn(&AtomicUsize) -> T, pre_p: bool, change: isize) 
+   |        ---------------- required by a bound in this function
+ 5 |     where
+ 6 |         T: Copy + std::ops::AddAssign + std::ops::SubAssign + std::convert::From<isize> + std::cmp::PartialEq,
+   |            ^^^^ required by this bound in `test_incdec_type`
+
+error[E0277]: cannot add-assign `&mut {integer}` to `&mut {integer}`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:63:5
+   |
+63 |     test_incdec_type(&mut ia[1], |a| a.load(Ordering::SeqCst), |a| {
+   |     ^^^^^^^^^^^^^^^^ the trait `AddAssign` is not implemented for `&mut {integer}`
+   |
+   = note: the trait bound `&mut {integer}: AddAssign` is not satisfied
+note: required by a bound in `test_incdec_type`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:19
+   |
+ 4 |     fn test_incdec_type<T>(value: T, pre_op: fn(&AtomicUsize) -> T, post_op: fn(&AtomicUsize) -> T, pre_p: bool, change: isize) 
+   |        ---------------- required by a bound in this function
+ 5 |     where
+ 6 |         T: Copy + std::ops::AddAssign + std::ops::SubAssign + std::convert::From<isize> + std::cmp::PartialEq,
+   |                   ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec_type`
+help: consider mutably borrowing here
+   |
+63 |     &mut test_incdec_type(&mut ia[1], |a| a.load(Ordering::SeqCst), |a| {
+   |     ++++
+
+error[E0277]: cannot subtract-assign `&mut {integer}` from `&mut {integer}`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:63:5
+   |
+63 |     test_incdec_type(&mut ia[1], |a| a.load(Ordering::SeqCst), |a| {
+   |     ^^^^^^^^^^^^^^^^ the trait `SubAssign` is not implemented for `&mut {integer}`
+   |
+   = note: the trait bound `&mut {integer}: SubAssign` is not satisfied
+note: required by a bound in `test_incdec_type`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:41
+   |
+ 4 |     fn test_incdec_type<T>(value: T, pre_op: fn(&AtomicUsize) -> T, post_op: fn(&AtomicUsize) -> T, pre_p: bool, change: isize) 
+   |        ---------------- required by a bound in this function
+ 5 |     where
+ 6 |         T: Copy + std::ops::AddAssign + std::ops::SubAssign + std::convert::From<isize> + std::cmp::PartialEq,
+   |                                         ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec_type`
+help: consider mutably borrowing here
+   |
+63 |     &mut test_incdec_type(&mut ia[1], |a| a.load(Ordering::SeqCst), |a| {
+   |     ++++
+
+error[E0277]: the trait bound `&mut {integer}: From<isize>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:63:5
+   |
+63 |     test_incdec_type(&mut ia[1], |a| a.load(Ordering::SeqCst), |a| {
+   |     ^^^^^^^^^^^^^^^^ the trait `From<isize>` is not implemented for `&mut {integer}`
+   |
+note: required by a bound in `test_incdec_type`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:63
+   |
+ 4 |     fn test_incdec_type<T>(value: T, pre_op: fn(&AtomicUsize) -> T, post_op: fn(&AtomicUsize) -> T, pre_p: bool, change: isize) 
+   |        ---------------- required by a bound in this function
+ 5 |     where
+ 6 |         T: Copy + std::ops::AddAssign + std::ops::SubAssign + std::convert::From<isize> + std::cmp::PartialEq,
+   |                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec_type`
+help: consider mutably borrowing here
+   |
+63 |     &mut test_incdec_type(&mut ia[1], |a| a.load(Ordering::SeqCst), |a| {
+   |     ++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:63:38
+   |
+63 |     test_incdec_type(&mut ia[1], |a| a.load(Ordering::SeqCst), |a| {
+   |                                      ^^^^^^^^^^^^^^^^^^^^^^^^ expected `&mut {integer}`, found `usize`
+   |
+help: consider mutably borrowing here
+   |
+63 |     test_incdec_type(&mut ia[1], |a| &mut a.load(Ordering::SeqCst), |a| {
+   |                                      ++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:65:9
+   |
+65 |         a.load(Ordering::SeqCst)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^ expected `&mut {integer}`, found `usize`
+   |
+help: consider mutably borrowing here
+   |
+65 |         &mut a.load(Ordering::SeqCst)
+   |         ++++
+
+error[E0277]: the trait bound `&mut {integer}: Copy` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:68:5
+   |
+68 |     test_incdec_type(&mut ia[1], |a| a.load(Ordering::SeqCst), |a| {
+   |     ^^^^^^^^^^^^^^^^ the trait `Copy` is not implemented for `&mut {integer}`
+   |
+   = help: the following other types implement trait `Copy`:
+             f128
+             f16
+             f32
+             f64
+             i128
+             i16
+             i32
+             i64
+           and 8 others
+note: required by a bound in `test_incdec_type`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:12
+   |
+ 4 |     fn test_incdec_type<T>(value: T, pre_op: fn(&AtomicUsize) -> T, post_op: fn(&AtomicUsize) -> T, pre_p: bool, change: isize) 
+   |        ---------------- required by a bound in this function
+ 5 |     where
+ 6 |         T: Copy + std::ops::AddAssign + std::ops::SubAssign + std::convert::From<isize> + std::cmp::PartialEq,
+   |            ^^^^ required by this bound in `test_incdec_type`
+
+error[E0277]: cannot add-assign `&mut {integer}` to `&mut {integer}`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:68:5
+   |
+68 |     test_incdec_type(&mut ia[1], |a| a.load(Ordering::SeqCst), |a| {
+   |     ^^^^^^^^^^^^^^^^ the trait `AddAssign` is not implemented for `&mut {integer}`
+   |
+   = note: the trait bound `&mut {integer}: AddAssign` is not satisfied
+note: required by a bound in `test_incdec_type`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:19
+   |
+ 4 |     fn test_incdec_type<T>(value: T, pre_op: fn(&AtomicUsize) -> T, post_op: fn(&AtomicUsize) -> T, pre_p: bool, change: isize) 
+   |        ---------------- required by a bound in this function
+ 5 |     where
+ 6 |         T: Copy + std::ops::AddAssign + std::ops::SubAssign + std::convert::From<isize> + std::cmp::PartialEq,
+   |                   ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec_type`
+help: consider mutably borrowing here
+   |
+68 |     &mut test_incdec_type(&mut ia[1], |a| a.load(Ordering::SeqCst), |a| {
+   |     ++++
+
+error[E0277]: cannot subtract-assign `&mut {integer}` from `&mut {integer}`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:68:5
+   |
+68 |     test_incdec_type(&mut ia[1], |a| a.load(Ordering::SeqCst), |a| {
+   |     ^^^^^^^^^^^^^^^^ the trait `SubAssign` is not implemented for `&mut {integer}`
+   |
+   = note: the trait bound `&mut {integer}: SubAssign` is not satisfied
+note: required by a bound in `test_incdec_type`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:41
+   |
+ 4 |     fn test_incdec_type<T>(value: T, pre_op: fn(&AtomicUsize) -> T, post_op: fn(&AtomicUsize) -> T, pre_p: bool, change: isize) 
+   |        ---------------- required by a bound in this function
+ 5 |     where
+ 6 |         T: Copy + std::ops::AddAssign + std::ops::SubAssign + std::convert::From<isize> + std::cmp::PartialEq,
+   |                                         ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec_type`
+help: consider mutably borrowing here
+   |
+68 |     &mut test_incdec_type(&mut ia[1], |a| a.load(Ordering::SeqCst), |a| {
+   |     ++++
+
+error[E0277]: the trait bound `&mut {integer}: From<isize>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:68:5
+   |
+68 |     test_incdec_type(&mut ia[1], |a| a.load(Ordering::SeqCst), |a| {
+   |     ^^^^^^^^^^^^^^^^ the trait `From<isize>` is not implemented for `&mut {integer}`
+   |
+note: required by a bound in `test_incdec_type`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:63
+   |
+ 4 |     fn test_incdec_type<T>(value: T, pre_op: fn(&AtomicUsize) -> T, post_op: fn(&AtomicUsize) -> T, pre_p: bool, change: isize) 
+   |        ---------------- required by a bound in this function
+ 5 |     where
+ 6 |         T: Copy + std::ops::AddAssign + std::ops::SubAssign + std::convert::From<isize> + std::cmp::PartialEq,
+   |                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec_type`
+help: consider mutably borrowing here
+   |
+68 |     &mut test_incdec_type(&mut ia[1], |a| a.load(Ordering::SeqCst), |a| {
+   |     ++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:68:38
+   |
+68 |     test_incdec_type(&mut ia[1], |a| a.load(Ordering::SeqCst), |a| {
+   |                                      ^^^^^^^^^^^^^^^^^^^^^^^^ expected `&mut {integer}`, found `usize`
+   |
+help: consider mutably borrowing here
+   |
+68 |     test_incdec_type(&mut ia[1], |a| &mut a.load(Ordering::SeqCst), |a| {
+   |                                      ++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:70:9
+   |
+70 |         a.load(Ordering::SeqCst)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^ expected `&mut {integer}`, found `usize`
+   |
+help: consider mutably borrowing here
+   |
+70 |         &mut a.load(Ordering::SeqCst)
+   |         ++++
+
+error[E0277]: the trait bound `usize: From<T>` is not satisfied
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:8:40
+  |
+8 |         let a = AtomicUsize::new(value.into());
+  |                                        ^^^^ the trait `From<T>` is not implemented for `usize`
+  |
+  = note: required for `T` to implement `Into<usize>`
+help: consider extending the `where` clause, but there might be an alternative better way to express this requirement
+  |
+6 |         T: Copy + std::ops::AddAssign + std::ops::SubAssign + std::convert::From<isize> + std::cmp::PartialEq, usize: From<T>
+  |                                                                                                                ++++++++++++++
+
+error[E0369]: cannot add `_` to `T`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:10:19
+   |
+10 |             value + change.into()
+   |             ----- ^ ------------- _
+   |             |
+   |             T
+
+error[E0369]: cannot add `_` to `T`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:18:47
+   |
+18 |         if a.load(Ordering::SeqCst) != (value + change.into()) {
+   |                                         ----- ^ ------------- _
+   |                                         |
+   |                                         T
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:26:13
+   |
+26 |             a.load(Ordering::SeqCst)
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^ expected `isize`, found `usize`
+   |
+help: you can convert a `usize` to an `isize` and panic if the converted value doesn't fit
+   |
+26 |             a.load(Ordering::SeqCst).try_into().unwrap()
+   |                                     ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:27:16
+   |
+27 |         }, |a| a.load(Ordering::SeqCst), true, 1);
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^ expected `isize`, found `usize`
+   |
+help: you can convert a `usize` to an `isize` and panic if the converted value doesn't fit
+   |
+27 |         }, |a| a.load(Ordering::SeqCst).try_into().unwrap(), true, 1);
+   |                                        ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:31:13
+   |
+31 |             a.load(Ordering::SeqCst)
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^ expected `isize`, found `usize`
+   |
+help: you can convert a `usize` to an `isize` and panic if the converted value doesn't fit
+   |
+31 |             a.load(Ordering::SeqCst).try_into().unwrap()
+   |                                     ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:32:16
+   |
+32 |         }, |a| a.load(Ordering::SeqCst), true, -1);
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^ expected `isize`, found `usize`
+   |
+help: you can convert a `usize` to an `isize` and panic if the converted value doesn't fit
+   |
+32 |         }, |a| a.load(Ordering::SeqCst).try_into().unwrap(), true, -1);
+   |                                        ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:34:37
+   |
+34 |         test_incdec_type(value, |a| a.load(Ordering::SeqCst), |a| {
+   |                                     ^^^^^^^^^^^^^^^^^^^^^^^^ expected `isize`, found `usize`
+   |
+help: you can convert a `usize` to an `isize` and panic if the converted value doesn't fit
+   |
+34 |         test_incdec_type(value, |a| a.load(Ordering::SeqCst).try_into().unwrap(), |a| {
+   |                                                             ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:36:13
+   |
+36 |             a.load(Ordering::SeqCst)
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^ expected `isize`, found `usize`
+   |
+help: you can convert a `usize` to an `isize` and panic if the converted value doesn't fit
+   |
+36 |             a.load(Ordering::SeqCst).try_into().unwrap()
+   |                                     ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:39:37
+   |
+39 |         test_incdec_type(value, |a| a.load(Ordering::SeqCst), |a| {
+   |                                     ^^^^^^^^^^^^^^^^^^^^^^^^ expected `isize`, found `usize`
+   |
+help: you can convert a `usize` to an `isize` and panic if the converted value doesn't fit
+   |
+39 |         test_incdec_type(value, |a| a.load(Ordering::SeqCst).try_into().unwrap(), |a| {
+   |                                                             ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:41:13
+   |
+41 |             a.load(Ordering::SeqCst)
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^ expected `isize`, found `usize`
+   |
+help: you can convert a `usize` to an `isize` and panic if the converted value doesn't fit
+   |
+41 |             a.load(Ordering::SeqCst).try_into().unwrap()
+   |                                     ++++++++++++++++++++
+
+error: aborting due to 35 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0369.
+For more information about an error, try `rustc --explain E0277`.

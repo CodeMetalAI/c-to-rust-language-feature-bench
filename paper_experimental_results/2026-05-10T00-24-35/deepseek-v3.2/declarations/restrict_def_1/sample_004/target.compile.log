@@ -1,0 +1,58 @@
+error[E0425]: cannot find value `от1` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_1/sample_004/target.rs:27:14
+   |
+27 |         i += от1;
+   |              ^^^ not found in this scope
+
+error[E0425]: cannot find value `性与0` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_1/sample_004/target.rs:41:16
+   |
+41 |     let mut i =性与0;
+   |                ^^^^^ not found in this scope
+
+warning: the usage of Script Group `Cyrillic` in this crate consists solely of mixed script confusables
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_1/sample_004/target.rs:27:14
+   |
+27 |         i += от1;
+   |              ^^^
+   |
+   = note: the usage includes 'о' (U+043E), 'т' (U+0442)
+   = note: please recheck to make sure their usages are indeed what you want
+   = note: `#[warn(mixed_script_confusables)]` on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_1/sample_004/target.rs:17:9
+   |
+17 |         unsafe { &mut u.right }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_1/sample_004/target.rs:19:9
+   |
+19 |         unsafe { &mut u.left }
+   |         ^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_1/sample_004/target.rs:53:5
+   |
+53 | /     unsafe {
+54 | |         let a = choose_view(&mut BANK_A, which_a);
+55 | |         let b = choose_view(&mut BANK_B, which_b);
+...  |
+88 | |     }
+   | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_1/sample_004/target.rs:49:14
+   |
+49 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error: aborting due to 6 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0425.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,148 @@
+error[E0517]: attribute should be applied to a struct, enum, or union
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_002/target.rs:4:8
+  |
+4 | #[repr(align(128))] // max_align_t is typically 128 bytes on many systems
+  |        ^^^^^^^^^^
+5 | static mut C: u8 = 0;
+  | --------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_002/target.rs:8:8
+  |
+8 | #[repr(align(128))]
+  |        ^^^^^^^^^^
+9 | static mut L: i64 = 0;
+  | ---------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_002/target.rs:10:8
+   |
+10 | #[repr(align(128))]
+   |        ^^^^^^^^^^
+11 | static mut LL: i128 = 0;
+   | ------------------------ not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_002/target.rs:12:8
+   |
+12 | #[repr(align(128))]
+   |        ^^^^^^^^^^
+13 | static mut F: f32 = 0.0;
+   | ------------------------ not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_002/target.rs:14:8
+   |
+14 | #[repr(align(128))]
+   |        ^^^^^^^^^^
+15 | static mut D: f64 = 0.0;
+   | ------------------------ not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_002/target.rs:16:8
+   |
+16 | #[repr(align(128))]
+   |        ^^^^^^^^^^
+17 | static mut CLD: [f64; 2] = [0.0, 0.0]; // Complex long double approximation
+   | -------------------------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_002/target.rs:19:8
+   |
+19 | #[repr(align(4))]
+   |        ^^^^^^^^
+20 | static mut CA: [u8; 10] = [0; 10];
+   | ---------------------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_002/target.rs:26:12
+   |
+26 |     #[repr(align(128))]
+   |            ^^^^^^^^^^
+27 |     let auto_ll: i128 = 0;
+   |     ---------------------- not a struct, enum, or union
+
+warning: unused variable: `auto_ll`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_002/target.rs:27:9
+   |
+27 |     let auto_ll: i128 = 0;
+   |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_auto_ll`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_002/target.rs:42:35
+   |
+42 |     assert_eq!(mem::align_of_val(&C), 128);
+   |                                   ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_002/target.rs:43:35
+   |
+43 |     assert_eq!(mem::align_of_val(&S), 128);
+   |                                   ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_002/target.rs:44:35
+   |
+44 |     assert_eq!(mem::align_of_val(&I), 4);
+   |                                   ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_002/target.rs:45:35
+   |
+45 |     assert_eq!(mem::align_of_val(&L), 128);
+   |                                   ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_002/target.rs:46:35
+   |
+46 |     assert_eq!(mem::align_of_val(&LL), 128);
+   |                                   ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_002/target.rs:47:35
+   |
+47 |     assert_eq!(mem::align_of_val(&F), 128);
+   |                                   ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_002/target.rs:48:35
+   |
+48 |     assert_eq!(mem::align_of_val(&D), 128);
+   |                                   ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_002/target.rs:49:35
+   |
+49 |     assert_eq!(mem::align_of_val(&CLD), 128);
+   |                                   ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_002/target.rs:50:35
+   |
+50 |     assert_eq!(mem::align_of_val(&CA), 4);
+   |                                   ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 17 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0133, E0517.
+For more information about an error, try `rustc --explain E0133`.

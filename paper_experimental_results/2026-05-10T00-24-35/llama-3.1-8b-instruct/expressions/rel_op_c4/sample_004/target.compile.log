@@ -1,0 +1,36 @@
+error[E0599]: no method named `offset` found for reference `&{integer}` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c4/sample_004/target.rs:8:21
+  |
+8 |     let px_end = px.offset(1);
+  |                     ^^^^^^ method not found in `&{integer}`
+
+error[E0599]: no method named `offset` found for reference `&{integer}` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c4/sample_004/target.rs:9:21
+  |
+9 |     let py_end = py.offset(1);
+  |                     ^^^^^^ method not found in `&{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c4/sample_004/target.rs:12:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+12 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0689]: can't call method `offset` on ambiguous numeric type `{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c4/sample_004/target.rs:19:21
+   |
+19 |     if px_end != &x.offset(1) {
+   |                     ^^^^^^
+   |
+help: you must specify a type for this binding, like `i32`
+   |
+ 2 |     let x: i32 = 10;
+   |          +++++
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0599, E0689.
+For more information about an error, try `rustc --explain E0308`.

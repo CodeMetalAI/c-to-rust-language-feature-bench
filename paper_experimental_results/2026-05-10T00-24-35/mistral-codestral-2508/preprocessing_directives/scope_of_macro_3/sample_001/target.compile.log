@@ -1,0 +1,69 @@
+error[E0428]: the name `X` is defined multiple times
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:5:5
+  |
+3 |     const X: i32 = 3;
+  |     ----------------- previous definition of the value `X` here
+4 |     fn f(a: i32) -> i32 { a + X }
+5 |     const X: i32 = 2;
+  |     ^^^^^^^^^^^^^^^^^ `X` redefined here
+  |
+  = note: `X` must be defined only once in the value namespace of this block
+
+error[E0015]: cannot call non-const function `q::<usize>` in constants
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:22:16
+   |
+22 |     let i: [P; q(4)] = [q(1), r(2, 3), r(4, 0), r(0, 5), r(0, 0)];
+   |                ^^^^
+   |
+   = note: calls in constants are limited to constant functions, tuple structs and tuple variants
+
+error[E0599]: no method named `try_into` found for struct `Vec<char>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:23:70
+    |
+ 23 |     let c: [[char; 6]; 2] = [str!(hello).chars().collect::<Vec<_>>().try_into().unwrap(), str!().chars().collect::<Vec<_>>().try_into().unwrap()];
+    |                                                                      ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<char>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 23 -     let c: [[char; 6]; 2] = [str!(hello).chars().collect::<Vec<_>>().try_into().unwrap(), str!().chars().collect::<Vec<_>>().try_into().unwrap()];
+ 23 +     let c: [[char; 6]; 2] = [str!(hello).chars().collect::<Vec<_>>().into().unwrap(), str!().chars().collect::<Vec<_>>().try_into().unwrap()];
+    |
+
+error[E0599]: no method named `try_into` found for struct `Vec<char>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:23:126
+    |
+ 23 |     let c: [[char; 6]; 2] = [str!(hello).chars().collect::<Vec<_>>().try_into().unwrap(), str!().chars().collect::<Vec<_>>().try_into().unwrap()];
+    |                                                                                                                              ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<char>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 23 -     let c: [[char; 6]; 2] = [str!(hello).chars().collect::<Vec<_>>().try_into().unwrap(), str!().chars().collect::<Vec<_>>().try_into().unwrap()];
+ 23 +     let c: [[char; 6]; 2] = [str!(hello).chars().collect::<Vec<_>>().try_into().unwrap(), str!().chars().collect::<Vec<_>>().into().unwrap()];
+    |
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0015, E0428, E0599.
+For more information about an error, try `rustc --explain E0015`.

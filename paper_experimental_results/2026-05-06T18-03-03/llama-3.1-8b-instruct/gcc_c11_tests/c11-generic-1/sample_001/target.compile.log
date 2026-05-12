@@ -1,0 +1,23 @@
+error[E0369]: binary operation `!=` cannot be applied to type `T`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-generic-1/sample_001/target.rs:2:10
+  |
+2 |     if n != 0 {
+  |        - ^^ - {integer}
+  |        |
+  |        T
+  |
+help: consider restricting type parameter `T` with trait `PartialEq`
+  |
+1 | fn check<T: std::cmp::PartialEq<i32>>(n: T) {
+  |           ++++++++++++++++++++++++++
+
+error[E0599]: no method named `is_some` found for fn item `fn() {f}` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-generic-1/sample_001/target.rs:30:16
+   |
+30 |     check(if f.is_some() { 0 } else { n + 1 });
+   |                ^^^^^^^ method not found in `fn() {f}`
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0369, E0599.
+For more information about an error, try `rustc --explain E0369`.

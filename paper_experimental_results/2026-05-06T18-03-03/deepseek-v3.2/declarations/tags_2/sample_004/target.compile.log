@@ -1,0 +1,35 @@
+error[E0382]: assign to part of moved value: `b`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/tags_2/sample_004/target.rs:22:5
+   |
+16 |     let mut b = S2 {
+   |         ----- move occurs because `b` has type `S2`, which does not implement the `Copy` trait
+...
+21 |     a.s2p = Some(Box::new(b));
+   |                           - value moved here
+22 |     b.s1p = Some(Box::new(a));
+   |     ^^^^^ value partially assigned here after move
+   |
+note: if `S2` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/tags_2/sample_004/target.rs:6:1
+   |
+ 6 | struct S2 {
+   | ^^^^^^^^^ consider implementing `Clone` for this type
+...
+21 |     a.s2p = Some(Box::new(b));
+   |                           - you could clone this value
+
+error[E0382]: borrow of moved value: `a.s2p`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/tags_2/sample_004/target.rs:24:17
+   |
+12 |     let mut a = S1 {
+   |         ----- move occurs because `a` has type `S1`, which does not implement the `Copy` trait
+...
+22 |     b.s1p = Some(Box::new(a));
+   |                           - value moved here
+23 |
+24 |     let b_ref = a.s2p.as_ref().unwrap();
+   |                 ^^^^^ value borrowed here after move
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0382`.

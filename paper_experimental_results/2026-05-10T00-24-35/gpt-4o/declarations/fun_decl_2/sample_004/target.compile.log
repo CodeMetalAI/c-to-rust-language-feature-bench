@@ -1,0 +1,212 @@
+warning: unnecessary parentheses around assigned value
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_2/sample_004/target.rs:50:19
+   |
+50 |     let mut sel = (hmix(v[0], v[5]) & 3);
+   |                   ^                    ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+50 -     let mut sel = (hmix(v[0], v[5]) & 3);
+50 +     let mut sel = hmix(v[0], v[5]) & 3;
+   |
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_2/sample_004/target.rs:50:20
+   |
+50 |     let mut sel = (hmix(v[0], v[5]) & 3);
+   |                    ^^^^ ----  ---- expected `i32`, found `usize`
+   |                         |
+   |                         expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_2/sample_004/target.rs:1:4
+   |
+ 1 | fn hmix(a: i32, b: i32) -> i32 {
+   |    ^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+50 |     let mut sel = (hmix(v[0].try_into().unwrap(), v[5]) & 3);
+   |                             ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+50 |     let mut sel = (hmix(v[0], v[5].try_into().unwrap()) & 3);
+   |                                   ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_2/sample_004/target.rs:55:33
+     |
+  55 |     let (x, y) = v.split_at_mut(sel + 1);
+     |                    ------------ ^^^^^^^ expected `usize`, found `i32`
+     |                    |
+     |                    arguments to this method are incorrect
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/slice/mod.rs:1980:18
+     |
+1980 |     pub const fn split_at_mut(&mut self, mid: usize) -> (&mut [T], &mut [T]) {
+     |                  ^^^^^^^^^^^^
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+     |
+  55 |     let (x, y) = v.split_at_mut((sel + 1).try_into().unwrap());
+     |                                 +       +++++++++++++++++++++
+
+error[E0277]: the type `[usize]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_2/sample_004/target.rs:56:26
+   |
+56 |     let (x, y) = (&mut x[sel], &mut y[0]);
+   |                          ^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[usize]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[usize]` to implement `Index<i32>`
+
+error[E0277]: the type `[for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_2/sample_004/target.rs:61:24
+   |
+61 |     let out = run(apfi[sel], x, y);
+   |                        ^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32; 3]` to implement `Index<i32>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_2/sample_004/target.rs:61:33
+   |
+61 |     let out = run(apfi[sel], x, y);
+   |               ---               ^ expected `&mut i32`, found `&mut usize`
+   |               |
+   |               arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut i32`
+              found mutable reference `&mut usize`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_2/sample_004/target.rs:36:4
+   |
+36 | fn run(pf: fn(&mut i32, &mut i32) -> i32, a: &mut i32, b: &mut i32) -> i32 {
+   |    ^^^                                                 -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_2/sample_004/target.rs:65:22
+   |
+65 |             if *x != before_y {
+   |                --    ^^^^^^^^ expected `i32`, found `usize`
+   |                |
+   |                expected because this is `i32`
+   |
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+65 |             if *x != before_y.try_into().unwrap() {
+   |                              ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_2/sample_004/target.rs:67:29
+   |
+67 |             } else if *y != before_x {
+   |                       --    ^^^^^^^^ expected `usize`, found `i32`
+   |                       |
+   |                       expected because this is `usize`
+   |
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+67 |             } else if *y != before_x.try_into().unwrap() {
+   |                                     ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_2/sample_004/target.rs:69:46
+   |
+69 |             } else if (out ^ 3) != (hmix(*x, *y) ^ (hmix(*x, *y) + 3)) {
+   |                                     ----     ^^ expected `i32`, found `usize`
+   |                                     |
+   |                                     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_2/sample_004/target.rs:1:4
+   |
+ 1 | fn hmix(a: i32, b: i32) -> i32 {
+   |    ^^^^         ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+69 |             } else if (out ^ 3) != (hmix(*x, (*y).try_into().unwrap()) ^ (hmix(*x, *y) + 3)) {
+   |                                              +  +++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_2/sample_004/target.rs:69:62
+   |
+69 |             } else if (out ^ 3) != (hmix(*x, *y) ^ (hmix(*x, *y) + 3)) {
+   |                                                     ----     ^^ expected `i32`, found `usize`
+   |                                                     |
+   |                                                     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_2/sample_004/target.rs:1:4
+   |
+ 1 | fn hmix(a: i32, b: i32) -> i32 {
+   |    ^^^^         ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+69 |             } else if (out ^ 3) != (hmix(*x, *y) ^ (hmix(*x, (*y).try_into().unwrap()) + 3)) {
+   |                                                              +  +++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_2/sample_004/target.rs:85:36
+   |
+85 |             let mut d = before_x - before_y;
+   |                                    ^^^^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot subtract `usize` from `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_2/sample_004/target.rs:85:34
+   |
+85 |             let mut d = before_x - before_y;
+   |                                  ^ no implementation for `i32 - usize`
+   |
+   = help: the trait `Sub<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Sub<Rhs>`:
+             `&i32` implements `Sub<i32>`
+             `&i32` implements `Sub`
+             `i32` implements `Sub<&i32>`
+             `i32` implements `Sub`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_2/sample_004/target.rs:91:40
+   |
+91 |             } else if *y != before_x + before_y {
+   |                                        ^^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_2/sample_004/target.rs:91:29
+   |
+91 |             } else if *y != before_x + before_y {
+   |                       --    ^^^^^^^^^^^^^^^^^^^ expected `usize`, found `i32`
+   |                       |
+   |                       expected because this is `usize`
+   |
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+91 |             } else if *y != (before_x + before_y).try_into().unwrap() {
+   |                             +                   +++++++++++++++++++++
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_2/sample_004/target.rs:91:38
+   |
+91 |             } else if *y != before_x + before_y {
+   |                                      ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error: aborting due to 14 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

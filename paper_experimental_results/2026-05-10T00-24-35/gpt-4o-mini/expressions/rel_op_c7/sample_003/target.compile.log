@@ -1,0 +1,34 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/rel_op_c7/sample_003/target.rs:9:18
+  |
+9 |     let p_end1 = unsafe { (p as *const _).add(1) };
+  |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/rel_op_c7/sample_003/target.rs:10:18
+   |
+10 |     let p_end2 = unsafe { (&x as *const _).add(1) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: type annotations needed
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/rel_op_c7/sample_003/target.rs:9:43
+  |
+9 |     let p_end1 = unsafe { (p as *const _).add(1) };
+  |                                           ^^^
+  |
+  = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2018!
+  = note: for more information, see issue #46906 <https://github.com/rust-lang/rust/issues/46906>
+  = note: `#[warn(tyvar_behind_raw_pointer)]` (part of `#[warn(rust_2018_compatibility)]`) on by default
+
+warning: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/rel_op_c7/sample_003/target.rs:10:44
+   |
+10 |     let p_end2 = unsafe { (&x as *const _).add(1) };
+   |                                            ^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2018!
+   = note: for more information, see issue #46906 <https://github.com/rust-lang/rust/issues/46906>
+
+error: aborting due to 2 previous errors; 2 warnings emitted

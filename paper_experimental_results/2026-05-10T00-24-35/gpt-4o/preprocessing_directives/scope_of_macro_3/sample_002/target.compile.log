@@ -1,0 +1,48 @@
+error[E0716]: temporary value dropped while borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:30:9
+   |
+30 |         str_lit("hello").as_bytes_array_6(),
+   |         ^^^^^^^^^^^^^^^^ creates a temporary value which is freed while still in use
+31 |         str_lit("").as_bytes_array_6(),
+32 |     ];
+   |      - temporary value is freed at the end of this statement
+...
+55 |     if c[0][0] != b'h' {
+   |        ---- borrow later used here
+   |
+help: consider using a `let` binding to create a longer lived value
+   |
+29 ~     let binding = str_lit("hello");
+30 ~     let c: [&[u8; 6]; 2] = [
+31 ~         binding.as_bytes_array_6(),
+   |
+
+error[E0716]: temporary value dropped while borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:31:9
+   |
+31 |         str_lit("").as_bytes_array_6(),
+   |         ^^^^^^^^^^^ creates a temporary value which is freed while still in use
+32 |     ];
+   |      - temporary value is freed at the end of this statement
+...
+55 |     if c[0][0] != b'h' {
+   |        ---- borrow later used here
+   |
+help: consider using a `let` binding to create a longer lived value
+   |
+29 ~     let binding = str_lit("");
+30 ~     let c: [&[u8; 6]; 2] = [
+31 |         str_lit("hello").as_bytes_array_6(),
+32 ~         binding.as_bytes_array_6(),
+   |
+
+error[E0515]: cannot return reference to local variable `array`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:91:9
+   |
+91 |         &array
+   |         ^^^^^^ returns a reference to data owned by the current function
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0515, E0716.
+For more information about an error, try `rustc --explain E0515`.

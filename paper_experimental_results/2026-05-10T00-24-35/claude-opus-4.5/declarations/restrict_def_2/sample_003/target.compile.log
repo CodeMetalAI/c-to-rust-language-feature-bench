@@ -1,0 +1,50 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_2/sample_003/target.rs:37:19
+   |
+37 |         let off = unsafe { std::ptr::read_volatile(&G_OFF) } as usize;
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_2/sample_003/target.rs:65:19
+   |
+65 |         let off = unsafe { std::ptr::read_volatile(&G_OFF) } as usize;
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `f` is never used
+ --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_2/sample_003/target.rs:3:4
+  |
+3 | fn f(mut n: i32, p: &mut [i32], q: &[i32]) {
+  |    ^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_2/sample_003/target.rs:37:52
+   |
+37 |         let off = unsafe { std::ptr::read_volatile(&G_OFF) } as usize;
+   |                                                    ^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw const` instead to create a raw pointer
+   |
+37 |         let off = unsafe { std::ptr::read_volatile(&raw const G_OFF) } as usize;
+   |                                                     +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_2/sample_003/target.rs:65:52
+   |
+65 |         let off = unsafe { std::ptr::read_volatile(&G_OFF) } as usize;
+   |                                                    ^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+65 |         let off = unsafe { std::ptr::read_volatile(&raw const G_OFF) } as usize;
+   |                                                     +++++++++
+
+error: aborting due to 2 previous errors; 3 warnings emitted

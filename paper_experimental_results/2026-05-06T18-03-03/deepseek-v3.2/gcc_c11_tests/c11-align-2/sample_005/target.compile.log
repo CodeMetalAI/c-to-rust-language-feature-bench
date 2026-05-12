@@ -1,0 +1,49 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_005/target.rs:51:5
+   |
+51 | /     unsafe {
+52 | |         assert_eq!(mem::align_of_val(&C), 16);
+53 | |         assert_eq!(mem::align_of_val(&S), 16);
+54 | |         assert_eq!(mem::align_of_val(&I), 4); // alignas(int) should be 4
+...  |
+62 | |         assert_eq!(mem::align_of_val(&Y), 16);
+63 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_005/target.rs:4:8
+  |
+4 | #[repr(align(16))] // max_align_t is typically 16 bytes on many platforms
+  |        ^^^^^^^^^
+5 | static mut C: u8 = 0;
+  | --------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_005/target.rs:19:8
+   |
+19 | #[repr(align(4))]
+   |        ^^^^^^^^
+20 | static mut CA: [u8; 10] = [0; 10];
+   | ---------------------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_005/target.rs:23:8
+   |
+23 | #[repr(align(16))]
+   |        ^^^^^^^^^
+24 | static mut X: i32 = 0;
+   | ---------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_005/target.rs:30:8
+   |
+30 | #[repr(align(16))]
+   |        ^^^^^^^^^
+31 | static mut Y: i32 = 0;
+   | ---------------------- not a struct, enum, or union
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0517`.

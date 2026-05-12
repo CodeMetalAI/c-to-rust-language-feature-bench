@@ -1,0 +1,27 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_1/sample_004/target.rs:31:5
+   |
+31 | /     unsafe {
+32 | |         v1.inner.ij.i = 2;
+33 | |         v1.inner.w.k = 5;
+...  |
+42 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_1/sample_004/target.rs:7:5
+  |
+7 |     ij: IJ,
+  |     ^^^^^^
+  |
+  = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+  |
+7 |     ij: std::mem::ManuallyDrop<IJ>,
+  |         +++++++++++++++++++++++  +
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0740`.

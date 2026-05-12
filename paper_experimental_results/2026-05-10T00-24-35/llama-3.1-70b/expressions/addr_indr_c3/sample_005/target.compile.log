@@ -1,0 +1,27 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/addr_indr_c3/sample_005/target.rs:25:6
+   |
+25 |   if unsafe { *(&a[0] as *const i32).offset(1) }!= 20 {
+   |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/addr_indr_c3/sample_005/target.rs:18:28
+   |
+18 |   if &a[1] as *const i32!= (&a[0] as *const i32).offset(1) {
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/addr_indr_c3/sample_005/target.rs:21:28
+   |
+21 |   if &a[2] as *const i32!= (&a[0] as *const i32).offset(2) {
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

@@ -1,0 +1,39 @@
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/preprocessing_directives/scope_of_macro_4/sample_003/target.rs:57:32
+     |
+  57 |             std::process::exit(exit_code);
+     |             ------------------ ^^^^^^^^^ expected `i32`, found `u32`
+     |             |
+     |             arguments to this function are incorrect
+     |
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/std/src/process.rs:2432:8
+     |
+2432 | pub fn exit(code: i32) -> ! {
+     |        ^^^^
+help: you can convert a `u32` to an `i32` and panic if the converted value doesn't fit
+     |
+  57 |             std::process::exit(exit_code.try_into().unwrap());
+     |                                         ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/preprocessing_directives/scope_of_macro_4/sample_003/target.rs:61:28
+     |
+  61 |         std::process::exit(base_exit_code + checks.len() as u32);
+     |         ------------------ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `u32`
+     |         |
+     |         arguments to this function are incorrect
+     |
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/std/src/process.rs:2432:8
+     |
+2432 | pub fn exit(code: i32) -> ! {
+     |        ^^^^
+help: you can convert a `u32` to an `i32` and panic if the converted value doesn't fit
+     |
+  61 |         std::process::exit((base_exit_code + checks.len() as u32).try_into().unwrap());
+     |                            +                                    +++++++++++++++++++++
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

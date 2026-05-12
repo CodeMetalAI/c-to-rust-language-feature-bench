@@ -1,0 +1,87 @@
+error[E0106]: missing lifetime specifier
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_002/target.rs:17:46
+   |
+17 | fn init_globals() -> ([f32; 11], [f32; 17], [&f32; 17]) {
+   |                                              ^ expected named lifetime parameter
+   |
+   = help: this function's return type contains a borrowed value, but there is no value for it to be borrowed from
+help: consider using the `'static` lifetime, but this is uncommon unless you're returning a borrowed value from a `const` or a `static`
+   |
+17 | fn init_globals() -> ([f32; 11], [f32; 17], [&'static f32; 17]) {
+   |                                               +++++++
+help: instead, you are more likely to want to return an owned value
+   |
+17 - fn init_globals() -> ([f32; 11], [f32; 17], [&f32; 17]) {
+17 + fn init_globals() -> ([f32; 11], [f32; 17], [f32; 17]) {
+   |
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_002/target.rs:7:5
+  |
+7 | /     unsafe {
+8 | |         CALLS += 1;
+9 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_002/target.rs:81:5
+   |
+81 | /     unsafe {
+82 | |         if CALLS != 2 {
+83 | |             std::process::exit(3);
+84 | |         }
+85 | |     }
+   | |_____^
+
+error[E0599]: no method named `try_into` found for struct `Vec<f32>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_002/target.rs:103:27
+    |
+103 |     if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap()) != ((vla1[0] as i32) + (vla1[10] as i32) + (*vla2[0] as i32) + (*vla2...
+    |                           ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<f32>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  2 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+103 -     if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap()) != ((vla1[0] as i32) + (vla1[10] as i32) + (*vla2[0] as i32) + (*vla2[16] as i32)) {
+103 +     if takes_params(&vla1.into().unwrap(), &vla2.try_into().unwrap()) != ((vla1[0] as i32) + (vla1[10] as i32) + (*vla2[0] as i32) + (*vla2[16] as i32)) {
+    |
+
+error[E0599]: no method named `try_into` found for struct `Vec<&f32>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_002/target.rs:103:54
+    |
+103 |     if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap()) != ((vla1[0] as i32) + (vla1[10] as i32) + (*vla2[0] as i32) + (*vla2...
+    |                                                      ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<&f32>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  2 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+103 -     if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap()) != ((vla1[0] as i32) + (vla1[10] as i32) + (*vla2[0] as i32) + (*vla2[16] as i32)) {
+103 +     if takes_params(&vla1.try_into().unwrap(), &vla2.into().unwrap()) != ((vla1[0] as i32) + (vla1[10] as i32) + (*vla2[0] as i32) + (*vla2[16] as i32)) {
+    |
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0106, E0599.
+For more information about an error, try `rustc --explain E0106`.

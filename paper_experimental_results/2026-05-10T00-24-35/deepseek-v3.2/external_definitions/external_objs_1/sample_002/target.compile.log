@@ -1,0 +1,114 @@
+error[E0432]: unresolved import `lazy_static`
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_002/target.rs:2:5
+  |
+2 | use lazy_static::lazy_static;
+  |     ^^^^^^^^^^^ use of unresolved module or unlinked crate `lazy_static`
+  |
+help: you might be missing a crate named `lazy_static`, add it to your project and import it in your code
+  |
+1 + extern crate lazy_static;
+  |
+
+error[E0425]: cannot find value `I1` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_002/target.rs:14:23
+   |
+10 | static I2: AtomicI32 = AtomicI32::new(2);
+   | ----------------------------------------- similarly named static `I2` defined here
+...
+14 |     let p_i1_addr = &*I1 as *const AtomicI32;
+   |                       ^^ help: a static with a similar name exists: `I2`
+
+error[E0425]: cannot find value `I4` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_002/target.rs:16:23
+   |
+10 | static I2: AtomicI32 = AtomicI32::new(2);
+   | ----------------------------------------- similarly named static `I2` defined here
+...
+16 |     let p_i4_addr = &*I4 as *const AtomicI32;
+   |                       ^^ help: a static with a similar name exists: `I2`
+
+error[E0425]: cannot find value `I1` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_002/target.rs:19:8
+   |
+10 | static I2: AtomicI32 = AtomicI32::new(2);
+   | ----------------------------------------- similarly named static `I2` defined here
+...
+19 |     if I1.load(Ordering::SeqCst) != 1 {
+   |        ^^ help: a static with a similar name exists: `I2`
+
+error[E0425]: cannot find value `I3` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_002/target.rs:25:8
+   |
+10 | static I2: AtomicI32 = AtomicI32::new(2);
+   | ----------------------------------------- similarly named static `I2` defined here
+...
+25 |     if I3.load(Ordering::SeqCst) != 3 {
+   |        ^^ help: a static with a similar name exists: `I2`
+
+error[E0425]: cannot find value `I4` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_002/target.rs:28:8
+   |
+10 | static I2: AtomicI32 = AtomicI32::new(2);
+   | ----------------------------------------- similarly named static `I2` defined here
+...
+28 |     if I4.load(Ordering::SeqCst) != 0 {
+   |        ^^ help: a static with a similar name exists: `I2`
+
+error[E0425]: cannot find value `I1` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_002/target.rs:35:10
+   |
+10 | static I2: AtomicI32 = AtomicI32::new(2);
+   | ----------------------------------------- similarly named static `I2` defined here
+...
+35 |     if &*I1 as *const AtomicI32 != p_i1_addr {
+   |          ^^ help: a static with a similar name exists: `I2`
+
+error[E0425]: cannot find value `I4` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_002/target.rs:41:10
+   |
+10 | static I2: AtomicI32 = AtomicI32::new(2);
+   | ----------------------------------------- similarly named static `I2` defined here
+...
+41 |     if &*I4 as *const AtomicI32 != p_i4_addr {
+   |          ^^ help: a static with a similar name exists: `I2`
+
+error[E0425]: cannot find value `I1` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_002/target.rs:48:5
+   |
+10 | static I2: AtomicI32 = AtomicI32::new(2);
+   | ----------------------------------------- similarly named static `I2` defined here
+...
+48 |     I1.store(10, Ordering::SeqCst);
+   |     ^^ help: a static with a similar name exists: `I2`
+
+error[E0425]: cannot find value `I4` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_002/target.rs:50:5
+   |
+10 | static I2: AtomicI32 = AtomicI32::new(2);
+   | ----------------------------------------- similarly named static `I2` defined here
+...
+50 |     I4.store(30, Ordering::SeqCst);
+   |     ^^ help: a static with a similar name exists: `I2`
+
+error[E0425]: cannot find value `I1` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_002/target.rs:53:8
+   |
+10 | static I2: AtomicI32 = AtomicI32::new(2);
+   | ----------------------------------------- similarly named static `I2` defined here
+...
+53 |     if I1.load(Ordering::SeqCst) != 10 {
+   |        ^^ help: a static with a similar name exists: `I2`
+
+error[E0425]: cannot find value `I4` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_002/target.rs:59:8
+   |
+10 | static I2: AtomicI32 = AtomicI32::new(2);
+   | ----------------------------------------- similarly named static `I2` defined here
+...
+59 |     if I4.load(Ordering::SeqCst) != 30 {
+   |        ^^ help: a static with a similar name exists: `I2`
+
+error: aborting due to 12 previous errors
+
+Some errors have detailed explanations: E0425, E0432.
+For more information about an error, try `rustc --explain E0425`.

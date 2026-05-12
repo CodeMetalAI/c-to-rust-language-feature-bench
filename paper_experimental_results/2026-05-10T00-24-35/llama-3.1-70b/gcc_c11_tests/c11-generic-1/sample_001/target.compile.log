@@ -1,0 +1,46 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-generic-1/sample_001/target.rs:15:9
+   |
+14 |     check(match n {
+   |                 - this expression has type `i32`
+15 |         0.0f64 => n + 1,
+   |         ^^^^^^ expected `i32`, found `f64`
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-generic-1/sample_001/target.rs:53:47
+     |
+  53 |         _ if std::ptr::eq(&|| {} as *const _, &|| {} as *const _) => 0,
+     |              ------------  --                 ^^^^^^^^^^^^^^^^^^ expected `*const {closure@target.rs:53:28}`, found `&{closure@target.rs:53:48}`
+     |              |             |
+     |              |             the expected closure
+     |              arguments to this function are incorrect
+     |
+     = note: expected raw pointer `*const {closure@benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-generic-1/sample_001/target.rs:53:28: 53:30}`
+                  found reference `&{closure@benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-generic-1/sample_001/target.rs:53:48: 53:50}`
+     = note: no two closures, even if identical, have the same type
+     = help: consider boxing your closure and/or using it as a trait object
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:2442:8
+     |
+2442 | pub fn eq<T: PointeeSized>(a: *const T, b: *const T) -> bool {
+     |        ^^
+help: use parentheses to call this closure
+     |
+  53 |         _ if std::ptr::eq(&|| {} as *const _, (&|| {} as *const _)()) => 0,
+     |                                               +                  +++
+
+error[E0605]: non-primitive cast: `()` as `*const ()`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-generic-1/sample_001/target.rs:52:21
+   |
+52 |     check(match &|| {} as *const () {
+   |                     ^^^^^^^^^^^^^^^ invalid cast
+   |
+help: consider borrowing the value
+   |
+52 |     check(match &|| &{} as *const () {
+   |                     +
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0308, E0605.
+For more information about an error, try `rustc --explain E0308`.

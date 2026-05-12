@@ -1,0 +1,94 @@
+warning: unused variable: `x`
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_004/target.rs:43:13
+   |
+43 |     let mut x = 10;
+   |             ^ help: if this is intentional, prefix it with an underscore: `_x`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `ptr_to_constant`
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_004/target.rs:46:9
+   |
+46 |     let ptr_to_constant = &y; // We'll use y initially for p_to_const since we need x for mutable refs
+   |         ^^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_ptr_to_constant`
+
+warning: variable `p_to_const` is assigned to, but never used
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_004/target.rs:63:13
+   |
+63 |     let mut p_to_const: &i32 = &y_val; // Start with a dummy, will be set properly
+   |             ^^^^^^^^^^
+   |
+   = note: consider using `_p_to_const` instead
+
+warning: unused variable: `x_ptr`
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_004/target.rs:69:9
+   |
+69 |     let x_ptr = &x_cell as *const Cell<i32>;
+   |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_x_ptr`
+
+warning: value assigned to `p_to_const` is never read
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_004/target.rs:76:5
+   |
+76 |     p_to_const = &y_val; // temporary
+   |     ^^^^^^^^^^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `use_x_for_p_to_const` is never read
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_004/target.rs:77:13
+   |
+77 |     let mut use_x_for_p_to_const = true;
+   |             ^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: maybe it is overwritten before being read?
+
+warning: unused variable: `pick_result2`
+   --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_004/target.rs:102:9
+    |
+102 |     let pick_result2 = if (x_val_now & 1) != 0 { x_val_now + 1 } else { x_val_now - 1 };
+    |         ^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_pick_result2`
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_004/target.rs:43:9
+   |
+43 |     let mut x = 10;
+   |         ----^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: struct `Bundle` is never constructed
+ --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_004/target.rs:1:8
+  |
+1 | struct Bundle<'a> {
+  |        ^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `pick` is never used
+ --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_004/target.rs:7:4
+  |
+7 | fn pick(p: &i32, bias: i32) -> i32 {
+  |    ^^^^
+
+warning: function `retarget_ptr_to_const` is never used
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_004/target.rs:16:4
+   |
+16 | fn retarget_ptr_to_const<'a>(b: &mut Bundle<'a>, a: &'a i32, c: &'a i32, sel: i32) {
+   |    ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `same_addr` is never used
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_004/target.rs:24:4
+   |
+24 | fn same_addr<T, U>(x: *const T, y: *const U) -> bool {
+   |    ^^^^^^^^^
+
+warning: function `check_bundle` is never used
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_004/target.rs:28:4
+   |
+28 | fn check_bundle(b: &Bundle, expected_const_p_target: *const i32) -> i32 {
+   |    ^^^^^^^^^^^^
+
+warning: 13 warnings emitted

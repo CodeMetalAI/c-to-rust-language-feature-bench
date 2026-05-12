@@ -1,0 +1,86 @@
+error[E0433]: failed to resolve: could not find `process` in `core`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/function_specifiers_c8b/sample_004/target.rs:11:15
+   |
+11 |         core::process::exit(0);
+   |               ^^^^^^^ could not find `process` in `core`
+
+error[E0433]: failed to resolve: could not find `process` in `core`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/function_specifiers_c8b/sample_004/target.rs:13:15
+   |
+13 |         core::process::exit(2);
+   |               ^^^^^^^ could not find `process` in `core`
+
+error: declaration of a `no_mangle` function
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/function_specifiers_c8b/sample_004/target.rs:8:1
+  |
+8 | #[no_mangle]
+  | ^^^^^^^^^^^^
+  |
+  = note: the linker's behavior with multiple libraries exporting duplicate symbol names is undefined and Rust cannot provide guarantees when you manually override them
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/function_specifiers_c8b/sample_004/target.rs:10:18
+   |
+10 |     if x == 7 && unsafe { G } == 9 {
+   |                  ^^^^^^^^^^^^
+
+error: declaration of a `no_mangle` function
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/function_specifiers_c8b/sample_004/target.rs:17:1
+   |
+17 | #[no_mangle]
+   | ^^^^^^^^^^^^
+   |
+   = note: the linker's behavior with multiple libraries exporting duplicate symbol names is undefined and Rust cannot provide guarantees when you manually override them
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/function_specifiers_c8b/sample_004/target.rs:19:5
+   |
+19 | /     unsafe {
+20 | |         G = 9;
+21 | |     }
+   | |_____^
+
+error: unwinding panics are not supported without std
+  |
+  = help: using nightly cargo, use -Zbuild-std with panic="abort" to avoid unwinding
+  = note: since the core library is usually precompiled with panic="unwind", rebuilding your crate with panic="abort" may not be enough to fix the problem
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/function_specifiers_c8b/sample_004/target.rs:10:36
+   |
+10 |       if x == 7 && unsafe { G } == 9 {
+   |  ____________________________________^
+11 | |         core::process::exit(0);
+12 | |     } else {
+   | |_____^ expected `!`, found `()`
+   |
+   = note:   expected type `!`
+           found unit type `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/function_specifiers_c8b/sample_004/target.rs:12:12
+   |
+12 |       } else {
+   |  ____________^
+13 | |         core::process::exit(2);
+14 | |     }
+   | |_____^ expected `!`, found `()`
+   |
+   = note:   expected type `!`
+           found unit type `()`
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/function_specifiers_c8b/sample_004/target.rs:23:5
+   |
+22 |     die_if(7);
+   |     --------- any code following this expression is unreachable
+23 |     3
+   |     ^ unreachable expression
+   |
+   = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 9 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0308, E0433.
+For more information about an error, try `rustc --explain E0308`.

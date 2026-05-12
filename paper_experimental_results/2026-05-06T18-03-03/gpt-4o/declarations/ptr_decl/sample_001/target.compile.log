@@ -1,0 +1,109 @@
+error[E0502]: cannot borrow `x` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/ptr_decl/sample_001/target.rs:44:34
+   |
+42 |     let ptr_to_constant = &x;
+   |                           -- immutable borrow occurs here
+43 |
+44 |     let constant_ptr: &mut i32 = &mut x;
+   |                                  ^^^^^^ mutable borrow occurs here
+...
+48 |         p_to_const: ptr_to_constant,
+   |                     --------------- immutable borrow later used here
+
+error[E0502]: cannot borrow `x` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/ptr_decl/sample_001/target.rs:45:44
+   |
+42 |     let ptr_to_constant = &x;
+   |                           -- immutable borrow occurs here
+...
+45 |     let clarified_constant_ptr: &mut i32 = &mut x;
+   |                                            ^^^^^^ mutable borrow occurs here
+...
+48 |         p_to_const: ptr_to_constant,
+   |                     --------------- immutable borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/ptr_decl/sample_001/target.rs:53:25
+   |
+44 |     let constant_ptr: &mut i32 = &mut x;
+   |                                  ------ mutable borrow occurs here
+...
+53 |     if check_bundle(&b, &x as *const i32) != 0 {
+   |                         ^^ immutable borrow occurs here
+...
+57 |     if *b.p_to_const != 10 {
+   |        ------------- mutable borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/ptr_decl/sample_001/target.rs:61:39
+   |
+44 |     let constant_ptr: &mut i32 = &mut x;
+   |                                  ------ mutable borrow occurs here
+...
+61 |     retarget_ptr_to_const(&mut b, &y, &x, pick(&y, 0) > 0);
+   |                                       ^^ immutable borrow occurs here
+62 |     if *b.p_to_const != 21 {
+   |        ------------- mutable borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/ptr_decl/sample_001/target.rs:66:35
+   |
+44 |     let constant_ptr: &mut i32 = &mut x;
+   |                                  ------ mutable borrow occurs here
+...
+66 |     retarget_ptr_to_const(&mut b, &x, &y, pick(&x, 1) < 0);
+   |                                   ^^ immutable borrow occurs here
+67 |     if *b.p_to_const != 21 {
+   |        ------------- mutable borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/ptr_decl/sample_001/target.rs:66:48
+   |
+44 |     let constant_ptr: &mut i32 = &mut x;
+   |                                  ------ mutable borrow occurs here
+...
+66 |     retarget_ptr_to_const(&mut b, &x, &y, pick(&x, 1) < 0);
+   |                                                ^^ immutable borrow occurs here
+67 |     if *b.p_to_const != 21 {
+   |        ------------- mutable borrow later used here
+
+error[E0503]: cannot use `x` because it was mutably borrowed
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/ptr_decl/sample_001/target.rs:72:8
+   |
+44 |     let constant_ptr: &mut i32 = &mut x;
+   |                                  ------ `x` is borrowed here
+...
+72 |     if x != 15 {
+   |        ^ use of borrowed `x`
+...
+76 |     *b.const_p_via_typedef += 7;
+   |     --------------------------- borrow later used here
+
+error[E0503]: cannot use `x` because it was mutably borrowed
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/ptr_decl/sample_001/target.rs:77:8
+   |
+44 |     let constant_ptr: &mut i32 = &mut x;
+   |                                  ------ `x` is borrowed here
+...
+77 |     if x != 22 {
+   |        ^ use of borrowed `x`
+...
+81 |     if check_bundle(&b, &x as *const i32) != 0 {
+   |                     -- borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/ptr_decl/sample_001/target.rs:81:25
+   |
+44 |     let constant_ptr: &mut i32 = &mut x;
+   |                                  ------ mutable borrow occurs here
+...
+81 |     if check_bundle(&b, &x as *const i32) != 0 {
+   |                         ^^ immutable borrow occurs here
+...
+85 |     if *b.p_to_const != 21 {
+   |        ------------- mutable borrow later used here
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0502, E0503.
+For more information about an error, try `rustc --explain E0502`.

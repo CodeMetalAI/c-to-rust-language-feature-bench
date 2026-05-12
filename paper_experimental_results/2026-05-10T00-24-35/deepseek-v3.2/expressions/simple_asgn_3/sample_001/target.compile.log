@@ -1,0 +1,25 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/simple_asgn_3/sample_001/target.rs:5:5
+  |
+5 | /     unsafe {
+6 | |         *cpp = &c as *const char;
+7 | |         *p = '\0';
+8 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error[E0596]: cannot borrow `p` as mutable, as it is not declared as mutable
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/simple_asgn_3/sample_001/target.rs:4:33
+  |
+4 |     let cpp: *mut *const char = &mut p as *mut *mut char as *mut *const char;
+  |                                 ^^^^^^ cannot borrow as mutable
+  |
+help: consider changing this to be mutable
+  |
+3 |     let mut p: *mut char = std::ptr::null_mut();
+  |         +++
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0596`.

@@ -1,0 +1,903 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:10:27
+   |
+10 |     test_all_incdec_arith(1u64 << 60);
+   |     --------------------- ^^^^^^^^^^ expected `i64`, found `u64`
+   |     |
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:21:4
+   |
+21 | fn test_all_incdec_arith(value: i64) {
+   |    ^^^^^^^^^^^^^^^^^^^^^ ----------
+help: you can convert a `u64` to an `i64` and panic if the converted value doesn't fit
+   |
+10 |     test_all_incdec_arith((1u64 << 60).try_into().unwrap());
+   |                           +          +++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:29:22
+   |
+29 |     test_incdec_bool(value != 0, pre_p, increment, if change > 0 { 1 } else { -1 });
+   |     ---------------- ^^^^^^^^^^ expected `i8`, found `bool`
+   |     |
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:86:18
+   |
+58 |         fn $name(value: $value_type, pre_p: bool, increment: bool, change: $value_type) {
+   |                  ------------------
+...
+86 | test_atomic_int!(test_incdec_bool, AtomicBool, i8);
+   |                  ^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:32:20
+   |
+32 |     test_incdec_u8(value as u8, pre_p, increment, change as i8);
+   |     -------------- ^^^^^^^^^^^ expected `i8`, found `u8`
+   |     |
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:89:18
+   |
+58 |         fn $name(value: $value_type, pre_p: bool, increment: bool, change: $value_type) {
+   |                  ------------------
+...
+89 | test_atomic_int!(test_incdec_u8, AtomicU8, i8);
+   |                  ^^^^^^^^^^^^^^
+help: you can convert a `u8` to an `i8` and panic if the converted value doesn't fit
+   |
+32 |     test_incdec_u8((value as u8).try_into().unwrap(), pre_p, increment, change as i8);
+   |                    +           +++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:34:21
+   |
+34 |     test_incdec_u16(value as u16, pre_p, increment, change as i16);
+   |     --------------- ^^^^^^^^^^^^ expected `i16`, found `u16`
+   |     |
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:91:18
+   |
+58 |         fn $name(value: $value_type, pre_p: bool, increment: bool, change: $value_type) {
+   |                  ------------------
+...
+91 | test_atomic_int!(test_incdec_u16, AtomicU16, i16);
+   |                  ^^^^^^^^^^^^^^^
+help: you can convert a `u16` to an `i16` and panic if the converted value doesn't fit
+   |
+34 |     test_incdec_u16((value as u16).try_into().unwrap(), pre_p, increment, change as i16);
+   |                     +            +++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:36:21
+   |
+36 |     test_incdec_u32(value as u32, pre_p, increment, change as i32);
+   |     --------------- ^^^^^^^^^^^^ expected `i32`, found `u32`
+   |     |
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:93:18
+   |
+58 |         fn $name(value: $value_type, pre_p: bool, increment: bool, change: $value_type) {
+   |                  ------------------
+...
+93 | test_atomic_int!(test_incdec_u32, AtomicU32, i32);
+   |                  ^^^^^^^^^^^^^^^
+help: you can convert a `u32` to an `i32` and panic if the converted value doesn't fit
+   |
+36 |     test_incdec_u32((value as u32).try_into().unwrap(), pre_p, increment, change as i32);
+   |                     +            +++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:38:21
+   |
+38 |     test_incdec_u64(value as u64, pre_p, increment, change as i64);
+   |     --------------- ^^^^^^^^^^^^ expected `i64`, found `u64`
+   |     |
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:95:18
+   |
+58 |         fn $name(value: $value_type, pre_p: bool, increment: bool, change: $value_type) {
+   |                  ------------------
+...
+95 | test_atomic_int!(test_incdec_u64, AtomicU64, i64);
+   |                  ^^^^^^^^^^^^^^^
+help: you can convert a `u64` to an `i64` and panic if the converted value doesn't fit
+   |
+38 |     test_incdec_u64((value as u64).try_into().unwrap(), pre_p, increment, change as i64);
+   |                     +            +++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:40:26
+   |
+40 |     test_incdec_u64_long(value as u64, pre_p, increment, change as i64);
+   |     -------------------- ^^^^^^^^^^^^ expected `i64`, found `u64`
+   |     |
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:97:18
+   |
+58 |         fn $name(value: $value_type, pre_p: bool, increment: bool, change: $value_type) {
+   |                  ------------------
+...
+97 | test_atomic_int!(test_incdec_u64_long, AtomicU64, i64);
+   |                  ^^^^^^^^^^^^^^^^^^^^
+help: you can convert a `u64` to an `i64` and panic if the converted value doesn't fit
+   |
+40 |     test_incdec_u64_long((value as u64).try_into().unwrap(), pre_p, increment, change as i64);
+   |                          +            +++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:60:26
+    |
+ 60 |             ATOMIC.store(value, Ordering::SeqCst);
+    |                    ----- ^^^^^ expected `bool`, found `i8`
+    |                    |
+    |                    arguments to this method are incorrect
+...
+ 86 | test_atomic_int!(test_incdec_bool, AtomicBool, i8);
+    | -------------------------------------------------- in this macro invocation
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:752:12
+    |
+752 |     pub fn store(&self, val: bool, order: Ordering) {
+    |            ^^^^^
+    = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `fetch_add` found for struct `AtomicBool` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:63:24
+   |
+63 |                 ATOMIC.fetch_add(change, Ordering::SeqCst)
+   |                        ^^^^^^^^^
+...
+86 | test_atomic_int!(test_incdec_bool, AtomicBool, i8);
+   | -------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `fetch_sub` found for struct `AtomicBool` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:65:24
+   |
+65 |                 ATOMIC.fetch_sub(change.wrapping_neg(), Ordering::SeqCst)
+   |                        ^^^^^^^^^
+...
+86 | test_atomic_int!(test_incdec_bool, AtomicBool, i8);
+   | -------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:74:59
+   |
+74 |             if (pre_p && ATOMIC.load(Ordering::SeqCst) != expected) || 
+   |                          -----------------------------    ^^^^^^^^ expected `bool`, found `i8`
+   |                          |
+   |                          expected because this is `bool`
+...
+86 | test_atomic_int!(test_incdec_bool, AtomicBool, i8);
+   | -------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:79:49
+   |
+79 |             if ATOMIC.load(Ordering::SeqCst) != value.wrapping_add(change) {
+   |                -----------------------------    ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `bool`, found `i8`
+   |                |
+   |                expected because this is `bool`
+...
+86 | test_atomic_int!(test_incdec_bool, AtomicBool, i8);
+   | -------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:59:63
+    |
+ 59 |             static ATOMIC: $atomic_type = <$atomic_type>::new(0);
+    |                                           ------------------- ^ expected `bool`, found integer
+    |                                           |
+    |                                           arguments to this function are incorrect
+...
+ 86 | test_atomic_int!(test_incdec_bool, AtomicBool, i8);
+    | -------------------------------------------------- in this macro invocation
+    |
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:528:18
+    |
+528 |     pub const fn new(v: bool) -> AtomicBool {
+    |                  ^^^
+    = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:60:26
+     |
+  60 |             ATOMIC.store(value, Ordering::SeqCst);
+     |                    ----- ^^^^^ expected `u8`, found `i8`
+     |                    |
+     |                    arguments to this method are incorrect
+...
+  89 | test_atomic_int!(test_incdec_u8, AtomicU8, i8);
+     | ---------------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3675:1
+     |
+3675 | / atomic_int! {
+3676 | |     cfg(target_has_atomic = "8"),
+3677 | |     cfg(target_has_atomic_equal_alignment = "8"),
+3678 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3691 | |     u8 AtomicU8
+3692 | | }
+     | |_^
+     = note: this error originates in the macro `test_atomic_int` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i8` to a `u8` and panic if the converted value doesn't fit
+     |
+  60 |             ATOMIC.store(value.try_into().unwrap(), Ordering::SeqCst);
+     |                               ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:63:34
+     |
+  63 |                 ATOMIC.fetch_add(change, Ordering::SeqCst)
+     |                        --------- ^^^^^^ expected `u8`, found `i8`
+     |                        |
+     |                        arguments to this method are incorrect
+...
+  89 | test_atomic_int!(test_incdec_u8, AtomicU8, i8);
+     | ---------------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3675:1
+     |
+3675 | / atomic_int! {
+3676 | |     cfg(target_has_atomic = "8"),
+3677 | |     cfg(target_has_atomic_equal_alignment = "8"),
+3678 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3691 | |     u8 AtomicU8
+3692 | | }
+     | |_^
+     = note: this error originates in the macro `test_atomic_int` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i8` to a `u8` and panic if the converted value doesn't fit
+     |
+  63 |                 ATOMIC.fetch_add(change.try_into().unwrap(), Ordering::SeqCst)
+     |                                        ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:65:34
+     |
+  65 |                 ATOMIC.fetch_sub(change.wrapping_neg(), Ordering::SeqCst)
+     |                        --------- ^^^^^^^^^^^^^^^^^^^^^ expected `u8`, found `i8`
+     |                        |
+     |                        arguments to this method are incorrect
+...
+  89 | test_atomic_int!(test_incdec_u8, AtomicU8, i8);
+     | ---------------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3675:1
+     |
+3675 | / atomic_int! {
+3676 | |     cfg(target_has_atomic = "8"),
+3677 | |     cfg(target_has_atomic_equal_alignment = "8"),
+3678 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3691 | |     u8 AtomicU8
+3692 | | }
+     | |_^
+     = note: this error originates in the macro `test_atomic_int` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i8` to a `u8` and panic if the converted value doesn't fit
+     |
+  65 |                 ATOMIC.fetch_sub(change.wrapping_neg().try_into().unwrap(), Ordering::SeqCst)
+     |                                                       ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:74:59
+   |
+74 |             if (pre_p && ATOMIC.load(Ordering::SeqCst) != expected) || 
+   |                          -----------------------------    ^^^^^^^^ expected `u8`, found `i8`
+   |                          |
+   |                          expected because this is `u8`
+...
+89 | test_atomic_int!(test_incdec_u8, AtomicU8, i8);
+   | ---------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i8` to a `u8` and panic if the converted value doesn't fit
+   |
+74 |             if (pre_p && ATOMIC.load(Ordering::SeqCst) != expected.try_into().unwrap()) || 
+   |                                                                   ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:75:37
+   |
+75 |                (!pre_p && result != expected) {
+   |                           ------    ^^^^^^^^ expected `u8`, found `i8`
+   |                           |
+   |                           expected because this is `u8`
+...
+89 | test_atomic_int!(test_incdec_u8, AtomicU8, i8);
+   | ---------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i8` to a `u8` and panic if the converted value doesn't fit
+   |
+75 |                (!pre_p && result != expected.try_into().unwrap()) {
+   |                                             ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:79:49
+   |
+79 |             if ATOMIC.load(Ordering::SeqCst) != value.wrapping_add(change) {
+   |                -----------------------------    ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `u8`, found `i8`
+   |                |
+   |                expected because this is `u8`
+...
+89 | test_atomic_int!(test_incdec_u8, AtomicU8, i8);
+   | ---------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i8` to a `u8` and panic if the converted value doesn't fit
+   |
+79 |             if ATOMIC.load(Ordering::SeqCst) != value.wrapping_add(change).try_into().unwrap() {
+   |                                                                           ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:60:26
+     |
+  60 |             ATOMIC.store(value, Ordering::SeqCst);
+     |                    ----- ^^^^^ expected `u16`, found `i16`
+     |                    |
+     |                    arguments to this method are incorrect
+...
+  91 | test_atomic_int!(test_incdec_u16, AtomicU16, i16);
+     | ------------------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3713:1
+     |
+3713 | / atomic_int! {
+3714 | |     cfg(target_has_atomic = "16"),
+3715 | |     cfg(target_has_atomic_equal_alignment = "16"),
+3716 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3729 | |     u16 AtomicU16
+3730 | | }
+     | |_^
+     = note: this error originates in the macro `test_atomic_int` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i16` to a `u16` and panic if the converted value doesn't fit
+     |
+  60 |             ATOMIC.store(value.try_into().unwrap(), Ordering::SeqCst);
+     |                               ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:63:34
+     |
+  63 |                 ATOMIC.fetch_add(change, Ordering::SeqCst)
+     |                        --------- ^^^^^^ expected `u16`, found `i16`
+     |                        |
+     |                        arguments to this method are incorrect
+...
+  91 | test_atomic_int!(test_incdec_u16, AtomicU16, i16);
+     | ------------------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3713:1
+     |
+3713 | / atomic_int! {
+3714 | |     cfg(target_has_atomic = "16"),
+3715 | |     cfg(target_has_atomic_equal_alignment = "16"),
+3716 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3729 | |     u16 AtomicU16
+3730 | | }
+     | |_^
+     = note: this error originates in the macro `test_atomic_int` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i16` to a `u16` and panic if the converted value doesn't fit
+     |
+  63 |                 ATOMIC.fetch_add(change.try_into().unwrap(), Ordering::SeqCst)
+     |                                        ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:65:34
+     |
+  65 |                 ATOMIC.fetch_sub(change.wrapping_neg(), Ordering::SeqCst)
+     |                        --------- ^^^^^^^^^^^^^^^^^^^^^ expected `u16`, found `i16`
+     |                        |
+     |                        arguments to this method are incorrect
+...
+  91 | test_atomic_int!(test_incdec_u16, AtomicU16, i16);
+     | ------------------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3713:1
+     |
+3713 | / atomic_int! {
+3714 | |     cfg(target_has_atomic = "16"),
+3715 | |     cfg(target_has_atomic_equal_alignment = "16"),
+3716 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3729 | |     u16 AtomicU16
+3730 | | }
+     | |_^
+     = note: this error originates in the macro `test_atomic_int` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i16` to a `u16` and panic if the converted value doesn't fit
+     |
+  65 |                 ATOMIC.fetch_sub(change.wrapping_neg().try_into().unwrap(), Ordering::SeqCst)
+     |                                                       ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:74:59
+   |
+74 |             if (pre_p && ATOMIC.load(Ordering::SeqCst) != expected) || 
+   |                          -----------------------------    ^^^^^^^^ expected `u16`, found `i16`
+   |                          |
+   |                          expected because this is `u16`
+...
+91 | test_atomic_int!(test_incdec_u16, AtomicU16, i16);
+   | ------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i16` to a `u16` and panic if the converted value doesn't fit
+   |
+74 |             if (pre_p && ATOMIC.load(Ordering::SeqCst) != expected.try_into().unwrap()) || 
+   |                                                                   ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:75:37
+   |
+75 |                (!pre_p && result != expected) {
+   |                           ------    ^^^^^^^^ expected `u16`, found `i16`
+   |                           |
+   |                           expected because this is `u16`
+...
+91 | test_atomic_int!(test_incdec_u16, AtomicU16, i16);
+   | ------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i16` to a `u16` and panic if the converted value doesn't fit
+   |
+75 |                (!pre_p && result != expected.try_into().unwrap()) {
+   |                                             ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:79:49
+   |
+79 |             if ATOMIC.load(Ordering::SeqCst) != value.wrapping_add(change) {
+   |                -----------------------------    ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `u16`, found `i16`
+   |                |
+   |                expected because this is `u16`
+...
+91 | test_atomic_int!(test_incdec_u16, AtomicU16, i16);
+   | ------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i16` to a `u16` and panic if the converted value doesn't fit
+   |
+79 |             if ATOMIC.load(Ordering::SeqCst) != value.wrapping_add(change).try_into().unwrap() {
+   |                                                                           ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:60:26
+     |
+  60 |             ATOMIC.store(value, Ordering::SeqCst);
+     |                    ----- ^^^^^ expected `u32`, found `i32`
+     |                    |
+     |                    arguments to this method are incorrect
+...
+  93 | test_atomic_int!(test_incdec_u32, AtomicU32, i32);
+     | ------------------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3751:1
+     |
+3751 | / atomic_int! {
+3752 | |     cfg(target_has_atomic = "32"),
+3753 | |     cfg(target_has_atomic_equal_alignment = "32"),
+3754 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3767 | |     u32 AtomicU32
+3768 | | }
+     | |_^
+     = note: this error originates in the macro `test_atomic_int` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i32` to a `u32` and panic if the converted value doesn't fit
+     |
+  60 |             ATOMIC.store(value.try_into().unwrap(), Ordering::SeqCst);
+     |                               ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:63:34
+     |
+  63 |                 ATOMIC.fetch_add(change, Ordering::SeqCst)
+     |                        --------- ^^^^^^ expected `u32`, found `i32`
+     |                        |
+     |                        arguments to this method are incorrect
+...
+  93 | test_atomic_int!(test_incdec_u32, AtomicU32, i32);
+     | ------------------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3751:1
+     |
+3751 | / atomic_int! {
+3752 | |     cfg(target_has_atomic = "32"),
+3753 | |     cfg(target_has_atomic_equal_alignment = "32"),
+3754 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3767 | |     u32 AtomicU32
+3768 | | }
+     | |_^
+     = note: this error originates in the macro `test_atomic_int` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i32` to a `u32` and panic if the converted value doesn't fit
+     |
+  63 |                 ATOMIC.fetch_add(change.try_into().unwrap(), Ordering::SeqCst)
+     |                                        ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:65:34
+     |
+  65 |                 ATOMIC.fetch_sub(change.wrapping_neg(), Ordering::SeqCst)
+     |                        --------- ^^^^^^^^^^^^^^^^^^^^^ expected `u32`, found `i32`
+     |                        |
+     |                        arguments to this method are incorrect
+...
+  93 | test_atomic_int!(test_incdec_u32, AtomicU32, i32);
+     | ------------------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3751:1
+     |
+3751 | / atomic_int! {
+3752 | |     cfg(target_has_atomic = "32"),
+3753 | |     cfg(target_has_atomic_equal_alignment = "32"),
+3754 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3767 | |     u32 AtomicU32
+3768 | | }
+     | |_^
+     = note: this error originates in the macro `test_atomic_int` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i32` to a `u32` and panic if the converted value doesn't fit
+     |
+  65 |                 ATOMIC.fetch_sub(change.wrapping_neg().try_into().unwrap(), Ordering::SeqCst)
+     |                                                       ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:74:59
+   |
+74 |             if (pre_p && ATOMIC.load(Ordering::SeqCst) != expected) || 
+   |                          -----------------------------    ^^^^^^^^ expected `u32`, found `i32`
+   |                          |
+   |                          expected because this is `u32`
+...
+93 | test_atomic_int!(test_incdec_u32, AtomicU32, i32);
+   | ------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i32` to a `u32` and panic if the converted value doesn't fit
+   |
+74 |             if (pre_p && ATOMIC.load(Ordering::SeqCst) != expected.try_into().unwrap()) || 
+   |                                                                   ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:75:37
+   |
+75 |                (!pre_p && result != expected) {
+   |                           ------    ^^^^^^^^ expected `u32`, found `i32`
+   |                           |
+   |                           expected because this is `u32`
+...
+93 | test_atomic_int!(test_incdec_u32, AtomicU32, i32);
+   | ------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i32` to a `u32` and panic if the converted value doesn't fit
+   |
+75 |                (!pre_p && result != expected.try_into().unwrap()) {
+   |                                             ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:79:49
+   |
+79 |             if ATOMIC.load(Ordering::SeqCst) != value.wrapping_add(change) {
+   |                -----------------------------    ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `u32`, found `i32`
+   |                |
+   |                expected because this is `u32`
+...
+93 | test_atomic_int!(test_incdec_u32, AtomicU32, i32);
+   | ------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i32` to a `u32` and panic if the converted value doesn't fit
+   |
+79 |             if ATOMIC.load(Ordering::SeqCst) != value.wrapping_add(change).try_into().unwrap() {
+   |                                                                           ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:60:26
+     |
+  60 |             ATOMIC.store(value, Ordering::SeqCst);
+     |                    ----- ^^^^^ expected `u64`, found `i64`
+     |                    |
+     |                    arguments to this method are incorrect
+...
+  95 | test_atomic_int!(test_incdec_u64, AtomicU64, i64);
+     | ------------------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3789:1
+     |
+3789 | / atomic_int! {
+3790 | |     cfg(target_has_atomic = "64"),
+3791 | |     cfg(target_has_atomic_equal_alignment = "64"),
+3792 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3805 | |     u64 AtomicU64
+3806 | | }
+     | |_^
+     = note: this error originates in the macro `test_atomic_int` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i64` to a `u64` and panic if the converted value doesn't fit
+     |
+  60 |             ATOMIC.store(value.try_into().unwrap(), Ordering::SeqCst);
+     |                               ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:63:34
+     |
+  63 |                 ATOMIC.fetch_add(change, Ordering::SeqCst)
+     |                        --------- ^^^^^^ expected `u64`, found `i64`
+     |                        |
+     |                        arguments to this method are incorrect
+...
+  95 | test_atomic_int!(test_incdec_u64, AtomicU64, i64);
+     | ------------------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3789:1
+     |
+3789 | / atomic_int! {
+3790 | |     cfg(target_has_atomic = "64"),
+3791 | |     cfg(target_has_atomic_equal_alignment = "64"),
+3792 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3805 | |     u64 AtomicU64
+3806 | | }
+     | |_^
+     = note: this error originates in the macro `test_atomic_int` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i64` to a `u64` and panic if the converted value doesn't fit
+     |
+  63 |                 ATOMIC.fetch_add(change.try_into().unwrap(), Ordering::SeqCst)
+     |                                        ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:65:34
+     |
+  65 |                 ATOMIC.fetch_sub(change.wrapping_neg(), Ordering::SeqCst)
+     |                        --------- ^^^^^^^^^^^^^^^^^^^^^ expected `u64`, found `i64`
+     |                        |
+     |                        arguments to this method are incorrect
+...
+  95 | test_atomic_int!(test_incdec_u64, AtomicU64, i64);
+     | ------------------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3789:1
+     |
+3789 | / atomic_int! {
+3790 | |     cfg(target_has_atomic = "64"),
+3791 | |     cfg(target_has_atomic_equal_alignment = "64"),
+3792 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3805 | |     u64 AtomicU64
+3806 | | }
+     | |_^
+     = note: this error originates in the macro `test_atomic_int` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i64` to a `u64` and panic if the converted value doesn't fit
+     |
+  65 |                 ATOMIC.fetch_sub(change.wrapping_neg().try_into().unwrap(), Ordering::SeqCst)
+     |                                                       ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:74:59
+   |
+74 |             if (pre_p && ATOMIC.load(Ordering::SeqCst) != expected) || 
+   |                          -----------------------------    ^^^^^^^^ expected `u64`, found `i64`
+   |                          |
+   |                          expected because this is `u64`
+...
+95 | test_atomic_int!(test_incdec_u64, AtomicU64, i64);
+   | ------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i64` to a `u64` and panic if the converted value doesn't fit
+   |
+74 |             if (pre_p && ATOMIC.load(Ordering::SeqCst) != expected.try_into().unwrap()) || 
+   |                                                                   ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:75:37
+   |
+75 |                (!pre_p && result != expected) {
+   |                           ------    ^^^^^^^^ expected `u64`, found `i64`
+   |                           |
+   |                           expected because this is `u64`
+...
+95 | test_atomic_int!(test_incdec_u64, AtomicU64, i64);
+   | ------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i64` to a `u64` and panic if the converted value doesn't fit
+   |
+75 |                (!pre_p && result != expected.try_into().unwrap()) {
+   |                                             ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:79:49
+   |
+79 |             if ATOMIC.load(Ordering::SeqCst) != value.wrapping_add(change) {
+   |                -----------------------------    ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `u64`, found `i64`
+   |                |
+   |                expected because this is `u64`
+...
+95 | test_atomic_int!(test_incdec_u64, AtomicU64, i64);
+   | ------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i64` to a `u64` and panic if the converted value doesn't fit
+   |
+79 |             if ATOMIC.load(Ordering::SeqCst) != value.wrapping_add(change).try_into().unwrap() {
+   |                                                                           ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:60:26
+     |
+  60 |             ATOMIC.store(value, Ordering::SeqCst);
+     |                    ----- ^^^^^ expected `u64`, found `i64`
+     |                    |
+     |                    arguments to this method are incorrect
+...
+  97 | test_atomic_int!(test_incdec_u64_long, AtomicU64, i64);
+     | ------------------------------------------------------ in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3789:1
+     |
+3789 | / atomic_int! {
+3790 | |     cfg(target_has_atomic = "64"),
+3791 | |     cfg(target_has_atomic_equal_alignment = "64"),
+3792 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3805 | |     u64 AtomicU64
+3806 | | }
+     | |_^
+     = note: this error originates in the macro `test_atomic_int` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i64` to a `u64` and panic if the converted value doesn't fit
+     |
+  60 |             ATOMIC.store(value.try_into().unwrap(), Ordering::SeqCst);
+     |                               ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:63:34
+     |
+  63 |                 ATOMIC.fetch_add(change, Ordering::SeqCst)
+     |                        --------- ^^^^^^ expected `u64`, found `i64`
+     |                        |
+     |                        arguments to this method are incorrect
+...
+  97 | test_atomic_int!(test_incdec_u64_long, AtomicU64, i64);
+     | ------------------------------------------------------ in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3789:1
+     |
+3789 | / atomic_int! {
+3790 | |     cfg(target_has_atomic = "64"),
+3791 | |     cfg(target_has_atomic_equal_alignment = "64"),
+3792 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3805 | |     u64 AtomicU64
+3806 | | }
+     | |_^
+     = note: this error originates in the macro `test_atomic_int` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i64` to a `u64` and panic if the converted value doesn't fit
+     |
+  63 |                 ATOMIC.fetch_add(change.try_into().unwrap(), Ordering::SeqCst)
+     |                                        ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:65:34
+     |
+  65 |                 ATOMIC.fetch_sub(change.wrapping_neg(), Ordering::SeqCst)
+     |                        --------- ^^^^^^^^^^^^^^^^^^^^^ expected `u64`, found `i64`
+     |                        |
+     |                        arguments to this method are incorrect
+...
+  97 | test_atomic_int!(test_incdec_u64_long, AtomicU64, i64);
+     | ------------------------------------------------------ in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3789:1
+     |
+3789 | / atomic_int! {
+3790 | |     cfg(target_has_atomic = "64"),
+3791 | |     cfg(target_has_atomic_equal_alignment = "64"),
+3792 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3805 | |     u64 AtomicU64
+3806 | | }
+     | |_^
+     = note: this error originates in the macro `test_atomic_int` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i64` to a `u64` and panic if the converted value doesn't fit
+     |
+  65 |                 ATOMIC.fetch_sub(change.wrapping_neg().try_into().unwrap(), Ordering::SeqCst)
+     |                                                       ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:74:59
+   |
+74 |             if (pre_p && ATOMIC.load(Ordering::SeqCst) != expected) || 
+   |                          -----------------------------    ^^^^^^^^ expected `u64`, found `i64`
+   |                          |
+   |                          expected because this is `u64`
+...
+97 | test_atomic_int!(test_incdec_u64_long, AtomicU64, i64);
+   | ------------------------------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i64` to a `u64` and panic if the converted value doesn't fit
+   |
+74 |             if (pre_p && ATOMIC.load(Ordering::SeqCst) != expected.try_into().unwrap()) || 
+   |                                                                   ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:75:37
+   |
+75 |                (!pre_p && result != expected) {
+   |                           ------    ^^^^^^^^ expected `u64`, found `i64`
+   |                           |
+   |                           expected because this is `u64`
+...
+97 | test_atomic_int!(test_incdec_u64_long, AtomicU64, i64);
+   | ------------------------------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i64` to a `u64` and panic if the converted value doesn't fit
+   |
+75 |                (!pre_p && result != expected.try_into().unwrap()) {
+   |                                             ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:79:49
+   |
+79 |             if ATOMIC.load(Ordering::SeqCst) != value.wrapping_add(change) {
+   |                -----------------------------    ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `u64`, found `i64`
+   |                |
+   |                expected because this is `u64`
+...
+97 | test_atomic_int!(test_incdec_u64_long, AtomicU64, i64);
+   | ------------------------------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i64` to a `u64` and panic if the converted value doesn't fit
+   |
+79 |             if ATOMIC.load(Ordering::SeqCst) != value.wrapping_add(change).try_into().unwrap() {
+   |                                                                           ++++++++++++++++++++
+
+error: aborting due to 43 previous errors
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.

@@ -1,0 +1,43 @@
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_qualif_2/sample_001/target.rs:16:5
+   |
+16 |     NCS = CS;
+   |     ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_qualif_2/sample_001/target.rs:18:29
+   |
+18 |     let pi: &mut i32 = &mut NCS.mem;
+   |                             ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_qualif_2/sample_001/target.rs:23:16
+   |
+23 |     if use_int(NCS.mem) != 11 {
+   |                ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0507]: cannot move out of static item `CS`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_qualif_2/sample_001/target.rs:16:11
+   |
+16 |     NCS = CS;
+   |           ^^ move occurs because `CS` has type `S`, which does not implement the `Copy` trait
+   |
+note: if `S` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_qualif_2/sample_001/target.rs:1:1
+   |
+ 1 | struct S {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+16 |     NCS = CS;
+   |           -- you could clone this value
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0133, E0507.
+For more information about an error, try `rustc --explain E0133`.

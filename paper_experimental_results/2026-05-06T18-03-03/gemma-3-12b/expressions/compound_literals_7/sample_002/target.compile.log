@@ -1,0 +1,25 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/compound_literals_7/sample_002/target.rs:19:8
+   |
+19 |     if unsafe { (*x.cdr).cdr } != &ENDLESS_ZEROS {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `*const IntList` cannot be shared between threads safely
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/compound_literals_7/sample_002/target.rs:7:23
+  |
+7 | static ENDLESS_ZEROS: IntList = IntList {
+  |                       ^^^^^^^ `*const IntList` cannot be shared between threads safely
+  |
+  = help: within `IntList`, the trait `Sync` is not implemented for `*const IntList`
+note: required because it appears within the type `IntList`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/compound_literals_7/sample_002/target.rs:2:8
+  |
+2 | struct IntList {
+  |        ^^^^^^^
+  = note: shared static variables must have a type that implements `Sync`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

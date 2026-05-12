@@ -1,0 +1,59 @@
+error[E0641]: cannot cast to a pointer of an unknown kind
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/add_op_c9/sample_005/target.rs:18:28
+   |
+18 |     let lhs = (one_past as *const _ as isize) - (p as *const _ as isize);
+   |                            ^^^^^^^^ needs more type information
+   |
+   = note: the type information given here is insufficient to check whether the pointer cast is valid
+
+error[E0641]: cannot cast from a pointer of an unknown kind
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/add_op_c9/sample_005/target.rs:18:40
+   |
+18 |     let lhs = (one_past as *const _ as isize) - (p as *const _ as isize);
+   |               -------------------------^^^^^- the type information given here is insufficient to check whether the pointer cast is valid
+
+error[E0641]: cannot cast to a pointer of an unknown kind
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/add_op_c9/sample_005/target.rs:24:56
+   |
+24 |     let rhs2 = -(p as *const _ as isize - (one_past as *const _ as isize));
+   |                                                        ^^^^^^^^ needs more type information
+   |
+   = note: the type information given here is insufficient to check whether the pointer cast is valid
+
+error[E0641]: cannot cast from a pointer of an unknown kind
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/add_op_c9/sample_005/target.rs:24:68
+   |
+24 |     let rhs2 = -(p as *const _ as isize - (one_past as *const _ as isize));
+   |                                           -------------------------^^^^^- the type information given here is insufficient to check whether the pointer cast is valid
+
+error[E0641]: cannot cast to a pointer of an unknown kind
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/add_op_c9/sample_005/target.rs:29:21
+   |
+29 |     if (one_past as *const _ as isize) - (one_past as *const _ as isize)!= 0 {
+   |                     ^^^^^^^^ needs more type information
+   |
+   = note: the type information given here is insufficient to check whether the pointer cast is valid
+
+error[E0641]: cannot cast from a pointer of an unknown kind
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/add_op_c9/sample_005/target.rs:29:33
+   |
+29 |     if (one_past as *const _ as isize) - (one_past as *const _ as isize)!= 0 {
+   |        -------------------------^^^^^- the type information given here is insufficient to check whether the pointer cast is valid
+
+error[E0641]: cannot cast to a pointer of an unknown kind
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/add_op_c9/sample_005/target.rs:29:55
+   |
+29 |     if (one_past as *const _ as isize) - (one_past as *const _ as isize)!= 0 {
+   |                                                       ^^^^^^^^ needs more type information
+   |
+   = note: the type information given here is insufficient to check whether the pointer cast is valid
+
+error[E0641]: cannot cast from a pointer of an unknown kind
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/add_op_c9/sample_005/target.rs:29:67
+   |
+29 |     if (one_past as *const _ as isize) - (one_past as *const _ as isize)!= 0 {
+   |                                          -------------------------^^^^^- the type information given here is insufficient to check whether the pointer cast is valid
+
+error: aborting due to 8 previous errors
+
+For more information about this error, try `rustc --explain E0641`.

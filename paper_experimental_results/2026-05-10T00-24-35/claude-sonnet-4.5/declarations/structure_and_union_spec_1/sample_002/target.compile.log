@@ -1,0 +1,27 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_1/sample_002/target.rs:30:5
+   |
+30 | /     unsafe {
+31 | |         v1.anonymous_union.anonymous_struct_1.i = 2;
+32 | |         v1.anonymous_union.w.k = 5;
+...  |
+41 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+ --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_1/sample_002/target.rs:9:9
+  |
+9 |         anonymous_struct_1: AnonymousStruct1,
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+  |
+9 |         anonymous_struct_1: std::mem::ManuallyDrop<AnonymousStruct1>,
+  |                             +++++++++++++++++++++++                +
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0740`.

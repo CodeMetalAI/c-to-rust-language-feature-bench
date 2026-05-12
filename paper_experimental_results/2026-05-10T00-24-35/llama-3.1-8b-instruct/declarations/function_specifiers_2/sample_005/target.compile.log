@@ -1,0 +1,41 @@
+error: missing parameters for function definition
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/function_specifiers_2/sample_005/target.rs:1:13
+  |
+1 | fn _noreturn {
+  |             ^
+  |
+help: add a parameter list
+  |
+1 | fn _noreturn() {
+  |             ++
+
+error[E0428]: the name `main` is defined multiple times
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/function_specifiers_2/sample_005/target.rs:42:1
+   |
+36 | fn main() {
+   | --------- previous definition of the value `main` here
+...
+42 | fn main() {
+   | ^^^^^^^^^ `main` redefined here
+   |
+   = note: `main` must be defined only once in the value namespace of this module
+
+error[E0433]: failed to resolve: function `_noreturn` is not a crate or module
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/function_specifiers_2/sample_005/target.rs:38:5
+   |
+38 |     _noreturn::main();
+   |     ^^^^^^^^^ function `_noreturn` is not a crate or module
+
+warning: variable `x` is assigned to, but never used
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/function_specifiers_2/sample_005/target.rs:5:17
+  |
+5 |         let mut x = 0;
+  |                 ^
+  |
+  = note: consider using `_x` instead
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 3 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0428, E0433.
+For more information about an error, try `rustc --explain E0428`.

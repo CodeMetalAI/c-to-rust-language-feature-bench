@@ -1,0 +1,96 @@
+error[E0412]: cannot find type `double` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/size_of_1/sample_003/target.rs:2:52
+  |
+2 |     let dp = std::alloc::alloc(std::mem::size_of::<double>());
+  |                                                    ^^^^^^
+  |                                                    |
+  |                                                    not found in this scope
+  |                                                    help: perhaps you intended to use this type: `f64`
+
+error[E0412]: cannot find type `double` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/size_of_1/sample_003/target.rs:8:25
+  |
+8 |     let dp = dp as *mut double;
+  |                         ^^^^^^
+  |                         |
+  |                         not found in this scope
+  |                         help: perhaps you intended to use this type: `f64`
+
+error[E0412]: cannot find type `double` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/size_of_1/sample_003/target.rs:12:53
+   |
+12 |         std::alloc::dealloc(dp, std::mem::size_of::<double>());
+   |                                                     ^^^^^^
+   |                                                     |
+   |                                                     not found in this scope
+   |                                                     help: perhaps you intended to use this type: `f64`
+
+error[E0412]: cannot find type `double` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/size_of_1/sample_003/target.rs:16:49
+   |
+16 |     std::alloc::dealloc(dp, std::mem::size_of::<double>());
+   |                                                 ^^^^^^
+   |                                                 |
+   |                                                 not found in this scope
+   |                                                 help: perhaps you intended to use this type: `f64`
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/size_of_1/sample_003/target.rs:9:5
+  |
+9 |     unsafe { *dp = 3.14; }
+  |     ^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/size_of_1/sample_003/target.rs:11:8
+   |
+11 |     if unsafe { *dp }!= 3.14 {
+   |        ^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/size_of_1/sample_003/target.rs:2:32
+   |
+ 2 |     let dp = std::alloc::alloc(std::mem::size_of::<double>());
+   |              ----------------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Layout`, found `usize`
+   |              |
+   |              arguments to this function are incorrect
+   |
+note: function defined here
+  --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/alloc.rs:89:15
+   |
+89 | pub unsafe fn alloc(layout: Layout) -> *mut u8 {
+   |               ^^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/size_of_1/sample_003/target.rs:12:33
+    |
+ 12 |         std::alloc::dealloc(dp, std::mem::size_of::<double>());
+    |         -------------------     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Layout`, found `usize`
+    |         |
+    |         arguments to this function are incorrect
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/alloc.rs:114:15
+    |
+114 | pub unsafe fn dealloc(ptr: *mut u8, layout: Layout) {
+    |               ^^^^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/size_of_1/sample_003/target.rs:16:29
+    |
+ 16 |     std::alloc::dealloc(dp, std::mem::size_of::<double>());
+    |     -------------------     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Layout`, found `usize`
+    |     |
+    |     arguments to this function are incorrect
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/alloc.rs:114:15
+    |
+114 | pub unsafe fn dealloc(ptr: *mut u8, layout: Layout) {
+    |               ^^^^^^^
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0308, E0412.
+For more information about an error, try `rustc --explain E0308`.

@@ -1,0 +1,136 @@
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_004/target.rs:27:22
+   |
+27 |         if n == 0 || off + n > POOL_SIZE {
+   |                      ^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_004/target.rs:30:22
+   |
+30 |         let p = &mut pool[off] as *mut u8;
+   |                      ^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_004/target.rs:30:27
+   |
+30 |         let p = &mut pool[off] as *mut u8;
+   |                           ^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_004/target.rs:31:9
+   |
+31 |         off += n;
+   |         ^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_004/target.rs:32:9
+   |
+32 |         h ^= (p as u64) ^ H_INIT;
+   |         ^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_004/target.rs:33:9
+   |
+33 |         h *= H_MULT;
+   |         ^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_004/target.rs:21:21
+   |
+21 |             let v = unsafe { std::slice::from_raw_parts_mut(v as *mut f32, n as usize) };
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+warning: unused variable: `pool`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_004/target.rs:7:13
+  |
+7 |     let mut pool = [0u8; POOL_SIZE];
+  |             ^^^^ help: if this is intentional, prefix it with an underscore: `_pool`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `off`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_004/target.rs:8:13
+  |
+8 |     let mut off = 0;
+  |             ^^^ help: if this is intentional, prefix it with an underscore: `_off`
+
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_004/target.rs:6:9
+  |
+6 |     let mut h = H_INIT;
+  |         ----^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_004/target.rs:7:9
+  |
+7 |     let mut pool = [0u8; POOL_SIZE];
+  |         ----^^^^
+  |         |
+  |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_004/target.rs:8:9
+  |
+8 |     let mut off = 0;
+  |         ----^^^
+  |         |
+  |         help: remove this `mut`
+
+error[E0596]: cannot borrow `a.v` as mutable, as `a` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_004/target.rs:68:14
+   |
+68 |     fill_vec(&mut a.v, 1.0);
+   |              ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+55 |     let mut a = Vector::new(16);
+   |         +++
+
+error[E0596]: cannot borrow `b.v` as mutable, as `b` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_004/target.rs:69:14
+   |
+69 |     fill_vec(&mut b.v, 100.0);
+   |              ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+56 |     let mut b = Vector::new(16);
+   |         +++
+
+error[E0384]: cannot assign twice to immutable variable `d`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_004/target.rs:50:13
+   |
+48 |         let d = x - y;
+   |             - first assignment to `d`
+49 |         if d < 0.0 {
+50 |             d = -d;
+   |             ^^^^^^ cannot assign twice to immutable variable
+   |
+help: consider making this binding mutable
+   |
+48 |         let mut d = x - y;
+   |             +++
+
+error: aborting due to 10 previous errors; 5 warnings emitted
+
+Some errors have detailed explanations: E0384, E0434, E0596.
+For more information about an error, try `rustc --explain E0384`.

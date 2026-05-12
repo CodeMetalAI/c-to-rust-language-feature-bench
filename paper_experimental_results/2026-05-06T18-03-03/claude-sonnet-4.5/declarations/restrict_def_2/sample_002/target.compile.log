@@ -1,0 +1,240 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:36:19
+   |
+36 |         let off = unsafe { G_OFF } as usize;
+   |                   ^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:60:19
+   |
+60 |         let off = unsafe { G_OFF } as usize;
+   |                   ^^^^^^^^^^^^^^^^
+
+error[E0277]: the type `[i32]` cannot be indexed by `RangeTo<i32>`
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:40:27
+   |
+40 |         f(n, left, &right[..n]);
+   |                           ^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `RangeTo<i32>`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `RangeTo<usize>` implements `SliceIndex<ByteStr>`
+             `RangeTo<usize>` implements `SliceIndex<[T]>`
+             `RangeTo<usize>` implements `SliceIndex<str>`
+   = note: required for `[i32]` to implement `Index<RangeTo<i32>>`
+
+error[E0277]: the type `[i32]` cannot be indexed by `std::ops::Range<i32>`
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:42:33
+   |
+42 |         if !check_range_eq(&buf[0..n], &snapshot[off..off + n], n) {
+   |                                 ^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `std::ops::Range<i32>`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `std::ops::Range<usize>` implements `SliceIndex<ByteStr>`
+             `std::ops::Range<usize>` implements `SliceIndex<[T]>`
+             `std::ops::Range<usize>` implements `SliceIndex<str>`
+   = note: required for `[i32]` to implement `Index<std::ops::Range<i32>>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[i32; 20]` to implement `Index<std::ops::Range<i32>>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:42:61
+   |
+42 |         if !check_range_eq(&buf[0..n], &snapshot[off..off + n], n) {
+   |                                                             ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:42:59
+   |
+42 |         if !check_range_eq(&buf[0..n], &snapshot[off..off + n], n) {
+   |                                                           ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:42:65
+   |
+42 |         if !check_range_eq(&buf[0..n], &snapshot[off..off + n], n) {
+   |             --------------                                      ^ expected `usize`, found `i32`
+   |             |
+   |             arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:13:4
+   |
+13 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^                       --------
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+42 |         if !check_range_eq(&buf[0..n], &snapshot[off..off + n], n.try_into().unwrap()) {
+   |                                                                  ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:46:44
+   |
+46 |         if !check_range_eq(&buf[off..off + n], &snapshot[off..off + n], n) {
+   |                                            ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:46:42
+   |
+46 |         if !check_range_eq(&buf[off..off + n], &snapshot[off..off + n], n) {
+   |                                          ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:46:69
+   |
+46 |         if !check_range_eq(&buf[off..off + n], &snapshot[off..off + n], n) {
+   |                                                                     ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:46:67
+   |
+46 |         if !check_range_eq(&buf[off..off + n], &snapshot[off..off + n], n) {
+   |                                                                   ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:46:73
+   |
+46 |         if !check_range_eq(&buf[off..off + n], &snapshot[off..off + n], n) {
+   |             -------------- arguments to this function are incorrect     ^ expected `usize`, found `i32`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:13:4
+   |
+13 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^                       --------
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+46 |         if !check_range_eq(&buf[off..off + n], &snapshot[off..off + n], n.try_into().unwrap()) {
+   |                                                                          ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:54:22
+   |
+54 |         if buf[off + n] != snapshot[off + n] {
+   |                      ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:54:20
+   |
+54 |         if buf[off + n] != snapshot[off + n] {
+   |                    ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:54:43
+   |
+54 |         if buf[off + n] != snapshot[off + n] {
+   |                                           ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:54:41
+   |
+54 |         if buf[off + n] != snapshot[off + n] {
+   |                                         ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0277]: the type `[i32]` cannot be indexed by `RangeTo<i32>`
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:64:27
+   |
+64 |         f(n, right, &left[..n]);
+   |                           ^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `RangeTo<i32>`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `RangeTo<usize>` implements `SliceIndex<ByteStr>`
+             `RangeTo<usize>` implements `SliceIndex<[T]>`
+             `RangeTo<usize>` implements `SliceIndex<str>`
+   = note: required for `[i32]` to implement `Index<RangeTo<i32>>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:66:44
+   |
+66 |         if !check_range_eq(&buf[off..off + n], &buf[0..n], n) {
+   |                                            ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:66:42
+   |
+66 |         if !check_range_eq(&buf[off..off + n], &buf[0..n], n) {
+   |                                          ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0277]: the type `[i32]` cannot be indexed by `std::ops::Range<i32>`
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:66:53
+   |
+66 |         if !check_range_eq(&buf[off..off + n], &buf[0..n], n) {
+   |                                                     ^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `std::ops::Range<i32>`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `std::ops::Range<usize>` implements `SliceIndex<ByteStr>`
+             `std::ops::Range<usize>` implements `SliceIndex<[T]>`
+             `std::ops::Range<usize>` implements `SliceIndex<str>`
+   = note: required for `[i32]` to implement `Index<std::ops::Range<i32>>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[i32; 20]` to implement `Index<std::ops::Range<i32>>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:66:60
+   |
+66 |         if !check_range_eq(&buf[off..off + n], &buf[0..n], n) {
+   |             --------------                                 ^ expected `usize`, found `i32`
+   |             |
+   |             arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2/sample_002/target.rs:13:4
+   |
+13 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^                       --------
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+66 |         if !check_range_eq(&buf[off..off + n], &buf[0..n], n.try_into().unwrap()) {
+   |                                                             ++++++++++++++++++++
+
+error: aborting due to 21 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

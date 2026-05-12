@@ -1,0 +1,57 @@
+error[E0428]: the name `debug` is defined multiple times
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_004/target.rs:28:1
+   |
+24 | fn debug(args: &str, _vars: impl std::fmt::Display) -> usize {
+   | ------------------------------------------------------------ previous definition of the value `debug` here
+...
+28 | fn debug(args: &str) -> usize {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `debug` redefined here
+   |
+   = note: `debug` must be defined only once in the value namespace of this module
+
+error[E0106]: missing lifetime specifier
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_004/target.rs:32:56
+   |
+32 | fn showlist(args: &str, _args2: &str, _args3: &str) -> &str {
+   |                   ----          ----          ----     ^ expected named lifetime parameter
+   |
+   = help: this function's return type contains a borrowed value, but the signature does not say whether it is borrowed from `args`, `_args2`, or `_args3`
+help: consider introducing a named lifetime parameter
+   |
+32 | fn showlist<'a>(args: &'a str, _args2: &'a str, _args3: &'a str) -> &'a str {
+   |            ++++        ++               ++               ++          ++
+
+error[E0061]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_004/target.rs:5:8
+   |
+ 5 |     if debug("Flag") != 1 {
+   |        ^^^^^-------- argument #2 is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_004/target.rs:24:4
+   |
+24 | fn debug(args: &str, _vars: impl std::fmt::Display) -> usize {
+   |    ^^^^^             -----------------------------
+help: provide the argument
+   |
+ 5 |     if debug("Flag", /* _vars */) != 1 {
+   |                    +++++++++++++
+
+warning: unused variable: `args`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_004/target.rs:24:10
+   |
+24 | fn debug(args: &str, _vars: impl std::fmt::Display) -> usize {
+   |          ^^^^ help: if this is intentional, prefix it with an underscore: `_args`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `args`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_004/target.rs:28:10
+   |
+28 | fn debug(args: &str) -> usize {
+   |          ^^^^ help: if this is intentional, prefix it with an underscore: `_args`
+
+error: aborting due to 3 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0061, E0106, E0428.
+For more information about an error, try `rustc --explain E0061`.

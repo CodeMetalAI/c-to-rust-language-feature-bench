@@ -1,0 +1,82 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/add_op_1a/sample_005/target.rs:8:5
+   |
+ 8 | /     unsafe {
+ 9 | |         p = &mut p[1];
+10 | |         (*p)[2] = 99;
+11 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/add_op_1a/sample_005/target.rs:9:13
+  |
+6 |     let mut p = a.as_mut_slice();
+  |                 ---------------- expected due to this value
+...
+9 |         p = &mut p[1];
+  |             ^^^^^^^^^ expected `&mut [Vec<{integer}>]`, found `&mut Vec<{integer}>`
+  |
+  = note: expected mutable reference `&mut [Vec<{integer}>]`
+             found mutable reference `&mut Vec<{integer}>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/add_op_1a/sample_005/target.rs:10:19
+   |
+10 |         (*p)[2] = 99;
+   |         -------   ^^ expected `Vec<{integer}>`, found integer
+   |         |
+   |         expected due to the type of this binding
+   |
+   = note: expected struct `Vec<{integer}>`
+                found type `{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/add_op_1a/sample_005/target.rs:14:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+14 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0369]: cannot subtract `*mut Vec<[i32; 3]>` from `*mut Vec<[i32; 3]>`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/add_op_1a/sample_005/target.rs:18:50
+   |
+18 |         let ptr_diff = (p as *mut Vec<[i32; 3]>) - (a.as_mut_slice() as *mut Vec<[i32; 3]>);
+   |                        ------------------------- ^ ---------------------------------------- *mut Vec<[i32; 3]>
+   |                        |
+   |                        *mut Vec<[i32; 3]>
+   |
+help: consider using `offset_from` for pointer - pointer if the pointers point to the same allocation
+   |
+18 -         let ptr_diff = (p as *mut Vec<[i32; 3]>) - (a.as_mut_slice() as *mut Vec<[i32; 3]>);
+18 +         let ptr_diff = unsafe { (p as *mut Vec<[i32; 3]>).offset_from((a.as_mut_slice() as *mut Vec<[i32; 3]>)) };
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/add_op_1a/sample_005/target.rs:26:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+26 |     0
+   |     ^ expected `()`, found integer
+
+error[E0606]: casting `&mut [Vec<{integer}>]` as `*mut Vec<[i32; 3]>` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/add_op_1a/sample_005/target.rs:18:24
+   |
+18 |         let ptr_diff = (p as *mut Vec<[i32; 3]>) - (a.as_mut_slice() as *mut Vec<[i32; 3]>);
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&mut [Vec<{integer}>]` as `*mut Vec<[i32; 3]>` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/add_op_1a/sample_005/target.rs:18:52
+   |
+18 |         let ptr_diff = (p as *mut Vec<[i32; 3]>) - (a.as_mut_slice() as *mut Vec<[i32; 3]>);
+   |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0308, E0369, E0606.
+For more information about an error, try `rustc --explain E0308`.

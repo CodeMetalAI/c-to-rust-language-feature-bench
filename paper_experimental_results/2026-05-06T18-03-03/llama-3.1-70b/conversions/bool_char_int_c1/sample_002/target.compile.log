@@ -1,0 +1,192 @@
+warning: variant `E_NEG` should have an upper camel case name
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:5:10
+  |
+5 | enum E { E_NEG = -1, E_POS = 1 }
+  |          ^^^^^ help: convert the identifier to upper camel case: `ENeg`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: variant `E_POS` should have an upper camel case name
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:5:22
+  |
+5 | enum E { E_NEG = -1, E_POS = 1 }
+  |                      ^^^^^ help: convert the identifier to upper camel case: `EPos`
+
+error[E0599]: no method named `as_u64` found for struct `TypeId` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:2:33
+  |
+2 |     std::any::TypeId::of::<T>().as_u64() as u8
+  |                                 ^^^^^^ method not found in `TypeId`
+
+error[E0369]: cannot add `{integer}` to `bool`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:10:41
+   |
+10 |     if!expect_type(type_id(true as bool + 0), type_id(0 as i32 + 0)) {
+   |                            ------------ ^ - {integer}
+   |                            |
+   |                            bool
+
+error[E0369]: cannot add `{integer}` to `char`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:13:40
+   |
+13 |     if!expect_type(type_id('a' as char + 0), type_id(0 as i32 + 0)) {
+   |                            ----------- ^ - {integer}
+   |                            |
+   |                            char
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:29:39
+   |
+29 |     if!expect_type(type_id(0 as i32 + 0 as u32), type_id(0 as u32 + 0)) {
+   |                                       ^^^^^^^^ expected `i32`, found `u32`
+
+error[E0277]: cannot add `u32` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:29:37
+   |
+29 |     if!expect_type(type_id(0 as i32 + 0 as u32), type_id(0 as u32 + 0)) {
+   |                                     ^ no implementation for `i32 + u32`
+   |
+   = help: the trait `Add<u32>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:32:39
+   |
+32 |     if!expect_type(type_id(0 as i64 + 0 as u64), type_id(0 as u64 + 0)) {
+   |                                       ^^^^^^^^ expected `i64`, found `u64`
+
+error[E0277]: cannot add `u64` to `i64`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:32:37
+   |
+32 |     if!expect_type(type_id(0 as i64 + 0 as u64), type_id(0 as u64 + 0)) {
+   |                                     ^ no implementation for `i64 + u64`
+   |
+   = help: the trait `Add<u64>` is not implemented for `i64`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i64` implements `Add<i64>`
+             `&i64` implements `Add`
+             `i64` implements `Add<&i64>`
+             `i64` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:35:40
+   |
+35 |     if!expect_type(type_id(0 as i128 + 0 as u128), type_id(0 as u128 + 0)) {
+   |                                        ^^^^^^^^^ expected `i128`, found `u128`
+
+error[E0277]: cannot add `u128` to `i128`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:35:38
+   |
+35 |     if!expect_type(type_id(0 as i128 + 0 as u128), type_id(0 as u128 + 0)) {
+   |                                      ^ no implementation for `i128 + u128`
+   |
+   = help: the trait `Add<u128>` is not implemented for `i128`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i128` implements `Add<i128>`
+             `&i128` implements `Add`
+             `i128` implements `Add<&i128>`
+             `i128` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:39:39
+   |
+39 |     if!expect_type(type_id(0 as i32 + 0 as i64), type_id(0 as i64 + 0)) {
+   |                                       ^^^^^^^^ expected `i32`, found `i64`
+
+error[E0277]: cannot add `i64` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:39:37
+   |
+39 |     if!expect_type(type_id(0 as i32 + 0 as i64), type_id(0 as i64 + 0)) {
+   |                                     ^ no implementation for `i32 + i64`
+   |
+   = help: the trait `Add<i64>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:42:39
+   |
+42 |     if!expect_type(type_id(0 as i64 + 0 as i128), type_id(0 as i128 + 0)) {
+   |                                       ^^^^^^^^^ expected `i64`, found `i128`
+
+error[E0277]: cannot add `i128` to `i64`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:42:37
+   |
+42 |     if!expect_type(type_id(0 as i64 + 0 as i128), type_id(0 as i128 + 0)) {
+   |                                     ^ no implementation for `i64 + i128`
+   |
+   = help: the trait `Add<i128>` is not implemented for `i64`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i64` implements `Add<i64>`
+             `&i64` implements `Add`
+             `i64` implements `Add<&i64>`
+             `i64` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:45:39
+   |
+45 |     if!expect_type(type_id(0 as i32 + 0 as i128), type_id(0 as i128 + 0)) {
+   |                                       ^^^^^^^^^ expected `i32`, found `i128`
+
+error[E0277]: cannot add `i128` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:45:37
+   |
+45 |     if!expect_type(type_id(0 as i32 + 0 as i128), type_id(0 as i128 + 0)) {
+   |                                     ^ no implementation for `i32 + i128`
+   |
+   = help: the trait `Add<i128>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:49:46
+   |
+49 |     if!expect_type(type_id(E::E_NEG as i32 + 0 as u32), type_id(0 as i32 + 0 as u32)) {
+   |                                              ^^^^^^^^ expected `i32`, found `u32`
+
+error[E0277]: cannot add `u32` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:49:44
+   |
+49 |     if!expect_type(type_id(E::E_NEG as i32 + 0 as u32), type_id(0 as i32 + 0 as u32)) {
+   |                                            ^ no implementation for `i32 + u32`
+   |
+   = help: the trait `Add<u32>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:49:76
+   |
+49 |     if!expect_type(type_id(E::E_NEG as i32 + 0 as u32), type_id(0 as i32 + 0 as u32)) {
+   |                                                                            ^^^^^^^^ expected `i32`, found `u32`
+
+error[E0277]: cannot add `u32` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/bool_char_int_c1/sample_002/target.rs:49:74
+   |
+49 |     if!expect_type(type_id(E::E_NEG as i32 + 0 as u32), type_id(0 as i32 + 0 as u32)) {
+   |                                                                          ^ no implementation for `i32 + u32`
+   |
+   = help: the trait `Add<u32>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error: aborting due to 19 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0277, E0308, E0369, E0599.
+For more information about an error, try `rustc --explain E0277`.

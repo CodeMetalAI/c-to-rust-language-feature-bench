@@ -1,0 +1,100 @@
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_003/target.rs:34:10
+   |
+34 | #[derive(Debug)]
+   |          ^^^^^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_003/target.rs:37:5
+   |
+37 |     tail_pq: TailPQ,
+   |     ^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+37 |     tail_pq: std::mem::ManuallyDrop<TailPQ>,
+   |              +++++++++++++++++++++++      +
+
+error[E0277]: `TailUnion` doesn't implement `Debug`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_003/target.rs:31:5
+   |
+28 | #[derive(Debug)]
+   |          ----- in this derive macro expansion
+...
+31 |     tail_y: TailUnion,
+   |     ^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `TailUnion`
+   |
+   = note: add `#[derive(Debug)]` to `TailUnion` or manually `impl Debug for TailUnion`
+help: consider annotating `TailUnion` with `#[derive(Debug)]`
+   |
+35 + #[derive(Debug)]
+36 | union TailUnion {
+   |
+
+error[E0606]: casting `&Nested2` as `*const Nested1` is invalid
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_003/target.rs:161:15
+    |
+161 |     let _pb = &o.a.b as *const _;
+    |               ^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&TailUnion` as `*const i32` is invalid
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_003/target.rs:164:16
+    |
+164 |     let _pty = &o.tail.tail_y as *const _;
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_003/target.rs:181:8
+    |
+181 |     if r {
+    |        ^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_003/target.rs:186:8
+    |
+186 |     if r {
+    |        ^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_003/target.rs:191:8
+    |
+191 |     if r {
+    |        ^ expected `bool`, found `i32`
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_003/target.rs:85:8
+   |
+85 |     if o.tail.tail_y.tail_y != 8 {
+   |        ^^^^^^^^^^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_003/target.rs:127:8
+    |
+127 |     if o.tail.tail_y.tail_pq.tail_p != 40 {
+    |        ^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_003/target.rs:130:8
+    |
+130 |     if o.tail.tail_y.tail_pq.tail_q != 41 {
+    |        ^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_003/target.rs:135:8
+    |
+135 |     if o.tail.tail_y.tail_y != -9 {
+    |        ^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: aborting due to 12 previous errors
+
+Some errors have detailed explanations: E0133, E0277, E0308, E0606, E0740.
+For more information about an error, try `rustc --explain E0133`.

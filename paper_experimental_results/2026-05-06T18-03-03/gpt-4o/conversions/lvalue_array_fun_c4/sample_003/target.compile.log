@@ -1,0 +1,117 @@
+error[E0599]: no method named `hash` found for struct `TypeId` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o/conversions/lvalue_array_fun_c4/sample_003/target.rs:10:33
+    |
+ 10 |     std::any::TypeId::of::<F>().hash(&mut std::collections::hash_map::DefaultHasher::new()) as i32
+    |                                 ^^^^ method not found in `TypeId`
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/hash/mod.rs:199:8
+    |
+199 |     fn hash<H: Hasher>(&self, state: &mut H);
+    |        ---- the method is available for `TypeId` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Hash` which provides `hash` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::hash::Hash;
+    |
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/conversions/lvalue_array_fun_c4/sample_003/target.rs:17:23
+   |
+17 |     if type_id(p1) != type_id::<fn(i32) -> i32>() {
+   |                       ^^^^^^^^^^^^^^^^^^^^^^^^^-- argument #1 of type `fn(i32) -> i32` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/conversions/lvalue_array_fun_c4/sample_003/target.rs:9:4
+   |
+ 9 | fn type_id<F>(_: F) -> i32 {
+   |    ^^^^^^^    ----
+help: provide the argument
+   |
+17 |     if type_id(p1) != type_id::<fn(i32) -> i32>(/* fn(i32) -> i32 */) {
+   |                                                 ++++++++++++++++++++
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/conversions/lvalue_array_fun_c4/sample_003/target.rs:20:23
+   |
+20 |     if type_id(q1) != type_id::<fn(i32) -> i32>() {
+   |                       ^^^^^^^^^^^^^^^^^^^^^^^^^-- argument #1 of type `fn(i32) -> i32` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/conversions/lvalue_array_fun_c4/sample_003/target.rs:9:4
+   |
+ 9 | fn type_id<F>(_: F) -> i32 {
+   |    ^^^^^^^    ----
+help: provide the argument
+   |
+20 |     if type_id(q1) != type_id::<fn(i32) -> i32>(/* fn(i32) -> i32 */) {
+   |                                                 ++++++++++++++++++++
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/conversions/lvalue_array_fun_c4/sample_003/target.rs:36:23
+   |
+36 |     if type_id(r1) != type_id::<fn(i32) -> i32>() {
+   |                       ^^^^^^^^^^^^^^^^^^^^^^^^^-- argument #1 of type `fn(i32) -> i32` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/conversions/lvalue_array_fun_c4/sample_003/target.rs:9:4
+   |
+ 9 | fn type_id<F>(_: F) -> i32 {
+   |    ^^^^^^^    ----
+help: provide the argument
+   |
+36 |     if type_id(r1) != type_id::<fn(i32) -> i32>(/* fn(i32) -> i32 */) {
+   |                                                 ++++++++++++++++++++
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/conversions/lvalue_array_fun_c4/sample_003/target.rs:46:23
+   |
+46 |     if type_id(p2) != type_id::<fn(i32, i32) -> i32>() {
+   |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^-- argument #1 of type `fn(i32, i32) -> i32` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/conversions/lvalue_array_fun_c4/sample_003/target.rs:9:4
+   |
+ 9 | fn type_id<F>(_: F) -> i32 {
+   |    ^^^^^^^    ----
+help: provide the argument
+   |
+46 |     if type_id(p2) != type_id::<fn(i32, i32) -> i32>(/* fn(i32, i32) -> i32 */) {
+   |                                                      +++++++++++++++++++++++++
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/conversions/lvalue_array_fun_c4/sample_003/target.rs:49:23
+   |
+49 |     if type_id(q2) != type_id::<fn(i32, i32) -> i32>() {
+   |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^-- argument #1 of type `fn(i32, i32) -> i32` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/conversions/lvalue_array_fun_c4/sample_003/target.rs:9:4
+   |
+ 9 | fn type_id<F>(_: F) -> i32 {
+   |    ^^^^^^^    ----
+help: provide the argument
+   |
+49 |     if type_id(q2) != type_id::<fn(i32, i32) -> i32>(/* fn(i32, i32) -> i32 */) {
+   |                                                      +++++++++++++++++++++++++
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/conversions/lvalue_array_fun_c4/sample_003/target.rs:64:23
+   |
+64 |     if type_id(r2) != type_id::<fn(i32, i32) -> i32>() {
+   |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^-- argument #1 of type `fn(i32, i32) -> i32` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/conversions/lvalue_array_fun_c4/sample_003/target.rs:9:4
+   |
+ 9 | fn type_id<F>(_: F) -> i32 {
+   |    ^^^^^^^    ----
+help: provide the argument
+   |
+64 |     if type_id(r2) != type_id::<fn(i32, i32) -> i32>(/* fn(i32, i32) -> i32 */) {
+   |                                                      +++++++++++++++++++++++++
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0061, E0599.
+For more information about an error, try `rustc --explain E0061`.

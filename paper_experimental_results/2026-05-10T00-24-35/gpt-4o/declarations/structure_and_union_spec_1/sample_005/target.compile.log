@@ -1,0 +1,37 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_1/sample_005/target.rs:16:5
+   |
+16 | /     unsafe {
+17 | |         let k_ptr: *mut i32 = &mut v1.i;
+18 | |         let k_ptr = k_ptr as *mut i64;
+19 | |         *k_ptr = 5;
+20 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_1/sample_005/target.rs:26:5
+   |
+26 | /     unsafe {
+27 | |         let k_ptr: *mut i32 = &mut v1.i;
+28 | |         let k_ptr = k_ptr as *mut i64;
+29 | |         if *k_ptr != 5 {
+...  |
+32 | |     }
+   | |_____^
+
+warning: fields `j` and `m` are never read
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_1/sample_005/target.rs:3:5
+  |
+1 | struct V {
+  |        - fields in this struct
+2 |     i: i32,
+3 |     j: i32,
+  |     ^
+4 |     m: i32,
+  |     ^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 2 previous errors; 1 warning emitted

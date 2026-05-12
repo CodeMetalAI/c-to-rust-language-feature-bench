@@ -1,0 +1,58 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_4b/sample_005/target.rs:11:5
+   |
+11 | /     unsafe {
+12 | |         if n == 0 {
+13 | |             return Some(OFF);
+...  |
+26 | |         Some(p)
+27 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_4b/sample_005/target.rs:36:5
+   |
+36 | /     unsafe {
+37 | |         let offset = idx + i * std::mem::size_of::<f32>();
+38 | |         let bytes: [u8; 4] = [
+39 | |             POOL[offset],
+...  |
+44 | |         f32::from_ne_bytes(bytes)
+45 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_4b/sample_005/target.rs:49:5
+   |
+49 | /     unsafe {
+50 | |         let offset = idx + i * std::mem::size_of::<f32>();
+51 | |         let bytes = val.to_ne_bytes();
+52 | |         POOL[offset] = bytes[0];
+...  |
+55 | |         POOL[offset + 3] = bytes[3];
+56 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_4b/sample_005/target.rs:111:5
+    |
+111 | /     unsafe {
+112 | |         if (H & 1u64) == 0u64 {
+113 | |             std::process::exit(6);
+114 | |         }
+115 | |     }
+    | |_____^
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_4b/sample_005/target.rs:16:22
+   |
+16 |         if OFF + n > POOL.len() {
+   |                      ^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+
+error: aborting due to 4 previous errors; 1 warning emitted

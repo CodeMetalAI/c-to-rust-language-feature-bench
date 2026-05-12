@@ -1,0 +1,92 @@
+error[E0425]: cannot find function `type_id_of` in module `std::any`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:4:21
+  |
+4 |     match std::any::type_id_of::<T>() {
+  |                     ^^^^^^^^^^ not found in `std::any`
+
+error[E0599]: no associated item named `Int` found for struct `TypeId` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:5:27
+  |
+5 |         std::any::TypeId::Int => 1,
+  |                           ^^^ associated item not found in `TypeId`
+
+error[E0599]: no associated item named `Ptr` found for struct `TypeId` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:6:27
+  |
+6 |         std::any::TypeId::Ptr(_) => 2,
+  |                           ^^^ associated item not found in `TypeId`
+
+error[E0599]: no associated item named `ConstPtr` found for struct `TypeId` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:7:27
+  |
+7 |         std::any::TypeId::ConstPtr(_) => 3,
+  |                           ^^^^^^^^ associated item not found in `TypeId`
+
+error[E0599]: no associated item named `Atomic` found for struct `TypeId` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:8:27
+  |
+8 |         std::any::TypeId::Atomic(_) => 4,
+  |                           ^^^^^^ associated item not found in `TypeId`
+
+error[E0599]: no associated item named `AtomicPtr` found for struct `TypeId` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:9:27
+  |
+9 |         std::any::TypeId::AtomicPtr(_) => 5,
+  |                           ^^^^^^^^^ associated item not found in `TypeId`
+
+error[E0599]: no associated item named `Fn` found for struct `TypeId` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:10:27
+   |
+10 |         std::any::TypeId::Fn(_) => 6,
+   |                           ^^ associated item not found in `TypeId`
+
+error[E0599]: no associated item named `Usize` found for struct `TypeId` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:11:27
+   |
+11 |         std::any::TypeId::Usize => 7,
+   |                           ^^^^^ associated item not found in `TypeId`
+
+error[E0382]: borrow of moved value: `ax`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:66:16
+   |
+22 |     let ax: std::sync::atomic::AtomicI32 = std::sync::atomic::AtomicI32::new(11);
+   |         -- move occurs because `ax` has type `AtomicI32`, which does not implement the `Copy` trait
+...
+62 |     if type_id(ax) != 4 {
+   |                -- value moved here
+...
+66 |     if type_id(&ax) != 5 {
+   |                ^^^ value borrowed here after move
+   |
+note: consider changing this parameter type in function `type_id` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:3:18
+   |
+ 3 | fn type_id<T>(_: T) -> u32 {
+   |    -------       ^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+
+error[E0382]: borrow of moved value: `ax`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:74:8
+   |
+22 |     let ax: std::sync::atomic::AtomicI32 = std::sync::atomic::AtomicI32::new(11);
+   |         -- move occurs because `ax` has type `AtomicI32`, which does not implement the `Copy` trait
+...
+70 |     if type_id(ax) != 1 {
+   |                -- value moved here
+...
+74 |     if ax.load(std::sync::atomic::Ordering::SeqCst) != 11 {
+   |        ^^ value borrowed here after move
+   |
+note: consider changing this parameter type in function `type_id` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:3:18
+   |
+ 3 | fn type_id<T>(_: T) -> u32 {
+   |    -------       ^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+
+error: aborting due to 10 previous errors
+
+Some errors have detailed explanations: E0382, E0425, E0599.
+For more information about an error, try `rustc --explain E0382`.

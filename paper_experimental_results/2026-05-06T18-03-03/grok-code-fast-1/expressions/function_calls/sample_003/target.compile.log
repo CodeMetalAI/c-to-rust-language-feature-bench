@@ -1,0 +1,23 @@
+error[E0277]: `RefCell<State>` cannot be shared between threads safely
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/function_calls/sample_003/target.rs:11:15
+   |
+11 | static STATE: RefCell<State> = RefCell::new(State {
+   |               ^^^^^^^^^^^^^^ `RefCell<State>` cannot be shared between threads safely
+   |
+   = help: the trait `Sync` is not implemented for `RefCell<State>`
+   = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock` instead
+   = note: shared static variables must have a type that implements `Sync`
+
+error[E0015]: cannot call non-const associated function `Vec::<i32>::with_capacity` in statics
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/function_calls/sample_003/target.rs:16:11
+   |
+16 |     logv: Vec::with_capacity(5),
+   |           ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0015, E0277.
+For more information about an error, try `rustc --explain E0015`.

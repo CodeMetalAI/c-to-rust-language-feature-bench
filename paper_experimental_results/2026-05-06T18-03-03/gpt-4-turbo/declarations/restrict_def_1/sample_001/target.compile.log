@@ -1,0 +1,56 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_1/sample_001/target.rs:9:13
+  |
+9 |     let a = unsafe { choose_view(&mut BANK_A, which_a) };
+  |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_1/sample_001/target.rs:10:13
+   |
+10 |     let b = unsafe { choose_view(&mut BANK_B, which_b) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_1/sample_001/target.rs:11:13
+   |
+11 |     let c = unsafe { &mut C };
+   |             ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_1/sample_001/target.rs:33:5
+   |
+33 | /     unsafe {
+34 | |         if BANK_A.left[0] != 101 {
+35 | |             std::process::exit(4);
+...  |
+45 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_1/sample_001/target.rs:54:5
+   |
+54 | /     unsafe {
+55 | |         if which != 0 {
+56 | |             &mut bank.right
+57 | |         } else {
+...  |
+60 | |     }
+   | |_____^
+
+error[E0784]: union expressions should have exactly one field
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_1/sample_001/target.rs:2:31
+  |
+2 |     static mut BANK_A: Bank = Bank { left: [0; 8], right: [0; 8] };
+  |                               ^^^^
+
+error[E0784]: union expressions should have exactly one field
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_1/sample_001/target.rs:3:31
+  |
+3 |     static mut BANK_B: Bank = Bank { left: [0; 8], right: [0; 8] };
+  |                               ^^^^
+
+error: aborting due to 7 previous errors
+
+For more information about this error, try `rustc --explain E0784`.

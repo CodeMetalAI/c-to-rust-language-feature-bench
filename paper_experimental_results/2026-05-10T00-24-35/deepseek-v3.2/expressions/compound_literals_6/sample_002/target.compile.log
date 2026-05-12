@@ -1,0 +1,19 @@
+warning: ambiguous wide pointer comparison, the comparison includes metadata which may not be expected
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/compound_literals_6/sample_002/target.rs:15:17
+   |
+15 |     let equal = a_ptr == b_ptr;
+   |                 ^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(ambiguous_wide_pointer_comparisons)]` on by default
+help: use `std::ptr::addr_eq` or untyped pointers to only compare their addresses
+   |
+15 -     let equal = a_ptr == b_ptr;
+15 +     let equal = std::ptr::addr_eq(a_ptr, b_ptr);
+   |
+help: use explicit `std::ptr::eq` method to compare metadata and addresses
+   |
+15 -     let equal = a_ptr == b_ptr;
+15 +     let equal = std::ptr::eq(a_ptr, b_ptr);
+   |
+
+warning: 1 warning emitted

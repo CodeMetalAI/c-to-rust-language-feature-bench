@@ -1,0 +1,92 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_004/target.rs:8:5
+   |
+ 8 | /     unsafe {
+ 9 | |         CALLS += 1;
+10 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_004/target.rs:19:5
+   |
+19 | /     unsafe {
+20 | |         for i in 0..11 {
+21 | |             FA[i] = (i + 1) as f32;
+...  |
+27 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_004/target.rs:45:5
+   |
+45 | /     unsafe {
+46 | |         if FA[0] != 1.0 || FA[10] != 11.0 {
+47 | |             std::process::exit(1);
+...  |
+92 | |     }
+   | |_____^
+
+error[E0599]: no method named `try_into` found for struct `Vec<f32>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_004/target.rs:87:31
+    |
+ 87 |         if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap())
+    |                               ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<f32>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  3 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 87 -         if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap())
+ 87 +         if takes_params(&vla1.into().unwrap(), &vla2.try_into().unwrap())
+    |
+
+error[E0599]: no method named `try_into` found for struct `Vec<&f32>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_004/target.rs:87:58
+    |
+ 87 |         if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap())
+    |                                                          ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<&f32>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  3 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 87 -         if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap())
+ 87 +         if takes_params(&vla1.try_into().unwrap(), &vla2.into().unwrap())
+    |
+
+error[E0606]: casting `f32` as `*const f32` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_004/target.rs:72:21
+   |
+72 |         let span = (vla1[n1 - 1] as *const f32 as usize) - (vla1[0] as *const f32 as usize);
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `f32` as `*const f32` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_004/target.rs:72:61
+   |
+72 |         let span = (vla1[n1 - 1] as *const f32 as usize) - (vla1[0] as *const f32 as usize);
+   |                                                             ^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0599, E0606.
+For more information about an error, try `rustc --explain E0599`.

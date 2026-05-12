@@ -1,0 +1,20 @@
+use std::process::exit;
+
+#[inline(never)]
+fn die0() -> ! {
+    exit(0);
+}
+
+fn pick(x: i32) -> i32 {
+    if x {
+        123
+    } else {
+        die0();
+    }
+}
+
+fn main() {
+    let v = pick(0);
+    let _ = v;
+    1
+}

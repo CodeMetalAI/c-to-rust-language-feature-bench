@@ -1,0 +1,67 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_005/target.rs:5:9
+  |
+5 | /         unsafe {
+6 | |             GSTORE[0] = 111;
+7 | |             GSTORE[0] + 1
+8 | |         }
+  | |_________^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_005/target.rs:12:9
+   |
+12 | /         unsafe {
+13 | |             GSTORE[1] = 222;
+14 | |             &GSTORE[1] as *const _
+15 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_005/target.rs:19:9
+   |
+19 | /         unsafe {
+20 | |             GSTORE[2] = 333;
+21 | |             GSTORE[2] - 1
+22 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_005/target.rs:26:9
+   |
+26 | /         unsafe {
+27 | |             GSTORE[3] = 444;
+28 | |             GSTORE[3] + 2
+29 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_005/target.rs:49:17
+   |
+49 |     let v_fip = unsafe { *fip() };
+   |                 ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_005/target.rs:55:15
+   |
+55 |     if choose(unsafe { GSTORE[0] }) == 0 {
+   |               ^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_005/target.rs:56:15
+   |
+54 |     let mut pfi = alt0;
+   |                   ---- expected due to this value
+55 |     if choose(unsafe { GSTORE[0] }) == 0 {
+56 |         pfi = alt1;
+   |               ^^^^ expected fn item, found a different fn item
+   |
+   = note: expected fn item `fn() -> _ {alt0}`
+              found fn item `fn() -> _ {alt1}`
+   = note: different fn items have unique types, even if their signatures are the same
+   = help: consider casting both fn items to fn pointers using `as fn() -> i32`
+
+error: aborting due to 7 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

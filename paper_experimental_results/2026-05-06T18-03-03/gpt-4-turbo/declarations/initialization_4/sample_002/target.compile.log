@@ -1,0 +1,28 @@
+error[E0277]: a value of type `Vec<i32>` cannot be built from an iterator over elements of type `&i32`
+    --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/initialization_4/sample_002/target.rs:22:65
+     |
+  22 |     let p: Vec<i32> = z.iter().flat_map(|&row| row.into_iter()).collect();
+     |                                                                 ^^^^^^^ value of type `Vec<i32>` cannot be built from `std::iter::Iterator<Item=&i32>`
+     |
+     = help: the trait `FromIterator<&_>` is not implemented for `Vec<i32>`
+             but trait `FromIterator<_>` is implemented for it
+     = help: for that trait implementation, expected `i32`, found `&i32`
+note: the method call chain might not have had the expected associated types
+    --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/initialization_4/sample_002/target.rs:22:32
+     |
+   6 |     let z: [[i32; 3]; 4] = [[1, 0, 0], [2, 0, 0], [3, 0, 0], [4, 0, 0]];
+     |                            -------------------------------------------- this expression has type `[[i32; 3]; 4]`
+...
+  22 |     let p: Vec<i32> = z.iter().flat_map(|&row| row.into_iter()).collect();
+     |                         ------ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `Iterator::Item` changed to `&i32` here
+     |                         |
+     |                         `Iterator::Item` is `&[i32; 3]` here
+note: required by a bound in `collect`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/iter/traits/iterator.rs:2014:19
+     |
+2014 |     fn collect<B: FromIterator<Self::Item>>(self) -> B
+     |                   ^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `Iterator::collect`
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0277`.

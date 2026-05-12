@@ -1,0 +1,67 @@
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4/sample_003/target.rs:25:12
+   |
+25 |         if!same(&x[8..24], &expect) {
+   |            ^^^^-------------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4/sample_003/target.rs:64:4
+   |
+64 | fn same(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^                       --------
+help: provide the argument
+   |
+25 |         if!same(&x[8..24], &expect, /* usize */) {
+   |                                   +++++++++++++
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4/sample_003/target.rs:29:12
+   |
+29 |         if!same(&y, &y_snapshot) {
+   |            ^^^^----------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4/sample_003/target.rs:64:4
+   |
+64 | fn same(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^                       --------
+help: provide the argument
+   |
+29 |         if!same(&y, &y_snapshot, /* usize */) {
+   |                                +++++++++++++
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4/sample_003/target.rs:39:8
+   |
+39 |     if!same(&x[..8], &expect2) {
+   |        ^^^^------------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4/sample_003/target.rs:64:4
+   |
+64 | fn same(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^                       --------
+help: provide the argument
+   |
+39 |     if!same(&x[..8], &expect2, /* usize */) {
+   |                              +++++++++++++
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4/sample_003/target.rs:43:8
+   |
+43 |     if!same(&y, &y_snapshot) {
+   |        ^^^^----------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4/sample_003/target.rs:64:4
+   |
+64 | fn same(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^                       --------
+help: provide the argument
+   |
+43 |     if!same(&y, &y_snapshot, /* usize */) {
+   |                            +++++++++++++
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0061`.

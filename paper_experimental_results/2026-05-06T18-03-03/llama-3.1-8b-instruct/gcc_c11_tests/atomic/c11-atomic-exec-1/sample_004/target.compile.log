@@ -1,0 +1,65 @@
+error: expected parameter name, found `$`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:86:10
+   |
+86 | fn cmplx($re:expr, $im:expr) -> std::complex::Complex<f64> {
+   |          ^ expected parameter name
+
+error: expected parameter name, found `$`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:86:20
+   |
+86 | fn cmplx($re:expr, $im:expr) -> std::complex::Complex<f64> {
+   |                    ^ expected parameter name
+
+error: unexpected end of macro invocation
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:45:39
+   |
+22 | macro_rules! test_simple_assign_arith {
+   | ------------------------------------- when calling this macro
+...
+45 |         Complex<f64>, CMPLX(2.5, 3.5),
+   |                                       ^ missing tokens in macro arguments
+   |
+note: while trying to match meta-variable `$r#type:ty`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:23:8
+   |
+23 |     ($($type:ty, $value:expr),*) => {
+   |        ^^^^^^^^
+
+error: expected identifier, found metavariable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:5:25
+   |
+ 5 |         let a = Atomic::$type::new(0);
+   |                         ^^^^^ expected identifier, found metavariable
+...
+48 |     test_simple_assign!(i32, 0);
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: expected identifier, found metavariable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:5:25
+   |
+ 5 |         let a = Atomic::$type::new(0);
+   |                         ^^^^^ expected identifier, found metavariable
+...
+49 |     test_simple_assign!(i32, &i);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: no rules expected `$`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:87:12
+   |
+80 | macro_rules! cmplx {
+   | ------------------ when calling this macro
+...
+87 |     cmplx!($re, $im)
+   |            ^ no rules expected this token in macro call
+   |
+note: while trying to match meta-variable `$re:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:81:6
+   |
+81 |     ($re:expr, $im:expr) => {
+   |      ^^^^^^^^
+
+error: aborting due to 6 previous errors

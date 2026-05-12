@@ -1,0 +1,30 @@
+error[E0658]: the type `f128` is unstable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c2/sample_003/target.rs:44:16
+   |
+44 |     if type_id(1.0f128) != 9 {
+   |                ^^^^^^^
+   |
+   = note: see issue #116909 <https://github.com/rust-lang/rust/issues/116909> for more information
+   = help: add `#![feature(f128)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0599]: no method named `as_u64` found for struct `TypeId` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c2/sample_003/target.rs:2:33
+  |
+2 |     std::any::TypeId::of::<T>().as_u64() as u8
+  |                                 ^^^^^^ method not found in `TypeId`
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c2/sample_003/target.rs:26:9
+   |
+26 |     let mut bf = BF { u1: 1, i1: -1, b1: true };
+   |         ----^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 2 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0599, E0658.
+For more information about an error, try `rustc --explain E0599`.

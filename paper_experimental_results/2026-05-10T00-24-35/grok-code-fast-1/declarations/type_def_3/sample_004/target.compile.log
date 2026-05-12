@@ -1,0 +1,33 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/type_def_3/sample_004/target.rs:15:42
+   |
+15 |         self.bits = (self.bits & !0xF) | (val & 0xF);
+   |                                          ^^^^^^^^^^^ expected `u16`, found `u32`
+
+error[E0277]: no implementation for `u16 | u32`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/type_def_3/sample_004/target.rs:15:40
+   |
+15 |         self.bits = (self.bits & !0xF) | (val & 0xF);
+   |                                        ^ no implementation for `u16 | u32`
+   |
+   = help: the trait `BitOr<u32>` is not implemented for `u16`
+   = help: the following other types implement trait `BitOr<Rhs>`:
+             `&u16` implements `BitOr<u16>`
+             `&u16` implements `BitOr`
+             `u16` implements `BitOr<&u16>`
+             `u16` implements `BitOr`
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/type_def_3/sample_004/target.rs:59:13
+   |
+59 |         let mut t: i64 = 1234;
+   |             ----^
+   |             |
+   |             help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 2 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

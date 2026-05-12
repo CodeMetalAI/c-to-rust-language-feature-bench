@@ -1,0 +1,50 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_005/target.rs:20:15
+   |
+20 |     let ptr = unsafe { std::alloc::alloc(std::alloc::Layout::from_size_align(size, mem::align_of::<S>()).unwrap()) };
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_005/target.rs:25:9
+   |
+25 |     p = unsafe { Box::from_raw(ptr as *mut S) };
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_005/target.rs:28:5
+   |
+28 | /     unsafe {
+29 | |         *p.a.as_ptr().offset(0) = 11;
+30 | |         *p.a.as_ptr().offset(3) = 22;
+31 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_005/target.rs:33:20
+   |
+33 |     if p.i != 7 || unsafe { *p.a.as_ptr().offset(0) } != 11 || unsafe { *p.a.as_ptr().offset(3) } != 22 {
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_005/target.rs:33:64
+   |
+33 |     if p.i != 7 || unsafe { *p.a.as_ptr().offset(0) } != 11 || unsafe { *p.a.as_ptr().offset(3) } != 22 {
+   |                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0594]: cannot assign to data in a `*const` pointer
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_005/target.rs:29:9
+   |
+29 |         *p.a.as_ptr().offset(0) = 11;
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot assign
+
+error[E0594]: cannot assign to data in a `*const` pointer
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_005/target.rs:30:9
+   |
+30 |         *p.a.as_ptr().offset(3) = 22;
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot assign
+
+error: aborting due to 7 previous errors
+
+For more information about this error, try `rustc --explain E0594`.

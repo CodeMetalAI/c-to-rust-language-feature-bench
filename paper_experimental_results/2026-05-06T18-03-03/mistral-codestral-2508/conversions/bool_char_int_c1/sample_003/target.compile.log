@@ -1,0 +1,358 @@
+warning: variant `E_NEG` should have an upper camel case name
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:25:5
+   |
+25 |     E_NEG = -1,
+   |     ^^^^^ help: convert the identifier to upper camel case: `ENeg`
+   |
+   = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: variant `E_POS` should have an upper camel case name
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:26:5
+   |
+26 |     E_POS = 1,
+   |     ^^^^^ help: convert the identifier to upper camel case: `EPos`
+
+error: invalid suffix `u` for number literal
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:69:49
+   |
+69 |     if !expect_type(type_id((E::E_NEG as i32) + 0u), type_id((0 as i32) + 0u)) {
+   |                                                 ^^ invalid suffix `u`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `u` for number literal
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:69:75
+   |
+69 |     if !expect_type(type_id((E::E_NEG as i32) + 0u), type_id((0 as i32) + 0u)) {
+   |                                                                           ^^ invalid suffix `u`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error[E0369]: cannot add `{integer}` to `bool`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:30:41
+   |
+30 |     if !expect_type(type_id((1 as bool) + 0), 7) {
+   |                             ----------- ^ - {integer}
+   |                             |
+   |                             bool
+
+error[E0369]: cannot add `{integer}` to `char`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:33:41
+   |
+33 |     if !expect_type(type_id((1 as char) + 0), 7) {
+   |                             ----------- ^ - {integer}
+   |                             |
+   |                             char
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:49:42
+   |
+49 |     if !expect_type(type_id((0 as i32) + (0 as u32)), 8) {
+   |                                          ^^^^^^^^^^ expected `i32`, found `u32`
+
+error[E0277]: cannot add `u32` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:49:40
+   |
+49 |     if !expect_type(type_id((0 as i32) + (0 as u32)), 8) {
+   |                                        ^ no implementation for `i32 + u32`
+   |
+   = help: the trait `Add<u32>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:52:42
+   |
+52 |     if !expect_type(type_id((0 as i64) + (0 as u64)), 10) {
+   |                                          ^^^^^^^^^^ expected `i64`, found `u64`
+
+error[E0277]: cannot add `u64` to `i64`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:52:40
+   |
+52 |     if !expect_type(type_id((0 as i64) + (0 as u64)), 10) {
+   |                                        ^ no implementation for `i64 + u64`
+   |
+   = help: the trait `Add<u64>` is not implemented for `i64`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i64` implements `Add<i64>`
+             `&i64` implements `Add`
+             `i64` implements `Add<&i64>`
+             `i64` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:55:43
+   |
+55 |     if !expect_type(type_id((0 as i128) + (0 as u128)), 12) {
+   |                                           ^^^^^^^^^^^ expected `i128`, found `u128`
+
+error[E0277]: cannot add `u128` to `i128`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:55:41
+   |
+55 |     if !expect_type(type_id((0 as i128) + (0 as u128)), 12) {
+   |                                         ^ no implementation for `i128 + u128`
+   |
+   = help: the trait `Add<u128>` is not implemented for `i128`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i128` implements `Add<i128>`
+             `&i128` implements `Add`
+             `i128` implements `Add<&i128>`
+             `i128` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:59:42
+   |
+59 |     if !expect_type(type_id((0 as i32) + (0 as i64)), 9) {
+   |                                          ^^^^^^^^^^ expected `i32`, found `i64`
+
+error[E0277]: cannot add `i64` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:59:40
+   |
+59 |     if !expect_type(type_id((0 as i32) + (0 as i64)), 9) {
+   |                                        ^ no implementation for `i32 + i64`
+   |
+   = help: the trait `Add<i64>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:62:42
+   |
+62 |     if !expect_type(type_id((0 as i64) + (0 as i128)), 11) {
+   |                                          ^^^^^^^^^^^ expected `i64`, found `i128`
+
+error[E0277]: cannot add `i128` to `i64`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:62:40
+   |
+62 |     if !expect_type(type_id((0 as i64) + (0 as i128)), 11) {
+   |                                        ^ no implementation for `i64 + i128`
+   |
+   = help: the trait `Add<i128>` is not implemented for `i64`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i64` implements `Add<i64>`
+             `&i64` implements `Add`
+             `i64` implements `Add<&i64>`
+             `i64` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:65:42
+   |
+65 |     if !expect_type(type_id((0 as i32) + (0 as i128)), 11) {
+   |                                          ^^^^^^^^^^^ expected `i32`, found `i128`
+
+error[E0277]: cannot add `i128` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:65:40
+   |
+65 |     if !expect_type(type_id((0 as i32) + (0 as i128)), 11) {
+   |                                        ^ no implementation for `i32 + i128`
+   |
+   = help: the trait `Add<i128>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:30:29
+   |
+30 |     if !expect_type(type_id((1 as bool) + 0), 7) {
+   |                             ^^^^^^^^^^^
+   |
+help: compare with zero instead
+   |
+30 -     if !expect_type(type_id((1 as bool) + 0), 7) {
+30 +     if !expect_type(type_id((1 != 0 + 0), 7) {
+   |
+
+error[E0310]: the parameter type `T` may not live long enough
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:2:11
+  |
+2 |     match std::any::TypeId::of::<T>() {
+  |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |           |
+  |           the parameter type `T` must be valid for the static lifetime...
+  |           ...so that the type `T` will meet its required lifetime bounds
+  |
+help: consider adding an explicit lifetime bound
+  |
+1 | fn type_id<T: 'static>(_: T) -> i32 {
+  |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:3:48
+  |
+3 |         _ if std::any::TypeId::of::<bool>() == std::any::TypeId::of::<T>() => 1,
+  |                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |                                                |
+  |                                                the parameter type `T` must be valid for the static lifetime...
+  |                                                ...so that the type `T` will meet its required lifetime bounds
+  |
+help: consider adding an explicit lifetime bound
+  |
+1 | fn type_id<T: 'static>(_: T) -> i32 {
+  |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:4:48
+  |
+4 |         _ if std::any::TypeId::of::<char>() == std::any::TypeId::of::<T>() => 2,
+  |                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |                                                |
+  |                                                the parameter type `T` must be valid for the static lifetime...
+  |                                                ...so that the type `T` will meet its required lifetime bounds
+  |
+help: consider adding an explicit lifetime bound
+  |
+1 | fn type_id<T: 'static>(_: T) -> i32 {
+  |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:5:46
+  |
+5 |         _ if std::any::TypeId::of::<i8>() == std::any::TypeId::of::<T>() => 3,
+  |                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |                                              |
+  |                                              the parameter type `T` must be valid for the static lifetime...
+  |                                              ...so that the type `T` will meet its required lifetime bounds
+  |
+help: consider adding an explicit lifetime bound
+  |
+1 | fn type_id<T: 'static>(_: T) -> i32 {
+  |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:6:46
+  |
+6 |         _ if std::any::TypeId::of::<u8>() == std::any::TypeId::of::<T>() => 4,
+  |                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |                                              |
+  |                                              the parameter type `T` must be valid for the static lifetime...
+  |                                              ...so that the type `T` will meet its required lifetime bounds
+  |
+help: consider adding an explicit lifetime bound
+  |
+1 | fn type_id<T: 'static>(_: T) -> i32 {
+  |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:7:47
+  |
+7 |         _ if std::any::TypeId::of::<i16>() == std::any::TypeId::of::<T>() => 5,
+  |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |                                               |
+  |                                               the parameter type `T` must be valid for the static lifetime...
+  |                                               ...so that the type `T` will meet its required lifetime bounds
+  |
+help: consider adding an explicit lifetime bound
+  |
+1 | fn type_id<T: 'static>(_: T) -> i32 {
+  |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:8:47
+  |
+8 |         _ if std::any::TypeId::of::<u16>() == std::any::TypeId::of::<T>() => 6,
+  |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |                                               |
+  |                                               the parameter type `T` must be valid for the static lifetime...
+  |                                               ...so that the type `T` will meet its required lifetime bounds
+  |
+help: consider adding an explicit lifetime bound
+  |
+1 | fn type_id<T: 'static>(_: T) -> i32 {
+  |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:9:47
+  |
+9 |         _ if std::any::TypeId::of::<i32>() == std::any::TypeId::of::<T>() => 7,
+  |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |                                               |
+  |                                               the parameter type `T` must be valid for the static lifetime...
+  |                                               ...so that the type `T` will meet its required lifetime bounds
+  |
+help: consider adding an explicit lifetime bound
+  |
+1 | fn type_id<T: 'static>(_: T) -> i32 {
+  |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:10:47
+   |
+10 |         _ if std::any::TypeId::of::<u32>() == std::any::TypeId::of::<T>() => 8,
+   |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                               |
+   |                                               the parameter type `T` must be valid for the static lifetime...
+   |                                               ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+ 1 | fn type_id<T: 'static>(_: T) -> i32 {
+   |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:11:47
+   |
+11 |         _ if std::any::TypeId::of::<i64>() == std::any::TypeId::of::<T>() => 9,
+   |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                               |
+   |                                               the parameter type `T` must be valid for the static lifetime...
+   |                                               ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+ 1 | fn type_id<T: 'static>(_: T) -> i32 {
+   |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:12:47
+   |
+12 |         _ if std::any::TypeId::of::<u64>() == std::any::TypeId::of::<T>() => 10,
+   |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                               |
+   |                                               the parameter type `T` must be valid for the static lifetime...
+   |                                               ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+ 1 | fn type_id<T: 'static>(_: T) -> i32 {
+   |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:13:48
+   |
+13 |         _ if std::any::TypeId::of::<i128>() == std::any::TypeId::of::<T>() => 11,
+   |                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                                |
+   |                                                the parameter type `T` must be valid for the static lifetime...
+   |                                                ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+ 1 | fn type_id<T: 'static>(_: T) -> i32 {
+   |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c1/sample_003/target.rs:14:48
+   |
+14 |         _ if std::any::TypeId::of::<u128>() == std::any::TypeId::of::<T>() => 12,
+   |                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                                |
+   |                                                the parameter type `T` must be valid for the static lifetime...
+   |                                                ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+ 1 | fn type_id<T: 'static>(_: T) -> i32 {
+   |             +++++++++
+
+error: aborting due to 30 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0054, E0277, E0308, E0310, E0369.
+For more information about an error, try `rustc --explain E0054`.

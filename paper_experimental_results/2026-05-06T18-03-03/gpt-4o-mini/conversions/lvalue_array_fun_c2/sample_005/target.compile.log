@@ -1,0 +1,98 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/lvalue_array_fun_c2/sample_005/target.rs:20:16
+   |
+20 |     if type_id(ax.load(std::sync::atomic::Ordering::SeqCst)) != 3 {
+   |        ------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `i32`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `i32`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/lvalue_array_fun_c2/sample_005/target.rs:56:4
+   |
+56 | fn type_id<T>(_: &T) -> usize {
+   |    ^^^^^^^    -----
+help: consider borrowing here
+   |
+20 |     if type_id(&ax.load(std::sync::atomic::Ordering::SeqCst)) != 3 {
+   |                +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/lvalue_array_fun_c2/sample_005/target.rs:24:16
+   |
+24 |     if type_id(cx) != 1 {
+   |        ------- ^^ expected `&_`, found `i32`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `i32`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/lvalue_array_fun_c2/sample_005/target.rs:56:4
+   |
+56 | fn type_id<T>(_: &T) -> usize {
+   |    ^^^^^^^    -----
+help: consider borrowing here
+   |
+24 |     if type_id(&cx) != 1 {
+   |                +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/lvalue_array_fun_c2/sample_005/target.rs:27:16
+   |
+27 |     if type_id(ax.load(std::sync::atomic::Ordering::SeqCst)) != 1 {
+   |        ------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `i32`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `i32`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/lvalue_array_fun_c2/sample_005/target.rs:56:4
+   |
+56 | fn type_id<T>(_: &T) -> usize {
+   |    ^^^^^^^    -----
+help: consider borrowing here
+   |
+27 |     if type_id(&ax.load(std::sync::atomic::Ordering::SeqCst)) != 1 {
+   |                +
+
+error[E0599]: no method named `hash` found for struct `TypeId` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/lvalue_array_fun_c2/sample_005/target.rs:57:33
+    |
+ 57 |     std::any::TypeId::of::<T>().hash(&mut std::collections::hash_map::DefaultHasher::new());
+    |                                 ^^^^ method not found in `TypeId`
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/hash/mod.rs:199:8
+    |
+199 |     fn hash<H: Hasher>(&self, state: &mut H);
+    |        ---- the method is available for `TypeId` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Hash` which provides `hash` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::hash::Hash;
+    |
+
+error[E0599]: no method named `hash` found for struct `TypeId` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/lvalue_array_fun_c2/sample_005/target.rs:58:33
+    |
+ 58 |     std::any::TypeId::of::<T>().hash(&mut std::collections::hash_map::DefaultHasher::new());
+    |                                 ^^^^ method not found in `TypeId`
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/hash/mod.rs:199:8
+    |
+199 |     fn hash<H: Hasher>(&self, state: &mut H);
+    |        ---- the method is available for `TypeId` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Hash` which provides `hash` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::hash::Hash;
+    |
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.

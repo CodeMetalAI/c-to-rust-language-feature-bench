@@ -1,0 +1,58 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_3/sample_002/target.rs:8:5
+   |
+ 8 | /     unsafe {
+ 9 | |         *cpp_ptr = &c as *const char as &'static str;
+10 | |         (*ptr_p).push(0);
+11 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_3/sample_002/target.rs:10:23
+     |
+  10 |         (*ptr_p).push(0);
+     |                  ---- ^ expected `char`, found `u8`
+     |                  |
+     |                  arguments to this method are incorrect
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/string.rs:1410:12
+     |
+1410 |     pub fn push(&mut self, ch: char) {
+     |            ^^^^
+note: you might have meant to use method `push_str`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/string.rs:1112:5
+     |
+1112 |     pub fn push_str(&mut self, string: &str) {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_3/sample_002/target.rs:14:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+14 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_3/sample_002/target.rs:17:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+17 |     0
+   |     ^ expected `()`, found integer
+
+error[E0605]: non-primitive cast: `*const char` as `&'static str`
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_3/sample_002/target.rs:9:20
+  |
+9 |         *cpp_ptr = &c as *const char as &'static str;
+  |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0605.
+For more information about an error, try `rustc --explain E0308`.

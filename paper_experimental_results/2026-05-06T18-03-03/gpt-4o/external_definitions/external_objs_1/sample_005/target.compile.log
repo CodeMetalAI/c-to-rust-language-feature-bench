@@ -1,0 +1,118 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/external_definitions/external_objs_1/sample_005/target.rs:9:5
+   |
+ 9 | /     unsafe {
+10 | |         if I1 != 1 {
+11 | |             std::process::exit(1);
+...  |
+62 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/external_definitions/external_objs_1/sample_005/target.rs:27:32
+   |
+27 |         let p_i1: *const i32 = &I1;
+   |                                ^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw const` instead to create a raw pointer
+   |
+27 |         let p_i1: *const i32 = &raw const I1;
+   |                                 +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/external_definitions/external_objs_1/sample_005/target.rs:28:32
+   |
+28 |         let p_i2: *const i32 = &I2;
+   |                                ^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+28 |         let p_i2: *const i32 = &raw const I2;
+   |                                 +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/external_definitions/external_objs_1/sample_005/target.rs:29:32
+   |
+29 |         let p_i4: *const i32 = &I4;
+   |                                ^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+29 |         let p_i4: *const i32 = &raw const I4;
+   |                                 +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/external_definitions/external_objs_1/sample_005/target.rs:30:32
+   |
+30 |         let p_i5: *const i32 = &I5;
+   |                                ^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+30 |         let p_i5: *const i32 = &raw const I5;
+   |                                 +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/external_definitions/external_objs_1/sample_005/target.rs:32:20
+   |
+32 |         if p_i1 != &I1 {
+   |                    ^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+32 |         if p_i1 != &raw const I1 {
+   |                     +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/external_definitions/external_objs_1/sample_005/target.rs:35:20
+   |
+35 |         if p_i2 != &I2 {
+   |                    ^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+35 |         if p_i2 != &raw const I2 {
+   |                     +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/external_definitions/external_objs_1/sample_005/target.rs:38:20
+   |
+38 |         if p_i4 != &I4 {
+   |                    ^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+38 |         if p_i4 != &raw const I4 {
+   |                     +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/external_definitions/external_objs_1/sample_005/target.rs:41:20
+   |
+41 |         if p_i5 != &I5 {
+   |                    ^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+41 |         if p_i5 != &raw const I5 {
+   |                     +++++++++
+
+error: aborting due to 1 previous error; 8 warnings emitted

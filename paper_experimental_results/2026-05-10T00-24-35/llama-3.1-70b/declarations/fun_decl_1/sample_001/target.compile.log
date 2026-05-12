@@ -1,0 +1,55 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_001/target.rs:3:5
+  |
+3 | /     unsafe {
+4 | |         GSTORE[0] = 111;
+5 | |         GSTORE[0] + 1
+6 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_001/target.rs:11:5
+   |
+11 | /     unsafe {
+12 | |         GSTORE[1] = 222;
+13 | |         GSTORE[1]
+14 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_001/target.rs:19:5
+   |
+19 | /     unsafe {
+20 | |         GSTORE[2] = 333;
+21 | |         GSTORE[2] - 1
+22 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_001/target.rs:27:5
+   |
+27 | /     unsafe {
+28 | |         GSTORE[3] = 444;
+29 | |         GSTORE[3] + 2
+30 | |     }
+   | |_____^
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_001/target.rs:68:8
+   |
+68 |     if pfi == alt0 {
+   |        ^^^^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+   = note: `#[warn(unpredictable_function_pointer_comparisons)]` on by default
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+68 -     if pfi == alt0 {
+68 +     if std::ptr::fn_addr_eq(pfi, alt0 as fn() -> i32) {
+   |
+
+error: aborting due to 4 previous errors; 1 warning emitted

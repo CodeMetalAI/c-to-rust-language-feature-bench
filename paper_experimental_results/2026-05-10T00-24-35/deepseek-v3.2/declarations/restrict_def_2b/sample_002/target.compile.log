@@ -1,0 +1,80 @@
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `1`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_002/target.rs:37:26
+   |
+37 |                 i -=1024 1;
+   |                          ^ expected one of `.`, `;`, `?`, `}`, or an operator
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_002/target.rs:9:13
+   |
+ 9 | /             unsafe {
+10 | |                 *p = *q;
+11 | |             }
+   | |_____________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_002/target.rs:12:17
+   |
+12 |             p = unsafe { p.add(1) };
+   |                 ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_002/target.rs:13:17
+   |
+13 |             q = unsafe { q.add(1) };
+   |                 ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_002/target.rs:29:17
+   |
+29 | /                 unsafe {
+30 | |                     *p.add(i as usize) = *q.add(i as usize);
+31 | |                 }
+   | |_________________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_002/target.rs:54:17
+   |
+54 |         let g = unsafe { GATE };
+   |                 ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_002/target.rs:98:13
+    |
+ 98 | /             unsafe {
+ 99 | |                 *x.add(i as usize) = i * 13 + 5;
+100 | |             }
+    | |_____________^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_002/target.rs:108:13
+    |
+108 | /             unsafe {
+109 | |                 if *x.add(i as usize) != *y.add(i as usize) {
+110 | |                     return 0;
+111 | |                 }
+112 | |             }
+    | |_____________^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_002/target.rs:119:9
+    |
+119 | /         unsafe {
+120 | |             call_f_checked(D.as_ptr(), 100, 50, D.as_mut_ptr().add(50), D.as_ptr());
+121 | |             call_f_checked(D.as_ptr(), 100, 50, D.as_mut_ptr().add(1), D.as_ptr());
+122 | |         }
+    | |_________^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_002/target.rs:127:5
+    |
+127 | /     unsafe {
+128 | |         init(D.as_mut_ptr(), 100);
+129 | |         init(expect.as_mut_ptr(), 100);
+...   |
+139 | |     }
+    | |_____^
+
+error: aborting due to 10 previous errors

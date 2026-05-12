@@ -1,0 +1,144 @@
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_2/sample_003/target.rs:36:14
+   |
+36 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0505]: cannot move out of `a` because it is borrowed
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_2/sample_003/target.rs:41:17
+   |
+37 |     let mut a = T1 { x: 10 };
+   |         ----- binding `a` declared here
+38 |     let b = S1 { x: 20 };
+39 |     let p: &mut S1 = &mut a;
+   |                      ------ borrow of `a` occurs here
+40 |
+41 |     if takes_t1(a) != 11 {
+   |                 ^ move out of `a` occurs here
+...
+57 |     if takes_tp1(p) != 13 {
+   |                  - borrow later used here
+   |
+note: if `S1` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_2/sample_003/target.rs:1:1
+   |
+ 1 | struct S1 {
+   | ^^^^^^^^^ consider implementing `Clone` for this type
+...
+39 |     let p: &mut S1 = &mut a;
+   |                           - you could clone this value
+
+error[E0505]: cannot move out of `a` because it is borrowed
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_2/sample_003/target.rs:45:17
+   |
+37 |     let mut a = T1 { x: 10 };
+   |         ----- binding `a` declared here
+38 |     let b = S1 { x: 20 };
+39 |     let p: &mut S1 = &mut a;
+   |                      ------ borrow of `a` occurs here
+...
+45 |     if takes_s1(a) != 12 {
+   |                 ^ move out of `a` occurs here
+...
+57 |     if takes_tp1(p) != 13 {
+   |                  - borrow later used here
+   |
+note: if `S1` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_2/sample_003/target.rs:1:1
+   |
+ 1 | struct S1 {
+   | ^^^^^^^^^ consider implementing `Clone` for this type
+...
+39 |     let p: &mut S1 = &mut a;
+   |                           - you could clone this value
+
+error[E0382]: use of moved value: `a`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_2/sample_003/target.rs:45:17
+   |
+37 |     let mut a = T1 { x: 10 };
+   |         ----- move occurs because `a` has type `S1`, which does not implement the `Copy` trait
+...
+41 |     if takes_t1(a) != 11 {
+   |                 - value moved here
+...
+45 |     if takes_s1(a) != 12 {
+   |                 ^ value used here after move
+   |
+note: consider changing this parameter type in function `takes_t1` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_2/sample_003/target.rs:15:16
+   |
+15 | fn takes_t1(v: T1) -> i32 {
+   |    --------    ^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `S1` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_2/sample_003/target.rs:1:1
+   |
+ 1 | struct S1 {
+   | ^^^^^^^^^ consider implementing `Clone` for this type
+...
+41 |     if takes_t1(a) != 11 {
+   |                 - you could clone this value
+
+error[E0382]: use of moved value: `b`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_2/sample_003/target.rs:53:17
+   |
+38 |     let b = S1 { x: 20 };
+   |         - move occurs because `b` has type `S1`, which does not implement the `Copy` trait
+...
+49 |     if takes_t1(b) != 21 {
+   |                 - value moved here
+...
+53 |     if takes_s1(b) != 22 {
+   |                 ^ value used here after move
+   |
+note: consider changing this parameter type in function `takes_t1` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_2/sample_003/target.rs:15:16
+   |
+15 | fn takes_t1(v: T1) -> i32 {
+   |    --------    ^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `S1` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_2/sample_003/target.rs:1:1
+   |
+ 1 | struct S1 {
+   | ^^^^^^^^^ consider implementing `Clone` for this type
+...
+49 |     if takes_t1(b) != 21 {
+   |                 - you could clone this value
+
+error[E0382]: use of moved value: `a`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_2/sample_003/target.rs:61:8
+   |
+37 |     let mut a = T1 { x: 10 };
+   |         ----- move occurs because `a` has type `S1`, which does not implement the `Copy` trait
+...
+45 |     if takes_s1(a) != 12 {
+   |                 - value moved here
+...
+61 |     if a.x != 13 {
+   |        ^^^ value used here after move
+   |
+note: consider changing this parameter type in function `takes_s1` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_2/sample_003/target.rs:19:16
+   |
+19 | fn takes_s1(v: S1) -> i32 {
+   |    --------    ^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `S1` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_2/sample_003/target.rs:1:1
+   |
+ 1 | struct S1 {
+   | ^^^^^^^^^ consider implementing `Clone` for this type
+...
+45 |     if takes_s1(a) != 12 {
+   |                 - you could clone this value
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0277, E0382, E0505.
+For more information about an error, try `rustc --explain E0277`.

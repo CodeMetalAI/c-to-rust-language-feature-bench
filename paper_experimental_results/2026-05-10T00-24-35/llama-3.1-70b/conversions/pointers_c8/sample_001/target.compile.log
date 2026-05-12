@@ -1,0 +1,53 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/pointers_c8/sample_001/target.rs:11:37
+   |
+11 |     let p_double2: fn(f64) -> f64 = unsafe { std::mem::transmute(v1) };
+   |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/pointers_c8/sample_001/target.rs:12:34
+   |
+12 |     let p_int2: fn(i32) -> i32 = unsafe { std::mem::transmute(v2) };
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/pointers_c8/sample_001/target.rs:24:34
+   |
+24 |     let p_int3: fn(i32) -> i32 = unsafe { std::mem::transmute(v1b) };
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/pointers_c8/sample_001/target.rs:25:37
+   |
+25 |     let p_double3: fn(f64) -> f64 = unsafe { std::mem::transmute(v2b) };
+   |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&fn(i32) -> i32` as `*const ()` is invalid
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/pointers_c8/sample_001/target.rs:8:25
+  |
+8 |     let v1: *const () = &p_int as *const _;
+  |                         ^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&fn(f64) -> f64` as `*const ()` is invalid
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/pointers_c8/sample_001/target.rs:9:25
+  |
+9 |     let v2: *const () = &p_double as *const _;
+  |                         ^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&fn(f64) -> f64` as `*const ()` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/pointers_c8/sample_001/target.rs:14:26
+   |
+14 |     let v1b: *const () = &p_double2 as *const _;
+   |                          ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&fn(i32) -> i32` as `*const ()` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/pointers_c8/sample_001/target.rs:15:26
+   |
+15 |     let v2b: *const () = &p_int2 as *const _;
+   |                          ^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 8 previous errors
+
+For more information about this error, try `rustc --explain E0606`.

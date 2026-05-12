@@ -1,0 +1,64 @@
+error: cast cannot be followed by indexing
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/add_op_1b/sample_002/target.rs:15:9
+   |
+15 |     if (p as *mut [_][3]; as usize - a as *const [_][3]; as usize) != 1 {
+   |         ^^^^^^^^^^^^^
+   |
+help: try surrounding the expression in parentheses
+   |
+15 |     if ((p as *mut [_])[3]; as usize - a as *const [_][3]; as usize) != 1 {
+   |         +             +
+
+error: expected one of `)`, `,`, `.`, or `?`, found `;`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/add_op_1b/sample_002/target.rs:15:25
+   |
+15 |     if (p as *mut [_][3]; as usize - a as *const [_][3]; as usize) != 1 {
+   |                         ^ expected one of `)`, `,`, `.`, or `?`
+
+error[E0425]: cannot find function `add` in module `std::ptr`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/add_op_1b/sample_002/target.rs:7:23
+  |
+7 |         p = std::ptr::add(p, 1);
+  |                       ^^^ not found in `std::ptr`
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/add_op_1b/sample_002/target.rs:6:5
+  |
+6 | /     unsafe {
+7 | |         p = std::ptr::add(p, 1);
+8 | |         (*p)[2] = 99;
+9 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/add_op_1b/sample_002/target.rs:8:19
+  |
+8 |         (*p)[2] = 99;
+  |         -------   ^^ expected `[{integer}; 3]`, found integer
+  |         |
+  |         expected due to the type of this binding
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/add_op_1b/sample_002/target.rs:12:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+12 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/add_op_1b/sample_002/target.rs:19:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+19 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0308, E0425.
+For more information about an error, try `rustc --explain E0308`.

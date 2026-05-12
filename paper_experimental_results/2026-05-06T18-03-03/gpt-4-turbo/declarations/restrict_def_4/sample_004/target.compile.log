@@ -1,0 +1,15 @@
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_4/sample_004/target.rs:39:19
+   |
+32 |         let (p1, q1) = (&mut x, &y);
+   |                         ------ mutable borrow occurs here
+...
+39 |         if !same(&x[8..24], &expect) {
+   |                   ^ immutable borrow occurs here
+...
+47 |         copy_restrict(8, &mut p1[0..8], &q1[24..32]);
+   |                               -- mutable borrow later used here
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0502`.

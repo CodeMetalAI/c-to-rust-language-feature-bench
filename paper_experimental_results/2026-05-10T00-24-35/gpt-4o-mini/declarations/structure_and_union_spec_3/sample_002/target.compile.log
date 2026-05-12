@@ -1,0 +1,68 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_3/sample_002/target.rs:23:5
+   |
+23 | /     unsafe {
+24 | |         if p.is_null() {
+25 | |             return 3;
+...  |
+37 | |         Box::from_raw(p); // Convert back to Box to free memory
+38 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_3/sample_002/target.rs:9:14
+  |
+9 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+warning: unused variable: `vec`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_3/sample_002/target.rs:20:13
+   |
+20 |     let mut vec = vec![0; 4]; // Create a vector with space for 4 integers
+   |             ^^^ help: if this is intentional, prefix it with an underscore: `_vec`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_3/sample_002/target.rs:20:9
+   |
+20 |     let mut vec = vec![0; 4]; // Create a vector with space for 4 integers
+   |         ----^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_3/sample_002/target.rs:29:25
+   |
+29 |         ptr::write(&mut (*p).a[0] as *mut _ as *mut i32, 11);
+   |                         ^^^^^^^^^ index out of bounds: the length is 0 but the index is 0
+   |
+   = note: `#[deny(unconditional_panic)]` on by default
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_3/sample_002/target.rs:30:25
+   |
+30 |         ptr::write(&mut (*p).a[3] as *mut _ as *mut i32, 22);
+   |                         ^^^^^^^^^ index out of bounds: the length is 0 but the index is 3
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_3/sample_002/target.rs:32:27
+   |
+32 |         if (*p).i != 7 || (*p).a[0] != 11 || (*p).a[3] != 22 {
+   |                           ^^^^^^^^^ index out of bounds: the length is 0 but the index is 0
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_3/sample_002/target.rs:32:46
+   |
+32 |         if (*p).i != 7 || (*p).a[0] != 11 || (*p).a[3] != 22 {
+   |                                              ^^^^^^^^^ index out of bounds: the length is 0 but the index is 3
+
+error: aborting due to 6 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0277`.

@@ -1,0 +1,42 @@
+error: expected identifier, found keyword `struct`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/statements/return_1/sample_002/target.rs:6:5
+  |
+5 | union U {
+  |       - while parsing this union
+6 |     struct {
+  |     ^^^^^^ expected identifier, found keyword
+  |
+help: escape `struct` to use it as an identifier
+  |
+6 |     r#struct {
+  |     ++
+
+error: expected identifier, found `:`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/statements/return_1/sample_002/target.rs:16:29
+   |
+16 | static mut G: U = U { u1: f2: S { i: 0.0 } };
+   |                   -         ^ expected identifier
+   |                   |
+   |                   while parsing this struct
+
+error: unions cannot have zero fields
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/statements/return_1/sample_002/target.rs:5:1
+   |
+ 5 | / union U {
+ 6 | |     struct {
+ 7 | |         f1: i32,
+ 8 | |         f2: S,
+...  |
+13 | |     } u2,
+14 | | }
+   | |_^
+
+error[E0784]: union expressions should have exactly one field
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/statements/return_1/sample_002/target.rs:16:19
+   |
+16 | static mut G: U = U { u1: f2: S { i: 0.0 } };
+   |                   ^
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0784`.

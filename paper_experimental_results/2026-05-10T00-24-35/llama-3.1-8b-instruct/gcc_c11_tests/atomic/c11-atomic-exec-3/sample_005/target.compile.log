@@ -1,0 +1,239 @@
+error[E0433]: failed to resolve: use of undeclared type `AtomicUsize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:18:28
+   |
+18 |                 "usize" => AtomicUsize::new(value as _),
+   |                            ^^^^^^^^^^^ use of undeclared type `AtomicUsize`
+   |
+help: a struct with a similar name exists
+   |
+18 -                 "usize" => AtomicUsize::new(value as _),
+18 +                 "usize" => AtomicIsize::new(value as _),
+   |
+help: consider importing this struct
+   |
+ 1 + use std::sync::atomic::AtomicUsize;
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `AtomicUsize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:20:26
+   |
+20 |                 "u64" => AtomicUsize::new(value as _),
+   |                          ^^^^^^^^^^^ use of undeclared type `AtomicUsize`
+   |
+help: a struct with a similar name exists
+   |
+20 -                 "u64" => AtomicUsize::new(value as _),
+20 +                 "u64" => AtomicIsize::new(value as _),
+   |
+help: consider importing this struct
+   |
+ 1 + use std::sync::atomic::AtomicUsize;
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `AtomicUsize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:22:26
+   |
+22 |                 "u16" => AtomicUsize::new(value as _),
+   |                          ^^^^^^^^^^^ use of undeclared type `AtomicUsize`
+   |
+help: a struct with a similar name exists
+   |
+22 -                 "u16" => AtomicUsize::new(value as _),
+22 +                 "u16" => AtomicIsize::new(value as _),
+   |
+help: consider importing this struct
+   |
+ 1 + use std::sync::atomic::AtomicUsize;
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `AtomicUsize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:24:25
+   |
+24 |                 "u8" => AtomicUsize::new(value as _),
+   |                         ^^^^^^^^^^^ use of undeclared type `AtomicUsize`
+   |
+help: a struct with a similar name exists
+   |
+24 -                 "u8" => AtomicUsize::new(value as _),
+24 +                 "u8" => AtomicIsize::new(value as _),
+   |
+help: consider importing this struct
+   |
+ 1 + use std::sync::atomic::AtomicUsize;
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `AtomicUsize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:26:26
+   |
+26 |                 "u32" => AtomicUsize::new(value as _),
+   |                          ^^^^^^^^^^^ use of undeclared type `AtomicUsize`
+   |
+help: a struct with a similar name exists
+   |
+26 -                 "u32" => AtomicUsize::new(value as _),
+26 +                 "u32" => AtomicIsize::new(value as _),
+   |
+help: consider importing this struct
+   |
+ 1 + use std::sync::atomic::AtomicUsize;
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `AtomicUsize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:28:26
+   |
+28 |                 "u64" => AtomicUsize::new(value as _),
+   |                          ^^^^^^^^^^^ use of undeclared type `AtomicUsize`
+   |
+help: a struct with a similar name exists
+   |
+28 -                 "u64" => AtomicUsize::new(value as _),
+28 +                 "u64" => AtomicIsize::new(value as _),
+   |
+help: consider importing this struct
+   |
+ 1 + use std::sync::atomic::AtomicUsize;
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `AtomicUsize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:30:27
+   |
+30 |                 "u128" => AtomicUsize::new(value as _),
+   |                           ^^^^^^^^^^^ use of undeclared type `AtomicUsize`
+   |
+help: a struct with a similar name exists
+   |
+30 -                 "u128" => AtomicUsize::new(value as _),
+30 +                 "u128" => AtomicIsize::new(value as _),
+   |
+help: consider importing this struct
+   |
+ 1 + use std::sync::atomic::AtomicUsize;
+   |
+
+error[E0405]: cannot find trait `Sync` in module `std::sync::atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:58:57
+   |
+58 | fn test_incdec_ptr<T: Clone + Copy + std::sync::atomic::Sync + std::marker::Copy + std::marker::Sync>(value: T) {
+   |                                                         ^^^^ not found in `std::sync::atomic`
+   |
+help: consider importing this trait
+   |
+ 1 + use std::marker::Sync;
+   |
+help: if you import `Sync`, refer to it directly
+   |
+58 - fn test_incdec_ptr<T: Clone + Copy + std::sync::atomic::Sync + std::marker::Copy + std::marker::Sync>(value: T) {
+58 + fn test_incdec_ptr<T: Clone + Copy + Sync + std::marker::Copy + std::marker::Sync>(value: T) {
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `AtomicPtr`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:61:13
+   |
+61 |     let a = AtomicPtr::new(ptr);
+   |             ^^^^^^^^^ use of undeclared type `AtomicPtr`
+   |
+help: consider importing this struct
+   |
+ 1 + use std::sync::atomic::AtomicPtr;
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `AtomicPtr`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:69:28
+   |
+69 |             "++" | "--" => AtomicPtr::new(ptr),
+   |                            ^^^^^^^^^ use of undeclared type `AtomicPtr`
+   |
+help: consider importing this struct
+   |
+ 1 + use std::sync::atomic::AtomicPtr;
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `AtomicPtr`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:70:18
+   |
+70 |             _ => AtomicPtr::new(ptr),
+   |                  ^^^^^^^^^ use of undeclared type `AtomicPtr`
+   |
+help: consider importing this struct
+   |
+ 1 + use std::sync::atomic::AtomicPtr;
+   |
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:116:16
+    |
+116 |             if unsafe { *ty.offset(change) } != ptr.offset(change) {
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:119:16
+    |
+119 |             if unsafe { *ty.load(*std::ptr::read(unsafe { ptr.offset(change) })) } != ptr.offset(change) {
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:119:50
+    |
+119 |             if unsafe { *ty.load(*std::ptr::read(unsafe { ptr.offset(change) })) } != ptr.offset(change) {
+    |                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:124:16
+    |
+124 |             if unsafe { *ty.offset(change) } != ptr.offset(change) {
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:127:16
+    |
+127 |             if unsafe { *ty.load(*std::ptr::read(unsafe { ptr.offset(change) })) } != ptr.offset(change) {
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:127:50
+    |
+127 |             if unsafe { *ty.load(*std::ptr::read(unsafe { ptr.offset(change) })) } != ptr.offset(change) {
+    |                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0367]: `Drop` impl requires `T: Sync` but the struct it is implemented for does not
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:94:22
+   |
+94 | impl<'a, T: ?Sized + Sync + Send> Drop for RefGuard<'a, T> {
+   |                      ^^^^
+   |
+note: the implementor must specify the same requirement
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:90:1
+   |
+90 | struct RefGuard<'a, T: ?Sized> {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0367]: `Drop` impl requires `T: Send` but the struct it is implemented for does not
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:94:29
+   |
+94 | impl<'a, T: ?Sized + Sync + Send> Drop for RefGuard<'a, T> {
+   |                             ^^^^
+   |
+note: the implementor must specify the same requirement
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:90:1
+   |
+90 | struct RefGuard<'a, T: ?Sized> {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0433]: failed to resolve: use of undeclared type `AtomicF32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:16:26
+   |
+16 |                 "f32" => AtomicF32::new(value as _),
+   |                          ^^^^^^^^^ use of undeclared type `AtomicF32`
+
+error[E0433]: failed to resolve: use of undeclared type `AtomicF64`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:17:26
+   |
+17 |                 "f64" => AtomicF64::new(value as _),
+   |                          ^^^^^^^^^ use of undeclared type `AtomicF64`
+
+error: aborting due to 21 previous errors
+
+Some errors have detailed explanations: E0367, E0405, E0433.
+For more information about an error, try `rustc --explain E0367`.

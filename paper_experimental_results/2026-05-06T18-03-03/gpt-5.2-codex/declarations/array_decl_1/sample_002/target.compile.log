@@ -1,0 +1,35 @@
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/array_decl_1/sample_002/target.rs:133:37
+    |
+133 |         sum_pointed_ints(&vla2, 17, &backing)
+    |         ----------------            ^^^^^^^^ expected `&[f32]`, found `&Ref<'_, [f32; 17]>`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&[f32]`
+               found reference `&Ref<'_, [f32; 17]>`
+note: function defined here
+   --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/array_decl_1/sample_002/target.rs:52:4
+    |
+ 52 | fn sum_pointed_ints(pp: &[usize], n: usize, backing: &[f32]) -> i32 {
+    |    ^^^^^^^^^^^^^^^^                         ---------------
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/array_decl_1/sample_002/target.rs:144:36
+    |
+144 |         takes_params(&vla1, &vla2, &backing)
+    |         ------------               ^^^^^^^^ expected `&[f32]`, found `&Ref<'_, [f32; 17]>`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&[f32]`
+               found reference `&Ref<'_, [f32; 17]>`
+note: function defined here
+   --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/array_decl_1/sample_002/target.rs:63:4
+    |
+ 63 | fn takes_params(a: &[f32], afp2: &[usize], backing: &[f32]) -> i32 {
+    |    ^^^^^^^^^^^^                            ---------------
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

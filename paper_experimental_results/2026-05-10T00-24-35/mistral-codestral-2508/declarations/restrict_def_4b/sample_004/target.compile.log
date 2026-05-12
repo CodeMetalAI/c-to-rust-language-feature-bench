@@ -1,0 +1,62 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_4b/sample_004/target.rs:16:5
+   |
+16 | /     unsafe {
+17 | |         if n == 0 {
+18 | |             return POOL.as_mut_ptr().add(OFF);
+...  |
+31 | |         p
+32 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_4b/sample_004/target.rs:41:5
+   |
+41 | /     unsafe {
+42 | |         for i in 0..n {
+43 | |             *p.add(i as usize) = base + i as f32;
+44 | |         }
+45 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_4b/sample_004/target.rs:49:5
+   |
+49 | /     unsafe {
+50 | |         let mut s = 0.0f32;
+51 | |         for i in 0..n {
+52 | |             s += *p.add(i as usize);
+53 | |         }
+54 | |         s
+55 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_4b/sample_004/target.rs:67:5
+   |
+67 | /     unsafe {
+68 | |         if a.v.is_null() {
+69 | |             std::process::exit(1);
+...  |
+93 | |     }
+   | |_____^
+
+error: invalid suffix `u` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_4b/sample_004/target.rs:90:17
+   |
+90 |         if (H & 1u) == 0u {
+   |                 ^^ invalid suffix `u`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `u` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_4b/sample_004/target.rs:90:24
+   |
+90 |         if (H & 1u) == 0u {
+   |                        ^^ invalid suffix `u`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: aborting due to 6 previous errors

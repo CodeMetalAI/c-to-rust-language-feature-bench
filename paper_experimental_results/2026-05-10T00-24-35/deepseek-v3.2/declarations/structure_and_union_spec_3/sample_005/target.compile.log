@@ -1,0 +1,56 @@
+error: implementation of an `unsafe` method
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_3/sample_005/target.rs:16:5
+   |
+16 | /     unsafe fn new_with_capacity(capacity: usize) -> *mut Self {
+17 | |         // Calculate total size: size of S without the flexible array part + capacity * size of i32
+18 | |         let base_layout = Layout::new::<SInner>();
+19 | |         let array_layout = Layout::array::<i32>(capacity).unwrap();
+...  |
+33 | |         s_ptr
+34 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: implementation of an `unsafe` method
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_3/sample_005/target.rs:36:5
+   |
+36 | /     unsafe fn free(ptr: *mut Self) {
+37 | |         if ptr.is_null() {
+38 | |             return;
+...  |
+46 | |         dealloc(ptr as *mut u8, total_layout);
+47 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_3/sample_005/target.rs:50:9
+   |
+50 |         unsafe { std::slice::from_raw_parts(self.a_ptr, self.a_len) }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_3/sample_005/target.rs:54:9
+   |
+54 |         unsafe { std::slice::from_raw_parts_mut(self.a_ptr, self.a_len) }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_3/sample_005/target.rs:73:13
+   |
+73 |     let p = unsafe { S::new_with_capacity(capacity) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_3/sample_005/target.rs:78:5
+   |
+78 | /     unsafe {
+79 | |         // Set values
+80 | |         (*p).inner.i = 7;
+81 | |         (*p).a_mut()[0] = 11;
+...  |
+91 | |         S::free(p);
+92 | |     }
+   | |_____^
+
+error: aborting due to 6 previous errors

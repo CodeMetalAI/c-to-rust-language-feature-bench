@@ -1,0 +1,75 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/cond_op_c4/sample_003/target.rs:5:9
+  |
+5 | /         unsafe {
+6 | |             G = gval;
+7 | |         }
+  | |_________^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/cond_op_c4/sample_003/target.rs:13:5
+   |
+13 | /     unsafe {
+14 | |         G = 0;
+15 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/cond_op_c4/sample_003/target.rs:17:9
+   |
+17 |         unsafe { G == 1 }
+   |         ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/cond_op_c4/sample_003/target.rs:25:5
+   |
+25 | /     unsafe {
+26 | |         if G != 1 {
+27 | |             std::process::exit(2);
+28 | |         }
+29 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/cond_op_c4/sample_003/target.rs:31:5
+   |
+31 | /     unsafe {
+32 | |         G = 0;
+33 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/cond_op_c4/sample_003/target.rs:38:9
+   |
+38 |         unsafe { G == 1 }
+   |         ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/cond_op_c4/sample_003/target.rs:43:5
+   |
+43 | /     unsafe {
+44 | |         if G != 1 {
+45 | |             std::process::exit(4);
+46 | |         }
+47 | |     }
+   | |_____^
+
+error[E0308]: `if` and `else` have incompatible types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/cond_op_c4/sample_003/target.rs:20:9
+   |
+16 |       x = if set_g_return(1, 1) != 0 {
+   |  _________-
+17 | |         unsafe { G == 1 }
+   | |                  ------ expected because of this
+18 | |     } else {
+19 | |         set_g_return(2, 1);
+20 | |         0
+   | |         ^ expected `bool`, found integer
+21 | |     };
+   | |_____- `if` and `else` have incompatible types
+
+error: aborting due to 8 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

@@ -1,0 +1,101 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_3/sample_003/target.rs:35:14
+   |
+35 |     let nn = unsafe { N } as usize;
+   |              ^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_3/sample_003/target.rs:36:14
+   |
+36 |     let mm = unsafe { M } as usize;
+   |              ^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_3/sample_003/target.rs:63:9
+   |
+63 |         unsafe { GATE = 1 };
+   |         ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_3/sample_003/target.rs:67:9
+   |
+67 |         unsafe { GATE = 2 };
+   |         ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_3/sample_003/target.rs:72:5
+   |
+72 | /     unsafe {
+73 | |         N = 6;
+74 | |         M = N + 1;
+75 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_3/sample_003/target.rs:77:5
+   |
+77 |     unsafe { GATE = 0 };
+   |     ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_3/sample_003/target.rs:80:8
+   |
+80 |     if unsafe { GATE } != 0 {
+   |        ^^^^^^^^^^^^^^^
+
+error[E0369]: cannot add `i32` to `[i32; 7]`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_3/sample_003/target.rs:10:42
+   |
+10 |                 if a[i][j][k] != p[j][k] + i as i32 {
+   |                                  ------- ^ -------- i32
+   |                                  |
+   |                                  [i32; 7]
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_3/sample_003/target.rs:38:34
+   |
+38 |     let mut a: [[[i32; 7]; 6]] = [[[0; 7]; 6]; 6];
+   |                ---------------   ^^^^^^^^^^^^^^^^ expected `[[[i32; 7]; 6]]`, found `[[[i32; 7]; 6]; 6]`
+   |                |
+   |                expected due to this
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_3/sample_003/target.rs:41:39
+   |
+41 |     let mut c: [[[[i32; 7]; 6]; 6]] = [[[[0; 7]; 6]; 6]; 6];
+   |                --------------------   ^^^^^^^^^^^^^^^^^^^^^ expected `[[[[i32; 7]; 6]; 6]]`, found `[[[[i32; 7]; 6]; 6]; 6]`
+   |                |
+   |                expected due to this
+
+error[E0277]: the size for values of type `[[[i32; 7]; 6]]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_3/sample_003/target.rs:38:9
+   |
+38 |     let mut a: [[[i32; 7]; 6]] = [[[0; 7]; 6]; 6];
+   |         ^^^^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[[[i32; 7]; 6]]`
+   = note: all local variables must have a statically known size
+help: consider borrowing here
+   |
+38 |     let mut a: &[[[i32; 7]; 6]] = [[[0; 7]; 6]; 6];
+   |                +
+
+error[E0277]: the size for values of type `[[[[i32; 7]; 6]; 6]]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_3/sample_003/target.rs:41:9
+   |
+41 |     let mut c: [[[[i32; 7]; 6]; 6]] = [[[[0; 7]; 6]; 6]; 6];
+   |         ^^^^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[[[[i32; 7]; 6]; 6]]`
+   = note: all local variables must have a statically known size
+help: consider borrowing here
+   |
+41 |     let mut c: &[[[[i32; 7]; 6]; 6]] = [[[[0; 7]; 6]; 6]; 6];
+   |                +
+
+error: aborting due to 12 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0369.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,62 @@
+error: expected type, found `{`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/statements/return_1/sample_004/target.rs:7:9
+  |
+6 | union U {
+  |       - while parsing this union
+7 |     u1: {
+  |         ^ expected type
+
+error: unions cannot have zero fields
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/statements/return_1/sample_004/target.rs:6:1
+   |
+ 6 | / union U {
+ 7 | |     u1: {
+ 8 | |         f1: i32,
+ 9 | |         f2: S,
+...  |
+14 | |     },
+15 | | }
+   | |_^
+
+error: free static item without body
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/statements/return_1/sample_004/target.rs:17:1
+   |
+17 | static mut G: U;
+   | ^^^^^^^^^^^^^^^-
+   |                |
+   |                help: provide a definition for the static: `= <expr>;`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/statements/return_1/sample_004/target.rs:28:5
+   |
+28 | /     unsafe {
+29 | |         G.u1.f2.i = 1.0;
+30 | |         G.u2.f3.i = 1.0;
+31 | |         G.u1.f2 = f();
+...  |
+39 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/statements/return_1/sample_004/target.rs:35:13
+   |
+27 | fn main() {
+   |          - expected `()` because of default return type
+...
+35 |             0
+   |             ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/statements/return_1/sample_004/target.rs:37:13
+   |
+27 | fn main() {
+   |          - expected `()` because of default return type
+...
+37 |             1
+   |             ^ expected `()`, found integer
+
+error: aborting due to 6 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

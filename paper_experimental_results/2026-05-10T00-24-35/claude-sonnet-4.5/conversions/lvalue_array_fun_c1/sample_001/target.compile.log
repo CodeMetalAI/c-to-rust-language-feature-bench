@@ -1,0 +1,29 @@
+warning: unused variable: `first_byte`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/conversions/lvalue_array_fun_c1/sample_001/target.rs:32:13
+   |
+32 |         let first_byte = bp[0];
+   |             ^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_first_byte`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error[E0499]: cannot borrow `i` as mutable more than once at a time
+ --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/conversions/lvalue_array_fun_c1/sample_001/target.rs:5:16
+  |
+3 |     let p = &mut i;
+  |             ------ first mutable borrow occurs here
+4 |
+5 |     if !ok_mod(&mut i) {
+  |                ^^^^^^ second mutable borrow occurs here
+...
+8 |     if !ok_mod(p) {
+  |                - first borrow later used here
+
+warning: unused variable: `x`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/conversions/lvalue_array_fun_c1/sample_001/target.rs:42:14
+   |
+42 | fn ok_mod<T>(x: &mut T) -> bool {
+   |              ^ help: if this is intentional, prefix it with an underscore: `_x`
+
+error: aborting due to 1 previous error; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0499`.

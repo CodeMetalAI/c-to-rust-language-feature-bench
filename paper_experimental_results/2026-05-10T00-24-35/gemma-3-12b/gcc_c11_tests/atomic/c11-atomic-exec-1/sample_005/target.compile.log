@@ -1,0 +1,61 @@
+error[E0432]: unresolved imports `std::sync::atomic::AtomicF32`, `std::sync::atomic::AtomicF64`
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:1:92
+  |
+1 | use std::sync::atomic::{AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicI128, AtomicBool, AtomicF32, AtomicF64, AtomicPtr};
+  |                                                                                            ^^^^^^^^^  ^^^^^^^^^ no `AtomicF64` in `sync::atomic`
+  |                                                                                            |
+  |                                                                                            no `AtomicF32` in `sync::atomic`
+  |
+help: a similar name exists in the module
+  |
+1 - use std::sync::atomic::{AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicI128, AtomicBool, AtomicF32, AtomicF64, AtomicPtr};
+1 + use std::sync::atomic::{AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicI128, AtomicBool, AtomicI32, AtomicF64, AtomicPtr};
+  |
+help: a similar name exists in the module
+  |
+1 - use std::sync::atomic::{AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicI128, AtomicBool, AtomicF32, AtomicF64, AtomicPtr};
+1 + use std::sync::atomic::{AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicI128, AtomicBool, AtomicF32, AtomicI64, AtomicPtr};
+  |
+
+warning: unused imports: `AtomicI128` and `AtomicPtr`
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:1:68
+  |
+1 | use std::sync::atomic::{AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicI128, AtomicBool, AtomicF32, AtomicF64, AtomicPtr};
+  |                                                                    ^^^^^^^^^^                                    ^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `std::mem`
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:2:5
+  |
+2 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ptr::NonNull as Ptr`
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:8:5
+  |
+8 | use std::ptr::NonNull as Ptr;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: type `s` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:11:8
+   |
+11 | struct s {
+   |        ^ help: convert the identifier to upper camel case (notice the capitalization): `S`
+   |
+   = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error[E0658]: use of unstable library feature `integer_atomics`
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:1:68
+  |
+1 | use std::sync::atomic::{AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicI128, AtomicBool, AtomicF32, AtomicF64, AtomicPtr};
+  |                                                                    ^^^^^^^^^^
+  |
+  = note: see issue #99069 <https://github.com/rust-lang/rust/issues/99069> for more information
+  = help: add `#![feature(integer_atomics)]` to the crate attributes to enable
+  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error: aborting due to 2 previous errors; 4 warnings emitted
+
+Some errors have detailed explanations: E0432, E0658.
+For more information about an error, try `rustc --explain E0432`.

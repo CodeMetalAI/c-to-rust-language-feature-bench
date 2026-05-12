@@ -1,0 +1,32 @@
+warning: type `s_struct` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_2/sample_003/target.rs:29:8
+   |
+29 | struct s_struct {
+   |        ^^^^^^^^ help: convert the identifier to upper camel case: `SStruct`
+   |
+   = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: type `ss_struct` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_2/sample_003/target.rs:34:8
+   |
+34 | struct ss_struct {
+   |        ^^^^^^^^^ help: convert the identifier to upper camel case: `SsStruct`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_2/sample_003/target.rs:40:16
+   |
+38 | fn main() {
+   |          - expected `()` because of default return type
+39 |     if std::mem::size_of::<s_struct>() < std::mem::size_of::<ss_struct>() {
+40 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_2/sample_003/target.rs:53:12
+   |
+53 |         d: [0.0; 5],
+   |            ^^^^^^^^ expected an array with a size of 8, found one with a size of 5
+
+error: aborting due to 2 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0308`.

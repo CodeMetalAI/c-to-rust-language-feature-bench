@@ -1,0 +1,57 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_002/target.rs:12:5
+   |
+12 |     unsafe { G_SEED + x + 1000 }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_002/target.rs:16:5
+   |
+16 |     unsafe { G_SEED + x - 2000 }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_002/target.rs:23:5
+   |
+23 | /     unsafe {
+24 | |         G_SEED = pf(t) + k;
+25 | |         if G_SEED & 1 == 0 {
+26 | |             v0
+...  |
+30 | |     }
+   | |_____^
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_002/target.rs:47:12
+   |
+47 |         if vf == v0 {
+   |            ^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+   = note: `#[warn(unpredictable_function_pointer_comparisons)]` on by default
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+47 -         if vf == v0 {
+47 +         if std::ptr::fn_addr_eq(vf, v0 as for<'a> fn(i32, &'a [i32]) -> i32) {
+   |
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_002/target.rs:70:12
+   |
+70 |         if vf == v0 {
+   |            ^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+70 -         if vf == v0 {
+70 +         if std::ptr::fn_addr_eq(vf, v0 as for<'a> fn(i32, &'a [i32]) -> i32) {
+   |
+
+error: aborting due to 3 previous errors; 2 warnings emitted

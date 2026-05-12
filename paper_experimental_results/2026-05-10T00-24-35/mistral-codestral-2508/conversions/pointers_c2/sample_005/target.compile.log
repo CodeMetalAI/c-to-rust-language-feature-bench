@@ -1,0 +1,18 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c2/sample_005/target.rs:6:24
+  |
+6 |     let pv: &mut i32 = unsafe { &mut *(p as *const i32 as *mut i32) };
+  |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: casting `&T` to `&mut T` is undefined behavior, even if the reference is unused, consider instead using an `UnsafeCell`
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c2/sample_005/target.rs:6:33
+  |
+6 |     let pv: &mut i32 = unsafe { &mut *(p as *const i32 as *mut i32) };
+  |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: for more information, visit <https://doc.rust-lang.org/book/ch15-05-interior-mutability.html>
+  = note: `#[deny(invalid_reference_casting)]` on by default
+
+error: aborting due to 2 previous errors

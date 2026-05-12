@@ -1,0 +1,59 @@
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_005/target.rs:36:24
+   |
+36 |     let raw_ptr = &mut storage.raw as *mut U8;
+   |                        ^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_005/target.rs:40:18
+   |
+40 |     let p = &mut *p_ptr;
+   |                  ^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_005/target.rs:62:13
+   |
+62 |             *data_ptr.wrapping_add(i as usize) = v;
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_005/target.rs:63:13
+   |
+63 |             *data_ptr.wrapping_add(i as usize) += 0;
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_005/target.rs:72:22
+   |
+72 |             p.sum += *data_ptr.wrapping_add(i as usize);
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_005/target.rs:99:24
+   |
+99 |     let raw_ptr = &mut storage.raw as *mut U8;
+   |                        ^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_005/target.rs:103:18
+    |
+103 |     let p = &mut *p_ptr;
+    |                  ^^^^^^ dereference of raw pointer
+    |
+    = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error: aborting due to 7 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

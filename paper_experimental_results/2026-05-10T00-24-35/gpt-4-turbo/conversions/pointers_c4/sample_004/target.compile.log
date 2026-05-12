@@ -1,0 +1,14 @@
+error[E0605]: non-primitive cast: `Option<&i32>` as `*const _`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/pointers_c4/sample_004/target.rs:20:19
+   |
+20 |     if v0 != Some(p0 as *const _ as *const ()) {
+   |                   ^^^^^^^^^^^^^^ invalid cast
+   |
+help: consider borrowing the value
+   |
+20 |     if v0 != Some(&p0 as *const _ as *const ()) {
+   |                   +
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0605`.

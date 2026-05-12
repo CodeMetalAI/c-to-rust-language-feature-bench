@@ -1,0 +1,56 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:7:5
+   |
+ 7 | /     unsafe {
+ 8 | |         *cpp = &c as *const i8;
+ 9 | |         *p = 0 as i8;
+10 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:8:16
+  |
+8 |         *cpp = &c as *const i8;
+  |         ----   ^^^^^^^^^^^^^^^ expected `i8`, found `*const i8`
+  |         |
+  |         expected due to the type of this binding
+  |
+  = note:     expected type `i8`
+          found raw pointer `*const i8`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:13:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+13 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:16:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+16 |     0
+   |     ^ expected `()`, found integer
+
+error[E0606]: casting `&mut *mut i8` as `*const i8` is invalid
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:6:11
+  |
+6 |     cpp = &mut p as *const i8;
+  |           ^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&char` as `*const i8` is invalid
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:8:16
+  |
+8 |         *cpp = &c as *const i8;
+  |                ^^^^^^^^^^^^^^^
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0308, E0606.
+For more information about an error, try `rustc --explain E0308`.

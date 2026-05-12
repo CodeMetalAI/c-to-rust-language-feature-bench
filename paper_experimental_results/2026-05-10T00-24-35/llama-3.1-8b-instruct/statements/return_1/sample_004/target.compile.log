@@ -1,0 +1,31 @@
+error: expected type, found keyword `struct`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/statements/return_1/sample_004/target.rs:6:9
+  |
+5 | union U {
+  |       - while parsing this union
+6 |     u1: struct {
+  |         ^^^^^^ expected type
+
+error: unions cannot have zero fields
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/statements/return_1/sample_004/target.rs:5:1
+   |
+ 5 | / union U {
+ 6 | |     u1: struct {
+ 7 | |         f1: i32,
+ 8 | |         f2: S,
+...  |
+13 | |     },
+14 | | }
+   | |_^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/statements/return_1/sample_004/target.rs:17:5
+   |
+16 | fn f() -> S {
+   |           - expected `S` because of return type
+17 |     U { u1: S { i: 1.0 } }
+   |     ^^^^^^^^^^^^^^^^^^^^^^ expected `S`, found `U`
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

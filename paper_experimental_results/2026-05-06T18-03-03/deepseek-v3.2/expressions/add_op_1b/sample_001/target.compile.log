@@ -1,0 +1,23 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_1b/sample_001/target.rs:16:18
+   |
+16 |     let offset = unsafe { p.as_ptr().offset_from(a.as_ptr()) } as isize;
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0503]: cannot use `a[_][_]` because it was mutably borrowed
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_1b/sample_001/target.rs:11:8
+   |
+ 3 |     let mut p: &mut [[i32; 3]] = &mut a;
+   |                                  ------ `a` is borrowed here
+...
+11 |     if a[1][2] != 99 {
+   |        ^^^^^^^ use of borrowed `a`
+...
+16 |     let offset = unsafe { p.as_ptr().offset_from(a.as_ptr()) } as isize;
+   |                           - borrow later used here
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0503`.

@@ -1,0 +1,47 @@
+use std::os::raw::c_char;
+use std::process::exit;
+
+fn main() {
+    type CChar = c_char;
+
+    let pc: CChar = (-1i16) as CChar;
+    let sc: i8 = -1;
+    let uc: u8 = 255;
+
+    let ipc: i32 = pc as i32;
+    let isc: i32 = sc as i32;
+    let iuc: i32 = uc as i32;
+
+    // TYPE_ID checks always match int promotions in C
+    if 1 != 1 {
+        exit(1);
+    }
+    if 1 != 1 {
+        exit(2);
+    }
+    if 1 != 1 {
+        exit(3);
+    }
+
+    if isc != -1 {
+        exit(4);
+    }
+
+    if (pc as i32) < 0 {
+        if ipc != -1 {
+            exit(5);
+        }
+        if (iuc as u32) != 255u32 {
+            exit(6);
+        }
+    } else {
+        if (ipc as u32) != 255u32 {
+            exit(7);
+        }
+        if (iuc as u32) != 255u32 {
+            exit(8);
+        }
+    }
+
+    exit(0);
+}

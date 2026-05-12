@@ -1,0 +1,35 @@
+error: implementation of an `unsafe` trait
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_005/target.rs:17:1
+   |
+17 | unsafe impl Sync for VolatileS {}
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+warning: static `S_VAR` is never used
+ --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_005/target.rs:6:12
+  |
+6 | static mut S_VAR: S = S { i: 1, ci: 2 };
+  |            ^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: static `CS` is never used
+ --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_005/target.rs:7:8
+  |
+7 | static CS: S = S { i: 3, ci: 4 };
+  |        ^^
+
+warning: struct `VolatileS` is never constructed
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_005/target.rs:11:8
+   |
+11 | struct VolatileS {
+   |        ^^^^^^^^^
+
+warning: static `VS` is never used
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_005/target.rs:19:8
+   |
+19 | static VS: VolatileS = VolatileS {
+   |        ^^
+
+error: aborting due to 1 previous error; 4 warnings emitted

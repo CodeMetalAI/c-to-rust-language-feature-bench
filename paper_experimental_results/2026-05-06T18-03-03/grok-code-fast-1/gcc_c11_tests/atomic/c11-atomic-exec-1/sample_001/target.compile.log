@@ -1,0 +1,110 @@
+error[E0277]: the trait bound `[i16; 1024]: Default` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:23:5
+   |
+21 | #[derive(Clone, Copy, PartialEq, Default)]
+   |                                  ------- in this derive macro expansion
+22 | struct S {
+23 |     a: [i16; 1024],
+   |     ^^^^^^^^^^^^^^ the trait `Default` is not implemented for `[i16; 1024]`
+   |
+   = help: the following other types implement trait `Default`:
+             &[T]
+             &mut [T]
+             [T; 0]
+             [T; 10]
+             [T; 11]
+             [T; 12]
+             [T; 13]
+             [T; 14]
+           and 27 others
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:32:20
+   |
+32 |           let mut a: $t = Default::default();
+   |  ____________________^
+33 | |         let b: $t = $v;
+34 | |         if a != (0 as $t) {
+   | |_____________________^
+...
+51 |       test_simple_assign!(bool, v != 0);
+   |       --------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+34 -         if a != (0 as $t) {
+34 +         if a != (0 != 0 $t) {
+   |
+
+error[E0605]: non-primitive cast: `i32` as `ComplexFloat`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:32:20
+   |
+32 |           let mut a: $t = Default::default();
+   |  ____________________^
+33 | |         let b: $t = $v;
+34 | |         if a != (0 as $t) {
+   | |_____________________^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+...
+66 |       test_simple_assign!(ComplexFloat, ComplexFloat { re: vf as f32, im: 0.0 });
+   |       -------------------------------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0605]: non-primitive cast: `i32` as `ComplexDouble`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:32:20
+   |
+32 |           let mut a: $t = Default::default();
+   |  ____________________^
+33 | |         let b: $t = $v;
+34 | |         if a != (0 as $t) {
+   | |_____________________^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+...
+67 |       test_simple_assign!(ComplexDouble, vc);
+   |       -------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0605]: non-primitive cast: `i32` as `ComplexLongDouble`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:32:20
+   |
+32 |           let mut a: $t = Default::default();
+   |  ____________________^
+33 | |         let b: $t = $v;
+34 | |         if a != (0 as $t) {
+   | |_____________________^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+...
+68 |       test_simple_assign!(ComplexLongDouble, ComplexLongDouble { re: vf, im: 0.0 });
+   |       ----------------------------------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: value assigned to `s1` is never read
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:86:13
+   |
+86 |     let mut s1 = S::default();
+   |             ^^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `s2` is never read
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:87:13
+   |
+87 |     let mut s2 = S::default();
+   |             ^^
+   |
+   = help: maybe it is overwritten before being read?
+
+warning: value assigned to `copy` is never read
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:88:13
+   |
+88 |     let mut copy = S::default();
+   |             ^^^^
+   |
+   = help: maybe it is overwritten before being read?
+
+error: aborting due to 5 previous errors; 3 warnings emitted
+
+Some errors have detailed explanations: E0054, E0277, E0605.
+For more information about an error, try `rustc --explain E0054`.

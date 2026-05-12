@@ -1,0 +1,130 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:34:17
+   |
+34 |     let n_ptr = unsafe { tag_ptr.add(1) };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:35:19
+   |
+35 |     let sum_ptr = unsafe { tag_ptr.add(2) };
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:36:20
+   |
+36 |     let data_ptr = unsafe { tag_ptr.add(3) };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:38:5
+   |
+38 | /     unsafe {
+39 | |         *tag_ptr = 0xA1B2C3D4;
+40 | |         *n_ptr = N as U32;
+41 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:46:24
+   |
+46 |         let expected = unsafe { raw_ptr.add(off) };
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:61:21
+   |
+61 |         let n_val = unsafe { *n_ptr };
+   |                     ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:64:13
+   |
+64 | /             unsafe {
+65 | |                 *data_ptr.add(i as usize) = v;
+66 | |                 *data_ptr.add(i as usize) += 0;
+67 | |             }
+   | |_____________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:73:5
+   |
+73 | /     unsafe {
+74 | |         *sum_ptr = 0;
+75 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:78:21
+   |
+78 |         let n_val = unsafe { *n_ptr };
+   |                     ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:80:13
+   |
+80 | /             unsafe {
+81 | |                 *sum_ptr += *data_ptr.add(i as usize);
+82 | |             }
+   | |_____________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:87:19
+   |
+87 |     let sum_val = unsafe { *sum_ptr };
+   |                   ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:107:17
+    |
+107 |     let n_ptr = unsafe { tag_ptr.add(1) };
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:108:19
+    |
+108 |     let sum_ptr = unsafe { tag_ptr.add(2) };
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:109:20
+    |
+109 |     let data_ptr = unsafe { tag_ptr.add(3) };
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:111:5
+    |
+111 | /     unsafe {
+112 | |         *tag_ptr = 0;
+113 | |         *n_ptr = 0;
+114 | |         *sum_ptr = 0;
+115 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:119:24
+    |
+119 |         let expected = unsafe { raw_ptr.add(off) };
+    |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused variable: `packet_size`
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:30:9
+   |
+30 |     let packet_size = mem::size_of::<Packet>();
+   |         ^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+help: if this is intentional, prefix it with an underscore
+   |
+30 |     let _packet_size = mem::size_of::<Packet>();
+   |         +
+help: you might have meant to pattern match on the similarly named constant `N`
+   |
+30 -     let packet_size = mem::size_of::<Packet>();
+30 +     let test_nonempty_object::N = mem::size_of::<Packet>();
+   |
+
+error: aborting due to 16 previous errors; 1 warning emitted

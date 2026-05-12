@@ -1,0 +1,119 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_1/sample_002/target.rs:17:9
+   |
+17 |         unsafe { &mut u.right }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_1/sample_002/target.rs:19:9
+   |
+19 |         unsafe { &mut u.left }
+   |         ^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_1/sample_002/target.rs:47:13
+   |
+47 |     let a = unsafe { choose_view(&mut BANK_A, which_a) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_1/sample_002/target.rs:48:13
+   |
+48 |     let b = unsafe { choose_view(&mut BANK_B, which_b) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_1/sample_002/target.rs:52:5
+   |
+52 | /     unsafe {
+53 | |         fill(&mut C, 8, 300);
+54 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_1/sample_002/target.rs:58:5
+   |
+58 | /     unsafe {
+59 | |         bump(&mut C, 8, 3);
+60 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_1/sample_002/target.rs:70:5
+   |
+70 | /     unsafe {
+71 | |         if sum(&C, 8) != (303 + 304 + 305 + 306 + 307 + 308 + 309 + 310) {
+72 | |             std::process::exit(3);
+...  |
+86 | |     }
+   | |_____^
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_1/sample_002/target.rs:47:34
+   |
+47 |     let a = unsafe { choose_view(&mut BANK_A, which_a) };
+   |                                  ^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw mut` instead to create a raw pointer
+   |
+47 |     let a = unsafe { choose_view(&raw mut BANK_A, which_a) };
+   |                                   +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_1/sample_002/target.rs:48:34
+   |
+48 |     let b = unsafe { choose_view(&mut BANK_B, which_b) };
+   |                                  ^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+48 |     let b = unsafe { choose_view(&raw mut BANK_B, which_b) };
+   |                                   +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_1/sample_002/target.rs:53:14
+   |
+53 |         fill(&mut C, 8, 300);
+   |              ^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+53 |         fill(&raw mut C, 8, 300);
+   |               +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_1/sample_002/target.rs:59:14
+   |
+59 |         bump(&mut C, 8, 3);
+   |              ^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+59 |         bump(&raw mut C, 8, 3);
+   |               +++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_1/sample_002/target.rs:71:16
+   |
+71 |         if sum(&C, 8) != (303 + 304 + 305 + 306 + 307 + 308 + 309 + 310) {
+   |                ^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+71 |         if sum(&raw const C, 8) != (303 + 304 + 305 + 306 + 307 + 308 + 309 + 310) {
+   |                 +++++++++
+
+error: aborting due to 7 previous errors; 5 warnings emitted

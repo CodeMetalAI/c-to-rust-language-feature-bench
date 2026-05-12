@@ -1,0 +1,125 @@
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c2_a/sample_002/target.rs:7:9
+  |
+7 |     let mut ax: i32 = 11;
+  |         ----^^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c2_a/sample_002/target.rs:24:15
+   |
+24 |         match std::any::TypeId::of::<T>() {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |               |
+   |               the parameter type `T` must be valid for the static lifetime...
+   |               ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+23 |     fn type_id<T: 'static>(_: &T) -> i32 {
+   |                 +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c2_a/sample_002/target.rs:25:51
+   |
+25 |             _ if std::any::TypeId::of::<i32>() == std::any::TypeId::of::<T>() => 1,
+   |                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                                   |
+   |                                                   the parameter type `T` must be valid for the static lifetime...
+   |                                                   ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+23 |     fn type_id<T: 'static>(_: &T) -> i32 {
+   |                 +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c2_a/sample_002/target.rs:26:52
+   |
+26 |             _ if std::any::TypeId::of::<&i32>() == std::any::TypeId::of::<T>() => 2,
+   |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                                    |
+   |                                                    the parameter type `T` must be valid for the static lifetime...
+   |                                                    ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+23 |     fn type_id<T: 'static>(_: &T) -> i32 {
+   |                 +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c2_a/sample_002/target.rs:27:52
+   |
+27 |             _ if std::any::TypeId::of::<&i32>() == std::any::TypeId::of::<T>() => 3,
+   |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                                    |
+   |                                                    the parameter type `T` must be valid for the static lifetime...
+   |                                                    ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+23 |     fn type_id<T: 'static>(_: &T) -> i32 {
+   |                 +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c2_a/sample_002/target.rs:28:51
+   |
+28 |             _ if std::any::TypeId::of::<i32>() == std::any::TypeId::of::<T>() => 4,
+   |                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                                   |
+   |                                                   the parameter type `T` must be valid for the static lifetime...
+   |                                                   ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+23 |     fn type_id<T: 'static>(_: &T) -> i32 {
+   |                 +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c2_a/sample_002/target.rs:29:52
+   |
+29 |             _ if std::any::TypeId::of::<&i32>() == std::any::TypeId::of::<T>() => 5,
+   |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                                    |
+   |                                                    the parameter type `T` must be valid for the static lifetime...
+   |                                                    ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+23 |     fn type_id<T: 'static>(_: &T) -> i32 {
+   |                 +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c2_a/sample_002/target.rs:30:62
+   |
+30 |             _ if std::any::TypeId::of::<fn(i32) -> i32>() == std::any::TypeId::of::<T>() => 6,
+   |                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                                              |
+   |                                                              the parameter type `T` must be valid for the static lifetime...
+   |                                                              ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+23 |     fn type_id<T: 'static>(_: &T) -> i32 {
+   |                 +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c2_a/sample_002/target.rs:31:51
+   |
+31 |             _ if std::any::TypeId::of::<i32>() == std::any::TypeId::of::<T>() => 7,
+   |                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                                   |
+   |                                                   the parameter type `T` must be valid for the static lifetime...
+   |                                                   ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+23 |     fn type_id<T: 'static>(_: &T) -> i32 {
+   |                 +++++++++
+
+error: aborting due to 8 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0310`.

@@ -1,0 +1,103 @@
+warning: type `u8` should have an upper camel case name
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:3:6
+  |
+3 | type u8 = std::ffi::c_uchar;
+  |      ^^ help: convert the identifier to upper camel case (notice the capitalization): `U8`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: type `u32` should have an upper camel case name
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:4:6
+  |
+4 | type u32 = std::ffi::c_uint;
+  |      ^^^ help: convert the identifier to upper camel case (notice the capitalization): `U32`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:40:5
+   |
+40 | /     unsafe {
+41 | |         (*p).tag = 0xA1B2C3D4;
+42 | |         (*p).n = N;
+...  |
+81 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:60:13
+   |
+60 |             unsafe { *data_ptr.add(i as usize) = v };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:62:13
+   |
+62 |             unsafe { *data_ptr.add(i as usize) += 0 };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:70:25
+   |
+70 |             (*p).sum += unsafe { *data_ptr.add(i as usize) };
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:98:5
+    |
+ 98 | /     unsafe {
+ 99 | |         (*p).tag = 0;
+100 | |         (*p).n = 0;
+101 | |         (*p).sum = 0;
+...   |
+115 | |     }
+    | |_____^
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:38:26
+   |
+38 |     let p: *mut Packet = storage.raw.as_mut_ptr() as *mut Packet;
+   |                          ^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:60:13
+   |
+40 |     unsafe {
+   |     ------ because it's nested under this `unsafe` block
+...
+60 |             unsafe { *data_ptr.add(i as usize) = v };
+   |             ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:62:13
+   |
+40 |     unsafe {
+   |     ------ because it's nested under this `unsafe` block
+...
+62 |             unsafe { *data_ptr.add(i as usize) += 0 };
+   |             ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:70:25
+   |
+40 |     unsafe {
+   |     ------ because it's nested under this `unsafe` block
+...
+70 |             (*p).sum += unsafe { *data_ptr.add(i as usize) };
+   |                         ^^^^^^ unnecessary `unsafe` block
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:96:26
+   |
+96 |     let p: *mut Packet = storage.raw.as_mut_ptr() as *mut Packet;
+   |                          ^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: aborting due to 7 previous errors; 5 warnings emitted
+
+For more information about this error, try `rustc --explain E0133`.

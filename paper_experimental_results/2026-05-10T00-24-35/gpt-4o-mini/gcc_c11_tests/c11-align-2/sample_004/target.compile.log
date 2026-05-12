@@ -1,0 +1,35 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_004/target.rs:35:5
+   |
+35 | /     unsafe {
+36 | |         if strcmp(CString::new(S1).unwrap().as_ptr(), CString::new("_Alignas").unwrap().as_ptr()) != 0 {
+37 | |             std::process::abort();
+...  |
+48 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: `std::any::type_name` is not yet stable as a const fn
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_004/target.rs:8:18
+  |
+8 | const S1: &str = std::any::type_name::<AlignAs>();
+  |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+help: add `#![feature(const_type_name)]` to the crate attributes to enable
+  |
+1 + #![feature(const_type_name)]
+  |
+
+error: `std::any::type_name` is not yet stable as a const fn
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_004/target.rs:9:18
+  |
+9 | const S2: &str = std::any::type_name::<AlignOf>();
+  |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+help: add `#![feature(const_type_name)]` to the crate attributes to enable
+  |
+1 + #![feature(const_type_name)]
+  |
+
+error: aborting due to 3 previous errors

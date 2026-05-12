@@ -1,0 +1,92 @@
+{
+  "test_name": "expressions/size_of_1",
+  "llm_name": "GPT-4o",
+  "timestamp": "2026-05-06T18:06:42.483158Z",
+  "duration_seconds": 10.327936417190358,
+  "timeout_error": false,
+  "primary_feature": "expr.unary.sizeof_alignof",
+  "source_compiled": true,
+  "source_compile_errors": null,
+  "source_exit_code": 0,
+  "samples": [
+    {
+      "sample_index": 1,
+      "duration_seconds": 8.355795374838635,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error: usage of an `unsafe` block\n  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/expressions/size_of_1/sample_001/target.rs:16:5\n   |\n16 | /     unsafe {\n17 | |         *dp_ptr = 3.14;\n18 | |         if *dp_ptr != 3.14 {\n19 | |             return 2;\n20 | |         }\n21 | |     }\n   | |_____^\n   |\n   = note: requested on the command line with `-F unsafe-code`\n\nerror[E0277]: `main` has invalid return type `i32`\n --> benchmark_results/2026-05-06T18-03-03/gpt-4o/expressions/size_of_1/sample_001/target.rs:6:14\n  |\n6 | fn main() -> i32 {\n  |              ^^^ `main` can only return types that implement `Termination`\n  |\n  = help: consider using `()`, or a `Result`\n\nerror: aborting due to 2 previous errors\n\nFor more information about this error, try `rustc --explain E0277`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 2,
+      "duration_seconds": 8.956889583030716,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error: usage of an `unsafe` block\n  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/expressions/size_of_1/sample_002/target.rs:16:5\n   |\n16 | /     unsafe {\n17 | |         *dp_ptr = 3.14;\n18 | |         if *dp_ptr != 3.14 {\n19 | |             std::process::exit(2);\n20 | |         }\n21 | |     }\n   | |_____^\n   |\n   = note: requested on the command line with `-F unsafe-code`\n\nerror: aborting due to 1 previous error",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 3,
+      "duration_seconds": 8.392121291952208,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0308]: mismatched types\n --> benchmark_results/2026-05-06T18-03-03/gpt-4o/expressions/size_of_1/sample_003/target.rs:3:9\n  |\n2 |     let dp: Box<f64> = match Box::new(3.14) {\n  |                              -------------- this expression has type `Box<{float}>`\n3 |         Ok(boxed) => boxed,\n  |         ^^^^^^^^^ expected `Box<{float}>`, found `Result<_, _>`\n  |\n  = note: expected struct `Box<{float}>`\n               found enum `Result<_, _>`\n\nerror[E0308]: mismatched types\n --> benchmark_results/2026-05-06T18-03-03/gpt-4o/expressions/size_of_1/sample_003/target.rs:4:9\n  |\n2 |     let dp: Box<f64> = match Box::new(3.14) {\n  |                              -------------- this expression has type `Box<{float}>`\n3 |         Ok(boxed) => boxed,\n4 |         Err(_) => std::process::exit(1),\n  |         ^^^^^^ expected `Box<{float}>`, found `Result<_, _>`\n  |\n  = note: expected struct `Box<{float}>`\n               found enum `Result<_, _>`\n\nerror: aborting due to 2 previous errors\n\nFor more information about this error, try `rustc --explain E0308`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": true,
+      "stub_reasons": [
+        "function definitions dropped from 2 to 1 (threshold=0.75, require>=2)"
+      ],
+      "provider_error": false
+    },
+    {
+      "sample_index": 4,
+      "duration_seconds": 9.039349999977276,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error: usage of an `unsafe` block\n  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/expressions/size_of_1/sample_004/target.rs:9:9\n   |\n 9 | /         unsafe {\n10 | |             *ptr = 3.14;\n11 | |             if *ptr != 3.14 {\n12 | |                 return None;\n13 | |             }\n14 | |         }\n   | |_________^\n   |\n   = note: requested on the command line with `-F unsafe-code`\n\nerror: aborting due to 1 previous error",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 5,
+      "duration_seconds": 9.67173129110597,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error: usage of an `unsafe` block\n  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/expressions/size_of_1/sample_005/target.rs:16:5\n   |\n16 | /     unsafe {\n17 | |         *dp_ptr = 3.14;\n18 | |         if *dp_ptr != 3.14 {\n19 | |             std::process::exit(2);\n20 | |         }\n21 | |     }\n   | |_____^\n   |\n   = note: requested on the command line with `-F unsafe-code`\n\nerror: aborting due to 1 previous error",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    }
+  ],
+  "winning_sample": null,
+  "match": false
+}

@@ -1,0 +1,38 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/lvalue_array_fun_c1/sample_002/target.rs:38:9
+   |
+38 | /         unsafe {
+39 | |             *bp = *bp;
+40 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0506]: cannot assign to `i` because it is borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/lvalue_array_fun_c1/sample_002/target.rs:6:5
+   |
+ 3 |     let p = &mut i;
+   |             ------ `i` is borrowed here
+...
+ 6 |     i = i; // simulate the macro OK_MOD
+   |     ^^^^^ `i` is assigned to here but it was already borrowed
+...
+11 |     *p = *p; // simulate the macro OK_MOD
+   |          -- borrow later used here
+
+error[E0503]: cannot use `i` because it was mutably borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/lvalue_array_fun_c1/sample_002/target.rs:6:9
+   |
+ 3 |     let p = &mut i;
+   |             ------ `i` is borrowed here
+...
+ 6 |     i = i; // simulate the macro OK_MOD
+   |         ^ use of borrowed `i`
+...
+11 |     *p = *p; // simulate the macro OK_MOD
+   |          -- borrow later used here
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0503, E0506.
+For more information about an error, try `rustc --explain E0503`.

@@ -1,0 +1,54 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_001/target.rs:16:5
+   |
+16 | /     unsafe {
+17 | |         if n == 0 {
+18 | |             return Some(&mut POOL[OFF as usize..]);
+...  |
+31 | |         Some(p)
+32 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_001/target.rs:38:17
+   |
+38 |         let v = unsafe { std::slice::from_raw_parts_mut(bytes.as_mut_ptr() as *mut f32, n as usize) };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_001/target.rs:79:5
+   |
+79 | /     unsafe {
+80 | |         if (H & 1) == 0 {
+81 | |             std::process::exit(6);
+82 | |         }
+83 | |     }
+   | |_____^
+
+error[E0596]: cannot borrow `a.v` as mutable, as `a` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_001/target.rs:68:14
+   |
+68 |     fill_vec(&mut a.v, a.n, 1.0);
+   |              ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+61 |     let mut a = new_vector(16).unwrap_or_else(|| std::process::exit(1));
+   |         +++
+
+error[E0596]: cannot borrow `b.v` as mutable, as `b` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_001/target.rs:69:14
+   |
+69 |     fill_vec(&mut b.v, b.n, 100.0);
+   |              ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+62 |     let mut b = new_vector(16).unwrap_or_else(|| std::process::exit(2));
+   |         +++
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0596`.

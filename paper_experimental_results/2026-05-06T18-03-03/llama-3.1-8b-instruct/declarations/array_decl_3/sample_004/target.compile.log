@@ -1,0 +1,267 @@
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:9:46
+  |
+9 | fn check_a(nn: usize, mm: usize, a: &[[[u32; mm]; nn]]) -> bool {
+  |                       --                     ^^
+  |                       |
+  |                       this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:9:51
+  |
+9 | fn check_a(nn: usize, mm: usize, a: &[[[u32; mm]; nn]]) -> bool {
+  |            -- this would need to be a `const`     ^^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:28:47
+   |
+28 | fn check_c(nn: usize, mm: usize, c: &[[[[u32; mm]; nn]; nn]]) -> bool {
+   |                       --                      ^^
+   |                       |
+   |                       this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:28:52
+   |
+28 | fn check_c(nn: usize, mm: usize, c: &[[[[u32; mm]; nn]; nn]]) -> bool {
+   |            -- this would need to be a `const`      ^^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:28:57
+   |
+28 | fn check_c(nn: usize, mm: usize, c: &[[[[u32; mm]; nn]; nn]]) -> bool {
+   |            -- this would need to be a `const`           ^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:81:9
+   |
+81 | /         unsafe {
+82 | |             GATE = 1;
+83 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:88:9
+   |
+88 | /         unsafe {
+89 | |             GATE = 2;
+90 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:98:5
+    |
+ 98 | /     unsafe {
+ 99 | |         GATE = 0;
+100 | |     }
+    | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:55:36
+   |
+55 |     let mut a: [[[u32; M]; N]] = [[0; M]; N];
+   |                                    ^ expected `[u32; 7]`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:55:35
+   |
+55 |     let mut a: [[[u32; M]; N]] = [[0; M]; N];
+   |                                   ^^^^^^ expected an array with a size of 6, found one with a size of 7
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:55:34
+   |
+55 |     let mut a: [[[u32; M]; N]] = [[0; M]; N];
+   |                ---------------   ^^^^^^^^^^^ expected `[[[u32; 7]; 6]]`, found `[[[u32; 7]; 6]; 6]`
+   |                |
+   |                expected due to this
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:56:33
+   |
+56 |     let mut p: &[[u32; M]; N] = &a;
+   |                --------------   ^^ expected `&[[u32; 7]; 6]`, found `&[[[u32; 7]; 6]]`
+   |                |
+   |                expected due to this
+   |
+   = note: expected reference `&[[u32; 7]; 6]`
+              found reference `&[[[u32; 7]; 6]]`
+
+error[E0277]: the size for values of type `[[[u32; 7]; 6]]` cannot be known at compilation time
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:55:9
+   |
+55 |     let mut a: [[[u32; M]; N]] = [[0; M]; N];
+   |         ^^^^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[[[u32; 7]; 6]]`
+   = note: all local variables must have a statically known size
+help: consider borrowing here
+   |
+55 |     let mut a: &[[[u32; M]; N]] = [[0; M]; N];
+   |                +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:58:42
+   |
+58 |     let mut c: [[[[u32; M]; N]; N]] = [[[0; M]; N]; N];
+   |                                          ^ expected `[u32; 7]`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:58:41
+   |
+58 |     let mut c: [[[[u32; M]; N]; N]] = [[[0; M]; N]; N];
+   |                                         ^^^^^^ expected an array with a size of 6, found one with a size of 7
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:58:39
+   |
+58 |     let mut c: [[[[u32; M]; N]; N]] = [[[0; M]; N]; N];
+   |                --------------------   ^^^^^^^^^^^^^^^^ expected `[[[[u32; 7]; 6]; 6]]`, found `[[[[u32; 7]; 6]; 6]; 6]`
+   |                |
+   |                expected due to this
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:59:38
+   |
+59 |     let mut r: &[[[u32; M]; N]; N] = &c;
+   |                -------------------   ^^ expected `&[[[u32; 7]; 6]; 6]`, found `&[[[[u32; 7]; 6]; 6]]`
+   |                |
+   |                expected due to this
+   |
+   = note: expected reference `&[[[u32; 7]; 6]; 6]`
+              found reference `&[[[[u32; 7]; 6]; 6]]`
+
+error[E0277]: the size for values of type `[[[[u32; 7]; 6]; 6]]` cannot be known at compilation time
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:58:9
+   |
+58 |     let mut c: [[[[u32; M]; N]; N]] = [[[0; M]; N]; N];
+   |         ^^^^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[[[[u32; 7]; 6]; 6]]`
+   = note: all local variables must have a statically known size
+help: consider borrowing here
+   |
+58 |     let mut c: &[[[[u32; M]; N]; N]] = [[[0; M]; N]; N];
+   |                +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:64:30
+   |
+64 |                 a[i][j][k] = (i + 1) * 10000 + (j + 1) * 100 + (k + 1);
+   |                 ----------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `u32`, found `usize`
+   |                 |
+   |                 expected due to the type of this binding
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:73:37
+   |
+73 |                     c[i][j][u][v] = (i + 1) * 1000000 + (j + 1) * 10000 + (u + 1) * 100 + (v + 1);
+   |                     -------------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `u32`, found `usize`
+   |                     |
+   |                     expected due to the type of this binding
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:79:9
+   |
+56 |     let mut p: &[[u32; M]; N] = &a;
+   |                -------------- expected due to this type
+...
+79 |     p = &a;
+   |         ^^ expected `&[[u32; 7]; 6]`, found `&[[[u32; 7]; 6]]`
+   |
+   = note: expected reference `&[[u32; 7]; 6]`
+              found reference `&[[[u32; 7]; 6]]`
+
+error[E0061]: this function takes 3 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:80:8
+   |
+80 |     if check_a(n, m, &a, p) {
+   |        ^^^^^^^           - unexpected argument #4 of type `&[[u32; 7]; 6]`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:9:4
+   |
+ 9 | fn check_a(nn: usize, mm: usize, a: &[[[u32; mm]; nn]]) -> bool {
+   |    ^^^^^^^
+help: remove the extra argument
+   |
+80 -     if check_a(n, m, &a, p) {
+80 +     if check_a(n, m, &a) {
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:86:9
+   |
+59 |     let mut r: &[[[u32; M]; N]; N] = &c;
+   |                ------------------- expected due to this type
+...
+86 |     r = &c;
+   |         ^^ expected `&[[[u32; 7]; 6]; 6]`, found `&[[[[u32; 7]; 6]; 6]]`
+   |
+   = note: expected reference `&[[[u32; 7]; 6]; 6]`
+              found reference `&[[[[u32; 7]; 6]; 6]]`
+
+error[E0061]: this function takes 3 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:87:8
+   |
+87 |     if check_c(n, m, &c, r) {
+   |        ^^^^^^^           - unexpected argument #4 of type `&[[[u32; 7]; 6]; 6]`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:28:4
+   |
+28 | fn check_c(nn: usize, mm: usize, c: &[[[[u32; mm]; nn]; nn]]) -> bool {
+   |    ^^^^^^^
+help: remove the extra argument
+   |
+87 -     if check_c(n, m, &c, r) {
+87 +     if check_c(n, m, &c) {
+   |
+
+warning: unused variable: `n`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:95:9
+   |
+95 |     let n = N;
+   |         ^
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+help: if this is intentional, prefix it with an underscore
+   |
+95 |     let _n = N;
+   |         +
+help: you might have meant to pattern match on the similarly named constant `M`
+   |
+95 -     let n = N;
+95 +     let M = N;
+   |
+
+warning: unused variable: `m`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:96:9
+   |
+96 |     let m = N + 1;
+   |         ^
+   |
+help: if this is intentional, prefix it with an underscore
+   |
+96 |     let _m = N + 1;
+   |         +
+help: you might have meant to pattern match on the similarly named constant `M`
+   |
+96 -     let m = N + 1;
+96 +     let M = N + 1;
+   |
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_004/target.rs:103:8
+    |
+103 |     if GATE != 0 {
+    |        ^^^^ use of mutable static
+    |
+    = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 25 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0061, E0133, E0277, E0308, E0435.
+For more information about an error, try `rustc --explain E0061`.

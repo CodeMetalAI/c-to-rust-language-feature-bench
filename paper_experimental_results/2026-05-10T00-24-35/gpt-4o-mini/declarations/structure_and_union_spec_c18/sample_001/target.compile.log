@@ -1,0 +1,33 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_c18/sample_001/target.rs:23:13
+   |
+23 |     let p = unsafe { &mut *(storage.as_mut_ptr() as *mut Packet) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_c18/sample_001/target.rs:61:13
+   |
+61 |     let p = unsafe { &mut *(storage.as_mut_ptr() as *mut Packet) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::add` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_c18/sample_001/target.rs:29:31
+   |
+29 |     let expected: *const u8 = storage.as_ptr().add(offset);
+   |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::add` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_c18/sample_001/target.rs:68:31
+   |
+68 |     let expected: *const u8 = storage.as_ptr().add(offset);
+   |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

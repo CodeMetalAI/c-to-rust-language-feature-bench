@@ -1,0 +1,156 @@
+error: expected one of `.`, `;`, `?`, `else`, or an operator, found `{`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_004/target.rs:14:46
+   |
+14 |             let mut union = union!(f64, u64) {
+   |                                              ^ expected one of `.`, `;`, `?`, `else`, or an operator
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_004/target.rs:10:47
+   |
+10 | fn hash_matrix(n: usize, k: usize, a: &[[f64; k]; n]) -> u64 {
+   |                          -                    ^
+   |                          |
+   |                          this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_004/target.rs:10:51
+   |
+10 | fn hash_matrix(n: usize, k: usize, a: &[[f64; k]; n]) -> u64 {
+   |                - this would need to be a `const`  ^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_004/target.rs:23:49
+   |
+23 | fn addscalar(n: usize, m: usize, a: &mut [[f64; n * m + 300]; n], x: f64) {
+   |              - this would need to be a `const`  ^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_004/target.rs:23:53
+   |
+23 | fn addscalar(n: usize, m: usize, a: &mut [[f64; n * m + 300]; n], x: f64) {
+   |                        -                            ^
+   |                        |
+   |                        this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_004/target.rs:23:63
+   |
+23 | fn addscalar(n: usize, m: usize, a: &mut [[f64; n * m + 300]; n], x: f64) {
+   |              - this would need to be a `const`                ^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_004/target.rs:38:23
+   |
+38 |     let mut b: [[f64; k]; n] = [[0.0; k]; n];
+   |                       ^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+36 -     let mut k = n * m + 300;
+36 +     const k: /* Type */ = n * m + 300;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_004/target.rs:38:27
+   |
+38 |     let mut b: [[f64; k]; n] = [[0.0; k]; n];
+   |                           ^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+33 -     let n = 4;
+33 +     const n: /* Type */ = 4;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_004/target.rs:38:39
+   |
+38 |     let mut b: [[f64; k]; n] = [[0.0; k]; n];
+   |                                       ^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+36 -     let mut k = n * m + 300;
+36 +     const k: /* Type */ = n * m + 300;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_004/target.rs:38:43
+   |
+38 |     let mut b: [[f64; k]; n] = [[0.0; k]; n];
+   |                                           ^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+33 -     let n = 4;
+33 +     const n: /* Type */ = 4;
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_004/target.rs:54:20
+   |
+32 | fn main() {
+   |          - expected `()` because of default return type
+...
+54 |             return 1;
+   |                    ^ expected `()`, found integer
+
+error[E0384]: cannot assign to immutable argument `x`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_004/target.rs:2:5
+  |
+2 |     x ^= x >> 33;
+  |     ^^^^^^^^^^^^ cannot assign to immutable argument
+  |
+help: consider making this binding mutable
+  |
+1 | fn mix_u64(mut x: u64) -> u64 {
+  |            +++
+
+error[E0384]: cannot assign to immutable argument `x`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_004/target.rs:3:5
+  |
+3 |     x *= 0xff51afd7ed558ccd;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^ cannot assign to immutable argument
+  |
+help: consider making this binding mutable
+  |
+1 | fn mix_u64(mut x: u64) -> u64 {
+  |            +++
+
+error[E0384]: cannot assign to immutable argument `x`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_004/target.rs:4:5
+  |
+4 |     x ^= x >> 33;
+  |     ^^^^^^^^^^^^ cannot assign to immutable argument
+  |
+help: consider making this binding mutable
+  |
+1 | fn mix_u64(mut x: u64) -> u64 {
+  |            +++
+
+error[E0384]: cannot assign to immutable argument `x`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_004/target.rs:5:5
+  |
+5 |     x *= 0xc4ceb9fe1a85ec53;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^ cannot assign to immutable argument
+  |
+help: consider making this binding mutable
+  |
+1 | fn mix_u64(mut x: u64) -> u64 {
+  |            +++
+
+error[E0384]: cannot assign to immutable argument `x`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_004/target.rs:6:5
+  |
+6 |     x ^= x >> 33;
+  |     ^^^^^^^^^^^^ cannot assign to immutable argument
+  |
+help: consider making this binding mutable
+  |
+1 | fn mix_u64(mut x: u64) -> u64 {
+  |            +++
+
+error: aborting due to 16 previous errors
+
+Some errors have detailed explanations: E0308, E0384, E0435.
+For more information about an error, try `rustc --explain E0308`.

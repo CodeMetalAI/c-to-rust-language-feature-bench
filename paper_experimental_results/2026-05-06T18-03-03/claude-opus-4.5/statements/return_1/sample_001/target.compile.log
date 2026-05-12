@@ -1,0 +1,35 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/statements/return_1/sample_001/target.rs:27:5
+   |
+27 |     unsafe { G.u1_f2 }
+   |     ^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/statements/return_1/sample_001/target.rs:35:5
+   |
+35 | /     unsafe {
+36 | |         G.u1_f2.i = 1.0;
+37 | |         G.u2_f3.i = 1.0;
+38 | |         G.u1_f2 = f();
+...  |
+42 | |         std::process::exit(result);
+43 | |     }
+   | |_____^
+
+warning: struct `U1` is never constructed
+ --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/statements/return_1/sample_001/target.rs:6:8
+  |
+6 | struct U1 {
+  |        ^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: struct `U2` is never constructed
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/statements/return_1/sample_001/target.rs:11:8
+   |
+11 | struct U2 {
+   |        ^^
+
+error: aborting due to 2 previous errors; 2 warnings emitted

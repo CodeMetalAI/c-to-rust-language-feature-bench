@@ -1,0 +1,120 @@
+use std::mem;
+
+static mut CALLS: i32 = 0;
+
+fn pos(x: i32) -> i32 {
+    unsafe { CALLS += 1; }
+    if x <= 0 {
+        1
+    } else {
+        x
+    }
+}
+
+static FA: [f32; 11] = [0.0; 11];
+static mut AFP: [f32 *; 17] = [std::ptr::null(); 17];
+static BACKING: [f32; 17] = [0.0; 17];
+
+fn init_globals() {
+    let mut i = 0;
+    while i < 11 {
+        unsafe { FA[i] = (i + 1) as f32; }
+        i += 1;
+    }
+    i = 0;
+    while i < 17 {
+        unsafe {
+            BACKING[i] = (100 + i) as f32;
+            AFP[i] = &BACKING[i];
+        }
+        i += 1;
+    }
+}
+
+fn sum_ints_from_float(p: &[f32], n: i32) -> i32 {
+    let mut s = 0;
+    let mut i = 0;
+    while i < n {
+        s += p[i as usize] as i32;
+        i += 1;
+    }
+    s
+}
+
+fn sum_pointed_ints(pp: &mut [f32 *; 17], n: i32) -> i32 {
+    let mut s = 0;
+    let mut i = 0;
+    while i < n {
+        s += unsafe { (*pp[i as usize]) as i32 };
+        i += 1;
+    }
+    s
+}
+
+fn takes_params(a: &[f32; 11], afp2: &mut [f32 *; 17]) -> i32 {
+    let s1 = a[0] as i32 + a[10] as i32;
+    let s2 = unsafe { (*afp2[0]) as i32 } + unsafe { (*afp2[16]) as i32 };
+    s1 + s2
+}
+
+fn main() -> i32 {
+    init_globals();
+
+    unsafe {
+        if FA[0] != 1.0f32 || FA[10] != 11.0f32 {
+            return 1;
+        }
+
+        if (*AFP[0]) as i32 != 100 || (*AFP[16]) as i32 != 116 {
+            return 2;
+        }
+    }
+
+    let n1 = pos(11);
+    let n2 = pos(17);
+
+    let mut vla1: Vec<f32> = vec![0.0; n1 as usize];
+    let mut vla2: Vec<f32 *> = vec![std::ptr::null(); n2 as usize];
+
+    let mut i = 0;
+    while i < n1 {
+        vla1[i as usize] = FA[i] * 2.0f32;
+        i += 1;
+    }
+
+    i = 0;
+    while i < n2 {
+        vla2[i as usize] = AFP[i];
+        i += 1;
+    }
+
+    unsafe {
+        if CALLS != 2 {
+            return 3;
+        }
+
+        let span = {
+            let ptr = vla1.as_ptr();
+            let len = vla1.len();
+            (ptr as usize - (ptr as usize).wrapping_sub(len as usize)) / mem::size_of::<f32>()
+        };
+
+        if span as usize != (n1 - 1) as usize * mem::size_of::<f32>() as usize {
+            return 4;
+        }
+    }
+
+    if sum_ints_from_float(&vla1, n1) != (2 + 4 + 6 + 8 + 10 + 12 + 14 + 16 + 18 + 20 + 22) {
+        return 5;
+    }
+
+    if sum_pointed_ints(&mut vla2, n2) != (100 + 101 + 102 + 103 + 104 + 105 + 106 + 107 + 108 + 109 + 110 + 111 + 112 + 113 + 114 + 115 + 116) {
+        return 6;
+    }
+
+    if takes_params(&vla1, &mut vla2) != ((vla1[0] as i32) + (vla1[10] as i32) + unsafe { (*vla2[0]) as i32 } + unsafe { (*vla2[16]) as i32 }) {
+        return 7;
+    }
+
+    0
+}

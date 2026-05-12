@@ -1,0 +1,32 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_def_1/sample_004/target.rs:33:5
+   |
+33 |     unsafe { G_STORE }
+   |     ^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_def_1/sample_004/target.rs:36:14
+   |
+36 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_def_1/sample_004/target.rs:59:8
+   |
+59 |     if metricp(1) != 7 {
+   |        ^^^^^^^ - unexpected argument of type `{integer}`
+   |
+help: remove the extra argument
+   |
+59 -     if metricp(1) != 7 {
+59 +     if metricp() != 7 {
+   |
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0061, E0277.
+For more information about an error, try `rustc --explain E0061`.

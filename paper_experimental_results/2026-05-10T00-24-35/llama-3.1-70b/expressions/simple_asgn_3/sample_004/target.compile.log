@@ -1,0 +1,46 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/simple_asgn_3/sample_004/target.rs:6:5
+  |
+6 | /     unsafe {
+7 | |         *cpp = &c as *const i8;
+8 | |         *p = 0;
+9 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/simple_asgn_3/sample_004/target.rs:11:8
+   |
+11 |     if unsafe { *cpp.read() }!= b'A' {
+   |        ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/simple_asgn_3/sample_004/target.rs:4:17
+  |
+4 |     let c: i8 = b'A';
+  |            --   ^^^^ expected `i8`, found `u8`
+  |            |
+  |            expected due to this
+  |
+help: you can convert a `u8` to an `i8` and panic if the converted value doesn't fit
+  |
+4 |     let c: i8 = b'A'.try_into().unwrap();
+  |                     ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/simple_asgn_3/sample_004/target.rs:11:33
+   |
+11 |     if unsafe { *cpp.read() }!= b'A' {
+   |        ----------------------   ^^^^ expected `i8`, found `u8`
+   |        |
+   |        expected because this is `i8`
+   |
+help: you can convert a `u8` to an `i8` and panic if the converted value doesn't fit
+   |
+11 |     if unsafe { *cpp.read() }!= b'A'.try_into().unwrap() {
+   |                                     ++++++++++++++++++++
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

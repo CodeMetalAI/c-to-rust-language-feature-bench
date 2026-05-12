@@ -1,0 +1,22 @@
+error[E0369]: binary operation `==` cannot be applied to type `Option<&Box<TNode>>`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/tags_1b/sample_005/target.rs:39:25
+   |
+39 |     if sp.left.as_ref() == sp.right.as_ref() {
+   |        ---------------- ^^ ----------------- Option<&Box<TNode>>
+   |        |
+   |        Option<&Box<TNode>>
+   |
+note: an implementation of `PartialEq` might be missing for `TNode`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/tags_1b/sample_005/target.rs:1:1
+   |
+ 1 | struct TNode {
+   | ^^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `TNode` with `#[derive(PartialEq)]`
+   |
+ 1 + #[derive(PartialEq)]
+ 2 | struct TNode {
+   |
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0369`.

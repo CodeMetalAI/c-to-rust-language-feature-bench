@@ -1,0 +1,47 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c8/sample_001/target.rs:16:37
+   |
+16 |     let p_double2: fn(f64) -> f64 = unsafe { std::mem::transmute(v1) };
+   |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c8/sample_001/target.rs:17:34
+   |
+17 |     let p_int2: fn(i32) -> i32 = unsafe { std::mem::transmute(v2) };
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c8/sample_001/target.rs:29:34
+   |
+29 |     let p_int3: fn(i32) -> i32 = unsafe { std::mem::transmute(v1b) };
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c8/sample_001/target.rs:30:37
+   |
+30 |     let p_double3: fn(f64) -> f64 = unsafe { std::mem::transmute(v2b) };
+   |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c8/sample_001/target.rs:23:16
+   |
+ 9 | fn main() {
+   |          - expected `()` because of default return type
+...
+23 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c8/sample_001/target.rs:39:5
+   |
+ 9 | fn main() {
+   |          - expected `()` because of default return type
+...
+39 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 6 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

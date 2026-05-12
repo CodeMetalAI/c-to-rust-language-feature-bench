@@ -1,0 +1,54 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c3/sample_005/target.rs:13:27
+   |
+13 |       let n2: Option<i32> = unsafe {
+   |  ___________________________^
+14 | |         let ptr = v0 as *mut i32;
+15 | |         Some(*ptr)
+16 | |     };
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c3/sample_005/target.rs:20:39
+   |
+20 |       let nf2: Option<fn(i32) -> i32> = unsafe {
+   |  _______________________________________^
+21 | |         let ptr = vf0 as *mut fn(i32) -> i32;
+22 | |         Some(*ptr)
+23 | |     };
+   | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c3/sample_005/target.rs:26:16
+   |
+ 5 | fn main() {
+   |          - expected `()` because of default return type
+...
+26 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c3/sample_005/target.rs:55:24
+   |
+55 |     let vx: *mut i32 = px;
+   |             --------   ^^ types differ in mutability
+   |             |
+   |             expected due to this
+   |
+   = note: expected raw pointer `*mut i32`
+                found reference `&i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c3/sample_005/target.rs:71:5
+   |
+ 5 | fn main() {
+   |          - expected `()` because of default return type
+...
+71 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

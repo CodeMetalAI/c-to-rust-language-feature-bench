@@ -1,0 +1,53 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c4/sample_003/target.rs:12:35
+   |
+12 |     let mut fp2: fn(i32) -> i32 = unsafe { std::mem::transmute(v0) };
+   |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0593]: closure is expected to take 1 argument, but it takes 0 arguments
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c4/sample_003/target.rs:10:35
+   |
+10 |     let mut fp0: fn(i32) -> i32 = || 0;
+   |                                   ^^
+   |                                   |
+   |                                   expected closure that takes 1 argument
+   |                                   takes 0 arguments
+   |
+help: consider changing the closure to take and ignore the expected argument
+   |
+10 |     let mut fp0: fn(i32) -> i32 = |_| 0;
+   |                                    +
+
+error[E0593]: closure is expected to take 1 argument, but it takes 0 arguments
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c4/sample_003/target.rs:11:35
+   |
+11 |     let mut fp1: fn(i32) -> i32 = || 0;
+   |                                   ^^
+   |                                   |
+   |                                   expected closure that takes 1 argument
+   |                                   takes 0 arguments
+   |
+help: consider changing the closure to take and ignore the expected argument
+   |
+11 |     let mut fp1: fn(i32) -> i32 = |_| 0;
+   |                                    +
+
+error[E0593]: closure is expected to take 1 argument, but it takes 0 arguments
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c4/sample_003/target.rs:34:15
+   |
+34 |     if fp0 != || 0 {
+   |               ^^
+   |               |
+   |               expected closure that takes 1 argument
+   |               takes 0 arguments
+   |
+help: consider changing the closure to take and ignore the expected argument
+   |
+34 |     if fp0 != |_| 0 {
+   |                +
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0593`.

@@ -1,0 +1,121 @@
+warning: unused import: `std::mem`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:2:5
+  |
+2 | use std::mem;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0369]: cannot add `i32` to `[i32; 7]`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:16:42
+   |
+16 |                 if a[i][j][k] != p[j][k] + i as i32 {
+   |                                  ------- ^ -------- i32
+   |                                  |
+   |                                  [i32; 7]
+
+error[E0277]: the size for values of type `[[[i32; 6]; 6]]` cannot be known at compilation time
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:29:60
+   |
+29 | fn check_c(nn: usize, mm: usize, c: [[[i32; N]; N]; N], r: [[[i32; N]; N]]) -> bool {
+   |                                                            ^^^^^^^^^^^^^^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[[[i32; 6]; 6]]`
+   = help: unsized fn params are gated as an unstable feature
+help: function arguments must have a statically known size, borrowed slices always have a known size
+   |
+29 | fn check_c(nn: usize, mm: usize, c: [[[i32; N]; N]; N], r: &[[[i32; N]; N]]) -> bool {
+   |                                                            +
+
+error[E0608]: cannot index into a value of type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:38:34
+   |
+38 |                     if c[i][j][u][v] != r[i][j][u][v] {
+   |                                  ^^^
+
+error[E0608]: cannot index into a value of type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:38:51
+   |
+38 |                     if c[i][j][u][v] != r[i][j][u][v] {
+   |                                                   ^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:65:30
+   |
+65 |                 a[i][j][k] = (i + 1) * 10000 + (j + 1) * 100 + (k + 1);
+   |                 ----------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+   |                 |
+   |                 expected due to the type of this binding
+
+error[E0608]: cannot index into a value of type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:74:31
+   |
+74 |                     c[i][j][u][v] = (i + 1) * 1000000 + (j + 1) * 10000 + (u + 1) * 100 + (v + 1);
+   |                               ^^^
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:86:8
+   |
+86 |     if check_c(nn, mm, &c, r) {
+   |        ^^^^^^^         --  - expected `[[[i32; 6]; 6]]`, found `&[[[i32; 6]; 6]]`
+   |                        |
+   |                        expected `[[[i32; 6]; 6]; 6]`, found `&[[[i32; 6]; 6]; 6]`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:29:4
+   |
+29 | fn check_c(nn: usize, mm: usize, c: [[[i32; N]; N]; N], r: [[[i32; N]; N]]) -> bool {
+   |    ^^^^^^^                       ---------------------  ------------------
+help: consider removing the borrow
+   |
+86 -     if check_c(nn, mm, &c, r) {
+86 +     if check_c(nn, mm, c, r) {
+   |
+
+error[E0277]: the size for values of type `[[[i32; 6]; 6]]` cannot be known at compilation time
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:86:28
+   |
+86 |     if check_c(nn, mm, &c, r) {
+   |                            ^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[[[i32; 6]; 6]]`
+   = note: all function arguments must have a statically known size
+   = help: unsized fn params are gated as an unstable feature
+
+warning: unused variable: `m`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:93:9
+   |
+93 |     let m = n + 1;
+   |         ^
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+help: if this is intentional, prefix it with an underscore
+   |
+93 |     let _m = n + 1;
+   |         +
+help: you might have meant to pattern match on the similarly named constant `M`
+   |
+93 -     let m = n + 1;
+93 +     let M = n + 1;
+   |
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:95:5
+   |
+95 |     GATE = 0;
+   |     ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:98:8
+   |
+98 |     if GATE != 0 {
+   |        ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 10 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0133, E0277, E0308, E0369, E0608.
+For more information about an error, try `rustc --explain E0133`.

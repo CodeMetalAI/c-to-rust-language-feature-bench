@@ -1,0 +1,32 @@
+error[E0308]: arguments to this function are incorrect
+    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_001/target.rs:59:12
+     |
+  22 |     let alt0 = |g: &mut [i32; 4]| {
+     |                ------------------ the found closure
+...
+  59 |         if std::ptr::eq(pfi, alt0) {
+     |            ^^^^^^^^^^^^
+     |
+note: expected `*const _`, found fn pointer
+    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_001/target.rs:59:25
+     |
+  59 |         if std::ptr::eq(pfi, alt0) {
+     |                         ^^^
+     = note: expected raw pointer `*const _`
+                 found fn pointer `for<'a> fn(&'a mut [i32; 4]) -> i32`
+note: expected `*const _`, found closure
+    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_001/target.rs:59:30
+     |
+  59 |         if std::ptr::eq(pfi, alt0) {
+     |                              ^^^^
+     = note: expected raw pointer `*const _`
+                    found closure `{closure@benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_001/target.rs:22:16: 22:34}`
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:2442:8
+     |
+2442 | pub fn eq<T: PointeeSized>(a: *const T, b: *const T) -> bool {
+     |        ^^
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0308`.

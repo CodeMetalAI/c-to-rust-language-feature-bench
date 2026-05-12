@@ -1,0 +1,31 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/external_definitions/external_objs_1/sample_004/target.rs:9:5
+   |
+ 9 | /     unsafe {
+10 | |         let p_i1 = &I1 as *const i32;
+11 | |         let p_i2 = &I2 as *const i32;
+12 | |         let p_i4 = &I4 as *const i32;
+...  |
+60 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/external_definitions/external_objs_1/sample_004/target.rs:8:14
+  |
+8 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+error[E0594]: cannot assign to immutable static item `I2`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/external_definitions/external_objs_1/sample_004/target.rs:44:9
+   |
+44 |         I2 = 20; // Note: I2 is static and should not be modified in safe Rust
+   |         ^^^^^^^ cannot assign
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0277, E0594.
+For more information about an error, try `rustc --explain E0277`.

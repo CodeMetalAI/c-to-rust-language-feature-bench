@@ -1,0 +1,61 @@
+error: expected one of `:` or `|`, found `...`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_names/sample_002/target.rs:66:19
+   |
+66 | fn f_var(x: u32, _...: ()) -> i32 {
+   |                   ^^^ expected one of `:` or `|`
+
+error[E0423]: expected value, found builtin type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_names/sample_002/target.rs:61:33
+   |
+61 | fn use_vla(n: usize, p: &[[i32; usize]]) -> i32 {
+   |                                 ^^^^^ not a value
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_names/sample_002/target.rs:21:27
+   |
+21 |     let pa: &[[i32; 3]] = &g_arr;
+   |             -----------   ^^^^^^ expected `&[[i32; 3]]`, found `&[i32; 3]`
+   |             |
+   |             expected due to this
+   |
+   = note: expected reference `&[[i32; 3]]`
+              found reference `&[i32; 3]`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_names/sample_002/target.rs:34:34
+   |
+34 |       let pf: fn() -> *const i32 = || {
+   |  _____________------------------___^
+   | |             |
+   | |             expected due to this
+35 | |         &g_arr[1]
+36 | |     };
+   | |_____^ expected fn pointer, found closure
+   |
+   = note: expected fn pointer `fn() -> *const i32`
+                 found closure `{closure@benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_names/sample_002/target.rs:34:34: 34:36}`
+note: closures can only be coerced to `fn` types if they do not capture any variables
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_names/sample_002/target.rs:35:10
+   |
+35 |         &g_arr[1]
+   |          ^^^^^ `g_arr` captured here
+
+error[E0045]: C-variadic functions with the "Rust" calling convention are not supported
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_names/sample_002/target.rs:50:15
+   |
+50 |     let af: [&fn(u32, ...) -> i32; 2] = [f_var, f_var];
+   |               ^^^^^^^^^^^^^^^^^^^ C-variadic function must have a compatible calling convention
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_names/sample_002/target.rs:50:42
+   |
+50 |     let af: [&fn(u32, ...) -> i32; 2] = [f_var, f_var];
+   |                                          ^^^^^ expected `&fn(u32, ...) -> i32`, found fn item
+   |
+   = note: expected reference `&fn(u32, ...) -> _`
+                found fn item `fn(u32, {type error}) -> _ {f_var}`
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0045, E0308, E0423.
+For more information about an error, try `rustc --explain E0045`.

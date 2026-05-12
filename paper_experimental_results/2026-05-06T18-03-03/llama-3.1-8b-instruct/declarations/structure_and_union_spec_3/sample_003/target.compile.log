@@ -1,0 +1,62 @@
+error[E0422]: cannot find struct, variant or union type `struct_s` in this scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_003/target.rs:3:26
+  |
+3 |     let mut p = Box::new(struct_s {
+  |                          ^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `struct_s` in this scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_003/target.rs:8:28
+  |
+8 |     if std::mem::size_of::<struct_s>() != 4 {
+  |                            ^^^^^^^^ not found in this scope
+
+error[E0423]: expected function, found macro `std::mem::offset_of`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_003/target.rs:12:8
+   |
+12 |     if std::mem::offset_of::<struct_s, _>(struct_s::i) != 0 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a function
+
+error[E0412]: cannot find type `struct_s` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_003/target.rs:12:30
+   |
+12 |     if std::mem::offset_of::<struct_s, _>(struct_s::i) != 0 {
+   |                              ^^^^^^^^ not found in this scope
+
+error[E0423]: expected function, found macro `std::mem::offset_of`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_003/target.rs:16:8
+   |
+16 |     if std::mem::offset_of::<struct_s, _>(struct_s::a) != std::mem::size_of::<struct_s>() {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a function
+
+error[E0412]: cannot find type `struct_s` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_003/target.rs:16:30
+   |
+16 |     if std::mem::offset_of::<struct_s, _>(struct_s::a) != std::mem::size_of::<struct_s>() {
+   |                              ^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `struct_s` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_003/target.rs:16:79
+   |
+16 |     if std::mem::offset_of::<struct_s, _>(struct_s::a) != std::mem::size_of::<struct_s>() {
+   |                                                                               ^^^^^^^^ not found in this scope
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `struct_s`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_003/target.rs:12:43
+   |
+12 |     if std::mem::offset_of::<struct_s, _>(struct_s::i) != 0 {
+   |                                           ^^^^^^^^ use of unresolved module or unlinked crate `struct_s`
+   |
+   = help: you might be missing a crate named `struct_s`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `struct_s`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_003/target.rs:16:43
+   |
+16 |     if std::mem::offset_of::<struct_s, _>(struct_s::a) != std::mem::size_of::<struct_s>() {
+   |                                           ^^^^^^^^ use of unresolved module or unlinked crate `struct_s`
+   |
+   = help: you might be missing a crate named `struct_s`
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0412, E0422, E0423, E0433.
+For more information about an error, try `rustc --explain E0412`.

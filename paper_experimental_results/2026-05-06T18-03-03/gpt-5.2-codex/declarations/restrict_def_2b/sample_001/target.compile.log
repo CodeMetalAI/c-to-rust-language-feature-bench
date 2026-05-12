@@ -1,0 +1,67 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/restrict_def_2b/sample_001/target.rs:97:36
+   |
+97 |     call_f_checked(100, 50, 50, 0, &mut d);
+   |     --------------                 ^^^^^^ expected `&mut [i32]`, found `&mut MutexGuard<'_, [i32; 100]>`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut [i32]`
+              found mutable reference `&mut std::sync::MutexGuard<'_, [i32; 100]>`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/restrict_def_2b/sample_001/target.rs:68:4
+   |
+68 | fn call_f_checked(n_total: i32, n: i32, p: i32, q: i32, arr: &mut [i32]) {
+   |    ^^^^^^^^^^^^^^                                       ---------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/restrict_def_2b/sample_001/target.rs:98:35
+   |
+98 |     call_f_checked(100, 50, 1, 0, &mut d);
+   |     --------------                ^^^^^^ expected `&mut [i32]`, found `&mut MutexGuard<'_, [i32; 100]>`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut [i32]`
+              found mutable reference `&mut std::sync::MutexGuard<'_, [i32; 100]>`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/restrict_def_2b/sample_001/target.rs:68:4
+   |
+68 | fn call_f_checked(n_total: i32, n: i32, p: i32, q: i32, arr: &mut [i32]) {
+   |    ^^^^^^^^^^^^^^                                       ---------------
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/restrict_def_2b/sample_001/target.rs:104:14
+    |
+104 |         init(&mut d, 100);
+    |         ---- ^^^^^^ expected `&mut [i32]`, found `&mut MutexGuard<'_, [i32; 100]>`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected mutable reference `&mut [i32]`
+               found mutable reference `&mut std::sync::MutexGuard<'_, [i32; 100]>`
+note: function defined here
+   --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/restrict_def_2b/sample_001/target.rs:76:4
+    |
+ 76 | fn init(x: &mut [i32], n: i32) {
+    |    ^^^^ -------------
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/restrict_def_2b/sample_001/target.rs:116:14
+    |
+116 |     if !same(&d, &expect, 100) {
+    |         ---- ^^ expected `&[i32]`, found `&MutexGuard<'_, [i32; 100]>`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&[i32]`
+               found reference `&std::sync::MutexGuard<'_, [i32; 100]>`
+note: function defined here
+   --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/restrict_def_2b/sample_001/target.rs:84:4
+    |
+ 84 | fn same(x: &[i32], y: &[i32], n: i32) -> bool {
+    |    ^^^^ ---------
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

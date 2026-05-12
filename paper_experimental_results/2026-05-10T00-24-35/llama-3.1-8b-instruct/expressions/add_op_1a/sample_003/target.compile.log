@@ -1,0 +1,91 @@
+error: cast cannot be followed by a method call
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_1a/sample_003/target.rs:15:17
+   |
+15 |         let n = p as *mut [usize].offset_from(a.as_mut_ptr());
+   |                 ^^^^^^^^^^^^^^^^^
+   |
+help: try surrounding the expression in parentheses
+   |
+15 |         let n = (p as *mut [usize]).offset_from(a.as_mut_ptr());
+   |                 +                 +
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_1a/sample_003/target.rs:8:5
+   |
+ 8 | /     unsafe {
+ 9 | |         p.add(1).write(99);
+10 | |
+11 | |         if a[1][2]!= 99 {
+...  |
+19 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_1a/sample_003/target.rs:9:24
+     |
+   9 |         p.add(1).write(99);
+     |                  ----- ^^ expected `Vec<{integer}>`, found integer
+     |                  |
+     |                  arguments to this method are incorrect
+     |
+     = note: expected struct `Vec<{integer}>`
+                  found type `{integer}`
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mut_ptr.rs:1457:25
+     |
+1457 |     pub const unsafe fn write(self, val: T)
+     |                         ^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_1a/sample_003/target.rs:12:20
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+12 |             return 1;
+   |                    ^ expected `()`, found integer
+
+error[E0277]: the size for values of type `[usize]` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_1a/sample_003/target.rs:15:35
+    |
+ 15 |         let n = p as *mut [usize].offset_from(a.as_mut_ptr());
+    |                                   ^^^^^^^^^^^ doesn't have a size known at compile-time
+    |
+    = help: the trait `Sized` is not implemented for `[usize]`
+note: required by a bound in `std::ptr::mut_ptr::<impl *mut T>::offset_from`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mut_ptr.rs:843:12
+    |
+841 |     pub const unsafe fn offset_from(self, origin: *const T) -> isize
+    |                         ----------- required by a bound in this associated function
+842 |     where
+843 |         T: Sized,
+    |            ^^^^^ required by this bound in `std::ptr::mut_ptr::<impl *mut T>::offset_from`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_1a/sample_003/target.rs:15:47
+    |
+ 15 |         let n = p as *mut [usize].offset_from(a.as_mut_ptr());
+    |                                   ----------- ^^^^^^^^^^^^^^ expected `*const [usize]`, found `*mut Vec<{integer}>`
+    |                                   |
+    |                                   arguments to this method are incorrect
+    |
+    = note: expected raw pointer `*const [usize]`
+               found raw pointer `*mut Vec<{integer}>`
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mut_ptr.rs:841:25
+    |
+841 |     pub const unsafe fn offset_from(self, origin: *const T) -> isize
+    |                         ^^^^^^^^^^^
+
+error[E0607]: cannot cast thin pointer `*mut Vec<{integer}>` to wide pointer `*mut [usize]`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_1a/sample_003/target.rs:15:17
+   |
+15 |         let n = p as *mut [usize].offset_from(a.as_mut_ptr());
+   |                 ^^^^^^^^^^^^^^^^^
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0607.
+For more information about an error, try `rustc --explain E0277`.

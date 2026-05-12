@@ -1,0 +1,75 @@
+error[E0425]: cannot find value `LOGN` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_005/target.rs:50:8
+   |
+50 |     if LOGN != 5 {
+   |        ^^^^ not found in this scope
+
+error[E0425]: cannot find value `LOGV` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_005/target.rs:54:8
+   |
+54 |     if LOGV[4] != 9 {
+   |        ^^^^ not found in this scope
+
+error[E0425]: cannot find value `LOGV` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_005/target.rs:60:16
+   |
+60 |         counts[LOGV[i]] += 1;
+   |                ^^^^ not found in this scope
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_005/target.rs:6:5
+   |
+ 6 | /     unsafe {
+ 7 | |         if LOGN < 5 {
+ 8 | |             LOGV[LOGN] = id;
+ 9 | |             LOGN += 1;
+10 | |         }
+11 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_005/target.rs:36:8
+   |
+36 |     if !f1() || !f2() || !f3() || !f4() {
+   |        ^^^^^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_005/target.rs:36:17
+   |
+36 |     if !f1() || !f2() || !f3() || !f4() {
+   |                 ^^^^^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_005/target.rs:36:26
+   |
+36 |     if !f1() || !f2() || !f3() || !f4() {
+   |        --------------    ^^^^^ expected `bool`, found `i32`
+   |        |
+   |        expected because this is `bool`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_005/target.rs:36:35
+   |
+36 |     if !f1() || !f2() || !f3() || !f4() {
+   |        -----------------------    ^^^^^ expected `bool`, found `i32`
+   |        |
+   |        expected because this is `bool`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_005/target.rs:68:5
+   |
+42 | fn main() {
+   |          - expected `()` because of default return type
+...
+68 |     Ok(())
+   |     ^^^^^^ expected `()`, found `Result<(), _>`
+   |
+   = note: expected unit type `()`
+                   found enum `Result<(), _>`
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0308, E0425.
+For more information about an error, try `rustc --explain E0308`.

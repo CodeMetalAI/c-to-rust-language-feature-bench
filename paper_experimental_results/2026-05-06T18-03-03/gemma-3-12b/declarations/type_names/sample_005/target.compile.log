@@ -1,0 +1,72 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/type_names/sample_005/target.rs:9:5
+   |
+ 9 | /     unsafe {
+10 | |         if *g_arr.get_unchecked(0) != 1 {
+11 | |             std::process::exit(2);
+12 | |         }
+13 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/type_names/sample_005/target.rs:40:5
+   |
+40 | /     unsafe {
+41 | |         if *pf() != 2 {
+42 | |             std::process::exit(6);
+43 | |         }
+44 | |     }
+   | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/type_names/sample_005/target.rs:53:38
+   |
+53 |     let af: fn(u32, i32, i32, i32) = f_var;
+   |             ----------------------   ^^^^^ expected fn pointer, found fn item
+   |             |
+   |             expected due to this
+   |
+   = note: expected fn pointer `fn(_, _, _, _) -> ()`
+                 found fn item `fn(_, _, _, _) -> i32 {f_var}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/type_names/sample_005/target.rs:54:26
+   |
+54 |     if af(4, 0, 0, 0) != 7 {
+   |        --------------    ^ expected `()`, found integer
+   |        |
+   |        expected because this is `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/type_names/sample_005/target.rs:57:27
+   |
+57 |     if af(10, 1, 2, 3) != 13 {
+   |        ---------------    ^^ expected `()`, found integer
+   |        |
+   |        expected because this is `()`
+
+warning: unused variable: `a`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/type_names/sample_005/target.rs:68:18
+   |
+68 | fn f_var(x: u32, a: i32, b: i32, c: i32) -> i32 {
+   |                  ^ help: if this is intentional, prefix it with an underscore: `_a`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `b`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/type_names/sample_005/target.rs:68:26
+   |
+68 | fn f_var(x: u32, a: i32, b: i32, c: i32) -> i32 {
+   |                          ^ help: if this is intentional, prefix it with an underscore: `_b`
+
+warning: unused variable: `c`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/type_names/sample_005/target.rs:68:34
+   |
+68 | fn f_var(x: u32, a: i32, b: i32, c: i32) -> i32 {
+   |                                  ^ help: if this is intentional, prefix it with an underscore: `_c`
+
+error: aborting due to 5 previous errors; 3 warnings emitted
+
+For more information about this error, try `rustc --explain E0308`.

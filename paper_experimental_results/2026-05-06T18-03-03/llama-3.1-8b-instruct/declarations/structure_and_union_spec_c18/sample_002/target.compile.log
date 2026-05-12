@@ -1,0 +1,76 @@
+error[E0277]: the type `[u32]` cannot be indexed by `u32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_002/target.rs:44:16
+   |
+44 |         p.data[i] = v;
+   |                ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[u32]>` is not implemented for `u32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[u32]` to implement `Index<u32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[u32; 7]` to implement `Index<u32>`
+
+error[E0277]: the type `[u32]` cannot be indexed by `u32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_002/target.rs:45:20
+   |
+45 |         (&*p).data[i] += 0;
+   |                    ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[u32]>` is not implemented for `u32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[u32]` to implement `Index<u32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[u32; 7]` to implement `Index<u32>`
+
+error[E0277]: the type `[u32]` cannot be indexed by `u32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_002/target.rs:50:25
+   |
+50 |         p.sum += p.data[i];
+   |                         ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[u32]>` is not implemented for `u32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[u32]` to implement `Index<u32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[u32; 7]` to implement `Index<u32>`
+
+error[E0606]: casting `&[{integer}]` as `*const u8` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_002/target.rs:35:16
+   |
+35 |     if got1 != expected as *const _ {
+   |                ^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&[{integer}]` as `*const u8` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_002/target.rs:38:16
+   |
+38 |     if got2 != expected as *const _ {
+   |                ^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_002/target.rs:70:15
+   |
+70 |         data: [0; 0],
+   |               ^^^^^^ expected an array with a size of 7, found one with a size of 0
+
+error[E0606]: casting `&[{integer}]` as `*const u8` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_002/target.rs:79:16
+   |
+79 |     if got1 != expected as *const _ {
+   |                ^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&[{integer}]` as `*const u8` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_002/target.rs:82:16
+   |
+82 |     if got2 != expected as *const _ {
+   |                ^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0606.
+For more information about an error, try `rustc --explain E0277`.

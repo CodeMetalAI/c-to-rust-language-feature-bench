@@ -1,0 +1,15 @@
+error[E0503]: cannot use `a[_][_]` because it was mutably borrowed
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/expressions/add_op_1b/sample_005/target.rs:8:8
+   |
+ 4 |     let p = &mut a[1..];
+   |                  - `a` is borrowed here
+...
+ 8 |     if a[1][2] != 99 {
+   |        ^^^^^^^ use of borrowed `a`
+...
+12 |     if p.as_ptr() as usize - a.as_ptr() as usize != 1 * std::mem::size_of::<[i32; 3]>() {
+   |        - borrow later used here
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0503`.

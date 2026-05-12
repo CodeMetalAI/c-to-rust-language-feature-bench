@@ -1,0 +1,27 @@
+struct S {
+    x: i32,
+    y: i32,
+}
+
+fn main() {
+    let np1: *const i32 = std::ptr::null();
+    let np2: *const i32 = std::ptr::null();
+    if np1 != np2 {
+        return 1;
+    }
+
+    let mut s = S { x: 0, y: 0 };
+    let px: *const i32 = &s.x as *const _;
+    if std::ptr::eq(px, &s as *const _) {
+        return 2;
+    }
+
+    let a = [1, 2, 3];
+    let end1 = a.as_ptr().add(a.len());
+    let end2 = a.as_ptr().add(a.len());
+    if end1 != end2 {
+        return 3;
+    }
+
+    return 0;
+}

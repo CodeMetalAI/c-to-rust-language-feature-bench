@@ -1,0 +1,54 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_002/target.rs:13:5
+   |
+13 | /     unsafe {
+14 | |         if n == 0 {
+15 | |             return POOL.as_mut_ptr().add(OFF);
+...  |
+28 | |         p
+29 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_002/target.rs:33:13
+   |
+33 |     let v = unsafe { alloc_bytes((n as usize) * std::mem::size_of::<f32>()) as *mut f32 };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_002/target.rs:34:20
+   |
+34 |     Vector { n, v: unsafe { Vec::from_raw_parts(v, n as usize, n as usize) } }
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_002/target.rs:77:5
+   |
+77 | /     unsafe {
+78 | |         if (H & 1) == 0 {
+79 | |             return 6;
+80 | |         }
+81 | |     }
+   | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_002/target.rs:51:14
+   |
+51 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_002/target.rs:33:13
+   |
+33 |     let v = unsafe { alloc_bytes((n as usize) * std::mem::size_of::<f32>()) as *mut f32 };
+   |             ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 5 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0277`.

@@ -1,0 +1,51 @@
+fn h(n: usize, p: &mut [i32], q: &[i32], r: &[i32]) {
+    for i in 0..n {
+        p[i] = q[i] + r[i];
+    }
+}
+
+fn init_seq(x: &mut [i32], base: i32) {
+    for (i, x_i) in x.iter_mut().enumerate() {
+        *x_i = base + i as i32 * 7 + 1;
+    }
+}
+
+fn check_unchanged(x: &[i32], y: &[i32]) -> bool {
+    x.iter().zip(y.iter()).all(|(a, b)| a == b)
+}
+
+fn check_p_is_double_q(p: &[i32], q: &[i32]) -> bool {
+    p.iter().zip(q.iter()).all(|(a, b)| a == b + b)
+}
+
+fn touch_readonly(x: &[i32]) {
+    let mut sink = 0;
+    for x_i in x {
+        sink ^= x_i + 3;
+    }
+}
+
+fn main() {
+    let mut a = [0; 64];
+    let mut b = [0; 64];
+    let mut b_snapshot = [0; 64];
+
+    init_seq(&mut a, 10);
+    init_seq(&mut b, 100);
+
+    b_snapshot.copy_from_slice(&b);
+
+    touch_readonly(&b);
+
+    h(64, &mut a, &b, &b);
+
+    if !check_p_is_double_q(&a, &b_snapshot) {
+        std::process::exit(1);
+    }
+
+    if !check_unchanged(&b, &b_snapshot) {
+        std::process::exit(2);
+    }
+
+    touch_readonly(&b);
+}

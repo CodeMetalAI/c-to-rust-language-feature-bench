@@ -1,0 +1,31 @@
+error[E0310]: the parameter type `T` may not live long enough
+ --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/conversions/bool_char_int_c3/sample_004/target.rs:5:8
+  |
+5 |     if TypeId::of::<T>() == TypeId::of::<i32>() {
+  |        ^^^^^^^^^^^^^^^^^
+  |        |
+  |        the parameter type `T` must be valid for the static lifetime...
+  |        ...so that the type `T` will meet its required lifetime bounds
+  |
+help: consider adding an explicit lifetime bound
+  |
+4 | fn type_id<T: 'static>(_: &T) -> i32 {
+  |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+ --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/conversions/bool_char_int_c3/sample_004/target.rs:7:15
+  |
+7 |     } else if TypeId::of::<T>() == TypeId::of::<u32>() {
+  |               ^^^^^^^^^^^^^^^^^
+  |               |
+  |               the parameter type `T` must be valid for the static lifetime...
+  |               ...so that the type `T` will meet its required lifetime bounds
+  |
+help: consider adding an explicit lifetime bound
+  |
+4 | fn type_id<T: 'static>(_: &T) -> i32 {
+  |             +++++++++
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0310`.

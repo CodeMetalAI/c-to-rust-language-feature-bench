@@ -1,0 +1,84 @@
+warning: value assigned to `col` is never read
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/enum_specifiers/sample_001/target.rs:45:5
+   |
+45 |     col = Hue::Winedark;
+   |     ^^^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+error[E0507]: cannot move out of `*cp` which is behind a shared reference
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/enum_specifiers/sample_001/target.rs:34:8
+   |
+34 |     if *cp as i32 != Hue::Claret as i32 {
+   |        ^^^ move occurs because `*cp` has type `Hue`, which does not implement the `Copy` trait
+   |
+note: if `Hue` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/enum_specifiers/sample_001/target.rs:1:1
+   |
+ 1 | enum Hue {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+34 |     if *cp as i32 != Hue::Claret as i32 {
+   |        --- you could clone this value
+
+error[E0507]: cannot move out of `*cp` which is behind a shared reference
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/enum_specifiers/sample_001/target.rs:37:8
+   |
+37 |     if *cp as i32 == Hue::Burgundy as i32 {
+   |        ^^^ move occurs because `*cp` has type `Hue`, which does not implement the `Copy` trait
+   |
+note: if `Hue` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/enum_specifiers/sample_001/target.rs:1:1
+   |
+ 1 | enum Hue {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+37 |     if *cp as i32 == Hue::Burgundy as i32 {
+   |        --- you could clone this value
+
+error[E0507]: cannot move out of `*cp` which is behind a shared reference
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/enum_specifiers/sample_001/target.rs:41:19
+   |
+41 |     if check_vals(*cp) != 12 {
+   |                   ^^^ move occurs because `*cp` has type `Hue`, which does not implement the `Copy` trait
+   |
+note: if `Hue` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/enum_specifiers/sample_001/target.rs:1:1
+   |
+ 1 | enum Hue {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+41 |     if check_vals(*cp) != 12 {
+   |                   --- you could clone this value
+
+error[E0506]: cannot assign to `col` because it is borrowed
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/enum_specifiers/sample_001/target.rs:45:5
+   |
+32 |     let cp = &col;
+   |              ---- `col` is borrowed here
+...
+45 |     col = Hue::Winedark;
+   |     ^^^^^^^^^^^^^^^^^^^ `col` is assigned to here but it was already borrowed
+46 |     if check_vals(*cp) != 13 {
+   |                   --- borrow later used here
+
+error[E0507]: cannot move out of `*cp` which is behind a shared reference
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/enum_specifiers/sample_001/target.rs:46:19
+   |
+46 |     if check_vals(*cp) != 13 {
+   |                   ^^^ move occurs because `*cp` has type `Hue`, which does not implement the `Copy` trait
+   |
+note: if `Hue` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/enum_specifiers/sample_001/target.rs:1:1
+   |
+ 1 | enum Hue {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+46 |     if check_vals(*cp) != 13 {
+   |                   --- you could clone this value
+
+error: aborting due to 5 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0506, E0507.
+For more information about an error, try `rustc --explain E0506`.

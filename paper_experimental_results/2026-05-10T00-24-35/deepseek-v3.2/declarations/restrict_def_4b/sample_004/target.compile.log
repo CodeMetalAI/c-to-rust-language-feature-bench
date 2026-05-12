@@ -1,0 +1,54 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_4b/sample_004/target.rs:15:5
+   |
+15 | /     unsafe {
+16 | |         if n == 0 {
+17 | |             return Some(&mut POOL[OFF as usize..OFF as usize]);
+...  |
+31 | |         Some(slice)
+32 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_4b/sample_004/target.rs:42:9
+   |
+42 |         unsafe { Box::from_raw(std::slice::from_raw_parts_mut(ptr, len)) }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_4b/sample_004/target.rs:93:5
+   |
+93 | /     unsafe {
+94 | |         if (H & 1u64) == 0u64 {
+95 | |             std::process::exit(6);
+96 | |         }
+97 | |     }
+   | |_____^
+
+error[E0596]: cannot borrow `a.v` as mutable, as `a` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_4b/sample_004/target.rs:80:14
+   |
+80 |     fill_vec(a.v.as_mut().unwrap(), 1.0f32);
+   |              ^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+63 |     let mut a = new_vector(16);
+   |         +++
+
+error[E0596]: cannot borrow `b.v` as mutable, as `b` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_4b/sample_004/target.rs:81:14
+   |
+81 |     fill_vec(b.v.as_mut().unwrap(), 100.0f32);
+   |              ^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+64 |     let mut b = new_vector(16);
+   |         +++
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0596`.

@@ -1,0 +1,25 @@
+error: this trait cannot be derived for unions
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/initialization_13/sample_002/target.rs:1:10
+  |
+1 | #[derive(Debug)]
+  |          ^^^^^
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/initialization_13/sample_002/target.rs:12:8
+   |
+12 |     if x.any_member != 42 {
+   |        ^^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/initialization_13/sample_002/target.rs:18:12
+   |
+18 |         if y.u_member != 7 {
+   |            ^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

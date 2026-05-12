@@ -1,0 +1,147 @@
+error[E0433]: failed to resolve: could not find `align_of` in `mem`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:62:49
+   |
+62 |     if std::mem::align_of::<i32>() != std::mem::align_of!(i32) {
+   |                                                 ^^^^^^^^ could not find `align_of` in `mem`
+   |
+help: std::mem::align_of is not a macro, but a function, try to remove `!`
+   |
+62 -     if std::mem::align_of::<i32>() != std::mem::align_of!(i32) {
+62 +     if std::mem::align_of::<i32>() != std::mem::align_of(i32) {
+   |
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:9:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+9 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0599]: no method named `type_id` found for array `[{integer}; 3]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:18:10
+    |
+ 18 |     if a.type_id() != 99 {
+    |          ^^^^^^^ method not found in `[{integer}; 3]`
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/any.rs:134:8
+    |
+134 |     fn type_id(&self) -> TypeId;
+    |        ------- the method is available for `[{integer}; 3]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::any::Any;
+    |
+
+error[E0599]: no method named `type_id` found for raw pointer `*const {integer}` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:21:19
+    |
+ 21 |     if a.as_ptr().type_id() != 2 {
+    |                   ^^^^^^^ method not found in `*const {integer}`
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/any.rs:134:8
+    |
+134 |     fn type_id(&self) -> TypeId;
+    |        ------- the method is available for `*const {integer}` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::any::Any;
+    |
+
+error[E0599]: no method named `type_id` found for type `i32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:25:12
+    |
+ 25 |     if &cx.type_id() != 3 {
+    |            ^^^^^^^ method not found in `i32`
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/any.rs:134:8
+    |
+134 |     fn type_id(&self) -> TypeId;
+    |        ------- the method is available for `i32` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::any::Any;
+    |
+
+error[E0599]: no method named `type_id` found for type `i32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:28:11
+    |
+ 28 |     if cx.type_id() != 1 {
+    |           ^^^^^^^ method not found in `i32`
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/any.rs:134:8
+    |
+134 |     fn type_id(&self) -> TypeId;
+    |        ------- the method is available for `i32` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::any::Any;
+    |
+
+error[E0689]: can't call method `type_id` on ambiguous numeric type `{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:35:11
+   |
+35 |     if ax.type_id() != 4 {
+   |           ^^^^^^^
+   |
+help: you must specify a type for this binding, like `i32`
+   |
+ 3 |     let mut ax: i32 = 11;
+   |               +++++
+
+error[E0689]: can't call method `type_id` on ambiguous numeric type `{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:38:12
+   |
+38 |     if &ax.type_id() != 5 {
+   |            ^^^^^^^
+   |
+help: you must specify a type for this binding, like `i32`
+   |
+ 3 |     let mut ax: i32 = 11;
+   |               +++++
+
+error[E0689]: can't call method `type_id` on ambiguous numeric type `{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:41:11
+   |
+41 |     if ax.type_id() != 1 {
+   |           ^^^^^^^
+   |
+help: you must specify a type for this binding, like `i32`
+   |
+ 3 |     let mut ax: i32 = 11;
+   |               +++++
+
+error[E0599]: no method named `type_id` found for fn item `fn(i32) -> i32 {id}` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:49:11
+    |
+ 49 |     if fp.type_id() != 6 {
+    |           ^^^^^^^ method not found in `fn(i32) -> i32 {id}`
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/any.rs:134:8
+    |
+134 |     fn type_id(&self) -> TypeId;
+    |        ------- the method is available for `fn(i32) -> i32 {id}` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: use parentheses to call this function
+    |
+ 49 |     if fp(/* i32 */).type_id() != 6 {
+    |          +++++++++++
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::any::Any;
+    |
+
+error: aborting due to 10 previous errors
+
+Some errors have detailed explanations: E0308, E0433, E0599, E0689.
+For more information about an error, try `rustc --explain E0308`.

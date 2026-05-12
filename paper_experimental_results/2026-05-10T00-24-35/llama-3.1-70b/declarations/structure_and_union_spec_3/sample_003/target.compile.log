@@ -1,0 +1,147 @@
+error[E0603]: struct `Layout` is private
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_003/target.rs:8:28
+  |
+8 |     let layout = std::mem::Layout::new::<S>();
+  |                            ^^^^^^ private struct
+  |
+note: the struct `Layout` is defined here
+ --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:8:5
+  |
+8 | use crate::alloc::Layout;
+  |     ^^^^^^^^^^^^^^^^^^^^
+help: consider importing this struct instead
+  |
+8 -     let layout = std::mem::Layout::new::<S>();
+8 +     let layout = std::alloc::Layout::new::<S>();
+  |
+help: import `Layout` directly
+  |
+8 -     let layout = std::mem::Layout::new::<S>();
+8 +     let layout = core::alloc::layout::Layout();
+  |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_003/target.rs:15:5
+   |
+15 | /     unsafe {
+16 | |         (*p).inner.write(7);
+17 | |         (*p).a.get_unchecked_mut(0).write(11);
+18 | |         (*p).a.get_unchecked_mut(3).write(22);
+19 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_003/target.rs:21:5
+   |
+21 | /     unsafe {
+22 | |         if (*p).inner.assume_init() != 7 || (*p).a.get_unchecked(0) != 11 || (*p).a.get_unchecked(3) != 22 {
+23 | |             return 4;
+24 | |         }
+25 | |     }
+   | |_____^
+
+error[E0277]: the size for values of type `[i32]` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_003/target.rs:8:42
+    |
+  8 |     let layout = std::mem::Layout::new::<S>();
+    |                                          ^ doesn't have a size known at compile-time
+    |
+    = help: within `S`, the trait `Sized` is not implemented for `[i32]`
+note: required because it appears within the type `S`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_003/target.rs:3:12
+    |
+  3 |     struct S {
+    |            ^
+note: required by an implicit `Sized` bound in `Layout::new`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/alloc/layout.rs:170:22
+    |
+170 |     pub const fn new<T>() -> Self {
+    |                      ^ required by the implicit `Sized` requirement on this type parameter in `Layout::new`
+
+error[E0599]: no method named `offset_of` found for struct `Layout` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_003/target.rs:9:15
+  |
+9 |     if layout.offset_of(0).unwrap() != 0 || layout.offset_of(1).unwrap() != std::mem::size_of::<S>() {
+  |               ^^^^^^^^^ method not found in `Layout`
+
+error[E0599]: no method named `offset_of` found for struct `Layout` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_003/target.rs:9:52
+  |
+9 |     if layout.offset_of(0).unwrap() != 0 || layout.offset_of(1).unwrap() != std::mem::size_of::<S>() {
+  |                                                    ^^^^^^^^^ method not found in `Layout`
+
+error[E0277]: the size for values of type `[i32]` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_003/target.rs:9:97
+    |
+  9 |     if layout.offset_of(0).unwrap() != 0 || layout.offset_of(1).unwrap() != std::mem::size_of::<S>() {
+    |                                                                                                 ^ doesn't have a size known at compile-time
+    |
+    = help: within `S`, the trait `Sized` is not implemented for `[i32]`
+note: required because it appears within the type `S`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_003/target.rs:3:12
+    |
+  3 |     struct S {
+    |            ^
+note: required by an implicit `Sized` bound in `std::mem::size_of`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:22
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |                      ^ required by the implicit `Sized` requirement on this type parameter in `size_of`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_003/target.rs:10:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+10 |         return 2;
+   |                ^ expected `()`, found integer
+
+error[E0599]: no method named `write` found for mutable reference `&mut i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_003/target.rs:17:37
+   |
+17 |         (*p).a.get_unchecked_mut(0).write(11);
+   |                                     ^^^^^ method not found in `&mut i32`
+
+error[E0599]: no method named `write` found for mutable reference `&mut i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_003/target.rs:18:37
+   |
+18 |         (*p).a.get_unchecked_mut(3).write(22);
+   |                                     ^^^^^ method not found in `&mut i32`
+
+error[E0277]: can't compare `&i32` with `{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_003/target.rs:22:69
+   |
+22 |         if (*p).inner.assume_init() != 7 || (*p).a.get_unchecked(0) != 11 || (*p).a.get_unchecked(3) != 22 {
+   |                                                                     ^^ no implementation for `&i32 == {integer}`
+   |
+   = help: the trait `PartialEq<{integer}>` is not implemented for `&i32`
+help: consider dereferencing here
+   |
+22 |         if (*p).inner.assume_init() != 7 || *(*p).a.get_unchecked(0) != 11 || (*p).a.get_unchecked(3) != 22 {
+   |                                             +
+
+error[E0277]: can't compare `&i32` with `{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_003/target.rs:22:102
+   |
+22 |         if (*p).inner.assume_init() != 7 || (*p).a.get_unchecked(0) != 11 || (*p).a.get_unchecked(3) != 22 {
+   |                                                                                                      ^^ no implementation for `&i32 == {integer}`
+   |
+   = help: the trait `PartialEq<{integer}>` is not implemented for `&i32`
+help: consider dereferencing here
+   |
+22 |         if (*p).inner.assume_init() != 7 || (*p).a.get_unchecked(0) != 11 || *(*p).a.get_unchecked(3) != 22 {
+   |                                                                              +
+
+error[E0607]: cannot cast thin pointer `*mut u8` to wide pointer `*mut S`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_003/target.rs:14:13
+   |
+14 |     let p = p.as_mut_ptr() as *mut S;
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 13 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0599, E0603, E0607.
+For more information about an error, try `rustc --explain E0277`.

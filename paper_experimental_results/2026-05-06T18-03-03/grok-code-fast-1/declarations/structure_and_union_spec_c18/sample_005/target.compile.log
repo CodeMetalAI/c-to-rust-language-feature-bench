@@ -1,0 +1,150 @@
+warning: type `u8` should have an upper camel case name
+ --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:1:6
+  |
+1 | type u8 = u8;
+  |      ^^ help: convert the identifier to upper camel case (notice the capitalization): `U8`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: type `u32` should have an upper camel case name
+ --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:2:6
+  |
+2 | type u32 = u32;
+  |      ^^^ help: convert the identifier to upper camel case (notice the capitalization): `U32`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:27:22
+   |
+27 |     let storage_u8 = unsafe { std::slice::from_raw_parts_mut(storage.as_mut_ptr() as *mut u8, storage_size) };
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:28:13
+   |
+28 |     let p = unsafe { &mut *(storage_u8.as_mut_ptr() as *mut Packet) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:33:24
+   |
+33 |         let expected = unsafe { storage_u8.as_ptr().add(off) };
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:34:20
+   |
+34 |         let got1 = unsafe { std::ptr::addr_of!((*p).data).cast::<u8>() };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:35:20
+   |
+35 |         let got2 = unsafe { std::ptr::addr_of!((*p).data).cast::<u8>() };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:47:13
+   |
+47 |             unsafe { *p.data.as_mut_ptr().add(i as usize) = v; }
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:48:13
+   |
+48 |             unsafe { *p.data.as_mut_ptr().add(i as usize) += 0; }
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:56:22
+   |
+56 |             p.sum += unsafe { *p.data.as_ptr().add(i as usize) };
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:73:22
+   |
+73 |     let storage_u8 = unsafe { std::slice::from_raw_parts_mut(storage.as_mut_ptr() as *mut u8, storage_size) };
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:74:13
+   |
+74 |     let p = unsafe { &mut *(storage_u8.as_mut_ptr() as *mut Packet) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:80:24
+   |
+80 |         let expected = unsafe { storage_u8.as_ptr().add(off) };
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:81:20
+   |
+81 |         let got1 = unsafe { std::ptr::addr_of!((*p).data).cast::<u8>() };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:82:20
+   |
+82 |         let got2 = unsafe { std::ptr::addr_of!((*p).data).cast::<u8>() };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0391]: cycle detected when expanding type alias `u8`
+ --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:1:11
+  |
+1 | type u8 = u8;
+  |           ^^
+  |
+  = note: ...which immediately requires expanding type alias `u8` again
+  = note: type aliases cannot be recursive
+  = help: consider using a struct, enum, or union instead to break the cycle
+  = help: see <https://doc.rust-lang.org/reference/types.html#recursive-types> for more information
+note: cycle used when checking that `u8` is well-formed
+ --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:1:1
+  |
+1 | type u8 = u8;
+  | ^^^^^^^
+  = note: see https://rustc-dev-guide.rust-lang.org/overview.html#queries and https://rustc-dev-guide.rust-lang.org/query.html for more information
+
+error[E0391]: cycle detected when expanding type alias `u32`
+ --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:2:12
+  |
+2 | type u32 = u32;
+  |            ^^^
+  |
+  = note: ...which immediately requires expanding type alias `u32` again
+  = note: type aliases cannot be recursive
+  = help: consider using a struct, enum, or union instead to break the cycle
+  = help: see <https://doc.rust-lang.org/reference/types.html#recursive-types> for more information
+note: cycle used when checking that `u32` is well-formed
+ --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:2:1
+  |
+2 | type u32 = u32;
+  | ^^^^^^^^
+  = note: see https://rustc-dev-guide.rust-lang.org/overview.html#queries and https://rustc-dev-guide.rust-lang.org/query.html for more information
+
+warning: type annotations needed
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:33:53
+   |
+33 |         let expected = unsafe { storage_u8.as_ptr().add(off) };
+   |                                                     ^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2018!
+   = note: for more information, see issue #46906 <https://github.com/rust-lang/rust/issues/46906>
+   = note: `#[warn(tyvar_behind_raw_pointer)]` (part of `#[warn(rust_2018_compatibility)]`) on by default
+
+warning: type annotations needed
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_005/target.rs:80:53
+   |
+80 |         let expected = unsafe { storage_u8.as_ptr().add(off) };
+   |                                                     ^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2018!
+   = note: for more information, see issue #46906 <https://github.com/rust-lang/rust/issues/46906>
+
+error: aborting due to 15 previous errors; 4 warnings emitted
+
+For more information about this error, try `rustc --explain E0391`.

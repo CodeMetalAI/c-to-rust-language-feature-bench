@@ -1,0 +1,442 @@
+error[E0412]: cannot find type `_Bool` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:13:24
+   |
+13 |         type_id(&(1 as _Bool) + 0),
+   |                        ^^^^^ not found in this scope
+
+warning: variant `E_NEG` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:3:5
+  |
+3 |     E_NEG = -1,
+  |     ^^^^^ help: convert the identifier to upper camel case: `ENeg`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: variant `E_POS` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:4:5
+  |
+4 |     E_POS = 1,
+  |     ^^^^^ help: convert the identifier to upper camel case: `EPos`
+
+error[E0369]: cannot add `{integer}` to `&char`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:19:30
+   |
+19 |         type_id(&(1 as char) + 0),
+   |                 ------------ ^ - {integer}
+   |                 |
+   |                 &char
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:25:17
+    |
+ 25 |         type_id(&(1 as i8) + 0),
+    |         ------- ^^^^^^^^^^^^^^ expected `&_`, found `i8`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&_`
+                    found type `i8`
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:103:4
+    |
+103 | fn type_id<T>(_: &T) -> i32 {
+    |    ^^^^^^^    -----
+help: consider borrowing here
+    |
+ 25 |         type_id(&(&(1 as i8) + 0)),
+    |                 ++              +
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:31:17
+    |
+ 31 |         type_id(&(1 as u8) + 0),
+    |         ------- ^^^^^^^^^^^^^^ expected `&_`, found `u8`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&_`
+                    found type `u8`
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:103:4
+    |
+103 | fn type_id<T>(_: &T) -> i32 {
+    |    ^^^^^^^    -----
+help: consider borrowing here
+    |
+ 31 |         type_id(&(&(1 as u8) + 0)),
+    |                 ++              +
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:37:17
+    |
+ 37 |         type_id(&(1 as i16) + 0),
+    |         ------- ^^^^^^^^^^^^^^^ expected `&_`, found `i16`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&_`
+                    found type `i16`
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:103:4
+    |
+103 | fn type_id<T>(_: &T) -> i32 {
+    |    ^^^^^^^    -----
+help: consider borrowing here
+    |
+ 37 |         type_id(&(&(1 as i16) + 0)),
+    |                 ++               +
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:43:17
+    |
+ 43 |         type_id(&(1 as u16) + 0),
+    |         ------- ^^^^^^^^^^^^^^^ expected `&_`, found `u16`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&_`
+                    found type `u16`
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:103:4
+    |
+103 | fn type_id<T>(_: &T) -> i32 {
+    |    ^^^^^^^    -----
+help: consider borrowing here
+    |
+ 43 |         type_id(&(&(1 as u16) + 0)),
+    |                 ++               +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:50:28
+   |
+50 |         type_id(0 as i32 + 0 as u32),
+   |                            ^^^^^^^^ expected `i32`, found `u32`
+
+error[E0277]: cannot add `u32` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:50:26
+   |
+50 |         type_id(0 as i32 + 0 as u32),
+   |                          ^ no implementation for `i32 + u32`
+   |
+   = help: the trait `Add<u32>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:50:17
+    |
+ 50 |         type_id(0 as i32 + 0 as u32),
+    |         ------- ^^^^^^^^^^^^^^^^^^^ expected `&_`, found `i32`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&_`
+                    found type `i32`
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:103:4
+    |
+103 | fn type_id<T>(_: &T) -> i32 {
+    |    ^^^^^^^    -----
+help: consider borrowing here
+    |
+ 50 |         type_id(&(0 as i32 + 0 as u32)),
+    |                 ++                   +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:56:28
+   |
+56 |         type_id(0 as i64 + 0 as u64),
+   |                            ^^^^^^^^ expected `i64`, found `u64`
+
+error[E0277]: cannot add `u64` to `i64`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:56:26
+   |
+56 |         type_id(0 as i64 + 0 as u64),
+   |                          ^ no implementation for `i64 + u64`
+   |
+   = help: the trait `Add<u64>` is not implemented for `i64`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i64` implements `Add<i64>`
+             `&i64` implements `Add`
+             `i64` implements `Add<&i64>`
+             `i64` implements `Add`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:56:17
+    |
+ 56 |         type_id(0 as i64 + 0 as u64),
+    |         ------- ^^^^^^^^^^^^^^^^^^^ expected `&_`, found `i64`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&_`
+                    found type `i64`
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:103:4
+    |
+103 | fn type_id<T>(_: &T) -> i32 {
+    |    ^^^^^^^    -----
+help: consider borrowing here
+    |
+ 56 |         type_id(&(0 as i64 + 0 as u64)),
+    |                 ++                   +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:62:29
+   |
+62 |         type_id(0 as i128 + 0 as u128),
+   |                             ^^^^^^^^^ expected `i128`, found `u128`
+
+error[E0277]: cannot add `u128` to `i128`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:62:27
+   |
+62 |         type_id(0 as i128 + 0 as u128),
+   |                           ^ no implementation for `i128 + u128`
+   |
+   = help: the trait `Add<u128>` is not implemented for `i128`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i128` implements `Add<i128>`
+             `&i128` implements `Add`
+             `i128` implements `Add<&i128>`
+             `i128` implements `Add`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:62:17
+    |
+ 62 |         type_id(0 as i128 + 0 as u128),
+    |         ------- ^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `i128`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&_`
+                    found type `i128`
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:103:4
+    |
+103 | fn type_id<T>(_: &T) -> i32 {
+    |    ^^^^^^^    -----
+help: consider borrowing here
+    |
+ 62 |         type_id(&(0 as i128 + 0 as u128)),
+    |                 ++                     +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:69:28
+   |
+69 |         type_id(0 as i32 + 0 as i64),
+   |                            ^^^^^^^^ expected `i32`, found `i64`
+
+error[E0277]: cannot add `i64` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:69:26
+   |
+69 |         type_id(0 as i32 + 0 as i64),
+   |                          ^ no implementation for `i32 + i64`
+   |
+   = help: the trait `Add<i64>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:69:17
+    |
+ 69 |         type_id(0 as i32 + 0 as i64),
+    |         ------- ^^^^^^^^^^^^^^^^^^^ expected `&_`, found `i32`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&_`
+                    found type `i32`
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:103:4
+    |
+103 | fn type_id<T>(_: &T) -> i32 {
+    |    ^^^^^^^    -----
+help: consider borrowing here
+    |
+ 69 |         type_id(&(0 as i32 + 0 as i64)),
+    |                 ++                   +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:75:28
+   |
+75 |         type_id(0 as i64 + 0 as i128),
+   |                            ^^^^^^^^^ expected `i64`, found `i128`
+
+error[E0277]: cannot add `i128` to `i64`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:75:26
+   |
+75 |         type_id(0 as i64 + 0 as i128),
+   |                          ^ no implementation for `i64 + i128`
+   |
+   = help: the trait `Add<i128>` is not implemented for `i64`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i64` implements `Add<i64>`
+             `&i64` implements `Add`
+             `i64` implements `Add<&i64>`
+             `i64` implements `Add`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:75:17
+    |
+ 75 |         type_id(0 as i64 + 0 as i128),
+    |         ------- ^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `i64`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&_`
+                    found type `i64`
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:103:4
+    |
+103 | fn type_id<T>(_: &T) -> i32 {
+    |    ^^^^^^^    -----
+help: consider borrowing here
+    |
+ 75 |         type_id(&(0 as i64 + 0 as i128)),
+    |                 ++                    +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:81:28
+   |
+81 |         type_id(0 as i32 + 0 as i128),
+   |                            ^^^^^^^^^ expected `i32`, found `i128`
+
+error[E0277]: cannot add `i128` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:81:26
+   |
+81 |         type_id(0 as i32 + 0 as i128),
+   |                          ^ no implementation for `i32 + i128`
+   |
+   = help: the trait `Add<i128>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:81:17
+    |
+ 81 |         type_id(0 as i32 + 0 as i128),
+    |         ------- ^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `i32`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&_`
+                    found type `i32`
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:103:4
+    |
+103 | fn type_id<T>(_: &T) -> i32 {
+    |    ^^^^^^^    -----
+help: consider borrowing here
+    |
+ 81 |         type_id(&(0 as i32 + 0 as i128)),
+    |                 ++                    +
+
+error[E0369]: cannot add `u32` to `&E`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:88:27
+   |
+88 |         type_id(&(0 as E) + 0u32),
+   |                 --------- ^ ---- u32
+   |                 |
+   |                 &E
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:89:28
+   |
+89 |         type_id(0 as i32 + 0u32),
+   |                            ^^^^ expected `i32`, found `u32`
+
+error[E0277]: cannot add `u32` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:89:26
+   |
+89 |         type_id(0 as i32 + 0u32),
+   |                          ^ no implementation for `i32 + u32`
+   |
+   = help: the trait `Add<u32>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:89:17
+    |
+ 89 |         type_id(0 as i32 + 0u32),
+    |         ------- ^^^^^^^^^^^^^^^ expected `&_`, found `i32`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&_`
+                    found type `i32`
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:103:4
+    |
+103 | fn type_id<T>(_: &T) -> i32 {
+    |    ^^^^^^^    -----
+help: consider borrowing here
+    |
+ 89 |         type_id(&(0 as i32 + 0u32)),
+    |                 ++               +
+
+error[E0369]: cannot add `{integer}` to `&E`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:94:27
+   |
+94 |         type_id(&(0 as E) + 0),
+   |                 --------- ^ - {integer}
+   |                 |
+   |                 &E
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:95:17
+    |
+ 95 |         type_id(0 as i32 + 0),
+    |         ------- ^^^^^^^^^^^^ expected `&_`, found `i32`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&_`
+                    found type `i32`
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:103:4
+    |
+103 | fn type_id<T>(_: &T) -> i32 {
+    |    ^^^^^^^    -----
+help: consider borrowing here
+    |
+ 95 |         type_id(&(0 as i32 + 0)),
+    |                 ++            +
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:100:5
+    |
+ 11 | fn main() {
+    |          - expected `()` because of default return type
+...
+100 |     0
+    |     ^ expected `()`, found integer
+
+error[E0605]: non-primitive cast: `{integer}` as `E`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:88:18
+   |
+88 |         type_id(&(0 as E) + 0u32),
+   |                  ^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `{integer}` as `E`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c1/sample_005/target.rs:94:18
+   |
+94 |         type_id(&(0 as E) + 0),
+   |                  ^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error: aborting due to 33 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0277, E0308, E0369, E0412, E0605.
+For more information about an error, try `rustc --explain E0277`.

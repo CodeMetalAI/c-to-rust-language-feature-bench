@@ -1,0 +1,66 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_005/target.rs:12:5
+   |
+12 | /     unsafe {
+13 | |         if n == 0 {
+14 | |             return Some(&mut POOL);
+...  |
+27 | |         Some(p)
+28 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_005/target.rs:81:5
+   |
+81 | /     unsafe {
+82 | |         if (H & 1) == 0 {
+83 | |             return 6;
+84 | |         }
+85 | |     }
+   | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_005/target.rs:55:14
+   |
+55 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_005/target.rs:27:14
+    |
+ 27 |         Some(p)
+    |         ---- ^ expected `&mut [u8; 8192]`, found `&mut [u8]`
+    |         |
+    |         arguments to this enum variant are incorrect
+    |
+    = note: expected mutable reference `&mut [u8; 8192]`
+               found mutable reference `&mut [u8]`
+help: the type constructed contains `&mut [u8]` due to the type of the argument passed
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_005/target.rs:27:9
+    |
+ 27 |         Some(p)
+    |         ^^^^^-^
+    |              |
+    |              this argument influences the type of `Some`
+note: tuple variant defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/option.rs:601:5
+    |
+601 |     Some(#[stable(feature = "rust1", since = "1.0.0")] T),
+    |     ^^^^
+
+warning: unused variable: `v`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_005/target.rs:32:9
+   |
+32 |     let v = alloc_bytes((n as usize) * std::mem::size_of::<f32>()).expect("Allocation failed");
+   |         ^ help: if this is intentional, prefix it with an underscore: `_v`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 4 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

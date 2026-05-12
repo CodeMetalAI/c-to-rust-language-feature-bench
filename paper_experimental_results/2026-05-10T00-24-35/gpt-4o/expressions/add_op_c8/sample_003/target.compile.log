@@ -1,0 +1,31 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/add_op_c8/sample_003/target.rs:22:22
+   |
+22 |     let p_from_end = unsafe { &*p_last };
+   |                      ^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/add_op_c8/sample_003/target.rs:30:21
+   |
+30 |     let p0_plus_5 = unsafe { a.as_ptr().add(5) };
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused variable: `p0`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/add_op_c8/sample_003/target.rs:4:9
+  |
+4 |     let p0 = &a[0];
+  |         ^^ help: if this is intentional, prefix it with an underscore: `_p0`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/add_op_c8/sample_003/target.rs:22:22
+   |
+22 |     let p_from_end = unsafe { &*p_last };
+   |                      ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 2 previous errors; 2 warnings emitted

@@ -1,0 +1,25 @@
+error[E0609]: no field `a` on type `*const S`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/pointers_c1/sample_003/target.rs:34:12
+   |
+34 |     if ps2.a!= 7 {
+   |            ^ unknown field
+   |
+help: `ps2` is a raw pointer; try dereferencing it
+   |
+34 |     if (*ps2).a!= 7 {
+   |        ++   +
+
+error[E0609]: no field `b` on type `*const S`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/pointers_c1/sample_003/target.rs:37:12
+   |
+37 |     if ps2.b!= 9.5 {
+   |            ^ unknown field
+   |
+help: `ps2` is a raw pointer; try dereferencing it
+   |
+37 |     if (*ps2).b!= 9.5 {
+   |        ++   +
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0609`.

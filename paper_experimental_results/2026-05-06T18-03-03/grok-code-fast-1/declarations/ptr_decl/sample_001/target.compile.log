@@ -1,0 +1,44 @@
+error[E0606]: casting `&mut i32` as `*const ()` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_001/target.rs:29:18
+   |
+29 |     if same_addr(b.const_p as *const (), expected_const_p_target as *const ()) == 0 {
+   |                  ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&mut i32` as `*const ()` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_001/target.rs:32:18
+   |
+32 |     if same_addr(b.const_p_via_typedef as *const (), expected_const_p_target as *const ()) == 0 {
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_001/target.rs:61:43
+   |
+61 |     retarget_ptr_to_const(&mut b, &y, &x, pick(&y, 0) > 0);
+   |     ---------------------                 ^^^^^^^^^^^^^^^ expected `i32`, found `bool`
+   |     |
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_001/target.rs:16:4
+   |
+16 | fn retarget_ptr_to_const<'a>(b: &mut Bundle<'a>, a: &'a i32, c: &'a i32, sel: i32) {
+   |    ^^^^^^^^^^^^^^^^^^^^^                                                 --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_001/target.rs:66:43
+   |
+66 |     retarget_ptr_to_const(&mut b, &x, &y, pick(&x, 1) < 0);
+   |     ---------------------                 ^^^^^^^^^^^^^^^ expected `i32`, found `bool`
+   |     |
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_001/target.rs:16:4
+   |
+16 | fn retarget_ptr_to_const<'a>(b: &mut Bundle<'a>, a: &'a i32, c: &'a i32, sel: i32) {
+   |    ^^^^^^^^^^^^^^^^^^^^^                                                 --------
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0606.
+For more information about an error, try `rustc --explain E0308`.

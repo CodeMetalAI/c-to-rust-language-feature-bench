@@ -1,0 +1,39 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/ptr_decl/sample_002/target.rs:72:5
+   |
+72 | /     unsafe {
+73 | |         *b.const_p += 5;
+74 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/ptr_decl/sample_002/target.rs:79:5
+   |
+79 | /     unsafe {
+80 | |         *b.const_p_via_typedef += 7;
+81 | |     }
+   | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/ptr_decl/sample_002/target.rs:55:16
+   |
+39 | fn main() {
+   |          - expected `()` because of default return type
+...
+55 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/ptr_decl/sample_002/target.rs:9:13
+  |
+9 |     let v = *p;
+  |             ^^ dereference of raw pointer
+  |
+  = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0133, E0308.
+For more information about an error, try `rustc --explain E0133`.

@@ -1,0 +1,47 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/rel_op_c4/sample_003/target.rs:8:18
+  |
+8 |     let px_end = unsafe { px.offset(1) };
+  |                  ^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/rel_op_c4/sample_003/target.rs:9:18
+  |
+9 |     let py_end = unsafe { py.offset(1) };
+  |                  ^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/rel_op_c4/sample_003/target.rs:19:18
+   |
+19 |     if px_end != unsafe { &x.offset(1) } {
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `offset` found for reference `&{integer}` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/rel_op_c4/sample_003/target.rs:8:30
+  |
+8 |     let px_end = unsafe { px.offset(1) };
+  |                              ^^^^^^ method not found in `&{integer}`
+
+error[E0599]: no method named `offset` found for reference `&{integer}` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/rel_op_c4/sample_003/target.rs:9:30
+  |
+9 |     let py_end = unsafe { py.offset(1) };
+  |                              ^^^^^^ method not found in `&{integer}`
+
+error[E0689]: can't call method `offset` on ambiguous numeric type `{integer}`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/rel_op_c4/sample_003/target.rs:19:30
+   |
+19 |     if px_end != unsafe { &x.offset(1) } {
+   |                              ^^^^^^
+   |
+help: you must specify a type for this binding, like `i32`
+   |
+ 2 |     let x: i32 = 10;
+   |          +++++
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0599, E0689.
+For more information about an error, try `rustc --explain E0599`.

@@ -1,0 +1,83 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/expressions/compound_literals_7/sample_002/target.rs:14:5
+   |
+14 | /     unsafe {
+15 | |         ENDLESS_ZEROS.cdr = &ENDLESS_ZEROS as *const IntList;
+16 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/expressions/compound_literals_7/sample_002/target.rs:20:5
+   |
+20 | /     unsafe {
+21 | |         if x.car != 0 {
+22 | |             return 1;
+...  |
+30 | |         return 0;
+31 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/expressions/compound_literals_7/sample_002/target.rs:36:5
+   |
+36 | /     unsafe {
+37 | |         std::process::exit(eval(&ENDLESS_ZEROS));
+38 | |     }
+   | |_____^
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/expressions/compound_literals_7/sample_002/target.rs:15:29
+   |
+15 |         ENDLESS_ZEROS.cdr = &ENDLESS_ZEROS as *const IntList;
+   |                             ^^^^^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw const` instead to create a raw pointer
+   |
+15 |         ENDLESS_ZEROS.cdr = &raw const ENDLESS_ZEROS as *const IntList;
+   |                              +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/expressions/compound_literals_7/sample_002/target.rs:24:21
+   |
+24 |         if x.cdr != &ENDLESS_ZEROS as *const IntList {
+   |                     ^^^^^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+24 |         if x.cdr != &raw const ENDLESS_ZEROS as *const IntList {
+   |                      +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/expressions/compound_literals_7/sample_002/target.rs:27:28
+   |
+27 |         if (*x.cdr).cdr != &ENDLESS_ZEROS as *const IntList {
+   |                            ^^^^^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+27 |         if (*x.cdr).cdr != &raw const ENDLESS_ZEROS as *const IntList {
+   |                             +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/expressions/compound_literals_7/sample_002/target.rs:37:33
+   |
+37 |         std::process::exit(eval(&ENDLESS_ZEROS));
+   |                                 ^^^^^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+37 |         std::process::exit(eval(&raw const ENDLESS_ZEROS));
+   |                                  +++++++++
+
+error: aborting due to 3 previous errors; 4 warnings emitted

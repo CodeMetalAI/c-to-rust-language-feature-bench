@@ -1,0 +1,473 @@
+warning: unused import: `AtomicUsize`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:1:25
+  |
+1 | use std::sync::atomic::{AtomicUsize, Ordering};
+  |                         ^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:37:16
+   |
+37 |     assert_eq!(unsafe { a.offset(1) }, a.offset(1));
+   |                ^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:38:16
+   |
+38 |     assert_eq!(unsafe { a.offset(-1) }, a.offset(-1));
+   |                ^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:39:16
+   |
+39 |     assert_eq!(unsafe { a.offset(0) }, a.offset(0));
+   |                ^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:40:16
+   |
+40 |     assert_eq!(unsafe { a.offset(0) }, a.offset(0));
+   |                ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: `T` doesn't implement `Debug`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:7:5
+  |
+7 |     assert_eq!(a.fetch_add(1, Ordering::SeqCst) as T, value);
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+  |
+  = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+  |
+3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy + std::fmt::Debug>(value: T) {
+  |                                                                                            +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:7:5
+  |
+7 |     assert_eq!(a.fetch_add(1, Ordering::SeqCst) as T, value);
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+  |
+  = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+  |
+3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy + std::fmt::Debug>(value: T) {
+  |                                                                                            +++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:8:63
+    |
+  3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy>(value: T) {
+    |                - expected this type parameter
+...
+  8 |     assert_eq!(a.load(Ordering::SeqCst) as T, value + T::from(1).unwrap());
+    |                                                       ------- ^ expected type parameter `T`, found integer
+    |                                                       |
+    |                                                       arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:592:8
+    |
+592 |     fn from(value: T) -> Self;
+    |        ^^^^
+
+error[E0599]: no method named `unwrap` found for type parameter `T` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:8:66
+  |
+3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy>(value: T) {
+  |                - method `unwrap` not found for this type parameter
+...
+8 |     assert_eq!(a.load(Ordering::SeqCst) as T, value + T::from(1).unwrap());
+  |                                                                  ^^^^^^ method not found in `T`
+
+error[E0277]: `T` doesn't implement `Debug`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:8:5
+  |
+8 |     assert_eq!(a.load(Ordering::SeqCst) as T, value + T::from(1).unwrap());
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+  |
+  = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+  |
+3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy + std::fmt::Debug>(value: T) {
+  |                                                                                            +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:8:5
+  |
+8 |     assert_eq!(a.load(Ordering::SeqCst) as T, value + T::from(1).unwrap());
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+  |
+  = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+  |
+3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy + std::fmt::Debug>(value: T) {
+  |                                                                                            +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:9:5
+  |
+9 |     assert_eq!(b.fetch_sub(1, Ordering::SeqCst) as T, value);
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+  |
+  = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+  |
+3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy + std::fmt::Debug>(value: T) {
+  |                                                                                            +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:9:5
+  |
+9 |     assert_eq!(b.fetch_sub(1, Ordering::SeqCst) as T, value);
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+  |
+  = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+  |
+3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy + std::fmt::Debug>(value: T) {
+  |                                                                                            +++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:10:63
+    |
+  3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy>(value: T) {
+    |                - expected this type parameter
+...
+ 10 |     assert_eq!(b.load(Ordering::SeqCst) as T, value - T::from(1).unwrap());
+    |                                                       ------- ^ expected type parameter `T`, found integer
+    |                                                       |
+    |                                                       arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:592:8
+    |
+592 |     fn from(value: T) -> Self;
+    |        ^^^^
+
+error[E0599]: no method named `unwrap` found for type parameter `T` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:10:66
+   |
+ 3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy>(value: T) {
+   |                - method `unwrap` not found for this type parameter
+...
+10 |     assert_eq!(b.load(Ordering::SeqCst) as T, value - T::from(1).unwrap());
+   |                                                                  ^^^^^^ method not found in `T`
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:10:5
+   |
+10 |     assert_eq!(b.load(Ordering::SeqCst) as T, value - T::from(1).unwrap());
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+ 3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy + std::fmt::Debug>(value: T) {
+   |                                                                                            +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:10:5
+   |
+10 |     assert_eq!(b.load(Ordering::SeqCst) as T, value - T::from(1).unwrap());
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+ 3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy + std::fmt::Debug>(value: T) {
+   |                                                                                            +++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:11:71
+    |
+  3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy>(value: T) {
+    |                - expected this type parameter
+...
+ 11 |     assert_eq!(a.fetch_add(0, Ordering::SeqCst) as T, value + T::from(1).unwrap());
+    |                                                               ------- ^ expected type parameter `T`, found integer
+    |                                                               |
+    |                                                               arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:592:8
+    |
+592 |     fn from(value: T) -> Self;
+    |        ^^^^
+
+error[E0599]: no method named `unwrap` found for type parameter `T` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:11:74
+   |
+ 3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy>(value: T) {
+   |                - method `unwrap` not found for this type parameter
+...
+11 |     assert_eq!(a.fetch_add(0, Ordering::SeqCst) as T, value + T::from(1).unwrap());
+   |                                                                          ^^^^^^ method not found in `T`
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:11:5
+   |
+11 |     assert_eq!(a.fetch_add(0, Ordering::SeqCst) as T, value + T::from(1).unwrap());
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+ 3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy + std::fmt::Debug>(value: T) {
+   |                                                                                            +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:11:5
+   |
+11 |     assert_eq!(a.fetch_add(0, Ordering::SeqCst) as T, value + T::from(1).unwrap());
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+ 3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy + std::fmt::Debug>(value: T) {
+   |                                                                                            +++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:12:71
+    |
+  3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy>(value: T) {
+    |                - expected this type parameter
+...
+ 12 |     assert_eq!(b.fetch_sub(0, Ordering::SeqCst) as T, value - T::from(1).unwrap());
+    |                                                               ------- ^ expected type parameter `T`, found integer
+    |                                                               |
+    |                                                               arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:592:8
+    |
+592 |     fn from(value: T) -> Self;
+    |        ^^^^
+
+error[E0599]: no method named `unwrap` found for type parameter `T` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:12:74
+   |
+ 3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy>(value: T) {
+   |                - method `unwrap` not found for this type parameter
+...
+12 |     assert_eq!(b.fetch_sub(0, Ordering::SeqCst) as T, value - T::from(1).unwrap());
+   |                                                                          ^^^^^^ method not found in `T`
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:12:5
+   |
+12 |     assert_eq!(b.fetch_sub(0, Ordering::SeqCst) as T, value - T::from(1).unwrap());
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+ 3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy + std::fmt::Debug>(value: T) {
+   |                                                                                            +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:12:5
+   |
+12 |     assert_eq!(b.fetch_sub(0, Ordering::SeqCst) as T, value - T::from(1).unwrap());
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+ 3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy + std::fmt::Debug>(value: T) {
+   |                                                                                            +++++++++++++++++
+
+error[E0605]: non-primitive cast: `T` as `usize`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:4:49
+  |
+4 |     let a = std::sync::atomic::AtomicUsize::new(value as usize);
+  |                                                 ^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `usize`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:5:49
+  |
+5 |     let b = std::sync::atomic::AtomicUsize::new(value as usize);
+  |                                                 ^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `usize` as `T`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:7:16
+  |
+7 |     assert_eq!(a.fetch_add(1, Ordering::SeqCst) as T, value);
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `usize` as `T`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:8:16
+  |
+8 |     assert_eq!(a.load(Ordering::SeqCst) as T, value + T::from(1).unwrap());
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `usize` as `T`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:9:16
+  |
+9 |     assert_eq!(b.fetch_sub(1, Ordering::SeqCst) as T, value);
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `usize` as `T`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:10:16
+   |
+10 |     assert_eq!(b.load(Ordering::SeqCst) as T, value - T::from(1).unwrap());
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `usize` as `T`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:11:16
+   |
+11 |     assert_eq!(a.fetch_add(0, Ordering::SeqCst) as T, value + T::from(1).unwrap());
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `usize` as `T`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:12:16
+   |
+12 |     assert_eq!(b.fetch_sub(0, Ordering::SeqCst) as T, value - T::from(1).unwrap());
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0277]: cannot add `bool` to `bool`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:16:19
+   |
+16 |     test_incdec::<bool>(value!= 0);
+   |                   ^^^^ no implementation for `bool + bool`
+   |
+   = help: the trait `Add` is not implemented for `bool`
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:3:19
+   |
+ 3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy>(value: T) {
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0277]: cannot subtract `bool` from `bool`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:16:19
+   |
+16 |     test_incdec::<bool>(value!= 0);
+   |                   ^^^^ no implementation for `bool - bool`
+   |
+   = help: the trait `Sub` is not implemented for `bool`
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:3:47
+   |
+ 3 | fn test_incdec<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy>(value: T) {
+   |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+warning: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:37:27
+   |
+37 |     assert_eq!(unsafe { a.offset(1) }, a.offset(1));
+   |                           ^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2018!
+   = note: for more information, see issue #46906 <https://github.com/rust-lang/rust/issues/46906>
+   = note: `#[warn(tyvar_behind_raw_pointer)]` (part of `#[warn(rust_2018_compatibility)]`) on by default
+
+warning: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:37:42
+   |
+37 |     assert_eq!(unsafe { a.offset(1) }, a.offset(1));
+   |                                          ^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2018!
+   = note: for more information, see issue #46906 <https://github.com/rust-lang/rust/issues/46906>
+
+warning: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:38:27
+   |
+38 |     assert_eq!(unsafe { a.offset(-1) }, a.offset(-1));
+   |                           ^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2018!
+   = note: for more information, see issue #46906 <https://github.com/rust-lang/rust/issues/46906>
+
+warning: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:38:43
+   |
+38 |     assert_eq!(unsafe { a.offset(-1) }, a.offset(-1));
+   |                                           ^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2018!
+   = note: for more information, see issue #46906 <https://github.com/rust-lang/rust/issues/46906>
+
+warning: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:39:27
+   |
+39 |     assert_eq!(unsafe { a.offset(0) }, a.offset(0));
+   |                           ^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2018!
+   = note: for more information, see issue #46906 <https://github.com/rust-lang/rust/issues/46906>
+
+warning: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:39:42
+   |
+39 |     assert_eq!(unsafe { a.offset(0) }, a.offset(0));
+   |                                          ^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2018!
+   = note: for more information, see issue #46906 <https://github.com/rust-lang/rust/issues/46906>
+
+warning: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:40:27
+   |
+40 |     assert_eq!(unsafe { a.offset(0) }, a.offset(0));
+   |                           ^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2018!
+   = note: for more information, see issue #46906 <https://github.com/rust-lang/rust/issues/46906>
+
+warning: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:40:42
+   |
+40 |     assert_eq!(unsafe { a.offset(0) }, a.offset(0));
+   |                                          ^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2018!
+   = note: for more information, see issue #46906 <https://github.com/rust-lang/rust/issues/46906>
+
+error[E0133]: call to unsafe function `std::ptr::mut_ptr::<impl *mut T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:37:40
+   |
+37 |     assert_eq!(unsafe { a.offset(1) }, a.offset(1));
+   |                                        ^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::mut_ptr::<impl *mut T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:38:41
+   |
+38 |     assert_eq!(unsafe { a.offset(-1) }, a.offset(-1));
+   |                                         ^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::mut_ptr::<impl *mut T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:39:40
+   |
+39 |     assert_eq!(unsafe { a.offset(0) }, a.offset(0));
+   |                                        ^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::mut_ptr::<impl *mut T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:40:40
+   |
+40 |     assert_eq!(unsafe { a.offset(0) }, a.offset(0));
+   |                                        ^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: aborting due to 38 previous errors; 9 warnings emitted
+
+Some errors have detailed explanations: E0133, E0277, E0308, E0599, E0605.
+For more information about an error, try `rustc --explain E0133`.

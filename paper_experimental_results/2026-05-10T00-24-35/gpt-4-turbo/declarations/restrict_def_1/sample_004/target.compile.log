@@ -1,0 +1,63 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_1/sample_004/target.rs:50:5
+   |
+50 | /     unsafe {
+51 | |         a = choose_view(&mut BANK_A, which_a);
+52 | |         b = choose_view(&mut BANK_B, which_b);
+53 | |         c = &mut C;
+54 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_1/sample_004/target.rs:76:5
+   |
+76 | /     unsafe {
+77 | |         if BANK_A.left[0] != 101 {
+78 | |             std::process::exit(4);
+...  |
+88 | |     }
+   | |_____^
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_1/sample_004/target.rs:51:25
+   |
+51 |         a = choose_view(&mut BANK_A, which_a);
+   |                         ^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw mut` instead to create a raw pointer
+   |
+51 |         a = choose_view(&raw mut BANK_A, which_a);
+   |                          +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_1/sample_004/target.rs:52:25
+   |
+52 |         b = choose_view(&mut BANK_B, which_b);
+   |                         ^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+52 |         b = choose_view(&raw mut BANK_B, which_b);
+   |                          +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_1/sample_004/target.rs:53:13
+   |
+53 |         c = &mut C;
+   |             ^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+53 |         c = &raw mut C;
+   |              +++
+
+error: aborting due to 2 previous errors; 3 warnings emitted

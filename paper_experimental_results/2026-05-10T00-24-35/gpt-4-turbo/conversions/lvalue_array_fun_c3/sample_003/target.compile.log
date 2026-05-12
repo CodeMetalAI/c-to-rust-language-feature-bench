@@ -1,0 +1,45 @@
+error[E0277]: the size for values of type `str` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/lvalue_array_fun_c3/sample_003/target.rs:29:16
+   |
+29 |     if type_id("abc") != 3 {
+   |        ------- ^^^^^ doesn't have a size known at compile-time
+   |        |
+   |        required by a bound introduced by this call
+   |
+   = help: the trait `Sized` is not implemented for `str`
+note: required by an implicit `Sized` bound in `type_id`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/lvalue_array_fun_c3/sample_003/target.rs:49:12
+   |
+49 | fn type_id<T>(_: &T) -> u8 {
+   |            ^ required by the implicit `Sized` requirement on this type parameter in `type_id`
+help: consider relaxing the implicit `Sized` restriction
+   |
+49 | fn type_id<T: ?Sized>(_: &T) -> u8 {
+   |             ++++++++
+
+error[E0599]: `TypeId` is not an iterator
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/lvalue_array_fun_c3/sample_003/target.rs:51:10
+    |
+ 50 | /     std::any::TypeId::of::<T>()
+ 51 | |         .into_iter()
+    | |         -^^^^^^^^^ `TypeId` is not an iterator
+    | |_________|
+    |
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/any.rs:711:1
+    |
+711 |   pub struct TypeId {
+    |   ----------------- doesn't satisfy `TypeId: IntoIterator` or `TypeId: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `TypeId: Iterator`
+            which is required by `TypeId: IntoIterator`
+            `&TypeId: Iterator`
+            which is required by `&TypeId: IntoIterator`
+            `&mut TypeId: Iterator`
+            which is required by `&mut TypeId: IntoIterator`
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0277, E0599.
+For more information about an error, try `rustc --explain E0277`.

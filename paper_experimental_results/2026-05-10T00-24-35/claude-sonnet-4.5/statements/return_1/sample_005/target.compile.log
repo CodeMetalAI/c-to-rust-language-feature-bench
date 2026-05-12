@@ -1,0 +1,40 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/statements/return_1/sample_005/target.rs:33:5
+   |
+33 |     unsafe { G.u1.f2 }
+   |     ^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/statements/return_1/sample_005/target.rs:41:5
+   |
+41 | /     unsafe {
+42 | |         G.u1.f2.i = 1.0;
+43 | |         G.u2.f3.i = 1.0;
+44 | |         G.u1.f2 = f();
+45 | |         G.u2.f3 = f();
+46 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/statements/return_1/sample_005/target.rs:48:18
+   |
+48 |     let result = unsafe { G.u1.f2.i + G.u2.f3.i + val };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/statements/return_1/sample_005/target.rs:21:5
+   |
+21 |     u1: U1,
+   |     ^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+21 |     u1: std::mem::ManuallyDrop<U1>,
+   |         +++++++++++++++++++++++  +
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0740`.

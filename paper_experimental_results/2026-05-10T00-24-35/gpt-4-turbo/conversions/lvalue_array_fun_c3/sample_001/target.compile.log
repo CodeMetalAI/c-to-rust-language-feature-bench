@@ -1,0 +1,31 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/lvalue_array_fun_c3/sample_001/target.rs:14:8
+   |
+14 |     if unsafe { *a_ptr } != 10 {
+   |        ^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/lvalue_array_fun_c3/sample_001/target.rs:17:8
+   |
+17 |     if unsafe { *a_ptr.add(1) } != 20 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/lvalue_array_fun_c3/sample_001/target.rs:20:8
+   |
+20 |     if unsafe { *a_ptr.add(2) } != 30 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/lvalue_array_fun_c3/sample_001/target.rs:7:31
+  |
+7 |     if std::mem::size_of_val(&*a_ptr) != std::mem::size_of::<i32>() {
+  |                               ^^^^^^ dereference of raw pointer
+  |
+  = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

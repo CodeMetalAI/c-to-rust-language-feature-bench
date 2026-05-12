@@ -1,0 +1,153 @@
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_004/target.rs:21:30
+   |
+21 |         let mut vla1 = [0.0; n1];
+   |                              ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+18 -         let n1 = pos(11);
+18 +         const n1: /* Type */ = pos(11);
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_004/target.rs:22:40
+   |
+22 |         let mut vla2: [&dyn float_ptr; n2] = Default::default();
+   |                                        ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+19 -         let n2 = pos(17);
+19 +         const n2: /* Type */ = pos(17);
+   |
+
+error[E0425]: cannot find value `calls` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_004/target.rs:74:5
+   |
+74 |     calls += 1;
+   |     ^^^^^ not found in this scope
+
+warning: trait `float_ptr` should have an upper camel case name
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_004/target.rs:104:7
+    |
+104 | trait float_ptr {
+    |       ^^^^^^^^^ help: convert the identifier to upper camel case: `FloatPtr`
+    |
+    = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_004/target.rs:10:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+10 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0061]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_004/target.rs:43:12
+   |
+43 |         if sum_ints_from_float(&vla1[..11]) != sum(2..23) {
+   |            ^^^^^^^^^^^^^^^^^^^------------- argument #2 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_004/target.rs:90:4
+   |
+90 | fn sum_ints_from_float(p: &[f64], n: usize) -> i32 {
+   |    ^^^^^^^^^^^^^^^^^^^            --------
+help: provide the argument
+   |
+43 |         if sum_ints_from_float(&vla1[..11], /* usize */) != sum(2..23) {
+   |                                           +++++++++++++
+
+error[E0425]: cannot find function `sum` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_004/target.rs:43:48
+   |
+43 |         if sum_ints_from_float(&vla1[..11]) != sum(2..23) {
+   |                                                ^^^ not found in this scope
+   |
+help: use the `.` operator to call the method `Iterator::sum` on `std::ops::Range<{integer}>`
+   |
+43 -         if sum_ints_from_float(&vla1[..11]) != sum(2..23) {
+43 +         if sum_ints_from_float(&vla1[..11]) != 2..23.sum() {
+   |
+
+error[E0061]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_004/target.rs:47:12
+   |
+47 |         if sum_pointed_ints(&vla2[..17]) != sum(100..117) {
+   |            ^^^^^^^^^^^^^^^^------------- argument #2 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_004/target.rs:82:4
+   |
+82 | fn sum_pointed_ints(pp: &[&dyn float_ptr], n: usize) -> i32 {
+   |    ^^^^^^^^^^^^^^^^                        --------
+help: provide the argument
+   |
+47 |         if sum_pointed_ints(&vla2[..17], /* usize */) != sum(100..117) {
+   |                                        +++++++++++++
+
+error[E0425]: cannot find function `sum` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_004/target.rs:47:45
+   |
+47 |         if sum_pointed_ints(&vla2[..17]) != sum(100..117) {
+   |                                             ^^^ not found in this scope
+   |
+help: use the `.` operator to call the method `Iterator::sum` on `std::ops::Range<{integer}>`
+   |
+47 -         if sum_pointed_ints(&vla2[..17]) != sum(100..117) {
+47 +         if sum_pointed_ints(&vla2[..17]) != 100..117.sum() {
+   |
+
+error[E0606]: casting `&&dyn float_ptr` as `i32` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_004/target.rs:85:14
+   |
+85 |         s += val as i32;
+   |              ^^^^^^^^^^
+   |
+   = help: cast through a raw pointer first
+
+error[E0606]: casting `&f64` as `i32` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_004/target.rs:93:14
+   |
+93 |         s += val as i32;
+   |              ^^^^^^^^^^
+   |
+help: dereference the expression
+   |
+93 |         s += *val as i32;
+   |              +
+
+error[E0606]: casting `&dyn float_ptr` as `i32` is invalid
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_004/target.rs:100:14
+    |
+100 |     let s2 = (afp2[0] as i32) + (afp2[16] as i32);
+    |              ^^^^^^^^^^^^^^^^
+    |
+    = help: cast through a raw pointer first
+
+error[E0606]: casting `&dyn float_ptr` as `i32` is invalid
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_004/target.rs:100:33
+    |
+100 |     let s2 = (afp2[0] as i32) + (afp2[16] as i32);
+    |                                 ^^^^^^^^^^^^^^^^^
+    |
+    = help: cast through a raw pointer first
+
+error[E0606]: casting `&f64` as `i32` is invalid
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_004/target.rs:110:9
+    |
+110 |         self as i32
+    |         ^^^^^^^^^^^
+    |
+help: dereference the expression
+    |
+110 |         *self as i32
+    |         +
+
+error: aborting due to 13 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0061, E0308, E0425, E0435, E0606.
+For more information about an error, try `rustc --explain E0061`.

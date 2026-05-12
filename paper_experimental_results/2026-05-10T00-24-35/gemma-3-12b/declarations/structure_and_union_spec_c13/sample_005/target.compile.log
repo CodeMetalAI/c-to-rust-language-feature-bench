@@ -1,0 +1,134 @@
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_005/target.rs:24:5
+   |
+24 |     inner: InnerNested,
+   |     ^^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+24 |     inner: std::mem::ManuallyDrop<InnerNested>,
+   |            +++++++++++++++++++++++           +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_005/target.rs:37:5
+   |
+37 |     fields: FieldPair,
+   |     ^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+37 |     fields: std::mem::ManuallyDrop<FieldPair>,
+   |             +++++++++++++++++++++++         +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_005/target.rs:55:5
+   |
+55 |     tail_fields: TailFieldPair,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+55 |     tail_fields: std::mem::ManuallyDrop<TailFieldPair>,
+   |                  +++++++++++++++++++++++             +
+
+error[E0784]: union expressions should have exactly one field
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_005/target.rs:128:36
+    |
+128 |                         innermost: Innermost {
+    |                                    ^^^^^^^^^
+
+error[E0784]: union expressions should have exactly one field
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_005/target.rs:124:20
+    |
+124 |                 u: UnionInner {
+    |                    ^^^^^^^^^^
+
+error[E0784]: union expressions should have exactly one field
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_005/target.rs:140:25
+    |
+140 |             tail_union: TailUnion {
+    |                         ^^^^^^^^^
+
+error[E0784]: union expressions should have exactly one field
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_005/target.rs:194:36
+    |
+194 |                         innermost: Innermost {
+    |                                    ^^^^^^^^^
+
+error[E0784]: union expressions should have exactly one field
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_005/target.rs:190:20
+    |
+190 |                 u: UnionInner {
+    |                    ^^^^^^^^^^
+
+error[E0784]: union expressions should have exactly one field
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_005/target.rs:206:25
+    |
+206 |             tail_union: TailUnion {
+    |                         ^^^^^^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_005/target.rs:237:8
+    |
+237 |     if r {
+    |        ^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_005/target.rs:242:8
+    |
+242 |     if r {
+    |        ^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_005/target.rs:247:8
+    |
+247 |     if r {
+    |        ^ expected `bool`, found `i32`
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_005/target.rs:96:8
+   |
+96 |     if o.a.inner.u.inner.b != 2 {
+   |        ^^^^^^^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_005/target.rs:99:8
+   |
+99 |     if o.a.inner.u.inner.innermost.deep != 99 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_005/target.rs:99:8
+   |
+99 |     if o.a.inner.u.inner.innermost.deep != 99 {
+   |        ^^^^^^^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_005/target.rs:102:8
+    |
+102 |     if o.a.inner.u.inner.c != 3 {
+    |        ^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_005/target.rs:111:8
+    |
+111 |     if o.tail.tail_union.tail_y != 8 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: aborting due to 17 previous errors
+
+Some errors have detailed explanations: E0133, E0308, E0740, E0784.
+For more information about an error, try `rustc --explain E0133`.

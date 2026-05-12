@@ -1,0 +1,340 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:17:17
+   |
+17 |     let deref = unsafe { *ptr };
+   |                 ^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:28:21
+   |
+28 |     let new_deref = unsafe { *new_ptr };
+   |                     ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:34:5
+   |
+34 | /     unsafe {
+35 | |         drop(Box::from_raw(ptr));
+36 | |     }
+   | |_____^
+
+error[E0277]: cannot add `bool` to `bool`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:40:5
+   |
+40 |     test_incdec(value as bool, change as bool, pre_p);
+   |     ^^^^^^^^^^^ no implementation for `bool + bool`
+   |
+   = help: the trait `Add` is not implemented for `bool`
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:7:38
+   |
+ 7 | fn test_incdec<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T>>(
+   |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0277]: cannot subtract `bool` from `bool`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:40:5
+   |
+40 |     test_incdec(value as bool, change as bool, pre_p);
+   |     ^^^^^^^^^^^ no implementation for `bool - bool`
+   |
+   = help: the trait `Sub` is not implemented for `bool`
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:7:66
+   |
+ 7 | fn test_incdec<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T>>(
+   |                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:40:17
+   |
+40 |     test_incdec(value as bool, change as bool, pre_p);
+   |                 ^^^^^^^^^^^^^
+   |
+help: compare with zero instead
+   |
+40 -     test_incdec(value as bool, change as bool, pre_p);
+40 +     test_incdec(value != 0, change as bool, pre_p);
+   |
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:40:32
+   |
+40 |     test_incdec(value as bool, change as bool, pre_p);
+   |                                ^^^^^^^^^^^^^^
+   |
+help: compare with zero instead
+   |
+40 -     test_incdec(value as bool, change as bool, pre_p);
+40 +     test_incdec(value as bool, change != 0, pre_p);
+   |
+
+error[E0277]: cannot add `*const i32` to `*const i32`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:70:5
+   |
+70 |     test_incdec(&ia[1] as *const i32, 1, true);
+   |     ^^^^^^^^^^^ no implementation for `*const i32 + *const i32`
+   |
+   = help: the trait `Add` is not implemented for `*const i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:7:38
+   |
+ 7 | fn test_incdec<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T>>(
+   |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0277]: cannot subtract `*const i32` from `*const i32`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:70:5
+   |
+70 |     test_incdec(&ia[1] as *const i32, 1, true);
+   |     ^^^^^^^^^^^ no implementation for `*const i32 - *const i32`
+   |
+   = help: the trait `Sub` is not implemented for `*const i32`
+   = help: the following other types implement trait `Sub<Rhs>`:
+             `&i32` implements `Sub<i32>`
+             `&i32` implements `Sub`
+             `i32` implements `Sub<&i32>`
+             `i32` implements `Sub`
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:7:66
+   |
+ 7 | fn test_incdec<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T>>(
+   |                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:70:39
+   |
+70 |     test_incdec(&ia[1] as *const i32, 1, true);
+   |     ----------- --------------------  ^ expected `*const i32`, found `usize`
+   |     |           |
+   |     |           expected some other arguments to be a `*const i32` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*const i32`
+                     found type `usize`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:7:4
+   |
+ 7 | fn test_incdec<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T>>(
+   |    ^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+ 8 |     value: T,
+   |     -------- `change` needs to match the `*const i32` type of this parameter
+ 9 |     change: T,
+   |     --------- this parameter needs to match the `*const i32` type of `value`
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:71:39
+   |
+71 |     test_incdec(&ia[1] as *const i32, -1, true);
+   |                                       ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `usize`
+   |
+71 -     test_incdec(&ia[1] as *const i32, -1, true);
+71 +     test_incdec(&ia[1] as *const i32, usize::MAX, true);
+   |
+
+error[E0277]: cannot add `*const i32` to `*const i32`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:71:5
+   |
+71 |     test_incdec(&ia[1] as *const i32, -1, true);
+   |     ^^^^^^^^^^^ no implementation for `*const i32 + *const i32`
+   |
+   = help: the trait `Add` is not implemented for `*const i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:7:38
+   |
+ 7 | fn test_incdec<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T>>(
+   |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0277]: cannot subtract `*const i32` from `*const i32`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:71:5
+   |
+71 |     test_incdec(&ia[1] as *const i32, -1, true);
+   |     ^^^^^^^^^^^ no implementation for `*const i32 - *const i32`
+   |
+   = help: the trait `Sub` is not implemented for `*const i32`
+   = help: the following other types implement trait `Sub<Rhs>`:
+             `&i32` implements `Sub<i32>`
+             `&i32` implements `Sub`
+             `i32` implements `Sub<&i32>`
+             `i32` implements `Sub`
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:7:66
+   |
+ 7 | fn test_incdec<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T>>(
+   |                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:71:39
+   |
+71 |     test_incdec(&ia[1] as *const i32, -1, true);
+   |     ----------- --------------------  ^^ expected `*const i32`, found `usize`
+   |     |           |
+   |     |           expected some other arguments to be a `*const i32` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*const i32`
+                     found type `usize`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:7:4
+   |
+ 7 | fn test_incdec<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T>>(
+   |    ^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+ 8 |     value: T,
+   |     -------- `change` needs to match the `*const i32` type of this parameter
+ 9 |     change: T,
+   |     --------- this parameter needs to match the `*const i32` type of `value`
+
+error[E0277]: cannot add `*const i32` to `*const i32`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:72:5
+   |
+72 |     test_incdec(&ia[1] as *const i32, 1, false);
+   |     ^^^^^^^^^^^ no implementation for `*const i32 + *const i32`
+   |
+   = help: the trait `Add` is not implemented for `*const i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:7:38
+   |
+ 7 | fn test_incdec<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T>>(
+   |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0277]: cannot subtract `*const i32` from `*const i32`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:72:5
+   |
+72 |     test_incdec(&ia[1] as *const i32, 1, false);
+   |     ^^^^^^^^^^^ no implementation for `*const i32 - *const i32`
+   |
+   = help: the trait `Sub` is not implemented for `*const i32`
+   = help: the following other types implement trait `Sub<Rhs>`:
+             `&i32` implements `Sub<i32>`
+             `&i32` implements `Sub`
+             `i32` implements `Sub<&i32>`
+             `i32` implements `Sub`
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:7:66
+   |
+ 7 | fn test_incdec<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T>>(
+   |                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:72:39
+   |
+72 |     test_incdec(&ia[1] as *const i32, 1, false);
+   |     ----------- --------------------  ^ expected `*const i32`, found `usize`
+   |     |           |
+   |     |           expected some other arguments to be a `*const i32` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*const i32`
+                     found type `usize`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:7:4
+   |
+ 7 | fn test_incdec<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T>>(
+   |    ^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+ 8 |     value: T,
+   |     -------- `change` needs to match the `*const i32` type of this parameter
+ 9 |     change: T,
+   |     --------- this parameter needs to match the `*const i32` type of `value`
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:73:39
+   |
+73 |     test_incdec(&ia[1] as *const i32, -1, false);
+   |                                       ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `usize`
+   |
+73 -     test_incdec(&ia[1] as *const i32, -1, false);
+73 +     test_incdec(&ia[1] as *const i32, usize::MAX, false);
+   |
+
+error[E0277]: cannot add `*const i32` to `*const i32`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:73:5
+   |
+73 |     test_incdec(&ia[1] as *const i32, -1, false);
+   |     ^^^^^^^^^^^ no implementation for `*const i32 + *const i32`
+   |
+   = help: the trait `Add` is not implemented for `*const i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:7:38
+   |
+ 7 | fn test_incdec<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T>>(
+   |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0277]: cannot subtract `*const i32` from `*const i32`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:73:5
+   |
+73 |     test_incdec(&ia[1] as *const i32, -1, false);
+   |     ^^^^^^^^^^^ no implementation for `*const i32 - *const i32`
+   |
+   = help: the trait `Sub` is not implemented for `*const i32`
+   = help: the following other types implement trait `Sub<Rhs>`:
+             `&i32` implements `Sub<i32>`
+             `&i32` implements `Sub`
+             `i32` implements `Sub<&i32>`
+             `i32` implements `Sub`
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:7:66
+   |
+ 7 | fn test_incdec<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T>>(
+   |                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:73:39
+   |
+73 |     test_incdec(&ia[1] as *const i32, -1, false);
+   |     ----------- --------------------  ^^ expected `*const i32`, found `usize`
+   |     |           |
+   |     |           expected some other arguments to be a `*const i32` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*const i32`
+                     found type `usize`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:7:4
+   |
+ 7 | fn test_incdec<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T>>(
+   |    ^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+ 8 |     value: T,
+   |     -------- `change` needs to match the `*const i32` type of this parameter
+ 9 |     change: T,
+   |     --------- this parameter needs to match the `*const i32` type of `value`
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:12:9
+   |
+12 |     let mut a = std::sync::atomic::AtomicPtr::<T>::new(std::ptr::null_mut());
+   |         ----^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 21 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0054, E0277, E0308, E0600.
+For more information about an error, try `rustc --explain E0054`.

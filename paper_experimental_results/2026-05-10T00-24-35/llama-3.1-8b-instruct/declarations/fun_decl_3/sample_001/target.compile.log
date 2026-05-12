@@ -1,0 +1,140 @@
+error: incorrect function inside `extern` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_001/target.rs:18:8
+   |
+17 |   extern "C" {
+   |   ---------- `extern` blocks define existing foreign functions and functions inside of them cannot have a body
+18 |       fn fpfi(pf: extern "C" fn(long) -> i32, k: i32) -> extern "C" fn(i32, ...) -> i32 {
+   |  ________^^^^___________________________________________________________________________-
+   | |        |
+   | |        cannot have a body
+19 | |         let t = k * 97 as i64 + 1234 as i64;
+20 | |         unsafe { G_SEED = pf(t) + k; }
+21 | |         if (G_SEED & 1 == 0) {
+...  |
+26 | |     }
+   | |_____- help: remove the invalid body: `;`
+   |
+   = help: you might have meant to write a function accessible through FFI, which can be done by writing `extern fn` outside of the `extern` block
+   = note: for more information, visit https://doc.rust-lang.org/std/keyword.extern.html
+
+error: incorrect function inside `extern` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_001/target.rs:30:8
+   |
+29 |   extern "C" {
+   |   ---------- `extern` blocks define existing foreign functions and functions inside of them cannot have a body
+30 |       fn call_through(pf: extern "C" fn(i32, ...) -> i32, x: i32) -> i32 {
+   |  ________^^^^^^^^^^^^____________________________________________________-
+   | |        |
+   | |        cannot have a body
+31 | |         let r1 = (pf)(x);
+32 | |         let r2 = (pf)(x, 1, 2, 3);
+33 | |         let r3 = (pf)(x, 1.25 as i32, std::ptr::null_mut(), 0x1122334455667788 as i64);
+34 | |         r1 ^ (r2 + 5) ^ (r3 + 9)
+35 | |     }
+   | |_____- help: remove the invalid body: `;`
+   |
+   = help: you might have meant to write a function accessible through FFI, which can be done by writing `extern fn` outside of the `extern` block
+   = note: for more information, visit https://doc.rust-lang.org/std/keyword.extern.html
+
+error[E0412]: cannot find type `long` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_001/target.rs:5:16
+  |
+5 | static CB0: fn(long) -> i32 = |x| (x ^ 0x13579 as i64) as i32 + 7;
+  |                ^^^^
+  |                |
+  |                not found in this scope
+  |                help: perhaps you intended to use this type: `i64`
+
+error[E0412]: cannot find type `long` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_001/target.rs:7:16
+  |
+7 | static CB1: fn(long) -> i32 = |x| (x * 3 as i64) as i32 - 11;
+  |                ^^^^
+  |                |
+  |                not found in this scope
+  |                help: perhaps you intended to use this type: `i64`
+
+error[E0573]: expected type, found function `std::ptr::null_mut`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_001/target.rs:9:56
+  |
+9 | static V0: extern "C" fn(i32, ...) -> i32 = |x, _args: std::ptr::null_mut()| {
+  |                                                        ^^^^^^^^^^^^^^^^^^^^ not a type
+
+error[E0573]: expected type, found function `std::ptr::null_mut`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_001/target.rs:13:56
+   |
+13 | static V1: extern "C" fn(i32, ...) -> i32 = |x, _args: std::ptr::null_mut()| {
+   |                                                        ^^^^^^^^^^^^^^^^^^^^ not a type
+
+error[E0412]: cannot find type `long` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_001/target.rs:18:31
+   |
+18 |     fn fpfi(pf: extern "C" fn(long) -> i32, k: i32) -> extern "C" fn(i32, ...) -> i32 {
+   |                               ^^^^
+   |                               |
+   |                               not found in this scope
+   |                               help: perhaps you intended to use this type: `i64`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_001/target.rs:10:5
+   |
+10 |     unsafe { G_SEED + x + 1000 }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_001/target.rs:14:5
+   |
+14 |     unsafe { G_SEED + x - 2000 }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_001/target.rs:20:9
+   |
+20 |         unsafe { G_SEED = pf(t) + k; }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unnecessary parentheses around `if` condition
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_001/target.rs:21:12
+   |
+21 |         if (G_SEED & 1 == 0) {
+   |            ^               ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+21 -         if (G_SEED & 1 == 0) {
+21 +         if G_SEED & 1 == 0 {
+   |
+
+error: declaration of a `no_mangle` function
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_001/target.rs:38:1
+   |
+38 | #[no_mangle]
+   | ^^^^^^^^^^^^
+   |
+   = note: the linker's behavior with multiple libraries exporting duplicate symbol names is undefined and Rust cannot provide guarantees when you manually override them
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_001/target.rs:39:1
+   |
+39 | / pub unsafe extern "C" fn main() -> i32 {
+40 | |     let vf = fpfi(CB0, 17);
+...  |
+98 | |     0
+99 | | }
+   | |_^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_001/target.rs:39:36
+   |
+39 | pub unsafe extern "C" fn main() -> i32 {
+   |                                    ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error: aborting due to 13 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0412, E0573.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,23 @@
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/lvalue_array_fun_c3_b/sample_005/target.rs:8:8
+  |
+8 |     if !type_id(&a) {
+  |        ^^^^^^^^^^^^ expected `bool`, found `u8`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/lvalue_array_fun_c3_b/sample_005/target.rs:12:8
+   |
+12 |     if !type_id(&&a) {
+   |        ^^^^^^^^^^^^^ expected `bool`, found `u8`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/lvalue_array_fun_c3_b/sample_005/target.rs:5:9
+  |
+4 |     fn type_id<T>(_: &T) -> u8 {
+  |                             -- expected `u8` because of return type
+5 |         std::any::TypeId::of::<T>() == std::any::TypeId::of::<&[i32; 3]>()
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `u8`, found `bool`
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

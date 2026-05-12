@@ -1,0 +1,32 @@
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/simple_asgn_1/sample_001/target.rs:4:17
+  |
+4 |     let c: i8 = f();
+  |            --   ^^^ expected `i8`, found `i32`
+  |            |
+  |            expected due to this
+  |
+help: you can convert an `i32` to an `i8` and panic if the converted value doesn't fit
+  |
+4 |     let c: i8 = f().try_into().unwrap();
+  |                    ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/simple_asgn_1/sample_001/target.rs:11:17
+   |
+11 |         if eq!= 1 {
+   |            --   ^ expected `bool`, found integer
+   |            |
+   |            expected because this is `bool`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/simple_asgn_1/sample_001/target.rs:15:17
+   |
+15 |         if eq!= 0 {
+   |            --   ^ expected `bool`, found integer
+   |            |
+   |            expected because this is `bool`
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

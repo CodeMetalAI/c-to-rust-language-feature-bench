@@ -1,0 +1,66 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_005/target.rs:28:13
+   |
+28 |     let p = unsafe { std::alloc::alloc(layout) } as *mut S;
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_005/target.rs:34:5
+   |
+34 | /     unsafe {
+35 | |         (*p).inner.i = 7;
+36 | |         (*p).a.as_mut_ptr().offset(0).write(11);
+37 | |         (*p).a.as_mut_ptr().offset(3).write(22);
+...  |
+42 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_005/target.rs:45:5
+   |
+45 | /     unsafe {
+46 | |         std::alloc::dealloc(p as *mut u8, layout);
+47 | |     }
+   | |_____^
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_005/target.rs:15:9
+   |
+15 |         return std::process::exit(1);
+   |         ^^^^^^^---------------------
+   |         |      |
+   |         |      any code following this expression is unreachable
+   |         unreachable expression
+   |
+   = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_005/target.rs:20:9
+   |
+20 |         return std::process::exit(2);
+   |         ^^^^^^^---------------------
+   |         |      |
+   |         |      any code following this expression is unreachable
+   |         unreachable expression
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_005/target.rs:30:9
+   |
+30 |         return std::process::exit(3);
+   |         ^^^^^^^---------------------
+   |         |      |
+   |         |      any code following this expression is unreachable
+   |         unreachable expression
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_005/target.rs:40:13
+   |
+40 |             return std::process::exit(4);
+   |             ^^^^^^^---------------------
+   |             |      |
+   |             |      any code following this expression is unreachable
+   |             unreachable expression
+
+error: aborting due to 3 previous errors; 4 warnings emitted

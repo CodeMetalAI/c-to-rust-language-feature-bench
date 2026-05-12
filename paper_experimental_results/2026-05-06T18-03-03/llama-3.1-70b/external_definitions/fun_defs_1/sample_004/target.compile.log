@@ -1,0 +1,55 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/external_definitions/fun_defs_1/sample_004/target.rs:3:5
+  |
+3 | /     unsafe {
+4 | |         ARR[b as usize] = 1;
+5 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/external_definitions/fun_defs_1/sample_004/target.rs:12:5
+   |
+12 | /     unsafe {
+13 | |         ARR[b as usize] += b as i32;
+14 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/external_definitions/fun_defs_1/sample_004/target.rs:32:15
+   |
+32 |     let arr = unsafe { &*(&f as *const _ as *const [i32; 256]) };
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/external_definitions/fun_defs_1/sample_004/target.rs:15:9
+   |
+15 |     a + b
+   |         ^ expected `i32`, found `u8`
+
+error[E0277]: cannot add `u8` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/external_definitions/fun_defs_1/sample_004/target.rs:15:7
+   |
+15 |     a + b
+   |       ^ no implementation for `i32 + u8`
+   |
+   = help: the trait `Add<u8>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+warning: unused variable: `a`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/external_definitions/fun_defs_1/sample_004/target.rs:1:6
+  |
+1 | fn f(a: u8, b: u8) -> i32 {
+  |      ^ help: if this is intentional, prefix it with an underscore: `_a`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 5 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

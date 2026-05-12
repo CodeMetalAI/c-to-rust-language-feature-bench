@@ -1,0 +1,99 @@
+error[E0596]: cannot borrow `rng_next` as mutable, as it is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:13:24
+   |
+ 9 |         rng_state = x;
+   |         --------- calling `rng_next` requires mutable binding due to mutable borrow of `rng_state`
+...
+13 |     let pick_1_9 = || (rng_next() % 9 + 1) as usize;
+   |                        ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+ 4 |     let mut rng_next = || {
+   |         +++
+
+error[E0596]: cannot borrow `rng_next` as mutable, as it is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:14:24
+   |
+ 9 |         rng_state = x;
+   |         --------- calling `rng_next` requires mutable binding due to mutable borrow of `rng_state`
+...
+14 |     let pick_0_9 = || (rng_next() % 10) as usize;
+   |                        ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+ 4 |     let mut rng_next = || {
+   |         +++
+
+error[E0596]: cannot borrow `pick_1_9` as mutable, as it is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:13:9
+   |
+13 |     let pick_1_9 = || (rng_next() % 9 + 1) as usize;
+   |         ^^^^^^^^       -------- calling `pick_1_9` requires mutable binding due to mutable borrow of `rng_next`
+   |         |
+   |         not mutable
+...
+35 |         let a = pick_1_9();
+   |                 -------- cannot borrow as mutable
+...
+44 |         let b2 = pick_1_9();
+   |                  -------- cannot borrow as mutable
+...
+51 |         let a3 = pick_1_9();
+   |                  -------- cannot borrow as mutable
+...
+58 |         let a4 = pick_1_9();
+   |                  -------- cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+13 |     let mut pick_1_9 = || (rng_next() % 9 + 1) as usize;
+   |         +++
+
+error[E0596]: cannot borrow `pick_0_9` as mutable, as it is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:14:9
+   |
+14 |     let pick_0_9 = || (rng_next() % 10) as usize;
+   |         ^^^^^^^^       -------- calling `pick_0_9` requires mutable binding due to mutable borrow of `rng_next`
+   |         |
+   |         not mutable
+...
+36 |         let b = pick_0_9();
+   |                 -------- cannot borrow as mutable
+37 |         let c = pick_0_9();
+   |                 -------- cannot borrow as mutable
+...
+45 |         let c2 = pick_0_9();
+   |                  -------- cannot borrow as mutable
+...
+52 |         let c3 = pick_0_9();
+   |                  -------- cannot borrow as mutable
+...
+59 |         let b4 = pick_0_9();
+   |                  -------- cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+14 |     let mut pick_0_9 = || (rng_next() % 10) as usize;
+   |         +++
+
+error[E0524]: two closures require unique access to `rng_next` at the same time
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:14:20
+   |
+13 |     let pick_1_9 = || (rng_next() % 9 + 1) as usize;
+   |                    --  -------- first borrow occurs due to use of `rng_next` in closure
+   |                    |
+   |                    first closure is constructed here
+14 |     let pick_0_9 = || (rng_next() % 10) as usize;
+   |                    ^^  -------- second borrow occurs due to use of `rng_next` in closure
+   |                    |
+   |                    second closure is constructed here
+...
+35 |         let a = pick_1_9();
+   |                 -------- first borrow later used here
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0524, E0596.
+For more information about an error, try `rustc --explain E0524`.

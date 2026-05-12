@@ -1,0 +1,25 @@
+warning: value assigned to `g` is never read
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/logical_AND_op_c4/sample_005/target.rs:11:5
+   |
+11 |     g = 0;
+   |     ^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+error[E0506]: cannot assign to `g` because it is borrowed
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/logical_AND_op_c4/sample_005/target.rs:11:5
+   |
+ 4 |     let mut set_g_return = |gval: i32, ret: i32| -> i32 {
+   |                            ---------------------------- `g` is borrowed here
+ 5 |         g = gval;
+   |         - borrow occurs due to use in closure
+...
+11 |     g = 0;
+   |     ^^^^^ `g` is assigned to here but it was already borrowed
+12 |     if set_g_return(0, 0) != 0 && {
+   |        ------------ borrow later used here
+
+error: aborting due to 1 previous error; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0506`.

@@ -1,0 +1,40 @@
+error[E0423]: expected function, found macro `std::mem::offset_of`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_001/target.rs:15:8
+   |
+15 |     if std::mem::offset_of::<S, [f64; 8]>()!= std::mem::size_of::<S>() {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a function
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_001/target.rs:26:12
+   |
+26 |         d: [0.0; 5],
+   |            ^^^^^^^^ expected an array with a size of 8, found one with a size of 5
+
+error[E0599]: no method named `is_none` found for struct `Box<S>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_001/target.rs:29:11
+   |
+29 |     if s1.is_none() || s2.is_none() {
+   |           ^^^^^^^ method not found in `Box<S>`
+
+error[E0599]: no method named `is_none` found for struct `Box<S>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_001/target.rs:29:27
+   |
+29 |     if s1.is_none() || s2.is_none() {
+   |                           ^^^^^^^ method not found in `Box<S>`
+
+error[E0599]: no method named `unwrap` found for struct `Box<S>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_001/target.rs:33:17
+   |
+33 |     let s1 = s1.unwrap();
+   |                 ^^^^^^ method not found in `Box<S>`
+
+error[E0599]: no method named `unwrap` found for struct `Box<S>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_001/target.rs:34:17
+   |
+34 |     let s2 = s2.unwrap();
+   |                 ^^^^^^ method not found in `Box<S>`
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0308, E0423, E0599.
+For more information about an error, try `rustc --explain E0308`.

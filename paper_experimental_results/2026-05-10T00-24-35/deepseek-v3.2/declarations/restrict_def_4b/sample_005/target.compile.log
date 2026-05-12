@@ -1,0 +1,45 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_4b/sample_005/target.rs:32:9
+   |
+32 | /         unsafe {
+33 | |             H ^= (ptr as u64).wrapping_add(0x9e3779b97f4a7c15u64);
+34 | |             H = H.wrapping_mul(0x5851f42d4c957f2du64);
+35 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_4b/sample_005/target.rs:47:13
+   |
+47 | /             unsafe {
+48 | |                 let slice = std::slice::from_raw_parts_mut(raw_ptr as *mut f32, n as usize);
+49 | |                 Some(Box::from_raw(slice))
+50 | |             }
+   | |_____________^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_4b/sample_005/target.rs:108:5
+    |
+108 | /     unsafe {
+109 | |         if (H & 1u64) == 0u64 {
+110 | |             std::process::exit(6);
+111 | |         }
+112 | |     }
+    | |_____^
+
+error[E0596]: cannot borrow data in a `&` reference as mutable
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_4b/sample_005/target.rs:93:14
+   |
+93 |     fill_vec(&mut a.v.as_ref().unwrap(), 1.0f32);
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot borrow as mutable
+
+error[E0596]: cannot borrow data in a `&` reference as mutable
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_4b/sample_005/target.rs:94:14
+   |
+94 |     fill_vec(&mut b.v.as_ref().unwrap(), 100.0f32);
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot borrow as mutable
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0596`.

@@ -1,0 +1,128 @@
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_003/target.rs:13:41
+   |
+13 |     fn checksum_2d(m: usize, a: &[[i32; m]; m]) -> i32 {
+   |                    -                    ^
+   |                    |
+   |                    this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_003/target.rs:13:45
+   |
+13 |     fn checksum_2d(m: usize, a: &[[i32; m]; m]) -> i32 {
+   |                    -                        ^
+   |                    |
+   |                    this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_003/target.rs:23:38
+   |
+23 |     fn fvla(m: usize, c: &mut [[i32; m]; m]) {
+   |             -                        ^
+   |             |
+   |             this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_003/target.rs:23:42
+   |
+23 |     fn fvla(m: usize, c: &mut [[i32; m]; m]) {
+   |             -                            ^
+   |             |
+   |             this would need to be a `const`
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_003/target.rs:24:21
+   |
+24 |         let mut q = backing;
+   |                     ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_003/target.rs:44:23
+   |
+44 |             X[i][j] = (i + 1) * 10 + (j + 1);
+   |             -------   ^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+   |             |
+   |             expected due to the type of this binding
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_003/target.rs:45:23
+   |
+45 |             Y[i][j] = (i + 1) * 20 + (j + 1);
+   |             -------   ^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+   |             |
+   |             expected due to the type of this binding
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_003/target.rs:54:38
+   |
+54 |             expect[i][j] = X[i][j] + ((i + j) % m + 1) * 7 + 3;
+   |                                      ^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_003/target.rs:54:36
+   |
+54 |             expect[i][j] = X[i][j] + ((i + j) % m + 1) * 7 + 3;
+   |                                    ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_003/target.rs:66:39
+   |
+66 |             expect2[i][j] = Y[i][j] + ((i + j) % m + 1) * 7 + 3;
+   |                                       ^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_003/target.rs:66:37
+   |
+66 |             expect2[i][j] = Y[i][j] + ((i + j) % m + 1) * 7 + 3;
+   |                                     ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_003/target.rs:8:33
+  |
+8 |                 backing[i][j] = (i + 1) * 100 + (j + 1);
+  |                 -------------   ^^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+  |                 |
+  |                 expected due to the type of this binding
+
+error[E0277]: a value of type `Vec<i32>` cannot be built from an iterator over elements of type `usize`
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_003/target.rs:25:63
+     |
+  25 |         let mut D: Vec<i32> = (1..m).map(|i| (i + 1) * 7 + 3).collect();
+     |                                                               ^^^^^^^ value of type `Vec<i32>` cannot be built from `std::iter::Iterator<Item=usize>`
+     |
+     = help: the trait `FromIterator<usize>` is not implemented for `Vec<i32>`
+             but trait `FromIterator<i32>` is implemented for it
+     = help: for that trait implementation, expected `i32`, found `usize`
+note: the method call chain might not have had the expected associated types
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_003/target.rs:25:38
+     |
+  25 |         let mut D: Vec<i32> = (1..m).map(|i| (i + 1) * 7 + 3).collect();
+     |                               ------ ^^^^^^^^^^^^^^^^^^^^^^^^ `Iterator::Item` is `usize` here
+     |                               |
+     |                               this expression has type `Range<usize>`
+note: required by a bound in `collect`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/iter/traits/iterator.rs:2014:19
+     |
+2014 |     fn collect<B: FromIterator<Self::Item>>(self) -> B
+     |                   ^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `Iterator::collect`
+
+error: aborting due to 13 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0434, E0435.
+For more information about an error, try `rustc --explain E0277`.

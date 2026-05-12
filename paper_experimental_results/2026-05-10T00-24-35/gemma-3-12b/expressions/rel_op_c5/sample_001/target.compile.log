@@ -1,0 +1,139 @@
+warning: unnecessary parentheses around assigned value
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/rel_op_c5/sample_001/target.rs:10:18
+   |
+10 |     let p_end1 = (&arr[3] as *const i32);
+   |                  ^                     ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+10 -     let p_end1 = (&arr[3] as *const i32);
+10 +     let p_end1 = &arr[3] as *const i32;
+   |
+
+warning: unnecessary parentheses around assigned value
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/rel_op_c5/sample_001/target.rs:11:18
+   |
+11 |     let p_end2 = (arr.as_ptr().add(3) as *const i32);
+   |                  ^                                 ^
+   |
+help: remove these parentheses
+   |
+11 -     let p_end2 = (arr.as_ptr().add(3) as *const i32);
+11 +     let p_end2 = arr.as_ptr().add(3) as *const i32;
+   |
+
+warning: unnecessary parentheses around assigned value
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/rel_op_c5/sample_001/target.rs:26:14
+   |
+26 |     let q1 = (q_last.add(1) as *const i32);
+   |              ^                           ^
+   |
+help: remove these parentheses
+   |
+26 -     let q1 = (q_last.add(1) as *const i32);
+26 +     let q1 = q_last.add(1) as *const i32;
+   |
+
+warning: type `st` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/rel_op_c5/sample_001/target.rs:31:12
+   |
+31 |     struct st {
+   |            ^^ help: convert the identifier to upper camel case (notice the capitalization): `St`
+   |
+   = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: unnecessary parentheses around assigned value
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/rel_op_c5/sample_001/target.rs:36:14
+   |
+36 |     let sa = (s.a as *const i32 as *const u8);
+   |              ^                              ^
+   |
+help: remove these parentheses
+   |
+36 -     let sa = (s.a as *const i32 as *const u8);
+36 +     let sa = s.a as *const i32 as *const u8;
+   |
+
+warning: unnecessary parentheses around assigned value
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/rel_op_c5/sample_001/target.rs:37:14
+   |
+37 |     let sb = (s.b as *const i32 as *const u8);
+   |              ^                              ^
+   |
+help: remove these parentheses
+   |
+37 -     let sb = (s.b as *const i32 as *const u8);
+37 +     let sb = s.b as *const i32 as *const u8;
+   |
+
+warning: type `un` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/rel_op_c5/sample_001/target.rs:42:11
+   |
+42 |     union un {
+   |           ^^ help: convert the identifier to upper camel case (notice the capitalization): `Un`
+
+warning: unnecessary parentheses around assigned value
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/rel_op_c5/sample_001/target.rs:47:14
+   |
+47 |     let ui = (u.i as *const i32 as *const u8);
+   |              ^                              ^
+   |
+help: remove these parentheses
+   |
+47 -     let ui = (u.i as *const i32 as *const u8);
+47 +     let ui = u.i as *const i32 as *const u8;
+   |
+
+warning: unnecessary parentheses around assigned value
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/rel_op_c5/sample_001/target.rs:48:14
+   |
+48 |     let ud = (u.d as *const f64 as *const u8);
+   |              ^                              ^
+   |
+help: remove these parentheses
+   |
+48 -     let ud = (u.d as *const f64 as *const u8);
+48 +     let ud = u.d as *const f64 as *const u8;
+   |
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/rel_op_c5/sample_001/target.rs:6:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+6 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0599]: no method named `add` found for reference `&{integer}` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/rel_op_c5/sample_001/target.rs:26:22
+   |
+26 |     let q1 = (q_last.add(1) as *const i32);
+   |                      ^^^ method not found in `&{integer}`
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::ops::Add;
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/rel_op_c5/sample_001/target.rs:53:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+53 |     0
+   |     ^ expected `()`, found integer
+
+error[E0606]: casting `f64` as `*const f64` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/rel_op_c5/sample_001/target.rs:48:15
+   |
+48 |     let ud = (u.d as *const f64 as *const u8);
+   |               ^^^^^^^^^^^^^^^^^
+
+error: aborting due to 4 previous errors; 9 warnings emitted
+
+Some errors have detailed explanations: E0308, E0599, E0606.
+For more information about an error, try `rustc --explain E0308`.

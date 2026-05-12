@@ -1,0 +1,67 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_003/target.rs:23:15
+   |
+23 |     let ptr = unsafe { alloc(layout) } as *mut i32;
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_003/target.rs:29:5
+   |
+29 | /     unsafe {
+30 | |         ptr::write(ptr, 7); // S.i
+31 | |         ptr::write(ptr.add(1), 11); // S.a[0]
+32 | |         ptr::write(ptr.add(4), 22); // S.a[3]
+33 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_003/target.rs:36:13
+   |
+36 |     let i = unsafe { ptr::read(ptr) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_003/target.rs:37:14
+   |
+37 |     let a0 = unsafe { ptr::read(ptr.add(1)) };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_003/target.rs:38:14
+   |
+38 |     let a3 = unsafe { ptr::read(ptr.add(4)) };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_003/target.rs:44:5
+   |
+44 | /     unsafe {
+45 | |         dealloc(ptr as *mut u8, layout);
+46 | |     }
+   | |_____^
+
+error[E0277]: the size for values of type `[i32]` cannot be known at compilation time
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_003/target.rs:17:8
+   |
+17 |     if mem::offset_of!(S, a) != mem::size_of::<i32>() {
+   |        ^^^^^^^^^^^^^^^^^^^^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[i32]`
+   = note: this error originates in the macro `mem::offset_of` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `alloc_layout_extra`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_003/target.rs:22:39
+   |
+22 |     let layout = Layout::new::<i32>().repeat(1 + 4).unwrap().0;
+   |                                       ^^^^^^
+   |
+   = note: see issue #55724 <https://github.com/rust-lang/rust/issues/55724> for more information
+   = help: add `#![feature(alloc_layout_extra)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0277, E0658.
+For more information about an error, try `rustc --explain E0277`.

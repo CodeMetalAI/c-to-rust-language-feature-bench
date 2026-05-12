@@ -1,0 +1,186 @@
+error: invalid suffix `u` for number literal
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_004/target.rs:4:50
+  |
+4 |     ua ^ (ua >> 16) as i32 + (ub * 12345 + (ua * 1103515245u) as i32)
+  |                                                  ^^^^^^^^^^^ invalid suffix `u`
+  |
+  = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_004/target.rs:4:44
+  |
+4 |     ua ^ (ua >> 16) as i32 + (ub * 12345 + (ua * 1103515245u) as i32)
+  |                                            ^^^^^^^^^^^^^^^^^^^^^^^^^ expected `u32`, found `i32`
+
+error[E0277]: cannot add `i32` to `u32`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_004/target.rs:4:42
+  |
+4 |     ua ^ (ua >> 16) as i32 + (ub * 12345 + (ua * 1103515245u) as i32)
+  |                                          ^ no implementation for `u32 + i32`
+  |
+  = help: the trait `Add<i32>` is not implemented for `u32`
+  = help: the following other types implement trait `Add<Rhs>`:
+            `&u32` implements `Add<u32>`
+            `&u32` implements `Add`
+            `u32` implements `Add<&u32>`
+            `u32` implements `Add`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_004/target.rs:4:30
+  |
+4 |     ua ^ (ua >> 16) as i32 + (ub * 12345 + (ua * 1103515245u) as i32)
+  |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `u32`
+
+error[E0277]: cannot add `u32` to `i32`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_004/target.rs:4:28
+  |
+4 |     ua ^ (ua >> 16) as i32 + (ub * 12345 + (ua * 1103515245u) as i32)
+  |                            ^ no implementation for `i32 + u32`
+  |
+  = help: the trait `Add<u32>` is not implemented for `i32`
+  = help: the following other types implement trait `Add<Rhs>`:
+            `&i32` implements `Add<i32>`
+            `&i32` implements `Add`
+            `i32` implements `Add<&i32>`
+            `i32` implements `Add`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_004/target.rs:4:10
+  |
+4 |     ua ^ (ua >> 16) as i32 + (ub * 12345 + (ua * 1103515245u) as i32)
+  |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `u32`, found `i32`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_004/target.rs:4:5
+  |
+1 | fn hmix(a: i32, b: i32) -> i32 {
+  |                            --- expected `i32` because of return type
+...
+4 |     ua ^ (ua >> 16) as i32 + (ub * 12345 + (ua * 1103515245u) as i32)
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `u32`
+  |
+help: you can convert a `u32` to an `i32` and panic if the converted value doesn't fit
+  |
+4 |     (ua ^ (ua >> 16) as i32 + (ub * 12345 + (ua * 1103515245u) as i32)).try_into().unwrap()
+  |     +                                                                 +++++++++++++++++++++
+
+error[E0277]: no implementation for `u32 ^ i32`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_004/target.rs:4:8
+  |
+4 |     ua ^ (ua >> 16) as i32 + (ub * 12345 + (ua * 1103515245u) as i32)
+  |        ^ no implementation for `u32 ^ i32`
+  |
+  = help: the trait `BitXor<i32>` is not implemented for `u32`
+  = help: the following other types implement trait `BitXor<Rhs>`:
+            `&u32` implements `BitXor<u32>`
+            `&u32` implements `BitXor`
+            `u32` implements `BitXor<&u32>`
+            `u32` implements `BitXor`
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_004/target.rs:45:16
+   |
+45 |     let sel = (hmix(v[0], v[5]) & 3) as usize;
+   |                ^^^^ ----  ---- expected `i32`, found `usize`
+   |                     |
+   |                     expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_004/target.rs:1:4
+   |
+ 1 | fn hmix(a: i32, b: i32) -> i32 {
+   |    ^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+45 |     let sel = (hmix(v[0].try_into().unwrap(), v[5]) & 3) as usize;
+   |                         ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+45 |     let sel = (hmix(v[0], v[5].try_into().unwrap()) & 3) as usize;
+   |                               ++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_004/target.rs:54:15
+   |
+54 |     let out = run(apfi[sel], x, y);
+   |               ^^^            -  - expected `&mut i32`, found `&mut usize`
+   |                              |
+   |                              expected `&mut i32`, found `&mut usize`
+   |
+   = note: expected mutable reference `&mut i32`
+              found mutable reference `&mut usize`
+   = note: expected mutable reference `&mut i32`
+              found mutable reference `&mut usize`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_004/target.rs:31:4
+   |
+31 | fn run(pf: fn(&mut i32, &mut i32) -> i32, x: &mut i32, y: &mut i32) -> i32 {
+   |    ^^^                                    -----------  -----------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_004/target.rs:63:25
+   |
+63 |         if (out ^ 3)!= (hmix(*x, *y) ^ (hmix(*x, *y) + 3)) {
+   |                         ^^^^ --  -- expected `i32`, found `usize`
+   |                              |
+   |                              expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_004/target.rs:1:4
+   |
+ 1 | fn hmix(a: i32, b: i32) -> i32 {
+   |    ^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+63 |         if (out ^ 3)!= (hmix((*x).try_into().unwrap(), *y) ^ (hmix(*x, *y) + 3)) {
+   |                              +  +++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+63 |         if (out ^ 3)!= (hmix(*x, (*y).try_into().unwrap()) ^ (hmix(*x, *y) + 3)) {
+   |                                  +  +++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_004/target.rs:63:41
+   |
+63 |         if (out ^ 3)!= (hmix(*x, *y) ^ (hmix(*x, *y) + 3)) {
+   |                                         ^^^^ --  -- expected `i32`, found `usize`
+   |                                              |
+   |                                              expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_004/target.rs:1:4
+   |
+ 1 | fn hmix(a: i32, b: i32) -> i32 {
+   |    ^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+63 |         if (out ^ 3)!= (hmix(*x, *y) ^ (hmix((*x).try_into().unwrap(), *y) + 3)) {
+   |                                              +  +++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+63 |         if (out ^ 3)!= (hmix(*x, *y) ^ (hmix(*x, (*y).try_into().unwrap()) + 3)) {
+   |                                                  +  +++++++++++++++++++++
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_004/target.rs:74:46
+   |
+74 |         let d = if before_x - before_y < 0 { -(before_x - before_y) } else { before_x - before_y };
+   |                                              ^^^^^^^^^^^^^^^^^^^^^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_004/target.rs:83:21
+   |
+83 |     if apfi[sel] == std::ptr::null::<fn(&mut i32, &mut i32) -> i32>() {
+   |        ---------    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected fn pointer, found `*const fn(&mut i32, &mut i32) -> i32`
+   |        |
+   |        expected because this is `for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32`
+   |
+   = note: expected fn pointer `for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32`
+             found raw pointer `*const for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32`
+
+error: aborting due to 14 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0600.
+For more information about an error, try `rustc --explain E0277`.

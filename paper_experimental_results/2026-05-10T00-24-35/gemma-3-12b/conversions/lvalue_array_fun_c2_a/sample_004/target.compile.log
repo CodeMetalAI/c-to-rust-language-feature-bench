@@ -1,0 +1,140 @@
+error[E0433]: failed to resolve: use of undeclared type `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:10:9
+   |
+10 |         TypeId::of::<i32>() => 1,
+   |         ^^^^^^ use of undeclared type `TypeId`
+   |
+help: consider importing this struct
+   |
+ 1 + use std::any::TypeId;
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:11:9
+   |
+11 |         TypeId::of::<*mut i32>() => 2,
+   |         ^^^^^^ use of undeclared type `TypeId`
+   |
+help: consider importing this struct
+   |
+ 1 + use std::any::TypeId;
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:12:9
+   |
+12 |         TypeId::of::<*const i32>() => 3,
+   |         ^^^^^^ use of undeclared type `TypeId`
+   |
+help: consider importing this struct
+   |
+ 1 + use std::any::TypeId;
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:13:9
+   |
+13 |         TypeId::of::<std::sync::atomic::AtomicI32>() => 4,
+   |         ^^^^^^ use of undeclared type `TypeId`
+   |
+help: consider importing this struct
+   |
+ 1 + use std::any::TypeId;
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:14:9
+   |
+14 |         TypeId::of::<*mut std::sync::atomic::AtomicI32>() => 5,
+   |         ^^^^^^ use of undeclared type `TypeId`
+   |
+help: consider importing this struct
+   |
+ 1 + use std::any::TypeId;
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:15:9
+   |
+15 |         TypeId::of::<fn(i32) -> i32>() => 6,
+   |         ^^^^^^ use of undeclared type `TypeId`
+   |
+help: consider importing this struct
+   |
+ 1 + use std::any::TypeId;
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:16:9
+   |
+16 |         TypeId::of::<i32>() if std::ptr::addr_of_mut(&0i32) == std::ptr::addr_of_mut(&std::sync::atomic::AtomicI32::new(0)) => 7,
+   |         ^^^^^^ use of undeclared type `TypeId`
+   |
+help: consider importing this struct
+   |
+ 1 + use std::any::TypeId;
+   |
+
+error[E0423]: expected function, found macro `std::ptr::addr_of_mut`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:16:32
+   |
+16 |         TypeId::of::<i32>() if std::ptr::addr_of_mut(&0i32) == std::ptr::addr_of_mut(&std::sync::atomic::AtomicI32::new(0)) => 7,
+   |                                ^^^^^^^^^^^^^^^^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+16 |         TypeId::of::<i32>() if std::ptr::addr_of_mut!(&0i32) == std::ptr::addr_of_mut(&std::sync::atomic::AtomicI32::new(0)) => 7,
+   |                                                     +
+
+error[E0423]: expected function, found macro `std::ptr::addr_of_mut`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:16:64
+   |
+16 |         TypeId::of::<i32>() if std::ptr::addr_of_mut(&0i32) == std::ptr::addr_of_mut(&std::sync::atomic::AtomicI32::new(0)) => 7,
+   |                                                                ^^^^^^^^^^^^^^^^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+16 |         TypeId::of::<i32>() if std::ptr::addr_of_mut(&0i32) == std::ptr::addr_of_mut!(&std::sync::atomic::AtomicI32::new(0)) => 7,
+   |                                                                                     +
+
+error[E0599]: no function or associated item named `new` found for struct `TypeId` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:8:35
+    |
+  8 |     let type_ = std::any::TypeId::new::<T>();
+    |                                   ^^^ function or associated item not found in `TypeId`
+    |
+note: if you're trying to build a new `TypeId`, consider using `TypeId::of` which returns `TypeId`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/any.rs:777:5
+    |
+777 |     pub const fn of<T: ?Sized + 'static>() -> TypeId {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: there is a method `ne` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cmp.rs:264:5
+    |
+264 |     fn ne(&self, other: &Rhs) -> bool {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:53:16
+   |
+53 |     if type_id(&cx + 0) != 1 {
+   |        ------- ^^^^^^^ expected `&_`, found `i32`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:2:4
+   |
+ 2 | fn type_id<T>(_: &T) -> i32 {
+   |    ^^^^^^^    -----
+help: consider borrowing here
+   |
+53 |     if type_id(&(&cx + 0)) != 1 {
+   |                ++       +
+
+error: aborting due to 11 previous errors
+
+Some errors have detailed explanations: E0308, E0423, E0433, E0599.
+For more information about an error, try `rustc --explain E0308`.

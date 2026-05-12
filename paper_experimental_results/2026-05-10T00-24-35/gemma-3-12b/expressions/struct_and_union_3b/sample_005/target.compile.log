@@ -1,0 +1,60 @@
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/struct_and_union_3b/sample_005/target.rs:10:10
+   |
+10 | #[derive(Debug, Copy, Clone)]
+   |          ^^^^^
+
+warning: type `t1` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/struct_and_union_3b/sample_005/target.rs:2:8
+  |
+2 | struct t1 {
+  |        ^^ help: convert the identifier to upper camel case: `T1`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: type `t2` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/struct_and_union_3b/sample_005/target.rs:6:8
+  |
+6 | struct t2 {
+  |        ^^ help: convert the identifier to upper camel case: `T2`
+
+warning: type `u12` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/struct_and_union_3b/sample_005/target.rs:11:7
+   |
+11 | union u12 {
+   |       ^^^ help: convert the identifier to upper camel case (notice the capitalization): `U12`
+
+error[E0784]: union expressions should have exactly one field
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/struct_and_union_3b/sample_005/target.rs:24:17
+   |
+24 |     let mut u = u12 {
+   |                 ^^^
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/struct_and_union_3b/sample_005/target.rs:17:8
+   |
+17 |     if u.s1.m < 0 {
+   |        ^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/struct_and_union_3b/sample_005/target.rs:18:19
+   |
+18 |         u.s2.m = -u.s2.m;
+   |                   ^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/struct_and_union_3b/sample_005/target.rs:20:5
+   |
+20 |     u.s1.m
+   |     ^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: aborting due to 5 previous errors; 3 warnings emitted
+
+Some errors have detailed explanations: E0133, E0784.
+For more information about an error, try `rustc --explain E0133`.

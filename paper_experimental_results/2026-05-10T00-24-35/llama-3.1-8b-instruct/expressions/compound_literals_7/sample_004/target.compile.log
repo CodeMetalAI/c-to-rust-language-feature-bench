@@ -1,0 +1,62 @@
+error[E0425]: cannot find value `endless_zeros` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_004/target.rs:13:115
+   |
+13 |         MaybeIncomplete::Incomplete(Some(x)) if x.car().map_or(false, |y| y != &MaybeIncomplete::Incomplete(Some(&endless_zeros))) => 3,
+   |                                                                                                                   ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `ENDOLESS_ZEROS` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_004/target.rs:21:11
+   |
+18 | const ENDOGLESS_ZEROS: MaybeIncomplete<i32> = MaybeIncomplete::Incomplete(Some(&ENDOGLESS_ZEROS));
+   | -------------------------------------------------------------------------------------------------- similarly named constant `ENDOGLESS_ZEROS` defined here
+...
+21 |     eval(&ENDOLESS_ZEROS)
+   |           ^^^^^^^^^^^^^^ help: a constant with a similar name exists: `ENDOGLESS_ZEROS`
+
+error[E0310]: the parameter type `T` may not live long enough
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_004/target.rs:6:16
+  |
+6 |     Incomplete(Option<&'static Self>),
+  |                ^^^^^^^^^^^^^^^^^^^^^
+  |                |
+  |                the parameter type `T` must be valid for the static lifetime...
+  |                ...so that the reference type `&'static MaybeIncomplete<T>` does not outlive the data it points at
+  |
+help: consider adding an explicit lifetime bound
+  |
+4 | enum MaybeIncomplete<T: 'static> {
+  |                       +++++++++
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_004/target.rs:20:14
+   |
+20 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0599]: no method named `car` found for reference `&&'static MaybeIncomplete<i32>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_004/target.rs:13:51
+   |
+13 |         MaybeIncomplete::Incomplete(Some(x)) if x.car().map_or(false, |y| y != &MaybeIncomplete::Incomplete(Some(&endless_zeros))) => 3,
+   |                                                   ^^^ method not found in `&&'static MaybeIncomplete<i32>`
+
+error[E0391]: cycle detected when simplifying constant for the type system `ENDOGLESS_ZEROS`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_004/target.rs:18:1
+   |
+18 | const ENDOGLESS_ZEROS: MaybeIncomplete<i32> = MaybeIncomplete::Incomplete(Some(&ENDOGLESS_ZEROS));
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+note: ...which requires const-evaluating + checking `ENDOGLESS_ZEROS`...
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_004/target.rs:18:81
+   |
+18 | const ENDOGLESS_ZEROS: MaybeIncomplete<i32> = MaybeIncomplete::Incomplete(Some(&ENDOGLESS_ZEROS));
+   |                                                                                 ^^^^^^^^^^^^^^^
+   = note: ...which again requires simplifying constant for the type system `ENDOGLESS_ZEROS`, completing the cycle
+   = note: cycle used when running analysis passes on this crate
+   = note: see https://rustc-dev-guide.rust-lang.org/overview.html#queries and https://rustc-dev-guide.rust-lang.org/query.html for more information
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0277, E0310, E0391, E0425, E0599.
+For more information about an error, try `rustc --explain E0277`.

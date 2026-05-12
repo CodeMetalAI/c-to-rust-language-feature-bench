@@ -1,0 +1,50 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_3/sample_001/target.rs:37:5
+   |
+37 | /     unsafe {
+38 | |         let nn = N as usize;
+39 | |         let mm = M as usize;
+...  |
+69 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_3/sample_001/target.rs:73:5
+   |
+73 | /     unsafe {
+74 | |         N = 6;
+75 | |         M = N + 1;
+...  |
+83 | |     }
+   | |_____^
+
+error[E0369]: cannot add `i32` to `[i32; 6]`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_3/sample_001/target.rs:12:42
+   |
+12 |                 if a[i][j][k] != p[j][k] + i as i32 {
+   |                                  ------- ^ -------- i32
+   |                                  |
+   |                                  [i32; 6]
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_3/sample_001/target.rs:62:32
+   |
+62 |         if check_a(nn, mm, &a, &a[0]) != 0 {
+   |            -------             ^^^^^ expected `&[[[i32; 6]; 6]]`, found `&[[i32; 6]; 6]`
+   |            |
+   |            arguments to this function are incorrect
+   |
+   = note: expected reference `&[[[i32; 6]; 6]]`
+              found reference `&[[i32; 6]; 6]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_3/sample_001/target.rs:8:4
+   |
+ 8 | fn check_a(nn: usize, mm: usize, a: &[[[i32; 6]; 6]; 6], p: &[[[i32; 6]; 6]]) -> i32 {
+   |    ^^^^^^^                                               -------------------
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0369.
+For more information about an error, try `rustc --explain E0308`.

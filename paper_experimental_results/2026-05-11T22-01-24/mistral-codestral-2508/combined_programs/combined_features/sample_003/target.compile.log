@@ -1,0 +1,32 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/combined_programs/combined_features/sample_003/target.rs:31:5
+   |
+31 | /     unsafe {
+32 | |         (*p).x += 100;
+33 | |         (*p).x
+34 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/combined_programs/combined_features/sample_003/target.rs:58:21
+   |
+58 |             let b = unsafe { *(*(x.as_ptr().add(i)).add(j)) };
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/combined_programs/combined_features/sample_003/target.rs:134:12
+    |
+134 |         if unsafe { (*r).n } != x[2][0] {
+    |            ^^^^^^^^^^^^^^^^^
+
+error[E0614]: type `[i32; 5]` cannot be dereferenced
+  --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/combined_programs/combined_features/sample_003/target.rs:58:30
+   |
+58 |             let b = unsafe { *(*(x.as_ptr().add(i)).add(j)) };
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ can't be dereferenced
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0614`.

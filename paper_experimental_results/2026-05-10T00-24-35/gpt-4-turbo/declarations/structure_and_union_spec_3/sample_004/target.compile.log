@@ -1,0 +1,66 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_004/target.rs:11:20
+   |
+11 |     let i_offset = unsafe { &(*(0 as *const S)).i as *const _ as usize };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_004/target.rs:16:20
+   |
+16 |     let a_offset = unsafe { &(*(0 as *const S)).a as *const _ as usize };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_004/target.rs:27:15
+   |
+27 |     let ptr = unsafe { alloc::alloc(layout) as *mut i32 };
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_004/target.rs:32:5
+   |
+32 | /     unsafe {
+33 | |         ptr.write(7); // Write to i
+34 | |         ptr.add(1).write(11); // Write to a[0]
+35 | |         ptr.add(4).write(22); // Write to a[3]
+...  |
+39 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_004/target.rs:41:5
+   |
+41 | /     unsafe {
+42 | |         alloc::dealloc(ptr as *mut u8, layout);
+43 | |     }
+   | |_____^
+
+error[E0606]: cannot cast `usize` to a pointer that is wide
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_004/target.rs:11:38
+   |
+11 |     let i_offset = unsafe { &(*(0 as *const S)).i as *const _ as usize };
+   |                                 -    ^^^^^^^^ creating a `*const S` requires both an address and a length
+   |                                 |
+   |                                 consider casting this expression to `*const ()`, then using `core::ptr::from_raw_parts`
+
+error[E0606]: cannot cast `usize` to a pointer that is wide
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_004/target.rs:16:38
+   |
+16 |     let a_offset = unsafe { &(*(0 as *const S)).a as *const _ as usize };
+   |                                 -    ^^^^^^^^ creating a `*const S` requires both an address and a length
+   |                                 |
+   |                                 consider casting this expression to `*const ()`, then using `core::ptr::from_raw_parts`
+
+error[E0606]: casting `*const [i32]` as `usize` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_004/target.rs:16:29
+   |
+16 |     let a_offset = unsafe { &(*(0 as *const S)).a as *const _ as usize };
+   |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: cast through a thin pointer first
+
+error: aborting due to 8 previous errors
+
+For more information about this error, try `rustc --explain E0606`.

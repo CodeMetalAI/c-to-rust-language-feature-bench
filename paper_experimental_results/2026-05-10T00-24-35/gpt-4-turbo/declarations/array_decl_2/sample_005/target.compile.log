@@ -1,0 +1,21 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_2/sample_005/target.rs:40:5
+   |
+40 | /     unsafe {
+41 | |         if sum_ptr(std::slice::from_raw_parts(x, 3)) != (10 + 20 + 30) {
+42 | |             std::process::exit(2);
+...  |
+75 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0607]: cannot cast thin pointer `*const [i32; 7]` to wide pointer `*const HoldA`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_2/sample_005/target.rs:64:18
+   |
+64 |         let ha = &y as *const _ as *const HoldA;
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0607`.

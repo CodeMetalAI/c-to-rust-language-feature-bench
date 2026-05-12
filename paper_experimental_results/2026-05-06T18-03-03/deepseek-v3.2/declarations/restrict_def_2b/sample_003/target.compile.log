@@ -1,0 +1,154 @@
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:4:5
+   |
+ 4 | /     unsafe fn f(n: i32, p: *mut i32, q: *const i32) {
+ 5 | |         let mut n = n;
+ 6 | |         let mut p = p;
+ 7 | |         let mut q = q;
+...  |
+14 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:27:17
+   |
+27 | /                 unsafe {
+28 | |                     *p.add(i as usize) = *q.add(i as usize);
+29 | |                 }
+   | |_________________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:36:17
+   |
+36 | /                 unsafe {
+37 | |                     *p.add(i as usize) = *q.add(i as usize);
+38 | |                 }
+   | |_________________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:46:17
+   |
+46 |         let g = unsafe { GATE };
+   |                 ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:79:13
+   |
+79 | /             unsafe {
+80 | |                 f(n, p, q);
+81 | |             }
+   | |_____________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:90:13
+   |
+90 | /             unsafe {
+91 | |                 *x.add(i as usize) = i * 13 + 5;
+92 | |             }
+   | |_____________^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:100:13
+    |
+100 | /             unsafe {
+101 | |                 if *x.add(i as usize) != *y.add(i as usize) {
+102 | |                     return 0;
+103 | |                 }
+104 | |             }
+    | |_____________^
+
+error: declaration of an `unsafe` function
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:110:5
+    |
+110 | /     unsafe fn g_defined() {
+111 | |         call_f_checked(D.as_ptr(), 100, 50, D.as_mut_ptr().add(50), D.as_ptr());
+112 | |         call_f_checked(D.as_ptr(), 100, 50, D.as_mut_ptr().add(1), D.as_ptr());
+113 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:117:5
+    |
+117 | /     unsafe {
+118 | |         init(D.as_mut_ptr(), 100);
+119 | |         init(expect.as_mut_ptr(), 100);
+...   |
+129 | |     }
+    | |_____^
+
+warning: creating a shared reference to mutable static
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:111:24
+    |
+111 |         call_f_checked(D.as_ptr(), 100, 50, D.as_mut_ptr().add(50), D.as_ptr());
+    |                        ^^^^^^^^^^ shared reference to mutable static
+    |
+    = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+    = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+    = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+
+warning: creating a mutable reference to mutable static
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:111:45
+    |
+111 |         call_f_checked(D.as_ptr(), 100, 50, D.as_mut_ptr().add(50), D.as_ptr());
+    |                                             ^^^^^^^^^^^^^^ mutable reference to mutable static
+    |
+    = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+    = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+
+warning: creating a shared reference to mutable static
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:111:69
+    |
+111 |         call_f_checked(D.as_ptr(), 100, 50, D.as_mut_ptr().add(50), D.as_ptr());
+    |                                                                     ^^^^^^^^^^ shared reference to mutable static
+    |
+    = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+    = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+
+warning: creating a shared reference to mutable static
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:112:24
+    |
+112 |         call_f_checked(D.as_ptr(), 100, 50, D.as_mut_ptr().add(1), D.as_ptr());
+    |                        ^^^^^^^^^^ shared reference to mutable static
+    |
+    = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+    = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+
+warning: creating a mutable reference to mutable static
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:112:45
+    |
+112 |         call_f_checked(D.as_ptr(), 100, 50, D.as_mut_ptr().add(1), D.as_ptr());
+    |                                             ^^^^^^^^^^^^^^ mutable reference to mutable static
+    |
+    = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+    = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+
+warning: creating a shared reference to mutable static
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:112:68
+    |
+112 |         call_f_checked(D.as_ptr(), 100, 50, D.as_mut_ptr().add(1), D.as_ptr());
+    |                                                                    ^^^^^^^^^^ shared reference to mutable static
+    |
+    = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+    = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+
+warning: creating a mutable reference to mutable static
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:118:14
+    |
+118 |         init(D.as_mut_ptr(), 100);
+    |              ^^^^^^^^^^^^^^ mutable reference to mutable static
+    |
+    = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+    = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+
+warning: creating a shared reference to mutable static
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:126:17
+    |
+126 |         if same(D.as_ptr(), expect.as_ptr(), 100) == 0 {
+    |                 ^^^^^^^^^^ shared reference to mutable static
+    |
+    = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+    = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+
+error: aborting due to 9 previous errors; 8 warnings emitted

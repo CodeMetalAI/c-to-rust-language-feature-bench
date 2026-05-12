@@ -1,0 +1,50 @@
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/enum_specifiers/sample_004/target.rs:19:14
+   |
+19 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0369]: binary operation `!=` cannot be applied to type `Hue`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/enum_specifiers/sample_004/target.rs:36:12
+   |
+36 |     if *cp != Hue::Claret {
+   |        --- ^^ ----------- Hue
+   |        |
+   |        Hue
+   |
+note: an implementation of `PartialEq` might be missing for `Hue`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/enum_specifiers/sample_004/target.rs:3:1
+   |
+ 3 | enum Hue {
+   | ^^^^^^^^ must implement `PartialEq`
+help: consider annotating `Hue` with `#[derive(PartialEq)]`
+   |
+ 3 + #[derive(PartialEq)]
+ 4 | enum Hue {
+   |
+
+error[E0369]: binary operation `==` cannot be applied to type `Hue`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/enum_specifiers/sample_004/target.rs:39:12
+   |
+39 |     if *cp == Hue::Burgundy {
+   |        --- ^^ ------------- Hue
+   |        |
+   |        Hue
+   |
+note: an implementation of `PartialEq` might be missing for `Hue`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/enum_specifiers/sample_004/target.rs:3:1
+   |
+ 3 | enum Hue {
+   | ^^^^^^^^ must implement `PartialEq`
+help: consider annotating `Hue` with `#[derive(PartialEq)]`
+   |
+ 3 + #[derive(PartialEq)]
+ 4 | enum Hue {
+   |
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0277, E0369.
+For more information about an error, try `rustc --explain E0277`.

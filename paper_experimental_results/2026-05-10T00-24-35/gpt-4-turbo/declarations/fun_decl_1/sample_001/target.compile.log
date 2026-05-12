@@ -1,0 +1,65 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_1/sample_001/target.rs:4:5
+  |
+4 | /     unsafe {
+5 | |         GSTORE[0] = 111;
+6 | |         GSTORE[0] + 1
+7 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_1/sample_001/target.rs:11:5
+   |
+11 | /     unsafe {
+12 | |         GSTORE[1] = 222;
+13 | |         GSTORE[1]
+14 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_1/sample_001/target.rs:18:5
+   |
+18 | /     unsafe {
+19 | |         GSTORE[2] = 333;
+20 | |         GSTORE[2] - 1
+21 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_1/sample_001/target.rs:25:5
+   |
+25 | /     unsafe {
+26 | |         GSTORE[3] = 444;
+27 | |         GSTORE[3] + 2
+28 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_1/sample_001/target.rs:56:5
+   |
+56 | /     unsafe {
+57 | |         if choose(GSTORE[0]) == 0 {
+58 | |             pfi = alt1;
+59 | |         }
+60 | |     }
+   | |_____^
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_1/sample_001/target.rs:69:8
+   |
+69 |     if pfi == alt0 {
+   |        ^^^^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+   = note: `#[warn(unpredictable_function_pointer_comparisons)]` on by default
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+69 -     if pfi == alt0 {
+69 +     if std::ptr::fn_addr_eq(pfi, alt0 as fn() -> i32) {
+   |
+
+error: aborting due to 5 previous errors; 1 warning emitted

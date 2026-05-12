@@ -1,0 +1,171 @@
+error[E0433]: failed to resolve: could not find `c` in `raw`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:25:38
+   |
+25 | fn same_addr(x: *const std::os::raw::c::c_void, y: *const std::os::raw::c::c_void) -> i32 {
+   |                                      ^ could not find `c` in `raw`
+
+error[E0433]: failed to resolve: could not find `c` in `raw`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:25:73
+   |
+25 | fn same_addr(x: *const std::os::raw::c::c_void, y: *const std::os::raw::c::c_void) -> i32 {
+   |                                                                         ^ could not find `c` in `raw`
+
+error[E0433]: failed to resolve: could not find `c` in `raw`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:35:43
+   |
+35 |         b.const_p as *const std::os::raw::c::c_void,
+   |                                           ^ could not find `c` in `raw`
+
+error[E0433]: failed to resolve: could not find `c` in `raw`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:36:57
+   |
+36 |         expected_const_p_target as *const std::os::raw::c::c_void,
+   |                                                         ^ could not find `c` in `raw`
+
+error[E0433]: failed to resolve: could not find `c` in `raw`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:41:55
+   |
+41 |         b.const_p_via_typedef as *const std::os::raw::c::c_void,
+   |                                                       ^ could not find `c` in `raw`
+
+error[E0433]: failed to resolve: could not find `c` in `raw`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:42:57
+   |
+42 |         expected_const_p_target as *const std::os::raw::c::c_void,
+   |                                                         ^ could not find `c` in `raw`
+
+warning: type `bundle` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:2:8
+  |
+2 | struct bundle {
+  |        ^^^^^^ help: convert the identifier to upper camel case: `Bundle`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:9:13
+  |
+9 |     let v = unsafe { *p };
+  |             ^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:70:8
+   |
+70 |     if unsafe { *b.p_to_const } != 10 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:75:8
+   |
+75 |     if unsafe { *b.p_to_const } != 21 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:80:8
+   |
+80 |     if unsafe { *b.p_to_const } != 21 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:84:5
+   |
+84 |     unsafe { *b.const_p += 5 };
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:89:5
+   |
+89 |     unsafe { *b.const_p_via_typedef += 7 };
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:98:8
+   |
+98 |     if unsafe { *b.p_to_const } != 21 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:53:9
+   |
+53 |     let mut y = 21;
+   |         ----^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error[E0502]: cannot borrow `x` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:57:24
+   |
+55 |     let ptr_to_constant = &x;
+   |                           -- immutable borrow occurs here
+56 |
+57 |     let constant_ptr = &mut x;
+   |                        ^^^^^^ mutable borrow occurs here
+...
+61 |         p_to_const: ptr_to_constant,
+   |                     --------------- immutable borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:58:34
+   |
+57 |     let constant_ptr = &mut x;
+   |                        ------ mutable borrow occurs here
+58 |     let clarified_constant_ptr = &x;
+   |                                  ^^ immutable borrow occurs here
+...
+62 |         const_p: constant_ptr,
+   |                  ------------ mutable borrow later used here
+
+error[E0594]: cannot assign to `*b.const_p_via_typedef`, which is behind a `*const` pointer
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:89:14
+   |
+89 |     unsafe { *b.const_p_via_typedef += 7 };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot assign
+
+error[E0382]: use of moved value: `b.const_p_via_typedef`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:89:14
+   |
+60 |     let mut b = bundle {
+   |         ----- move occurs because `b` has type `bundle`, which does not implement the `Copy` trait
+...
+66 |     if check_bundle(b, &mut x) != 0 {
+   |                     - value moved here
+...
+89 |     unsafe { *b.const_p_via_typedef += 7 };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^ value used here after move
+
+error[E0382]: use of moved value: `b`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:98:17
+   |
+60 |     let mut b = bundle {
+   |         ----- move occurs because `b` has type `bundle`, which does not implement the `Copy` trait
+...
+94 |     if check_bundle(b, &mut x) != 0 {
+   |                     - value moved here
+...
+98 |     if unsafe { *b.p_to_const } != 21 {
+   |                 ^^^^^^^^^^^^^ value used here after move
+   |
+note: consider changing this parameter type in function `check_bundle` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:33:20
+   |
+33 | fn check_bundle(b: bundle, expected_const_p_target: *mut i32) -> i32 {
+   |    ------------    ^^^^^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `bundle` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_001/target.rs:2:1
+   |
+ 2 | struct bundle {
+   | ^^^^^^^^^^^^^ consider implementing `Clone` for this type
+...
+94 |     if check_bundle(b, &mut x) != 0 {
+   |                     - you could clone this value
+
+error: aborting due to 18 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0382, E0433, E0502, E0594.
+For more information about an error, try `rustc --explain E0382`.

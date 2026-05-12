@@ -1,0 +1,92 @@
+{
+  "test_name": "declarations/fun_decl_3",
+  "llm_name": "Grok Code Fast 1",
+  "timestamp": "2026-05-10T03:13:51.597638Z",
+  "duration_seconds": 185.7324105410371,
+  "timeout_error": false,
+  "primary_feature": "decl.fun_decl",
+  "source_compiled": true,
+  "source_compile_errors": null,
+  "source_exit_code": 0,
+  "samples": [
+    {
+      "sample_index": 1,
+      "duration_seconds": 179.0994927501306,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0369]: cannot add `i32` to `Ref<'_, i32>`\n    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_001/target.rs:16:38\n     |\n  16 |     G_SEED.with(|seed| seed.borrow() + x + 1000)\n     |                        ------------- ^ - i32\n     |                        |\n     |                        Ref<'_, i32>\n     |\nnote: the foreign item type `Ref<'_, i32>` doesn't implement `Add<i32>`\n    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:1479:1\n     |\n1479 | pub struct Ref<'b, T: ?Sized + 'b> {\n     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not implement `Add<i32>`\n\nerror[E0369]: cannot add `i32` to `Ref<'_, i32>`\n    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_001/target.rs:20:38\n     |\n  20 |     G_SEED.with(|seed| seed.borrow() + x - 2000)\n     |                        ------------- ^ - i32\n     |                        |\n     |                        Ref<'_, i32>\n     |\nnote: the foreign item type `Ref<'_, i32>` doesn't implement `Add<i32>`\n    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:1479:1\n     |\n1479 | pub struct Ref<'b, T: ?Sized + 'b> {\n     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not implement `Add<i32>`\n\nerror: aborting due to 2 previous errors\n\nFor more information about this error, try `rustc --explain E0369`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 2,
+      "duration_seconds": 145.0452275001444,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0277]: `RefCell<i32>` cannot be shared between threads safely\n --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_002/target.rs:3:14\n  |\n3 | static SEED: RefCell<i32> = RefCell::new(0);\n  |              ^^^^^^^^^^^^ `RefCell<i32>` cannot be shared between threads safely\n  |\n  = help: the trait `Sync` is not implemented for `RefCell<i32>`\n  = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock` instead\n  = note: shared static variables must have a type that implements `Sync`\n\nerror: aborting due to 1 previous error\n\nFor more information about this error, try `rustc --explain E0277`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 3,
+      "duration_seconds": 185.56236362480558,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0277]: `main` has invalid return type `i32`\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_003/target.rs:33:14\n   |\n33 | fn main() -> i32 {\n   |              ^^^ `main` can only return types that implement `Termination`\n   |\n   = help: consider using `()`, or a `Result`\n\nerror: aborting due to 1 previous error\n\nFor more information about this error, try `rustc --explain E0277`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": true,
+      "stub_reasons": [
+        "function definitions dropped from 7 to 5 (threshold=0.75, require>=6)"
+      ],
+      "provider_error": false
+    },
+    {
+      "sample_index": 4,
+      "duration_seconds": 147.39463741704822,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error: expected expression, found `+`\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_004/target.rs:12:23\n   |\n12 |     unsafe { G_SEED } + x + 1000\n   |                       ^ expected expression\n   |\nhelp: parentheses are required to parse this as an expression\n   |\n12 |     (unsafe { G_SEED }) + x + 1000\n   |     +                 +\n\nerror: expected expression, found `+`\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_004/target.rs:16:23\n   |\n16 |     unsafe { G_SEED } + x - 2000\n   |                       ^ expected expression\n   |\nhelp: parentheses are required to parse this as an expression\n   |\n16 |     (unsafe { G_SEED }) + x - 2000\n   |     +                 +\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_004/target.rs:12:5\n   |\n12 |     unsafe { G_SEED } + x + 1000\n   |     ^^^^^^^^^^^^^^^^^\n   |\n   = note: requested on the command line with `-F unsafe-code`\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_004/target.rs:16:5\n   |\n16 |     unsafe { G_SEED } + x - 2000\n   |     ^^^^^^^^^^^^^^^^^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_004/target.rs:21:5\n   |\n21 | /     unsafe {\n22 | |         G_SEED = pf(t) + k;\n23 | |     }\n   | |_____^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_004/target.rs:24:9\n   |\n24 |     if (unsafe { G_SEED } & 1) == 0 {\n   |         ^^^^^^^^^^^^^^^^^\n\nerror[E0308]: mismatched types\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_004/target.rs:12:14\n   |\n12 |     unsafe { G_SEED } + x + 1000\n   |              ^^^^^^ expected `()`, found `i32`\n   |\nhelp: you might have meant to return this value\n   |\n12 |     unsafe { return G_SEED; } + x + 1000\n   |              ++++++       +\n\nerror[E0308]: mismatched types\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_004/target.rs:16:14\n   |\n16 |     unsafe { G_SEED } + x - 2000\n   |              ^^^^^^ expected `()`, found `i32`\n   |\nhelp: you might have meant to return this value\n   |\n16 |     unsafe { return G_SEED; } + x - 2000\n   |              ++++++       +\n\nerror: aborting due to 8 previous errors\n\nFor more information about this error, try `rustc --explain E0308`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 5,
+      "duration_seconds": 175.75357412500307,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0433]: failed to resolve: use of unresolved module or unlinked crate `lazy_static`\n --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_005/target.rs:3:1\n  |\n3 | lazy_static::lazy_static! {\n  | ^^^^^^^^^^^ use of unresolved module or unlinked crate `lazy_static`\n\nerror[E0425]: cannot find value `G_SEED` in this scope\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_005/target.rs:16:6\n   |\n16 |     *G_SEED.borrow() + x + 1000\n   |      ^^^^^^ not found in this scope\n\nerror[E0425]: cannot find value `G_SEED` in this scope\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_005/target.rs:20:6\n   |\n20 |     *G_SEED.borrow() + x - 2000\n   |      ^^^^^^ not found in this scope\n\nerror[E0425]: cannot find value `G_SEED` in this scope\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_005/target.rs:25:6\n   |\n25 |     *G_SEED.borrow_mut() = pf(t) + k;\n   |      ^^^^^^ not found in this scope\n\nerror[E0425]: cannot find value `G_SEED` in this scope\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_005/target.rs:26:9\n   |\n26 |     if *G_SEED.borrow() & 1 == 0 {\n   |         ^^^^^^ not found in this scope\n\nwarning: unused import: `std::cell::RefCell`\n --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_005/target.rs:1:5\n  |\n1 | use std::cell::RefCell;\n  |     ^^^^^^^^^^^^^^^^^^\n  |\n  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default\n\nerror: aborting due to 5 previous errors; 1 warning emitted\n\nSome errors have detailed explanations: E0425, E0433.\nFor more information about an error, try `rustc --explain E0425`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    }
+  ],
+  "winning_sample": null,
+  "match": false
+}

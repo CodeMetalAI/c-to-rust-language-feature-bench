@@ -1,0 +1,54 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_3/sample_004/target.rs:7:5
+  |
+7 | /     unsafe {
+8 | |         *cpp = &c as *const &str;
+9 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_3/sample_004/target.rs:10:5
+   |
+10 | /     unsafe {
+11 | |         *p = 0;
+12 | |     }
+   | |_____^
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_3/sample_004/target.rs:8:16
+  |
+8 |         *cpp = &c as *const &str;
+  |         ----   ^^^^^^^^^^^^^^^^^ expected `&str`, found `*const &str`
+  |         |
+  |         expected due to the type of this binding
+  |
+  = note: expected reference `&str`
+           found raw pointer `*const &str`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_3/sample_004/target.rs:15:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+15 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0606]: casting `&*mut i8` as `*const &str` is invalid
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_3/sample_004/target.rs:6:11
+  |
+6 |     cpp = &p as *const &str;
+  |           ^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&char` as `*const &str` is invalid
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_3/sample_004/target.rs:8:16
+  |
+8 |         *cpp = &c as *const &str;
+  |                ^^^^^^^^^^^^^^^^^
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0308, E0606.
+For more information about an error, try `rustc --explain E0308`.

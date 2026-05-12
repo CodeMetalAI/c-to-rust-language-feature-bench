@@ -1,0 +1,38 @@
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/add_op_1a/sample_001/target.rs:1:14
+  |
+1 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+warning: unused variable: `n`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/add_op_1a/sample_001/target.rs:2:9
+  |
+2 |     let n = 4;
+  |         ^ help: if this is intentional, prefix it with an underscore: `_n`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `m`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/add_op_1a/sample_001/target.rs:3:9
+  |
+3 |     let m = 3;
+  |         ^ help: if this is intentional, prefix it with an underscore: `_m`
+
+error[E0503]: cannot use `a[_][_]` because it was mutably borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/add_op_1a/sample_001/target.rs:9:8
+   |
+ 6 |     let p = &mut a[1..]; // Create a mutable slice starting from the second row
+   |                  - `a` is borrowed here
+...
+ 9 |     if a[1][2] != 99 {
+   |        ^^^^^^^ use of borrowed `a`
+...
+13 |     let n = p.len(); // Get the length of the slice starting from the second row
+   |             - borrow later used here
+
+error: aborting due to 2 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0277, E0503.
+For more information about an error, try `rustc --explain E0277`.

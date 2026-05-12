@@ -1,0 +1,60 @@
+error[E0369]: binary operation `!=` cannot be applied to type `Type`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/struct_and_union_3a/sample_001/target.rs:11:10
+   |
+11 |     if u != Type::FloatNode(3.14) {
+   |        - ^^ --------------------- Type
+   |        |
+   |        Type
+   |
+note: an implementation of `PartialEq` might be missing for `Type`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/struct_and_union_3a/sample_001/target.rs:2:1
+   |
+ 2 | enum Type {
+   | ^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `Type` with `#[derive(PartialEq)]`
+   |
+ 2 + #[derive(PartialEq)]
+ 3 | enum Type {
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/struct_and_union_3a/sample_001/target.rs:12:16
+   |
+ 8 | fn main() {
+   |          - expected `()` because of default return type
+...
+12 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0369]: binary operation `!=` cannot be applied to type `Type`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/struct_and_union_3a/sample_001/target.rs:20:10
+   |
+20 |     if u != Type::FloatNode(3.14) {
+   |        - ^^ --------------------- Type
+   |        |
+   |        Type
+   |
+note: an implementation of `PartialEq` might be missing for `Type`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/struct_and_union_3a/sample_001/target.rs:2:1
+   |
+ 2 | enum Type {
+   | ^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `Type` with `#[derive(PartialEq)]`
+   |
+ 2 + #[derive(PartialEq)]
+ 3 | enum Type {
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/struct_and_union_3a/sample_001/target.rs:24:5
+   |
+ 8 | fn main() {
+   |          - expected `()` because of default return type
+...
+24 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0369.
+For more information about an error, try `rustc --explain E0308`.

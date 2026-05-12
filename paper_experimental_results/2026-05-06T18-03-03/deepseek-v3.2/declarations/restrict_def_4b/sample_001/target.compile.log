@@ -1,0 +1,56 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_4b/sample_001/target.rs:32:9
+   |
+32 | /         unsafe {
+33 | |             H ^= (ptr as u64).wrapping_add(0x9e3779b97f4a7c15u64);
+34 | |             H = H.wrapping_mul(0x5851f42d4c957f2du64);
+35 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_4b/sample_001/target.rs:47:9
+   |
+47 | /         unsafe {
+48 | |             // Initialize the memory as a slice of f32
+49 | |             let slice = std::slice::from_raw_parts_mut(slice_ptr, n as usize);
+50 | |             Some(Box::from_raw(slice))
+51 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_4b/sample_001/target.rs:104:5
+    |
+104 | /     unsafe {
+105 | |         if (H & 1u64) == 0u64 {
+106 | |             std::process::exit(6);
+107 | |         }
+108 | |     }
+    | |_____^
+
+error[E0596]: cannot borrow `a.v` as mutable, as `a` is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_4b/sample_001/target.rs:91:14
+   |
+91 |     fill_vec(a.v.as_mut().unwrap(), 1.0f32);
+   |              ^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+74 |     let mut a = new_vector(16);
+   |         +++
+
+error[E0596]: cannot borrow `b.v` as mutable, as `b` is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_4b/sample_001/target.rs:92:14
+   |
+92 |     fill_vec(b.v.as_mut().unwrap(), 100.0f32);
+   |              ^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+75 |     let mut b = new_vector(16);
+   |         +++
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0596`.

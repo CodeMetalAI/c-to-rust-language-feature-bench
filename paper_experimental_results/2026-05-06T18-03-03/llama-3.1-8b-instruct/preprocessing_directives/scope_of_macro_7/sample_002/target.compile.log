@@ -1,0 +1,40 @@
+error: expected parameter name, found `$`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:87:23
+   |
+87 | fn report(test: bool, $($arg:tt)*) -> usize {
+   |                       ^ expected parameter name
+
+error: no rules expected `"Flag"`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:66:15
+   |
+28 | macro_rules! pp_narg {
+   | -------------------- when calling this macro
+...
+66 |     if debug!("Flag") != 1 {
+   |               ^^^^^^ no rules expected this token in macro call
+   |
+   = note: while trying to match end of macro
+
+error: no rules expected `"X = {}"`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:69:15
+   |
+28 | macro_rules! pp_narg {
+   | -------------------- when calling this macro
+...
+69 |     if debug!("X = {}", x) != 2 {
+   |               ^^^^^^^^ no rules expected this token in macro call
+   |
+   = note: while trying to match end of macro
+
+error: no rules expected `$`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:91:16
+   |
+28 | macro_rules! pp_narg {
+   | -------------------- when calling this macro
+...
+91 |         debug!($($arg)*)
+   |                ^ no rules expected this token in macro call
+   |
+   = note: while trying to match end of macro
+
+error: aborting due to 4 previous errors

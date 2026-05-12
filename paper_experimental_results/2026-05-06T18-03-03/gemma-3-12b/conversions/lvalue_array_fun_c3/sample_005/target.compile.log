@@ -1,0 +1,188 @@
+error[E0423]: expected value, found builtin type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:22:55
+   |
+22 |     if std::mem::size_of(&a) != 3 * std::mem::size_of(i32) {
+   |                                                       ^^^ not a value
+
+error[E0423]: expected value, found builtin type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:25:53
+   |
+25 |     if std::mem::align_of(&a) != std::mem::align_of(i32) {
+   |                                                     ^^^ not a value
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:54:15
+   |
+54 |     let ptr = unsafe { &*x };
+   |               ^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:4:16
+   |
+ 4 |     if type_id(&a) != 2 {
+   |        ------- ^^ expected `*const u8`, found `&[{integer}; 3]`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*const u8`
+                found reference `&[{integer}; 3]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:50:4
+   |
+50 | fn type_id(x: *const u8) -> i32 {
+   |    ^^^^^^^ ------------
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:5:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+5 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:8:16
+   |
+ 8 |     if type_id(&a as *const [i32]) != 2 {
+   |        ------- ^^^^^^^^^^^^^^^^^^ expected `*const u8`, found `*const [i32]`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*const u8`
+              found raw pointer `*const [i32]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:50:4
+   |
+50 | fn type_id(x: *const u8) -> i32 {
+   |    ^^^^^^^ ------------
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:22:8
+    |
+ 22 |     if std::mem::size_of(&a) != 3 * std::mem::size_of(i32) {
+    |        ^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&[{integer}; 3]`
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+help: remove the extra argument
+    |
+ 22 -     if std::mem::size_of(&a) != 3 * std::mem::size_of(i32) {
+ 22 +     if std::mem::size_of() != 3 * std::mem::size_of(i32) {
+    |
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:22:37
+    |
+ 22 |     if std::mem::size_of(&a) != 3 * std::mem::size_of(i32) {
+    |                                     ^^^^^^^^^^^^^^^^^ --- unexpected argument
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+help: remove the extra argument
+    |
+ 22 -     if std::mem::size_of(&a) != 3 * std::mem::size_of(i32) {
+ 22 +     if std::mem::size_of(&a) != 3 * std::mem::size_of() {
+    |
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:25:8
+    |
+ 25 |     if std::mem::align_of(&a) != std::mem::align_of(i32) {
+    |        ^^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&[{integer}; 3]`
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+help: remove the extra argument
+    |
+ 25 -     if std::mem::align_of(&a) != std::mem::align_of(i32) {
+ 25 +     if std::mem::align_of() != std::mem::align_of(i32) {
+    |
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:25:34
+    |
+ 25 |     if std::mem::align_of(&a) != std::mem::align_of(i32) {
+    |                                  ^^^^^^^^^^^^^^^^^^ --- unexpected argument
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+help: remove the extra argument
+    |
+ 25 -     if std::mem::align_of(&a) != std::mem::align_of(i32) {
+ 25 +     if std::mem::align_of(&a) != std::mem::align_of() {
+    |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:46:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+46 |     0
+   |     ^ expected `()`, found integer
+
+error[E0606]: casting `&[u8]` as `*const u8` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:30:16
+   |
+30 |     if type_id(s as *const u8) != 3 {
+   |                ^^^^^^^^^^^^^^
+
+error[E0599]: the method `as_ref` exists for reference `&u8`, but its trait bounds were not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:55:28
+   |
+55 |     if let Some(arr) = ptr.as_ref::<[i32]>() {
+   |                            ^^^^^^ method cannot be called on `&u8` due to unsatisfied trait bounds
+   |
+   = note: the following trait bounds were not satisfied:
+           `u8: AsRef<_>`
+           which is required by `&u8: AsRef<_>`
+
+error[E0599]: the method `as_ref` exists for reference `&u8`, but its trait bounds were not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:60:28
+   |
+60 |     if let Some(str) = ptr.as_ref::<&str>() {
+   |                            ^^^^^^ method cannot be called on `&u8` due to unsatisfied trait bounds
+   |
+   = note: the following trait bounds were not satisfied:
+           `u8: AsRef<_>`
+           which is required by `&u8: AsRef<_>`
+
+error[E0599]: the method `as_ref` exists for reference `&u8`, but its trait bounds were not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:65:32
+   |
+65 |     if let Some(str_arr) = ptr.as_ref::<&[u8]>(){
+   |                                ^^^^^^ method cannot be called on `&u8` due to unsatisfied trait bounds
+   |
+   = note: the following trait bounds were not satisfied:
+           `u8: AsRef<_>`
+           which is required by `&u8: AsRef<_>`
+
+error[E0599]: the method `as_ref` exists for reference `&u8`, but its trait bounds were not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:70:32
+   |
+70 |     if let Some(arr_ptr) = ptr.as_ref::<*const [i32]>() {
+   |                                ^^^^^^ method cannot be called on `&u8` due to unsatisfied trait bounds
+   |
+   = note: the following trait bounds were not satisfied:
+           `u8: AsRef<_>`
+           which is required by `&u8: AsRef<_>`
+
+error: aborting due to 16 previous errors
+
+Some errors have detailed explanations: E0061, E0308, E0423, E0599, E0606.
+For more information about an error, try `rustc --explain E0061`.

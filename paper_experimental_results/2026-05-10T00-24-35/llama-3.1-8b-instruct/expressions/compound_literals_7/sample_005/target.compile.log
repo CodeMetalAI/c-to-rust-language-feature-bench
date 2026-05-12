@@ -1,0 +1,45 @@
+error: expected field pattern, found `_`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_005/target.rs:26:27
+   |
+26 |         IntList { car: n, _ } => 1,
+   |                           ^
+   |
+help: to omit remaining fields, use `..`
+   |
+26 -         IntList { car: n, _ } => 1,
+26 +         IntList { car: n, .. } => 1,
+   |
+
+error: cannot find macro `lazy_static` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_005/target.rs:8:1
+  |
+8 | lazy_static! {
+  | ^^^^^^^^^^^
+
+error[E0425]: cannot find value `ENDLESS_ZEROS` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_005/target.rs:31:26
+   |
+31 |     println!("{}", eval(&ENDLESS_ZEROS));
+   |                          ^^^^^^^^^^^^^ not found in this scope
+
+warning: unreachable pattern
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_005/target.rs:20:9
+   |
+19 |         IntList { car: 0, cdr: Some(_)} => 2,
+   |         ------------------------------- matches all the relevant values
+20 |         IntList { car: 0, cdr: Some(cdr) } => {
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no value can reach this
+   |
+   = note: `#[warn(unreachable_patterns)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `n`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_005/target.rs:26:24
+   |
+26 |         IntList { car: n, _ } => 1,
+   |                        ^ help: if this is intentional, prefix it with an underscore: `_n`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 3 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0425`.

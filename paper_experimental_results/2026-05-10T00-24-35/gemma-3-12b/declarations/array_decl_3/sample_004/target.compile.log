@@ -1,0 +1,55 @@
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_004/target.rs:49:8
+   |
+49 |     if check_a(nn, mm, &a, &a) != 0 {
+   |        ^^^^^^^
+   |
+note: expected `&Vec<Vec<Vec<i32>>>`, found `&Vec<Vec<Vec<usize>>>`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_004/target.rs:49:24
+   |
+49 |     if check_a(nn, mm, &a, &a) != 0 {
+   |                        ^^
+   = note: expected reference `&Vec<Vec<Vec<i32>>>`
+              found reference `&Vec<Vec<Vec<usize>>>`
+note: expected `&Vec<Vec<i32>>`, found `&Vec<Vec<Vec<usize>>>`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_004/target.rs:49:28
+   |
+49 |     if check_a(nn, mm, &a, &a) != 0 {
+   |                            ^^
+   = note: expected reference `&Vec<Vec<i32>>`
+              found reference `&Vec<Vec<Vec<usize>>>`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_004/target.rs:64:4
+   |
+64 | fn check_a(nn: usize, mm: usize, a: &Vec<Vec<Vec<i32>>>, p: &Vec<Vec<i32>>) -> i32 {
+   |    ^^^^^^^                       ----------------------  -----------------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_004/target.rs:53:8
+   |
+53 |     if check_c(nn, mm, &c, &c) != 0 {
+   |        ^^^^^^^
+   |
+note: expected `&Vec<Vec<Vec<Vec<i32>>>>`, found `&Vec<Vec<Vec<Vec<usize>>>>`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_004/target.rs:53:24
+   |
+53 |     if check_c(nn, mm, &c, &c) != 0 {
+   |                        ^^
+   = note: expected reference `&Vec<Vec<Vec<Vec<i32>>>>`
+              found reference `&Vec<Vec<Vec<Vec<usize>>>>`
+note: expected `&Vec<Vec<Vec<Vec<i32>>>>`, found `&Vec<Vec<Vec<Vec<usize>>>>`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_004/target.rs:53:28
+   |
+53 |     if check_c(nn, mm, &c, &c) != 0 {
+   |                            ^^
+   = note: expected reference `&Vec<Vec<Vec<Vec<i32>>>>`
+              found reference `&Vec<Vec<Vec<Vec<usize>>>>`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_004/target.rs:83:4
+   |
+83 | fn check_c(nn: usize, mm: usize, c: &Vec<Vec<Vec<Vec<i32>>>>, r: &Vec<Vec<Vec<Vec<i32>>>>) -> i32 {
+   |    ^^^^^^^                       ---------------------------  ---------------------------
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

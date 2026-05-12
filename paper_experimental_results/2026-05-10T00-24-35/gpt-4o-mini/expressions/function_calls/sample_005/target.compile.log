@@ -1,0 +1,95 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/function_calls/sample_005/target.rs:9:5
+   |
+ 9 | /     unsafe {
+10 | |         if LOGN < 5 {
+11 | |             LOGV[LOGN] = id;
+12 | |             LOGN += 1;
+13 | |         }
+14 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/function_calls/sample_005/target.rs:18:5
+   |
+18 | /     unsafe {
+19 | |         SEEN_F1 = true;
+20 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/function_calls/sample_005/target.rs:26:5
+   |
+26 | /     unsafe {
+27 | |         SEEN_F2 = true;
+28 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/function_calls/sample_005/target.rs:34:5
+   |
+34 | /     unsafe {
+35 | |         SEEN_F3 = true;
+36 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/function_calls/sample_005/target.rs:42:5
+   |
+42 | /     unsafe {
+43 | |         SEEN_F4 = true;
+44 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/function_calls/sample_005/target.rs:50:8
+   |
+50 |     if unsafe { !SEEN_F1 || !SEEN_F2 || !SEEN_F3 || !SEEN_F4 } {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/function_calls/sample_005/target.rs:64:5
+   |
+64 | /     unsafe {
+65 | |         if LOGN != 5 {
+66 | |             return 1;
+...  |
+80 | |     }
+   | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/function_calls/sample_005/target.rs:56:14
+   |
+56 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/function_calls/sample_005/target.rs:41:12
+   |
+41 | fn f4() -> i32 {
+   |    --      ^^^ expected `i32`, found `()`
+   |    |
+   |    implicitly returns `()` as its body has no tail or `return` expression
+
+warning: unused variable: `a`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/function_calls/sample_005/target.rs:48:11
+   |
+48 | fn target(a: i32, b: i32) -> i32 {
+   |           ^ help: if this is intentional, prefix it with an underscore: `_a`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `b`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/function_calls/sample_005/target.rs:48:19
+   |
+48 | fn target(a: i32, b: i32) -> i32 {
+   |                   ^ help: if this is intentional, prefix it with an underscore: `_b`
+
+error: aborting due to 9 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

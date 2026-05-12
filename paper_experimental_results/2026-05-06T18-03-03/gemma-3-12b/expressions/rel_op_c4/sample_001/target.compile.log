@@ -1,0 +1,60 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/rel_op_c4/sample_001/target.rs:8:18
+  |
+8 |     let px_end = unsafe { px.add(1) };
+  |                  ^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/rel_op_c4/sample_001/target.rs:9:18
+  |
+9 |     let py_end = unsafe { py.add(1) };
+  |                  ^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `add` found for reference `&{integer}` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/rel_op_c4/sample_001/target.rs:8:30
+  |
+8 |     let px_end = unsafe { px.add(1) };
+  |                              ^^^ method not found in `&{integer}`
+  |
+  = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+  |
+1 + use std::ops::Add;
+  |
+
+error[E0599]: no method named `add` found for reference `&{integer}` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/rel_op_c4/sample_001/target.rs:9:30
+  |
+9 |     let py_end = unsafe { py.add(1) };
+  |                              ^^^ method not found in `&{integer}`
+  |
+  = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+  |
+1 + use std::ops::Add;
+  |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/rel_op_c4/sample_001/target.rs:12:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+12 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/rel_op_c4/sample_001/target.rs:27:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+27 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.

@@ -1,0 +1,74 @@
+warning: unused variable: `ptr_to_constant`
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_005/target.rs:46:9
+   |
+46 |     let ptr_to_constant = &y; // We'll use this as a placeholder initially
+   |         ^^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_ptr_to_constant`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `x_ptr`
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_005/target.rs:56:9
+   |
+56 |     let x_ptr = &mut x as *mut i32;
+   |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_x_ptr`
+
+warning: unused variable: `p_to_const_val`
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_005/target.rs:61:13
+   |
+61 |     let mut p_to_const_val: &i32 = &y; // temporary, will be set properly
+   |             ^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_p_to_const_val`
+
+warning: value assigned to `x` is never read
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_005/target.rs:64:5
+   |
+64 |     x = 10;
+   |     ^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `p_to_const_idx` is never read
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_005/target.rs:72:13
+   |
+72 |     let mut p_to_const_idx: usize = 0; // points to x initially
+   |             ^^^^^^^^^^^^^^
+   |
+   = help: maybe it is overwritten before being read?
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_005/target.rs:61:9
+   |
+61 |     let mut p_to_const_val: &i32 = &y; // temporary, will be set properly
+   |         ----^^^^^^^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: struct `Bundle` is never constructed
+ --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_005/target.rs:1:8
+  |
+1 | struct Bundle<'a> {
+  |        ^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `retarget_ptr_to_const` is never used
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_005/target.rs:16:4
+   |
+16 | fn retarget_ptr_to_const<'a>(b: &mut Bundle<'a>, a: &'a i32, c: &'a i32, sel: i32) {
+   |    ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `same_addr` is never used
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_005/target.rs:24:4
+   |
+24 | fn same_addr<T, U>(x: *const T, y: *const U) -> bool {
+   |    ^^^^^^^^^
+
+warning: function `check_bundle` is never used
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/ptr_decl/sample_005/target.rs:28:4
+   |
+28 | fn check_bundle(b: &Bundle, expected_const_p_target: *const i32) -> i32 {
+   |    ^^^^^^^^^^^^
+
+warning: 10 warnings emitted

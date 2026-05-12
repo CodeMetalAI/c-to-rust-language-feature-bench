@@ -1,0 +1,45 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_004/target.rs:73:18
+   |
+73 |         let ha = unsafe { &*(y.as_ptr() as *const HoldA) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+warning: unused variable: `hp`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_004/target.rs:72:17
+   |
+72 |         let mut hp = HoldP { p: &y as *const i32 };
+   |                 ^^ help: if this is intentional, prefix it with an underscore: `_hp`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_004/target.rs:72:13
+   |
+72 |         let mut hp = HoldP { p: &y as *const i32 };
+   |             ----^^
+   |             |
+   |             help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `p` is never read
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_004/target.rs:2:5
+  |
+1 | struct HoldP {
+  |        ----- field in this struct
+2 |     p: *const i32,
+  |     ^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `tag` is never read
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_004/target.rs:6:5
+  |
+5 | struct HoldA {
+  |        ----- field in this struct
+6 |     tag: i32,
+  |     ^^^
+
+error: aborting due to 1 previous error; 4 warnings emitted

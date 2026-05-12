@@ -1,0 +1,41 @@
+error[E0369]: binary operation `!=` cannot be applied to type `&IntList`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/compound_literals_7/sample_002/target.rs:12:14
+   |
+12 |     if x.cdr != &ENDLESS_ZEROS {
+   |        ----- ^^ -------------- &IntList
+   |        |
+   |        &IntList
+   |
+note: an implementation of `PartialEq` might be missing for `IntList`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/compound_literals_7/sample_002/target.rs:1:1
+   |
+ 1 | struct IntList {
+   | ^^^^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `IntList` with `#[derive(PartialEq)]`
+   |
+ 1 + #[derive(PartialEq)]
+ 2 | struct IntList {
+   |
+
+error[E0369]: binary operation `!=` cannot be applied to type `&IntList`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/compound_literals_7/sample_002/target.rs:15:18
+   |
+15 |     if x.cdr.cdr != &ENDLESS_ZEROS {
+   |        --------- ^^ -------------- &IntList
+   |        |
+   |        &IntList
+   |
+note: an implementation of `PartialEq` might be missing for `IntList`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/compound_literals_7/sample_002/target.rs:1:1
+   |
+ 1 | struct IntList {
+   | ^^^^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `IntList` with `#[derive(PartialEq)]`
+   |
+ 1 + #[derive(PartialEq)]
+ 2 | struct IntList {
+   |
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0369`.

@@ -1,0 +1,42 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_002/target.rs:39:5
+   |
+39 | /     unsafe {
+40 | |         (*p).tag = 0xA1B2C3D4;
+41 | |         (*p).n = N;
+...  |
+77 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_002/target.rs:94:5
+    |
+ 94 | /     unsafe {
+ 95 | |         (*p).tag = 0;
+ 96 | |         (*p).n = 0;
+ 97 | |         (*p).sum = 0;
+...   |
+109 | |     }
+    | |_____^
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_002/target.rs:37:26
+   |
+37 |     let p: *mut Packet = storage.raw.as_mut_ptr() as *mut Packet;
+   |                          ^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_002/target.rs:92:26
+   |
+92 |     let p: *mut Packet = storage.raw.as_mut_ptr() as *mut Packet;
+   |                          ^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

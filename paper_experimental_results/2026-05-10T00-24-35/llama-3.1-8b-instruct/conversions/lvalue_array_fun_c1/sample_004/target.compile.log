@@ -1,0 +1,89 @@
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_004/target.rs:5:20
+  |
+5 |     if!sizeof(i) > 0 {
+  |       ----------   ^ expected `bool`, found integer
+  |       |
+  |       expected because this is `bool`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_004/target.rs:6:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+6 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_004/target.rs:8:21
+  |
+8 |     if!sizeof(*p) > 0 {
+  |       -----------   ^ expected `bool`, found integer
+  |       |
+  |       expected because this is `bool`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_004/target.rs:20:23
+   |
+20 |     if!sizeof(s3.a) > 0 {
+   |       -------------   ^ expected `bool`, found integer
+   |       |
+   |       expected because this is `bool`
+
+error[E0107]: method takes 0 generic arguments but 1 generic argument was supplied
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_004/target.rs:31:12
+     |
+  31 |         bp.read_unaligned::<u8>().unwrap();
+     |            ^^^^^^^^^^^^^^------ help: remove the unnecessary generics
+     |            |
+     |            expected 0 generic arguments
+     |
+note: method defined here, with 0 generic parameters
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:1259:25
+     |
+1259 |     pub const unsafe fn read_unaligned(self) -> T
+     |                         ^^^^^^^^^^^^^^
+
+error[E0599]: no method named `unwrap` found for type `u8` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_004/target.rs:31:35
+   |
+31 |         bp.read_unaligned::<u8>().unwrap();
+   |                                   ^^^^^^ method not found in `u8`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_004/target.rs:38:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+38 |     0
+   |     ^ expected `()`, found integer
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_004/target.rs:73:9
+   |
+73 |         *self
+   |         ^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0507]: cannot move out of `*self` which is behind a raw pointer
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_004/target.rs:73:9
+   |
+73 |         *self
+   |         ^^^^^ move occurs because `*self` has type `T`, which does not implement the `Copy` trait
+   |
+help: if `T` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_004/target.rs:71:6
+   |
+71 | impl<T> ReadUnaligned<T> for *const T {
+   |      ^ consider constraining this type parameter with `Clone`
+72 |     fn read_unaligned(self) -> T {
+73 |         *self
+   |         ----- you could clone this value
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0107, E0133, E0308, E0507, E0599.
+For more information about an error, try `rustc --explain E0107`.

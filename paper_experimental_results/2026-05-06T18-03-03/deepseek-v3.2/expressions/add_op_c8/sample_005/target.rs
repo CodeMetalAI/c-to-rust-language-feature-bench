@@ -1,0 +1,37 @@
+fn main() {
+    let a = [10, 20, 30, 40, 50];
+
+    let p0 = &a[0];
+    let p2 = &a[2];
+    let p4 = &a[4];
+    let p_last = &a[4];
+    let p_end = &a[5]; // One past the end - Rust allows this as a reference but not for dereferencing
+
+    if *p2 != 30 {
+        std::process::exit(1);
+    }
+    if *p4 != 50 {
+        std::process::exit(2);
+    }
+
+    let p_back = &a[1]; // p4 - 3 = &a[4] - 3 = &a[1]
+    if *p_back != 20 {
+        std::process::exit(3);
+    }
+
+    let p_from_end = &a[4]; // p_end - 1 = &a[5] - 1 = &a[4]
+    if !std::ptr::eq(p_from_end, p_last) {
+        std::process::exit(4);
+    }
+    if *p_from_end != 50 {
+        std::process::exit(5);
+    }
+
+    // p0 + 5 = &a[0] + 5 = &a[5] = p_end
+    // Compare addresses directly
+    if &a[5] as *const i32 != p_end as *const i32 {
+        std::process::exit(6);
+    }
+
+    std::process::exit(0);
+}

@@ -1,0 +1,13 @@
+error[E0277]: `RefCell<G>` cannot be shared between threads safely
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/statements/return_1/sample_004/target.rs:13:15
+   |
+13 | static G_VAR: RefCell<G> = RefCell::new(G {
+   |               ^^^^^^^^^^ `RefCell<G>` cannot be shared between threads safely
+   |
+   = help: the trait `Sync` is not implemented for `RefCell<G>`
+   = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock` instead
+   = note: shared static variables must have a type that implements `Sync`
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0277`.

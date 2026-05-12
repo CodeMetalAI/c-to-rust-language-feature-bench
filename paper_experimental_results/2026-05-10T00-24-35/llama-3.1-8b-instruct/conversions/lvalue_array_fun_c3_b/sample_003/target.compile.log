@@ -1,0 +1,111 @@
+error: expected expression, found `$`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3_b/sample_003/target.rs:18:28
+   |
+18 |     std::mem::size_of_val(&$expr) == std::mem::size_of::<T>()
+   |                            ^ expected expression
+
+error: expected expression, found `$`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3_b/sample_003/target.rs:25:28
+   |
+25 |     std::mem::size_of_val(&$expr) == std::mem::size_of::<T>()
+   |                            ^ expected expression
+
+error: expected expression, found `$`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3_b/sample_003/target.rs:32:28
+   |
+32 |     std::mem::size_of_val(&$expr) == std::mem::size_of::<String>()
+   |                            ^ expected expression
+
+error: expected expression, found `$`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3_b/sample_003/target.rs:39:28
+   |
+39 |     std::mem::size_of_val(&$expr) == std::mem::size_of::<&str>()
+   |                            ^ expected expression
+
+error[E0405]: cannot find trait `FromIter` in module `std::array`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3_b/sample_003/target.rs:16:20
+   |
+16 |     T: std::array::FromIter<[u8; 0]>,
+   |                    ^^^^^^^^ not found in `std::array`
+
+error[E0405]: cannot find trait `FromIter` in module `std::array`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3_b/sample_003/target.rs:23:20
+   |
+23 |     T: std::array::FromIter<[u8; 0]>,
+   |                    ^^^^^^^^ not found in `std::array`
+
+error[E0404]: expected trait, found struct `std::string::String`
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3_b/sample_003/target.rs:30:8
+     |
+  30 |     T: std::string::String + std::ops::Deref<Target = str>,
+     |        ^^^^^^^^^^^^^------
+     |                     |
+     |                     help: a trait with a similar name exists: `ToString`
+     |
+    ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/string.rs:2771:1
+     |
+2771 | pub trait ToString {
+     | ------------------ similarly named trait `ToString` defined here
+
+error[E0404]: expected trait, found struct `std::string::String`
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3_b/sample_003/target.rs:37:8
+     |
+  37 |     T: std::string::String + std::ops::Deref<Target = str>,
+     |        ^^^^^^^^^^^^^------
+     |                     |
+     |                     help: a trait with a similar name exists: `ToString`
+     |
+    ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/string.rs:2771:1
+     |
+2771 | pub trait ToString {
+     | ------------------ similarly named trait `ToString` defined here
+
+error[E0423]: expected function, found macro `type_id`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3_b/sample_003/target.rs:44:8
+   |
+44 |     if type_id(&a) != 2 {
+   |        ^^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+44 |     if type_id!(&a) != 2 {
+   |               +
+help: consider importing this function instead
+   |
+ 1 + use std::intrinsics::type_id;
+   |
+
+error[E0423]: expected function, found macro `type_id`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3_b/sample_003/target.rs:47:8
+   |
+47 |     if type_id(&a) != 2 {
+   |        ^^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+47 |     if type_id!(&a) != 2 {
+   |               +
+help: consider importing this function instead
+   |
+ 1 + use std::intrinsics::type_id;
+   |
+
+error[E0423]: expected function, found macro `type_id`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3_b/sample_003/target.rs:69:8
+   |
+69 |     if type_id(&s) != 4 {
+   |        ^^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+69 |     if type_id!(&s) != 4 {
+   |               +
+help: consider importing this function instead
+   |
+ 1 + use std::intrinsics::type_id;
+   |
+
+error: aborting due to 11 previous errors
+
+Some errors have detailed explanations: E0404, E0405, E0423.
+For more information about an error, try `rustc --explain E0404`.

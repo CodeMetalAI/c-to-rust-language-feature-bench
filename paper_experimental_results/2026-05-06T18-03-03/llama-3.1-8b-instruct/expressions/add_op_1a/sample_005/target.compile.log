@@ -1,0 +1,19 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/add_op_1a/sample_005/target.rs:11:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+11 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0606]: casting `&mut Vec<i32>` as `*const Vec<Vec<i32>>` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/add_op_1a/sample_005/target.rs:14:13
+   |
+14 |     let n = (p as *const Vec<Vec<i32>>).offset_from(&a as *const Vec<Vec<i32>>).wrapping_div(8) as usize;
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0308, E0606.
+For more information about an error, try `rustc --explain E0308`.

@@ -1,0 +1,114 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_2/sample_001/target.rs:18:5
+   |
+18 | /     unsafe {
+19 | |         f(&S_VAR.i);
+20 | |         f4(&S_VAR.ci);
+21 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_2/sample_001/target.rs:30:5
+   |
+30 | /     unsafe {
+31 | |         if S_VAR.i != 1 {
+32 | |             std::process::exit(1);
+...  |
+37 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_2/sample_001/target.rs:54:5
+   |
+54 | /     unsafe {
+55 | |         S_VAR.i = 10;
+56 | |         if S_VAR.i != 10 {
+57 | |             std::process::exit(7);
+58 | |         }
+59 | |     }
+   | |_____^
+
+error[E0277]: `Cell<S>` cannot be shared between threads safely
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_2/sample_001/target.rs:10:12
+   |
+10 | static VS: Cell<S> = Cell::new(S { i: 5, ci: 6 });
+   |            ^^^^^^^ `Cell<S>` cannot be shared between threads safely
+   |
+   = help: the trait `Sync` is not implemented for `Cell<S>`
+   = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock`
+   = note: shared static variables must have a type that implements `Sync`
+
+error[E0599]: the method `get` exists for struct `Cell<S>`, but its trait bounds were not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_2/sample_001/target.rs:26:21
+   |
+ 3 | struct S {
+   | -------- doesn't satisfy `S: Copy`
+...
+26 |     let vs_val = VS.get();
+   |                     ^^^
+   |
+   = note: the following trait bounds were not satisfied:
+           `S: Copy`
+help: consider annotating `S` with `#[derive(Clone, Copy)]`
+   |
+ 3 + #[derive(Clone, Copy)]
+ 4 | struct S {
+   |
+
+error[E0599]: the method `get` exists for struct `Cell<S>`, but its trait bounds were not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_2/sample_001/target.rs:46:23
+   |
+ 3 | struct S {
+   | -------- doesn't satisfy `S: Copy`
+...
+46 |     let vs_check = VS.get();
+   |                       ^^^
+   |
+   = note: the following trait bounds were not satisfied:
+           `S: Copy`
+help: consider annotating `S` with `#[derive(Clone, Copy)]`
+   |
+ 3 + #[derive(Clone, Copy)]
+ 4 | struct S {
+   |
+
+error[E0599]: the method `get` exists for struct `Cell<S>`, but its trait bounds were not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_2/sample_001/target.rs:61:25
+   |
+ 3 | struct S {
+   | -------- doesn't satisfy `S: Copy`
+...
+61 |     let mut vs_mut = VS.get();
+   |                         ^^^
+   |
+   = note: the following trait bounds were not satisfied:
+           `S: Copy`
+help: consider annotating `S` with `#[derive(Clone, Copy)]`
+   |
+ 3 + #[derive(Clone, Copy)]
+ 4 | struct S {
+   |
+
+error[E0599]: the method `get` exists for struct `Cell<S>`, but its trait bounds were not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_2/sample_001/target.rs:65:23
+   |
+ 3 | struct S {
+   | -------- doesn't satisfy `S: Copy`
+...
+65 |     let vs_final = VS.get();
+   |                       ^^^
+   |
+   = note: the following trait bounds were not satisfied:
+           `S: Copy`
+help: consider annotating `S` with `#[derive(Clone, Copy)]`
+   |
+ 3 + #[derive(Clone, Copy)]
+ 4 | struct S {
+   |
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0277, E0599.
+For more information about an error, try `rustc --explain E0277`.

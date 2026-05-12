@@ -1,0 +1,86 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c3/sample_001/target.rs:12:14
+   |
+12 |     let n2 = unsafe { &*v0 };
+   |              ^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c3/sample_001/target.rs:16:15
+   |
+16 |     let nf2 = unsafe { std::mem::forget(vf0 as *const _ as unsafe fn(i32) -> i32) };
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c3/sample_001/target.rs:14:38
+   |
+14 |     let nf1: unsafe fn(i32) -> i32 = std::mem::forget(std::ptr::null_mut());
+   |              ---------------------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected fn pointer, found `()`
+   |              |
+   |              expected due to this
+   |
+   = note: expected fn pointer `unsafe fn(i32) -> i32`
+               found unit type `()`
+
+error[E0599]: no method named `is_null` found for reference `&i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c3/sample_001/target.rs:22:12
+   |
+22 |     if !n2.is_null() {
+   |            ^^^^^^^ method not found in `&i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c3/sample_001/target.rs:31:14
+   |
+31 |     if n1 == px {
+   |              ^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut i32`
+                found reference `&{integer}`
+
+error[E0599]: no method named `is_null` found for fn pointer `unsafe fn(i32) -> i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c3/sample_001/target.rs:40:13
+   |
+40 |     if !nf1.is_null() {
+   |             ^^^^^^^ method not found in `unsafe fn(i32) -> i32`
+
+error[E0599]: no method named `is_null` found for unit type `()` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c3/sample_001/target.rs:44:13
+   |
+44 |     if !nf2.is_null() {
+   |             ^^^^^^^ method not found in `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c3/sample_001/target.rs:52:15
+   |
+52 |     if nf2 == pf {
+   |        ---    ^^ expected `()`, found fn item
+   |        |
+   |        expected because this is `()`
+   |
+   = note: expected unit type `()`
+                found fn item `fn(i32) -> i32 {f}`
+
+warning: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c3/sample_001/target.rs:60:11
+   |
+60 |     if vx.is_null() {
+   |           ^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2018!
+   = note: for more information, see issue #46906 <https://github.com/rust-lang/rust/issues/46906>
+   = note: `#[warn(tyvar_behind_raw_pointer)]` (part of `#[warn(rust_2018_compatibility)]`) on by default
+
+warning: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c3/sample_001/target.rs:64:11
+   |
+64 |     if vf.is_null() {
+   |           ^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2018!
+   = note: for more information, see issue #46906 <https://github.com/rust-lang/rust/issues/46906>
+
+error: aborting due to 8 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.

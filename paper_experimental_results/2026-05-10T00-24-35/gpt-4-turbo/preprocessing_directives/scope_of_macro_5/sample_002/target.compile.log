@@ -1,0 +1,134 @@
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:94:5
+    |
+ 94 | /     unsafe {
+ 95 | |         let mut x = RNG_STATE;
+ 96 | |         x ^= x << 13;
+ 97 | |         x ^= x >> 17;
+...   |
+100 | |         x
+101 | |     }
+    | |_____^
+    |
+    = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: the type `[[[i32; 10]; 10]]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:13:26
+   |
+13 |         let v1 = val_xyz[a - 1][b][c];
+   |                          ^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[[[i32; 10]; 10]]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[[[i32; 10]; 10]]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[[[i32; 10]; 10]; 9]` to implement `Index<i32>`
+
+error[E0277]: the type `[[i32; 10]]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:20:25
+   |
+20 |         let v2 = val_yz[b2 - 1][c2];
+   |                         ^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[[i32; 10]]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[[i32; 10]]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[[i32; 10]; 9]` to implement `Index<i32>`
+
+error[E0277]: the type `[[i32; 10]]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:27:25
+   |
+27 |         let v3 = val_xz[a3 - 1][c3];
+   |                         ^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[[i32; 10]]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[[i32; 10]]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[[i32; 10]; 9]` to implement `Index<i32>`
+
+error[E0277]: the type `[[i32; 10]]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:34:25
+   |
+34 |         let v4 = val_xy[a4 - 1][b4];
+   |                         ^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[[i32; 10]]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[[i32; 10]]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[[i32; 10]; 9]` to implement `Index<i32>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:50:5
+   |
+41 | fn init_val_xyz() -> [[[i32; 10]; 10]; 9] {
+   |                      -------------------- expected `[[[i32; 10]; 10]; 9]` because of return type
+...
+46 |                 arr[a - 1][b][c] = 100 * a + 10 * b + c;
+   |                 --- here the type of `arr` is inferred to be `[[[usize; 10]; 10]; 9]`
+...
+50 |     arr
+   |     ^^^ expected `[[[i32; 10]; 10]; 9]`, found `[[[usize; 10]; 10]; 9]`
+   |
+   = note: expected array `[[[i32; 10]; 10]; 9]`
+              found array `[[[usize; 10]; 10]; 9]`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:60:5
+   |
+53 | fn init_val_yz() -> [[i32; 10]; 9] {
+   |                     -------------- expected `[[i32; 10]; 9]` because of return type
+...
+57 |             arr[b - 1][c] = 10 * b + c;
+   |             --- here the type of `arr` is inferred to be `[[usize; 10]; 9]`
+...
+60 |     arr
+   |     ^^^ expected `[[i32; 10]; 9]`, found `[[usize; 10]; 9]`
+   |
+   = note: expected array `[[i32; 10]; 9]`
+              found array `[[usize; 10]; 9]`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:70:5
+   |
+63 | fn init_val_xz() -> [[i32; 10]; 9] {
+   |                     -------------- expected `[[i32; 10]; 9]` because of return type
+...
+67 |             arr[a - 1][c] = 10 * a + c;
+   |             --- here the type of `arr` is inferred to be `[[usize; 10]; 9]`
+...
+70 |     arr
+   |     ^^^ expected `[[i32; 10]; 9]`, found `[[usize; 10]; 9]`
+   |
+   = note: expected array `[[i32; 10]; 9]`
+              found array `[[usize; 10]; 9]`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:80:5
+   |
+73 | fn init_val_xy() -> [[i32; 10]; 9] {
+   |                     -------------- expected `[[i32; 10]; 9]` because of return type
+...
+77 |             arr[a - 1][b] = 10 * a + b;
+   |             --- here the type of `arr` is inferred to be `[[usize; 10]; 9]`
+...
+80 |     arr
+   |     ^^^ expected `[[i32; 10]; 9]`, found `[[usize; 10]; 9]`
+   |
+   = note: expected array `[[i32; 10]; 9]`
+              found array `[[usize; 10]; 9]`
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

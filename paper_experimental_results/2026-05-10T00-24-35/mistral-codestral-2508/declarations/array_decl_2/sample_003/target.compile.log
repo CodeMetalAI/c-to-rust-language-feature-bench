@@ -1,0 +1,81 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_003/target.rs:11:26
+   |
+11 | static mut X: *mut i32 = unsafe { BACKING.as_mut_ptr() };
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_003/target.rs:18:14
+   |
+18 |         s += unsafe { *p.offset(i as isize) };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_003/target.rs:35:5
+   |
+35 | /     unsafe {
+36 | |         *p.offset(1) += 5;
+37 | |         *p.offset(0) + *p.offset(1) + *p.offset(2)
+38 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_003/target.rs:42:5
+   |
+42 | /     unsafe {
+43 | |         Y[0] = 1;
+44 | |         Y[1] = 2;
+45 | |         Y[2] = 3;
+...  |
+94 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_003/target.rs:69:16
+   |
+69 |             if unsafe { *t.offset(6) } != 7 {
+   |                ^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_003/target.rs:76:16
+   |
+76 |             if unsafe { *hp.p } != 1 {
+   |                ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_003/target.rs:82:16
+   |
+82 |             if unsafe { (&ha as *const *mut HoldA as *const u8).offset(1) } != unsafe { (&ha as *const *mut HoldA as *const u8).offset(std::mem::size_of::<i32>() as isize) } {
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_003/target.rs:82:80
+   |
+82 |             if unsafe { (&ha as *const *mut HoldA as *const u8).offset(1) } != unsafe { (&ha as *const *mut HoldA as *const u8).offset(std::mem::size_of::<i32>() as isize) } {
+   |                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_003/target.rs:86:16
+   |
+86 |             if unsafe { *ha.offset(1) } != 3 {
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0369]: binary operation `!=` cannot be applied to type `HoldA`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_003/target.rs:86:41
+   |
+86 |             if unsafe { *ha.offset(1) } != 3 {
+   |                ------------------------ ^^ - {integer}
+   |                |
+   |                HoldA
+   |
+note: an implementation of `PartialEq<{integer}>` might be missing for `HoldA`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_003/target.rs:5:1
+   |
+ 5 | struct HoldA {
+   | ^^^^^^^^^^^^ must implement `PartialEq<{integer}>`
+
+error: aborting due to 10 previous errors
+
+For more information about this error, try `rustc --explain E0369`.

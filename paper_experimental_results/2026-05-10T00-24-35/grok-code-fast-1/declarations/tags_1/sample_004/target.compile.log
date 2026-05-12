@@ -1,0 +1,33 @@
+error[E0597]: `left_child` does not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/tags_1/sample_004/target.rs:24:19
+   |
+ 9 |     let left_child = Tnode {
+   |         ---------- binding `left_child` declared here
+...
+24 |     s.left = Some(&left_child);
+   |     --------------^^^^^^^^^^^-
+   |     |             |
+   |     |             borrowed value does not live long enough
+   |     assignment requires that `left_child` is borrowed for `'static`
+...
+42 | }
+   | - `left_child` dropped here while still borrowed
+
+error[E0597]: `right_child` does not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/tags_1/sample_004/target.rs:25:20
+   |
+14 |     let right_child = Tnode {
+   |         ----------- binding `right_child` declared here
+...
+25 |     s.right = Some(&right_child);
+   |     ---------------^^^^^^^^^^^^-
+   |     |              |
+   |     |              borrowed value does not live long enough
+   |     assignment requires that `right_child` is borrowed for `'static`
+...
+42 | }
+   | - `right_child` dropped here while still borrowed
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0597`.

@@ -1,0 +1,85 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_3/sample_002/target.rs:87:9
+   |
+87 |         unsafe { GATE = 1; }
+   |         ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_3/sample_002/target.rs:92:9
+   |
+92 |         unsafe { GATE = 2; }
+   |         ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_3/sample_002/target.rs:97:5
+   |
+97 | /     unsafe {
+98 | |         GATE = 0;
+99 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_3/sample_002/target.rs:102:8
+    |
+102 |     if unsafe { GATE != 0 } {
+    |        ^^^^^^^^^^^^^^^^^^^^
+
+error[E0369]: cannot add `i32` to `[i32; 6]`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_3/sample_002/target.rs:10:42
+   |
+10 |                 if a[i][j][k] != p[j][k] + i as i32 {
+   |                                  ------- ^ -------- i32
+   |                                  |
+   |                                  [i32; 6]
+
+error[E0599]: no method named `try_into` found for slice `[[[i32; 6]; 6]]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_3/sample_002/target.rs:18:26
+    |
+ 18 |         *p = &mut p[1..].try_into().unwrap();
+    |                          ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[[[i32; 6]; 6]]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 18 -         *p = &mut p[1..].try_into().unwrap();
+ 18 +         *p = &mut p[1..].into().unwrap();
+    |
+
+error[E0608]: cannot index into a value of type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_3/sample_002/target.rs:32:51
+   |
+32 |                     if c[i][j][u][v] != r[i][j][u][v] {
+   |                                                   ^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_3/sample_002/target.rs:91:28
+   |
+91 |     if check_c(nn, mm, &c, r) != 0 {
+   |        -------             ^ expected `&[[[i32; 6]; 6]; 6]`, found `&[[[[i32; 6]; 6]; 6]; 6]`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&[[[i32; 6]; 6]; 6]`
+              found reference `&[[[[i32; 6]; 6]; 6]; 6]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_3/sample_002/target.rs:23:4
+   |
+23 | fn check_c(nn: usize, mm: usize, c: &[[[[i32; 6]; 6]; 6]; 6], r: &[[[i32; 6]; 6]; 6]) -> i32 {
+   |    ^^^^^^^                                                    ----------------------
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0308, E0369, E0599, E0608.
+For more information about an error, try `rustc --explain E0308`.

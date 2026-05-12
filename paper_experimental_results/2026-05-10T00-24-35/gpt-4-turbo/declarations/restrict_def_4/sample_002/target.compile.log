@@ -1,0 +1,30 @@
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_4/sample_002/target.rs:39:19
+   |
+31 |     let (p1, q1) = (&mut x[..], &y[..]);
+   |                          - mutable borrow occurs here
+...
+39 |         if !same(&x[8..24], &expect) {
+   |                   ^ immutable borrow occurs here
+...
+47 |         copy_restrict(8, &mut p1[0..8], &q1[24..32]);
+   |                               -- mutable borrow later used here
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0382]: borrow of moved value: `p1`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_4/sample_002/target.rs:47:31
+   |
+31 |     let (p1, q1) = (&mut x[..], &y[..]);
+   |          -- move occurs because `p1` has type `&mut [i32]`, which does not implement the `Copy` trait
+...
+34 |         let (p2, q2) = (p1, q1);
+   |                         -- value moved here
+...
+47 |         copy_restrict(8, &mut p1[0..8], &q1[24..32]);
+   |                               ^^ value borrowed here after move
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0382, E0502.
+For more information about an error, try `rustc --explain E0382`.

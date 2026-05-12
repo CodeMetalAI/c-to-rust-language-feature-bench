@@ -1,0 +1,83 @@
+warning: unused variable: `p`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/lvalue_array_fun_c1/sample_002/target.rs:3:9
+  |
+3 |     let p = &mut i;
+  |         ^ help: if this is intentional, prefix it with an underscore: `_p`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `a`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/lvalue_array_fun_c1/sample_002/target.rs:8:9
+  |
+8 |     let a = [1, 2];
+  |         ^ help: if this is intentional, prefix it with an underscore: `_a`
+
+warning: unused variable: `ci`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/lvalue_array_fun_c1/sample_002/target.rs:11:9
+   |
+11 |     let ci = 3;
+   |         ^^ help: if this is intentional, prefix it with an underscore: `_ci`
+
+warning: unused variable: `s3`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/lvalue_array_fun_c1/sample_002/target.rs:14:13
+   |
+14 |     let mut s3 = S3 { a: 4 };
+   |             ^^ help: if this is intentional, prefix it with an underscore: `_s3`
+
+warning: unused variable: `s1`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/lvalue_array_fun_c1/sample_002/target.rs:17:9
+   |
+17 |     let s1 = S1 { a: 5, b: 6 };
+   |         ^^ help: if this is intentional, prefix it with an underscore: `_s1`
+
+warning: unused variable: `s2`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/lvalue_array_fun_c1/sample_002/target.rs:18:9
+   |
+18 |     let s2 = S2 { s: S1 { a: 7, b: 8 } };
+   |         ^^ help: if this is intentional, prefix it with an underscore: `_s2`
+
+warning: unused variable: `bp`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/lvalue_array_fun_c1/sample_002/target.rs:23:13
+   |
+23 |         let bp = &mut t as *mut i32 as *mut u8;
+   |             ^^ help: if this is intentional, prefix it with an underscore: `_bp`
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/lvalue_array_fun_c1/sample_002/target.rs:14:9
+   |
+14 |     let mut s3 = S3 { a: 4 };
+   |         ----^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: fields `a` and `b` are never read
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/lvalue_array_fun_c1/sample_002/target.rs:30:5
+   |
+29 | struct S1 {
+   |        -- fields in this struct
+30 |     a: i32,
+   |     ^
+31 |     b: i32, // `b` is not declared as `const` because Rust does not support field-level constancy like C.
+   |     ^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `s` is never read
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/lvalue_array_fun_c1/sample_002/target.rs:35:5
+   |
+34 | struct S2 {
+   |        -- field in this struct
+35 |     s: S1,
+   |     ^
+
+warning: field `a` is never read
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/lvalue_array_fun_c1/sample_002/target.rs:39:5
+   |
+38 | struct S3 {
+   |        -- field in this struct
+39 |     a: i32,
+   |     ^
+
+warning: 11 warnings emitted

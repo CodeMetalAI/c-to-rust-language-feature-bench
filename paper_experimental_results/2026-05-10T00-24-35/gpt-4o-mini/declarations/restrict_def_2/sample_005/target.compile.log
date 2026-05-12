@@ -1,0 +1,38 @@
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_2/sample_005/target.rs:19:14
+   |
+19 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0502]: cannot borrow `buf` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_2/sample_005/target.rs:33:18
+   |
+32 |         let p = &mut buf[0..n];
+   |                      --- mutable borrow occurs here
+33 |         let q = &buf[off..off + n];
+   |                  ^^^ immutable borrow occurs here
+34 |
+35 |         f(n, p, q);
+   |              - mutable borrow later used here
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `buf` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_2/sample_005/target.rs:59:18
+   |
+58 |         let p = &mut buf[off..off + n];
+   |                      --- mutable borrow occurs here
+59 |         let q = &buf[0..n];
+   |                  ^^^ immutable borrow occurs here
+60 |
+61 |         f(n, p, q);
+   |              - mutable borrow later used here
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0277, E0502.
+For more information about an error, try `rustc --explain E0277`.

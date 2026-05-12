@@ -1,0 +1,50 @@
+error: expected expression, found `+`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/lvalue_array_fun_c2_a/sample_002/target.rs:46:16
+   |
+46 |     if type_id(+CX) != 1 {
+   |                ^ expected expression
+
+error: expected expression, found `+`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/lvalue_array_fun_c2_a/sample_002/target.rs:49:9
+   |
+49 |     if (+CX) != 9 {
+   |         ^ expected expression
+
+error: expected expression, found `+`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/lvalue_array_fun_c2_a/sample_002/target.rs:59:16
+   |
+59 |     if type_id(+ax) != 1 {
+   |                ^ expected expression
+
+error: expected expression, found `+`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/lvalue_array_fun_c2_a/sample_002/target.rs:62:9
+   |
+62 |     if (+ax) != 11 {
+   |         ^ expected expression
+
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/lvalue_array_fun_c2_a/sample_002/target.rs:5:14
+  |
+5 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/lvalue_array_fun_c2_a/sample_002/target.rs:26:15
+   |
+26 |         match TypeId::of::<T>() {
+   |               ^^^^^^^^^^^^^^^^^
+   |               |
+   |               the parameter type `T` must be valid for the static lifetime...
+   |               ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+24 |     fn type_id<T: 'static>(_: T) -> i32 {
+   |                 +++++++++
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0277, E0310.
+For more information about an error, try `rustc --explain E0277`.

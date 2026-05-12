@@ -1,0 +1,97 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_001/target.rs:16:9
+   |
+16 |         unsafe { &mut u.right as *mut [i32; 8] as *mut i32 }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_001/target.rs:18:9
+   |
+18 |         unsafe { &mut u.left as *mut [i32; 8] as *mut i32 }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_001/target.rs:24:9
+   |
+24 |         unsafe { *p.add(i) = base + i as i32 };
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_001/target.rs:30:9
+   |
+30 |         unsafe { *p.add(i) += k };
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_001/target.rs:37:9
+   |
+37 |         unsafe { s += *p.add(i) };
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_001/target.rs:46:5
+   |
+46 | /     unsafe {
+47 | |         A = choose_view(&mut BANK_A, which_a);
+48 | |         B = choose_view(&mut BANK_B, which_b);
+...  |
+81 | |     }
+   | |_____^
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_001/target.rs:47:25
+   |
+47 |         A = choose_view(&mut BANK_A, which_a);
+   |                         ^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw mut` instead to create a raw pointer
+   |
+47 |         A = choose_view(&raw mut BANK_A, which_a);
+   |                          +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_001/target.rs:48:25
+   |
+48 |         B = choose_view(&mut BANK_B, which_b);
+   |                         ^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+48 |         B = choose_view(&raw mut BANK_B, which_b);
+   |                          +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_001/target.rs:52:14
+   |
+52 |         fill(C.as_mut_ptr(), 8, 300);
+   |              ^^^^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_001/target.rs:56:14
+   |
+56 |         bump(C.as_mut_ptr(), 8, 3);
+   |              ^^^^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_001/target.rs:66:16
+   |
+66 |         if sum(C.as_ptr(), 8) != (303 + 304 + 305 + 306 + 307 + 308 + 309 + 310) {
+   |                ^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+
+error: aborting due to 6 previous errors; 5 warnings emitted

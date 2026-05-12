@@ -1,0 +1,98 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_004/target.rs:19:18
+   |
+19 |     let offset = unsafe { &(*(0 as *const S)).d as *const _ as usize };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_004/target.rs:24:14
+   |
+24 |       let s1 = unsafe {
+   |  ______________^
+25 | |         let layout = std::alloc::Layout::array::<f64>(8).unwrap();
+26 | |         let ptr = std::alloc::alloc(layout) as *mut S;
+27 | |         if ptr.is_null() {
+...  |
+30 | |         &mut *ptr
+31 | |     };
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_004/target.rs:33:14
+   |
+33 |       let s2 = unsafe {
+   |  ______________^
+34 | |         let layout = std::alloc::Layout::array::<f64>(5).unwrap();
+35 | |         let ptr = std::alloc::alloc(layout) as *mut S;
+36 | |         if ptr.is_null() {
+...  |
+39 | |         &mut *ptr
+40 | |     };
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_004/target.rs:42:5
+   |
+42 | /     unsafe {
+43 | |         s1.d[0] = 42.0;
+44 | |         s2.d[0] = 24.0;
+...  |
+49 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_004/target.rs:51:5
+   |
+51 | /     unsafe {
+52 | |         let layout = std::alloc::Layout::array::<f64>(8).unwrap();
+53 | |         std::alloc::dealloc(s1 as *mut S as *mut u8, layout);
+...  |
+56 | |         std::alloc::dealloc(s2 as *mut S as *mut u8, layout);
+57 | |     }
+   | |_____^
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_004/target.rs:42:5
+   |
+42 |     unsafe {
+   |     ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_004/target.rs:43:9
+   |
+43 |         s1.d[0] = 42.0;
+   |         ^^^^^^^ index out of bounds: the length is 0 but the index is 0
+   |
+   = note: `#[deny(unconditional_panic)]` on by default
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_004/target.rs:44:9
+   |
+44 |         s2.d[0] = 24.0;
+   |         ^^^^^^^ index out of bounds: the length is 0 but the index is 0
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_004/target.rs:46:12
+   |
+46 |         if s1.d[0] != 42.0 || s2.d[0] != 24.0 {
+   |            ^^^^^^^ index out of bounds: the length is 0 but the index is 0
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_004/target.rs:46:31
+   |
+46 |         if s1.d[0] != 42.0 || s2.d[0] != 24.0 {
+   |                               ^^^^^^^ index out of bounds: the length is 0 but the index is 0
+
+warning: dereferencing a null pointer
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_004/target.rs:19:28
+   |
+19 |     let offset = unsafe { &(*(0 as *const S)).d as *const _ as usize };
+   |                            ^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+   |
+   = note: `#[warn(deref_nullptr)]` on by default
+
+error: aborting due to 9 previous errors; 2 warnings emitted

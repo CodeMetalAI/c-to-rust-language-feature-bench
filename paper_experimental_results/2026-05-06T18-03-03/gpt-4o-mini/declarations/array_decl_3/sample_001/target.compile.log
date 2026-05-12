@@ -1,0 +1,88 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:48:14
+   |
+48 |     let nn = unsafe { N };
+   |              ^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:49:14
+   |
+49 |     let mm = unsafe { M };
+   |              ^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:88:9
+   |
+88 |         unsafe { GATE = 1; }
+   |         ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:93:9
+   |
+93 |         unsafe { GATE = 2; }
+   |         ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:101:5
+    |
+101 | /     unsafe {
+102 | |         N = 6;
+103 | |         M = N + 1;
+104 | |         GATE = 0;
+105 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:109:5
+    |
+109 | /     unsafe {
+110 | |         if GATE != 0 {
+111 | |             std::process::exit(1);
+112 | |         }
+113 | |     }
+    | |_____^
+
+error[E0608]: cannot index into a value of type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:33:51
+   |
+33 |                     if c[i][j][u][v] != r[i][j][u][v] {
+   |                                                   ^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:87:28
+   |
+87 |     if check_a(nn, mm, &a, p) != 0 {
+   |        -------             ^ expected `&[[i32; 6]; 100]`, found `&[[[i32; 6]; 100]; 100]`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&[[i32; 6]; 100]`
+              found reference `&[[[i32; 6]; 100]; 100]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:5:4
+   |
+ 5 | fn check_a(nn: usize, mm: usize, a: &[[[i32; 6]; 100]; 100], p: &[[i32; 6]; 100]) -> i32 {
+   |    ^^^^^^^                                                   -------------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:92:28
+   |
+92 |     if check_c(nn, mm, &c, r) != 0 {
+   |        -------             ^ expected `&[[[i32; 6]; 100]; 100]`, found `&[[[[i32; 100]; 6]; 100]; 100]`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&[[[i32; 6]; 100]; 100]`
+              found reference `&[[[[i32; 100]; 6]; 100]; 100]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:24:4
+   |
+24 | fn check_c(nn: usize, mm: usize, c: &[[[[i32; 100]; 6]; 100]; 100], r: &[[[i32; 6]; 100]; 100]) -> i32 {
+   |    ^^^^^^^                                                          --------------------------
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0308, E0608.
+For more information about an error, try `rustc --explain E0308`.

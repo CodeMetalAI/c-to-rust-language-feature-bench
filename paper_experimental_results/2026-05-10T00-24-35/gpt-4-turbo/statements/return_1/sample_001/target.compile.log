@@ -1,0 +1,51 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/statements/return_1/sample_001/target.rs:28:5
+   |
+28 |     unsafe { G.u1.f2 }
+   |     ^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/statements/return_1/sample_001/target.rs:36:5
+   |
+36 | /     unsafe {
+37 | |         G.u1.f2.i = 1.0;
+38 | |         G.u2.f3.i = 1.0;
+39 | |         G.u1.f2 = f();
+...  |
+42 | |         std::process::exit(if G.u1.f2.i + G.u2.f3.i + val == 3.0 { 0 } else { 1 });
+43 | |     }
+   | |_____^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/statements/return_1/sample_001/target.rs:6:5
+  |
+6 |     u1: U1,
+  |     ^^^^^^
+  |
+  = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+  |
+6 |     u1: std::mem::ManuallyDrop<U1>,
+  |         +++++++++++++++++++++++  +
+
+error[E0507]: cannot move out of `G.u1.f2` as `G` is a static item
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/statements/return_1/sample_001/target.rs:28:14
+   |
+28 |     unsafe { G.u1.f2 }
+   |              ^^^^^^^ move occurs because `G.u1.f2` has type `S`, which does not implement the `Copy` trait
+   |
+note: if `S` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/statements/return_1/sample_001/target.rs:1:1
+   |
+ 1 | struct S {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+28 |     unsafe { G.u1.f2 }
+   |              ------- you could clone this value
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0507, E0740.
+For more information about an error, try `rustc --explain E0507`.

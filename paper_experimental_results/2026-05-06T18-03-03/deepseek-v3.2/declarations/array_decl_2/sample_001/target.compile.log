@@ -1,0 +1,124 @@
+warning: unused import: `std::mem`
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: type `usize` should have an upper camel case name
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:3:6
+  |
+3 | type usize = u64;
+  |      ^^^^^ help: convert the identifier to upper camel case (notice the capitalization): `Usize`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:12:22
+   |
+12 |     let member_ptr = unsafe { &(*base).member };
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:29:14
+   |
+29 |         s += unsafe { *p.add(i) };
+   |              ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:46:5
+   |
+46 | /     unsafe {
+47 | |         *p.add(1) += 5;
+48 | |         *p.add(0) + *p.add(1) + *p.add(2)
+49 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:53:5
+    |
+ 53 | /     unsafe {
+ 54 | |         X = BACKING.as_ptr();
+ 55 | |         
+ 56 | |         Y[0] = 1;
+...   |
+113 | |         std::process::exit(0);
+114 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:82:16
+   |
+82 |             if unsafe { *t.add(6) } != 7 {
+   |                ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:90:16
+   |
+90 |             if unsafe { *hp.p.add(0) } != 1 {
+   |                ^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:96:28
+   |
+96 |             let ha_a_ptr = unsafe { &(*ha).a } as *const _ as *const u8;
+   |                            ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:104:16
+    |
+104 |             if unsafe { (*ha).a.as_ptr().add(2).read() } != 3 {
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0609]: no field `member` on type `T`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:12:40
+   |
+10 | const fn offset_of<T, U>(_: &T, member: *const U) -> usize {
+   |                    - type parameter 'T' declared here
+11 |     let base = 0 as *const T;
+12 |     let member_ptr = unsafe { &(*base).member };
+   |                                        ^^^^^^ unknown field
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:29:30
+    |
+ 29 |         s += unsafe { *p.add(i) };
+    |                          --- ^ expected `usize`, found `u64`
+    |                          |
+    |                          arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:881:25
+    |
+881 |     pub const unsafe fn add(self, count: usize) -> Self
+    |                         ^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+    |
+ 29 |         s += unsafe { *p.add(i.try_into().unwrap()) };
+    |                               ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:100:48
+     |
+ 100 |             if ha_a_ptr != ha_ptr.wrapping_add(offset as usize) {
+     |                                   ------------ ^^^^^^^^^^^^^^^ expected `usize`, found `u64`
+     |                                   |
+     |                                   arguments to this method are incorrect
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:1105:18
+     |
+1105 |     pub const fn wrapping_add(self, count: usize) -> Self
+     |                  ^^^^^^^^^^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+     |
+ 100 |             if ha_a_ptr != ha_ptr.wrapping_add((offset as usize).try_into().unwrap()) {
+     |                                                +               +++++++++++++++++++++
+
+error: aborting due to 11 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0308, E0609.
+For more information about an error, try `rustc --explain E0308`.

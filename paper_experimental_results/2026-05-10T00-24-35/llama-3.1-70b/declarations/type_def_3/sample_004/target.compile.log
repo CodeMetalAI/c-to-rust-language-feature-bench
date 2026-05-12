@@ -1,0 +1,19 @@
+error[E0562]: `impl Trait` is not allowed in closure parameters
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_3/sample_004/target.rs:10:24
+   |
+10 |     let call_cb = |cb: impl Fn(i32) -> i32, x: i32| cb(x);
+   |                        ^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `impl Trait` is only allowed in arguments and return types of functions and methods
+
+error[E0562]: `impl Trait` is not allowed in closure parameters
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_3/sample_004/target.rs:14:18
+   |
+14 |     let f = |pf: impl Fn(i32) -> i32| call_cb(pf, 9);
+   |                  ^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `impl Trait` is only allowed in arguments and return types of functions and methods
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0562`.

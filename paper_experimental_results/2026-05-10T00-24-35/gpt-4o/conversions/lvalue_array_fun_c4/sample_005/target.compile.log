@@ -1,0 +1,26 @@
+error[E0599]: no method named `then_some` found for struct `TypeId` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/lvalue_array_fun_c4/sample_005/target.rs:69:77
+   |
+69 |     std::any::TypeId::of::<T>() == std::any::TypeId::of::<fn(i32) -> i32>().then_some(1)
+   |                                                                             ^^^^^^^^^ method not found in `TypeId`
+
+error[E0599]: no method named `then_some` found for struct `TypeId` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/lvalue_array_fun_c4/sample_005/target.rs:70:98
+   |
+70 |         .or_else(|| std::any::TypeId::of::<T>() == std::any::TypeId::of::<fn(i32, i32) -> i32>().then_some(2))
+   |                                                                                                  ^^^^^^^^^ method not found in `TypeId`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/lvalue_array_fun_c4/sample_005/target.rs:69:5
+   |
+68 |   fn type_id<T>(_: T) -> i32 {
+   |                          --- expected `i32` because of return type
+69 | /     std::any::TypeId::of::<T>() == std::any::TypeId::of::<fn(i32) -> i32>().then_some(1)
+70 | |         .or_else(|| std::any::TypeId::of::<T>() == std::any::TypeId::of::<fn(i32, i32) -> i32>().then_some(2))
+71 | |         .unwrap_or(99)
+   | |______________________^ expected `i32`, found `bool`
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.

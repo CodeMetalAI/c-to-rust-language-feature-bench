@@ -1,0 +1,248 @@
+error: `<` is interpreted as a start of generic arguments for `usize`, not a comparison
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:83:48
+   |
+83 |     if core::mem::size_of::<Packet>() as usize < OFFSETOF(Packet, data) {
+   |                                                ^ ------------------------ interpreted as generic arguments
+   |                                                |
+   |                                                not interpreted as comparison
+   |
+help: try comparing the cast value
+   |
+83 |     if (core::mem::size_of::<Packet>() as usize) < OFFSETOF(Packet, data) {
+   |        +                                       +
+
+error[E0423]: expected value, found struct `Packet`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:83:59
+   |
+ 9 | / struct Packet {
+10 | |     tag: U32,
+11 | |     n: U32,
+12 | |     sum: U32,
+13 | |     data: [U32],
+14 | | }
+   | |_- `Packet` defined here
+...
+83 |       if core::mem::size_of::<Packet>() as usize < OFFSETOF(Packet, data) {
+   |                                                             ^^^^^^ help: use struct literal syntax instead: `Packet { tag: val, n: val, sum: val, data: val }`
+
+error[E0425]: cannot find value `data` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:83:67
+   |
+83 |     if core::mem::size_of::<Packet>() as usize < OFFSETOF(Packet, data) {
+   |                                                                   ^^^^ not found in this scope
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:40:26
+   |
+40 |     let p: &mut Packet = unsafe { &mut *(Storage::raw_mut() as *mut Packet) };
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:101:26
+    |
+101 |     let p: &mut Packet = unsafe { &mut *(Storage::raw_mut() as *mut Packet) };
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused macro definition: `OFFSETOF`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:145:14
+    |
+145 | macro_rules! OFFSETOF {
+    |              ^^^^^^^^
+    |
+    = note: `#[warn(unused_macros)]` (part of `#[warn(unused)]`) on by default
+
+error[E0277]: the size for values of type `[u32]` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:96:40
+    |
+ 96 |         raw: [U8; core::mem::size_of::<Packet>()],
+    |                                        ^^^^^^ doesn't have a size known at compile-time
+    |
+    = help: within `Packet`, the trait `Sized` is not implemented for `[u32]`
+note: required because it appears within the type `Packet`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:9:8
+    |
+  9 | struct Packet {
+    |        ^^^^^^
+note: required by an implicit `Sized` bound in `std::mem::size_of`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:22
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |                      ^ required by the implicit `Sized` requirement on this type parameter in `size_of`
+
+error[E0599]: no function or associated item named `raw_mut` found for struct `test_nonempty_object::Storage` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:40:51
+   |
+34 |     struct Storage {
+   |     -------------- function or associated item `raw_mut` not found for this struct
+...
+40 |     let p: &mut Packet = unsafe { &mut *(Storage::raw_mut() as *mut Packet) };
+   |                                                   ^^^^^^^ function or associated item not found in `test_nonempty_object::Storage`
+
+error[E0277]: the size for values of type `[u32]` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:48:40
+    |
+ 48 |         let off = core::mem::size_of::<Packet>() as usize + N * core::mem::size_of::<U32>();
+    |                                        ^^^^^^ doesn't have a size known at compile-time
+    |
+    = help: within `Packet`, the trait `Sized` is not implemented for `[u32]`
+note: required because it appears within the type `Packet`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:9:8
+    |
+  9 | struct Packet {
+    |        ^^^^^^
+note: required by an implicit `Sized` bound in `std::mem::size_of`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:22
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |                      ^ required by the implicit `Sized` requirement on this type parameter in `size_of`
+
+error[E0599]: no function or associated item named `raw_mut` found for struct `test_nonempty_object::Storage` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:51:42
+   |
+34 |     struct Storage {
+   |     -------------- function or associated item `raw_mut` not found for this struct
+...
+51 |         let expected: *mut U8 = Storage::raw_mut().as_mut_ptr().add(off);
+   |                                          ^^^^^^^ function or associated item not found in `test_nonempty_object::Storage`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:66:22
+   |
+66 |         let v = (i + 1u32) * 3u32 + 1u32;
+   |                      ^^^^ expected `usize`, found `u32`
+
+error[E0277]: cannot add `u32` to `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:66:20
+   |
+66 |         let v = (i + 1u32) * 3u32 + 1u32;
+   |                    ^ no implementation for `usize + u32`
+   |
+   = help: the trait `Add<u32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:66:30
+   |
+66 |         let v = (i + 1u32) * 3u32 + 1u32;
+   |                              ^^^^ expected `usize`, found `u32`
+
+error[E0277]: cannot multiply `usize` by `u32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:66:28
+   |
+66 |         let v = (i + 1u32) * 3u32 + 1u32;
+   |                            ^ no implementation for `usize * u32`
+   |
+   = help: the trait `Mul<u32>` is not implemented for `usize`
+   = help: the following other types implement trait `Mul<Rhs>`:
+             `&usize` implements `Mul<usize>`
+             `&usize` implements `Mul`
+             `usize` implements `Mul<&usize>`
+             `usize` implements `Mul`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:66:37
+   |
+66 |         let v = (i + 1u32) * 3u32 + 1u32;
+   |                                     ^^^^ expected `usize`, found `u32`
+
+error[E0277]: cannot add `u32` to `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:66:35
+   |
+66 |         let v = (i + 1u32) * 3u32 + 1u32;
+   |                                   ^ no implementation for `usize + u32`
+   |
+   = help: the trait `Add<u32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:78:29
+   |
+78 |     if p.sum != compute_sum(N) {
+   |                 ----------- ^ expected `u32`, found `usize`
+   |                 |
+   |                 arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:17:4
+   |
+17 | fn compute_sum(n: U32) -> U32 {
+   |    ^^^^^^^^^^^ ------
+help: you can convert a `usize` to a `u32` and panic if the converted value doesn't fit
+   |
+78 |     if p.sum != compute_sum(N.try_into().unwrap()) {
+   |                              ++++++++++++++++++++
+
+error[E0277]: the size for values of type `[u32]` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:83:29
+    |
+ 83 |     if core::mem::size_of::<Packet>() as usize < OFFSETOF(Packet, data) {
+    |                             ^^^^^^ doesn't have a size known at compile-time
+    |
+    = help: within `Packet`, the trait `Sized` is not implemented for `[u32]`
+note: required because it appears within the type `Packet`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:9:8
+    |
+  9 | struct Packet {
+    |        ^^^^^^
+note: required by an implicit `Sized` bound in `std::mem::size_of`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:22
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |                      ^ required by the implicit `Sized` requirement on this type parameter in `size_of`
+
+error[E0425]: cannot find function, tuple struct or tuple variant `OFFSETOF` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:83:50
+   |
+83 |     if core::mem::size_of::<Packet>() as usize < OFFSETOF(Packet, data) {
+   |                                                  ^^^^^^^^ not found in this scope
+
+error[E0599]: no function or associated item named `raw_mut` found for struct `test_zero_element_object::Storage` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:101:51
+    |
+ 95 |     struct Storage {
+    |     -------------- function or associated item `raw_mut` not found for this struct
+...
+101 |     let p: &mut Packet = unsafe { &mut *(Storage::raw_mut() as *mut Packet) };
+    |                                                   ^^^^^^^ function or associated item not found in `test_zero_element_object::Storage`
+
+error[E0277]: the size for values of type `[u32]` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:110:40
+    |
+110 |         let off = core::mem::size_of::<Packet>() as usize;
+    |                                        ^^^^^^ doesn't have a size known at compile-time
+    |
+    = help: within `Packet`, the trait `Sized` is not implemented for `[u32]`
+note: required because it appears within the type `Packet`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:9:8
+    |
+  9 | struct Packet {
+    |        ^^^^^^
+note: required by an implicit `Sized` bound in `std::mem::size_of`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:22
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |                      ^ required by the implicit `Sized` requirement on this type parameter in `size_of`
+
+error[E0599]: no function or associated item named `raw_mut` found for struct `test_zero_element_object::Storage` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:113:42
+    |
+ 95 |     struct Storage {
+    |     -------------- function or associated item `raw_mut` not found for this struct
+...
+113 |         let expected: *mut U8 = Storage::raw_mut().as_mut_ptr().add(off);
+    |                                          ^^^^^^^ function or associated item not found in `test_zero_element_object::Storage`
+
+error: aborting due to 21 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308, E0423, E0425, E0599.
+For more information about an error, try `rustc --explain E0277`.

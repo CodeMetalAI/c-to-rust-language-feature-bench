@@ -1,0 +1,144 @@
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_002/target.rs:15:10
+   |
+15 | #[derive(Debug)]
+   |          ^^^^^
+
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_002/target.rs:28:10
+   |
+28 | #[derive(Debug)]
+   |          ^^^^^
+
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_002/target.rs:46:10
+   |
+46 | #[derive(Debug)]
+   |          ^^^^^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_002/target.rs:31:5
+   |
+31 |     deep_struct: DeepStruct,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+31 |     deep_struct: std::mem::ManuallyDrop<DeepStruct>,
+   |                  +++++++++++++++++++++++          +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_002/target.rs:49:5
+   |
+49 |     tail_struct: TailStructInner,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+49 |     tail_struct: std::mem::ManuallyDrop<TailStructInner>,
+   |                  +++++++++++++++++++++++               +
+
+error[E0277]: `NestedUnion` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_002/target.rs:11:5
+   |
+ 8 | #[derive(Debug)]
+   |          ----- in this derive macro expansion
+...
+11 |     nested_union: NestedUnion,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `NestedUnion`
+   |
+   = note: add `#[derive(Debug)]` to `NestedUnion` or manually `impl Debug for NestedUnion`
+help: consider annotating `NestedUnion` with `#[derive(Debug)]`
+   |
+16 + #[derive(Debug)]
+17 | union NestedUnion {
+   |
+
+error[E0277]: `DeepUnion` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_002/target.rs:24:5
+   |
+21 | #[derive(Debug)]
+   |          ----- in this derive macro expansion
+...
+24 |     deep_union: DeepUnion,
+   |     ^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `DeepUnion`
+   |
+   = note: add `#[derive(Debug)]` to `DeepUnion` or manually `impl Debug for DeepUnion`
+help: consider annotating `DeepUnion` with `#[derive(Debug)]`
+   |
+29 + #[derive(Debug)]
+30 | union DeepUnion {
+   |
+
+error[E0277]: `TailUnion` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_002/target.rs:43:5
+   |
+40 | #[derive(Debug)]
+   |          ----- in this derive macro expansion
+...
+43 |     tail_union: TailUnion,
+   |     ^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `TailUnion`
+   |
+   = note: add `#[derive(Debug)]` to `TailUnion` or manually `impl Debug for TailUnion`
+help: consider annotating `TailUnion` with `#[derive(Debug)]`
+   |
+47 + #[derive(Debug)]
+48 | union TailUnion {
+   |
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_002/target.rs:164:16
+    |
+161 | fn main() {
+    |          - expected `()` because of default return type
+...
+164 |         return r;
+    |                ^ expected `()`, found `i32`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_002/target.rs:177:5
+    |
+161 | fn main() {
+    |          - expected `()` because of default return type
+...
+177 |     0
+    |     ^ expected `()`, found integer
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_002/target.rs:82:8
+   |
+82 |     if o.a.nested_union.u_as_int != 0 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_002/target.rs:91:8
+   |
+91 |     if o.tail.tail_union.tail_y != 8 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_002/target.rs:120:8
+    |
+120 |     if o.a.nested_union.u_as_int != 0x11223344 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+warning: unused variable: `o`
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_002/target.rs:136:9
+    |
+136 |     let o = Outer {
+    |         ^ help: if this is intentional, prefix it with an underscore: `_o`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 13 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0133, E0277, E0308, E0740.
+For more information about an error, try `rustc --explain E0133`.

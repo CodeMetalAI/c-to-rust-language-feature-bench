@@ -1,0 +1,67 @@
+error[E0597]: `sp_borrow` does not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/tags_1/sample_004/target.rs:34:9
+   |
+33 |           let sp_borrow = sp.borrow();
+   |               --------- binding `sp_borrow` declared here
+34 |           sp_borrow
+   |           -^^^^^^^^
+   |           |
+   |  _________borrowed value does not live long enough
+   | |
+35 | |             .left
+36 | |             .as_ref()
+37 | |             .unwrap()
+38 | |             .borrow()
+   | |_____________________- a temporary with access to the borrow is created here ...
+39 |               .count
+40 |       };
+   |       -- ... and the borrow might be used here, when that temporary is dropped and runs the destructor for type `Ref<'_, TNode>`
+   |       |
+   |       `sp_borrow` dropped here while still borrowed
+   |
+   = note: the temporary is part of an expression at the end of a block;
+           consider forcing this temporary to be dropped sooner, before the block's local variables are dropped
+help: for example, you could save the expression's value in a new local variable `x` and then make `x` be the expression at the end of the block
+   |
+34 ~         let x = sp_borrow
+35 |             .left
+...
+38 |             .borrow()
+39 ~             .count; x
+   |
+
+error[E0597]: `s_borrow` does not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/tags_1/sample_004/target.rs:47:9
+   |
+46 |           let s_borrow = s.borrow();
+   |               -------- binding `s_borrow` declared here
+47 |           s_borrow
+   |           -^^^^^^^
+   |           |
+   |  _________borrowed value does not live long enough
+   | |
+48 | |             .right
+49 | |             .as_ref()
+50 | |             .unwrap()
+51 | |             .borrow()
+   | |_____________________- a temporary with access to the borrow is created here ...
+52 |               .count
+53 |       };
+   |       -- ... and the borrow might be used here, when that temporary is dropped and runs the destructor for type `Ref<'_, TNode>`
+   |       |
+   |       `s_borrow` dropped here while still borrowed
+   |
+   = note: the temporary is part of an expression at the end of a block;
+           consider forcing this temporary to be dropped sooner, before the block's local variables are dropped
+help: for example, you could save the expression's value in a new local variable `x` and then make `x` be the expression at the end of the block
+   |
+47 ~         let x = s_borrow
+48 |             .right
+...
+51 |             .borrow()
+52 ~             .count; x
+   |
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0597`.

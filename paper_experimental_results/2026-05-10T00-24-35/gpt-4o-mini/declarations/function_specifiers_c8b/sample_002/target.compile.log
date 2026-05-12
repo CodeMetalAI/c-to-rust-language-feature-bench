@@ -1,0 +1,56 @@
+error: declaration of a `no_mangle` function
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/function_specifiers_c8b/sample_002/target.rs:8:1
+  |
+8 | #[no_mangle]
+  | ^^^^^^^^^^^^
+  |
+  = note: the linker's behavior with multiple libraries exporting duplicate symbol names is undefined and Rust cannot provide guarantees when you manually override them
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/function_specifiers_c8b/sample_002/target.rs:10:18
+   |
+10 |     if x == 7 && unsafe { G } == 9 {
+   |                  ^^^^^^^^^^^^
+
+error: declaration of a `no_mangle` function
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/function_specifiers_c8b/sample_002/target.rs:22:1
+   |
+22 | #[no_mangle]
+   | ^^^^^^^^^^^^
+   |
+   = note: the linker's behavior with multiple libraries exporting duplicate symbol names is undefined and Rust cannot provide guarantees when you manually override them
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/function_specifiers_c8b/sample_002/target.rs:24:5
+   |
+24 | /     unsafe {
+25 | |         G = 9;
+26 | |     }
+   | |_____^
+
+error: unwinding panics are not supported without std
+  |
+  = help: using nightly cargo, use -Zbuild-std with panic="abort" to avoid unwinding
+  = note: since the core library is usually precompiled with panic="unwind", rebuilding your crate with panic="abort" may not be enough to fix the problem
+
+error[E0658]: use of unstable library feature `core_intrinsics`: intrinsics are unlikely to ever be stabilized, instead they should be used through stabilized interfaces in the rest of the standard library
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/function_specifiers_c8b/sample_002/target.rs:19:5
+   |
+19 |     core::intrinsics::abort();
+   |     ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: add `#![feature(core_intrinsics)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+warning: unused variable: `code`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/function_specifiers_c8b/sample_002/target.rs:17:9
+   |
+17 | fn exit(code: i32) -> ! {
+   |         ^^^^ help: if this is intentional, prefix it with an underscore: `_code`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 6 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0658`.

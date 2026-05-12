@@ -1,0 +1,63 @@
+error[E0425]: cannot find value `return发2` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_003/target.rs:56:9
+   |
+56 |         return发2;
+   |         ^^^^^^^^^ not found in this scope
+
+warning: type `u8` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_003/target.rs:15:6
+   |
+15 | type u8 = std::os::raw::c_uchar;
+   |      ^^ help: convert the identifier to upper camel case (notice the capitalization): `U8`
+   |
+   = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: type `u32` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_003/target.rs:16:6
+   |
+16 | type u32 = std::os::raw::c_uint;
+   |      ^^^ help: convert the identifier to upper camel case (notice the capitalization): `U32`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_003/target.rs:43:13
+   |
+43 |     let p = unsafe { &mut *p_ptr };
+   |             ^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_003/target.rs:62:9
+   |
+62 | /         unsafe {
+63 | |             *((p.data.as_ptr() as *mut u32).add(i as usize)) = v;
+64 | |             *(((&p.data).as_ptr() as *mut u32).add(i as usize)) += 0;
+65 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_003/target.rs:72:9
+   |
+72 | /         unsafe {
+73 | |             p.sum += *((p.data.as_ptr() as *mut u32).add(i as usize));
+74 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_003/target.rs:93:13
+   |
+93 |     let p = unsafe { &mut *p_ptr };
+   |             ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0133]: call to unsafe function `std::ptr::mut_ptr::<impl *mut T>::add` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_003/target.rs:99:20
+   |
+99 |     let expected = storage.as_mut_ptr().add(OFFSETOF);
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: aborting due to 6 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0133, E0425.
+For more information about an error, try `rustc --explain E0133`.

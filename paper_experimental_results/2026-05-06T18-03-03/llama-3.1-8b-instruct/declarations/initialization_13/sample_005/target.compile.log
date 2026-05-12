@@ -1,0 +1,29 @@
+error: expected `:`, found `any_member`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/initialization_13/sample_005/target.rs:2:9
+  |
+1 | union U {
+  |       - while parsing this union
+2 |     int any_member: u32,
+  |         ^^^^^^^^^^ expected `:`
+
+error: unions cannot have zero fields
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/initialization_13/sample_005/target.rs:1:1
+  |
+1 | / union U {
+2 | |     int any_member: u32,
+3 | |     u32 u_member,
+4 | |     [4] u8 bytes,
+5 | | }
+  | |_^
+
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/initialization_13/sample_005/target.rs:7:14
+  |
+7 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

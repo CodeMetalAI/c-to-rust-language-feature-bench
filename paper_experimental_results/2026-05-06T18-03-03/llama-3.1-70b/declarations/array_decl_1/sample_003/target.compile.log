@@ -1,0 +1,109 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_003/target.rs:5:9
+  |
+5 |         unsafe { CALLS += 1 };
+  |         ^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_003/target.rs:19:13
+   |
+19 |             unsafe { FA[i] = (i + 1) as f32 };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_003/target.rs:22:13
+   |
+22 |             unsafe { BACKING[i] = (100 + i) as f32 };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_003/target.rs:23:13
+   |
+23 |             unsafe { AFP[i] = &mut BACKING[i] };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_003/target.rs:38:13
+   |
+38 |             unsafe { s += *pp[i] as i32 };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_003/target.rs:45:18
+   |
+45 |         let s2 = unsafe { *afp2[0] as i32 } + unsafe { *afp2[16] as i32 };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_003/target.rs:45:47
+   |
+45 |         let s2 = unsafe { *afp2[0] as i32 } + unsafe { *afp2[16] as i32 };
+   |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_003/target.rs:49:5
+   |
+49 |     unsafe { init_globals() };
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_003/target.rs:55:8
+   |
+55 |     if unsafe { *AFP[0] } as i32!= 100 || unsafe { *AFP[16] } as i32!= 116 {
+   |        ^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_003/target.rs:55:43
+   |
+55 |     if unsafe { *AFP[0] } as i32!= 100 || unsafe { *AFP[16] } as i32!= 116 {
+   |                                           ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_003/target.rs:73:8
+   |
+73 |     if unsafe { CALLS }!= 2 {
+   |        ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_003/target.rs:91:73
+   |
+91 |     if takes_params(&vla1, &vla2)!= (vla1[0] as i32 + vla1[10] as i32 + unsafe { *vla2[0] } as i32 + unsafe { *vla2[16] } as i32) {
+   |                                                                         ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_003/target.rs:91:102
+   |
+91 |     if takes_params(&vla1, &vla2)!= (vla1[0] as i32 + vla1[10] as i32 + unsafe { *vla2[0] } as i32 + unsafe { *vla2[16] } as i32) {
+   |                                                                                                      ^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_003/target.rs:91:8
+   |
+91 |     if takes_params(&vla1, &vla2)!= (vla1[0] as i32 + vla1[10] as i32 + unsafe { *vla2[0] } as i32 + unsafe { *vla2[16] } as i32) {
+   |        ^^^^^^^^^^^^
+   |
+note: expected `&[f32; 11]`, found `&Vec<f32>`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_003/target.rs:91:21
+   |
+91 |     if takes_params(&vla1, &vla2)!= (vla1[0] as i32 + vla1[10] as i32 + unsafe { *vla2[0] } as i32 + unsafe { *vla2[16] } as i32) {
+   |                     ^^^^^
+   = note: expected reference `&[f32; 11]`
+              found reference `&Vec<f32>`
+note: expected `&[*mut f32; 17]`, found `&Vec<*mut f32>`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_003/target.rs:91:28
+   |
+91 |     if takes_params(&vla1, &vla2)!= (vla1[0] as i32 + vla1[10] as i32 + unsafe { *vla2[0] } as i32 + unsafe { *vla2[16] } as i32) {
+   |                            ^^^^^
+   = note: expected reference `&[*mut f32; 17]`
+              found reference `&Vec<*mut f32>`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_003/target.rs:43:8
+   |
+43 |     fn takes_params(a: &[f32; 11], afp2: &[*mut f32; 17]) -> i32 {
+   |        ^^^^^^^^^^^^ -------------  ---------------------
+
+error: aborting due to 14 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

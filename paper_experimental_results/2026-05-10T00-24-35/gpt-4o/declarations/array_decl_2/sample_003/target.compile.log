@@ -1,0 +1,112 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_2/sample_003/target.rs:36:5
+   |
+36 | /     unsafe {
+37 | |         let backing: &mut [i32; 3] = &mut [10, 20, 30];
+38 | |         X = Some(backing);
+...  |
+94 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_2/sample_003/target.rs:75:16
+   |
+75 |             if unsafe { *hp.p } != 1 {
+   |                ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_2/sample_003/target.rs:79:30
+   |
+79 |             let ha: &HoldA = unsafe { &*(Y.as_ptr() as *const HoldA) };
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_2/sample_003/target.rs:86:16
+   |
+86 |             if unsafe { *ha.a.as_ptr().add(2) } != 3 {
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_2/sample_003/target.rs:75:16
+   |
+36 |     unsafe {
+   |     ------ because it's nested under this `unsafe` block
+...
+75 |             if unsafe { *hp.p } != 1 {
+   |                ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_2/sample_003/target.rs:79:30
+   |
+36 |     unsafe {
+   |     ------ because it's nested under this `unsafe` block
+...
+79 |             let ha: &HoldA = unsafe { &*(Y.as_ptr() as *const HoldA) };
+   |                              ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_2/sample_003/target.rs:86:16
+   |
+36 |     unsafe {
+   |     ------ because it's nested under this `unsafe` block
+...
+86 |             if unsafe { *ha.a.as_ptr().add(2) } != 3 {
+   |                ^^^^^^ unnecessary `unsafe` block
+
+error[E0716]: temporary value dropped while borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_2/sample_003/target.rs:37:43
+   |
+37 |         let backing: &mut [i32; 3] = &mut [10, 20, 30];
+   |                                           ^^^^^^^^^^^^ creates a temporary value which is freed while still in use
+38 |         X = Some(backing);
+   |         ----------------- assignment requires that borrow lasts for `'static`
+...
+94 |     }
+   |     - temporary value is freed at the end of this statement
+
+error[E0507]: cannot move out of `X.0` as `X` is a static item
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_2/sample_003/target.rs:52:26
+   |
+52 |         if let Some(x) = X {
+   |                     -    ^
+   |                     |
+   |                     data moved here
+   |                     move occurs because `x` has type `&mut [i32]`, which does not implement the `Copy` trait
+   |
+help: consider borrowing here
+   |
+52 |         if let Some(x) = &X {
+   |                          +
+
+error[E0499]: cannot borrow `*backing` as mutable more than once at a time
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_2/sample_003/target.rs:57:39
+   |
+38 |         X = Some(backing);
+   |         -----------------
+   |         |        |
+   |         |        first mutable borrow occurs here
+   |         assignment requires that `*backing` is borrowed for `'static`
+...
+57 |             if mutate_through_pointer(backing) != (10 + 25 + 30) {
+   |                                       ^^^^^^^ second mutable borrow occurs here
+
+error[E0503]: cannot use `backing[_]` because it was mutably borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_2/sample_003/target.rs:62:12
+   |
+38 |         X = Some(backing);
+   |         -----------------
+   |         |        |
+   |         |        `*backing` is borrowed here
+   |         assignment requires that `*backing` is borrowed for `'static`
+...
+62 |         if backing[1] != 25 {
+   |            ^^^^^^^^^^ use of borrowed `*backing`
+
+error: aborting due to 8 previous errors; 3 warnings emitted
+
+Some errors have detailed explanations: E0499, E0503, E0507, E0716.
+For more information about an error, try `rustc --explain E0499`.

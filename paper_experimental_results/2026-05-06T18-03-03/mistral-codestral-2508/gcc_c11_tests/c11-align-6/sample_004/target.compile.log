@@ -1,0 +1,37 @@
+error[E0428]: the name `AlignCheck` is defined multiple times
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/gcc_c11_tests/c11-align-6/sample_004/target.rs:5:13
+   |
+ 5 |             struct AlignCheck {
+   |             ^^^^^^^^^^^^^^^^^
+   |             |
+   |             `AlignCheck` redefined here
+   |             previous definition of the type `AlignCheck` here
+...
+16 |     check_align!(bool);
+   |     ------------------ in this macro invocation
+   |
+   = note: `AlignCheck` must be defined only once in the type namespace of this block
+   = note: this error originates in the macro `check_align` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0412]: cannot find type `Complex` in module `std::num`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/gcc_c11_tests/c11-align-6/sample_004/target.rs:30:28
+   |
+30 |     check_align!(std::num::Complex<f32>);
+   |                            ^^^^^^^ not found in `std::num`
+
+error[E0412]: cannot find type `Complex` in module `std::num`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/gcc_c11_tests/c11-align-6/sample_004/target.rs:31:28
+   |
+31 |     check_align!(std::num::Complex<f64>);
+   |                            ^^^^^^^ not found in `std::num`
+
+error[E0412]: cannot find type `Complex` in module `std::num`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/gcc_c11_tests/c11-align-6/sample_004/target.rs:32:28
+   |
+32 |     check_align!(std::num::Complex<f64>); // Rust doesn't have long double, using f64 as a substitute
+   |                            ^^^^^^^ not found in `std::num`
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0412, E0428.
+For more information about an error, try `rustc --explain E0412`.

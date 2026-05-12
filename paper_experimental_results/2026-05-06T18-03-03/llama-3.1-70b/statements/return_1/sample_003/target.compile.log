@@ -1,0 +1,101 @@
+error: this trait cannot be derived for unions
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_003/target.rs:6:10
+  |
+6 | #[derive(Debug, Default, Copy, Clone)]
+  |          ^^^^^
+
+error: this trait cannot be derived for unions
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_003/target.rs:6:17
+  |
+6 | #[derive(Debug, Default, Copy, Clone)]
+  |                 ^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_003/target.rs:13:5
+   |
+13 |     unsafe { *(&g as *const U).as_ref().unwrap().u1.1 }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_003/target.rs:21:5
+   |
+21 | /     unsafe {
+22 | |         *(&mut g as *mut U).as_mut().unwrap().u1.1 = S { i: 1.0 };
+23 | |         *(&mut g as *mut U).as_mut().unwrap().u2.0 = S { i: 1.0 };
+24 | |         *(&mut g as *mut U).as_mut().unwrap().u1.1 = f();
+25 | |         *(&mut g as *mut U).as_mut().unwrap().u2.0 = f();
+26 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_003/target.rs:28:18
+   |
+28 |       let result = unsafe {
+   |  __________________^
+29 | |         *(&g as *const U).as_ref().unwrap().u1.1.i
+30 | |             + *(&g as *const U).as_ref().unwrap().u2.0.i
+31 | |             + val
+32 | |     };
+   | |_____^
+
+error[E0614]: type `S` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_003/target.rs:13:14
+   |
+13 |     unsafe { *(&g as *const U).as_ref().unwrap().u1.1 }
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ can't be dereferenced
+
+error[E0614]: type `S` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_003/target.rs:22:9
+   |
+22 |         *(&mut g as *mut U).as_mut().unwrap().u1.1 = S { i: 1.0 };
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ can't be dereferenced
+
+error[E0614]: type `S` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_003/target.rs:23:9
+   |
+23 |         *(&mut g as *mut U).as_mut().unwrap().u2.0 = S { i: 1.0 };
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ can't be dereferenced
+
+error[E0614]: type `S` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_003/target.rs:24:9
+   |
+24 |         *(&mut g as *mut U).as_mut().unwrap().u1.1 = f();
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ can't be dereferenced
+
+error[E0614]: type `S` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_003/target.rs:25:9
+   |
+25 |         *(&mut g as *mut U).as_mut().unwrap().u2.0 = f();
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ can't be dereferenced
+
+error[E0614]: type `f64` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_003/target.rs:29:9
+   |
+29 |         *(&g as *const U).as_ref().unwrap().u1.1.i
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ can't be dereferenced
+
+error[E0614]: type `f64` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_003/target.rs:30:15
+   |
+30 |             + *(&g as *const U).as_ref().unwrap().u2.0.i
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ can't be dereferenced
+
+error[E0599]: no function or associated item named `default` found for union `U` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_003/target.rs:40:22
+   |
+ 7 | union U {
+   | ------- function or associated item `default` not found for this union
+...
+40 | static mut g: U = U::default();
+   |                      ^^^^^^^ function or associated item not found in `U`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `default`, perhaps you need to implement it:
+           candidate #1: `Default`
+
+error: aborting due to 13 previous errors
+
+Some errors have detailed explanations: E0599, E0614.
+For more information about an error, try `rustc --explain E0599`.

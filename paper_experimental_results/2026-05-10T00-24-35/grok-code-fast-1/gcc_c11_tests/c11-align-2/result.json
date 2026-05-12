@@ -1,0 +1,94 @@
+{
+  "test_name": "gcc_c11_tests/c11-align-2",
+  "llm_name": "Grok Code Fast 1",
+  "timestamp": "2026-05-10T03:29:29.551281Z",
+  "duration_seconds": 217.00227149995044,
+  "timeout_error": false,
+  "primary_feature": "decl.align_specifiers",
+  "source_compiled": true,
+  "source_compile_errors": null,
+  "source_exit_code": 0,
+  "samples": [
+    {
+      "sample_index": 1,
+      "duration_seconds": 132.46854383405298,
+      "timeout_error": false,
+      "target_compiled": true,
+      "target_compile_errors": null,
+      "target_exit_code": 0,
+      "exit_codes_match": true,
+      "stdout_similarity": 1.0,
+      "stdout_match": true,
+      "match": false,
+      "stub_detected": true,
+      "stub_reasons": [
+        "function definitions dropped from 2 to 1 (threshold=0.75, require>=2)"
+      ],
+      "provider_error": false
+    },
+    {
+      "sample_index": 2,
+      "duration_seconds": 140.60598233388737,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0260]: the name `std` is defined multiple times\n  |\n  = note: `std` must be defined only once in the type namespace of this module\n\nerror[E0428]: the name `S` is defined multiple times\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_002/target.rs:66:1\n   |\n39 | static S: AlignedI16 = AlignedI16(0);\n   | ------------------------------------- previous definition of the value `S` here\n...\n66 | struct S;\n   | ^^^^^^^^^ `S` redefined here\n   |\n   = note: `S` must be defined only once in the value namespace of this module\n\nerror[E0517]: attribute should be applied to a struct, enum, or union\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_002/target.rs:50:8\n   |\n50 | #[repr(align(16))]\n   |        ^^^^^^^^^\n51 | static X: i32 = 0;\n   | ------------------ not a struct, enum, or union\n\nerror[E0517]: attribute should be applied to a struct, enum, or union\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_002/target.rs:56:8\n   |\n56 | #[repr(align(16))] // alignas(E)\n   |        ^^^^^^^^^\n57 | static Y: i32 = 0;\n   | ------------------ not a struct, enum, or union\n\nerror: aborting due to 4 previous errors\n\nSome errors have detailed explanations: E0260, E0428, E0517.\nFor more information about an error, try `rustc --explain E0260`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 3,
+      "duration_seconds": 216.78807820891961,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0433]: failed to resolve: use of unresolved module or unlinked crate `num_complex`\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_003/target.rs:34:39\n   |\n34 | static cld: AlignedC128 = AlignedC128(num_complex::Complex::new(0.0, 0.0));\n   |                                       ^^^^^^^^^^^ use of unresolved module or unlinked crate `num_complex`\n   |\n   = help: you might be missing a crate named `num_complex`\n\nerror[E0433]: failed to resolve: use of unresolved module or unlinked crate `num_complex`\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_003/target.rs:25:20\n   |\n25 | struct AlignedC128(num_complex::Complex<f64>); // Approximation for _Complex long double\n   |                    ^^^^^^^^^^^ use of unresolved module or unlinked crate `num_complex`\n   |\n   = help: you might be missing a crate named `num_complex`\n\nerror: aborting due to 2 previous errors\n\nFor more information about this error, try `rustc --explain E0433`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 4,
+      "duration_seconds": 173.14165224996395,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0428]: the name `S` is defined multiple times\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_004/target.rs:37:1\n   |\n 6 | static S: i16 = 0;\n   | ------------------ previous definition of the value `S` here\n...\n37 | struct S;\n   | ^^^^^^^^^ `S` redefined here\n   |\n   = note: `S` must be defined only once in the value namespace of this module\n\nerror[E0517]: attribute should be applied to a struct, enum, or union\n --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_004/target.rs:5:8\n  |\n5 | #[repr(align(2))]\n  |        ^^^^^^^^\n6 | static S: i16 = 0;\n  | ------------------ not a struct, enum, or union\n\nerror[E0517]: attribute should be applied to a struct, enum, or union\n --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_004/target.rs:8:8\n  |\n8 | #[repr(align(4))]\n  |        ^^^^^^^^\n9 | static I: i32 = 0;\n  | ------------------ not a struct, enum, or union\n\nerror[E0517]: attribute should be applied to a struct, enum, or union\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_004/target.rs:11:8\n   |\n11 | #[repr(align(8))]\n   |        ^^^^^^^^\n12 | static L: i64 = 0;\n   | ------------------ not a struct, enum, or union\n\nerror[E0517]: attribute should be applied to a struct, enum, or union\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_004/target.rs:14:8\n   |\n14 | #[repr(align(8))]\n   |        ^^^^^^^^\n15 | static LL: i64 = 0;\n   | ------------------- not a struct, enum, or union\n\nerror[E0517]: attribute should be applied to a struct, enum, or union\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_004/target.rs:17:8\n   |\n17 | #[repr(align(4))]\n   |        ^^^^^^^^\n18 | static F: f32 = 0.0;\n   | -------------------- not a struct, enum, or union\n\nerror[E0517]: attribute should be applied to a struct, enum, or union\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_004/target.rs:20:8\n   |\n20 | #[repr(align(8))]\n   |        ^^^^^^^^\n21 | static D: f64 = 0.0;\n   | -------------------- not a struct, enum, or union\n\nerror[E0517]: attribute should be applied to a struct, enum, or union\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_004/target.rs:23:8\n   |\n23 | #[repr(align(8))]\n   |        ^^^^^^^^\n24 | static CLD: (f64, f64) = (0.0, 0.0);\n   | ------------------------------------ not a struct, enum, or union\n\nerror[E0308]: mismatched types\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_004/target.rs:32:9\n   |\n32 |     E = mem::align_of::<()>(),\n   |         ^^^^^^^^^^^^^^^^^^^^^ expected `u32`, found `usize`\n\nwarning: unused variable: `auto_ll`\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_004/target.rs:40:9\n   |\n40 |     let auto_ll: i64 = 0;\n   |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_auto_ll`\n   |\n   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default\n\nerror: aborting due to 9 previous errors; 1 warning emitted\n\nSome errors have detailed explanations: E0308, E0428, E0517.\nFor more information about an error, try `rustc --explain E0308`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 5,
+      "duration_seconds": 206.0049757079687,
+      "timeout_error": false,
+      "target_compiled": true,
+      "target_compile_errors": null,
+      "target_exit_code": 0,
+      "exit_codes_match": true,
+      "stdout_similarity": 1.0,
+      "stdout_match": true,
+      "match": false,
+      "stub_detected": true,
+      "stub_reasons": [
+        "function definitions dropped from 2 to 1 (threshold=0.75, require>=2)"
+      ],
+      "provider_error": false
+    }
+  ],
+  "winning_sample": null,
+  "match": false
+}

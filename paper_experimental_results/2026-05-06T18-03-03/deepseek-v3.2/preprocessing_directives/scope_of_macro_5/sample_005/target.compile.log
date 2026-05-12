@@ -1,0 +1,89 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:26:9
+   |
+22 |                     arr[a - 1][b][c] = 100 * a + 10 * b + c;
+   |                     --- here the type of `arr` is inferred to be `[[[usize; 10]; 10]; 9]`
+...
+26 |         arr
+   |         ^^^ expected `[[[i32; 10]; 10]; 9]`, found `[[[usize; 10]; 10]; 9]`
+   |
+   = note: expected array `[[[i32; 10]; 10]; 9]`
+              found array `[[[usize; 10]; 10]; 9]`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:36:9
+   |
+33 |                 arr[b - 1][c] = 10 * b + c;
+   |                 --- here the type of `arr` is inferred to be `[[usize; 10]; 9]`
+...
+36 |         arr
+   |         ^^^ expected `[[i32; 10]; 9]`, found `[[usize; 10]; 9]`
+   |
+   = note: expected array `[[i32; 10]; 9]`
+              found array `[[usize; 10]; 9]`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:46:9
+   |
+43 |                 arr[a - 1][c] = 10 * a + c;
+   |                 --- here the type of `arr` is inferred to be `[[usize; 10]; 9]`
+...
+46 |         arr
+   |         ^^^ expected `[[i32; 10]; 9]`, found `[[usize; 10]; 9]`
+   |
+   = note: expected array `[[i32; 10]; 9]`
+              found array `[[usize; 10]; 9]`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:56:9
+   |
+53 |                 arr[a - 1][b] = 10 * a + b;
+   |                 --- here the type of `arr` is inferred to be `[[usize; 10]; 9]`
+...
+56 |         arr
+   |         ^^^ expected `[[i32; 10]; 9]`, found `[[usize; 10]; 9]`
+   |
+   = note: expected array `[[i32; 10]; 9]`
+              found array `[[usize; 10]; 9]`
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:66:13
+   |
+66 |             return std::process::exit(1);
+   |             ^^^^^^^---------------------
+   |             |      |
+   |             |      any code following this expression is unreachable
+   |             unreachable expression
+   |
+   = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:73:13
+   |
+73 |             return std::process::exit(2);
+   |             ^^^^^^^---------------------
+   |             |      |
+   |             |      any code following this expression is unreachable
+   |             unreachable expression
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:80:13
+   |
+80 |             return std::process::exit(3);
+   |             ^^^^^^^---------------------
+   |             |      |
+   |             |      any code following this expression is unreachable
+   |             unreachable expression
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:87:13
+   |
+87 |             return std::process::exit(4);
+   |             ^^^^^^^---------------------
+   |             |      |
+   |             |      any code following this expression is unreachable
+   |             unreachable expression
+
+error: aborting due to 4 previous errors; 4 warnings emitted
+
+For more information about this error, try `rustc --explain E0308`.

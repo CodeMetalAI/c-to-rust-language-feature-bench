@@ -1,0 +1,116 @@
+error: expressions must be enclosed in braces to be used as const generic arguments
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2b/sample_003/target.rs:42:46
+   |
+42 |     if n < 0 || ps as i32 < 0 || qs as i32 < 0 || ps as i32 + n > n_total || qs as i32 + n > n_total {
+   |                                              ^^^^^^^^^^^^^^^^^^
+   |
+help: enclose the `const` expression in braces
+   |
+42 |     if n < 0 || ps as i32 < 0 || qs as i32 < { 0 || ps as i32 + n } > n_total || qs as i32 + n > n_total {
+   |                                              +                    +
+
+error: expressions must be enclosed in braces to be used as const generic arguments
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2b/sample_003/target.rs:42:29
+   |
+42 |     if n < 0 || ps as i32 < 0 || qs as i32 < 0 || ps as i32 + n > n_total || qs as i32 + n > n_total {
+   |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: enclose the `const` expression in braces
+   |
+42 |     if n < 0 || ps as i32 < { 0 || qs as i32 < 0 || ps as i32 + n > } n_total || qs as i32 + n > n_total {
+   |                             +                                       +
+
+error: expected one of `,` or `>`, found `n_total`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2b/sample_003/target.rs:42:67
+   |
+42 |     if n < 0 || ps as i32 < 0 || qs as i32 < 0 || ps as i32 + n > n_total || qs as i32 + n > n_total {
+   |                                                                   ^^^^^^^ expected one of `,` or `>`
+   |
+help: expressions must be enclosed in braces to be used as const generic arguments
+   |
+42 |     if n < 0 || ps as i32 < { 0 || qs as i32 < 0 || ps as i32 + n > n_total || qs as i32 + n } > n_total {
+   |                             +                                                                +
+
+error: expected identifier, found keyword `return`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2b/sample_003/target.rs:43:9
+   |
+42 |     if n < 0 || ps as i32 < 0 || qs as i32 < 0 || ps as i32 + n > n_total || qs as i32 + n > n_total {
+   |                                                                                              ------- while parsing this struct
+43 |         return false;
+   |         ^^^^^^ expected identifier, found keyword
+
+error: expected `{`, found `n_total`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2b/sample_003/target.rs:42:94
+   |
+42 |     if n < 0 || ps as i32 < 0 || qs as i32 < 0 || ps as i32 + n > n_total || qs as i32 + n > n_total {
+   |                                                                                              ^^^^^^^ expected `{`
+   |
+note: the `if` expression is missing a block after this condition
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2b/sample_003/target.rs:42:8
+   |
+42 |     if n < 0 || ps as i32 < 0 || qs as i32 < 0 || ps as i32 + n > n_total || qs as i32 + n > n_total {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: you might have meant to write this as part of a block
+   |
+42 ~     if n < 0 || ps as i32 < 0 || qs as i32 < 0 || ps as i32 + n > n_total || qs as i32 + n > { n_total {
+43 |         return false;
+44 |     }
+45 |
+46 ~     (ps < qs + n as usize) && (qs < ps + n as usize) }
+   |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2b/sample_003/target.rs:34:13
+   |
+34 |     let g = unsafe { GATE };
+   |             ^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2b/sample_003/target.rs:75:5
+   |
+75 | /     unsafe {
+76 | |         call_f_checked(&D, 100, 50, &mut D[50..], &D);
+77 | |         call_f_checked(&D, 100, 50, &mut D[1..], &D);
+78 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2b/sample_003/target.rs:84:5
+   |
+84 | /     unsafe {
+85 | |         init(&mut D, 100);
+86 | |     }
+   | |_____^
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2b/sample_003/target.rs:94:15
+   |
+94 |     if !same(&D, &expect, 100) {
+   |               ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2b/sample_003/target.rs:89:38
+   |
+89 |     safe_move(50, &mut expect[50..], &expect);
+   |     ---------          ------        ^^^^^^^ immutable borrow occurs here
+   |     |                  |
+   |     |                  mutable borrow occurs here
+   |     mutable borrow later used by call
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2b/sample_003/target.rs:90:37
+   |
+90 |     safe_move(50, &mut expect[1..], &expect);
+   |     ---------          ------       ^^^^^^^ immutable borrow occurs here
+   |     |                  |
+   |     |                  mutable borrow occurs here
+   |     mutable borrow later used by call
+
+error: aborting due to 11 previous errors
+
+Some errors have detailed explanations: E0133, E0502.
+For more information about an error, try `rustc --explain E0133`.

@@ -1,0 +1,121 @@
+error[E0428]: the name `count_args` is defined multiple times
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:34:1
+   |
+26 | / fn count_args<T, U>(_t: T, _u: U) -> usize
+27 | | where
+28 | |     T: std::fmt::Display,
+29 | |     U: std::fmt::Display,
+30 | | {
+31 | |     2
+32 | | }
+   | |_- previous definition of the value `count_args` here
+33 |
+34 | / fn count_args<T>(t: T) -> usize
+35 | | where
+36 | |     T: std::fmt::Display,
+...  |
+39 | | }
+   | |_^ `count_args` redefined here
+   |
+   = note: `count_args` must be defined only once in the value namespace of this module
+
+error[E0428]: the name `count_args` is defined multiple times
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:41:1
+   |
+26 | / fn count_args<T, U>(_t: T, _u: U) -> usize
+27 | | where
+28 | |     T: std::fmt::Display,
+29 | |     U: std::fmt::Display,
+30 | | {
+31 | |     2
+32 | | }
+   | |_- previous definition of the value `count_args` here
+...
+41 | / fn count_args<T, U, V, W, X, Y, Z, A, B, C>(_t: T, _u: U, _v: V, _w: W, _x: X, _y: Y, _z: Z, _a: A, _b: B, _c: C) -> usize
+42 | | where
+43 | |     T: std::fmt::Display,
+44 | |     U: std::fmt::Display,
+...  |
+54 | |     10
+55 | | }
+   | |_^ `count_args` redefined here
+   |
+   = note: `count_args` must be defined only once in the value namespace of this module
+
+error[E0061]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:5:8
+   |
+ 5 |     if count_args("Flag")!= 1 {
+   |        ^^^^^^^^^^-------- argument #2 is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:26:4
+   |
+26 | fn count_args<T, U>(_t: T, _u: U) -> usize
+   |    ^^^^^^^^^^              -----
+help: provide the argument
+   |
+ 5 |     if count_args("Flag", /* _u */)!= 1 {
+   |                         ++++++++++
+
+error[E0061]: this function takes 10 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:16:8
+   |
+16 |     if report(x > y, "x is %d but y is %d", x, y)!= 1 {
+   |        ^^^^^^------------------------------------ multiple arguments are missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:61:4
+   |
+61 | fn report<T: std::fmt::Display, U: std::fmt::Display, V, W, X, Y, Z, A, B, C>(test: bool, s: T, _v: V, _w: W, _x: X, _y: Y, _z: Z, _a: A, _b: B, _c: C) -> usize
+   |    ^^^^^^                                                                                                     -----  -----  -----  -----  -----  -----
+help: provide the arguments
+   |
+16 |     if report(x > y, "x is %d but y is %d", x, y, /* _x */, /* _y */, /* _z */, /* _a */, /* _b */, /* _c */)!= 1 {
+   |                                                 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+error[E0061]: this function takes 10 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:19:8
+   |
+19 |     if report(x < y, "x is %d but y is %d", x, y)!= 3 {
+   |        ^^^^^^------------------------------------ multiple arguments are missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:61:4
+   |
+61 | fn report<T: std::fmt::Display, U: std::fmt::Display, V, W, X, Y, Z, A, B, C>(test: bool, s: T, _v: V, _w: W, _x: X, _y: Y, _z: Z, _a: A, _b: B, _c: C) -> usize
+   |    ^^^^^^                                                                                                     -----  -----  -----  -----  -----  -----
+help: provide the arguments
+   |
+19 |     if report(x < y, "x is %d but y is %d", x, y, /* _x */, /* _y */, /* _z */, /* _a */, /* _b */, /* _c */)!= 3 {
+   |                                                 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+error[E0061]: this function takes 2 arguments but 9 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:75:9
+   |
+75 |         count_args(s, _v, _w, _x, _y, _z, _a, _b, _c)
+   |         ^^^^^^^^^^
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:26:4
+   |
+26 | fn count_args<T, U>(_t: T, _u: U) -> usize
+   |    ^^^^^^^^^^
+help: remove the extra arguments
+   |
+75 -         count_args(s, _v, _w, _x, _y, _z, _a, _b, _c)
+75 +         count_args(s, _v)
+   |
+
+warning: unused variable: `t`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:34:18
+   |
+34 | fn count_args<T>(t: T) -> usize
+   |                  ^ help: if this is intentional, prefix it with an underscore: `_t`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 6 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0061, E0428.
+For more information about an error, try `rustc --explain E0061`.

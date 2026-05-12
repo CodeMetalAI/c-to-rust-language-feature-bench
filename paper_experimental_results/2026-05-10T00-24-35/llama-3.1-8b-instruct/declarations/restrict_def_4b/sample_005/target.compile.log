@@ -1,0 +1,174 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:30:17
+   |
+30 |         let v = unsafe { alloc_bytes(n as usize * std::mem::size_of::<f32>()) as *mut f32 };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:72:14
+   |
+72 |     fill_vec(a.v, 1.0);
+   |     -------- ^^^ expected `&mut [f32]`, found `*mut f32`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut [f32]`
+                    found raw pointer `*mut f32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:35:4
+   |
+35 | fn fill_vec(v: &mut [f32], base: f32) {
+   |    ^^^^^^^^ -------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:73:14
+   |
+73 |     fill_vec(b.v, 100.0);
+   |     -------- ^^^ expected `&mut [f32]`, found `*mut f32`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut [f32]`
+                    found raw pointer `*mut f32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:35:4
+   |
+35 | fn fill_vec(v: &mut [f32], base: f32) {
+   |    ^^^^^^^^ -------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:75:29
+   |
+75 |     if!close_enough(sum_vec(a.v), 1.0 * 16.0 + (15 * 16) as f32 / 2.0) {
+   |                     ------- ^^^ expected `&[f32]`, found `*mut f32`
+   |                     |
+   |                     arguments to this function are incorrect
+   |
+   = note: expected reference `&[f32]`
+            found raw pointer `*mut f32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:41:4
+   |
+41 | fn sum_vec(v: &[f32]) -> f32 {
+   |    ^^^^^^^ ---------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:80:29
+   |
+80 |     if!close_enough(sum_vec(b.v), 100.0 * 16.0 + (15 * 16) as f32 / 2.0) {
+   |                     ------- ^^^ expected `&[f32]`, found `*mut f32`
+   |                     |
+   |                     arguments to this function are incorrect
+   |
+   = note: expected reference `&[f32]`
+            found raw pointer `*mut f32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:41:4
+   |
+41 | fn sum_vec(v: &[f32]) -> f32 {
+   |    ^^^^^^^ ---------
+
+warning: variable `h` is assigned to, but never used
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:16:13
+   |
+16 |     let mut h = 0x9e3779b97f4a7c15u64;
+   |             ^
+   |
+   = note: consider using `_h` instead
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `h` is never read
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:18:5
+   |
+18 |     h *= 0x5851f42d4c957f2du64;
+   |     ^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+error[E0133]: call to unsafe function `std::ptr::mut_ptr::<impl *mut T>::offset` is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:6:16
+  |
+6 |         return POOL.as_mut_ptr().offset(OFF as isize);
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+  |
+  = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:6:16
+  |
+6 |         return POOL.as_mut_ptr().offset(OFF as isize);
+  |                ^^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:6:41
+  |
+6 |         return POOL.as_mut_ptr().offset(OFF as isize);
+  |                                         ^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:9:8
+  |
+9 |     if OFF + n > POOL.len() {
+  |        ^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:9:18
+  |
+9 |     if OFF + n > POOL.len() {
+  |                  ^^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::mut_ptr::<impl *mut T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:13:13
+   |
+13 |     let p = POOL.as_mut_ptr().offset(OFF as isize);
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:13:13
+   |
+13 |     let p = POOL.as_mut_ptr().offset(OFF as isize);
+   |             ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:13:38
+   |
+13 |     let p = POOL.as_mut_ptr().offset(OFF as isize);
+   |                                      ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:14:5
+   |
+14 |     OFF += n;
+   |     ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_005/target.rs:30:17
+   |
+30 |         let v = unsafe { alloc_bytes(n as usize * std::mem::size_of::<f32>()) as *mut f32 };
+   |                 ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 14 previous errors; 3 warnings emitted
+
+Some errors have detailed explanations: E0133, E0308.
+For more information about an error, try `rustc --explain E0133`.

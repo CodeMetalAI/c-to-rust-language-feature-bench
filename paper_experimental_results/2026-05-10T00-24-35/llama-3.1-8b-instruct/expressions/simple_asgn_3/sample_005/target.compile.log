@@ -1,0 +1,39 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/simple_asgn_3/sample_005/target.rs:7:5
+  |
+7 | /     unsafe {
+8 | |         *p = 0;
+9 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/simple_asgn_3/sample_005/target.rs:6:5
+  |
+6 |     *cpp = &c as *const u8;
+  |     ^^^^ dereference of raw pointer
+  |
+  = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/simple_asgn_3/sample_005/target.rs:11:8
+   |
+11 |     if *cpp as u8!= c {
+   |        ^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/simple_asgn_3/sample_005/target.rs:2:9
+  |
+2 |     let mut p: *mut u8 = std::ptr::null_mut();
+  |         ----^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 3 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0133`.

@@ -1,0 +1,60 @@
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2/sample_002/target.rs:19:14
+   |
+19 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2/sample_002/target.rs:37:13
+   |
+37 |         if !check_range_eq(&buf[0..n], &snapshot[off..off + n]) {
+   |             ^^^^^^^^^^^^^^------------------------------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2/sample_002/target.rs:10:4
+   |
+10 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^                       --------
+help: provide the argument
+   |
+37 |         if !check_range_eq(&buf[0..n], &snapshot[off..off + n], /* usize */) {
+   |                                                               +++++++++++++
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2/sample_002/target.rs:41:13
+   |
+41 |         if !check_range_eq(&buf[off..off + n], &snapshot[off..off + n]) {
+   |             ^^^^^^^^^^^^^^--------------------------------------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2/sample_002/target.rs:10:4
+   |
+10 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^                       --------
+help: provide the argument
+   |
+41 |         if !check_range_eq(&buf[off..off + n], &snapshot[off..off + n], /* usize */) {
+   |                                                                       +++++++++++++
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2/sample_002/target.rs:63:13
+   |
+63 |         if !check_range_eq(&buf[off..off + n], &buf[0..n]) {
+   |             ^^^^^^^^^^^^^^-------------------------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2/sample_002/target.rs:10:4
+   |
+10 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^                       --------
+help: provide the argument
+   |
+63 |         if !check_range_eq(&buf[off..off + n], &buf[0..n], /* usize */) {
+   |                                                          +++++++++++++
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0061, E0277.
+For more information about an error, try `rustc --explain E0061`.

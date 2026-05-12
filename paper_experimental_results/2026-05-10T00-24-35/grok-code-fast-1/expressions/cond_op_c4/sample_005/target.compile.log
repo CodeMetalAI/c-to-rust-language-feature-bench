@@ -1,0 +1,78 @@
+error[E0432]: unresolved import `lazy_static`
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/cond_op_c4/sample_005/target.rs:1:5
+  |
+1 | use lazy_static::lazy_static;
+  |     ^^^^^^^^^^^ use of unresolved module or unlinked crate `lazy_static`
+  |
+help: you might be missing a crate named `lazy_static`, add it to your project and import it in your code
+  |
+1 + extern crate lazy_static;
+  |
+
+error[E0425]: cannot find value `G` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/cond_op_c4/sample_005/target.rs:9:6
+  |
+9 |     *G.borrow_mut() = gval;
+  |      ^ not found in this scope
+  |
+help: you might be missing a const parameter
+  |
+8 | fn set_g_return<const G: /* Type */>(gval: i32, ret: i32) -> i32 {
+  |                +++++++++++++++++++++
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/cond_op_c4/sample_005/target.rs:14:6
+   |
+14 |     *G.borrow_mut() = 0;
+   |      ^ not found in this scope
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/cond_op_c4/sample_005/target.rs:16:11
+   |
+16 |         (*G.borrow() == 1) as i32
+   |           ^ not found in this scope
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/cond_op_c4/sample_005/target.rs:24:9
+   |
+24 |     if *G.borrow() != 1 {
+   |         ^ help: a local variable with a similar name exists: `x`
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/cond_op_c4/sample_005/target.rs:28:6
+   |
+28 |     *G.borrow_mut() = 0;
+   |      ^ help: a local variable with a similar name exists: `x`
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/cond_op_c4/sample_005/target.rs:33:11
+   |
+33 |         (*G.borrow() == 1) as i32
+   |           ^ help: a local variable with a similar name exists: `x`
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/cond_op_c4/sample_005/target.rs:38:9
+   |
+38 |     if *G.borrow() != 1 {
+   |         ^ help: a local variable with a similar name exists: `x`
+
+warning: unused import: `std::cell::RefCell`
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/cond_op_c4/sample_005/target.rs:2:5
+  |
+2 | use std::cell::RefCell;
+  |     ^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/cond_op_c4/sample_005/target.rs:13:14
+   |
+13 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error: aborting due to 9 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0425, E0432.
+For more information about an error, try `rustc --explain E0277`.

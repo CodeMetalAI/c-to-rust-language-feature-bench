@@ -1,0 +1,29 @@
+error[E0599]: no method named `clone` found for struct `S` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:39:19
+   |
+33 |     struct S {
+   |     -------- method `clone` not found for this struct
+...
+39 |     let s1 = init.clone();
+   |                   ^^^^^ method not found in `S`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `clone`, perhaps you need to implement it:
+           candidate #1: `Clone`
+
+error[E0605]: non-primitive cast: `T` as `usize`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:15:17
+   |
+15 |         a.store(b as usize, std::sync::atomic::Ordering::SeqCst);
+   |                 ^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `usize`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:16:59
+   |
+16 |         if a.load(std::sync::atomic::Ordering::SeqCst) != value as usize {
+   |                                                           ^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0599, E0605.
+For more information about an error, try `rustc --explain E0599`.

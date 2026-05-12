@@ -1,0 +1,92 @@
+{
+  "test_name": "conversions/lvalue_array_fun_c4",
+  "llm_name": "Grok Code Fast 1",
+  "timestamp": "2026-05-10T03:08:58.263299Z",
+  "duration_seconds": 199.87160029192455,
+  "timeout_error": false,
+  "primary_feature": "conversions.lvalue_array_fun",
+  "source_compiled": true,
+  "source_compile_errors": null,
+  "source_exit_code": 0,
+  "samples": [
+    {
+      "sample_index": 1,
+      "duration_seconds": 180.7563347921241,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0428]: the name `type_id` is defined multiple times\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/lvalue_array_fun_c4/sample_001/target.rs:13:1\n   |\n 9 | fn type_id(_: fn(i32) -> i32) -> i32 {\n   | ------------------------------------ previous definition of the value `type_id` here\n...\n13 | fn type_id(_: fn(i32, i32) -> i32) -> i32 {\n   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `type_id` redefined here\n   |\n   = note: `type_id` must be defined only once in the value namespace of this module\n\nerror[E0308]: mismatched types\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/lvalue_array_fun_c4/sample_001/target.rs:50:16\n   |\n50 |     if type_id(p2) != 2 {\n   |        ------- ^^ incorrect number of function parameters\n   |        |\n   |        arguments to this function are incorrect\n   |\n   = note: expected fn pointer `fn(i32) -> _`\n              found fn pointer `fn(i32, i32) -> _`\nnote: function defined here\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/lvalue_array_fun_c4/sample_001/target.rs:9:4\n   |\n 9 | fn type_id(_: fn(i32) -> i32) -> i32 {\n   |    ^^^^^^^ -----------------\n\nerror[E0308]: mismatched types\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/lvalue_array_fun_c4/sample_001/target.rs:53:16\n   |\n53 |     if type_id(q2) != 2 {\n   |        ------- ^^ incorrect number of function parameters\n   |        |\n   |        arguments to this function are incorrect\n   |\n   = note: expected fn pointer `fn(i32) -> _`\n              found fn pointer `fn(i32, i32) -> _`\nnote: function defined here\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/lvalue_array_fun_c4/sample_001/target.rs:9:4\n   |\n 9 | fn type_id(_: fn(i32) -> i32) -> i32 {\n   |    ^^^^^^^ -----------------\n\nerror[E0308]: mismatched types\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/lvalue_array_fun_c4/sample_001/target.rs:68:16\n   |\n68 |     if type_id(r2) != 2 {\n   |        ------- ^^ incorrect number of function parameters\n   |        |\n   |        arguments to this function are incorrect\n   |\n   = note: expected fn pointer `fn(i32) -> _`\n              found fn pointer `fn(i32, i32) -> _`\nnote: function defined here\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/lvalue_array_fun_c4/sample_001/target.rs:9:4\n   |\n 9 | fn type_id(_: fn(i32) -> i32) -> i32 {\n   |    ^^^^^^^ -----------------\n\nerror: aborting due to 4 previous errors\n\nSome errors have detailed explanations: E0308, E0428.\nFor more information about an error, try `rustc --explain E0308`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 2,
+      "duration_seconds": 176.33472670800984,
+      "timeout_error": false,
+      "target_compiled": true,
+      "target_compile_errors": null,
+      "target_exit_code": 0,
+      "exit_codes_match": true,
+      "stdout_similarity": 1.0,
+      "stdout_match": true,
+      "match": true,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 3,
+      "duration_seconds": 184.04159520799294,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0369]: binary operation `!=` cannot be applied to type `fn(i32) -> i32 {f1}`\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/lvalue_array_fun_c4/sample_003/target.rs:13:11\n   |\n13 |     if p1 != q1 {\n   |        -- ^^ -- fn(i32) -> i32 {f1}\n   |        |\n   |        fn(i32) -> i32 {f1}\n   |\nhelp: use parentheses to call these\n   |\n13 |     if p1(/* i32 */) != q1(/* i32 */) {\n   |          +++++++++++      +++++++++++\n\nerror[E0369]: binary operation `!=` cannot be applied to type `fn(i32, i32) -> i32 {f2}`\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/lvalue_array_fun_c4/sample_003/target.rs:32:11\n   |\n32 |     if p2 != q2 {\n   |        -- ^^ -- fn(i32, i32) -> i32 {f2}\n   |        |\n   |        fn(i32, i32) -> i32 {f2}\n   |\nhelp: use parentheses to call these\n   |\n32 |     if p2(/* i32 */, /* i32 */) != q2(/* i32 */, /* i32 */) {\n   |          ++++++++++++++++++++++      ++++++++++++++++++++++\n\nerror: aborting due to 2 previous errors\n\nFor more information about this error, try `rustc --explain E0369`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 4,
+      "duration_seconds": 198.69729024986736,
+      "timeout_error": false,
+      "target_compiled": true,
+      "target_compile_errors": null,
+      "target_exit_code": 0,
+      "exit_codes_match": true,
+      "stdout_similarity": 1.0,
+      "stdout_match": true,
+      "match": true,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 5,
+      "duration_seconds": 187.76769249979407,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0601]: `main` function not found in crate `target`\n --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/lvalue_array_fun_c4/sample_005/target.rs:1:21\n  |\n1 | // Failed to extract\n  |                     ^ consider adding a `main` function to `benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/lvalue_array_fun_c4/sample_005/target.rs`\n\nerror: aborting due to 1 previous error\n\nFor more information about this error, try `rustc --explain E0601`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": true,
+      "stub_reasons": [
+        "function definitions dropped from 3 to 0 (threshold=0.75, require>=3)"
+      ],
+      "provider_error": false
+    }
+  ],
+  "winning_sample": 2,
+  "match": true
+}

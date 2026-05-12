@@ -1,0 +1,49 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/rel_op_c5/sample_002/target.rs:22:30
+   |
+22 |     let p_end1: *const i32 = unsafe { arr.as_ptr().add(3) };
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/rel_op_c5/sample_002/target.rs:23:30
+   |
+23 |     let p_end2: *const i32 = unsafe { arr.as_ptr().add(3) };
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/rel_op_c5/sample_002/target.rs:38:26
+   |
+38 |     let q1: *const i32 = unsafe { q_last.add(1) };
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/rel_op_c5/sample_002/target.rs:51:39
+   |
+51 |     let ui: *const u8 = ptr::addr_of!(u.i) as *const u8;
+   |                                       ^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/rel_op_c5/sample_002/target.rs:52:39
+   |
+52 |     let ud: *const u8 = ptr::addr_of!(u.d) as *const u8;
+   |                                       ^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/rel_op_c5/sample_002/target.rs:14:9
+   |
+14 |     let mut x = 0;
+   |         ----^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 5 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0133`.

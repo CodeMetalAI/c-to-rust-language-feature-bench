@@ -1,0 +1,35 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/size_of_1/sample_002/target.rs:9:5
+  |
+9 |     unsafe { *dp = 3.14 };
+  |     ^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/size_of_1/sample_002/target.rs:11:8
+   |
+11 |     if unsafe { *dp } != 3.14 {
+   |        ^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/size_of_1/sample_002/target.rs:12:9
+   |
+12 |         unsafe { Box::from_raw(dp) }; // Convert back to Box to free memory
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/size_of_1/sample_002/target.rs:16:5
+   |
+16 |     unsafe { Box::from_raw(dp) }; // Convert back to Box to free memory
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `is_null` found for struct `Box<f64>` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/size_of_1/sample_002/target.rs:4:11
+  |
+4 |     if dp.is_null() {
+  |           ^^^^^^^ method not found in `Box<f64>`
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

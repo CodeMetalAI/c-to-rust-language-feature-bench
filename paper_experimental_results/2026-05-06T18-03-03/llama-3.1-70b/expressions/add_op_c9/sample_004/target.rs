@@ -1,0 +1,32 @@
+fn main() {
+    let a = [10, 20, 30, 40];
+
+    let p = &a[1];
+    let q = &a[3];
+    let one_past = &a[3] + 1;
+
+    let d_pq: isize = (p as *const _ as isize) - (q as *const _ as isize);
+    if d_pq!= -2 {
+        return;
+    }
+
+    let d_qp: isize = (q as *const _ as isize) - (p as *const _ as isize);
+    if d_qp!= 2 {
+        return;
+    }
+
+    let lhs: isize = (one_past as *const _ as isize) - (p as *const _ as isize);
+    let rhs1: isize = (q as *const _ as isize) - (p as *const _ as isize) + 1;
+    if lhs!= rhs1 {
+        return;
+    }
+
+    let rhs2: isize = -(p as *const _ as isize) + (one_past as *const _ as isize);
+    if lhs!= rhs2 {
+        return;
+    }
+
+    if (one_past as *const _ as isize) - (one_past as *const _ as isize)!= 0 {
+        return;
+    }
+}

@@ -1,0 +1,109 @@
+error[E0277]: the trait bound `i8: From<i32>` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c3/sample_002/target.rs:10:16
+   |
+10 |     if TYPE_ID(pc + 0) != 1 {
+   |        ------- ^^^^^^ the trait `From<i32>` is not implemented for `i8`
+   |        |
+   |        required by a bound introduced by this call
+   |
+   = help: the trait `From<i32>` is not implemented for `i8`
+           but trait `From<bool>` is implemented for it
+   = help: for that trait implementation, expected `bool`, found `i32`
+note: required by a bound in `TYPE_ID`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c3/sample_002/target.rs:45:48
+   |
+43 | fn TYPE_ID<T>(x: T) -> i32
+   |    ------- required by a bound in this function
+44 | where
+45 |     T: Copy + Eq + std::ops::Add<Output = T> + std::convert::From<i32>,
+   |                                                ^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `TYPE_ID`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c3/sample_002/target.rs:11:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+11 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0277]: the trait bound `i8: From<i32>` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c3/sample_002/target.rs:13:16
+   |
+13 |     if TYPE_ID(sc + 0) != 1 {
+   |        ------- ^^^^^^ the trait `From<i32>` is not implemented for `i8`
+   |        |
+   |        required by a bound introduced by this call
+   |
+   = help: the trait `From<i32>` is not implemented for `i8`
+           but trait `From<bool>` is implemented for it
+   = help: for that trait implementation, expected `bool`, found `i32`
+note: required by a bound in `TYPE_ID`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c3/sample_002/target.rs:45:48
+   |
+43 | fn TYPE_ID<T>(x: T) -> i32
+   |    ------- required by a bound in this function
+44 | where
+45 |     T: Copy + Eq + std::ops::Add<Output = T> + std::convert::From<i32>,
+   |                                                ^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `TYPE_ID`
+
+error[E0277]: the trait bound `u8: From<i32>` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c3/sample_002/target.rs:16:16
+   |
+16 |     if TYPE_ID(uc + 0) != 1 {
+   |        ------- ^^^^^^ the trait `From<i32>` is not implemented for `u8`
+   |        |
+   |        required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `From<T>`:
+             `u8` implements `From<Char>`
+             `u8` implements `From<bool>`
+note: required by a bound in `TYPE_ID`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c3/sample_002/target.rs:45:48
+   |
+43 | fn TYPE_ID<T>(x: T) -> i32
+   |    ------- required by a bound in this function
+44 | where
+45 |     T: Copy + Eq + std::ops::Add<Output = T> + std::convert::From<i32>,
+   |                                                ^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `TYPE_ID`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c3/sample_002/target.rs:48:19
+   |
+43 | fn TYPE_ID<T>(x: T) -> i32
+   |            - expected this type parameter
+...
+48 |         _ if x == -1 => 1,
+   |              -    ^^ expected type parameter `T`, found integer
+   |              |
+   |              expected because this is `T`
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+help: call `Into::into` on this expression to convert `{integer}` into `T`
+   |
+48 |         _ if x == (-1).into() => 1,
+   |                   +  ++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c3/sample_002/target.rs:49:19
+   |
+43 | fn TYPE_ID<T>(x: T) -> i32
+   |            - expected this type parameter
+...
+49 |         _ if x == 255 => 2,
+   |              -    ^^^ expected type parameter `T`, found integer
+   |              |
+   |              expected because this is `T`
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+help: call `Into::into` on this expression to convert `{integer}` into `T`
+   |
+49 |         _ if x == 255.into() => 2,
+   |                      +++++++
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

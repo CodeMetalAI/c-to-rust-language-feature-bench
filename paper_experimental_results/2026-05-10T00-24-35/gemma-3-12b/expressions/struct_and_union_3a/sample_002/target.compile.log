@@ -1,0 +1,40 @@
+error: this trait cannot be derived for unions
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/struct_and_union_3a/sample_002/target.rs:1:10
+  |
+1 | #[derive(Debug)]
+  |          ^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/struct_and_union_3a/sample_002/target.rs:29:5
+   |
+29 | /     unsafe {
+30 | |         let nf_ptr = &mut u as *mut U as *mut NestedFloat;
+31 | |         (*nf_ptr).type_ = 1;
+32 | |         (*nf_ptr).doublenode = 3.14;
+33 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/struct_and_union_3a/sample_002/target.rs:3:5
+  |
+3 |     n: Nested,
+  |     ^^^^^^^^^
+  |
+  = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+  |
+3 |     n: std::mem::ManuallyDrop<Nested>,
+  |        +++++++++++++++++++++++      +
+
+error[E0784]: union expressions should have exactly one field
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/struct_and_union_3a/sample_002/target.rs:26:17
+   |
+26 |     let mut u = U { n: Nested { alltypes: 0 }, ni: NestedInteger { type_: 0, intnode: 0 }, nf: NestedFloat { type_: 0, doublenode: 0.0 } };
+   |                 ^
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0740, E0784.
+For more information about an error, try `rustc --explain E0740`.

@@ -1,0 +1,130 @@
+error[E0425]: cannot find value `GSSTORE` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_002/target.rs:6:9
+  |
+2 | static mut GSTORE: [i32; 4] = [0; 4];
+  | ------------------------------------- similarly named static `GSTORE` defined here
+...
+6 |         GSSTORE[0] = 111;
+  |         ^^^^^^^ help: a static with a similar name exists: `GSTORE`
+
+error[E0425]: cannot find value `GSSTORE` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_002/target.rs:7:9
+  |
+2 | static mut GSTORE: [i32; 4] = [0; 4];
+  | ------------------------------------- similarly named static `GSTORE` defined here
+...
+7 |         GSSTORE[0] + 1
+  |         ^^^^^^^ help: a static with a similar name exists: `GSTORE`
+
+error[E0425]: cannot find value `GSSTORE` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_002/target.rs:13:9
+   |
+ 2 | static mut GSTORE: [i32; 4] = [0; 4];
+   | ------------------------------------- similarly named static `GSTORE` defined here
+...
+13 |         GSSTORE[1] = 222;
+   |         ^^^^^^^ help: a static with a similar name exists: `GSTORE`
+
+error[E0425]: cannot find value `GSSTORE` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_002/target.rs:14:10
+   |
+ 2 | static mut GSTORE: [i32; 4] = [0; 4];
+   | ------------------------------------- similarly named static `GSTORE` defined here
+...
+14 |         &GSSTORE[1]
+   |          ^^^^^^^ help: a static with a similar name exists: `GSTORE`
+
+error[E0425]: cannot find value `GSSTORE` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_002/target.rs:20:9
+   |
+ 2 | static mut GSTORE: [i32; 4] = [0; 4];
+   | ------------------------------------- similarly named static `GSTORE` defined here
+...
+20 |         GSSTORE[2] = 333;
+   |         ^^^^^^^ help: a static with a similar name exists: `GSTORE`
+
+error[E0425]: cannot find value `GSSTORE` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_002/target.rs:21:9
+   |
+ 2 | static mut GSTORE: [i32; 4] = [0; 4];
+   | ------------------------------------- similarly named static `GSTORE` defined here
+...
+21 |         GSSTORE[2] - 1
+   |         ^^^^^^^ help: a static with a similar name exists: `GSTORE`
+
+error[E0425]: cannot find value `GSSTORE` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_002/target.rs:27:9
+   |
+ 2 | static mut GSTORE: [i32; 4] = [0; 4];
+   | ------------------------------------- similarly named static `GSTORE` defined here
+...
+27 |         GSSTORE[3] = 444;
+   |         ^^^^^^^ help: a static with a similar name exists: `GSTORE`
+
+error[E0425]: cannot find value `GSSTORE` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_002/target.rs:28:9
+   |
+ 2 | static mut GSTORE: [i32; 4] = [0; 4];
+   | ------------------------------------- similarly named static `GSTORE` defined here
+...
+28 |         GSSTORE[3] + 2
+   |         ^^^^^^^ help: a static with a similar name exists: `GSTORE`
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_002/target.rs:5:5
+  |
+5 | /     unsafe {
+6 | |         GSSTORE[0] = 111;
+7 | |         GSSTORE[0] + 1
+8 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_002/target.rs:12:5
+   |
+12 | /     unsafe {
+13 | |         GSSTORE[1] = 222;
+14 | |         &GSSTORE[1]
+15 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_002/target.rs:19:5
+   |
+19 | /     unsafe {
+20 | |         GSSTORE[2] = 333;
+21 | |         GSSTORE[2] - 1
+22 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_002/target.rs:26:5
+   |
+26 | /     unsafe {
+27 | |         GSSTORE[3] = 444;
+28 | |         GSSTORE[3] + 2
+29 | |     }
+   | |_____^
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_002/target.rs:53:17
+   |
+53 |     let v_fip = *fip();
+   |                 ^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_002/target.rs:59:15
+   |
+59 |     if choose(GSTORE[0]) == 0 {
+   |               ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 14 previous errors
+
+Some errors have detailed explanations: E0133, E0425.
+For more information about an error, try `rustc --explain E0133`.

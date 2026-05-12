@@ -1,0 +1,37 @@
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/initialization_13/sample_001/target.rs:11:8
+   |
+11 |     if x.any_member!= 42 {
+   |        ^^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/initialization_13/sample_001/target.rs:17:12
+   |
+17 |         if y.u_member!= 7 {
+   |            ^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/initialization_13/sample_001/target.rs:9:9
+  |
+9 |     let mut x = U { any_member: 42 };
+  |         ----^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/initialization_13/sample_001/target.rs:16:13
+   |
+16 |         let mut y = U { u_member: 7 };
+   |             ----^
+   |             |
+   |             help: remove this `mut`
+
+error: aborting due to 2 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0133`.

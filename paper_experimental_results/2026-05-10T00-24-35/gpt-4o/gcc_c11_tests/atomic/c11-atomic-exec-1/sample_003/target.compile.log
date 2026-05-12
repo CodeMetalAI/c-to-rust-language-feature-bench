@@ -1,0 +1,3244 @@
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:61:36
+   |
+61 |         test_simple_assign!(usize, ptr_null as usize);
+   |                                    ^^^^^^^^ non-constant value
+   |
+help: consider using `let` instead of `static`
+   |
+10 -             static B: Atomic<$type> = Atomic::new($value as $type);
+10 +             let B: Atomic<$type> = Atomic::new($value as $type);
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:62:36
+   |
+62 |         test_simple_assign!(usize, ptr_i as usize);
+   |                                    ^^^^^ non-constant value
+   |
+help: consider using `let` instead of `static`
+   |
+10 -             static B: Atomic<$type> = Atomic::new($value as $type);
+10 +             let B: Atomic<$type> = Atomic::new($value as $type);
+   |
+
+warning: unused imports: `AtomicBool`, `AtomicI32`, `AtomicI64`, `AtomicU32`, and `AtomicU64`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:1:25
+  |
+1 | use std::sync::atomic::{AtomicBool, AtomicI32, AtomicU32, AtomicI64, AtomicU64, Ordering};
+  |                         ^^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:58:5
+   |
+58 | /     unsafe {
+59 | |         let ptr_null: *const i32 = ptr::null();
+60 | |         let ptr_i: *const i32 = I.as_ptr();
+61 | |         test_simple_assign!(usize, ptr_null as usize);
+62 | |         test_simple_assign!(usize, ptr_i as usize);
+63 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:105:9
+    |
+105 |         unsafe { *ptr }
+    |         ^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:44
+   |
+11 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `bool`, found integer
+   |                |
+   |                expected because this is `bool`
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:44
+   |
+11 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `f32`, found integer
+   |                |
+   |                expected because this is `f32`
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: use a float literal
+   |
+11 |             if A.load(Ordering::SeqCst) != 0.0 {
+   |                                             ++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:44
+   |
+11 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `f64`, found integer
+   |                |
+   |                expected because this is `f64`
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: use a float literal
+   |
+11 |             if A.load(Ordering::SeqCst) != 0.0 {
+   |                                             ++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:44
+   |
+11 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `bool`, found integer
+   |                |
+   |                expected because this is `bool`
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:44
+   |
+11 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `f32`, found integer
+   |                |
+   |                expected because this is `f32`
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: use a float literal
+   |
+11 |             if A.load(Ordering::SeqCst) != 0.0 {
+   |                                             ++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:44
+   |
+11 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `f64`, found integer
+   |                |
+   |                expected because this is `f64`
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: use a float literal
+   |
+11 |             if A.load(Ordering::SeqCst) != 0.0 {
+   |                                             ++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:44
+   |
+11 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `bool`, found integer
+   |                |
+   |                expected because this is `bool`
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:44
+   |
+11 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `f32`, found integer
+   |                |
+   |                expected because this is `f32`
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: use a float literal
+   |
+11 |             if A.load(Ordering::SeqCst) != 0.0 {
+   |                                             ++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:44
+   |
+11 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `f64`, found integer
+   |                |
+   |                expected because this is `f64`
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: use a float literal
+   |
+11 |             if A.load(Ordering::SeqCst) != 0.0 {
+   |                                             ++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:44
+   |
+11 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `bool`, found integer
+   |                |
+   |                expected because this is `bool`
+...
+52 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0600]: cannot apply unary operator `-` to type `u8`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:52:31
+   |
+52 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u8`
+   |
+ 9 -             static A: Atomic<$type> = Atomic::new(0 as $type);
+10 -             static B: Atomic<$type> = Atomic::new($value as $type);
+11 -             if A.load(Ordering::SeqCst) != 0 {
+12 -                 abort();
+13 -             }
+14 -             if B.load(Ordering::SeqCst) != $value as $type {
+ 9 +             static A: Atomic<u8::MAX $type {
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u8`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:52:31
+   |
+52 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u8`
+   |
+ 9 -             static A: Atomic<$type> = Atomic::new(0 as $type);
+10 -             static B: Atomic<$type> = Atomic::new($value as $type);
+11 -             if A.load(Ordering::SeqCst) != 0 {
+12 -                 abort();
+13 -             }
+14 -             if B.load(Ordering::SeqCst) != $value as $type {
+15 -                 abort();
+16 -             }
+17 -             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+ 9 +             static A: Atomic<u8::MAX $type {
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u16`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:52:31
+   |
+52 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u16`
+   |
+ 9 -             static A: Atomic<$type> = Atomic::new(0 as $type);
+10 -             static B: Atomic<$type> = Atomic::new($value as $type);
+11 -             if A.load(Ordering::SeqCst) != 0 {
+12 -                 abort();
+13 -             }
+14 -             if B.load(Ordering::SeqCst) != $value as $type {
+ 9 +             static A: Atomic<u16::MAX $type {
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u16`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:52:31
+   |
+52 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u16`
+   |
+ 9 -             static A: Atomic<$type> = Atomic::new(0 as $type);
+10 -             static B: Atomic<$type> = Atomic::new($value as $type);
+11 -             if A.load(Ordering::SeqCst) != 0 {
+12 -                 abort();
+13 -             }
+14 -             if B.load(Ordering::SeqCst) != $value as $type {
+15 -                 abort();
+16 -             }
+17 -             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+ 9 +             static A: Atomic<u16::MAX $type {
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:52:31
+   |
+52 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u32`
+   |
+ 9 -             static A: Atomic<$type> = Atomic::new(0 as $type);
+10 -             static B: Atomic<$type> = Atomic::new($value as $type);
+11 -             if A.load(Ordering::SeqCst) != 0 {
+12 -                 abort();
+13 -             }
+14 -             if B.load(Ordering::SeqCst) != $value as $type {
+ 9 +             static A: Atomic<u32::MAX $type {
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:52:31
+   |
+52 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u32`
+   |
+ 9 -             static A: Atomic<$type> = Atomic::new(0 as $type);
+10 -             static B: Atomic<$type> = Atomic::new($value as $type);
+11 -             if A.load(Ordering::SeqCst) != 0 {
+12 -                 abort();
+13 -             }
+14 -             if B.load(Ordering::SeqCst) != $value as $type {
+15 -                 abort();
+16 -             }
+17 -             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+ 9 +             static A: Atomic<u32::MAX $type {
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u64`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:52:31
+   |
+52 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u64`
+   |
+ 9 -             static A: Atomic<$type> = Atomic::new(0 as $type);
+10 -             static B: Atomic<$type> = Atomic::new($value as $type);
+11 -             if A.load(Ordering::SeqCst) != 0 {
+12 -                 abort();
+13 -             }
+14 -             if B.load(Ordering::SeqCst) != $value as $type {
+ 9 +             static A: Atomic<u64::MAX $type {
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u64`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:52:31
+   |
+52 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u64`
+   |
+ 9 -             static A: Atomic<$type> = Atomic::new(0 as $type);
+10 -             static B: Atomic<$type> = Atomic::new($value as $type);
+11 -             if A.load(Ordering::SeqCst) != 0 {
+12 -                 abort();
+13 -             }
+14 -             if B.load(Ordering::SeqCst) != $value as $type {
+15 -                 abort();
+16 -             }
+17 -             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+ 9 +             static A: Atomic<u64::MAX $type {
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:44
+   |
+11 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `f32`, found integer
+   |                |
+   |                expected because this is `f32`
+...
+52 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: use a float literal
+   |
+11 |             if A.load(Ordering::SeqCst) != 0.0 {
+   |                                             ++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:44
+   |
+11 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `f64`, found integer
+   |                |
+   |                expected because this is `f64`
+...
+52 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: use a float literal
+   |
+11 |             if A.load(Ordering::SeqCst) != 0.0 {
+   |                                             ++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:44
+   |
+11 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `bool`, found integer
+   |                |
+   |                expected because this is `bool`
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:44
+   |
+11 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `f32`, found integer
+   |                |
+   |                expected because this is `f32`
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: use a float literal
+   |
+11 |             if A.load(Ordering::SeqCst) != 0.0 {
+   |                                             ++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:44
+   |
+11 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `f64`, found integer
+   |                |
+   |                expected because this is `f64`
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: use a float literal
+   |
+11 |             if A.load(Ordering::SeqCst) != 0.0 {
+   |                                             ++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:44
+   |
+11 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `bool`, found integer
+   |                |
+   |                expected because this is `bool`
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:44
+   |
+11 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `f32`, found integer
+   |                |
+   |                expected because this is `f32`
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: use a float literal
+   |
+11 |             if A.load(Ordering::SeqCst) != 0.0 {
+   |                                             ++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:44
+   |
+11 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `f64`, found integer
+   |                |
+   |                expected because this is `f64`
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: use a float literal
+   |
+11 |             if A.load(Ordering::SeqCst) != 0.0 {
+   |                                             ++
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |               static A: Atomic<$type> = Atomic::new(0 as $type);
+   |  ______________________________^
+10 | |             static B: Atomic<$type> = Atomic::new($value as $type);
+11 | |             if A.load(Ordering::SeqCst) != 0 {
+12 | |                 abort();
+13 | |             }
+14 | |             if B.load(Ordering::SeqCst) != $value as $type {
+   | |____________________________________________________^
+...
+49 |       test_simple_assign_arith!(0);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+14 -             if B.load(Ordering::SeqCst) != $value as $type {
+15 -                 abort();
+16 -             }
+17 -             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+19 -                 abort();
+20 -             }
+21 -         }
+22 -     };
+23 - }
+24 - 
+25 - macro_rules! test_simple_assign_arith {
+26 -     ($value:expr) => {
+27 -         {
+28 -             test_simple_assign!(bool, $value);
+29 -             test_simple_assign!(i8, $value);
+30 -             test_simple_assign!(u8, $value);
+31 -             test_simple_assign!(i16, $value);
+32 -             test_simple_assign!(u16, $value);
+33 -             test_simple_assign!(i32, $value);
+34 -             test_simple_assign!(u32, $value);
+35 -             test_simple_assign!(i64, $value);
+36 -             test_simple_assign!(u64, $value);
+37 -             test_simple_assign!(f32, $value);
+38 -             test_simple_assign!(f64, $value);
+39 -             // Complex numbers and long doubles are not natively supported in Rust, skipping
+40 -         }
+41 -     };
+42 - }
+43 - 
+44 - struct S {
+45 -     a: [i16; 1024],
+46 - }
+47 - 
+48 - fn test_simple_assign() {
+49 -     test_simple_assign_arith!(0);
+14 +             if B.load(Ordering::SeqCst) != $value as != 0);
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |               static A: Atomic<$type> = Atomic::new(0 as $type);
+   |  ______________________________^
+10 | |             static B: Atomic<$type> = Atomic::new($value as $type);
+11 | |             if A.load(Ordering::SeqCst) != 0 {
+12 | |                 abort();
+...  |
+17 | |             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 | |             if A.load(Ordering::SeqCst) != $value as $type {
+   | |____________________________________________________^
+...
+49 |       test_simple_assign_arith!(0);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+19 -                 abort();
+20 -             }
+21 -         }
+22 -     };
+23 - }
+24 - 
+25 - macro_rules! test_simple_assign_arith {
+26 -     ($value:expr) => {
+27 -         {
+28 -             test_simple_assign!(bool, $value);
+29 -             test_simple_assign!(i8, $value);
+30 -             test_simple_assign!(u8, $value);
+31 -             test_simple_assign!(i16, $value);
+32 -             test_simple_assign!(u16, $value);
+33 -             test_simple_assign!(i32, $value);
+34 -             test_simple_assign!(u32, $value);
+35 -             test_simple_assign!(i64, $value);
+36 -             test_simple_assign!(u64, $value);
+37 -             test_simple_assign!(f32, $value);
+38 -             test_simple_assign!(f64, $value);
+39 -             // Complex numbers and long doubles are not natively supported in Rust, skipping
+40 -         }
+41 -     };
+42 - }
+43 - 
+44 - struct S {
+45 -     a: [i16; 1024],
+46 - }
+47 - 
+48 - fn test_simple_assign() {
+49 -     test_simple_assign_arith!(0);
+18 +             if A.load(Ordering::SeqCst) != $value as != 0);
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |               static A: Atomic<$type> = Atomic::new(0 as $type);
+   |  ______________________________^
+10 | |             static B: Atomic<$type> = Atomic::new($value as $type);
+11 | |             if A.load(Ordering::SeqCst) != 0 {
+12 | |                 abort();
+13 | |             }
+14 | |             if B.load(Ordering::SeqCst) != $value as $type {
+   | |____________________________________________________^
+...
+50 |       test_simple_assign_arith!(1);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+14 -             if B.load(Ordering::SeqCst) != $value as $type {
+15 -                 abort();
+16 -             }
+17 -             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+19 -                 abort();
+20 -             }
+21 -         }
+22 -     };
+23 - }
+24 - 
+25 - macro_rules! test_simple_assign_arith {
+26 -     ($value:expr) => {
+27 -         {
+28 -             test_simple_assign!(bool, $value);
+29 -             test_simple_assign!(i8, $value);
+30 -             test_simple_assign!(u8, $value);
+31 -             test_simple_assign!(i16, $value);
+32 -             test_simple_assign!(u16, $value);
+33 -             test_simple_assign!(i32, $value);
+34 -             test_simple_assign!(u32, $value);
+35 -             test_simple_assign!(i64, $value);
+36 -             test_simple_assign!(u64, $value);
+37 -             test_simple_assign!(f32, $value);
+38 -             test_simple_assign!(f64, $value);
+39 -             // Complex numbers and long doubles are not natively supported in Rust, skipping
+40 -         }
+41 -     };
+42 - }
+43 - 
+44 - struct S {
+45 -     a: [i16; 1024],
+46 - }
+47 - 
+48 - fn test_simple_assign() {
+49 -     test_simple_assign_arith!(0);
+50 -     test_simple_assign_arith!(1);
+14 +             if B.load(Ordering::SeqCst) != $value as != 0);
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |               static A: Atomic<$type> = Atomic::new(0 as $type);
+   |  ______________________________^
+10 | |             static B: Atomic<$type> = Atomic::new($value as $type);
+11 | |             if A.load(Ordering::SeqCst) != 0 {
+12 | |                 abort();
+...  |
+17 | |             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 | |             if A.load(Ordering::SeqCst) != $value as $type {
+   | |____________________________________________________^
+...
+50 |       test_simple_assign_arith!(1);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+19 -                 abort();
+20 -             }
+21 -         }
+22 -     };
+23 - }
+24 - 
+25 - macro_rules! test_simple_assign_arith {
+26 -     ($value:expr) => {
+27 -         {
+28 -             test_simple_assign!(bool, $value);
+29 -             test_simple_assign!(i8, $value);
+30 -             test_simple_assign!(u8, $value);
+31 -             test_simple_assign!(i16, $value);
+32 -             test_simple_assign!(u16, $value);
+33 -             test_simple_assign!(i32, $value);
+34 -             test_simple_assign!(u32, $value);
+35 -             test_simple_assign!(i64, $value);
+36 -             test_simple_assign!(u64, $value);
+37 -             test_simple_assign!(f32, $value);
+38 -             test_simple_assign!(f64, $value);
+39 -             // Complex numbers and long doubles are not natively supported in Rust, skipping
+40 -         }
+41 -     };
+42 - }
+43 - 
+44 - struct S {
+45 -     a: [i16; 1024],
+46 - }
+47 - 
+48 - fn test_simple_assign() {
+49 -     test_simple_assign_arith!(0);
+50 -     test_simple_assign_arith!(1);
+18 +             if A.load(Ordering::SeqCst) != $value as != 0);
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |               static A: Atomic<$type> = Atomic::new(0 as $type);
+   |  ______________________________^
+10 | |             static B: Atomic<$type> = Atomic::new($value as $type);
+11 | |             if A.load(Ordering::SeqCst) != 0 {
+12 | |                 abort();
+13 | |             }
+14 | |             if B.load(Ordering::SeqCst) != $value as $type {
+   | |____________________________________________________^
+...
+51 |       test_simple_assign_arith!(2);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+14 -             if B.load(Ordering::SeqCst) != $value as $type {
+15 -                 abort();
+16 -             }
+17 -             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+19 -                 abort();
+20 -             }
+21 -         }
+22 -     };
+23 - }
+24 - 
+25 - macro_rules! test_simple_assign_arith {
+26 -     ($value:expr) => {
+27 -         {
+28 -             test_simple_assign!(bool, $value);
+29 -             test_simple_assign!(i8, $value);
+30 -             test_simple_assign!(u8, $value);
+31 -             test_simple_assign!(i16, $value);
+32 -             test_simple_assign!(u16, $value);
+33 -             test_simple_assign!(i32, $value);
+34 -             test_simple_assign!(u32, $value);
+35 -             test_simple_assign!(i64, $value);
+36 -             test_simple_assign!(u64, $value);
+37 -             test_simple_assign!(f32, $value);
+38 -             test_simple_assign!(f64, $value);
+39 -             // Complex numbers and long doubles are not natively supported in Rust, skipping
+40 -         }
+41 -     };
+42 - }
+43 - 
+44 - struct S {
+45 -     a: [i16; 1024],
+46 - }
+47 - 
+48 - fn test_simple_assign() {
+49 -     test_simple_assign_arith!(0);
+50 -     test_simple_assign_arith!(1);
+51 -     test_simple_assign_arith!(2);
+14 +             if B.load(Ordering::SeqCst) != $value as != 0);
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |               static A: Atomic<$type> = Atomic::new(0 as $type);
+   |  ______________________________^
+10 | |             static B: Atomic<$type> = Atomic::new($value as $type);
+11 | |             if A.load(Ordering::SeqCst) != 0 {
+12 | |                 abort();
+...  |
+17 | |             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 | |             if A.load(Ordering::SeqCst) != $value as $type {
+   | |____________________________________________________^
+...
+51 |       test_simple_assign_arith!(2);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+19 -                 abort();
+20 -             }
+21 -         }
+22 -     };
+23 - }
+24 - 
+25 - macro_rules! test_simple_assign_arith {
+26 -     ($value:expr) => {
+27 -         {
+28 -             test_simple_assign!(bool, $value);
+29 -             test_simple_assign!(i8, $value);
+30 -             test_simple_assign!(u8, $value);
+31 -             test_simple_assign!(i16, $value);
+32 -             test_simple_assign!(u16, $value);
+33 -             test_simple_assign!(i32, $value);
+34 -             test_simple_assign!(u32, $value);
+35 -             test_simple_assign!(i64, $value);
+36 -             test_simple_assign!(u64, $value);
+37 -             test_simple_assign!(f32, $value);
+38 -             test_simple_assign!(f64, $value);
+39 -             // Complex numbers and long doubles are not natively supported in Rust, skipping
+40 -         }
+41 -     };
+42 - }
+43 - 
+44 - struct S {
+45 -     a: [i16; 1024],
+46 - }
+47 - 
+48 - fn test_simple_assign() {
+49 -     test_simple_assign_arith!(0);
+50 -     test_simple_assign_arith!(1);
+51 -     test_simple_assign_arith!(2);
+18 +             if A.load(Ordering::SeqCst) != $value as != 0);
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |               static A: Atomic<$type> = Atomic::new(0 as $type);
+   |  ______________________________^
+10 | |             static B: Atomic<$type> = Atomic::new($value as $type);
+11 | |             if A.load(Ordering::SeqCst) != 0 {
+12 | |                 abort();
+13 | |             }
+14 | |             if B.load(Ordering::SeqCst) != $value as $type {
+   | |____________________________________________________^
+...
+52 |       test_simple_assign_arith!(-1);
+   |       ----------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+14 -             if B.load(Ordering::SeqCst) != $value as $type {
+15 -                 abort();
+16 -             }
+17 -             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+19 -                 abort();
+20 -             }
+21 -         }
+22 -     };
+23 - }
+24 - 
+25 - macro_rules! test_simple_assign_arith {
+26 -     ($value:expr) => {
+27 -         {
+28 -             test_simple_assign!(bool, $value);
+29 -             test_simple_assign!(i8, $value);
+30 -             test_simple_assign!(u8, $value);
+31 -             test_simple_assign!(i16, $value);
+32 -             test_simple_assign!(u16, $value);
+33 -             test_simple_assign!(i32, $value);
+34 -             test_simple_assign!(u32, $value);
+35 -             test_simple_assign!(i64, $value);
+36 -             test_simple_assign!(u64, $value);
+37 -             test_simple_assign!(f32, $value);
+38 -             test_simple_assign!(f64, $value);
+39 -             // Complex numbers and long doubles are not natively supported in Rust, skipping
+40 -         }
+41 -     };
+42 - }
+43 - 
+44 - struct S {
+45 -     a: [i16; 1024],
+46 - }
+47 - 
+48 - fn test_simple_assign() {
+49 -     test_simple_assign_arith!(0);
+50 -     test_simple_assign_arith!(1);
+51 -     test_simple_assign_arith!(2);
+52 -     test_simple_assign_arith!(-1);
+14 +             if B.load(Ordering::SeqCst) != $value as != 0);
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |               static A: Atomic<$type> = Atomic::new(0 as $type);
+   |  ______________________________^
+10 | |             static B: Atomic<$type> = Atomic::new($value as $type);
+11 | |             if A.load(Ordering::SeqCst) != 0 {
+12 | |                 abort();
+...  |
+17 | |             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 | |             if A.load(Ordering::SeqCst) != $value as $type {
+   | |____________________________________________________^
+...
+52 |       test_simple_assign_arith!(-1);
+   |       ----------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+19 -                 abort();
+20 -             }
+21 -         }
+22 -     };
+23 - }
+24 - 
+25 - macro_rules! test_simple_assign_arith {
+26 -     ($value:expr) => {
+27 -         {
+28 -             test_simple_assign!(bool, $value);
+29 -             test_simple_assign!(i8, $value);
+30 -             test_simple_assign!(u8, $value);
+31 -             test_simple_assign!(i16, $value);
+32 -             test_simple_assign!(u16, $value);
+33 -             test_simple_assign!(i32, $value);
+34 -             test_simple_assign!(u32, $value);
+35 -             test_simple_assign!(i64, $value);
+36 -             test_simple_assign!(u64, $value);
+37 -             test_simple_assign!(f32, $value);
+38 -             test_simple_assign!(f64, $value);
+39 -             // Complex numbers and long doubles are not natively supported in Rust, skipping
+40 -         }
+41 -     };
+42 - }
+43 - 
+44 - struct S {
+45 -     a: [i16; 1024],
+46 - }
+47 - 
+48 - fn test_simple_assign() {
+49 -     test_simple_assign_arith!(0);
+50 -     test_simple_assign_arith!(1);
+51 -     test_simple_assign_arith!(2);
+52 -     test_simple_assign_arith!(-1);
+18 +             if A.load(Ordering::SeqCst) != $value as != 0);
+   |
+
+error[E0054]: cannot cast `i64` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |               static A: Atomic<$type> = Atomic::new(0 as $type);
+   |  ______________________________^
+10 | |             static B: Atomic<$type> = Atomic::new($value as $type);
+11 | |             if A.load(Ordering::SeqCst) != 0 {
+12 | |                 abort();
+13 | |             }
+14 | |             if B.load(Ordering::SeqCst) != $value as $type {
+   | |____________________________________________________^
+...
+53 |       test_simple_assign_arith!((1_u64 << 63) as i64);
+   |       ----------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+14 -             if B.load(Ordering::SeqCst) != $value as $type {
+15 -                 abort();
+16 -             }
+17 -             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+19 -                 abort();
+20 -             }
+21 -         }
+22 -     };
+23 - }
+24 - 
+25 - macro_rules! test_simple_assign_arith {
+26 -     ($value:expr) => {
+27 -         {
+28 -             test_simple_assign!(bool, $value);
+29 -             test_simple_assign!(i8, $value);
+30 -             test_simple_assign!(u8, $value);
+31 -             test_simple_assign!(i16, $value);
+32 -             test_simple_assign!(u16, $value);
+33 -             test_simple_assign!(i32, $value);
+34 -             test_simple_assign!(u32, $value);
+35 -             test_simple_assign!(i64, $value);
+36 -             test_simple_assign!(u64, $value);
+37 -             test_simple_assign!(f32, $value);
+38 -             test_simple_assign!(f64, $value);
+39 -             // Complex numbers and long doubles are not natively supported in Rust, skipping
+40 -         }
+41 -     };
+42 - }
+43 - 
+44 - struct S {
+45 -     a: [i16; 1024],
+46 - }
+47 - 
+48 - fn test_simple_assign() {
+49 -     test_simple_assign_arith!(0);
+50 -     test_simple_assign_arith!(1);
+51 -     test_simple_assign_arith!(2);
+52 -     test_simple_assign_arith!(-1);
+53 -     test_simple_assign_arith!((1_u64 << 63) as i64);
+14 +             if B.load(Ordering::SeqCst) != $value as != 0);
+   |
+
+error[E0054]: cannot cast `i64` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |               static A: Atomic<$type> = Atomic::new(0 as $type);
+   |  ______________________________^
+10 | |             static B: Atomic<$type> = Atomic::new($value as $type);
+11 | |             if A.load(Ordering::SeqCst) != 0 {
+12 | |                 abort();
+...  |
+17 | |             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 | |             if A.load(Ordering::SeqCst) != $value as $type {
+   | |____________________________________________________^
+...
+53 |       test_simple_assign_arith!((1_u64 << 63) as i64);
+   |       ----------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+19 -                 abort();
+20 -             }
+21 -         }
+22 -     };
+23 - }
+24 - 
+25 - macro_rules! test_simple_assign_arith {
+26 -     ($value:expr) => {
+27 -         {
+28 -             test_simple_assign!(bool, $value);
+29 -             test_simple_assign!(i8, $value);
+30 -             test_simple_assign!(u8, $value);
+31 -             test_simple_assign!(i16, $value);
+32 -             test_simple_assign!(u16, $value);
+33 -             test_simple_assign!(i32, $value);
+34 -             test_simple_assign!(u32, $value);
+35 -             test_simple_assign!(i64, $value);
+36 -             test_simple_assign!(u64, $value);
+37 -             test_simple_assign!(f32, $value);
+38 -             test_simple_assign!(f64, $value);
+39 -             // Complex numbers and long doubles are not natively supported in Rust, skipping
+40 -         }
+41 -     };
+42 - }
+43 - 
+44 - struct S {
+45 -     a: [i16; 1024],
+46 - }
+47 - 
+48 - fn test_simple_assign() {
+49 -     test_simple_assign_arith!(0);
+50 -     test_simple_assign_arith!(1);
+51 -     test_simple_assign_arith!(2);
+52 -     test_simple_assign_arith!(-1);
+53 -     test_simple_assign_arith!((1_u64 << 63) as i64);
+18 +             if A.load(Ordering::SeqCst) != $value as != 0);
+   |
+
+error[E0054]: cannot cast `{float}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |               static A: Atomic<$type> = Atomic::new(0 as $type);
+   |  ______________________________^
+10 | |             static B: Atomic<$type> = Atomic::new($value as $type);
+11 | |             if A.load(Ordering::SeqCst) != 0 {
+12 | |                 abort();
+13 | |             }
+14 | |             if B.load(Ordering::SeqCst) != $value as $type {
+   | |____________________________________________________^
+...
+54 |       test_simple_assign_arith!(1.5);
+   |       ------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+14 -             if B.load(Ordering::SeqCst) != $value as $type {
+15 -                 abort();
+16 -             }
+17 -             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+19 -                 abort();
+20 -             }
+21 -         }
+22 -     };
+23 - }
+24 - 
+25 - macro_rules! test_simple_assign_arith {
+26 -     ($value:expr) => {
+27 -         {
+28 -             test_simple_assign!(bool, $value);
+29 -             test_simple_assign!(i8, $value);
+30 -             test_simple_assign!(u8, $value);
+31 -             test_simple_assign!(i16, $value);
+32 -             test_simple_assign!(u16, $value);
+33 -             test_simple_assign!(i32, $value);
+34 -             test_simple_assign!(u32, $value);
+35 -             test_simple_assign!(i64, $value);
+36 -             test_simple_assign!(u64, $value);
+37 -             test_simple_assign!(f32, $value);
+38 -             test_simple_assign!(f64, $value);
+39 -             // Complex numbers and long doubles are not natively supported in Rust, skipping
+40 -         }
+41 -     };
+42 - }
+43 - 
+44 - struct S {
+45 -     a: [i16; 1024],
+46 - }
+47 - 
+48 - fn test_simple_assign() {
+49 -     test_simple_assign_arith!(0);
+50 -     test_simple_assign_arith!(1);
+51 -     test_simple_assign_arith!(2);
+52 -     test_simple_assign_arith!(-1);
+53 -     test_simple_assign_arith!((1_u64 << 63) as i64);
+54 -     test_simple_assign_arith!(1.5);
+14 +             if B.load(Ordering::SeqCst) != $value as != 0);
+   |
+
+error[E0054]: cannot cast `{float}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |               static A: Atomic<$type> = Atomic::new(0 as $type);
+   |  ______________________________^
+10 | |             static B: Atomic<$type> = Atomic::new($value as $type);
+11 | |             if A.load(Ordering::SeqCst) != 0 {
+12 | |                 abort();
+...  |
+17 | |             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 | |             if A.load(Ordering::SeqCst) != $value as $type {
+   | |____________________________________________________^
+...
+54 |       test_simple_assign_arith!(1.5);
+   |       ------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+19 -                 abort();
+20 -             }
+21 -         }
+22 -     };
+23 - }
+24 - 
+25 - macro_rules! test_simple_assign_arith {
+26 -     ($value:expr) => {
+27 -         {
+28 -             test_simple_assign!(bool, $value);
+29 -             test_simple_assign!(i8, $value);
+30 -             test_simple_assign!(u8, $value);
+31 -             test_simple_assign!(i16, $value);
+32 -             test_simple_assign!(u16, $value);
+33 -             test_simple_assign!(i32, $value);
+34 -             test_simple_assign!(u32, $value);
+35 -             test_simple_assign!(i64, $value);
+36 -             test_simple_assign!(u64, $value);
+37 -             test_simple_assign!(f32, $value);
+38 -             test_simple_assign!(f64, $value);
+39 -             // Complex numbers and long doubles are not natively supported in Rust, skipping
+40 -         }
+41 -     };
+42 - }
+43 - 
+44 - struct S {
+45 -     a: [i16; 1024],
+46 - }
+47 - 
+48 - fn test_simple_assign() {
+49 -     test_simple_assign_arith!(0);
+50 -     test_simple_assign_arith!(1);
+51 -     test_simple_assign_arith!(2);
+52 -     test_simple_assign_arith!(-1);
+53 -     test_simple_assign_arith!((1_u64 << 63) as i64);
+54 -     test_simple_assign_arith!(1.5);
+18 +             if A.load(Ordering::SeqCst) != $value as != 0);
+   |
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+ 9 -             static A: Atomic<$type> = Atomic::new(0 as $type);
+ 9 +             static A: Atomic<$type> = Atomic::new(0 != 0 $type);
+   |
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |               static A: Atomic<$type> = Atomic::new(0 as $type);
+   |  ______________________________^
+10 | |             static B: Atomic<$type> = Atomic::new($value as $type);
+   | |___________________________________________________________^
+...
+49 |       test_simple_assign_arith!(0);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+10 -             static B: Atomic<$type> = Atomic::new($value as $type);
+11 -             if A.load(Ordering::SeqCst) != 0 {
+12 -                 abort();
+13 -             }
+14 -             if B.load(Ordering::SeqCst) != $value as $type {
+15 -                 abort();
+16 -             }
+17 -             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+19 -                 abort();
+20 -             }
+21 -         }
+22 -     };
+23 - }
+24 - 
+25 - macro_rules! test_simple_assign_arith {
+26 -     ($value:expr) => {
+27 -         {
+28 -             test_simple_assign!(bool, $value);
+29 -             test_simple_assign!(i8, $value);
+30 -             test_simple_assign!(u8, $value);
+31 -             test_simple_assign!(i16, $value);
+32 -             test_simple_assign!(u16, $value);
+33 -             test_simple_assign!(i32, $value);
+34 -             test_simple_assign!(u32, $value);
+35 -             test_simple_assign!(i64, $value);
+36 -             test_simple_assign!(u64, $value);
+37 -             test_simple_assign!(f32, $value);
+38 -             test_simple_assign!(f64, $value);
+39 -             // Complex numbers and long doubles are not natively supported in Rust, skipping
+40 -         }
+41 -     };
+42 - }
+43 - 
+44 - struct S {
+45 -     a: [i16; 1024],
+46 - }
+47 - 
+48 - fn test_simple_assign() {
+49 -     test_simple_assign_arith!(0);
+10 +             static B: Atomic<$type> = Atomic::new($value as != 0);
+   |
+
+error[E0015]: cannot call non-const associated function `Atomic::<i8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+49 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+ 9 -             static A: Atomic<$type> = Atomic::new(0 as $type);
+ 9 +             static A: Atomic<$type> = Atomic::new(0 != 0 $type);
+   |
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |               static A: Atomic<$type> = Atomic::new(0 as $type);
+   |  ______________________________^
+10 | |             static B: Atomic<$type> = Atomic::new($value as $type);
+   | |___________________________________________________________^
+...
+50 |       test_simple_assign_arith!(1);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+10 -             static B: Atomic<$type> = Atomic::new($value as $type);
+11 -             if A.load(Ordering::SeqCst) != 0 {
+12 -                 abort();
+13 -             }
+14 -             if B.load(Ordering::SeqCst) != $value as $type {
+15 -                 abort();
+16 -             }
+17 -             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+19 -                 abort();
+20 -             }
+21 -         }
+22 -     };
+23 - }
+24 - 
+25 - macro_rules! test_simple_assign_arith {
+26 -     ($value:expr) => {
+27 -         {
+28 -             test_simple_assign!(bool, $value);
+29 -             test_simple_assign!(i8, $value);
+30 -             test_simple_assign!(u8, $value);
+31 -             test_simple_assign!(i16, $value);
+32 -             test_simple_assign!(u16, $value);
+33 -             test_simple_assign!(i32, $value);
+34 -             test_simple_assign!(u32, $value);
+35 -             test_simple_assign!(i64, $value);
+36 -             test_simple_assign!(u64, $value);
+37 -             test_simple_assign!(f32, $value);
+38 -             test_simple_assign!(f64, $value);
+39 -             // Complex numbers and long doubles are not natively supported in Rust, skipping
+40 -         }
+41 -     };
+42 - }
+43 - 
+44 - struct S {
+45 -     a: [i16; 1024],
+46 - }
+47 - 
+48 - fn test_simple_assign() {
+49 -     test_simple_assign_arith!(0);
+50 -     test_simple_assign_arith!(1);
+10 +             static B: Atomic<$type> = Atomic::new($value as != 0);
+   |
+
+error[E0015]: cannot call non-const associated function `Atomic::<i8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+50 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+ 9 -             static A: Atomic<$type> = Atomic::new(0 as $type);
+ 9 +             static A: Atomic<$type> = Atomic::new(0 != 0 $type);
+   |
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |               static A: Atomic<$type> = Atomic::new(0 as $type);
+   |  ______________________________^
+10 | |             static B: Atomic<$type> = Atomic::new($value as $type);
+   | |___________________________________________________________^
+...
+51 |       test_simple_assign_arith!(2);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+10 -             static B: Atomic<$type> = Atomic::new($value as $type);
+11 -             if A.load(Ordering::SeqCst) != 0 {
+12 -                 abort();
+13 -             }
+14 -             if B.load(Ordering::SeqCst) != $value as $type {
+15 -                 abort();
+16 -             }
+17 -             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+19 -                 abort();
+20 -             }
+21 -         }
+22 -     };
+23 - }
+24 - 
+25 - macro_rules! test_simple_assign_arith {
+26 -     ($value:expr) => {
+27 -         {
+28 -             test_simple_assign!(bool, $value);
+29 -             test_simple_assign!(i8, $value);
+30 -             test_simple_assign!(u8, $value);
+31 -             test_simple_assign!(i16, $value);
+32 -             test_simple_assign!(u16, $value);
+33 -             test_simple_assign!(i32, $value);
+34 -             test_simple_assign!(u32, $value);
+35 -             test_simple_assign!(i64, $value);
+36 -             test_simple_assign!(u64, $value);
+37 -             test_simple_assign!(f32, $value);
+38 -             test_simple_assign!(f64, $value);
+39 -             // Complex numbers and long doubles are not natively supported in Rust, skipping
+40 -         }
+41 -     };
+42 - }
+43 - 
+44 - struct S {
+45 -     a: [i16; 1024],
+46 - }
+47 - 
+48 - fn test_simple_assign() {
+49 -     test_simple_assign_arith!(0);
+50 -     test_simple_assign_arith!(1);
+51 -     test_simple_assign_arith!(2);
+10 +             static B: Atomic<$type> = Atomic::new($value as != 0);
+   |
+
+error[E0015]: cannot call non-const associated function `Atomic::<i8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+51 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+52 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+ 9 -             static A: Atomic<$type> = Atomic::new(0 as $type);
+ 9 +             static A: Atomic<$type> = Atomic::new(0 != 0 $type);
+   |
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |               static A: Atomic<$type> = Atomic::new(0 as $type);
+   |  ______________________________^
+10 | |             static B: Atomic<$type> = Atomic::new($value as $type);
+   | |___________________________________________________________^
+...
+52 |       test_simple_assign_arith!(-1);
+   |       ----------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+10 -             static B: Atomic<$type> = Atomic::new($value as $type);
+11 -             if A.load(Ordering::SeqCst) != 0 {
+12 -                 abort();
+13 -             }
+14 -             if B.load(Ordering::SeqCst) != $value as $type {
+15 -                 abort();
+16 -             }
+17 -             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+19 -                 abort();
+20 -             }
+21 -         }
+22 -     };
+23 - }
+24 - 
+25 - macro_rules! test_simple_assign_arith {
+26 -     ($value:expr) => {
+27 -         {
+28 -             test_simple_assign!(bool, $value);
+29 -             test_simple_assign!(i8, $value);
+30 -             test_simple_assign!(u8, $value);
+31 -             test_simple_assign!(i16, $value);
+32 -             test_simple_assign!(u16, $value);
+33 -             test_simple_assign!(i32, $value);
+34 -             test_simple_assign!(u32, $value);
+35 -             test_simple_assign!(i64, $value);
+36 -             test_simple_assign!(u64, $value);
+37 -             test_simple_assign!(f32, $value);
+38 -             test_simple_assign!(f64, $value);
+39 -             // Complex numbers and long doubles are not natively supported in Rust, skipping
+40 -         }
+41 -     };
+42 - }
+43 - 
+44 - struct S {
+45 -     a: [i16; 1024],
+46 - }
+47 - 
+48 - fn test_simple_assign() {
+49 -     test_simple_assign_arith!(0);
+50 -     test_simple_assign_arith!(1);
+51 -     test_simple_assign_arith!(2);
+52 -     test_simple_assign_arith!(-1);
+10 +             static B: Atomic<$type> = Atomic::new($value as != 0);
+   |
+
+error[E0015]: cannot call non-const associated function `Atomic::<i8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+52 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+52 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+52 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0600]: cannot apply unary operator `-` to type `u8`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:52:31
+   |
+52 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u8`
+   |
+ 9 -             static A: Atomic<$type> = Atomic::new(0 as $type);
+10 -             static B: Atomic<$type> = Atomic::new($value as $type);
+ 9 +             static A: Atomic<u8::MAX $type);
+   |
+
+error[E0015]: cannot call non-const associated function `Atomic::<i16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+52 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+52 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+52 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0600]: cannot apply unary operator `-` to type `u16`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:52:31
+   |
+52 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u16`
+   |
+ 9 -             static A: Atomic<$type> = Atomic::new(0 as $type);
+10 -             static B: Atomic<$type> = Atomic::new($value as $type);
+ 9 +             static A: Atomic<u16::MAX $type);
+   |
+
+error[E0015]: cannot call non-const associated function `Atomic::<i32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+52 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+52 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+52 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0600]: cannot apply unary operator `-` to type `u32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:52:31
+   |
+52 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u32`
+   |
+ 9 -             static A: Atomic<$type> = Atomic::new(0 as $type);
+10 -             static B: Atomic<$type> = Atomic::new($value as $type);
+ 9 +             static A: Atomic<u32::MAX $type);
+   |
+
+error[E0015]: cannot call non-const associated function `Atomic::<i64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+52 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+52 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+52 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0600]: cannot apply unary operator `-` to type `u64`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:52:31
+   |
+52 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u64`
+   |
+ 9 -             static A: Atomic<$type> = Atomic::new(0 as $type);
+10 -             static B: Atomic<$type> = Atomic::new($value as $type);
+ 9 +             static A: Atomic<u64::MAX $type);
+   |
+
+error[E0015]: cannot call non-const associated function `Atomic::<f32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+52 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+52 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+52 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+52 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+ 9 -             static A: Atomic<$type> = Atomic::new(0 as $type);
+ 9 +             static A: Atomic<$type> = Atomic::new(0 != 0 $type);
+   |
+
+error[E0054]: cannot cast `i64` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |               static A: Atomic<$type> = Atomic::new(0 as $type);
+   |  ______________________________^
+10 | |             static B: Atomic<$type> = Atomic::new($value as $type);
+   | |___________________________________________________________^
+...
+53 |       test_simple_assign_arith!((1_u64 << 63) as i64);
+   |       ----------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+10 -             static B: Atomic<$type> = Atomic::new($value as $type);
+11 -             if A.load(Ordering::SeqCst) != 0 {
+12 -                 abort();
+13 -             }
+14 -             if B.load(Ordering::SeqCst) != $value as $type {
+15 -                 abort();
+16 -             }
+17 -             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+19 -                 abort();
+20 -             }
+21 -         }
+22 -     };
+23 - }
+24 - 
+25 - macro_rules! test_simple_assign_arith {
+26 -     ($value:expr) => {
+27 -         {
+28 -             test_simple_assign!(bool, $value);
+29 -             test_simple_assign!(i8, $value);
+30 -             test_simple_assign!(u8, $value);
+31 -             test_simple_assign!(i16, $value);
+32 -             test_simple_assign!(u16, $value);
+33 -             test_simple_assign!(i32, $value);
+34 -             test_simple_assign!(u32, $value);
+35 -             test_simple_assign!(i64, $value);
+36 -             test_simple_assign!(u64, $value);
+37 -             test_simple_assign!(f32, $value);
+38 -             test_simple_assign!(f64, $value);
+39 -             // Complex numbers and long doubles are not natively supported in Rust, skipping
+40 -         }
+41 -     };
+42 - }
+43 - 
+44 - struct S {
+45 -     a: [i16; 1024],
+46 - }
+47 - 
+48 - fn test_simple_assign() {
+49 -     test_simple_assign_arith!(0);
+50 -     test_simple_assign_arith!(1);
+51 -     test_simple_assign_arith!(2);
+52 -     test_simple_assign_arith!(-1);
+53 -     test_simple_assign_arith!((1_u64 << 63) as i64);
+10 +             static B: Atomic<$type> = Atomic::new($value as != 0);
+   |
+
+error[E0015]: cannot call non-const associated function `Atomic::<i8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |     test_simple_assign_arith!((1_u64 << 63) as i64);
+   |     ----------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+ 9 -             static A: Atomic<$type> = Atomic::new(0 as $type);
+ 9 +             static A: Atomic<$type> = Atomic::new(0 != 0 $type);
+   |
+
+error[E0054]: cannot cast `f64` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:30
+   |
+ 9 |               static A: Atomic<$type> = Atomic::new(0 as $type);
+   |  ______________________________^
+10 | |             static B: Atomic<$type> = Atomic::new($value as $type);
+   | |___________________________________________________________^
+...
+54 |       test_simple_assign_arith!(1.5);
+   |       ------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+10 -             static B: Atomic<$type> = Atomic::new($value as $type);
+11 -             if A.load(Ordering::SeqCst) != 0 {
+12 -                 abort();
+13 -             }
+14 -             if B.load(Ordering::SeqCst) != $value as $type {
+15 -                 abort();
+16 -             }
+17 -             A.store(B.load(Ordering::SeqCst), Ordering::SeqCst);
+18 -             if A.load(Ordering::SeqCst) != $value as $type {
+19 -                 abort();
+20 -             }
+21 -         }
+22 -     };
+23 - }
+24 - 
+25 - macro_rules! test_simple_assign_arith {
+26 -     ($value:expr) => {
+27 -         {
+28 -             test_simple_assign!(bool, $value);
+29 -             test_simple_assign!(i8, $value);
+30 -             test_simple_assign!(u8, $value);
+31 -             test_simple_assign!(i16, $value);
+32 -             test_simple_assign!(u16, $value);
+33 -             test_simple_assign!(i32, $value);
+34 -             test_simple_assign!(u32, $value);
+35 -             test_simple_assign!(i64, $value);
+36 -             test_simple_assign!(u64, $value);
+37 -             test_simple_assign!(f32, $value);
+38 -             test_simple_assign!(f64, $value);
+39 -             // Complex numbers and long doubles are not natively supported in Rust, skipping
+40 -         }
+41 -     };
+42 - }
+43 - 
+44 - struct S {
+45 -     a: [i16; 1024],
+46 - }
+47 - 
+48 - fn test_simple_assign() {
+49 -     test_simple_assign_arith!(0);
+50 -     test_simple_assign_arith!(1);
+51 -     test_simple_assign_arith!(2);
+52 -     test_simple_assign_arith!(-1);
+53 -     test_simple_assign_arith!((1_u64 << 63) as i64);
+54 -     test_simple_assign_arith!(1.5);
+10 +             static B: Atomic<$type> = Atomic::new($value as != 0);
+   |
+
+error[E0015]: cannot call non-const associated function `Atomic::<i8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u8>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u16>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<i64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<u64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f32>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<f64>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:39
+   |
+10 |             static B: Atomic<$type> = Atomic::new($value as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+54 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<usize>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+61 |         test_simple_assign!(usize, ptr_null as usize);
+   |         --------------------------------------------- in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0015]: cannot call non-const associated function `Atomic::<usize>::new` in statics
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:9:39
+   |
+ 9 |             static A: Atomic<$type> = Atomic::new(0 as $type);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+...
+62 |         test_simple_assign!(usize, ptr_i as usize);
+   |         ------------------------------------------ in this macro invocation
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+   = note: this error originates in the macro `test_simple_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unused variable: `val`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:99:12
+   |
+99 |     fn new(val: T) -> Self {
+   |            ^^^ help: if this is intentional, prefix it with an underscore: `_val`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 176 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0015, E0054, E0308, E0435, E0600.
+For more information about an error, try `rustc --explain E0015`.

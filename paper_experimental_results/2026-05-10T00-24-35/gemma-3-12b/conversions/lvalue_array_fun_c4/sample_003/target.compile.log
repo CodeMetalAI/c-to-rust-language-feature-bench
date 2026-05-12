@@ -1,0 +1,142 @@
+error[E0428]: the name `type_id` is defined multiple times
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_003/target.rs:14:1
+   |
+ 8 | / fn type_id<T>(_: &T) -> i32
+ 9 | | where
+10 | |     T: Fn(i32) -> i32,
+...  |
+13 | | }
+   | |_- previous definition of the value `type_id` here
+14 | / fn type_id<T>(_: &T) -> i32
+15 | | where
+16 | |     T: Fn(i32, i32) -> i32,
+...  |
+19 | | }
+   | |_^ `type_id` redefined here
+   |
+   = note: `type_id` must be defined only once in the value namespace of this module
+
+error[E0428]: the name `type_id` is defined multiple times
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_003/target.rs:20:1
+   |
+ 8 | / fn type_id<T>(_: &T) -> i32
+ 9 | | where
+10 | |     T: Fn(i32) -> i32,
+...  |
+13 | | }
+   | |_- previous definition of the value `type_id` here
+...
+20 | / fn type_id<T>(_: &T) -> i32
+21 | | where
+22 | |     T: Fn(i32) -> i32 + Fn(i32, i32) -> i32,
+...  |
+25 | | }
+   | |_^ `type_id` redefined here
+   |
+   = note: `type_id` must be defined only once in the value namespace of this module
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_003/target.rs:30:30
+   |
+30 |     let q1: fn(i32) -> i32 = &f1;
+   |             --------------   ^^^ expected fn pointer, found `&fn(i32) -> i32 {f1}`
+   |             |
+   |             expected due to this
+   |
+   = note: expected fn pointer `fn(_) -> _`
+               found reference `&fn(_) -> _ {f1}`
+help: consider removing the reference
+   |
+30 -     let q1: fn(i32) -> i32 = &f1;
+30 +     let q1: fn(i32) -> i32 = f1;
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_003/target.rs:33:16
+   |
+28 | fn main() {
+   |          - expected `()` because of default return type
+...
+33 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_003/target.rs:59:35
+   |
+59 |     let q2: fn(i32, i32) -> i32 = &f2;
+   |             -------------------   ^^^ expected fn pointer, found `&fn(i32, i32) -> i32 {f2}`
+   |             |
+   |             expected due to this
+   |
+   = note: expected fn pointer `fn(_, _) -> _`
+               found reference `&fn(_, _) -> _ {f2}`
+help: consider removing the reference
+   |
+59 -     let q2: fn(i32, i32) -> i32 = &f2;
+59 +     let q2: fn(i32, i32) -> i32 = f2;
+   |
+
+error[E0593]: function is expected to take 1 argument, but it takes 2 arguments
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_003/target.rs:61:16
+   |
+61 |     if type_id(&p2) != 2 {
+   |        ------- ^^^ expected function that takes 1 argument
+   |        |
+   |        required by a bound introduced by this call
+   |
+note: required by a bound in `type_id`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_003/target.rs:10:8
+   |
+ 8 | fn type_id<T>(_: &T) -> i32
+   |    ------- required by a bound in this function
+ 9 | where
+10 |     T: Fn(i32) -> i32,
+   |        ^^^^^^^^^^^^^^ required by this bound in `type_id`
+
+error[E0593]: function is expected to take 1 argument, but it takes 2 arguments
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_003/target.rs:64:16
+   |
+64 |     if type_id(&q2) != 2 {
+   |        ------- ^^^ expected function that takes 1 argument
+   |        |
+   |        required by a bound introduced by this call
+   |
+note: required by a bound in `type_id`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_003/target.rs:10:8
+   |
+ 8 | fn type_id<T>(_: &T) -> i32
+   |    ------- required by a bound in this function
+ 9 | where
+10 |     T: Fn(i32) -> i32,
+   |        ^^^^^^^^^^^^^^ required by this bound in `type_id`
+
+error[E0593]: function is expected to take 1 argument, but it takes 2 arguments
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_003/target.rs:79:16
+   |
+79 |     if type_id(&r2) != 2 {
+   |        ------- ^^^ expected function that takes 1 argument
+   |        |
+   |        required by a bound introduced by this call
+   |
+note: required by a bound in `type_id`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_003/target.rs:10:8
+   |
+ 8 | fn type_id<T>(_: &T) -> i32
+   |    ------- required by a bound in this function
+ 9 | where
+10 |     T: Fn(i32) -> i32,
+   |        ^^^^^^^^^^^^^^ required by this bound in `type_id`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_003/target.rs:86:5
+   |
+28 | fn main() {
+   |          - expected `()` because of default return type
+...
+86 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0308, E0428, E0593.
+For more information about an error, try `rustc --explain E0308`.

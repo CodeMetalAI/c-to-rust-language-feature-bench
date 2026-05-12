@@ -1,0 +1,123 @@
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:10:12
+   |
+10 |         if logn < 5 {
+   |            ^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:11:13
+   |
+11 |             logv[logn] = id;
+   |             ^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:11:18
+   |
+11 |             logv[logn] = id;
+   |                  ^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:12:13
+   |
+12 |             logn += 1;
+   |             ^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:17:9
+   |
+17 |         seen_f1 = 1;
+   |         ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:23:9
+   |
+23 |         seen_f2 = 1;
+   |         ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:29:9
+   |
+29 |         seen_f3 = 1;
+   |         ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:35:9
+   |
+35 |         seen_f4 = 1;
+   |         ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:43:12
+   |
+43 |         if seen_f1 == 0 || seen_f2 == 0 || seen_f3 == 0 || seen_f4 == 0 {
+   |            ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:43:28
+   |
+43 |         if seen_f1 == 0 || seen_f2 == 0 || seen_f3 == 0 || seen_f4 == 0 {
+   |                            ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:43:44
+   |
+43 |         if seen_f1 == 0 || seen_f2 == 0 || seen_f3 == 0 || seen_f4 == 0 {
+   |                                            ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:43:60
+   |
+43 |         if seen_f1 == 0 || seen_f2 == 0 || seen_f3 == 0 || seen_f4 == 0 {
+   |                                                            ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0277]: the type `[fn(i32, i32) -> i32 {target}]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:51:17
+   |
+51 |     let rc = pf[f1()](f2(), f3() + f4());
+   |                 ^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[fn(i32, i32) -> i32 {target}]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[fn(i32, i32) -> i32 {target}]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[fn(i32, i32) -> i32 {target}; 1]` to implement `Index<i32>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:72:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+72 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 14 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0434.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,52 @@
+error[E0432]: unresolved import `rand`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_5/sample_001/target.rs:1:5
+  |
+1 | use rand::Rng;
+  |     ^^^^ use of unresolved module or unlinked crate `rand`
+  |
+help: you might be missing a crate named `rand`, add it to your project and import it in your code
+  |
+1 + extern crate rand;
+  |
+
+error[E0432]: unresolved import `rand`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_5/sample_001/target.rs:2:5
+  |
+2 | use rand::SeedableRng;
+  |     ^^^^ use of unresolved module or unlinked crate `rand`
+  |
+help: you might be missing a crate named `rand`, add it to your project and import it in your code
+  |
+1 + extern crate rand;
+  |
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `rand`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_5/sample_001/target.rs:5:19
+  |
+5 |     let mut rng = rand::rngs::StdRng::seed_from_u64(seed as u64);
+  |                   ^^^^ use of unresolved module or unlinked crate `rand`
+  |
+  = help: you might be missing a crate named `rand`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_5/sample_001/target.rs:45:20
+   |
+37 | fn main() {
+   |          - expected `()` because of default return type
+...
+45 |             return 1;
+   |                    ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_5/sample_001/target.rs:70:5
+   |
+37 | fn main() {
+   |          - expected `()` because of default return type
+...
+70 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0432, E0433.
+For more information about an error, try `rustc --explain E0308`.

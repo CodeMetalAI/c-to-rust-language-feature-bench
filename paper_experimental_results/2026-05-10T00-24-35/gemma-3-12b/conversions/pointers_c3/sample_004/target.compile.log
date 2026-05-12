@@ -1,0 +1,71 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c3/sample_004/target.rs:15:31
+   |
+15 |     let nf1: fn(i32) -> i32 = std::ptr::null_mut();
+   |              --------------   ^^^^^^^^^^^^^^^^^^^^ expected fn pointer, found `*mut _`
+   |              |
+   |              expected due to this
+   |
+   = note: expected fn pointer `fn(i32) -> i32`
+             found raw pointer `*mut _`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c3/sample_004/target.rs:17:31
+   |
+17 |     let nf2: fn(i32) -> i32 = std::ptr::null_mut();
+   |              --------------   ^^^^^^^^^^^^^^^^^^^^ expected fn pointer, found `*mut _`
+   |              |
+   |              expected due to this
+   |
+   = note: expected fn pointer `fn(i32) -> i32`
+             found raw pointer `*mut _`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c3/sample_004/target.rs:29:14
+   |
+29 |     if n1 == px {
+   |              ^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut i32`
+                found reference `&{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c3/sample_004/target.rs:32:14
+   |
+32 |     if n2 == px {
+   |              ^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut i32`
+                found reference `&{integer}`
+
+error[E0599]: no method named `is_null` found for fn pointer `fn(i32) -> i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c3/sample_004/target.rs:36:12
+   |
+36 |     if nf1.is_null() {
+   |            ^^^^^^^ method not found in `fn(i32) -> i32`
+
+error[E0599]: no method named `is_null` found for fn pointer `fn(i32) -> i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c3/sample_004/target.rs:39:12
+   |
+39 |     if nf2.is_null() {
+   |            ^^^^^^^ method not found in `fn(i32) -> i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c3/sample_004/target.rs:65:5
+   |
+ 5 | fn main() {
+   |          - expected `()` because of default return type
+...
+65 |     0
+   |     ^ expected `()`, found integer
+
+error[E0606]: casting `&{integer}` as `*mut c_void` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c3/sample_004/target.rs:49:37
+   |
+49 |     let vx: *mut std::ffi::c_void = px as *mut std::ffi::c_void;
+   |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0308, E0599, E0606.
+For more information about an error, try `rustc --explain E0308`.

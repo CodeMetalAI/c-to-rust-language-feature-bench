@@ -1,0 +1,84 @@
+error[E0746]: return type cannot be a trait object without pointer indirection
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_001/target.rs:28:47
+   |
+28 | fn signal_alias(s: i32, handler: &Handler) -> dyn Fn(i32) -> i32 {
+   |                                               ^^^^^^^^^^^^^^^^^^ doesn't have a size known at compile-time
+   |
+help: consider returning an `impl Trait` instead of a `dyn Trait`
+   |
+28 - fn signal_alias(s: i32, handler: &Handler) -> dyn Fn(i32) -> i32 {
+28 + fn signal_alias(s: i32, handler: &Handler) -> impl Fn(i32) -> i32 {
+   |
+help: alternatively, box the return type, and wrap all of the returned values in `Box::new`
+   |
+28 ~ fn signal_alias(s: i32, handler: &Handler) -> Box<dyn Fn(i32) -> i32> {
+29 ~     Box::new(signal(s, handler))
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_001/target.rs:21:8
+   |
+21 |     if s & 1 {
+   |        ^^^^^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_001/target.rs:33:29
+   |
+33 |     let handler = signal(s, handler);
+   |                   ------    ^^^^^^^ expected `&Handler`, found `&dyn Fn(i32) -> i32`
+   |                   |
+   |                   arguments to this function are incorrect
+   |
+   = note: expected reference `&Handler`
+              found reference `&dyn Fn(i32) -> i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_001/target.rs:20:4
+   |
+20 | fn signal(s: i32, handler: &Handler) -> &dyn Fn(i32) -> i32 {
+   |    ^^^^^^         -----------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_001/target.rs:43:29
+   |
+43 |     let handler = signal(s, handler);
+   |                   ------    ^^^^^^^ expected `&Handler`, found `&dyn Fn(i32) -> i32`
+   |                   |
+   |                   arguments to this function are incorrect
+   |
+   = note: expected reference `&Handler`
+              found reference `&dyn Fn(i32) -> i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_001/target.rs:20:4
+   |
+20 | fn signal(s: i32, handler: &Handler) -> &dyn Fn(i32) -> i32 {
+   |    ^^^^^^         -----------------
+
+warning: value assigned to `hits` is never read
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_001/target.rs:48:13
+   |
+48 |     let mut hits = 0;
+   |             ^^^^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `hits` is never read
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_001/target.rs:55:5
+   |
+55 |     hits = 0;
+   |     ^^^^
+   |
+   = help: maybe it is overwritten before being read?
+
+warning: value assigned to `hits` is never read
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_001/target.rs:62:5
+   |
+62 |     hits = 0;
+   |     ^^^^
+   |
+   = help: maybe it is overwritten before being read?
+
+error: aborting due to 4 previous errors; 3 warnings emitted
+
+Some errors have detailed explanations: E0308, E0746.
+For more information about an error, try `rustc --explain E0308`.

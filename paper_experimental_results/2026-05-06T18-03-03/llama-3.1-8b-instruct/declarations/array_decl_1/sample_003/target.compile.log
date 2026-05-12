@@ -1,0 +1,310 @@
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:68:29
+   |
+68 |         let mut vla1: [f32; n1] = [0.0; n1];
+   |                             ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+65 -         let n1 = pos(11);
+65 +         const n1: /* Type */ = pos(11);
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:68:41
+   |
+68 |         let mut vla1: [f32; n1] = [0.0; n1];
+   |                                         ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+65 -         let n1 = pos(11);
+65 +         const n1: /* Type */ = pos(11);
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:69:36
+   |
+69 |         let mut vla2: [*const f32; n2] = [std::ptr::null(); n2];
+   |                                    ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+66 -         let n2 = pos(17);
+66 +         const n2: /* Type */ = pos(17);
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:69:61
+   |
+69 |         let mut vla2: [*const f32; n2] = [std::ptr::null(); n2];
+   |                                                             ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+66 -         let n2 = pos(17);
+66 +         const n2: /* Type */ = pos(17);
+   |
+
+error[E0425]: cannot find value `calls` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:4:5
+   |
+ 4 |     calls += 1;
+   |     ^^^^^ help: a static with a similar name exists: `CALLS`
+...
+15 | static mut CALLS: i32 = 0;
+   | -------------------------- similarly named static `CALLS` defined here
+
+warning: unused import: `std::mem`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary parentheses around assigned value
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:23:17
+   |
+23 |         FA[i] = (i as f32 + 1.0);
+   |                 ^              ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+23 -         FA[i] = (i as f32 + 1.0);
+23 +         FA[i] = i as f32 + 1.0;
+   |
+
+warning: unnecessary parentheses around assigned value
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:26:22
+   |
+26 |         BACKING[i] = (100.0 + i as f32);
+   |                      ^                ^
+   |
+help: remove these parentheses
+   |
+26 -         BACKING[i] = (100.0 + i as f32);
+26 +         BACKING[i] = 100.0 + i as f32;
+   |
+
+warning: unnecessary parentheses around assigned value
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:34:14
+   |
+34 |         s += (p[i] as i32);
+   |              ^           ^
+   |
+help: remove these parentheses
+   |
+34 -         s += (p[i] as i32);
+34 +         s += p[i] as i32;
+   |
+
+warning: unnecessary parentheses around assigned value
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:42:14
+   |
+42 |         s += (*pp[i] as i32);
+   |              ^             ^
+   |
+help: remove these parentheses
+   |
+42 -         s += (*pp[i] as i32);
+42 +         s += *pp[i] as i32;
+   |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:79:9
+   |
+79 | /         unsafe {
+80 | |             if CALLS!= 2 {
+81 | |                 return 3;
+...  |
+88 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:57:16
+   |
+53 | fn main() {
+   |          - expected `()` because of default return type
+...
+57 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0277]: the type `[f32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:72:26
+   |
+72 |             vla1[i] = FA[i] * 2.0;
+   |                          ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[f32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[f32]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[f32; 11]` to implement `Index<i32>`
+
+error[E0277]: the type `[*const f32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:76:27
+   |
+76 |             vla2[i] = AFP[i];
+   |                           ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[*const f32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[*const f32]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[*const f32; 17]` to implement `Index<i32>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:84:54
+   |
+84 |             let span = (std::mem::size_of::<f32>() * (n1 - 1)) as usize;
+   |                                                      ^^^^^^^^ expected `usize`, found `i32`
+
+error[E0277]: cannot multiply `usize` by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:84:52
+   |
+84 |             let span = (std::mem::size_of::<f32>() * (n1 - 1)) as usize;
+   |                                                    ^ no implementation for `usize * i32`
+   |
+   = help: the trait `Mul<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Mul<Rhs>`:
+             `&usize` implements `Mul<usize>`
+             `&usize` implements `Mul`
+             `usize` implements `Mul<&usize>`
+             `usize` implements `Mul`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:85:34
+   |
+85 |             if span!= (n1 - 1) * std::mem::size_of::<f32>() {
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:85:23
+   |
+85 |             if span!= (n1 - 1) * std::mem::size_of::<f32>() {
+   |                ----   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `usize`, found `i32`
+   |                |
+   |                expected because this is `usize`
+   |
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+85 |             if span!= ((n1 - 1) * std::mem::size_of::<f32>()).try_into().unwrap() {
+   |                       +                                     +++++++++++++++++++++
+
+error[E0277]: cannot multiply `i32` by `usize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:85:32
+   |
+85 |             if span!= (n1 - 1) * std::mem::size_of::<f32>() {
+   |                                ^ no implementation for `i32 * usize`
+   |
+   = help: the trait `Mul<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Mul<Rhs>`:
+             `&i32` implements `Mul<i32>`
+             `&i32` implements `Mul`
+             `i32` implements `Mul<&i32>`
+             `i32` implements `Mul`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:90:39
+   |
+90 |         if sum_ints_from_float(&vla1, n1)!= (2 + 4 + 6 + 8 + 10 + 12 + 14 + 16 + 18 + 20 + 22) {
+   |            -------------------        ^^ expected `usize`, found `i32`
+   |            |
+   |            arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:31:4
+   |
+31 | fn sum_ints_from_float(p: &[f32], n: usize) -> i32 {
+   |    ^^^^^^^^^^^^^^^^^^^            --------
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+90 |         if sum_ints_from_float(&vla1, n1.try_into().unwrap())!= (2 + 4 + 6 + 8 + 10 + 12 + 14 + 16 + 18 + 20 + 22) {
+   |                                         ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:94:36
+   |
+94 |         if sum_pointed_ints(&vla2, n2)!= (100 + 101 + 102 + 103 + 104 + 105 + 106 + 107 + 108 + 109 + 110 + 111 + 112 + 113 + 114 + 115 + 116) {
+   |            ----------------        ^^ expected `usize`, found `i32`
+   |            |
+   |            arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:39:4
+   |
+39 | fn sum_pointed_ints(pp: &[*const f32], n: usize) -> i32 {
+   |    ^^^^^^^^^^^^^^^^                    --------
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+94 |         if sum_pointed_ints(&vla2, n2.try_into().unwrap())!= (100 + 101 + 102 + 103 + 104 + 105 + 106 + 107 + 108 + 109 + 110 + 111 + 112 + 113 + 114 + 115 + 116) {
+   |                                      ++++++++++++++++++++
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:23:9
+   |
+23 |         FA[i] = (i as f32 + 1.0);
+   |         ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:26:9
+   |
+26 |         BACKING[i] = (100.0 + i as f32);
+   |         ^^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:27:9
+   |
+27 |         AFP[i] = &BACKING[i];
+   |         ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:27:19
+   |
+27 |         AFP[i] = &BACKING[i];
+   |                   ^^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:42:15
+   |
+42 |         s += (*pp[i] as i32);
+   |               ^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:49:15
+   |
+49 |     let s2 = (*afp2[0] as i32) + (*afp2[16] as i32);
+   |               ^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_003/target.rs:49:35
+   |
+49 |     let s2 = (*afp2[0] as i32) + (*afp2[16] as i32);
+   |                                   ^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error: aborting due to 23 previous errors; 5 warnings emitted
+
+Some errors have detailed explanations: E0133, E0277, E0308, E0425, E0435.
+For more information about an error, try `rustc --explain E0133`.

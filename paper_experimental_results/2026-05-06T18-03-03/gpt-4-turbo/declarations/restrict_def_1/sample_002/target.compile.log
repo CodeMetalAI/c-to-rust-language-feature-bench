@@ -1,0 +1,56 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_1/sample_002/target.rs:15:13
+   |
+15 |     let a = unsafe { choose_view(&mut BANK_A, which_a) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_1/sample_002/target.rs:16:13
+   |
+16 |     let b = unsafe { choose_view(&mut BANK_B, which_b) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_1/sample_002/target.rs:17:13
+   |
+17 |     let c = unsafe { &mut C };
+   |             ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_1/sample_002/target.rs:39:5
+   |
+39 | /     unsafe {
+40 | |         if BANK_A.left[0] != 101 {
+41 | |             std::process::exit(4);
+...  |
+51 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_1/sample_002/target.rs:60:5
+   |
+60 | /     unsafe {
+61 | |         if which != 0 {
+62 | |             &mut bank.right
+63 | |         } else {
+...  |
+66 | |     }
+   | |_____^
+
+error[E0784]: union expressions should have exactly one field
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_1/sample_002/target.rs:2:31
+  |
+2 |     static mut BANK_A: Bank = Bank {
+  |                               ^^^^
+
+error[E0784]: union expressions should have exactly one field
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_1/sample_002/target.rs:6:31
+  |
+6 |     static mut BANK_B: Bank = Bank {
+  |                               ^^^^
+
+error: aborting due to 7 previous errors
+
+For more information about this error, try `rustc --explain E0784`.

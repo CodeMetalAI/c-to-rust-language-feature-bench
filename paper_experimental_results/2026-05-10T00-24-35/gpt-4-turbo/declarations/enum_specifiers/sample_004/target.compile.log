@@ -1,0 +1,63 @@
+error[E0507]: cannot move out of `*cp` which is behind a mutable reference
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/enum_specifiers/sample_004/target.rs:34:8
+   |
+34 |     if *cp as i32 != Hue::Claret as i32 {
+   |        ^^^ move occurs because `*cp` has type `Hue`, which does not implement the `Copy` trait
+   |
+note: if `Hue` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/enum_specifiers/sample_004/target.rs:1:1
+   |
+ 1 | enum Hue {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+34 |     if *cp as i32 != Hue::Claret as i32 {
+   |        --- you could clone this value
+
+error[E0507]: cannot move out of `*cp` which is behind a mutable reference
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/enum_specifiers/sample_004/target.rs:37:8
+   |
+37 |     if *cp as i32 == Hue::Burgundy as i32 {
+   |        ^^^ move occurs because `*cp` has type `Hue`, which does not implement the `Copy` trait
+   |
+note: if `Hue` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/enum_specifiers/sample_004/target.rs:1:1
+   |
+ 1 | enum Hue {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+37 |     if *cp as i32 == Hue::Burgundy as i32 {
+   |        --- you could clone this value
+
+error[E0507]: cannot move out of `*cp` which is behind a mutable reference
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/enum_specifiers/sample_004/target.rs:41:19
+   |
+41 |     if check_vals(*cp) != 12 {
+   |                   ^^^ move occurs because `*cp` has type `Hue`, which does not implement the `Copy` trait
+   |
+note: if `Hue` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/enum_specifiers/sample_004/target.rs:1:1
+   |
+ 1 | enum Hue {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+41 |     if check_vals(*cp) != 12 {
+   |                   --- you could clone this value
+
+error[E0507]: cannot move out of `*cp` which is behind a mutable reference
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/enum_specifiers/sample_004/target.rs:46:19
+   |
+46 |     if check_vals(*cp) != 13 {
+   |                   ^^^ move occurs because `*cp` has type `Hue`, which does not implement the `Copy` trait
+   |
+note: if `Hue` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/enum_specifiers/sample_004/target.rs:1:1
+   |
+ 1 | enum Hue {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+46 |     if check_vals(*cp) != 13 {
+   |                   --- you could clone this value
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0507`.

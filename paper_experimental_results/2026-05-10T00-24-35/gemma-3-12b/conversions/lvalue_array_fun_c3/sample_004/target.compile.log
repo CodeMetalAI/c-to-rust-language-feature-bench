@@ -1,0 +1,22 @@
+error[E0277]: the size for values of type `[u8]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_004/target.rs:29:16
+   |
+29 |     if TYPE_ID(s) != 3 {
+   |        ------- ^ doesn't have a size known at compile-time
+   |        |
+   |        required by a bound introduced by this call
+   |
+   = help: the trait `Sized` is not implemented for `[u8]`
+note: required by an implicit `Sized` bound in `TYPE_ID`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_004/target.rs:49:12
+   |
+49 | fn TYPE_ID<T>(_: &T) -> i32 {
+   |            ^ required by the implicit `Sized` requirement on this type parameter in `TYPE_ID`
+help: consider relaxing the implicit `Sized` restriction
+   |
+49 | fn TYPE_ID<T: ?Sized>(_: &T) -> i32 {
+   |             ++++++++
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0277`.

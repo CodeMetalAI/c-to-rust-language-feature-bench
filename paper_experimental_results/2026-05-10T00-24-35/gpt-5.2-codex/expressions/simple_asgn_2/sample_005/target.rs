@@ -1,0 +1,19 @@
+use std::process::exit;
+
+fn main() {
+    let i: i32 = 100;
+    let c: i8 = i as i8;
+    let l: i64 = c as i64;
+
+    if c != i as i8 {
+        exit(1);
+    }
+    if l != c as i64 {
+        exit(2);
+    }
+    if l != (i as i8) as i64 {
+        exit(3);
+    }
+
+    exit(0);
+}

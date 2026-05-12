@@ -1,0 +1,37 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/initialization_4/sample_001/target.rs:26:28
+   |
+26 |             let offset_1 = unsafe { *(p as *const i32).offset(1) };
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/initialization_4/sample_001/target.rs:31:24
+   |
+31 |         let offset_4 = unsafe { *(p as *const i32).offset(4) };
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/initialization_4/sample_001/target.rs:35:24
+   |
+35 |         let offset_7 = unsafe { *(p as *const i32).offset(7) };
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/initialization_4/sample_001/target.rs:23:21
+   |
+23 |         if p + 1 != &z[0][1] {
+   |            -----    ^^^^^^^^ expected `i32`, found `&i32`
+   |            |
+   |            expected because this is `i32`
+   |
+help: consider removing the borrow
+   |
+23 -         if p + 1 != &z[0][1] {
+23 +         if p + 1 != z[0][1] {
+   |
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

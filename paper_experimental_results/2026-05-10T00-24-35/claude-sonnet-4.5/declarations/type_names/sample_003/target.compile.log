@@ -1,0 +1,87 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/type_names/sample_003/target.rs:5:9
+  |
+5 |         unsafe { G_ARR.as_mut_ptr().offset(1) }
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/type_names/sample_003/target.rs:29:29
+   |
+29 |         let p: *const i32 = unsafe { &G_ARR[0] as *const i32 };
+   |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/type_names/sample_003/target.rs:30:12
+   |
+30 |         if unsafe { *p } != 1 {
+   |            ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/type_names/sample_003/target.rs:37:29
+   |
+37 |         let q: *const i32 = unsafe { [&G_ARR[0] as *const i32, &G_ARR[1] as *const i32, &G_ARR[2] as *const i32][2] };
+   |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/type_names/sample_003/target.rs:38:12
+   |
+38 |         if unsafe { *q } != 3 {
+   |            ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/type_names/sample_003/target.rs:45:29
+   |
+45 |         let pa: &[i32; 3] = unsafe { &G_ARR };
+   |                             ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/type_names/sample_003/target.rs:54:28
+   |
+54 |         let r = use_vla(n, unsafe { &G_ARR });
+   |                            ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/type_names/sample_003/target.rs:63:12
+   |
+63 |         if unsafe { *pf() } != 2 {
+   |            ^^^^^^^^^^^^^^^^
+
+warning: creating a mutable reference to mutable static
+ --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/type_names/sample_003/target.rs:5:18
+  |
+5 |         unsafe { G_ARR.as_mut_ptr().offset(1) }
+  |                  ^^^^^^^^^^^^^^^^^^ mutable reference to mutable static
+  |
+  = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+  = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+  = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/type_names/sample_003/target.rs:45:38
+   |
+45 |         let pa: &[i32; 3] = unsafe { &G_ARR };
+   |                                      ^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+45 |         let pa: &[i32; 3] = unsafe { &raw const G_ARR };
+   |                                       +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/type_names/sample_003/target.rs:54:37
+   |
+54 |         let r = use_vla(n, unsafe { &G_ARR });
+   |                                     ^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+54 |         let r = use_vla(n, unsafe { &raw const G_ARR });
+   |                                      +++++++++
+
+error: aborting due to 8 previous errors; 3 warnings emitted

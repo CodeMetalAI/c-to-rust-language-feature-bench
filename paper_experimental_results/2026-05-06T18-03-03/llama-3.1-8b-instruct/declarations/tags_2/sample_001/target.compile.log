@@ -1,0 +1,69 @@
+error[E0428]: the name `S2` is defined multiple times
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/tags_2/sample_001/target.rs:11:1
+   |
+ 2 | struct S2;
+   | ---------- previous definition of the type `S2` here
+...
+11 | struct S2 {
+   | ^^^^^^^^^ `S2` redefined here
+   |
+   = note: `S2` must be defined only once in the type namespace of this module
+
+error[E0106]: missing lifetime specifier
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/tags_2/sample_001/target.rs:7:17
+  |
+7 |     s2p: Option<&S2>,
+  |                 ^ expected named lifetime parameter
+  |
+help: consider introducing a named lifetime parameter
+  |
+5 ~ struct S1<'a> {
+6 |     v1: i32,
+7 ~     s2p: Option<&'a S2>,
+  |
+
+error[E0106]: missing lifetime specifier
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/tags_2/sample_001/target.rs:13:17
+   |
+13 |     s1p: Option<&S1>,
+   |                 ^ expected named lifetime parameter
+   |
+help: consider introducing a named lifetime parameter
+   |
+11 ~ struct S2<'a> {
+12 |     v2: i32,
+13 ~     s1p: Option<&'a S1>,
+   |
+
+error[E0560]: struct `S2` has no field named `v2`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/tags_2/sample_001/target.rs:19:22
+   |
+19 |     let mut b = S2 { v2: 20, s1p: None };
+   |                      ^^ `S2` does not have this field
+   |
+   = note: all struct fields are already assigned
+
+error[E0560]: struct `S2` has no field named `s1p`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/tags_2/sample_001/target.rs:19:30
+   |
+19 |     let mut b = S2 { v2: 20, s1p: None };
+   |                              ^^^ `S2` does not have this field
+   |
+   = note: all struct fields are already assigned
+
+error[E0609]: no field `s1p` on type `S2`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/tags_2/sample_001/target.rs:23:7
+   |
+23 |     b.s1p = Some(&a);
+   |       ^^^ unknown field
+
+error[E0609]: no field `s1p` on type `S2`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/tags_2/sample_001/target.rs:30:10
+   |
+30 |     if b.s1p.as_ref().unwrap().v1 != 10 {
+   |          ^^^ unknown field
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0106, E0428, E0560, E0609.
+For more information about an error, try `rustc --explain E0106`.

@@ -1,0 +1,93 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_4b/sample_005/target.rs:15:9
+   |
+15 |         unsafe { return Some(Vec::from_raw_parts(POOL.as_ptr().add(OFF) as *mut u8, 0, 0)); }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_4b/sample_005/target.rs:18:8
+   |
+18 |     if unsafe { OFF + n > POOL.len() } {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_4b/sample_005/target.rs:22:5
+   |
+22 | /     unsafe {
+23 | |         let p = POOL.as_ptr().add(OFF) as *mut u8;
+24 | |         OFF += n;
+...  |
+30 | |         Some(Vec::from_raw_parts(p, n, n))
+31 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_4b/sample_005/target.rs:36:13
+   |
+36 |     let v = unsafe { Vec::from_raw_parts(bytes.as_ptr() as *mut f32, n, n) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_4b/sample_005/target.rs:74:9
+   |
+74 |     if (unsafe { H } & 1) == 0 {
+   |         ^^^^^^^^^^^^
+
+warning: variable `h` is assigned to, but never used
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_4b/sample_005/target.rs:26:17
+   |
+26 |         let mut h = H;
+   |                 ^
+   |
+   = note: consider using `_h` instead
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+help: you might have meant to pattern match on the similarly named constant `H`
+   |
+26 -         let mut h = H;
+26 +         let mut H = H;
+   |
+
+warning: value assigned to `h` is never read
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_4b/sample_005/target.rs:28:9
+   |
+28 |         h *= 0x5851f42d4c957f2d;
+   |         ^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_4b/sample_005/target.rs:74:9
+   |
+74 |     if (unsafe { H } & 1) == 0 {
+   |         ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error[E0596]: cannot borrow `a.v` as mutable, as `a` is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_4b/sample_005/target.rs:63:14
+   |
+63 |     fill_vec(&mut a.v, 1.0);
+   |              ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+56 |     let mut a = new_vector(16).expect("Failed to allocate vector a");
+   |         +++
+
+error[E0596]: cannot borrow `b.v` as mutable, as `b` is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_4b/sample_005/target.rs:64:14
+   |
+64 |     fill_vec(&mut b.v, 100.0);
+   |              ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+57 |     let mut b = new_vector(16).expect("Failed to allocate vector b");
+   |         +++
+
+error: aborting due to 7 previous errors; 3 warnings emitted
+
+For more information about this error, try `rustc --explain E0596`.

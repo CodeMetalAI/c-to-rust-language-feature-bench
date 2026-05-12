@@ -1,0 +1,30 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c5/sample_003/target.rs:16:16
+   |
+11 | fn main() {
+   |          - expected `()` because of default return type
+...
+16 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c5/sample_003/target.rs:51:14
+   |
+51 |     if ui == ud {
+   |              ^^ expected `*const i32`, found `*const f64`
+   |
+   = note: expected raw pointer `*const i32`
+              found raw pointer `*const f64`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c5/sample_003/target.rs:56:18
+   |
+56 |     assert!(ui < ud);
+   |                  ^^ expected `*const i32`, found `*const f64`
+   |
+   = note: expected raw pointer `*const i32`
+              found raw pointer `*const f64`
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

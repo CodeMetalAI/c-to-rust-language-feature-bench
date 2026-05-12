@@ -1,0 +1,23 @@
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_4/sample_002/target.rs:2:33
+  |
+2 |     let p: [&'static f64; 7] = [1e0, 1e1, 1e2, 1e3, 1e4, 1e5, 1e6];
+  |                                 ^^^ expected `&f64`, found floating-point number
+  |
+help: consider borrowing here
+  |
+2 |     let p: [&'static f64; 7] = [&1e0, 1e1, 1e2, 1e3, 1e4, 1e5, 1e6];
+  |                                 +
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_4/sample_002/target.rs:5:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+5 |         return 1;
+  |                ^ expected `()`, found integer
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

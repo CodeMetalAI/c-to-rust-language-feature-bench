@@ -1,0 +1,110 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_004/target.rs:10:8
+   |
+10 |     if v & 1 {
+   |        ^^^^^ expected `bool`, found `i32`
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_004/target.rs:58:8
+   |
+58 |     if *b.p_to_const!= 10 {
+   |        ^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_004/target.rs:63:8
+   |
+63 |     if *b.p_to_const!= 21 {
+   |        ^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_004/target.rs:68:8
+   |
+68 |     if *b.p_to_const!= 21 {
+   |        ^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_004/target.rs:72:5
+   |
+72 |     *b.const_p += 5;
+   |     ^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_004/target.rs:77:5
+   |
+77 |     *b.const_p_via_typedef += 7;
+   |     ^^^^^^^^^^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_004/target.rs:86:8
+   |
+86 |     if *b.p_to_const!= 21 {
+   |        ^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0594]: cannot assign to `*b.const_p`, which is behind a `*const` pointer
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_004/target.rs:72:5
+   |
+72 |     *b.const_p += 5;
+   |     ^^^^^^^^^^^^^^^ cannot assign
+
+error[E0594]: cannot assign to `*b.const_p_via_typedef`, which is behind a `*const` pointer
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_004/target.rs:77:5
+   |
+77 |     *b.const_p_via_typedef += 7;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot assign
+
+error[E0382]: use of moved value: `b.const_p_via_typedef`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_004/target.rs:77:5
+   |
+48 |     let mut b = Bundle {
+   |         ----- move occurs because `b` has type `Bundle`, which does not implement the `Copy` trait
+...
+54 |     if check_bundle(b, &x as *const i32)!= 0 {
+   |                     - value moved here
+...
+77 |     *b.const_p_via_typedef += 7;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ value used here after move
+
+error[E0382]: use of moved value: `b`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_004/target.rs:86:8
+   |
+48 |     let mut b = Bundle {
+   |         ----- move occurs because `b` has type `Bundle`, which does not implement the `Copy` trait
+...
+82 |     if check_bundle(b, &x as *const i32)!= 0 {
+   |                     - value moved here
+...
+86 |     if *b.p_to_const!= 21 {
+   |        ^^^^^^^^^^^^^ value used here after move
+   |
+note: consider changing this parameter type in function `check_bundle` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_004/target.rs:29:20
+   |
+29 | fn check_bundle(b: Bundle, expected_const_p_target: *const i32) -> i32 {
+   |    ------------    ^^^^^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `Bundle` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_004/target.rs:2:1
+   |
+ 2 | struct Bundle {
+   | ^^^^^^^^^^^^^ consider implementing `Clone` for this type
+...
+82 |     if check_bundle(b, &x as *const i32)!= 0 {
+   |                     - you could clone this value
+
+error: aborting due to 11 previous errors
+
+Some errors have detailed explanations: E0133, E0308, E0382, E0594.
+For more information about an error, try `rustc --explain E0133`.

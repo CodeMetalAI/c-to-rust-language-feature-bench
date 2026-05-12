@@ -1,0 +1,29 @@
+error[E0369]: binary operation `!=` cannot be applied to type `fn(i32) -> i32 {f1}`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/lvalue_array_fun_c4/sample_003/target.rs:13:11
+   |
+13 |     if p1 != q1 {
+   |        -- ^^ -- fn(i32) -> i32 {f1}
+   |        |
+   |        fn(i32) -> i32 {f1}
+   |
+help: use parentheses to call these
+   |
+13 |     if p1(/* i32 */) != q1(/* i32 */) {
+   |          +++++++++++      +++++++++++
+
+error[E0369]: binary operation `!=` cannot be applied to type `fn(i32, i32) -> i32 {f2}`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/lvalue_array_fun_c4/sample_003/target.rs:32:11
+   |
+32 |     if p2 != q2 {
+   |        -- ^^ -- fn(i32, i32) -> i32 {f2}
+   |        |
+   |        fn(i32, i32) -> i32 {f2}
+   |
+help: use parentheses to call these
+   |
+32 |     if p2(/* i32 */, /* i32 */) != q2(/* i32 */, /* i32 */) {
+   |          ++++++++++++++++++++++      ++++++++++++++++++++++
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0369`.

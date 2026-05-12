@@ -1,0 +1,58 @@
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_1/sample_002/target.rs:6:14
+  |
+6 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+error[E0599]: no method named `try_into` found for slice `[u8]` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_1/sample_002/target.rs:21:52
+    |
+ 21 |     let i = i32::from_le_bytes(v1.union_part[0..4].try_into().unwrap());
+    |                                                    ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[u8]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 21 -     let i = i32::from_le_bytes(v1.union_part[0..4].try_into().unwrap());
+ 21 +     let i = i32::from_le_bytes(v1.union_part[0..4].into().unwrap());
+    |
+
+error[E0599]: no method named `try_into` found for slice `[u8]` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_1/sample_002/target.rs:27:52
+    |
+ 27 |     let k = i64::from_le_bytes(v1.union_part[0..8].try_into().unwrap());
+    |                                                    ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[u8]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 27 -     let k = i64::from_le_bytes(v1.union_part[0..8].try_into().unwrap());
+ 27 +     let k = i64::from_le_bytes(v1.union_part[0..8].into().unwrap());
+    |
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0277, E0599.
+For more information about an error, try `rustc --explain E0277`.

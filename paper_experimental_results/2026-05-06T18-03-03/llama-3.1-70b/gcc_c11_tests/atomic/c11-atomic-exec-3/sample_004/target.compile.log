@@ -1,0 +1,229 @@
+warning: unused imports: `AtomicI16`, `AtomicI32`, `AtomicI64`, `AtomicI8`, `AtomicIsize`, `AtomicU16`, `AtomicU32`, `AtomicU64`, `AtomicU8`, and `AtomicUsize`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:1:25
+  |
+1 | use std::sync::atomic::{AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicIsize, AtomicU8, AtomicU16, AtomicU32, AtomicU64, AtomicUsize, Orderi...
+  |                         ^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:5:47
+     |
+   5 |     let a = std::sync::atomic::AtomicPtr::new(&value);
+     |             --------------------------------- ^^^^^^ types differ in mutability
+     |             |
+     |             arguments to this function are incorrect
+     |
+     = note: expected raw pointer `*mut _`
+                  found reference `&T`
+note: associated function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:1486:18
+     |
+1486 |     pub const fn new(p: *mut T) -> AtomicPtr<T> {
+     |                  ^^^
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:6:47
+     |
+   6 |     let b = std::sync::atomic::AtomicPtr::new(&value);
+     |             --------------------------------- ^^^^^^ types differ in mutability
+     |             |
+     |             arguments to this function are incorrect
+     |
+     = note: expected raw pointer `*mut _`
+                  found reference `&T`
+note: associated function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:1486:18
+     |
+1486 |     pub const fn new(p: *mut T) -> AtomicPtr<T> {
+     |                  ^^^
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:8:35
+  |
+8 |     if a.load(Ordering::SeqCst)!= &value {
+  |                                   ^^^^^^ types differ in mutability
+  |
+  = note: expected raw pointer `*mut _`
+               found reference `&T`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:11:35
+   |
+11 |     if b.load(Ordering::SeqCst)!= &value {
+   |                                   ^^^^^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut _`
+                found reference `&T`
+
+error[E0599]: no method named `fetch_add` found for struct `AtomicPtr<T>` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:15:7
+   |
+15 |     a.fetch_add(&value, Ordering::SeqCst);
+   |       ^^^^^^^^^
+   |
+help: there is a method `fetch_and` with a similar name
+   |
+15 -     a.fetch_add(&value, Ordering::SeqCst);
+15 +     a.fetch_and(&value, Ordering::SeqCst);
+   |
+
+error[E0599]: no method named `fetch_sub` found for struct `AtomicPtr<T>` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:16:7
+   |
+16 |     b.fetch_sub(&value, Ordering::SeqCst);
+   |       ^^^^^^^^^
+   |
+help: there is a method `fetch_ptr_sub` with a similar name
+   |
+16 |     b.fetch_ptr_sub(&value, Ordering::SeqCst);
+   |             ++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:18:35
+   |
+18 |     if a.load(Ordering::SeqCst)!= &(value + value) {
+   |                                   ^^^^^^^^^^^^^^^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut _`
+                found reference `&T`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:21:35
+   |
+21 |     if b.load(Ordering::SeqCst)!= &(value - value) {
+   |                                   ^^^^^^^^^^^^^^^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut _`
+                found reference `&T`
+
+error[E0600]: cannot apply unary operator `-` to type `T`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:28:17
+   |
+28 |     test_incdec(-value);
+   |                 ^^^^^^ cannot apply unary operator `-`
+   |
+help: consider further restricting type parameter `T` with trait `Neg`
+   |
+26 | fn test_all_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::ops::Not + std::ops::AddAssign + std::ops::SubAssign + std::ops::Not<Output = T> + std::fmt::Debug + std::ops::Neg>(value: T) {
+   |                                                                                                                                                                                                    +++++++++++++++
+
+error[E0277]: the trait bound `{float}: Not` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:39:27
+   |
+39 |     test_all_incdec_arith(1.5);
+   |     --------------------- ^^^ the trait `Not` is not implemented for `{float}`
+   |     |
+   |     required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `Not`:
+             &i128
+             &i16
+             &i32
+             &i64
+             &i8
+             &isize
+             &u128
+             &u16
+           and 16 others
+note: required by a bound in `test_all_incdec_arith`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:26:92
+   |
+26 | ...t = T> + std::ops::Sub<Output = T> + std::ops::Not + std::ops::AddAssign + std::ops::SubAssign + std::ops::Not<Output = T> + std::fmt::Deb...
+   |                                         ^^^^^^^^^^^^^ required by this bound in `test_all_incdec_arith`
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:44:28
+     |
+  44 |     let a = AtomicPtr::new(&ia[1]);
+     |             -------------- ^^^^^^ types differ in mutability
+     |             |
+     |             arguments to this function are incorrect
+     |
+     = note: expected raw pointer `*mut _`
+                  found reference `&{integer}`
+note: associated function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:1486:18
+     |
+1486 |     pub const fn new(p: *mut T) -> AtomicPtr<T> {
+     |                  ^^^
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:45:28
+     |
+  45 |     let b = AtomicPtr::new(&ia[1]);
+     |             -------------- ^^^^^^ types differ in mutability
+     |             |
+     |             arguments to this function are incorrect
+     |
+     = note: expected raw pointer `*mut _`
+                  found reference `&{integer}`
+note: associated function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:1486:18
+     |
+1486 |     pub const fn new(p: *mut T) -> AtomicPtr<T> {
+     |                  ^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:47:35
+   |
+47 |     if a.load(Ordering::SeqCst)!= &ia[1] {
+   |                                   ^^^^^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut _`
+                found reference `&{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:50:35
+   |
+50 |     if b.load(Ordering::SeqCst)!= &ia[1] {
+   |                                   ^^^^^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut _`
+                found reference `&{integer}`
+
+error[E0599]: no method named `fetch_add` found for struct `AtomicPtr<T>` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:54:7
+   |
+54 |     a.fetch_add(1, Ordering::SeqCst);
+   |       ^^^^^^^^^
+   |
+help: there is a method `fetch_and` with a similar name
+   |
+54 -     a.fetch_add(1, Ordering::SeqCst);
+54 +     a.fetch_and(1, Ordering::SeqCst);
+   |
+
+error[E0599]: no method named `fetch_sub` found for struct `AtomicPtr<T>` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:55:7
+   |
+55 |     b.fetch_sub(1, Ordering::SeqCst);
+   |       ^^^^^^^^^
+   |
+help: there is a method `fetch_ptr_sub` with a similar name
+   |
+55 |     b.fetch_ptr_sub(1, Ordering::SeqCst);
+   |             ++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:57:35
+   |
+57 |     if a.load(Ordering::SeqCst)!= &ia[2] {
+   |                                   ^^^^^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut _`
+                found reference `&{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:60:35
+   |
+60 |     if b.load(Ordering::SeqCst)!= &ia[0] {
+   |                                   ^^^^^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut _`
+                found reference `&{integer}`
+
+error: aborting due to 18 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308, E0599, E0600.
+For more information about an error, try `rustc --explain E0277`.

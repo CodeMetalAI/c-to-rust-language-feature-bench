@@ -1,0 +1,110 @@
+error[E0277]: the size for values of type `[{integer}]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3_b/sample_005/target.rs:8:16
+   |
+ 8 |     if type_id(&a[..]) != 2 {
+   |        ------- ^^^^^^ doesn't have a size known at compile-time
+   |        |
+   |        required by a bound introduced by this call
+   |
+   = help: the trait `Sized` is not implemented for `[{integer}]`
+note: required by an implicit `Sized` bound in `type_id`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3_b/sample_005/target.rs:49:12
+   |
+49 | fn type_id<T>(_: &T) -> i32 {
+   |            ^ required by the implicit `Sized` requirement on this type parameter in `type_id`
+help: consider relaxing the implicit `Sized` restriction
+   |
+49 | fn type_id<T: ?Sized>(_: &T) -> i32 {
+   |             ++++++++
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3_b/sample_005/target.rs:22:8
+    |
+ 22 |     if std::mem::size_of(&a) != 3 * std::mem::size_of(0) {
+    |        ^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&[{integer}; 3]`
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+help: remove the extra argument
+    |
+ 22 -     if std::mem::size_of(&a) != 3 * std::mem::size_of(0) {
+ 22 +     if std::mem::size_of() != 3 * std::mem::size_of(0) {
+    |
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3_b/sample_005/target.rs:22:37
+    |
+ 22 |     if std::mem::size_of(&a) != 3 * std::mem::size_of(0) {
+    |                                     ^^^^^^^^^^^^^^^^^ - unexpected argument of type `{integer}`
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+help: remove the extra argument
+    |
+ 22 -     if std::mem::size_of(&a) != 3 * std::mem::size_of(0) {
+ 22 +     if std::mem::size_of(&a) != 3 * std::mem::size_of() {
+    |
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3_b/sample_005/target.rs:25:8
+    |
+ 25 |     if std::mem::align_of(&a) != std::mem::align_of(0) {
+    |        ^^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&[{integer}; 3]`
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+help: remove the extra argument
+    |
+ 25 -     if std::mem::align_of(&a) != std::mem::align_of(0) {
+ 25 +     if std::mem::align_of() != std::mem::align_of(0) {
+    |
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3_b/sample_005/target.rs:25:34
+    |
+ 25 |     if std::mem::align_of(&a) != std::mem::align_of(0) {
+    |                                  ^^^^^^^^^^^^^^^^^^ - unexpected argument of type `{integer}`
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+help: remove the extra argument
+    |
+ 25 -     if std::mem::align_of(&a) != std::mem::align_of(0) {
+ 25 +     if std::mem::align_of(&a) != std::mem::align_of() {
+    |
+
+error[E0277]: the size for values of type `[u8]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3_b/sample_005/target.rs:30:16
+   |
+30 |     if type_id(s) != 3 {
+   |        ------- ^ doesn't have a size known at compile-time
+   |        |
+   |        required by a bound introduced by this call
+   |
+   = help: the trait `Sized` is not implemented for `[u8]`
+note: required by an implicit `Sized` bound in `type_id`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3_b/sample_005/target.rs:49:12
+   |
+49 | fn type_id<T>(_: &T) -> i32 {
+   |            ^ required by the implicit `Sized` requirement on this type parameter in `type_id`
+help: consider relaxing the implicit `Sized` restriction
+   |
+49 | fn type_id<T: ?Sized>(_: &T) -> i32 {
+   |             ++++++++
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0061, E0277.
+For more information about an error, try `rustc --explain E0061`.

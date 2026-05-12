@@ -1,0 +1,82 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c4/sample_002/target.rs:12:48
+   |
+12 |       let fp2: Option<Box<dyn Fn(i32) -> i32>> = unsafe {
+   |  ________________________________________________^
+13 | |         let ptr = v0 as *mut dyn Fn(i32) -> i32;
+14 | |         Some(Box::from_raw(ptr))
+15 | |     };
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c4/sample_002/target.rs:18:16
+   |
+ 5 | fn main() {
+   |          - expected `()` because of default return type
+...
+18 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0369]: binary operation `!=` cannot be applied to type `Option<Box<dyn Fn(i32) -> i32>>`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c4/sample_002/target.rs:31:12
+   |
+31 |     if fp0 != fp1 {
+   |        --- ^^ --- Option<Box<dyn Fn(i32) -> i32>>
+   |        |
+   |        Option<Box<dyn Fn(i32) -> i32>>
+
+error[E0369]: binary operation `!=` cannot be applied to type `Option<Box<dyn Fn(i32) -> i32>>`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c4/sample_002/target.rs:34:12
+   |
+34 |     if fp1 != fp2 {
+   |        --- ^^ --- Option<Box<dyn Fn(i32) -> i32>>
+   |        |
+   |        Option<Box<dyn Fn(i32) -> i32>>
+
+error[E0369]: binary operation `!=` cannot be applied to type `Option<Box<dyn Fn(i32) -> i32>>`
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c4/sample_002/target.rs:37:12
+    |
+ 37 |     if fp0 != std::ptr::null_mut() as *const dyn Fn(i32) -> i32 {
+    |        --- ^^ ------------------------------------------------- *const dyn Fn(i32) -> i32
+    |        |
+    |        Option<Box<dyn Fn(i32) -> i32>>
+    |
+note: the foreign item type `Option<Box<dyn Fn(i32) -> i32>>` doesn't implement `PartialEq<*const dyn Fn(i32) -> i32>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/option.rs:593:1
+    |
+593 | pub enum Option<T> {
+    | ^^^^^^^^^^^^^^^^^^ not implement `PartialEq<*const dyn Fn(i32) -> i32>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c4/sample_002/target.rs:45:5
+   |
+ 5 | fn main() {
+   |          - expected `()` because of default return type
+...
+45 |     0
+   |     ^ expected `()`, found integer
+
+error[E0277]: expected a `Fn(i32)` closure, found `()`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c4/sample_002/target.rs:13:19
+   |
+13 |         let ptr = v0 as *mut dyn Fn(i32) -> i32;
+   |                   ^^ expected an `Fn(i32)` closure, found `()`
+   |
+   = help: the trait `Fn(i32)` is not implemented for `()`
+   = note: required for the cast from `*mut ()` to `*mut dyn Fn(i32) -> i32`
+
+error[E0277]: expected a `Fn(i32)` closure, found `Option<Box<dyn Fn(i32) -> i32>>`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c4/sample_002/target.rs:41:14
+   |
+41 |     if p0 != &fp0 as *const dyn Fn(i32) -> i32 as *mut i32 {
+   |              ^^^^ expected an `Fn(i32)` closure, found `Option<Box<dyn Fn(i32) -> i32>>`
+   |
+   = help: the trait `Fn(i32)` is not implemented for `Option<Box<dyn Fn(i32) -> i32>>`
+   = note: required for the cast from `&Option<Box<dyn Fn(i32) -> i32>>` to `*const dyn Fn(i32) -> i32`
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0369.
+For more information about an error, try `rustc --explain E0277`.

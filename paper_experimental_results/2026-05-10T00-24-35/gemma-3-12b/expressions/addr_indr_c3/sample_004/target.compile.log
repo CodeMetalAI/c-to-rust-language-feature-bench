@@ -1,0 +1,59 @@
+error[E0369]: cannot add `{integer}` to `*const i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/addr_indr_c3/sample_004/target.rs:15:58
+   |
+15 |     if &a[0] as *const i32 != (a.as_ptr() as *const i32) + 0 {
+   |                               -------------------------- ^ - {integer}
+   |                               |
+   |                               *const i32
+   |
+help: consider using `wrapping_add` or `add` for pointer + {integer}
+   |
+15 -     if &a[0] as *const i32 != (a.as_ptr() as *const i32) + 0 {
+15 +     if &a[0] as *const i32 != (a.as_ptr() as *const i32).wrapping_add(0) {
+   |
+
+error[E0369]: cannot add `{integer}` to `*const i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/addr_indr_c3/sample_004/target.rs:18:58
+   |
+18 |     if &a[1] as *const i32 != (a.as_ptr() as *const i32) + 1 {
+   |                               -------------------------- ^ - {integer}
+   |                               |
+   |                               *const i32
+   |
+help: consider using `wrapping_add` or `add` for pointer + {integer}
+   |
+18 -     if &a[1] as *const i32 != (a.as_ptr() as *const i32) + 1 {
+18 +     if &a[1] as *const i32 != (a.as_ptr() as *const i32).wrapping_add(1) {
+   |
+
+error[E0369]: cannot add `{integer}` to `*const i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/addr_indr_c3/sample_004/target.rs:21:58
+   |
+21 |     if &a[2] as *const i32 != (a.as_ptr() as *const i32) + 2 {
+   |                               -------------------------- ^ - {integer}
+   |                               |
+   |                               *const i32
+   |
+help: consider using `wrapping_add` or `add` for pointer + {integer}
+   |
+21 -     if &a[2] as *const i32 != (a.as_ptr() as *const i32) + 2 {
+21 +     if &a[2] as *const i32 != (a.as_ptr() as *const i32).wrapping_add(2) {
+   |
+
+error[E0369]: cannot add `{integer}` to `*const i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/addr_indr_c3/sample_004/target.rs:25:35
+   |
+25 |     if *(a.as_ptr() as *const i32 + 1) != 20 {
+   |          ------------------------ ^ - {integer}
+   |          |
+   |          *const i32
+   |
+help: consider using `wrapping_add` or `add` for pointer + {integer}
+   |
+25 -     if *(a.as_ptr() as *const i32 + 1) != 20 {
+25 +     if *(a.as_ptr() as *const i32.wrapping_add(1)) != 20 {
+   |
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0369`.

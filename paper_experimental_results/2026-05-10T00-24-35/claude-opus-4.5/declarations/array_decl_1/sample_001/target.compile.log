@@ -1,0 +1,71 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/array_decl_1/sample_001/target.rs:23:9
+   |
+23 | /         unsafe {
+24 | |             FA[i] = (i + 1) as f32;
+25 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/array_decl_1/sample_001/target.rs:30:9
+   |
+30 | /         unsafe {
+31 | |             BACKING[i] = (100 + i) as f32;
+32 | |             AFP[i] = i;
+33 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/array_decl_1/sample_001/target.rs:52:9
+   |
+52 | /         unsafe {
+53 | |             s += BACKING[pp[i as usize]] as i32;
+54 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/array_decl_1/sample_001/target.rs:62:14
+   |
+62 |     let s2 = unsafe { BACKING[afp2[0]] as i32 + BACKING[afp2[16]] as i32 };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/array_decl_1/sample_001/target.rs:69:5
+   |
+69 | /     unsafe {
+70 | |         if FA[0] != 1.0f32 || FA[10] != 11.0f32 {
+71 | |             std::process::exit(1);
+...  |
+77 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/array_decl_1/sample_001/target.rs:88:13
+   |
+88 | /             unsafe {
+89 | |                 vla1[i] = FA[i] * 2.0f32;
+90 | |             }
+   | |_____________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/array_decl_1/sample_001/target.rs:96:13
+   |
+96 | /             unsafe {
+97 | |                 vla2[i] = AFP[i];
+98 | |             }
+   | |_____________^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/array_decl_1/sample_001/target.rs:126:9
+    |
+126 | /         unsafe {
+127 | |             if takes_params(&vla1, &vla2)
+128 | |                 != (vla1[0] as i32
+129 | |                     + vla1[10] as i32
+...   |
+135 | |         }
+    | |_________^
+
+error: aborting due to 8 previous errors

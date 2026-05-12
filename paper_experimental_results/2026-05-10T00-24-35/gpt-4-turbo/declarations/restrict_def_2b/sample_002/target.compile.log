@@ -1,0 +1,184 @@
+error[E0425]: cannot find value `D` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2b/sample_002/target.rs:78:25
+   |
+20 | unsafe fn f(n: isize, p: &mut [i32], q: &[i32]) {
+   | ----------------------------------------------- similarly named function `f` defined here
+...
+78 |         call_f_checked(&D, 50, &mut D[50..], &D);
+   |                         ^
+   |
+help: a function with a similar name exists
+   |
+78 -         call_f_checked(&D, 50, &mut D[50..], &D);
+78 +         call_f_checked(&f, 50, &mut D[50..], &D);
+   |
+help: you might be missing a const parameter
+   |
+76 | fn g_defined<const D: /* Type */>() {
+   |             +++++++++++++++++++++
+
+error[E0425]: cannot find value `D` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2b/sample_002/target.rs:78:37
+   |
+20 | unsafe fn f(n: isize, p: &mut [i32], q: &[i32]) {
+   | ----------------------------------------------- similarly named function `f` defined here
+...
+78 |         call_f_checked(&D, 50, &mut D[50..], &D);
+   |                                     ^
+   |
+help: a function with a similar name exists
+   |
+78 -         call_f_checked(&D, 50, &mut D[50..], &D);
+78 +         call_f_checked(&D, 50, &mut f[50..], &D);
+   |
+help: you might be missing a const parameter
+   |
+76 | fn g_defined<const D: /* Type */>() {
+   |             +++++++++++++++++++++
+
+error[E0425]: cannot find value `D` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2b/sample_002/target.rs:78:47
+   |
+20 | unsafe fn f(n: isize, p: &mut [i32], q: &[i32]) {
+   | ----------------------------------------------- similarly named function `f` defined here
+...
+78 |         call_f_checked(&D, 50, &mut D[50..], &D);
+   |                                               ^
+   |
+help: a function with a similar name exists
+   |
+78 -         call_f_checked(&D, 50, &mut D[50..], &D);
+78 +         call_f_checked(&D, 50, &mut D[50..], &f);
+   |
+help: you might be missing a const parameter
+   |
+76 | fn g_defined<const D: /* Type */>() {
+   |             +++++++++++++++++++++
+
+error[E0425]: cannot find value `D` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2b/sample_002/target.rs:79:25
+   |
+20 | unsafe fn f(n: isize, p: &mut [i32], q: &[i32]) {
+   | ----------------------------------------------- similarly named function `f` defined here
+...
+79 |         call_f_checked(&D, 50, &mut D[1..], &D);
+   |                         ^
+   |
+help: a function with a similar name exists
+   |
+79 -         call_f_checked(&D, 50, &mut D[1..], &D);
+79 +         call_f_checked(&f, 50, &mut D[1..], &D);
+   |
+help: you might be missing a const parameter
+   |
+76 | fn g_defined<const D: /* Type */>() {
+   |             +++++++++++++++++++++
+
+error[E0425]: cannot find value `D` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2b/sample_002/target.rs:79:37
+   |
+20 | unsafe fn f(n: isize, p: &mut [i32], q: &[i32]) {
+   | ----------------------------------------------- similarly named function `f` defined here
+...
+79 |         call_f_checked(&D, 50, &mut D[1..], &D);
+   |                                     ^
+   |
+help: a function with a similar name exists
+   |
+79 -         call_f_checked(&D, 50, &mut D[1..], &D);
+79 +         call_f_checked(&D, 50, &mut f[1..], &D);
+   |
+help: you might be missing a const parameter
+   |
+76 | fn g_defined<const D: /* Type */>() {
+   |             +++++++++++++++++++++
+
+error[E0425]: cannot find value `D` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2b/sample_002/target.rs:79:46
+   |
+20 | unsafe fn f(n: isize, p: &mut [i32], q: &[i32]) {
+   | ----------------------------------------------- similarly named function `f` defined here
+...
+79 |         call_f_checked(&D, 50, &mut D[1..], &D);
+   |                                              ^
+   |
+help: a function with a similar name exists
+   |
+79 -         call_f_checked(&D, 50, &mut D[1..], &D);
+79 +         call_f_checked(&D, 50, &mut D[1..], &f);
+   |
+help: you might be missing a const parameter
+   |
+76 | fn g_defined<const D: /* Type */>() {
+   |             +++++++++++++++++++++
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2b/sample_002/target.rs:13:5
+   |
+13 | /     unsafe {
+14 | |         if !same(&D, &expect) {
+15 | |             std::process::exit(1);
+16 | |         }
+17 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2b/sample_002/target.rs:20:1
+   |
+20 | / unsafe fn f(n: isize, p: &mut [i32], q: &[i32]) {
+21 | |     let mut i = 0;
+22 | |     while i < n {
+23 | |         p[i as usize] = q[i as usize];
+...  |
+26 | | }
+   | |_^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2b/sample_002/target.rs:60:9
+   |
+60 | /         unsafe {
+61 | |             f(n as isize, p, q);
+62 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2b/sample_002/target.rs:77:5
+   |
+77 | /     unsafe {
+78 | |         call_f_checked(&D, 50, &mut D[50..], &D);
+79 | |         call_f_checked(&D, 50, &mut D[1..], &D);
+80 | |     }
+   | |_____^
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2b/sample_002/target.rs:5:15
+  |
+5 |     init(&mut D);
+  |               ^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2b/sample_002/target.rs:8:38
+  |
+8 |     safe_move(50, &mut expect[50..], &expect);
+  |     ---------          ------        ^^^^^^^ immutable borrow occurs here
+  |     |                  |
+  |     |                  mutable borrow occurs here
+  |     mutable borrow later used by call
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2b/sample_002/target.rs:9:37
+  |
+9 |     safe_move(50, &mut expect[1..], &expect);
+  |     ---------          ------       ^^^^^^^ immutable borrow occurs here
+  |     |                  |
+  |     |                  mutable borrow occurs here
+  |     mutable borrow later used by call
+
+error: aborting due to 13 previous errors
+
+Some errors have detailed explanations: E0133, E0425, E0502.
+For more information about an error, try `rustc --explain E0133`.

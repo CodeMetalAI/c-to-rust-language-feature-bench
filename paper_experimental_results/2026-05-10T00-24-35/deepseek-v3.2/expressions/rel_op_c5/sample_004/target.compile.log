@@ -1,0 +1,33 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/rel_op_c5/sample_004/target.rs:12:18
+   |
+12 |     let p_end1 = unsafe { arr.as_ptr().add(3) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/rel_op_c5/sample_004/target.rs:30:14
+   |
+30 |     let q1 = unsafe { q_last.add(1) };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/rel_op_c5/sample_004/target.rs:55:15
+   |
+55 |     let ui = &u.i as *const i32 as *const u8;
+   |               ^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/rel_op_c5/sample_004/target.rs:56:15
+   |
+56 |     let ud = &u.d as *const f64 as *const u8;
+   |               ^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

@@ -1,0 +1,64 @@
+error[E0425]: cannot find value `GSSTORE` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_003/target.rs:3:5
+  |
+2 |     static mut GSTORE: [i32; 4] = [0; 4];
+  |     ------------------------------------- similarly named static `GSTORE` defined here
+3 |     GSSTORE[0] = 111;
+  |     ^^^^^^^ help: a static with a similar name exists: `GSTORE`
+
+error[E0425]: cannot find value `GSSTORE` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_003/target.rs:4:5
+  |
+2 |     static mut GSTORE: [i32; 4] = [0; 4];
+  |     ------------------------------------- similarly named static `GSTORE` defined here
+3 |     GSSTORE[0] = 111;
+4 |     GSSTORE[0] + 1
+  |     ^^^^^^^ help: a static with a similar name exists: `GSTORE`
+
+error[E0425]: cannot find value `alt0` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_003/target.rs:44:11
+   |
+13 | static mut ALT0: fn() -> i32 = f;
+   | --------------------------------- similarly named static `ALT0` defined here
+...
+44 |     pfi = alt0;
+   |           ^^^^ help: a static with a similar name exists: `ALT0`
+
+error[E0425]: cannot find value `alt1` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_003/target.rs:46:15
+   |
+15 | static mut ALT1: fn() -> i32 = f;
+   | --------------------------------- similarly named static `ALT1` defined here
+...
+46 |         pfi = alt1;
+   |               ^^^^ help: a static with a similar name exists: `ALT1`
+
+error[E0425]: cannot find value `alt0` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_003/target.rs:58:40
+   |
+13 | static mut ALT0: fn() -> i32 = f;
+   | --------------------------------- similarly named static `ALT0` defined here
+...
+58 |         if std::mem::transmute(pfi) == alt0 {
+   |                                        ^^^^ help: a static with a similar name exists: `ALT0`
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_003/target.rs:9:5
+  |
+9 |     GSSTORE[1] = 222;
+  |     ^^^^^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_003/target.rs:10:6
+   |
+10 |     &GSSTORE[1]
+   |      ^^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0133, E0425.
+For more information about an error, try `rustc --explain E0133`.

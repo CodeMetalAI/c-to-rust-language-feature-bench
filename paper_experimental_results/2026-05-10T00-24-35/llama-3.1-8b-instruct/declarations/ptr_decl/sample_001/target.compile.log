@@ -1,0 +1,179 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:15:8
+   |
+15 |     if v & 1 {
+   |        ^^^^^ expected `bool`, found `i32`
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:38:8
+   |
+38 |     if!same_addr(b.const_p, expected_const_p_target) {
+   |        ^^^^^^^^^
+   |
+note: expected `*const ()`, found `*mut i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:38:18
+   |
+38 |     if!same_addr(b.const_p, expected_const_p_target) {
+   |                  ^^^^^^^^^
+   = note: expected raw pointer `*const ()`
+              found raw pointer `*mut i32`
+note: expected `*const ()`, found `&i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:38:29
+   |
+38 |     if!same_addr(b.const_p, expected_const_p_target) {
+   |                             ^^^^^^^^^^^^^^^^^^^^^^^
+   = note: expected raw pointer `*const ()`
+                found reference `&i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:32:4
+   |
+32 | fn same_addr(x: *const (), y: *const ()) -> bool {
+   |    ^^^^^^^^^ ------------  ------------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:40:15
+   |
+40 |     } else if!same_addr(b.const_p_via_typedef, expected_const_p_target) {
+   |               ^^^^^^^^^
+   |
+note: expected `*const ()`, found `*const i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:40:25
+   |
+40 |     } else if!same_addr(b.const_p_via_typedef, expected_const_p_target) {
+   |                         ^^^^^^^^^^^^^^^^^^^^^
+   = note: expected raw pointer `*const ()`
+              found raw pointer `*const i32`
+note: expected `*const ()`, found `&i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:40:48
+   |
+40 |     } else if!same_addr(b.const_p_via_typedef, expected_const_p_target) {
+   |                                                ^^^^^^^^^^^^^^^^^^^^^^^
+   = note: expected raw pointer `*const ()`
+                found reference `&i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:32:4
+   |
+32 | fn same_addr(x: *const (), y: *const ()) -> bool {
+   |    ^^^^^^^^^ ------------  ------------
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:66:8
+   |
+66 |     if *b.p_to_const!= 10 {
+   |        ^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:71:8
+   |
+71 |     if *b.p_to_const!= 21 {
+   |        ^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:76:8
+   |
+76 |     if *b.p_to_const!= 21 {
+   |        ^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:80:5
+   |
+80 |     *b.const_p += 5;
+   |     ^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:85:5
+   |
+85 |     *b.const_p_via_typedef += 7;
+   |     ^^^^^^^^^^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:94:8
+   |
+94 |     if *b.p_to_const!= 21 {
+   |        ^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0502]: cannot borrow `x` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:53:24
+   |
+51 |     let ptr_to_constant = &x;
+   |                           -- immutable borrow occurs here
+52 |
+53 |     let constant_ptr = &mut x;
+   |                        ^^^^^^ mutable borrow occurs here
+...
+57 |         p_to_const: ptr_to_constant,
+   |                     --------------- immutable borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:54:42
+   |
+53 |     let constant_ptr = &mut x;
+   |                        ------ mutable borrow occurs here
+54 |     let clarified_constant_ptr: IntPtr = &x;
+   |                                          ^^ immutable borrow occurs here
+...
+58 |         const_p: constant_ptr,
+   |                  ------------ mutable borrow later used here
+
+error[E0594]: cannot assign to `*b.const_p_via_typedef`, which is behind a `*const` pointer
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:85:5
+   |
+85 |     *b.const_p_via_typedef += 7;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot assign
+
+error[E0382]: use of moved value: `b.const_p_via_typedef`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:85:5
+   |
+56 |     let mut b = Bundle {
+   |         ----- move occurs because `b` has type `Bundle`, which does not implement the `Copy` trait
+...
+62 |     if check_bundle(b, &x)!= 0 {
+   |                     - value moved here
+...
+85 |     *b.const_p_via_typedef += 7;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ value used here after move
+
+error[E0382]: use of moved value: `b`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:94:8
+   |
+56 |     let mut b = Bundle {
+   |         ----- move occurs because `b` has type `Bundle`, which does not implement the `Copy` trait
+...
+90 |     if check_bundle(b, &x)!= 0 {
+   |                     - value moved here
+...
+94 |     if *b.p_to_const!= 21 {
+   |        ^^^^^^^^^^^^^ value used here after move
+   |
+note: consider changing this parameter type in function `check_bundle` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:37:20
+   |
+37 | fn check_bundle(b: Bundle, expected_const_p_target: &i32) -> i32 {
+   |    ------------    ^^^^^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `Bundle` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_001/target.rs:6:1
+   |
+ 6 | struct Bundle {
+   | ^^^^^^^^^^^^^ consider implementing `Clone` for this type
+...
+90 |     if check_bundle(b, &x)!= 0 {
+   |                     - you could clone this value
+
+error: aborting due to 14 previous errors
+
+Some errors have detailed explanations: E0133, E0308, E0382, E0502, E0594.
+For more information about an error, try `rustc --explain E0133`.

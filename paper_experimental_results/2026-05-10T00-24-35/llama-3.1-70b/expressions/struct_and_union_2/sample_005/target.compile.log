@@ -1,0 +1,109 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_2/sample_005/target.rs:10:21
+   |
+10 | fn f(p: *mut i32) { unsafe { let _ = *p; } }
+   |                     ^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_2/sample_005/target.rs:16:5
+   |
+16 | /     unsafe {
+17 | |         f(&mut s.i);
+18 | |         f4(&s.ci);
+...  |
+54 | |     }
+   | |_____^
+
+warning: static variable `s` should have an upper case name
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_2/sample_005/target.rs:6:12
+  |
+6 | static mut s: S = S { i: 1, ci: 2 };
+  |            ^
+  |
+  = note: `#[warn(non_upper_case_globals)]` (part of `#[warn(nonstandard_style)]`) on by default
+help: convert the identifier to upper case (notice the capitalization)
+  |
+6 - static mut s: S = S { i: 1, ci: 2 };
+6 + static mut S: S = S { i: 1, ci: 2 };
+  |
+
+warning: static variable `cs` should have an upper case name
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_2/sample_005/target.rs:7:8
+  |
+7 | static cs: S = S { i: 3, ci: 4 };
+  |        ^^
+  |
+help: convert the identifier to upper case (notice the capitalization)
+  |
+7 - static cs: S = S { i: 3, ci: 4 };
+7 + static CS: S = S { i: 3, ci: 4 };
+  |
+
+warning: static variable `vs` should have an upper case name
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_2/sample_005/target.rs:8:12
+  |
+8 | static mut vs: S = S { i: 5, ci: 6 };
+  |            ^^
+  |
+help: convert the identifier to upper case (notice the capitalization)
+  |
+8 - static mut vs: S = S { i: 5, ci: 6 };
+8 + static mut VS: S = S { i: 5, ci: 6 };
+  |
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_2/sample_005/target.rs:17:11
+   |
+17 |         f(&mut s.i);
+   |           ^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw mut` instead to create a raw pointer
+   |
+17 |         f(&raw mut s.i);
+   |            +++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_2/sample_005/target.rs:18:12
+   |
+18 |         f4(&s.ci);
+   |            ^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+18 |         f4(&raw const s.ci);
+   |             +++++++++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_2/sample_005/target.rs:23:12
+   |
+23 |         f2(&mut vs.i);
+   |            ^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+23 |         f2(&raw mut vs.i);
+   |             +++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_2/sample_005/target.rs:24:11
+   |
+24 |         g(&vs.ci);
+   |           ^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+24 |         g(&raw const vs.ci);
+   |            +++++++++
+
+error: aborting due to 2 previous errors; 7 warnings emitted

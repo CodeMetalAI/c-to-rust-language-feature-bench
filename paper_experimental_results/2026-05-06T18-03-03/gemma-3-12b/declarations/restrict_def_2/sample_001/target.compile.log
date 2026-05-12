@@ -1,0 +1,136 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2/sample_001/target.rs:22:17
+   |
+22 |             p = unsafe { p.add(1) };
+   |                 ^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2/sample_001/target.rs:23:17
+   |
+23 |             q = unsafe { q.add(1) };
+   |                 ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2/sample_001/target.rs:54:17
+   |
+54 |             p = unsafe { p.add(1) };
+   |                 ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2/sample_001/target.rs:55:17
+   |
+55 |             q = unsafe { q.add(1) };
+   |                 ^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2/sample_001/target.rs:7:18
+  |
+7 |         buf[i] = i * 11 + 3;
+  |         ------   ^^^^^^^^^^ expected `i32`, found `usize`
+  |         |
+  |         expected due to the type of this binding
+
+error[E0599]: no method named `add` found for mutable reference `&mut i32` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2/sample_001/target.rs:22:28
+   |
+22 |             p = unsafe { p.add(1) };
+   |                            ^^^ method not found in `&mut i32`
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::ops::Add;
+   |
+
+error[E0599]: no method named `add` found for mutable reference `&mut i32` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2/sample_001/target.rs:23:28
+   |
+23 |             q = unsafe { q.add(1) };
+   |                            ^^^ method not found in `&mut i32`
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::ops::Add;
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2/sample_001/target.rs:28:20
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+28 |             return 1;
+   |                    ^ expected `()`, found integer
+
+error[E0061]: this function takes 4 arguments but 3 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2/sample_001/target.rs:31:13
+   |
+31 |         if !check_range_eq(&buf[off..], &snapshot[off..], n) {
+   |             ^^^^^^^^^^^^^^---------------------------------- argument #4 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2/sample_001/target.rs:67:4
+   |
+67 | fn check_range_eq(a: &[i32], b: &[i32], off: usize, n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^                                   --------
+help: provide the argument
+   |
+31 |         if !check_range_eq(&buf[off..], &snapshot[off..], n, /* usize */) {
+   |                                                            +++++++++++++
+
+error[E0599]: no method named `add` found for mutable reference `&mut i32` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2/sample_001/target.rs:54:28
+   |
+54 |             p = unsafe { p.add(1) };
+   |                            ^^^ method not found in `&mut i32`
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::ops::Add;
+   |
+
+error[E0599]: no method named `add` found for mutable reference `&mut i32` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2/sample_001/target.rs:55:28
+   |
+55 |             q = unsafe { q.add(1) };
+   |                            ^^^ method not found in `&mut i32`
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::ops::Add;
+   |
+
+error[E0061]: this function takes 4 arguments but 3 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2/sample_001/target.rs:59:13
+   |
+59 |         if !check_range_eq(&buf[off..], &buf[0..], n) {
+   |             ^^^^^^^^^^^^^^--------------------------- argument #4 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2/sample_001/target.rs:67:4
+   |
+67 | fn check_range_eq(a: &[i32], b: &[i32], off: usize, n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^                                   --------
+help: provide the argument
+   |
+59 |         if !check_range_eq(&buf[off..], &buf[0..], n, /* usize */) {
+   |                                                     +++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2/sample_001/target.rs:64:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+64 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 13 previous errors
+
+Some errors have detailed explanations: E0061, E0308, E0599.
+For more information about an error, try `rustc --explain E0061`.

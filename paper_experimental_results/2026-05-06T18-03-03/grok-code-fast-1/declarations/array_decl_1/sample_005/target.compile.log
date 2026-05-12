@@ -1,0 +1,36 @@
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/array_decl_1/sample_005/target.rs:24:14
+   |
+24 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+warning: unused variable: `n1`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/array_decl_1/sample_005/target.rs:45:9
+   |
+45 |     let n1 = pos(11);
+   |         ^^ help: if this is intentional, prefix it with an underscore: `_n1`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `n2`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/array_decl_1/sample_005/target.rs:46:9
+   |
+46 |     let n2 = pos(17);
+   |         ^^ help: if this is intentional, prefix it with an underscore: `_n2`
+
+error[E0506]: cannot assign to `backing[_]` because it is borrowed
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/array_decl_1/sample_005/target.rs:33:9
+   |
+33 |         backing[i] = (100 + i) as f32;
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `backing[_]` is assigned to here but it was already borrowed
+34 |         afp[i] = Some(&backing[i]);
+   |         ------        ----------- `backing[_]` is borrowed here
+   |         |
+   |         borrow later used here
+
+error: aborting due to 2 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0277, E0506.
+For more information about an error, try `rustc --explain E0277`.

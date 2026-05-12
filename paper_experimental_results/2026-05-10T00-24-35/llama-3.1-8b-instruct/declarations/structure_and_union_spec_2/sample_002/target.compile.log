@@ -1,0 +1,42 @@
+error[E0423]: expected function, found macro `std::mem::offset_of`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_002/target.rs:15:8
+   |
+15 |     if std::mem::offset_of::<S, [f64; 8]>() != std::mem::size_of::<S>() {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a function
+
+warning: unnecessary trailing semicolon
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_002/target.rs:5:6
+  |
+5 |     };
+  |      ^ help: remove this semicolon
+  |
+  = note: `#[warn(redundant_semicolons)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary trailing semicolon
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_002/target.rs:9:6
+  |
+9 |     };
+  |      ^ help: remove this semicolon
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_002/target.rs:20:36
+   |
+20 |     let s2 = Box::new(S { n: 0, d: [0.0; 5] });
+   |                                    ^^^^^^^^ expected an array with a size of 8, found one with a size of 5
+
+error[E0599]: no method named `map_or` found for reference `&S` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_002/target.rs:22:20
+   |
+22 |     if s1.as_ref().map_or(false, |s| s.d[0] != 42.0) ||
+   |                    ^^^^^^ method not found in `&S`
+
+error[E0599]: no method named `map_or` found for reference `&S` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_002/target.rs:23:20
+   |
+23 |        s2.as_ref().map_or(false, |s| s.d[0] != 24.0)
+   |                    ^^^^^^ method not found in `&S`
+
+error: aborting due to 4 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0308, E0423, E0599.
+For more information about an error, try `rustc --explain E0308`.

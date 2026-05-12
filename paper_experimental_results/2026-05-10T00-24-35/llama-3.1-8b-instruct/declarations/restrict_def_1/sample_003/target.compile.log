@@ -1,0 +1,48 @@
+error: expected identifier, found `[`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_003/target.rs:2:5
+  |
+1 | union Bank {
+  |       ---- while parsing this union
+2 |     [i32; 8]: [i32; 8],
+  |     ^ expected identifier
+
+error: unions cannot have zero fields
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_003/target.rs:1:1
+  |
+1 | / union Bank {
+2 | |     [i32; 8]: [i32; 8],
+3 | |     right: [i32; 8],
+4 | | }
+  | |_^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_003/target.rs:48:38
+   |
+48 |     let a = choose_view(&mut bank_a, which_a);
+   |             -----------              ^^^^^^^ expected `bool`, found integer
+   |             |
+   |             arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_003/target.rs:16:4
+   |
+16 | fn choose_view(u: &mut Bank, which: bool) -> &mut [i32] {
+   |    ^^^^^^^^^^^               -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_003/target.rs:49:38
+   |
+49 |     let b = choose_view(&mut bank_b, which_b);
+   |             -----------              ^^^^^^^ expected `bool`, found integer
+   |             |
+   |             arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_003/target.rs:16:4
+   |
+16 | fn choose_view(u: &mut Bank, which: bool) -> &mut [i32] {
+   |    ^^^^^^^^^^^               -----------
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

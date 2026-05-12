@@ -1,0 +1,51 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_3/sample_003/target.rs:12:5
+   |
+12 |     unsafe { G_SEED + x + 1000 }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_3/sample_003/target.rs:16:5
+   |
+16 |     unsafe { G_SEED + x - 2000 }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_3/sample_003/target.rs:21:5
+   |
+21 | /     unsafe {
+22 | |         G_SEED = pf(t) + k;
+23 | |         if G_SEED & 1 == 0 {
+24 | |             v0
+...  |
+28 | |     }
+   | |_____^
+
+warning: unnecessary parentheses around `if` condition
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_3/sample_003/target.rs:47:12
+   |
+47 |         if (vf as usize == v0 as usize) {
+   |            ^                          ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+47 -         if (vf as usize == v0 as usize) {
+47 +         if vf as usize == v0 as usize {
+   |
+
+warning: unnecessary parentheses around `if` condition
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_3/sample_003/target.rs:76:12
+   |
+76 |         if (vf as usize == v0 as usize) {
+   |            ^                          ^
+   |
+help: remove these parentheses
+   |
+76 -         if (vf as usize == v0 as usize) {
+76 +         if vf as usize == v0 as usize {
+   |
+
+error: aborting due to 3 previous errors; 2 warnings emitted

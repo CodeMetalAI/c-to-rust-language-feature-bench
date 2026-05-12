@@ -1,0 +1,193 @@
+error[E0423]: expected value, found struct `Packet`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:41:53
+   |
+12 | / struct Packet {
+13 | |     tag: u32,
+14 | |     n: u32,
+15 | |     sum: u32,
+16 | |     data: [u32; 7],
+17 | | }
+   | |_- `Packet` defined here
+...
+41 |       let got1 = (p as *const Packet).offset(offsetof(Packet, data)) as *mut u8;
+   |                                                       ^^^^^^ help: use struct literal syntax instead: `Packet { tag: val, n: val, sum: val, data: val }`
+
+error[E0425]: cannot find value `data` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:41:61
+   |
+41 |     let got1 = (p as *const Packet).offset(offsetof(Packet, data)) as *mut u8;
+   |                                                             ^^^^ not found in this scope
+
+error[E0423]: expected value, found struct `Packet`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:42:38
+   |
+12 | / struct Packet {
+13 | |     tag: u32,
+14 | |     n: u32,
+15 | |     sum: u32,
+16 | |     data: [u32; 7],
+17 | | }
+   | |_- `Packet` defined here
+...
+42 |       let got2 = (&*p).offset(offsetof(Packet, data)) as *mut u8;
+   |                                        ^^^^^^ help: use struct literal syntax instead: `Packet { tag: val, n: val, sum: val, data: val }`
+
+error[E0425]: cannot find value `data` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:42:46
+   |
+42 |     let got2 = (&*p).offset(offsetof(Packet, data)) as *mut u8;
+   |                                              ^^^^ not found in this scope
+
+error[E0423]: expected value, found struct `Packet`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:83:53
+   |
+12 | / struct Packet {
+13 | |     tag: u32,
+14 | |     n: u32,
+15 | |     sum: u32,
+16 | |     data: [u32; 7],
+17 | | }
+   | |_- `Packet` defined here
+...
+83 |       let got1 = (p as *const Packet).offset(offsetof(Packet, data)) as *mut u8;
+   |                                                       ^^^^^^ help: use struct literal syntax instead: `Packet { tag: val, n: val, sum: val, data: val }`
+
+error[E0425]: cannot find value `data` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:83:61
+   |
+83 |     let got1 = (p as *const Packet).offset(offsetof(Packet, data)) as *mut u8;
+   |                                                             ^^^^ not found in this scope
+
+error[E0423]: expected value, found struct `Packet`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:84:38
+   |
+12 | / struct Packet {
+13 | |     tag: u32,
+14 | |     n: u32,
+15 | |     sum: u32,
+16 | |     data: [u32; 7],
+17 | | }
+   | |_- `Packet` defined here
+...
+84 |       let got2 = (&*p).offset(offsetof(Packet, data)) as *mut u8;
+   |                                        ^^^^^^ help: use struct literal syntax instead: `Packet { tag: val, n: val, sum: val, data: val }`
+
+error[E0425]: cannot find value `data` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:84:46
+   |
+84 |     let got2 = (&*p).offset(offsetof(Packet, data)) as *mut u8;
+   |                                              ^^^^ not found in this scope
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:54:9
+   |
+54 |         unsafe { (*p).data[i] += 0; }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0425]: cannot find function `offsetof` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:41:44
+   |
+41 |     let got1 = (p as *const Packet).offset(offsetof(Packet, data)) as *mut u8;
+   |                                            ^^^^^^^^ not found in this scope
+
+error[E0599]: no method named `offset` found for reference `&Packet` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:42:22
+   |
+42 |     let got2 = (&*p).offset(offsetof(Packet, data)) as *mut u8;
+   |                      ^^^^^^ method not found in `&Packet`
+
+error[E0425]: cannot find function `offsetof` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:42:29
+   |
+42 |     let got2 = (&*p).offset(offsetof(Packet, data)) as *mut u8;
+   |                             ^^^^^^^^ not found in this scope
+
+error[E0277]: the type `[u32]` cannot be indexed by `u32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:53:16
+   |
+53 |         p.data[i] = v;
+   |                ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[u32]>` is not implemented for `u32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[u32]` to implement `Index<u32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[u32; 7]` to implement `Index<u32>`
+
+error[E0277]: the type `[u32]` cannot be indexed by `u32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:54:28
+   |
+54 |         unsafe { (*p).data[i] += 0; }
+   |                            ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[u32]>` is not implemented for `u32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[u32]` to implement `Index<u32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[u32; 7]` to implement `Index<u32>`
+
+error[E0277]: the type `[u32]` cannot be indexed by `u32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:59:25
+   |
+59 |         p.sum += p.data[i];
+   |                         ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[u32]>` is not implemented for `u32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[u32]` to implement `Index<u32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[u32; 7]` to implement `Index<u32>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:8:9
+   |
+ 8 |         std::mem::size_of::<$type>() as u32
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `usize`, found `u32`
+...
+66 |     if std::mem::size_of::<Packet>() < offset_of!(Packet, data) {
+   |        -----------------------------   ------------------------ in this macro invocation
+   |        |
+   |        expected because this is `usize`
+   |
+   = note: this error originates in the macro `offset_of` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert a `u32` to a `usize` and panic if the converted value doesn't fit
+   |
+ 8 |         (std::mem::size_of::<$type>() as u32).try_into().unwrap()
+   |         +                                   +++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:79:15
+   |
+79 |         data: [0; 0],
+   |               ^^^^^^ expected an array with a size of 7, found one with a size of 0
+
+error[E0425]: cannot find function `offsetof` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:83:44
+   |
+83 |     let got1 = (p as *const Packet).offset(offsetof(Packet, data)) as *mut u8;
+   |                                            ^^^^^^^^ not found in this scope
+
+error[E0599]: no method named `offset` found for reference `&Packet` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:84:22
+   |
+84 |     let got2 = (&*p).offset(offsetof(Packet, data)) as *mut u8;
+   |                      ^^^^^^ method not found in `&Packet`
+
+error[E0425]: cannot find function `offsetof` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_003/target.rs:84:29
+   |
+84 |     let got2 = (&*p).offset(offsetof(Packet, data)) as *mut u8;
+   |                             ^^^^^^^^ not found in this scope
+
+error: aborting due to 20 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0423, E0425, E0599.
+For more information about an error, try `rustc --explain E0277`.

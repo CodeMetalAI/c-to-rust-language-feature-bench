@@ -1,0 +1,44 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_001/target.rs:15:16
+   |
+15 |     let t: T = unsafe { mem::zeroed() };
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_001/target.rs:38:5
+   |
+38 | /     unsafe {
+39 | |         (*p).tag = 0xA1B2C3D4;
+40 | |         (*p).n = N as U32;
+...  |
+75 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_001/target.rs:83:5
+    |
+ 83 | /     unsafe {
+ 84 | |         (*p).tag = 0;
+ 85 | |         (*p).n = 0;
+ 86 | |         (*p).sum = 0;
+...   |
+100 | |     }
+    | |_____^
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_001/target.rs:42:47
+   |
+42 |         let off = offsetof(|packet: &Packet| &packet.data[0]);
+   |                                               ^^^^^^^^^^^^^^ index out of bounds: the length is 0 but the index is 0
+   |
+   = note: `#[deny(unconditional_panic)]` on by default
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_001/target.rs:88:47
+   |
+88 |         let off = offsetof(|packet: &Packet| &packet.data[0]);
+   |                                               ^^^^^^^^^^^^^^ index out of bounds: the length is 0 but the index is 0
+
+error: aborting due to 5 previous errors

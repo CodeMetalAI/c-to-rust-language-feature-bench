@@ -1,0 +1,23 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/preprocessing_directives/scope_of_macro_1/sample_003/target.rs:6:5
+   |
+ 6 | /     unsafe {
+ 7 | |         if A.len() != 100 {
+ 8 | |             std::process::exit(1);
+...  |
+14 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+warning: creating a shared reference to mutable static
+ --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/preprocessing_directives/scope_of_macro_1/sample_003/target.rs:7:12
+  |
+7 |         if A.len() != 100 {
+  |            ^^^^^^^ shared reference to mutable static
+  |
+  = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+  = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+  = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+
+error: aborting due to 1 previous error; 1 warning emitted

@@ -1,0 +1,47 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_004/target.rs:9:25
+   |
+ 9 |       let mut p: Box<S> = unsafe {
+   |  _________________________^
+10 | |         // Allocate memory for the struct and 4 additional i32 elements
+11 | |         let layout = std::alloc::Layout::from_size_align(
+12 | |             mem::size_of::<S>() + 4 * mem::size_of::<i32>(),
+...  |
+19 | |         Box::from_raw(ptr as *mut S)
+20 | |     };
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_004/target.rs:33:5
+   |
+33 | /     unsafe {
+34 | |         // Access the flexible array member
+35 | |         let a_ptr = p.a.as_ptr() as *mut i32;
+36 | |         *a_ptr = 11;
+37 | |         *(a_ptr.offset(3)) = 22;
+38 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_004/target.rs:41:20
+   |
+41 |     if p.i != 7 || unsafe { *p.a.as_ptr() } != 11 || unsafe { *p.a.as_ptr().offset(3) } != 22 {
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_004/target.rs:41:54
+   |
+41 |     if p.i != 7 || unsafe { *p.a.as_ptr() } != 11 || unsafe { *p.a.as_ptr().offset(3) } != 22 {
+   |                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_004/target.rs:50:5
+   |
+50 | /     unsafe {
+51 | |         std::alloc::dealloc(Box::into_raw(p) as *mut u8, layout);
+52 | |     }
+   | |_____^
+
+error: aborting due to 5 previous errors

@@ -1,0 +1,44 @@
+warning: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/pointers_c3/sample_002/target.rs:47:11
+   |
+47 |     if vx.is_null() {
+   |           ^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2018!
+   = note: for more information, see issue #46906 <https://github.com/rust-lang/rust/issues/46906>
+   = note: `#[warn(tyvar_behind_raw_pointer)]` (part of `#[warn(rust_2018_compatibility)]`) on by default
+
+warning: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/pointers_c3/sample_002/target.rs:50:11
+   |
+50 |     if vf.is_null() {
+   |           ^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2018!
+   = note: for more information, see issue #46906 <https://github.com/rust-lang/rust/issues/46906>
+
+error[E0605]: non-primitive cast: `Option<()>` as `*const _`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/pointers_c3/sample_002/target.rs:44:14
+   |
+44 |     let vx = v0 as *const _;
+   |              ^^^^^^^^^^^^^^ invalid cast
+   |
+help: consider borrowing the value
+   |
+44 |     let vx = &v0 as *const _;
+   |              +
+
+error[E0605]: non-primitive cast: `Option<()>` as `*const _`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/pointers_c3/sample_002/target.rs:45:14
+   |
+45 |     let vf = vf0 as *const _;
+   |              ^^^^^^^^^^^^^^^ invalid cast
+   |
+help: consider borrowing the value
+   |
+45 |     let vf = &vf0 as *const _;
+   |              +
+
+error: aborting due to 2 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0605`.

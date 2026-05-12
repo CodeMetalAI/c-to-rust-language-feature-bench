@@ -1,0 +1,55 @@
+error[E0428]: the name `S2` is defined multiple times
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/tags_2/sample_003/target.rs:11:1
+   |
+ 4 | struct S2;
+   | ---------- previous definition of the type `S2` here
+...
+11 | struct S2 {
+   | ^^^^^^^^^ `S2` redefined here
+   |
+   = note: `S2` must be defined only once in the type namespace of this module
+
+error[E0560]: struct `S2` has no field named `v2`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/tags_2/sample_003/target.rs:18:39
+   |
+18 |     let b = Rc::new(RefCell::new(S2 { v2: 20, s1p: None }));
+   |                                       ^^ `S2` does not have this field
+   |
+   = note: all struct fields are already assigned
+
+error[E0560]: struct `S2` has no field named `s1p`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/tags_2/sample_003/target.rs:18:47
+   |
+18 |     let b = Rc::new(RefCell::new(S2 { v2: 20, s1p: None }));
+   |                                               ^^^ `S2` does not have this field
+   |
+   = note: all struct fields are already assigned
+
+error[E0609]: no field `s1p` on type `RefMut<'_, S2>`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/tags_2/sample_003/target.rs:21:20
+   |
+21 |     b.borrow_mut().s1p = Some(a.clone());
+   |                    ^^^ unknown field
+
+error[E0609]: no field `v2` on type `Ref<'_, S2>`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/tags_2/sample_003/target.rs:23:50
+   |
+23 |     if a.borrow().s2p.as_ref().unwrap().borrow().v2 != 20 {
+   |                                                  ^^ unknown field
+
+error[E0609]: no field `s1p` on type `Ref<'_, S2>`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/tags_2/sample_003/target.rs:27:19
+   |
+27 |     if b.borrow().s1p.as_ref().unwrap().borrow().v1 != 10 {
+   |                   ^^^ unknown field
+
+error[E0609]: no field `s1p` on type `Ref<'_, S2>`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/tags_2/sample_003/target.rs:32:52
+   |
+32 |         &a.borrow().s2p.as_ref().unwrap().borrow().s1p.as_ref().unwrap(),
+   |                                                    ^^^ unknown field
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0428, E0560, E0609.
+For more information about an error, try `rustc --explain E0428`.

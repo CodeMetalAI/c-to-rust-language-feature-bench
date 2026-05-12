@@ -1,0 +1,31 @@
+error[E0428]: the name `test_incdec` is defined multiple times
+   --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:190:1
+    |
+ 91 | fn test_incdec<T: AtomOps + FromValue + PartialEq + Copy>(value: &Value, is_pre: bool, change: i32) {
+    | --------------------------------------------------------------------------------------------------- previous definition of the value `test_incdec` here
+...
+190 | fn test_incdec() {
+    | ^^^^^^^^^^^^^^^^ `test_incdec` redefined here
+    |
+    = note: `test_incdec` must be defined only once in the value namespace of this module
+
+error[E0061]: this function takes 3 arguments but 0 arguments were supplied
+   --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:201:5
+    |
+201 |     test_incdec();
+    |     ^^^^^^^^^^^-- three arguments of type `&Value`, `bool`, and `i32` are missing
+    |
+note: function defined here
+   --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:91:4
+    |
+ 91 | fn test_incdec<T: AtomOps + FromValue + PartialEq + Copy>(value: &Value, is_pre: bool, change: i32) {
+    |    ^^^^^^^^^^^                                            -------------  ------------  -----------
+help: provide the arguments
+    |
+201 |     test_incdec(/* &Value */, /* bool */, /* i32 */);
+    |                 +++++++++++++++++++++++++++++++++++
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0061, E0428.
+For more information about an error, try `rustc --explain E0061`.

@@ -1,0 +1,121 @@
+error[E0106]: missing lifetime specifier
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_001/target.rs:8:13
+  |
+8 | fn fip() -> &i32 {
+  |             ^ expected named lifetime parameter
+  |
+  = help: this function's return type contains a borrowed value, but there is no value for it to be borrowed from
+help: consider using the `'static` lifetime, but this is uncommon unless you're returning a borrowed value from a `const` or a `static`
+  |
+8 | fn fip() -> &'static i32 {
+  |              +++++++
+help: instead, you are more likely to want to return an owned value
+  |
+8 - fn fip() -> &i32 {
+8 + fn fip() -> i32 {
+  |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_001/target.rs:46:29
+   |
+46 |     if choose(gstore[0]) == 0 {
+   |        -----------------    ^ expected `bool`, found integer
+   |        |
+   |        expected because this is `bool`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_001/target.rs:63:23
+   |
+63 |             if pfi == alt0 {
+   |                       ^^^^ expected fn pointer, found fn item
+   |
+   = note: expected fn pointer `fn() -> _`
+                 found fn item `fn() -> _ {alt0}`
+   = note: fn items are distinct from fn pointers
+help: consider casting to a fn pointer
+   |
+63 |             if pfi == alt0 as fn() -> i32 {
+   |                            ++++++++++++++
+
+error[E0277]: can't compare `&fn() -> i32` with `fn() -> i32 {alt0}`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_001/target.rs:63:20
+   |
+63 |             if pfi == alt0 {
+   |                    ^^ no implementation for `&fn() -> i32 == fn() -> i32 {alt0}`
+   |
+   = help: the trait `PartialEq<fn() -> i32 {alt0}>` is not implemented for `&fn() -> i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_001/target.rs:69:32
+   |
+69 |                 assert!(pfi == alt1);
+   |                                ^^^^ expected fn pointer, found fn item
+   |
+   = note: expected fn pointer `fn() -> _`
+                 found fn item `fn() -> _ {alt1}`
+   = note: fn items are distinct from fn pointers
+help: consider casting to a fn pointer
+   |
+69 |                 assert!(pfi == alt1 as fn() -> i32);
+   |                                     ++++++++++++++
+
+error[E0277]: can't compare `&fn() -> i32` with `fn() -> i32 {alt1}`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_001/target.rs:69:29
+   |
+69 |                 assert!(pfi == alt1);
+   |                             ^^ no implementation for `&fn() -> i32 == fn() -> i32 {alt1}`
+   |
+   = help: the trait `PartialEq<fn() -> i32 {alt1}>` is not implemented for `&fn() -> i32`
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_001/target.rs:4:5
+  |
+4 |     gstore[0] = 111;
+  |     ^^^^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_001/target.rs:5:5
+  |
+5 |     gstore[0] + 1
+  |     ^^^^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_001/target.rs:14:5
+   |
+14 |     gstore[2] = 333;
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_001/target.rs:15:5
+   |
+15 |     gstore[2] - 1
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_001/target.rs:19:5
+   |
+19 |     gstore[3] = 444;
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_001/target.rs:20:5
+   |
+20 |     gstore[3] + 2
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 12 previous errors
+
+Some errors have detailed explanations: E0106, E0133, E0277, E0308.
+For more information about an error, try `rustc --explain E0106`.

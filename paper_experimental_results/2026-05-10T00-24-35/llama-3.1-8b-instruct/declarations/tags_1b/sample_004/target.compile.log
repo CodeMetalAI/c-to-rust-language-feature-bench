@@ -1,0 +1,55 @@
+error[E0369]: binary operation `==` cannot be applied to type `&Box<TreeNode>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/tags_1b/sample_004/target.rs:44:5
+   |
+44 |     assert_ne!(sp.left.as_ref().unwrap(), sp.right.as_ref().unwrap());
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |     |
+   |     &Box<TreeNode>
+   |     &Box<TreeNode>
+   |
+note: an implementation of `PartialEq` might be missing for `TreeNode`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/tags_1b/sample_004/target.rs:2:1
+   |
+ 2 | struct TreeNode {
+   | ^^^^^^^^^^^^^^^ must implement `PartialEq`
+   = note: this error originates in the macro `assert_ne` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `TreeNode` with `#[derive(PartialEq)]`
+   |
+ 2 + #[derive(PartialEq)]
+ 3 | struct TreeNode {
+   |
+
+error[E0277]: `TreeNode` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/tags_1b/sample_004/target.rs:44:5
+   |
+44 |     assert_ne!(sp.left.as_ref().unwrap(), sp.right.as_ref().unwrap());
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ unsatisfied trait bound
+   |
+help: the trait `Debug` is not implemented for `TreeNode`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/tags_1b/sample_004/target.rs:2:1
+   |
+ 2 | struct TreeNode {
+   | ^^^^^^^^^^^^^^^
+   = note: add `#[derive(Debug)]` to `TreeNode` or manually `impl Debug for TreeNode`
+   = help: the trait `Debug` is implemented for `Box<T, A>`
+   = note: this error originates in the macro `assert_ne` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: `TreeNode` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/tags_1b/sample_004/target.rs:44:5
+   |
+44 |     assert_ne!(sp.left.as_ref().unwrap(), sp.right.as_ref().unwrap());
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ unsatisfied trait bound
+   |
+help: the trait `Debug` is not implemented for `TreeNode`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/tags_1b/sample_004/target.rs:2:1
+   |
+ 2 | struct TreeNode {
+   | ^^^^^^^^^^^^^^^
+   = note: add `#[derive(Debug)]` to `TreeNode` or manually `impl Debug for TreeNode`
+   = help: the trait `Debug` is implemented for `Box<T, A>`
+   = note: this error originates in the macro `assert_ne` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0277, E0369.
+For more information about an error, try `rustc --explain E0277`.

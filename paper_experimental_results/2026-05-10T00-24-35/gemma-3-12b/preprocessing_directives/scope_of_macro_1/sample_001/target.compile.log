@@ -1,0 +1,34 @@
+warning: unnecessary parentheses around assigned value
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_1/sample_001/target.rs:5:24
+  |
+5 |     let tabsize_size = (a.len() as usize);
+  |                        ^                ^
+  |
+  = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+  |
+5 -     let tabsize_size = (a.len() as usize);
+5 +     let tabsize_size = a.len() as usize;
+  |
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_1/sample_001/target.rs:7:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+7 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_1/sample_001/target.rs:15:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+15 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 2 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0308`.

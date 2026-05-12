@@ -1,0 +1,32 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/add_op_1a/sample_005/target.rs:5:5
+  |
+5 | /     unsafe {
+6 | |         *p.offset(1).as_mut_ptr().offset(2) = 99;
+7 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error[E0658]: use of unstable library feature `array_ptr_get`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/add_op_1a/sample_005/target.rs:6:22
+  |
+6 |         *p.offset(1).as_mut_ptr().offset(2) = 99;
+  |                      ^^^^^^^^^^
+  |
+  = note: see issue #119834 <https://github.com/rust-lang/rust/issues/119834> for more information
+  = help: add `#![feature(array_ptr_get)]` to the crate attributes to enable
+  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0133]: call to unsafe function `std::ptr::mut_ptr::<impl *mut T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/add_op_1a/sample_005/target.rs:13:14
+   |
+13 |     let n = (p.offset(1) as usize - a.as_ptr() as usize) / std::mem::size_of::<[i32; 3]>();
+   |              ^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0133, E0658.
+For more information about an error, try `rustc --explain E0133`.

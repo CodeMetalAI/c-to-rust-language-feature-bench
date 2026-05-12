@@ -1,0 +1,177 @@
+error: expected one of `!`, `(`, `,`, `::`, `:`, `<`, `=`, or `>`, found `i32`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:3:27
+  |
+3 | fn f2(p: Option<&volatile i32>) {}
+  |                           ^^^ expected one of 8 possible tokens
+  |
+help: you might have meant to end the type parameters here
+  |
+3 | fn f2(p: Option<&volatile> i32>) {}
+  |                          +
+
+error: expected one of `!`, `(`, `,`, `::`, `:`, `<`, `=`, or `>`, found `i32`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:5:27
+  |
+5 | fn f3(p: Option<&volatile i32>) {}
+  |                           ^^^ expected one of 8 possible tokens
+  |
+help: you might have meant to end the type parameters here
+  |
+5 | fn f3(p: Option<&volatile> i32>) {}
+  |                          +
+
+error[E0599]: no method named `then` found for enum `Option<T>` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:8:15
+  |
+8 |     f(Some(1).then(|| std::ptr::null::<i32>));
+  |               ^^^^
+  |
+help: there is a method `and_then` with a similar name
+  |
+8 |     f(Some(1).and_then(|| std::ptr::null::<i32>));
+  |               ++++
+
+error[E0599]: no method named `then` found for enum `Option<T>` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:9:37
+  |
+9 |     f(Some(std::ptr::null::<i32>()).then(|| 1));
+  |                                     ^^^^
+  |
+help: there is a method `and_then` with a similar name
+  |
+9 |     f(Some(std::ptr::null::<i32>()).and_then(|| 1));
+  |                                     ++++
+
+error[E0599]: no method named `then` found for enum `Option<T>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:11:16
+   |
+11 |     f2(Some(1).then(|| std::ptr::null::<i32>));
+   |                ^^^^
+   |
+help: there is a method `and_then` with a similar name
+   |
+11 |     f2(Some(1).and_then(|| std::ptr::null::<i32>));
+   |                ++++
+
+error[E0599]: no method named `then` found for enum `Option<T>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:12:38
+   |
+12 |     f2(Some(std::ptr::null::<i32>()).then(|| 1));
+   |                                      ^^^^
+   |
+help: there is a method `and_then` with a similar name
+   |
+12 |     f2(Some(std::ptr::null::<i32>()).and_then(|| 1));
+   |                                      ++++
+
+error[E0599]: no method named `then` found for enum `Option<T>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:14:38
+   |
+14 |     f3(Some(std::ptr::null::<i32>()).then(|| 1));
+   |                                      ^^^^
+   |
+help: there is a method `and_then` with a similar name
+   |
+14 |     f3(Some(std::ptr::null::<i32>()).and_then(|| 1));
+   |                                      ++++
+
+error[E0599]: no method named `then` found for enum `Option<T>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:15:16
+   |
+15 |     f3(Some(1).then(|| std::ptr::null::<i32>));
+   |                ^^^^
+   |
+help: there is a method `and_then` with a similar name
+   |
+15 |     f3(Some(1).and_then(|| std::ptr::null::<i32>));
+   |                ++++
+
+error[E0599]: no method named `then` found for enum `Option<T>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:17:37
+   |
+17 |     f(Some(std::ptr::null::<i32>()).then(|| "Hello, world!".as_ptr()));
+   |                                     ^^^^
+   |
+help: there is a method `and_then` with a similar name
+   |
+17 |     f(Some(std::ptr::null::<i32>()).and_then(|| "Hello, world!".as_ptr()));
+   |                                     ++++
+
+error[E0599]: no method named `then` found for enum `Option<T>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:18:38
+   |
+18 |     f(Some("Hello, world!".as_ptr()).then(|| std::ptr::null::<i32>));
+   |                                      ^^^^
+   |
+help: there is a method `and_then` with a similar name
+   |
+18 |     f(Some("Hello, world!".as_ptr()).and_then(|| std::ptr::null::<i32>));
+   |                                      ++++
+
+error[E0599]: no method named `then` found for enum `Option<T>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:20:16
+   |
+20 |     f4(Some(1).then(|| std::ptr::null::<i32>));
+   |                ^^^^
+   |
+help: there is a method `and_then` with a similar name
+   |
+20 |     f4(Some(1).and_then(|| std::ptr::null::<i32>));
+   |                ++++
+
+error[E0599]: no method named `then` found for enum `Option<T>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:21:38
+   |
+21 |     f4(Some(std::ptr::null::<i32>()).then(|| 1));
+   |                                      ^^^^
+   |
+help: there is a method `and_then` with a similar name
+   |
+21 |     f4(Some(std::ptr::null::<i32>()).and_then(|| 1));
+   |                                      ++++
+
+error[E0599]: no method named `then` found for enum `Option<T>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:23:38
+   |
+23 |     f1(Some(std::ptr::null::<i32>()).then(|| 1));
+   |                                      ^^^^
+   |
+help: there is a method `and_then` with a similar name
+   |
+23 |     f1(Some(std::ptr::null::<i32>()).and_then(|| 1));
+   |                                      ++++
+
+error[E0599]: no method named `then` found for enum `Option<T>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:24:16
+   |
+24 |     f1(Some(1).then(|| std::ptr::null::<i32>));
+   |                ^^^^
+   |
+help: there is a method `and_then` with a similar name
+   |
+24 |     f1(Some(1).and_then(|| std::ptr::null::<i32>));
+   |                ++++
+
+warning: unused variable: `p`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:1:15
+  |
+1 | fn f<T: Copy>(p: Option<&T>) {}
+  |               ^ help: if this is intentional, prefix it with an underscore: `_p`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `p`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:2:10
+  |
+2 | fn f1<T>(p: Option<&T>) {}
+  |          ^ help: if this is intentional, prefix it with an underscore: `_p`
+
+warning: unused variable: `p`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:4:7
+  |
+4 | fn f4(p: Option<&i32>) {}
+  |       ^ help: if this is intentional, prefix it with an underscore: `_p`
+
+error: aborting due to 14 previous errors; 3 warnings emitted
+
+For more information about this error, try `rustc --explain E0599`.

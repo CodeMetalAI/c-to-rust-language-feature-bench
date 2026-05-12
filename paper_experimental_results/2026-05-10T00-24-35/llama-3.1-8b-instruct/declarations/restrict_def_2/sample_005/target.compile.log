@@ -1,0 +1,206 @@
+error[E0599]: no method named `offset` found for mutable reference `&mut i32` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:6:11
+  |
+6 |     p = p.offset(1);
+  |           ^^^^^^ method not found in `&mut i32`
+
+error[E0599]: no method named `offset` found for mutable reference `&mut i32` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:7:11
+  |
+7 |     q = q.offset(1);
+  |           ^^^^^^ method not found in `&mut i32`
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:39:5
+   |
+39 |     f(n, p, q);
+   |     ^
+   |
+note: expected `&mut i32`, found `*mut i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:39:10
+   |
+39 |     f(n, p, q);
+   |          ^
+   = note: expected mutable reference `&mut i32`
+                    found raw pointer `*mut i32`
+note: expected `&mut i32`, found `*mut i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:39:13
+   |
+39 |     f(n, p, q);
+   |             ^
+   = note: expected mutable reference `&mut i32`
+                    found raw pointer `*mut i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:3:4
+   |
+ 3 | fn f(n: i32, p: &mut i32, q: &mut i32) {
+   |    ^         -----------  -----------
+
+error[E0277]: the type `[i32]` cannot be indexed by `RangeTo<i32>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:41:29
+   |
+41 |     if !check_range_eq(&buf[..n], &snapshot[off..(off + n)]) {
+   |                             ^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `RangeTo<i32>`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `RangeTo<usize>` implements `SliceIndex<ByteStr>`
+             `RangeTo<usize>` implements `SliceIndex<[T]>`
+             `RangeTo<usize>` implements `SliceIndex<str>`
+   = note: required for `[i32]` to implement `Index<RangeTo<i32>>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[i32; 20]` to implement `Index<RangeTo<i32>>`
+
+error[E0277]: the type `[i32]` cannot be indexed by `std::ops::Range<i32>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:41:45
+   |
+41 |     if !check_range_eq(&buf[..n], &snapshot[off..(off + n)]) {
+   |                                             ^^^^^^^^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `std::ops::Range<i32>`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `std::ops::Range<usize>` implements `SliceIndex<ByteStr>`
+             `std::ops::Range<usize>` implements `SliceIndex<[T]>`
+             `std::ops::Range<usize>` implements `SliceIndex<str>`
+   = note: required for `[i32]` to implement `Index<std::ops::Range<i32>>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[i32; 20]` to implement `Index<std::ops::Range<i32>>`
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:41:9
+   |
+41 |     if !check_range_eq(&buf[..n], &snapshot[off..(off + n)]) {
+   |         ^^^^^^^^^^^^^^-------------------------------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:12:4
+   |
+12 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^                       --------
+help: provide the argument
+   |
+41 |     if !check_range_eq(&buf[..n], &snapshot[off..(off + n)], /* usize */) {
+   |                                                            +++++++++++++
+
+error[E0277]: the type `[i32]` cannot be indexed by `std::ops::Range<i32>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:45:29
+   |
+45 |     if !check_range_eq(&buf[off..(off + n)], &snapshot[off..(off + n)]) {
+   |                             ^^^^^^^^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `std::ops::Range<i32>`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `std::ops::Range<usize>` implements `SliceIndex<ByteStr>`
+             `std::ops::Range<usize>` implements `SliceIndex<[T]>`
+             `std::ops::Range<usize>` implements `SliceIndex<str>`
+   = note: required for `[i32]` to implement `Index<std::ops::Range<i32>>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[i32; 20]` to implement `Index<std::ops::Range<i32>>`
+
+error[E0277]: the type `[i32]` cannot be indexed by `std::ops::Range<i32>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:45:56
+   |
+45 |     if !check_range_eq(&buf[off..(off + n)], &snapshot[off..(off + n)]) {
+   |                                                        ^^^^^^^^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `std::ops::Range<i32>`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `std::ops::Range<usize>` implements `SliceIndex<ByteStr>`
+             `std::ops::Range<usize>` implements `SliceIndex<[T]>`
+             `std::ops::Range<usize>` implements `SliceIndex<str>`
+   = note: required for `[i32]` to implement `Index<std::ops::Range<i32>>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[i32; 20]` to implement `Index<std::ops::Range<i32>>`
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:45:9
+   |
+45 |     if !check_range_eq(&buf[off..(off + n)], &snapshot[off..(off + n)]) {
+   |         ^^^^^^^^^^^^^^------------------------------------------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:12:4
+   |
+12 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^                       --------
+help: provide the argument
+   |
+45 |     if !check_range_eq(&buf[off..(off + n)], &snapshot[off..(off + n)], /* usize */) {
+   |                                                                       +++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:65:5
+   |
+65 |     f(n, p, q);
+   |     ^
+   |
+note: expected `&mut i32`, found `*mut i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:65:10
+   |
+65 |     f(n, p, q);
+   |          ^
+   = note: expected mutable reference `&mut i32`
+                    found raw pointer `*mut i32`
+note: expected `&mut i32`, found `*mut i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:65:13
+   |
+65 |     f(n, p, q);
+   |             ^
+   = note: expected mutable reference `&mut i32`
+                    found raw pointer `*mut i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:3:4
+   |
+ 3 | fn f(n: i32, p: &mut i32, q: &mut i32) {
+   |    ^         -----------  -----------
+
+error[E0277]: the type `[i32]` cannot be indexed by `std::ops::Range<i32>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:67:29
+   |
+67 |     if !check_range_eq(&buf[off..(off + n)], &buf[..n]) {
+   |                             ^^^^^^^^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `std::ops::Range<i32>`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `std::ops::Range<usize>` implements `SliceIndex<ByteStr>`
+             `std::ops::Range<usize>` implements `SliceIndex<[T]>`
+             `std::ops::Range<usize>` implements `SliceIndex<str>`
+   = note: required for `[i32]` to implement `Index<std::ops::Range<i32>>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[i32; 20]` to implement `Index<std::ops::Range<i32>>`
+
+error[E0277]: the type `[i32]` cannot be indexed by `RangeTo<i32>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:67:51
+   |
+67 |     if !check_range_eq(&buf[off..(off + n)], &buf[..n]) {
+   |                                                   ^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `RangeTo<i32>`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `RangeTo<usize>` implements `SliceIndex<ByteStr>`
+             `RangeTo<usize>` implements `SliceIndex<[T]>`
+             `RangeTo<usize>` implements `SliceIndex<str>`
+   = note: required for `[i32]` to implement `Index<RangeTo<i32>>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[i32; 20]` to implement `Index<RangeTo<i32>>`
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:67:9
+   |
+67 |     if !check_range_eq(&buf[off..(off + n)], &buf[..n]) {
+   |         ^^^^^^^^^^^^^^--------------------------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_005/target.rs:12:4
+   |
+12 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^                       --------
+help: provide the argument
+   |
+67 |     if !check_range_eq(&buf[off..(off + n)], &buf[..n], /* usize */) {
+   |                                                       +++++++++++++
+
+error: aborting due to 13 previous errors
+
+Some errors have detailed explanations: E0061, E0277, E0308, E0599.
+For more information about an error, try `rustc --explain E0061`.

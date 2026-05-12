@@ -1,0 +1,78 @@
+error[E0369]: cannot add `{integer}` to `bool`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_005/target.rs:54:22
+   |
+54 |     if type_id(bf.b1 + 0)!= 99 {
+   |                ----- ^ - {integer}
+   |                |
+   |                bool
+
+error[E0382]: use of moved value: `x`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_005/target.rs:4:35
+  |
+1 | fn type_id<T: std::fmt::Debug>(x: T) -> u8 {
+  |                                - move occurs because `x` has type `T`, which does not implement the `Copy` trait
+2 |     match x {
+3 |         _ if is_integral(x) => 1,
+  |                          - value moved here
+4 |         _ if is_unsigned_integral(x) => 2,
+  |                                   ^ value used here after move
+  |
+help: consider borrowing `x`
+  |
+3 |         _ if is_integral(&x) => 1,
+  |                          +
+help: consider further restricting type parameter `T` with trait `Copy`
+  |
+1 | fn type_id<T: std::fmt::Debug + Copy>(x: T) -> u8 {
+  |                               ++++++
+
+error[E0382]: use of moved value: `x`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_005/target.rs:5:32
+  |
+1 | fn type_id<T: std::fmt::Debug>(x: T) -> u8 {
+  |                                - move occurs because `x` has type `T`, which does not implement the `Copy` trait
+2 |     match x {
+3 |         _ if is_integral(x) => 1,
+  |                          - value moved here
+4 |         _ if is_unsigned_integral(x) => 2,
+  |                                   - value moved here
+5 |         _ if is_floating_point(x) => 7,
+  |                                ^ value used here after move
+  |
+help: consider borrowing `x`
+  |
+4 |         _ if is_unsigned_integral(&x) => 2,
+  |                                   +
+help: consider borrowing `x`
+  |
+3 |         _ if is_integral(&x) => 1,
+  |                          +
+help: consider further restricting type parameter `T` with trait `Copy`
+  |
+1 | fn type_id<T: std::fmt::Debug + Copy>(x: T) -> u8 {
+  |                               ++++++
+
+warning: unused variable: `x`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_005/target.rs:10:36
+   |
+10 | fn is_integral<T: std::fmt::Debug>(x: T) -> bool {
+   |                                    ^ help: if this is intentional, prefix it with an underscore: `_x`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `x`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_005/target.rs:14:45
+   |
+14 | fn is_unsigned_integral<T: std::fmt::Debug>(x: T) -> bool {
+   |                                             ^ help: if this is intentional, prefix it with an underscore: `_x`
+
+warning: unused variable: `x`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_005/target.rs:18:42
+   |
+18 | fn is_floating_point<T: std::fmt::Debug>(x: T) -> bool {
+   |                                          ^ help: if this is intentional, prefix it with an underscore: `_x`
+
+error: aborting due to 3 previous errors; 3 warnings emitted
+
+Some errors have detailed explanations: E0369, E0382.
+For more information about an error, try `rustc --explain E0369`.

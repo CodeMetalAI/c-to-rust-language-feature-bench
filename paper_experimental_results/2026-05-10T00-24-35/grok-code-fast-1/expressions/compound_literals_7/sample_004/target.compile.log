@@ -1,0 +1,23 @@
+error[E0277]: `Rc<IntList>` cannot be shared between threads safely
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/compound_literals_7/sample_004/target.rs:10:23
+   |
+10 | static ENDLESS_ZEROS: OnceLock<Rc<IntList>> = OnceLock::new();
+   |                       ^^^^^^^^^^^^^^^^^^^^^ `Rc<IntList>` cannot be shared between threads safely
+   |
+   = help: the trait `Sync` is not implemented for `Rc<IntList>`
+   = note: required for `OnceLock<Rc<IntList>>` to implement `Sync`
+   = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `Rc<IntList>` cannot be sent between threads safely
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/compound_literals_7/sample_004/target.rs:10:23
+   |
+10 | static ENDLESS_ZEROS: OnceLock<Rc<IntList>> = OnceLock::new();
+   |                       ^^^^^^^^^^^^^^^^^^^^^ `Rc<IntList>` cannot be sent between threads safely
+   |
+   = help: the trait `Send` is not implemented for `Rc<IntList>`
+   = note: required for `OnceLock<Rc<IntList>>` to implement `Sync`
+   = note: shared static variables must have a type that implements `Sync`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

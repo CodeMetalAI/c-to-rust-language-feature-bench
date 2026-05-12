@@ -1,0 +1,90 @@
+fn main() {
+    let g_arr: [i32; 3] = [1, 2, 3];
+
+    fn fip() -> &i32 {
+        &g_arr[1]
+    }
+
+    fn f_plain() -> i32 {
+        7
+    }
+
+    fn f_var(x: u32) -> i32 {
+        (x + 3) as i32
+    }
+
+    fn use_vla(n: usize, p: &[i32]) -> i32 {
+        p[0] * 10 + p[n - 1]
+    }
+
+    // Check sizeof int-like behavior
+    {
+        let zero_int: i32 = 0;
+        if (std::mem::size_of_val(&zero_int)) != std::mem::size_of::<i32>() {
+            return;
+        }
+    }
+
+    // Pointer to first element
+    {
+        let p: &i32 = &g_arr[0];
+        if *p != 1 {
+            return;
+        }
+    }
+
+    // Array of pointers
+    {
+        let q_arr: [&i32; 3] = [&g_arr[0], &g_arr[1], &g_arr[2]];
+        let q: &i32 = q_arr[2];
+        if *q != 3 {
+            return;
+        }
+    }
+
+    // Pointer to array
+    {
+        let pa: &[i32; 3] = &g_arr;
+        if pa[1] != 2 {
+            return;
+        }
+    }
+
+    // Simulate VLA usage with slice
+    {
+        let n: usize = 3;
+        let r: i32 = use_vla(n, &g_arr);
+        if r != 13 {
+            return;
+        }
+    }
+
+    // Function pointer returning pointer
+    {
+        let pf: fn() -> &i32 = fip;
+        if *pf() != 2 {
+            return;
+        }
+    }
+
+    // Function pointer to plain function
+    {
+        let pf: fn() -> i32 = f_plain;
+        if pf() != 7 {
+            return;
+        }
+    }
+
+    // Array of function pointers
+    {
+        let af: [fn(u32) -> i32; 2] = [f_var, f_var];
+        if af[0](4) != 7 {
+            return;
+        }
+        if af[1](10) != 13 {
+            return;
+        }
+    }
+
+    std::process::exit(0);
+}

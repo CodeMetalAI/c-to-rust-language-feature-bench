@@ -1,0 +1,137 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_1/sample_002/target.rs:5:9
+  |
+5 | /         unsafe {
+6 | |             CALLS += 1;
+7 | |         }
+  | |_________^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_1/sample_002/target.rs:20:9
+   |
+20 | /         unsafe {
+21 | |             for i in 0..11 {
+22 | |                 FA[i] = (i + 1) as f32;
+...  |
+28 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_1/sample_002/target.rs:36:29
+   |
+36 |         pp.iter().map(|&&v| unsafe {*v} as i32).sum::<i32>()
+   |                             ^^^^^^^^^^^
+
+warning: unnecessary parentheses around block return value
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_1/sample_002/target.rs:40:9
+   |
+40 |         (a[0] as i32 + a[10] as i32 + unsafe {*afp2[0]} as i32 + unsafe {*afp2[16]} as i32)
+   |         ^                                                                                 ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+40 -         (a[0] as i32 + a[10] as i32 + unsafe {*afp2[0]} as i32 + unsafe {*afp2[16]} as i32)
+40 +         a[0] as i32 + a[10] as i32 + unsafe {*afp2[0]} as i32 + unsafe {*afp2[16]} as i32
+   |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_1/sample_002/target.rs:40:39
+   |
+40 |         (a[0] as i32 + a[10] as i32 + unsafe {*afp2[0]} as i32 + unsafe {*afp2[16]} as i32)
+   |                                       ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_1/sample_002/target.rs:40:66
+   |
+40 |         (a[0] as i32 + a[10] as i32 + unsafe {*afp2[0]} as i32 + unsafe {*afp2[16]} as i32)
+   |                                                                  ^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_1/sample_002/target.rs:45:5
+   |
+45 | /     unsafe {
+46 | |         if FA[0] != 1.0 || FA[10] != 11.0 {
+47 | |             return std::process::exit(1);
+...  |
+83 | |     }
+   | |_____^
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_1/sample_002/target.rs:47:13
+   |
+47 |             return std::process::exit(1);
+   |             ^^^^^^^---------------------
+   |             |      |
+   |             |      any code following this expression is unreachable
+   |             unreachable expression
+   |
+   = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_1/sample_002/target.rs:51:13
+   |
+51 |             return std::process::exit(2);
+   |             ^^^^^^^---------------------
+   |             |      |
+   |             |      any code following this expression is unreachable
+   |             unreachable expression
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_1/sample_002/target.rs:69:13
+   |
+69 |             return std::process::exit(3);
+   |             ^^^^^^^---------------------
+   |             |      |
+   |             |      any code following this expression is unreachable
+   |             unreachable expression
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_1/sample_002/target.rs:73:13
+   |
+73 |             return std::process::exit(5);
+   |             ^^^^^^^---------------------
+   |             |      |
+   |             |      any code following this expression is unreachable
+   |             unreachable expression
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_1/sample_002/target.rs:77:13
+   |
+77 |             return std::process::exit(6);
+   |             ^^^^^^^---------------------
+   |             |      |
+   |             |      any code following this expression is unreachable
+   |             unreachable expression
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_1/sample_002/target.rs:81:13
+   |
+81 |             return std::process::exit(7);
+   |             ^^^^^^^---------------------
+   |             |      |
+   |             |      any code following this expression is unreachable
+   |             unreachable expression
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_1/sample_002/target.rs:36:25
+   |
+36 |         pp.iter().map(|&&v| unsafe {*v} as i32).sum::<i32>()
+   |                        -^^
+   |                        ||
+   |                        |expected `*const f32`, found `&_`
+   |                        expected due to this
+   |
+   = note: expected raw pointer `*const f32`
+                found reference `&_`
+help: consider removing `&` from the pattern
+   |
+36 -         pp.iter().map(|&&v| unsafe {*v} as i32).sum::<i32>()
+36 +         pp.iter().map(|&v| unsafe {*v} as i32).sum::<i32>()
+   |
+
+error: aborting due to 7 previous errors; 7 warnings emitted
+
+For more information about this error, try `rustc --explain E0308`.

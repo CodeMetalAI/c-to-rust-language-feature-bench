@@ -1,0 +1,161 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_005/target.rs:34:13
+   |
+34 |     let p = unsafe { &mut *(storage.as_mut_ptr() as *mut Packet) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_005/target.rs:8:9
+   |
+ 8 |         unsafe { &(*(0 as *const $type)).$field as *const _ as usize }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+40 |         let off = offset_of!(Packet, data);
+   |                   ------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `offset_of` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_005/target.rs:41:24
+   |
+41 |         let expected = unsafe { storage.as_ptr().add(off) };
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_005/target.rs:42:20
+   |
+42 |         let got1 = unsafe { &p.data as *const _ as *const U8 };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_005/target.rs:43:20
+   |
+43 |         let got2 = unsafe { &(*p).data as *const _ as *const U8 };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_005/target.rs:57:13
+   |
+57 | /             unsafe {
+58 | |                 *p.data.get_unchecked_mut(i as usize) = v;
+59 | |                 *p.data.get_unchecked_mut(i as usize) += 0;
+60 | |             }
+   | |_____________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_005/target.rs:69:13
+   |
+69 | /             unsafe {
+70 | |                 p.sum += *p.data.get_unchecked(i as usize);
+71 | |             }
+   | |_____________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_005/target.rs:8:9
+   |
+ 8 |         unsafe { &(*(0 as *const $type)).$field as *const _ as usize }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+80 |     if mem::size_of::<Packet>() < offset_of!(Packet, data) {
+   |                                   ------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `offset_of` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_005/target.rs:89:13
+   |
+89 |     let p = unsafe { &mut *(storage.as_mut_ptr() as *mut Packet) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_005/target.rs:8:9
+   |
+ 8 |         unsafe { &(*(0 as *const $type)).$field as *const _ as usize }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+96 |         let off = offset_of!(Packet, data);
+   |                   ------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `offset_of` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_005/target.rs:97:24
+   |
+97 |         let expected = unsafe { storage.as_ptr().add(off) };
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_005/target.rs:99:20
+   |
+99 |         let got1 = unsafe { &p.data as *const _ as *const U8 };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_005/target.rs:100:20
+    |
+100 |         let got2 = unsafe { &(*p).data as *const _ as *const U8 };
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_005/target.rs:42:20
+   |
+42 |         let got1 = unsafe { &p.data as *const _ as *const U8 };
+   |                    ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_005/target.rs:43:20
+   |
+43 |         let got2 = unsafe { &(*p).data as *const _ as *const U8 };
+   |                    ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_005/target.rs:99:20
+   |
+99 |         let got1 = unsafe { &p.data as *const _ as *const U8 };
+   |                    ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_005/target.rs:100:20
+    |
+100 |         let got2 = unsafe { &(*p).data as *const _ as *const U8 };
+    |                    ^^^^^^ unnecessary `unsafe` block
+
+warning: dereferencing a null pointer
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_005/target.rs:8:19
+   |
+ 8 |         unsafe { &(*(0 as *const $type)).$field as *const _ as usize }
+   |                   ^^^^^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+...
+40 |         let off = offset_of!(Packet, data);
+   |                   ------------------------ in this macro invocation
+   |
+   = note: `#[warn(deref_nullptr)]` on by default
+   = note: this warning originates in the macro `offset_of` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: dereferencing a null pointer
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_005/target.rs:8:19
+   |
+ 8 |         unsafe { &(*(0 as *const $type)).$field as *const _ as usize }
+   |                   ^^^^^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+...
+80 |     if mem::size_of::<Packet>() < offset_of!(Packet, data) {
+   |                                   ------------------------ in this macro invocation
+   |
+   = note: this warning originates in the macro `offset_of` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: dereferencing a null pointer
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_005/target.rs:8:19
+   |
+ 8 |         unsafe { &(*(0 as *const $type)).$field as *const _ as usize }
+   |                   ^^^^^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+...
+96 |         let off = offset_of!(Packet, data);
+   |                   ------------------------ in this macro invocation
+   |
+   = note: this warning originates in the macro `offset_of` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 13 previous errors; 7 warnings emitted

@@ -1,0 +1,53 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/struct_and_union_3b/sample_005/target.rs:17:5
+   |
+17 | /     unsafe {
+18 | |         if u.s1.m < 0 {
+19 | |             u.s2.m = -u.s2.m;
+...  |
+22 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/struct_and_union_3b/sample_005/target.rs:27:5
+   |
+27 | /     unsafe {
+28 | |         u.s1.m = -7;
+29 | |         u.s2.m = 7;
+30 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/struct_and_union_3b/sample_005/target.rs:34:5
+   |
+34 | /     unsafe {
+35 | |         if u.s2.m != -7 {
+36 | |             std::process::exit(2);
+37 | |         }
+38 | |     }
+   | |_____^
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/struct_and_union_3b/sample_005/target.rs:27:5
+   |
+27 |     unsafe {
+   |     ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error[E0381]: partially assigned binding `u` isn't fully initialized
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/struct_and_union_3b/sample_005/target.rs:28:9
+   |
+26 |     let mut u: U12;
+   |         ----- binding declared here but left uninitialized
+27 |     unsafe {
+28 |         u.s1.m = -7;
+   |         ^^^^^^^^^^^ `u.s1` partially assigned here but it isn't fully initialized
+   |
+   = help: partial initialization isn't supported, fully initialize the binding with a default value and mutate it, or use `std::mem::MaybeUninit`
+
+error: aborting due to 4 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0381`.

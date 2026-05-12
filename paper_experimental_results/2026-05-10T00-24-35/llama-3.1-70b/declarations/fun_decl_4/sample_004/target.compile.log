@@ -1,0 +1,21 @@
+error[E0277]: `&mut &mut [f64]` is not an iterator
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_4/sample_004/target.rs:18:18
+   |
+18 |         for d in row {
+   |                  ^^^ `&mut &mut [f64]` is not an iterator
+   |
+   = help: the trait `Iterator` is not implemented for `[f64]`
+   = help: the following other types implement trait `IntoIterator`:
+             &[T; N]
+             &[T]
+             &mut [T; N]
+             &mut [T]
+             [T; N]
+   = note: required for `&mut [f64]` to implement `Iterator`
+   = note: 1 redundant requirement hidden
+   = note: required for `&mut &mut [f64]` to implement `Iterator`
+   = note: required for `&mut &mut [f64]` to implement `IntoIterator`
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0277`.

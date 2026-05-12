@@ -1,0 +1,156 @@
+error: cannot find macro `showlist` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:12:8
+   |
+12 |     if showlist!("The first", "second", "and third items.") != "The first, second, and third items." {
+   |        ^^^^^^^^ consider moving the definition of `showlist` before this call
+   |
+note: a macro with the same name exists, but it appears later
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:32:14
+   |
+32 | macro_rules! showlist {
+   |              ^^^^^^^^
+
+warning: unused macro definition: `debug`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:28:14
+   |
+28 | macro_rules! debug {
+   |              ^^^^^
+   |
+   = note: `#[warn(unused_macros)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused macro definition: `showlist`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:32:14
+   |
+32 | macro_rules! showlist {
+   |              ^^^^^^^^
+
+warning: unused macro definition: `report`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:46:14
+   |
+46 | macro_rules! report {
+   |              ^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:5:14
+   |
+ 5 |     if debug("Flag") != 1 {
+   |        ----- ^^^^^^ expected `Arguments<'_>`, found `&str`
+   |        |
+   |        arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:24:4
+   |
+24 | fn debug(args: std::fmt::Arguments) -> usize {
+   |    ^^^^^ -------------------------
+
+warning: unreachable expression
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:6:9
+  |
+6 |         return std::process::exit(1);
+  |         ^^^^^^^---------------------
+  |         |      |
+  |         |      any code following this expression is unreachable
+  |         unreachable expression
+  |
+  = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+error[E0061]: this function takes 1 argument but 2 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:8:8
+   |
+ 8 |     if debug("X = %d\n", x) != 2 {
+   |        ^^^^^ ----------  - unexpected argument #2 of type `{integer}`
+   |              |
+   |              expected `Arguments<'_>`, found `&str`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:24:4
+   |
+24 | fn debug(args: std::fmt::Arguments) -> usize {
+   |    ^^^^^ -------------------------
+help: remove the extra argument
+   |
+ 8 -     if debug("X = %d\n", x) != 2 {
+ 8 +     if debug(/* Arguments<'_> */) != 2 {
+   |
+
+warning: unreachable expression
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:9:9
+  |
+9 |         return std::process::exit(2);
+  |         ^^^^^^^---------------------
+  |         |      |
+  |         |      any code following this expression is unreachable
+  |         unreachable expression
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:13:9
+   |
+13 |         return std::process::exit(3);
+   |         ^^^^^^^---------------------
+   |         |      |
+   |         |      any code following this expression is unreachable
+   |         unreachable expression
+
+error[E0061]: this function takes 2 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:16:8
+   |
+16 |     if report(x > y, "x is {} but y is {}", x, y) != 1 {
+   |        ^^^^^^        ---------------------  -  - unexpected argument #4 of type `{integer}`
+   |                      |                      |
+   |                      |                      unexpected argument #3 of type `{integer}`
+   |                      expected `Arguments<'_>`, found `&str`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:38:4
+   |
+38 | fn report<T: std::fmt::Display>(test: bool, args: std::fmt::Arguments) -> usize {
+   |    ^^^^^^                                   -------------------------
+help: remove the extra arguments
+   |
+16 -     if report(x > y, "x is {} but y is {}", x, y) != 1 {
+16 +     if report(x > y, /* Arguments<'_> */) != 1 {
+   |
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:17:9
+   |
+17 |         return std::process::exit(4);
+   |         ^^^^^^^---------------------
+   |         |      |
+   |         |      any code following this expression is unreachable
+   |         unreachable expression
+
+error[E0061]: this function takes 2 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:19:8
+   |
+19 |     if report(x < y, "x is {} but y is {}", x, y) != 3 {
+   |        ^^^^^^        ---------------------  -  - unexpected argument #4 of type `{integer}`
+   |                      |                      |
+   |                      |                      unexpected argument #3 of type `{integer}`
+   |                      expected `Arguments<'_>`, found `&str`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:38:4
+   |
+38 | fn report<T: std::fmt::Display>(test: bool, args: std::fmt::Arguments) -> usize {
+   |    ^^^^^^                                   -------------------------
+help: remove the extra arguments
+   |
+19 -     if report(x < y, "x is {} but y is {}", x, y) != 3 {
+19 +     if report(x < y, /* Arguments<'_> */) != 3 {
+   |
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:20:9
+   |
+20 |         return std::process::exit(5);
+   |         ^^^^^^^---------------------
+   |         |      |
+   |         |      any code following this expression is unreachable
+   |         unreachable expression
+
+error: aborting due to 5 previous errors; 8 warnings emitted
+
+Some errors have detailed explanations: E0061, E0308.
+For more information about an error, try `rustc --explain E0061`.

@@ -1,0 +1,184 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:12
+   |
+11 |         if unsafe { *b.get_mut() } != value {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:15:12
+   |
+15 |         if unsafe { *a.load(std::sync::atomic::Ordering::SeqCst) } != value {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: the trait bound `&mut {integer}: Copy` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:30:30
+   |
+30 |     test_simple_assign_arith(&mut i);
+   |     ------------------------ ^^^^^^ the trait `Copy` is not implemented for `&mut {integer}`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:4:36
+   |
+ 4 |     fn test_simple_assign_arith<T: Copy + PartialEq + Default + std::fmt::Debug>(value: T) {
+   |                                    ^^^^ required by this bound in `test_simple_assign_arith`
+help: consider removing the leading `&`-reference
+   |
+30 -     test_simple_assign_arith(&mut i);
+30 +     test_simple_assign_arith(i);
+   |
+
+error[E0277]: the trait bound `&mut {integer}: Default` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:30:30
+   |
+30 |     test_simple_assign_arith(&mut i);
+   |     ------------------------ ^^^^^^ the trait `Default` is not implemented for `&mut {integer}`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:4:55
+   |
+ 4 |     fn test_simple_assign_arith<T: Copy + PartialEq + Default + std::fmt::Debug>(value: T) {
+   |                                                       ^^^^^^^ required by this bound in `test_simple_assign_arith`
+help: consider removing the leading `&`-reference
+   |
+30 -     test_simple_assign_arith(&mut i);
+30 +     test_simple_assign_arith(i);
+   |
+
+error[E0599]: no method named `clone` found for struct `S` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:42:19
+   |
+32 |     struct S {
+   |     -------- method `clone` not found for this struct
+...
+42 |     let s1 = init.clone();
+   |                   ^^^^^ method not found in `S`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `clone`, perhaps you need to implement it:
+           candidate #1: `Clone`
+
+error[E0369]: binary operation `!=` cannot be applied to type `S`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:44:13
+   |
+44 |     if copy != init {
+   |        ---- ^^ ---- S
+   |        |
+   |        S
+   |
+note: an implementation of `PartialEq` might be missing for `S`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:32:5
+   |
+32 |     struct S {
+   |     ^^^^^^^^ must implement `PartialEq`
+help: consider annotating `S` with `#[derive(PartialEq)]`
+   |
+32 +     #[derive(PartialEq)]
+33 |     struct S {
+   |
+
+error[E0369]: binary operation `!=` cannot be applied to type `S`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:50:13
+   |
+50 |     if copy != init {
+   |        ---- ^^ ---- S
+   |        |
+   |        S
+   |
+note: an implementation of `PartialEq` might be missing for `S`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:32:5
+   |
+32 |     struct S {
+   |     ^^^^^^^^ must implement `PartialEq`
+help: consider annotating `S` with `#[derive(PartialEq)]`
+   |
+32 +     #[derive(PartialEq)]
+33 |     struct S {
+   |
+
+error[E0369]: binary operation `!=` cannot be applied to type `S`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:55:13
+   |
+55 |     if copy != init {
+   |        ---- ^^ ---- S
+   |        |
+   |        S
+   |
+note: an implementation of `PartialEq` might be missing for `S`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:32:5
+   |
+32 |     struct S {
+   |     ^^^^^^^^ must implement `PartialEq`
+help: consider annotating `S` with `#[derive(PartialEq)]`
+   |
+32 +     #[derive(PartialEq)]
+33 |     struct S {
+   |
+
+error[E0369]: binary operation `!=` cannot be applied to type `S`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:60:13
+   |
+60 |     if copy != init {
+   |        ---- ^^ ---- S
+   |        |
+   |        S
+   |
+note: an implementation of `PartialEq` might be missing for `S`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:32:5
+   |
+32 |     struct S {
+   |     ^^^^^^^^ must implement `PartialEq`
+help: consider annotating `S` with `#[derive(PartialEq)]`
+   |
+32 +     #[derive(PartialEq)]
+33 |     struct S {
+   |
+
+error[E0599]: no method named `is_null` found for struct `AtomicPtr<T>` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:8:15
+  |
+8 |         if !a.is_null() {
+  |               ^^^^^^^ method not found in `AtomicPtr<T>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:39
+   |
+ 4 |     fn test_simple_assign_arith<T: Copy + PartialEq + Default + std::fmt::Debug>(value: T) {
+   |                                 - found this type parameter
+...
+11 |         if unsafe { *b.get_mut() } != value {
+   |            -----------------------    ^^^^^ expected `*mut T`, found type parameter `T`
+   |            |
+   |            expected because this is `*mut T`
+   |
+   = note: expected raw pointer `*mut T`
+           found type parameter `T`
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:14:17
+     |
+   4 |     fn test_simple_assign_arith<T: Copy + PartialEq + Default + std::fmt::Debug>(value: T) {
+     |                                 - expected this type parameter
+...
+  14 |         a.store(b.as_ptr(), std::sync::atomic::Ordering::SeqCst);
+     |           ----- ^^^^^^^^^^ expected `*mut T`, found `*mut *mut T`
+     |           |
+     |           arguments to this method are incorrect
+     |
+     = note: expected raw pointer `*mut T`
+                found raw pointer `*mut *mut T`
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:1734:12
+     |
+1734 |     pub fn store(&self, ptr: *mut T, order: Ordering) {
+     |            ^^^^^
+
+error: aborting due to 12 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0369, E0599.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,170 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_002/target.rs:11:5
+   |
+11 | /     unsafe {
+12 | |         (*p).tag = 0xA1B2C3D4;
+13 | |         (*p).n = N as u32;
+...  |
+43 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_002/target.rs:52:5
+   |
+52 | /     unsafe {
+53 | |         (*p).tag = 0;
+54 | |         (*p).n = 0;
+55 | |         (*p).sum = 0;
+...  |
+67 | |     }
+   | |_____^
+
+error[E0277]: the size for values of type `[u32]` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_002/target.rs:8:47
+    |
+  8 |     let mut storage: [u8; std::mem::size_of::<Packet>() + N * std::mem::size_of::<u32>() + 32] = [0; std::mem::size_of::<Packet>() + N * std::mem::size_of::<u32>() + 32];
+    |                                               ^^^^^^ doesn't have a size known at compile-time
+    |
+    = help: within `Packet`, the trait `Sized` is not implemented for `[u32]`
+note: required because it appears within the type `Packet`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_002/target.rs:73:8
+    |
+ 73 | struct Packet {
+    |        ^^^^^^
+note: required by an implicit `Sized` bound in `std::mem::size_of`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:22
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |                      ^ required by the implicit `Sized` requirement on this type parameter in `size_of`
+
+error[E0277]: the size for values of type `[u32]` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_002/target.rs:8:122
+    |
+  8 |     let mut storage: [u8; std::mem::size_of::<Packet>() + N * std::mem::size_of::<u32>() + 32] = [0; std::mem::size_of::<Packet>() + N * std::mem::size_of::<u32>() + 32];
+    |                                                                                                                          ^^^^^^ doesn't have a size known at compile-time
+    |
+    = help: within `Packet`, the trait `Sized` is not implemented for `[u32]`
+note: required because it appears within the type `Packet`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_002/target.rs:73:8
+    |
+ 73 | struct Packet {
+    |        ^^^^^^
+note: required by an implicit `Sized` bound in `std::mem::size_of`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:22
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |                      ^ required by the implicit `Sized` requirement on this type parameter in `size_of`
+
+error[E0277]: the size for values of type `[u32]` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_002/target.rs:15:68
+    |
+ 15 |         let expected = storage.as_ptr().offset(std::mem::size_of::<Packet>() as isize);
+    |                                                                    ^^^^^^ doesn't have a size known at compile-time
+    |
+    = help: within `Packet`, the trait `Sized` is not implemented for `[u32]`
+note: required because it appears within the type `Packet`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_002/target.rs:73:8
+    |
+ 73 | struct Packet {
+    |        ^^^^^^
+note: required by an implicit `Sized` bound in `std::mem::size_of`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:22
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |                      ^ required by the implicit `Sized` requirement on this type parameter in `size_of`
+
+error[E0277]: the size for values of type `[u32]` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_002/target.rs:40:32
+    |
+ 40 |         if std::mem::size_of::<Packet>() < std::mem::size_of::<Packet>() {
+    |                                ^^^^^^ doesn't have a size known at compile-time
+    |
+    = help: within `Packet`, the trait `Sized` is not implemented for `[u32]`
+note: required because it appears within the type `Packet`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_002/target.rs:73:8
+    |
+ 73 | struct Packet {
+    |        ^^^^^^
+note: required by an implicit `Sized` bound in `std::mem::size_of`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:22
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |                      ^ required by the implicit `Sized` requirement on this type parameter in `size_of`
+
+error[E0277]: the size for values of type `[u32]` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_002/target.rs:40:64
+    |
+ 40 |         if std::mem::size_of::<Packet>() < std::mem::size_of::<Packet>() {
+    |                                                                ^^^^^^ doesn't have a size known at compile-time
+    |
+    = help: within `Packet`, the trait `Sized` is not implemented for `[u32]`
+note: required because it appears within the type `Packet`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_002/target.rs:73:8
+    |
+ 73 | struct Packet {
+    |        ^^^^^^
+note: required by an implicit `Sized` bound in `std::mem::size_of`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:22
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |                      ^ required by the implicit `Sized` requirement on this type parameter in `size_of`
+
+error[E0277]: the size for values of type `[u32]` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_002/target.rs:49:47
+    |
+ 49 |     let mut storage: [u8; std::mem::size_of::<Packet>()] = [0; std::mem::size_of::<Packet>()];
+    |                                               ^^^^^^ doesn't have a size known at compile-time
+    |
+    = help: within `Packet`, the trait `Sized` is not implemented for `[u32]`
+note: required because it appears within the type `Packet`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_002/target.rs:73:8
+    |
+ 73 | struct Packet {
+    |        ^^^^^^
+note: required by an implicit `Sized` bound in `std::mem::size_of`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:22
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |                      ^ required by the implicit `Sized` requirement on this type parameter in `size_of`
+
+error[E0277]: the size for values of type `[u32]` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_002/target.rs:49:84
+    |
+ 49 |     let mut storage: [u8; std::mem::size_of::<Packet>()] = [0; std::mem::size_of::<Packet>()];
+    |                                                                                    ^^^^^^ doesn't have a size known at compile-time
+    |
+    = help: within `Packet`, the trait `Sized` is not implemented for `[u32]`
+note: required because it appears within the type `Packet`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_002/target.rs:73:8
+    |
+ 73 | struct Packet {
+    |        ^^^^^^
+note: required by an implicit `Sized` bound in `std::mem::size_of`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:22
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |                      ^ required by the implicit `Sized` requirement on this type parameter in `size_of`
+
+error[E0277]: the size for values of type `[u32]` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_002/target.rs:57:68
+    |
+ 57 |         let expected = storage.as_ptr().offset(std::mem::size_of::<Packet>() as isize);
+    |                                                                    ^^^^^^ doesn't have a size known at compile-time
+    |
+    = help: within `Packet`, the trait `Sized` is not implemented for `[u32]`
+note: required because it appears within the type `Packet`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_002/target.rs:73:8
+    |
+ 73 | struct Packet {
+    |        ^^^^^^
+note: required by an implicit `Sized` bound in `std::mem::size_of`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:22
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |                      ^ required by the implicit `Sized` requirement on this type parameter in `size_of`
+
+error: aborting due to 10 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

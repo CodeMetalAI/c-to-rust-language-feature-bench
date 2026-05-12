@@ -1,0 +1,93 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_002/target.rs:5:5
+  |
+5 | /     unsafe {
+6 | |         HITS += x + 1;
+7 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_002/target.rs:11:5
+   |
+11 | /     unsafe {
+12 | |         HITS += x + 2;
+13 | |     }
+   | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_002/target.rs:20:9
+   |
+18 | fn signal(s: i32, h: &dyn Fn(i32)) -> Handler {
+   |                                       ------- expected `fn(i32)` because of return type
+19 |     if s & 1 != 0 {
+20 |         &handler_a
+   |         ^^^^^^^^^^ expected fn pointer, found `&fn(i32) {handler_a}`
+   |
+   = note: expected fn pointer `fn(_)`
+               found reference `&fn(_) {handler_a}`
+help: consider removing the reference
+   |
+20 -         &handler_a
+20 +         handler_a
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_002/target.rs:22:9
+   |
+18 | fn signal(s: i32, h: &dyn Fn(i32)) -> Handler {
+   |                                       ------- expected `fn(i32)` because of return type
+...
+22 |         h
+   |         ^ expected fn pointer, found `&dyn Fn(i32)`
+   |
+   = note: expected fn pointer `fn(i32)`
+               found reference `&dyn Fn(i32)`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_002/target.rs:52:16
+   |
+48 | fn main() {
+   |          - expected `()` because of default return type
+...
+52 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_002/target.rs:65:5
+   |
+48 | fn main() {
+   |          - expected `()` because of default return type
+...
+65 |     0
+   |     ^ expected `()`, found integer
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_002/target.rs:33:5
+   |
+33 |     HITS
+   |     ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_002/target.rs:39:5
+   |
+39 |     HITS
+   |     ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_002/target.rs:45:5
+   |
+45 |     HITS
+   |     ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0133, E0308.
+For more information about an error, try `rustc --explain E0133`.

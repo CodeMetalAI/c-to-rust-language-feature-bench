@@ -1,0 +1,69 @@
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/struct_and_union_3b/sample_002/target.rs:10:5
+   |
+10 |     s1: S1,
+   |     ^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+10 |     s1: std::mem::ManuallyDrop<S1>,
+   |         +++++++++++++++++++++++  +
+
+error[E0436]: functional record update syntax requires a struct
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/struct_and_union_3b/sample_002/target.rs:24:11
+   |
+24 |         ..Default::default()
+   |           ^^^^^^^^^^^^^^^^^^
+
+error[E0277]: the trait bound `U12: Default` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/struct_and_union_3b/sample_002/target.rs:24:11
+   |
+24 |         ..Default::default()
+   |           ^^^^^^^^^^^^^^^^^^ unsatisfied trait bound
+   |
+help: the trait `Default` is not implemented for `U12`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/struct_and_union_3b/sample_002/target.rs:9:1
+   |
+ 9 | union U12 {
+   | ^^^^^^^^^
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/struct_and_union_3b/sample_002/target.rs:15:8
+   |
+15 |     if u.s1.m < 0 {
+   |        ^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/struct_and_union_3b/sample_002/target.rs:16:19
+   |
+16 |         u.s2.m = -u.s2.m;
+   |                   ^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/struct_and_union_3b/sample_002/target.rs:18:5
+   |
+18 |     u.s1.m
+   |     ^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0594]: cannot assign to `u.s2.m`, which is behind a `&` reference
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/struct_and_union_3b/sample_002/target.rs:16:9
+   |
+16 |         u.s2.m = -u.s2.m;
+   |         ^^^^^^^^^^^^^^^^ `u` is a `&` reference, so the data it refers to cannot be written
+   |
+help: consider changing this to be a mutable reference
+   |
+14 | fn f(u: &mut U12) -> i32 {
+   |          +++
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0133, E0277, E0436, E0594, E0740.
+For more information about an error, try `rustc --explain E0133`.

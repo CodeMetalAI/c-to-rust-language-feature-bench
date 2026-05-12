@@ -1,0 +1,38 @@
+error: expected expression, found `+`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c2/sample_002/target.rs:33:16
+   |
+33 |     if type_id(+cx) != 1 {
+   |                ^ expected expression
+
+error: expected expression, found `+`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c2/sample_002/target.rs:36:16
+   |
+36 |     if type_id(+ax.load(std::sync::atomic::Ordering::SeqCst)) != 1 {
+   |                ^ expected expression
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c2/sample_002/target.rs:10:14
+   |
+10 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0310]: the parameter type `T` may not live long enough
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c2/sample_002/target.rs:2:11
+  |
+2 |     match std::any::TypeId::of::<T>() {
+  |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |           |
+  |           the parameter type `T` must be valid for the static lifetime...
+  |           ...so that the type `T` will meet its required lifetime bounds
+  |
+help: consider adding an explicit lifetime bound
+  |
+1 | fn type_id<T: 'static>(_: T) -> u32 {
+  |             +++++++++
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0277, E0310.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,42 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_4/sample_005/target.rs:54:38
+   |
+54 |             expect[i][j] = x[i][j] + d;
+   |                                      ^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_4/sample_005/target.rs:54:36
+   |
+54 |             expect[i][j] = x[i][j] + d;
+   |                                    ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_4/sample_005/target.rs:68:39
+   |
+68 |             expect2[i][j] = y[i][j] + d;
+   |                                       ^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_4/sample_005/target.rs:68:37
+   |
+68 |             expect2[i][j] = y[i][j] + d;
+   |                                     ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,283 @@
+error: cannot find macro `volatile_static` in this scope
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:72:1
+    |
+ 72 | volatile_static!(gate4: i32 = 1);
+    | ^^^^^^^^^^^^^^^ consider moving the definition of `volatile_static` before this call
+    |
+note: a macro with the same name exists, but it appears later
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:115:14
+    |
+115 | macro_rules! volatile_static {
+    |              ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:23:13
+   |
+23 | /             unsafe {
+24 | |                 copy_restrict(16, &mut *p2.get_unchecked(8..).unwrap(), &mut *q2.get_unchecked(4..).unwrap());
+25 | |             }
+   | |_____________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:44:9
+   |
+44 | /         unsafe {
+45 | |             copy_restrict(8, &mut *p1.get_unchecked(0..).unwrap(), &mut *q1.get_unchecked(24..).unwrap());
+46 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:79:5
+   |
+79 | /     unsafe {
+80 | |         while n > 0 {
+81 | |             *p = *q;
+82 | |             p = p.add(1);
+...  |
+86 | |     }
+   | |_____^
+
+warning: unused macro definition: `volatile_static`
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:115:14
+    |
+115 | macro_rules! volatile_static {
+    |              ^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_macros)]` (part of `#[warn(unused)]`) on by default
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:19:12
+   |
+19 |         if gate4() {
+   |            ^^^^^^^ expected `bool`, found `i32`
+
+error[E0599]: no method named `unwrap` found for reference `&[usize]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:24:63
+    |
+ 24 |                 copy_restrict(16, &mut *p2.get_unchecked(8..).unwrap(), &mut *q2.get_unchecked(4..).unwrap());
+    |                                                               ^^^^^^
+    |
+help: there is a method `swap` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/slice/mod.rs:901:5
+    |
+901 |     pub const fn swap(&mut self, a: usize, b: usize) {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `unwrap` found for reference `&[usize]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:24:101
+    |
+ 24 |                 copy_restrict(16, &mut *p2.get_unchecked(8..).unwrap(), &mut *q2.get_unchecked(4..).unwrap());
+    |                                                                                                     ^^^^^^
+    |
+help: there is a method `swap` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/slice/mod.rs:901:5
+    |
+901 |     pub const fn swap(&mut self, a: usize, b: usize) {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:34:21
+   |
+34 |                 if !same(&x[8..], &expect) {
+   |                     ^^^^ -------  ------- expected `&[i32]`, found `&[usize; 16]`
+   |                          |
+   |                          expected `&[i32]`, found `&[usize]`
+   |
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+   = note: expected reference `&[i32]`
+              found reference `&[usize; 16]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:95:4
+   |
+95 | fn same(a: &[i32], b: &[i32]) -> bool {
+   |    ^^^^ ---------  ---------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:35:28
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+35 |                     return 1;
+   |                            ^ expected `()`, found integer
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:39:17
+   |
+39 |             if !same(&y[..], &y_snapshot) {
+   |                 ^^^^ ------  ----------- expected `&[i32]`, found `&[usize; 32]`
+   |                      |
+   |                      expected `&[i32]`, found `&[usize]`
+   |
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+   = note: expected reference `&[i32]`
+              found reference `&[usize; 32]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:95:4
+   |
+95 | fn same(a: &[i32], b: &[i32]) -> bool {
+   |    ^^^^ ---------  ---------
+
+error[E0599]: no method named `unwrap` found for reference `&[usize]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:45:58
+    |
+ 45 |             copy_restrict(8, &mut *p1.get_unchecked(0..).unwrap(), &mut *q1.get_unchecked(24..).unwrap());
+    |                                                          ^^^^^^
+    |
+help: there is a method `swap` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/slice/mod.rs:901:5
+    |
+901 |     pub const fn swap(&mut self, a: usize, b: usize) {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `unwrap` found for reference `&[usize]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:45:97
+    |
+ 45 |             copy_restrict(8, &mut *p1.get_unchecked(0..).unwrap(), &mut *q1.get_unchecked(24..).unwrap());
+    |                                                                                                 ^^^^^^
+    |
+help: there is a method `swap` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/slice/mod.rs:901:5
+    |
+901 |     pub const fn swap(&mut self, a: usize, b: usize) {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:55:17
+   |
+55 |             if !same(&x[0..], &expect2) {
+   |                 ^^^^ -------  -------- expected `&[i32]`, found `&[usize; 8]`
+   |                      |
+   |                      expected `&[i32]`, found `&[usize]`
+   |
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+   = note: expected reference `&[i32]`
+              found reference `&[usize; 8]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:95:4
+   |
+95 | fn same(a: &[i32], b: &[i32]) -> bool {
+   |    ^^^^ ---------  ---------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:61:9
+   |
+61 |     if !same(&y[..], &y_snapshot) {
+   |         ^^^^ ------  ----------- expected `&[i32]`, found `&[usize; 32]`
+   |              |
+   |              expected `&[i32]`, found `&[usize]`
+   |
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+   = note: expected reference `&[i32]`
+              found reference `&[usize; 32]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:95:4
+   |
+95 | fn same(a: &[i32], b: &[i32]) -> bool {
+   |    ^^^^ ---------  ---------
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:65:12
+    |
+ 65 |     if sum(&x) == 0 {
+    |        --- ^^ expected `&[i32]`, found `&[usize; 32]`
+    |        |
+    |        arguments to this function are incorrect
+    |
+    = note: expected reference `&[i32]`
+               found reference `&[usize; 32]`
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:107:4
+    |
+107 | fn sum(a: &[i32]) -> i32 {
+    |    ^^^ ---------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:69:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+69 |     0
+   |     ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:75:5
+   |
+74 | fn gate4() -> i32 {
+   | -----------------
+   | |             |
+   | |             expected `i32` because of return type
+   | function `gate4` defined here
+75 |     gate4
+   |     ^^^^^ expected `i32`, found fn item
+   |
+   = note: expected type `i32`
+           found fn item `fn() -> i32 {gate4}`
+help: use parentheses to call this function
+   |
+75 |     gate4()
+   |          ++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:91:23
+   |
+91 |         p[i] = base + i * 5 + 1;
+   |                       ^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:91:21
+   |
+91 |         p[i] = base + i * 5 + 1;
+   |                     ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0384]: cannot assign to immutable argument `p`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:82:13
+   |
+82 |             p = p.add(1);
+   |             ^^^^^^^^^^^^ cannot assign to immutable argument
+   |
+help: consider making this binding mutable
+   |
+78 | fn copy_restrict(n: usize, mut p: *mut i32, q: *mut i32) {
+   |                            +++
+
+error[E0384]: cannot assign to immutable argument `q`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:83:13
+   |
+83 |             q = q.add(1);
+   |             ^^^^^^^^^^^^ cannot assign to immutable argument
+   |
+help: consider making this binding mutable
+   |
+78 | fn copy_restrict(n: usize, p: *mut i32, mut q: *mut i32) {
+   |                                         +++
+
+error[E0384]: cannot assign to immutable argument `n`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_001/target.rs:84:13
+   |
+84 |             n -= 1;
+   |             ^^^^^^ cannot assign to immutable argument
+   |
+help: consider making this binding mutable
+   |
+78 | fn copy_restrict(mut n: usize, p: *mut i32, q: *mut i32) {
+   |                  +++
+
+error: aborting due to 22 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308, E0384, E0599.
+For more information about an error, try `rustc --explain E0277`.

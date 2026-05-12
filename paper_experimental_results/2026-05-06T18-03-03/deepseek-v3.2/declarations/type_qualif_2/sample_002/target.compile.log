@@ -1,0 +1,31 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_qualif_2/sample_002/target.rs:16:5
+   |
+16 | /     unsafe {
+17 | |         NCS = CS;
+18 | |         
+19 | |         let pi: *mut i32 = &mut NCS.mem;
+...  |
+31 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0507]: cannot move out of static item `CS`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_qualif_2/sample_002/target.rs:17:15
+   |
+17 |         NCS = CS;
+   |               ^^ move occurs because `CS` has type `S`, which does not implement the `Copy` trait
+   |
+note: if `S` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_qualif_2/sample_002/target.rs:1:1
+   |
+ 1 | struct S {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+17 |         NCS = CS;
+   |               -- you could clone this value
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0507`.

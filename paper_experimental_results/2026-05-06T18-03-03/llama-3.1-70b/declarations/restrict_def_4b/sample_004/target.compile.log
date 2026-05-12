@@ -1,0 +1,51 @@
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_004/target.rs:14:5
+   |
+14 | /     unsafe fn alloc_bytes(n: usize) -> *mut u8 {
+15 | |         if n == 0 {
+16 | |             POOL_OFF += n;
+17 | |             return POOL.as_mut_ptr().add(POOL_OFF - n);
+...  |
+30 | |         p
+31 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_004/target.rs:34:17
+   |
+34 |         let v = unsafe { std::slice::from_raw_parts_mut(alloc_bytes(n * std::mem::size_of::<f32>()) as *mut f32, n) }.to_vec();
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_004/target.rs:78:8
+   |
+78 |     if unsafe { H & 1 } == 0 {
+   |        ^^^^^^^^^^^^^^^^
+
+error[E0596]: cannot borrow `a.v` as mutable, as `a` is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_004/target.rs:67:14
+   |
+67 |     fill_vec(&mut a.v, 1.0);
+   |              ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+53 |     let mut a = new_vector(16);
+   |         +++
+
+error[E0596]: cannot borrow `b.v` as mutable, as `b` is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_004/target.rs:68:14
+   |
+68 |     fill_vec(&mut b.v, 100.0);
+   |              ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+54 |     let mut b = new_vector(16);
+   |         +++
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0596`.

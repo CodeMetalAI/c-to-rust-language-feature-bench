@@ -1,0 +1,118 @@
+error: invalid `struct` delimiters or `fn` call arguments
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_003/target.rs:9:8
+  |
+9 |     if std::mem::offset_of::<S>(_nested: i32)!= 0 {
+  |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+help: if `std::mem::offset_of<S>` is a struct, use braces as delimiters
+  |
+9 -     if std::mem::offset_of::<S>(_nested: i32)!= 0 {
+9 +     if std::mem::offset_of::<S> { _nested: i32 }!= 0 {
+  |
+help: if `std::mem::offset_of<S>` is a function, use the arguments directly
+  |
+9 -     if std::mem::offset_of::<S>(_nested: i32)!= 0 {
+9 +     if std::mem::offset_of::<S>(i32)!= 0 {
+  |
+
+error: invalid `struct` delimiters or `fn` call arguments
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_003/target.rs:14:8
+   |
+14 |     if std::mem::offset_of::<S>(a: [i32; 4])!= std::mem::size_of::<S>() {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: if `std::mem::offset_of<S>` is a struct, use braces as delimiters
+   |
+14 -     if std::mem::offset_of::<S>(a: [i32; 4])!= std::mem::size_of::<S>() {
+14 +     if std::mem::offset_of::<S> { a: [i32; 4] }!= std::mem::size_of::<S>() {
+   |
+help: if `std::mem::offset_of<S>` is a function, use the arguments directly
+   |
+14 -     if std::mem::offset_of::<S>(a: [i32; 4])!= std::mem::size_of::<S>() {
+14 +     if std::mem::offset_of::<S>([i32; 4])!= std::mem::size_of::<S>() {
+   |
+
+warning: unnecessary trailing semicolon
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_003/target.rs:5:6
+  |
+5 |     };
+  |      ^ help: remove this semicolon
+  |
+  = note: `#[warn(redundant_semicolons)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_003/target.rs:19:5
+   |
+19 | /     unsafe {
+20 | |         *p = S {
+21 | |             _nested: 7,
+22 | |             a: [11, 0, 0, 22],
+...  |
+30 | |         std::alloc::dealloc(p, std::alloc::Layout::new(std::mem::size_of::<S>() + 4 * std::mem::size_of::<i32>()));
+31 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_003/target.rs:7:39
+   |
+ 7 |     let p: *mut S = std::alloc::alloc(std::mem::size_of::<S>() + 4 * std::mem::size_of::<i32>());
+   |                     ----------------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Layout`, found `usize`
+   |                     |
+   |                     arguments to this function are incorrect
+   |
+note: function defined here
+  --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/alloc.rs:89:15
+   |
+89 | pub unsafe fn alloc(layout: Layout) -> *mut u8 {
+   |               ^^^^^
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_003/target.rs:7:21
+  |
+7 |     let p: *mut S = std::alloc::alloc(std::mem::size_of::<S>() + 4 * std::mem::size_of::<i32>());
+  |            ------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `*mut S`, found `*mut u8`
+  |            |
+  |            expected due to this
+  |
+  = note: expected raw pointer `*mut S`
+             found raw pointer `*mut u8`
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_003/target.rs:30:32
+    |
+ 30 |         std::alloc::dealloc(p, std::alloc::Layout::new(std::mem::size_of::<S>() + 4 * std::mem::size_of::<i32>()));
+    |                                ^^^^^^^^^^^^^^^^^^^^^^^ --------------------------------------------------------- unexpected argument of type `usize`
+    |
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/alloc/layout.rs:170:18
+    |
+170 |     pub const fn new<T>() -> Self {
+    |                  ^^^
+help: remove the extra argument
+    |
+ 30 -         std::alloc::dealloc(p, std::alloc::Layout::new(std::mem::size_of::<S>() + 4 * std::mem::size_of::<i32>()));
+ 30 +         std::alloc::dealloc(p, std::alloc::Layout::new());
+    |
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_003/target.rs:30:29
+    |
+ 30 |         std::alloc::dealloc(p, std::alloc::Layout::new(std::mem::size_of::<S>() + 4 * std::mem::size_of::<i32>()));
+    |         ------------------- ^ expected `*mut u8`, found `*mut S`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected raw pointer `*mut u8`
+               found raw pointer `*mut S`
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/alloc.rs:114:15
+    |
+114 | pub unsafe fn dealloc(ptr: *mut u8, layout: Layout) {
+    |               ^^^^^^^
+
+error: aborting due to 7 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0061, E0308.
+For more information about an error, try `rustc --explain E0061`.

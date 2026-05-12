@@ -1,0 +1,67 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_1/sample_005/target.rs:5:9
+  |
+5 |         unsafe { GSTORE[0] = 111 };
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_1/sample_005/target.rs:6:9
+  |
+6 |         unsafe { GSTORE[0] + 1 }
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_1/sample_005/target.rs:10:9
+   |
+10 |         unsafe { GSTORE[1] = 222 };
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_1/sample_005/target.rs:15:9
+   |
+15 |         unsafe { GSTORE[2] = 333 };
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_1/sample_005/target.rs:16:9
+   |
+16 |         unsafe { GSTORE[2] - 1 }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_1/sample_005/target.rs:20:9
+   |
+20 |         unsafe { GSTORE[3] = 444 };
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_1/sample_005/target.rs:21:9
+   |
+21 |         unsafe { GSTORE[3] + 2 }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_1/sample_005/target.rs:37:17
+   |
+37 |     let v_fip = unsafe { *fip() };
+   |                 ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_1/sample_005/target.rs:43:15
+   |
+43 |     if choose(unsafe { GSTORE[0] }) == 0 {
+   |               ^^^^^^^^^^^^^^^^^^^^
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_1/sample_005/target.rs:11:14
+   |
+11 |         &mut GSTORE[1] as *mut i32
+   |              ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 10 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

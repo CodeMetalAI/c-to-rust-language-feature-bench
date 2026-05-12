@@ -1,0 +1,55 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/fun_defs_2/sample_005/target.rs:4:5
+  |
+4 | /     unsafe {
+5 | |         COUNTER += 7;
+6 | |         COUNTER
+7 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/fun_defs_2/sample_005/target.rs:29:5
+   |
+29 | /     unsafe {
+30 | |         COUNTER = 0;
+31 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/fun_defs_2/sample_005/target.rs:34:5
+   |
+34 | /     unsafe {
+35 | |         assert_eq!(COUNTER, 14);
+36 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/fun_defs_2/sample_005/target.rs:40:5
+   |
+40 | /     unsafe {
+41 | |         assert_eq!(COUNTER, 28);
+42 | |     }
+   | |_____^
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/fun_defs_2/sample_005/target.rs:35:20
+   |
+35 |         assert_eq!(COUNTER, 14);
+   |                    ^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/fun_defs_2/sample_005/target.rs:41:20
+   |
+41 |         assert_eq!(COUNTER, 28);
+   |                    ^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+
+error: aborting due to 4 previous errors; 2 warnings emitted

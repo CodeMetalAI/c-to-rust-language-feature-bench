@@ -1,0 +1,41 @@
+error[E0425]: cannot find value `的海` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/pointers_c3/sample_002/target.rs:2:8
+  |
+2 |     x +的海
+  |        ^^^^ not found in this scope
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/pointers_c3/sample_002/target.rs:16:31
+   |
+16 |     let nf2: fn(i32) -> i32 = unsafe { std::mem::transmute(vf0) };
+   |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/pointers_c3/sample_002/target.rs:14:31
+   |
+14 |     let nf1: fn(i32) -> i32 = std::ptr::null();
+   |              --------------   ^^^^^^^^^^^^^^^^ expected fn pointer, found `*const _`
+   |              |
+   |              expected due to this
+   |
+   = note: expected fn pointer `fn(i32) -> i32`
+             found raw pointer `*const _`
+
+error[E0599]: no method named `is_null` found for fn pointer `fn(i32) -> i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/pointers_c3/sample_002/target.rs:35:13
+   |
+35 |     if !nf1.is_null() {
+   |             ^^^^^^^ method not found in `fn(i32) -> i32`
+
+error[E0599]: no method named `is_null` found for fn pointer `fn(i32) -> i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/pointers_c3/sample_002/target.rs:38:13
+   |
+38 |     if !nf2.is_null() {
+   |             ^^^^^^^ method not found in `fn(i32) -> i32`
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0425, E0599.
+For more information about an error, try `rustc --explain E0308`.

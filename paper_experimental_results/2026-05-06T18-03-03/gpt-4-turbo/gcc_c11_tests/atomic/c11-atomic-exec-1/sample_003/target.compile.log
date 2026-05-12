@@ -1,0 +1,155 @@
+warning: unused imports: `AtomicBool`, `AtomicI16`, `AtomicI32`, `AtomicI64`, `AtomicI8`, `AtomicIsize`, `AtomicU16`, `AtomicU32`, `AtomicU64`, `AtomicU8`, and `AtomicUsize`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:1:25
+  |
+1 | ...tomic::{AtomicBool, AtomicI8, AtomicU8, AtomicI16, AtomicU16, AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicIsize, AtomicUsize, Ordering};
+  |            ^^^^^^^^^^  ^^^^^^^^  ^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `std::mem::size_of`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:3:5
+  |
+3 | use std::mem::size_of;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:4:5
+  |
+4 | use std::ptr;
+  |     ^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:18:16
+   |
+18 |     assert_eq!(unsafe { *a.load(Ordering::SeqCst) }, T::default());
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:19:16
+   |
+19 |     assert_eq!(unsafe { *b.load(Ordering::SeqCst) }, value);
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:21:16
+   |
+21 |     assert_eq!(unsafe { *a.load(Ordering::SeqCst) }, value);
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: the trait bound `impl Copy: Default` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:25:24
+   |
+25 |     test_simple_assign(value);
+   |     ------------------ ^^^^^ the trait `Default` is not implemented for `impl Copy`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:6:26
+   |
+ 6 | fn test_simple_assign<T: Default + Copy + PartialEq + std::fmt::Debug>(value: T) {
+   |                          ^^^^^^^ required by this bound in `test_simple_assign`
+help: consider restricting opaque type `impl Copy` with trait `Default`
+   |
+24 | fn test_simple_assign_arith(value: impl Copy + std::default::Default) {
+   |                                              +++++++++++++++++++++++
+
+error[E0277]: can't compare `impl Copy` with `impl Copy`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:25:24
+   |
+25 |     test_simple_assign(value);
+   |     ------------------ ^^^^^ no implementation for `impl Copy == impl Copy`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:6:43
+   |
+ 6 | fn test_simple_assign<T: Default + Copy + PartialEq + std::fmt::Debug>(value: T) {
+   |                                           ^^^^^^^^^ required by this bound in `test_simple_assign`
+
+error[E0277]: `impl Copy` doesn't implement `Debug`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:25:24
+   |
+25 |     test_simple_assign(value);
+   |     ------------------ ^^^^^ the trait `Debug` is not implemented for `impl Copy`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:6:55
+   |
+ 6 | fn test_simple_assign<T: Default + Copy + PartialEq + std::fmt::Debug>(value: T) {
+   |                                                       ^^^^^^^^^^^^^^^ required by this bound in `test_simple_assign`
+help: consider restricting opaque type `impl Copy` with trait `Debug`
+   |
+24 | fn test_simple_assign_arith(value: impl Copy + std::fmt::Debug) {
+   |                                              +++++++++++++++++
+
+error[E0277]: the trait bound `impl Copy: Default` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:26:31
+   |
+26 |     test_simple_assign_atomic(value);
+   |     ------------------------- ^^^^^ the trait `Default` is not implemented for `impl Copy`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_atomic`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:15:33
+   |
+15 | fn test_simple_assign_atomic<T: Default + Copy + PartialEq + std::fmt::Debug>(value: T) {
+   |                                 ^^^^^^^ required by this bound in `test_simple_assign_atomic`
+help: consider restricting opaque type `impl Copy` with trait `Default`
+   |
+24 | fn test_simple_assign_arith(value: impl Copy + std::default::Default) {
+   |                                              +++++++++++++++++++++++
+
+error[E0277]: can't compare `impl Copy` with `impl Copy`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:26:31
+   |
+26 |     test_simple_assign_atomic(value);
+   |     ------------------------- ^^^^^ no implementation for `impl Copy == impl Copy`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_atomic`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:15:50
+   |
+15 | fn test_simple_assign_atomic<T: Default + Copy + PartialEq + std::fmt::Debug>(value: T) {
+   |                                                  ^^^^^^^^^ required by this bound in `test_simple_assign_atomic`
+
+error[E0277]: `impl Copy` doesn't implement `Debug`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:26:31
+   |
+26 |     test_simple_assign_atomic(value);
+   |     ------------------------- ^^^^^ the trait `Debug` is not implemented for `impl Copy`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_atomic`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:15:62
+   |
+15 | fn test_simple_assign_atomic<T: Default + Copy + PartialEq + std::fmt::Debug>(value: T) {
+   |                                                              ^^^^^^^^^^^^^^^ required by this bound in `test_simple_assign_atomic`
+help: consider restricting opaque type `impl Copy` with trait `Debug`
+   |
+24 | fn test_simple_assign_arith(value: impl Copy + std::fmt::Debug) {
+   |                                              +++++++++++++++++
+
+error[E0596]: cannot borrow `value` as mutable, as it is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:17:47
+   |
+17 |     let b = std::sync::atomic::AtomicPtr::new(&mut value);
+   |                                               ^^^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+15 | fn test_simple_assign_atomic<T: Default + Copy + PartialEq + std::fmt::Debug>(mut value: T) {
+   |                                                                               +++
+
+error: aborting due to 10 previous errors; 3 warnings emitted
+
+Some errors have detailed explanations: E0277, E0596.
+For more information about an error, try `rustc --explain E0277`.

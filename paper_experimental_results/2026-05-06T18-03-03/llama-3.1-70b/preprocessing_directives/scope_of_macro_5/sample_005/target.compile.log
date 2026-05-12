@@ -1,0 +1,59 @@
+error: invalid suffix `u` for number literal
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:19:25
+   |
+19 |     let mut rng_state = 2463534242u;
+   |                         ^^^^^^^^^^^ invalid suffix `u`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:30:9
+   |
+26 |                     val_xyz[a - 1][b][c] = 100 * a + 10 * b + c;
+   |                     ------- here the type of `val_xyz` is inferred to be `[[[usize; 10]; 10]; 9]`
+...
+30 |         val_xyz
+   |         ^^^^^^^ expected `[[[i32; 10]; 10]; 9]`, found `[[[usize; 10]; 10]; 9]`
+   |
+   = note: expected array `[[[i32; 10]; 10]; 9]`
+              found array `[[[usize; 10]; 10]; 9]`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:40:9
+   |
+37 |                 val_yz[b - 1][c] = 10 * b + c;
+   |                 ------ here the type of `val_yz` is inferred to be `[[usize; 10]; 9]`
+...
+40 |         val_yz
+   |         ^^^^^^ expected `[[i32; 10]; 9]`, found `[[usize; 10]; 9]`
+   |
+   = note: expected array `[[i32; 10]; 9]`
+              found array `[[usize; 10]; 9]`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:50:9
+   |
+47 |                 val_xz[a - 1][c] = 10 * a + c;
+   |                 ------ here the type of `val_xz` is inferred to be `[[usize; 10]; 9]`
+...
+50 |         val_xz
+   |         ^^^^^^ expected `[[i32; 10]; 9]`, found `[[usize; 10]; 9]`
+   |
+   = note: expected array `[[i32; 10]; 9]`
+              found array `[[usize; 10]; 9]`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:60:9
+   |
+57 |                 val_xy[a - 1][b] = 10 * a + b;
+   |                 ------ here the type of `val_xy` is inferred to be `[[usize; 10]; 9]`
+...
+60 |         val_xy
+   |         ^^^^^^ expected `[[i32; 10]; 9]`, found `[[usize; 10]; 9]`
+   |
+   = note: expected array `[[i32; 10]; 9]`
+              found array `[[usize; 10]; 9]`
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

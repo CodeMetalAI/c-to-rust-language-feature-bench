@@ -1,0 +1,87 @@
+error[E0425]: cannot find value `p1` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_004/target.rs:49:13
+   |
+49 |             p1.as_ptr().add(0),
+   |             ^^
+   |
+help: the binding `p1` is available in a different scope in the same function
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_004/target.rs:18:17
+   |
+18 |         let mut p1 = &mut x[0..32];
+   |                 ^^
+
+error[E0425]: cannot find value `q1` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_004/target.rs:50:13
+   |
+50 |             q1.as_mut().add(24),
+   |             ^^
+   |
+help: the binding `q1` is available in a different scope in the same function
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_004/target.rs:19:17
+   |
+19 |         let mut q1 = &mut y[0..32];
+   |                 ^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_004/target.rs:23:9
+   |
+23 | /         unsafe {
+24 | |             std::ptr::copy(
+25 | |                 q2.as_ptr().add(4),
+26 | |                 p2.as_mut().add(8),
+27 | |                 16,
+28 | |             );
+29 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_004/target.rs:47:5
+   |
+47 | /     unsafe {
+48 | |         std::ptr::copy(
+49 | |             p1.as_ptr().add(0),
+50 | |             q1.as_mut().add(24),
+51 | |             8,
+52 | |         );
+53 | |     }
+   | |_____^
+
+error[E0599]: no method named `add` found for mutable reference `&mut [usize]` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_004/target.rs:26:29
+   |
+26 |                 p2.as_mut().add(8),
+   |                             ^^^ method not found in `&mut [usize]`
+
+error[E0277]: a value of type `i32` cannot be made by summing an iterator over elements of type `&usize`
+    --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_004/target.rs:69:31
+     |
+  69 |     let sum_x: i32 = x.iter().sum();
+     |                               ^^^ value of type `i32` cannot be made by summing a `std::iter::Iterator<Item=&usize>`
+     |
+     = help: the trait `Sum<&usize>` is not implemented for `i32`
+     = help: the following other types implement trait `Sum<A>`:
+               `i32` implements `Sum<&i32>`
+               `i32` implements `Sum`
+note: the method call chain might not have had the expected associated types
+    --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4/sample_004/target.rs:69:24
+     |
+   2 |     let mut x = [0; 32];
+     |                 ------- this expression has type `[usize; 32]`
+...
+  69 |     let sum_x: i32 = x.iter().sum();
+     |                        ^^^^^^ `Iterator::Item` is `&usize` here
+note: required by a bound in `std::iter::Iterator::sum`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/iter/traits/iterator.rs:3578:12
+     |
+3575 |     fn sum<S>(self) -> S
+     |        --- required by a bound in this associated function
+...
+3578 |         S: Sum<Self::Item>,
+     |            ^^^^^^^^^^^^^^^ required by this bound in `Iterator::sum`
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0277, E0425, E0599.
+For more information about an error, try `rustc --explain E0277`.

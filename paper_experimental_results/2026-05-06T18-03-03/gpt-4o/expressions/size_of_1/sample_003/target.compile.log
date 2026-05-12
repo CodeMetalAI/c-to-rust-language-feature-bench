@@ -1,0 +1,26 @@
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o/expressions/size_of_1/sample_003/target.rs:3:9
+  |
+2 |     let dp: Box<f64> = match Box::new(3.14) {
+  |                              -------------- this expression has type `Box<{float}>`
+3 |         Ok(boxed) => boxed,
+  |         ^^^^^^^^^ expected `Box<{float}>`, found `Result<_, _>`
+  |
+  = note: expected struct `Box<{float}>`
+               found enum `Result<_, _>`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o/expressions/size_of_1/sample_003/target.rs:4:9
+  |
+2 |     let dp: Box<f64> = match Box::new(3.14) {
+  |                              -------------- this expression has type `Box<{float}>`
+3 |         Ok(boxed) => boxed,
+4 |         Err(_) => std::process::exit(1),
+  |         ^^^^^^ expected `Box<{float}>`, found `Result<_, _>`
+  |
+  = note: expected struct `Box<{float}>`
+               found enum `Result<_, _>`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

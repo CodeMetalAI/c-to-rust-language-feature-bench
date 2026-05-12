@@ -1,0 +1,118 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_003/target.rs:8:5
+   |
+ 8 | /     unsafe {
+ 9 | |         CALLS += 1;
+10 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_003/target.rs:24:5
+   |
+24 | /     unsafe {
+25 | |         for i in 0..11 {
+26 | |             FA[i] = (i + 1) as f32;
+...  |
+32 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_003/target.rs:46:9
+   |
+46 | /         unsafe {
+47 | |             s += *pp[i] as i32;
+48 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_003/target.rs:55:14
+   |
+55 |     let s2 = unsafe { *afp2[0] as i32 + *afp2[16] as i32 };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_003/target.rs:62:5
+    |
+ 62 | /     unsafe {
+ 63 | |         if FA[0] != 1.0 || FA[10] != 11.0 {
+ 64 | |             std::process::exit(1);
+...   |
+107 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_003/target.rs:103:52
+    |
+103 |             != (vla1[0] as i32 + vla1[10] as i32 + unsafe { *vla2[0] as i32 } + unsafe { *vla2[16] as i32 })
+    |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_003/target.rs:103:81
+    |
+103 |             != (vla1[0] as i32 + vla1[10] as i32 + unsafe { *vla2[0] as i32 } + unsafe { *vla2[16] as i32 })
+    |                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `try_into` found for struct `Vec<f32>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_003/target.rs:102:31
+    |
+102 |         if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap())
+    |                               ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<f32>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  3 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+102 -         if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap())
+102 +         if takes_params(&vla1.into().unwrap(), &vla2.try_into().unwrap())
+    |
+
+error[E0599]: no method named `try_into` found for struct `Vec<*const f32>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_003/target.rs:102:58
+    |
+102 |         if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap())
+    |                                                          ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<*const f32>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  3 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+102 -         if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap())
+102 +         if takes_params(&vla1.try_into().unwrap(), &vla2.into().unwrap())
+    |
+
+error[E0606]: casting `f32` as `*const f32` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_003/target.rs:89:21
+   |
+89 |         let span = (vla1[n1 - 1] as *const f32 as usize) - (vla1[0] as *const f32 as usize);
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `f32` as `*const f32` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_1/sample_003/target.rs:89:61
+   |
+89 |         let span = (vla1[n1 - 1] as *const f32 as usize) - (vla1[0] as *const f32 as usize);
+   |                                                             ^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 11 previous errors
+
+Some errors have detailed explanations: E0599, E0606.
+For more information about an error, try `rustc --explain E0599`.

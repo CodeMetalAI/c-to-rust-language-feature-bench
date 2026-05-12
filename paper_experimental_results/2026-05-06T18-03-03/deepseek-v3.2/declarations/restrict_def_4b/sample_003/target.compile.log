@@ -1,0 +1,107 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_4b/sample_003/target.rs:21:25
+   |
+21 |             return Some(unsafe { pool.as_ptr().add(*off) } as *mut u8);
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_4b/sample_003/target.rs:28:17
+   |
+28 |         let p = unsafe { pool.as_ptr().add(*off) } as *mut u8;
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_4b/sample_003/target.rs:31:9
+   |
+31 | /         unsafe {
+32 | |             H ^= (p as Usize).wrapping_add(0x9e3779b97f4a7c15u64);
+33 | |             H = H.wrapping_mul(0x5851f42d4c957f2du64);
+34 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_4b/sample_003/target.rs:49:25
+   |
+49 |             let slice = unsafe { std::slice::from_raw_parts_mut(slice_ptr, n as usize) };
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_4b/sample_003/target.rs:50:18
+   |
+50 |             Some(unsafe { Box::from_raw(slice) })
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_4b/sample_003/target.rs:105:5
+    |
+105 | /     unsafe {
+106 | |         if (H & 1u64) == 0u64 {
+107 | |             std::process::exit(6);
+108 | |         }
+109 | |     }
+    | |_____^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_4b/sample_003/target.rs:21:52
+    |
+ 21 |             return Some(unsafe { pool.as_ptr().add(*off) } as *mut u8);
+    |                                                --- ^^^^ expected `usize`, found `u64`
+    |                                                |
+    |                                                arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:881:25
+    |
+881 |     pub const unsafe fn add(self, count: usize) -> Self
+    |                         ^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+    |
+ 21 |             return Some(unsafe { pool.as_ptr().add((*off).try_into().unwrap()) } as *mut u8);
+    |                                                    +    +++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_4b/sample_003/target.rs:28:44
+    |
+ 28 |         let p = unsafe { pool.as_ptr().add(*off) } as *mut u8;
+    |                                        --- ^^^^ expected `usize`, found `u64`
+    |                                        |
+    |                                        arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:881:25
+    |
+881 |     pub const unsafe fn add(self, count: usize) -> Self
+    |                         ^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+    |
+ 28 |         let p = unsafe { pool.as_ptr().add((*off).try_into().unwrap()) } as *mut u8;
+    |                                            +    +++++++++++++++++++++
+
+error[E0596]: cannot borrow `a.v` as mutable, as `a` is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_4b/sample_003/target.rs:92:14
+   |
+92 |     fill_vec(a.v.as_mut().unwrap(), 1.0f32);
+   |              ^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+75 |     let mut a = new_vector(16);
+   |         +++
+
+error[E0596]: cannot borrow `b.v` as mutable, as `b` is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_4b/sample_003/target.rs:93:14
+   |
+93 |     fill_vec(b.v.as_mut().unwrap(), 100.0f32);
+   |              ^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+76 |     let mut b = new_vector(16);
+   |         +++
+
+error: aborting due to 10 previous errors
+
+Some errors have detailed explanations: E0308, E0596.
+For more information about an error, try `rustc --explain E0308`.

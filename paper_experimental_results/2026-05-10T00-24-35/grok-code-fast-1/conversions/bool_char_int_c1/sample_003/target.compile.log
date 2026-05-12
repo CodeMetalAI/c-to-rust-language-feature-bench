@@ -1,0 +1,61 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/bool_char_int_c1/sample_003/target.rs:77:31
+   |
+77 |     let val = Box::new(0i32 + 0i64) as Box<dyn Any>;
+   |                               ^^^^ expected `i32`, found `i64`
+
+error[E0277]: cannot add `i64` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/bool_char_int_c1/sample_003/target.rs:77:29
+   |
+77 |     let val = Box::new(0i32 + 0i64) as Box<dyn Any>;
+   |                             ^ no implementation for `i32 + i64`
+   |
+   = help: the trait `Add<i64>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/bool_char_int_c1/sample_003/target.rs:83:31
+   |
+83 |     let val = Box::new(0i64 + 0i128) as Box<dyn Any>;
+   |                               ^^^^^ expected `i64`, found `i128`
+
+error[E0277]: cannot add `i128` to `i64`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/bool_char_int_c1/sample_003/target.rs:83:29
+   |
+83 |     let val = Box::new(0i64 + 0i128) as Box<dyn Any>;
+   |                             ^ no implementation for `i64 + i128`
+   |
+   = help: the trait `Add<i128>` is not implemented for `i64`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i64` implements `Add<i64>`
+             `&i64` implements `Add`
+             `i64` implements `Add<&i64>`
+             `i64` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/bool_char_int_c1/sample_003/target.rs:89:31
+   |
+89 |     let val = Box::new(0i32 + 0i128) as Box<dyn Any>;
+   |                               ^^^^^ expected `i32`, found `i128`
+
+error[E0277]: cannot add `i128` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/bool_char_int_c1/sample_003/target.rs:89:29
+   |
+89 |     let val = Box::new(0i32 + 0i128) as Box<dyn Any>;
+   |                             ^ no implementation for `i32 + i128`
+   |
+   = help: the trait `Add<i128>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

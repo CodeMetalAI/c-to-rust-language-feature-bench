@@ -1,0 +1,39 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_003/target.rs:9:25
+   |
+ 9 |       let mut p: Box<S> = unsafe {
+   |  _________________________^
+10 | |         let layout = std::alloc::Layout::from_size_align(
+11 | |             mem::size_of::<S>() + 4 * mem::size_of::<i32>(),
+12 | |             mem::align_of::<S>(),
+...  |
+18 | |         Box::from_raw(ptr as *mut S)
+19 | |     };
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_003/target.rs:29:5
+   |
+29 | /     unsafe {
+30 | |         p.i = 7;
+31 | |         let a_ptr = p.a.as_ptr() as *mut i32;
+32 | |         *a_ptr.offset(0) = 11;
+33 | |         *a_ptr.offset(3) = 22;
+34 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_003/target.rs:36:20
+   |
+36 |     if p.i != 7 || unsafe { *p.a.as_ptr().offset(0) } != 11 || unsafe { *p.a.as_ptr().offset(3) } != 22 {
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_003/target.rs:36:64
+   |
+36 |     if p.i != 7 || unsafe { *p.a.as_ptr().offset(0) } != 11 || unsafe { *p.a.as_ptr().offset(3) } != 22 {
+   |                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 4 previous errors

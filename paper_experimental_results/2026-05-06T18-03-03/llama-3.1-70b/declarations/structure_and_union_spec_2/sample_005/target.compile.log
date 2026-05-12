@@ -1,0 +1,93 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_005/target.rs:28:5
+   |
+28 | /     unsafe {
+29 | |         (*s1).d.as_mut_slice_of_step(1, 8)[0] = 42.0;
+30 | |         (*s2).d.as_mut_slice_of_step(1, 5)[0] = 24.0;
+...  |
+37 | |         std::alloc::dealloc(s2 as *mut u8, std::alloc::Layout::from_size_align(std::mem::size_of::<S>() + std::mem::size_of::<f64>() * 5, 1...
+38 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_005/target.rs:21:32
+   |
+21 |     let s1 = std::alloc::alloc(std::mem::size_of::<S>() + std::mem::size_of::<f64>() * 8) as *mut S;
+   |              ----------------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Layout`, found `usize`
+   |              |
+   |              arguments to this function are incorrect
+   |
+note: function defined here
+  --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/alloc.rs:89:15
+   |
+89 | pub unsafe fn alloc(layout: Layout) -> *mut u8 {
+   |               ^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_005/target.rs:22:32
+   |
+22 |     let s2 = std::alloc::alloc(std::mem::size_of::<S>() + std::mem::size_of::<f64>() * 5) as *mut S;
+   |              ----------------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Layout`, found `usize`
+   |              |
+   |              arguments to this function are incorrect
+   |
+note: function defined here
+  --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/alloc.rs:89:15
+   |
+89 | pub unsafe fn alloc(layout: Layout) -> *mut u8 {
+   |               ^^^^^
+
+error[E0599]: no method named `as_mut_slice_of_step` found for array `[f64; 0]` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_005/target.rs:29:17
+    |
+ 29 |         (*s1).d.as_mut_slice_of_step(1, 8)[0] = 42.0;
+    |                 ^^^^^^^^^^^^^^^^^^^^
+    |
+help: there is a method `as_mut_slice` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/array/mod.rs:596:5
+    |
+596 |     pub const fn as_mut_slice(&mut self) -> &mut [T] {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `as_mut_slice_of_step` found for array `[f64; 0]` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_005/target.rs:30:17
+    |
+ 30 |         (*s2).d.as_mut_slice_of_step(1, 5)[0] = 24.0;
+    |                 ^^^^^^^^^^^^^^^^^^^^
+    |
+help: there is a method `as_mut_slice` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/array/mod.rs:596:5
+    |
+596 |     pub const fn as_mut_slice(&mut self) -> &mut [T] {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `as_slice_of_step` found for array `[f64; 0]` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_005/target.rs:32:20
+    |
+ 32 |         if (*s1).d.as_slice_of_step(1, 8)[0]!= 42.0 || (*s2).d.as_slice_of_step(1, 5)[0]!= 24.0 {
+    |                    ^^^^^^^^^^^^^^^^
+    |
+help: there is a method `as_slice` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/array/mod.rs:588:5
+    |
+588 |     pub const fn as_slice(&self) -> &[T] {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `as_slice_of_step` found for array `[f64; 0]` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_005/target.rs:32:64
+    |
+ 32 |         if (*s1).d.as_slice_of_step(1, 8)[0]!= 42.0 || (*s2).d.as_slice_of_step(1, 5)[0]!= 24.0 {
+    |                                                                ^^^^^^^^^^^^^^^^
+    |
+help: there is a method `as_slice` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/array/mod.rs:588:5
+    |
+588 |     pub const fn as_slice(&self) -> &[T] {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.

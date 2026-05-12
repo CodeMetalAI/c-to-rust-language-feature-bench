@@ -1,0 +1,73 @@
+error[E0277]: `*const IntList` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/compound_literals_7/sample_003/target.rs:7:23
+  |
+7 | static ENDLESS_ZEROS: IntList = IntList {
+  |                       ^^^^^^^ `*const IntList` cannot be shared between threads safely
+  |
+  = help: within `IntList`, the trait `Sync` is not implemented for `*const IntList`
+note: required because it appears within the type `IntList`
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/compound_literals_7/sample_003/target.rs:2:8
+  |
+2 | struct IntList {
+  |        ^^^^^^^
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0609]: no field `cdr` on type `*const IntList`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/compound_literals_7/sample_003/target.rs:19:55
+   |
+19 |     if !x.cdr.is_null() && (*x.cdr as *const IntList).cdr.is_null() == false && *((*x.cdr as *const IntList).cdr) as *const IntList != &ENDLESS_ZEROS as *const IntList {
+   |                                                       ^^^ unknown field
+   |
+help: the value is a raw pointer; try dereferencing it
+   |
+19 |     if !x.cdr.is_null() && (*(*x.cdr as *const IntList)).cdr.is_null() == false && *((*x.cdr as *const IntList).cdr) as *const IntList != &ENDLESS_ZEROS as *const IntList {
+   |                            ++                          +
+
+error[E0609]: no field `cdr` on type `*const IntList`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/compound_literals_7/sample_003/target.rs:19:110
+   |
+19 |     if !x.cdr.is_null() && (*x.cdr as *const IntList).cdr.is_null() == false && *((*x.cdr as *const IntList).cdr) as *const IntList != &ENDLESS_ZEROS as *const IntList {
+   |                                                                                                              ^^^ unknown field
+   |
+help: the value is a raw pointer; try dereferencing it
+   |
+19 |     if !x.cdr.is_null() && (*x.cdr as *const IntList).cdr.is_null() == false && *((*(*x.cdr as *const IntList)).cdr) as *const IntList != &ENDLESS_ZEROS as *const IntList {
+   |                                                                                   ++                          +
+
+error[E0605]: non-primitive cast: `IntList` as `*const IntList`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/compound_literals_7/sample_003/target.rs:16:28
+   |
+16 |     if !x.cdr.is_null() && *x.cdr as *const IntList != &ENDLESS_ZEROS as *const IntList {
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^ invalid cast
+   |
+help: consider borrowing the value
+   |
+16 |     if !x.cdr.is_null() && &*x.cdr as *const IntList != &ENDLESS_ZEROS as *const IntList {
+   |                            +
+
+error[E0605]: non-primitive cast: `IntList` as `*const IntList`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/compound_literals_7/sample_003/target.rs:19:28
+   |
+19 |     if !x.cdr.is_null() && (*x.cdr as *const IntList).cdr.is_null() == false && *((*x.cdr as *const IntList).cdr) as *const IntList != &ENDLESS_ZEROS as *const IntList {
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^ invalid cast
+   |
+help: consider borrowing the value
+   |
+19 |     if !x.cdr.is_null() && (&*x.cdr as *const IntList).cdr.is_null() == false && *((*x.cdr as *const IntList).cdr) as *const IntList != &ENDLESS_ZEROS as *const IntList {
+   |                             +
+
+error[E0605]: non-primitive cast: `IntList` as `*const IntList`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/compound_literals_7/sample_003/target.rs:19:83
+   |
+19 |     if !x.cdr.is_null() && (*x.cdr as *const IntList).cdr.is_null() == false && *((*x.cdr as *const IntList).cdr) as *const IntList != &ENDLESS_ZEROS as *const IntList {
+   |                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^ invalid cast
+   |
+help: consider borrowing the value
+   |
+19 |     if !x.cdr.is_null() && (*x.cdr as *const IntList).cdr.is_null() == false && *((&*x.cdr as *const IntList).cdr) as *const IntList != &ENDLESS_ZEROS as *const IntList {
+   |                                                                                    +
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0277, E0605, E0609.
+For more information about an error, try `rustc --explain E0277`.

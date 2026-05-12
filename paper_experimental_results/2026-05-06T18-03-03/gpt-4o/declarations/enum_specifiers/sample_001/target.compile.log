@@ -1,0 +1,54 @@
+warning: value assigned to `col` is never read
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/enum_specifiers/sample_001/target.rs:46:5
+   |
+46 |     col = Hue::Winedark;
+   |     ^^^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+error[E0507]: cannot move out of `*cp` which is behind a shared reference
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/enum_specifiers/sample_001/target.rs:42:19
+   |
+42 |     if check_vals(*cp) != 12 {
+   |                   ^^^ move occurs because `*cp` has type `Hue`, which does not implement the `Copy` trait
+   |
+note: if `Hue` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/enum_specifiers/sample_001/target.rs:2:1
+   |
+ 2 | enum Hue {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+42 |     if check_vals(*cp) != 12 {
+   |                   --- you could clone this value
+
+error[E0506]: cannot assign to `col` because it is borrowed
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/enum_specifiers/sample_001/target.rs:46:5
+   |
+33 |     let cp = &col;
+   |              ---- `col` is borrowed here
+...
+46 |     col = Hue::Winedark;
+   |     ^^^^^^^^^^^^^^^^^^^ `col` is assigned to here but it was already borrowed
+47 |     if check_vals(*cp) != 13 {
+   |                   --- borrow later used here
+
+error[E0507]: cannot move out of `*cp` which is behind a shared reference
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/enum_specifiers/sample_001/target.rs:47:19
+   |
+47 |     if check_vals(*cp) != 13 {
+   |                   ^^^ move occurs because `*cp` has type `Hue`, which does not implement the `Copy` trait
+   |
+note: if `Hue` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/enum_specifiers/sample_001/target.rs:2:1
+   |
+ 2 | enum Hue {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+47 |     if check_vals(*cp) != 13 {
+   |                   --- you could clone this value
+
+error: aborting due to 3 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0506, E0507.
+For more information about an error, try `rustc --explain E0506`.

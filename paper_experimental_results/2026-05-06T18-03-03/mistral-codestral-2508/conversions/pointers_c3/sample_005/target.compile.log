@@ -1,0 +1,122 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c3/sample_005/target.rs:14:31
+   |
+14 |     let nf1: fn(i32) -> i32 = unsafe { std::mem::zeroed() };
+   |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c3/sample_005/target.rs:16:31
+   |
+16 |     let nf2: fn(i32) -> i32 = unsafe { std::mem::transmute(vf0) };
+   |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c3/sample_005/target.rs:35:15
+   |
+35 |     if nf1 != unsafe { std::mem::zeroed() } {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c3/sample_005/target.rs:38:15
+   |
+38 |     if nf2 != unsafe { std::mem::zeroed() } {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: the type `fn(i32) -> i32` does not permit zero-initialization
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c3/sample_005/target.rs:14:40
+   |
+14 |     let nf1: fn(i32) -> i32 = unsafe { std::mem::zeroed() };
+   |                                        ^^^^^^^^^^^^^^^^^^
+   |                                        |
+   |                                        this code causes undefined behavior when executed
+   |                                        help: use `MaybeUninit<T>` instead, and only call `assume_init` after initialization is done
+   |
+   = note: function pointers must be non-null
+   = note: `#[warn(invalid_value)]` on by default
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c3/sample_005/target.rs:35:8
+   |
+35 |     if nf1 != unsafe { std::mem::zeroed() } {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+   = note: `#[warn(unpredictable_function_pointer_comparisons)]` on by default
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+35 -     if nf1 != unsafe { std::mem::zeroed() } {
+35 +     if !std::ptr::fn_addr_eq(nf1, unsafe { std::mem::zeroed() }) {
+   |
+
+warning: the type `fn(i32) -> i32` does not permit zero-initialization
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c3/sample_005/target.rs:35:24
+   |
+35 |     if nf1 != unsafe { std::mem::zeroed() } {
+   |                        ^^^^^^^^^^^^^^^^^^
+   |                        |
+   |                        this code causes undefined behavior when executed
+   |                        help: use `MaybeUninit<T>` instead, and only call `assume_init` after initialization is done
+   |
+   = note: function pointers must be non-null
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c3/sample_005/target.rs:38:8
+   |
+38 |     if nf2 != unsafe { std::mem::zeroed() } {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+38 -     if nf2 != unsafe { std::mem::zeroed() } {
+38 +     if !std::ptr::fn_addr_eq(nf2, unsafe { std::mem::zeroed() }) {
+   |
+
+warning: the type `fn(i32) -> i32` does not permit zero-initialization
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c3/sample_005/target.rs:38:24
+   |
+38 |     if nf2 != unsafe { std::mem::zeroed() } {
+   |                        ^^^^^^^^^^^^^^^^^^
+   |                        |
+   |                        this code causes undefined behavior when executed
+   |                        help: use `MaybeUninit<T>` instead, and only call `assume_init` after initialization is done
+   |
+   = note: function pointers must be non-null
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c3/sample_005/target.rs:41:8
+   |
+41 |     if nf1 == pf {
+   |        ^^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+41 -     if nf1 == pf {
+41 +     if std::ptr::fn_addr_eq(nf1, pf) {
+   |
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c3/sample_005/target.rs:44:8
+   |
+44 |     if nf2 == pf {
+   |        ^^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+44 -     if nf2 == pf {
+44 +     if std::ptr::fn_addr_eq(nf2, pf) {
+   |
+
+error: aborting due to 4 previous errors; 7 warnings emitted

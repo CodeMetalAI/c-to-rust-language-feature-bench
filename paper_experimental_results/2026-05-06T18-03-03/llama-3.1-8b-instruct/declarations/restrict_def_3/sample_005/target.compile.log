@@ -1,0 +1,49 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_3/sample_005/target.rs:13:23
+   |
+13 |         x[i] = base + i * 7 + 1;
+   |                       ^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_3/sample_005/target.rs:13:21
+   |
+13 |         x[i] = base + i * 7 + 1;
+   |                     ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+warning: variable `sink` is assigned to, but never used
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_3/sample_005/target.rs:41:13
+   |
+41 |     let mut sink = 0;
+   |             ^^^^
+   |
+   = note: consider using `_sink` instead
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_3/sample_005/target.rs:44:24
+   |
+44 |         sink ^= x[i] + OPAQUE;
+   |                        ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0499]: cannot borrow `b` as mutable more than once at a time
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_3/sample_005/target.rs:67:27
+   |
+67 |     h(64, &mut a, &mut b, &mut b);
+   |     -             ------  ^^^^^^ second mutable borrow occurs here
+   |     |             |
+   |     |             first mutable borrow occurs here
+   |     first borrow later used by call
+
+error: aborting due to 4 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0133, E0277, E0308, E0499.
+For more information about an error, try `rustc --explain E0133`.

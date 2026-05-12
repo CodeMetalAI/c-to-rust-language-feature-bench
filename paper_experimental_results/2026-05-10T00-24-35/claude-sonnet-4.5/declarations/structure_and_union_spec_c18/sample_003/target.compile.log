@@ -1,0 +1,51 @@
+warning: unused import: `std::ptr`
+ --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:32:18
+   |
+32 |     let p = &mut *p_ptr;
+   |                  ^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:54:13
+   |
+54 |             *data_ptr.wrapping_add(i as usize) = v;
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:55:13
+   |
+55 |             *data_ptr.wrapping_add(i as usize) += 0;
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:64:22
+   |
+64 |             p.sum += *data_ptr.wrapping_add(i as usize);
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c18/sample_003/target.rs:86:18
+   |
+86 |     let p = &mut *p_ptr;
+   |                  ^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error: aborting due to 5 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0133`.

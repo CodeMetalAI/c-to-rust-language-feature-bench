@@ -1,0 +1,91 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/array_decl_1/sample_002/target.rs:20:5
+   |
+20 | /     unsafe {
+21 | |         let mut i = 0;
+22 | |         while i < 11 {
+23 | |             FA[i] = (i + 1) as f32;
+...  |
+32 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/array_decl_1/sample_002/target.rs:49:14
+   |
+49 |         s += unsafe { *pp[i] } as i32;
+   |              ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/array_decl_1/sample_002/target.rs:57:14
+   |
+57 |     let s2 = unsafe { *afp2[0] as i32 + *afp2[16] as i32 };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/array_decl_1/sample_002/target.rs:64:5
+   |
+64 | /     unsafe {
+65 | |         if FA[0] != 1.0f32 || FA[10] != 11.0f32 {
+66 | |             std::process::exit(1);
+...  |
+72 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/array_decl_1/sample_002/target.rs:83:23
+   |
+83 |             vla1[i] = unsafe { FA[i] } * 2.0f32;
+   |                       ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/array_decl_1/sample_002/target.rs:89:23
+   |
+89 |             vla2[i] = unsafe { AFP[i] };
+   |                       ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/array_decl_1/sample_002/target.rs:98:31
+    |
+ 98 |               let span: Usize = unsafe {
+    |  _______________________________^
+ 99 | |                 let ptr0 = &vla1[0] as *const f32 as *const u8;
+100 | |                 let ptr_last = &vla1[n1 - 1] as *const f32 as *const u8;
+101 | |                 (ptr_last as usize) - (ptr0 as usize)
+102 | |             };
+    | |_____________^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/array_decl_1/sample_002/target.rs:116:78
+    |
+116 |         if takes_params(&vla1, &vla2) != (vla1[0] as i32 + vla1[10] as i32 + unsafe { *vla2[0] } as i32 + unsafe { *vla2[16] } as i32) {
+    |                                                                              ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/array_decl_1/sample_002/target.rs:116:107
+    |
+116 |         if takes_params(&vla1, &vla2) != (vla1[0] as i32 + vla1[10] as i32 + unsafe { *vla2[0] } as i32 + unsafe { *vla2[16] } as i32) {
+    |                                                                                                           ^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: `Cell<i32>` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/array_decl_1/sample_002/target.rs:5:15
+  |
+5 | static CALLS: Cell<i32> = Cell::new(0);
+  |               ^^^^^^^^^ `Cell<i32>` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `Cell<i32>`
+  = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock` or `std::sync::atomic::AtomicI32` instead
+  = note: shared static variables must have a type that implements `Sync`
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/array_decl_1/sample_002/target.rs:98:31
+   |
+98 |             let span: Usize = unsafe {
+   |                               ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 10 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0277`.

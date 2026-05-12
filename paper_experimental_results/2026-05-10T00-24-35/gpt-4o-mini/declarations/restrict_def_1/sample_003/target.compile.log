@@ -1,0 +1,91 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_003/target.rs:28:9
+   |
+28 | /         unsafe {
+29 | |             *p.offset(i as isize) = base + i as i32;
+30 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_003/target.rs:36:9
+   |
+36 | /         unsafe {
+37 | |             *p.offset(i as isize) += k;
+38 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_003/target.rs:45:9
+   |
+45 | /         unsafe {
+46 | |             s += *p.offset(i as isize);
+47 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_003/target.rs:56:13
+   |
+56 |     let a = unsafe { choose_view(&BANK_A, which_a) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_003/target.rs:57:13
+   |
+57 |     let b = unsafe { choose_view(&BANK_B, which_b) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_003/target.rs:61:10
+   |
+61 |     fill(unsafe { C.as_mut_ptr() }, 8, 300);
+   |          ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_003/target.rs:65:10
+   |
+65 |     bump(unsafe { C.as_mut_ptr() }, 8, 3);
+   |          ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_003/target.rs:75:12
+   |
+75 |     if sum(unsafe { C.as_mut_ptr() }, 8) != (303 + 304 + 305 + 306 + 307 + 308 + 309 + 310) {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_003/target.rs:79:8
+   |
+79 |     if unsafe { BANK_A.left[0] } != 101 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_003/target.rs:83:8
+   |
+83 |     if unsafe { BANK_B.right[7] } != 209 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_003/target.rs:87:8
+   |
+87 |     if unsafe { C[0] } != 303 || unsafe { C[7] } != 310 {
+   |        ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_003/target.rs:87:34
+   |
+87 |     if unsafe { C[0] } != 303 || unsafe { C[7] } != 310 {
+   |                                  ^^^^^^^^^^^^^^^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_003/target.rs:52:14
+   |
+52 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error: aborting due to 13 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

@@ -1,0 +1,50 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_001/target.rs:26:5
+   |
+26 | /     unsafe {
+27 | |         (*p).tag = 0xA1B2C3D4;
+28 | |         (*p).n = N as u32;
+...  |
+59 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_001/target.rs:69:5
+   |
+69 | /     unsafe {
+70 | |         (*p).tag = 0;
+71 | |         (*p).n = 0;
+72 | |         (*p).sum = 0;
+...  |
+84 | |     }
+   | |_____^
+
+error[E0599]: no method named `offset` found for array `[u32; 0]` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_001/target.rs:43:23
+   |
+43 |             (*p).data.offset(i as isize).write(v);
+   |                       ^^^^^^ method not found in `[u32; 0]`
+
+error[E0599]: no method named `offset` found for array `[u32; 0]` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_001/target.rs:44:23
+   |
+44 |             (*p).data.offset(i as isize).write((*p).data.offset(i as isize).read() + 0);
+   |                       ^^^^^^ method not found in `[u32; 0]`
+
+error[E0599]: no method named `offset` found for array `[u32; 0]` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_001/target.rs:44:58
+   |
+44 |             (*p).data.offset(i as isize).write((*p).data.offset(i as isize).read() + 0);
+   |                                                          ^^^^^^ method not found in `[u32; 0]`
+
+error[E0599]: no method named `offset` found for array `[u32; 0]` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_001/target.rs:49:35
+   |
+49 |             (*p).sum += (*p).data.offset(i as isize).read();
+   |                                   ^^^^^^ method not found in `[u32; 0]`
+
+error: aborting due to 6 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

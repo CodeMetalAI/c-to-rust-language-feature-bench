@@ -1,0 +1,144 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/external_definitions/external_objs_1/sample_003/target.rs:8:5
+   |
+ 8 | /     unsafe {
+ 9 | |         if *i1 != 1 {
+10 | |             return 1;
+...  |
+62 | |         0
+63 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0614]: type `i32` cannot be dereferenced
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/external_definitions/external_objs_1/sample_003/target.rs:9:12
+  |
+9 |         if *i1 != 1 {
+  |            ^^^ can't be dereferenced
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/external_definitions/external_objs_1/sample_003/target.rs:10:20
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+10 |             return 1;
+   |                    ^ expected `()`, found integer
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/external_definitions/external_objs_1/sample_003/target.rs:12:12
+   |
+12 |         if *i2 != 2 {
+   |            ^^^ can't be dereferenced
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/external_definitions/external_objs_1/sample_003/target.rs:15:12
+   |
+15 |         if *i3 != 3 {
+   |            ^^^ can't be dereferenced
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/external_definitions/external_objs_1/sample_003/target.rs:19:12
+   |
+19 |         if *i4 != 0 {
+   |            ^^^ can't be dereferenced
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/external_definitions/external_objs_1/sample_003/target.rs:22:12
+   |
+22 |         if *i5 != 0 {
+   |            ^^^ can't be dereferenced
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/external_definitions/external_objs_1/sample_003/target.rs:26:31
+   |
+26 |         let p_i1: *mut i32 = &*i1;
+   |                               ^^^ can't be dereferenced
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/external_definitions/external_objs_1/sample_003/target.rs:27:31
+   |
+27 |         let p_i2: *mut i32 = &*i2;
+   |                               ^^^ can't be dereferenced
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/external_definitions/external_objs_1/sample_003/target.rs:28:31
+   |
+28 |         let p_i4: *mut i32 = &*i4;
+   |                               ^^^ can't be dereferenced
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/external_definitions/external_objs_1/sample_003/target.rs:29:31
+   |
+29 |         let p_i5: *mut i32 = &*i5;
+   |                               ^^^ can't be dereferenced
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/external_definitions/external_objs_1/sample_003/target.rs:31:21
+   |
+31 |         if p_i1 != &*i1 {
+   |                     ^^^ can't be dereferenced
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/external_definitions/external_objs_1/sample_003/target.rs:34:21
+   |
+34 |         if p_i2 != &*i2 {
+   |                     ^^^ can't be dereferenced
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/external_definitions/external_objs_1/sample_003/target.rs:37:21
+   |
+37 |         if p_i4 != &*i4 {
+   |                     ^^^ can't be dereferenced
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/external_definitions/external_objs_1/sample_003/target.rs:40:21
+   |
+40 |         if p_i5 != &*i5 {
+   |                     ^^^ can't be dereferenced
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/external_definitions/external_objs_1/sample_003/target.rs:44:9
+   |
+44 |         *i1 = 10;
+   |         ^^^ can't be dereferenced
+   |
+help: parentheses are required to parse this as an expression
+   |
+40 ~         (if p_i5 != &*i5 {
+41 |             return 9;
+42 ~         })
+   |
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/external_definitions/external_objs_1/sample_003/target.rs:45:9
+   |
+45 |         *i2 = 20;
+   |         ^^^ can't be dereferenced
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/external_definitions/external_objs_1/sample_003/target.rs:46:9
+   |
+46 |         *i4 = 30;
+   |         ^^^ can't be dereferenced
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/external_definitions/external_objs_1/sample_003/target.rs:47:9
+   |
+47 |         *i5 = 40;
+   |         ^^^ can't be dereferenced
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/external_definitions/external_objs_1/sample_003/target.rs:62:9
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+62 |         0
+   |         ^ expected `()`, found integer
+
+error: aborting due to 20 previous errors
+
+Some errors have detailed explanations: E0308, E0614.
+For more information about an error, try `rustc --explain E0308`.

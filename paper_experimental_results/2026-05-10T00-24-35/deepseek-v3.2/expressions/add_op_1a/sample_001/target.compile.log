@@ -1,0 +1,15 @@
+error[E0503]: cannot use `a[_][_]` because it was mutably borrowed
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/add_op_1a/sample_001/target.rs:14:8
+   |
+ 6 |     let mut p: &mut [[i32; M]] = &mut a;
+   |                                  ------ `a` is borrowed here
+...
+14 |     if a[1][2] != 99 {
+   |        ^^^^^^^ use of borrowed `a`
+...
+21 |     let offset = N - p.len();
+   |                      - borrow later used here
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0503`.

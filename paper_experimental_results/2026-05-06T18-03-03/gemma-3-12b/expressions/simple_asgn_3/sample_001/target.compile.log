@@ -1,0 +1,124 @@
+error: const trait bounds are not allowed in trait object types
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:2:28
+  |
+2 |     let mut cpp: &'static [const char] = [&mut 0 as &'static [const char]];
+  |                            ^^^^^^^^^^
+
+error: const trait bounds are not allowed in trait object types
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:2:63
+  |
+2 |     let mut cpp: &'static [const char] = [&mut 0 as &'static [const char]];
+  |                                                               ^^^^^^^^^^
+
+error: const trait bounds are not allowed in trait object types
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:6:35
+  |
+6 |     let ptr_cpp: *const &'static [const char] = &cpp as *const &'static [const char];
+  |                                   ^^^^^^^^^^
+
+error: const trait bounds are not allowed in trait object types
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:6:74
+  |
+6 |     let ptr_cpp: *const &'static [const char] = &cpp as *const &'static [const char];
+  |                                                                          ^^^^^^^^^^
+
+error[E0404]: expected trait, found builtin type `char`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:2:34
+  |
+2 |     let mut cpp: &'static [const char] = [&mut 0 as &'static [const char]];
+  |                                  ^^^^ not a trait
+
+error[E0404]: expected trait, found builtin type `char`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:2:69
+  |
+2 |     let mut cpp: &'static [const char] = [&mut 0 as &'static [const char]];
+  |                                                                     ^^^^ not a trait
+
+error[E0404]: expected trait, found builtin type `char`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:6:41
+  |
+6 |     let ptr_cpp: *const &'static [const char] = &cpp as *const &'static [const char];
+  |                                         ^^^^ not a trait
+
+error[E0404]: expected trait, found builtin type `char`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:6:80
+  |
+6 |     let ptr_cpp: *const &'static [const char] = &cpp as *const &'static [const char];
+  |                                                                                ^^^^ not a trait
+
+error[E0658]: const trait impls are experimental
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:2:28
+  |
+2 |     let mut cpp: &'static [const char] = [&mut 0 as &'static [const char]];
+  |                            ^^^^^
+  |
+  = note: see issue #143874 <https://github.com/rust-lang/rust/issues/143874> for more information
+  = help: add `#![feature(const_trait_impl)]` to the crate attributes to enable
+  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: const trait impls are experimental
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:2:63
+  |
+2 |     let mut cpp: &'static [const char] = [&mut 0 as &'static [const char]];
+  |                                                               ^^^^^
+  |
+  = note: see issue #143874 <https://github.com/rust-lang/rust/issues/143874> for more information
+  = help: add `#![feature(const_trait_impl)]` to the crate attributes to enable
+  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: const trait impls are experimental
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:6:35
+  |
+6 |     let ptr_cpp: *const &'static [const char] = &cpp as *const &'static [const char];
+  |                                   ^^^^^
+  |
+  = note: see issue #143874 <https://github.com/rust-lang/rust/issues/143874> for more information
+  = help: add `#![feature(const_trait_impl)]` to the crate attributes to enable
+  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: const trait impls are experimental
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:6:74
+  |
+6 |     let ptr_cpp: *const &'static [const char] = &cpp as *const &'static [const char];
+  |                                                                          ^^^^^
+  |
+  = note: see issue #143874 <https://github.com/rust-lang/rust/issues/143874> for more information
+  = help: add `#![feature(const_trait_impl)]` to the crate attributes to enable
+  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:8:5
+   |
+ 8 | /     unsafe {
+ 9 | |         cpp[0] = ptr_p as *const char;
+10 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:13:5
+   |
+13 | /     unsafe {
+14 | |         p = mutable_p;
+15 | |     }
+   | |_____^
+
+warning: trait objects without an explicit `dyn` are deprecated
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_001/target.rs:2:28
+  |
+2 |     let mut cpp: &'static [const char] = [&mut 0 as &'static [const char]];
+  |                            ^^^^^^^^^^
+  |
+  = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+  = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2021/warnings-promoted-to-error.html>
+  = note: `#[warn(bare_trait_objects)]` (part of `#[warn(rust_2021_compatibility)]`) on by default
+help: if this is a dyn-compatible trait, use `dyn`
+  |
+2 |     let mut cpp: &'static [dyn const char] = [&mut 0 as &'static [const char]];
+  |                            +++
+
+error: aborting due to 14 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0404, E0658.
+For more information about an error, try `rustc --explain E0404`.

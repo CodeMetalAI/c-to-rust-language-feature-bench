@@ -1,0 +1,14 @@
+use std::sync::Mutex;
+
+static G: Mutex<i32> = Mutex::new(0);
+
+fn die_if(x: i32) -> ! {
+    let g = *G.lock().unwrap();
+    std::process::exit(if x == 7 && g == 9 { 0 } else { 2 });
+}
+
+fn main() {
+    let p: fn(i32) -> ! = die_if;
+    *G.lock().unwrap() = 9;
+    p(7);
+}

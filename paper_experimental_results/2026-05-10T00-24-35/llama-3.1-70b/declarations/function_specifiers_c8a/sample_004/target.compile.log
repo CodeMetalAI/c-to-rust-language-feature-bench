@@ -1,0 +1,24 @@
+warning: unused import: `std::panic`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/function_specifiers_c8a/sample_004/target.rs:2:5
+  |
+2 | use std::panic;
+  |     ^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: calls to `std::mem::drop` with a value that implements `Copy` does nothing
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/function_specifiers_c8a/sample_004/target.rs:14:5
+   |
+14 |     drop(v);
+   |     ^^^^^-^
+   |          |
+   |          argument has type `i32`
+   |
+   = note: `#[warn(dropping_copy_types)]` on by default
+help: use `let _ = ...` to ignore the expression or result
+   |
+14 -     drop(v);
+14 +     let _ = v;
+   |
+
+warning: 2 warnings emitted

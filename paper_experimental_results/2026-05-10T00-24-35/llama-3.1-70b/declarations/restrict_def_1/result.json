@@ -1,0 +1,92 @@
+{
+  "test_name": "declarations/restrict_def_1",
+  "llm_name": "Llama 3.1 70B",
+  "timestamp": "2026-05-10T02:59:36.134330Z",
+  "duration_seconds": 82.35502283391543,
+  "timeout_error": false,
+  "primary_feature": "decl.restrict",
+  "source_compiled": true,
+  "source_compile_errors": null,
+  "source_exit_code": 0,
+  "samples": [
+    {
+      "sample_index": 1,
+      "duration_seconds": 58.071707875002176,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0277]: a value of type `i32` cannot be made by summing an iterator over elements of type `&usize`\n    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_001/target.rs:24:32\n     |\n  24 |     let sum_a = a.iter().sum::<i32>();\n     |                          ---   ^^^ value of type `i32` cannot be made by summing a `std::iter::Iterator<Item=&usize>`\n     |                          |\n     |                          required by a bound introduced by this call\n     |\n     = help: the trait `Sum<&usize>` is not implemented for `i32`\n     = help: the following other types implement trait `Sum<A>`:\n               `i32` implements `Sum<&i32>`\n               `i32` implements `Sum`\nnote: the method call chain might not have had the expected associated types\n    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_001/target.rs:24:19\n     |\n  24 |     let sum_a = a.iter().sum::<i32>();\n     |                 - ^^^^^^ `Iterator::Item` is `&usize` here\n     |                 |\n     |                 this expression has type `&mut [usize; 8]`\nnote: required by a bound in `std::iter::Iterator::sum`\n    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/iter/traits/iterator.rs:3578:12\n     |\n3575 |     fn sum<S>(self) -> S\n     |        --- required by a bound in this associated function\n...\n3578 |         S: Sum<Self::Item>,\n     |            ^^^^^^^^^^^^^^^ required by this bound in `Iterator::sum`\n\nerror[E0277]: a value of type `i32` cannot be made by summing an iterator over elements of type `&usize`\n    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_001/target.rs:25:32\n     |\n  25 |     let sum_b = b.iter().sum::<i32>();\n     |                          ---   ^^^ value of type `i32` cannot be made by summing a `std::iter::Iterator<Item=&usize>`\n     |                          |\n     |                          required by a bound introduced by this call\n     |\n     = help: the trait `Sum<&usize>` is not implemented for `i32`\n     = help: the following other types implement trait `Sum<A>`:\n               `i32` implements `Sum<&i32>`\n               `i32` implements `Sum`\nnote: the method call chain might not have had the expected associated types\n    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_001/target.rs:25:19\n     |\n  25 |     let sum_b = b.iter().sum::<i32>();\n     |                 - ^^^^^^ `Iterator::Item` is `&usize` here\n     |                 |\n     |                 this expression has type `&mut [usize; 8]`\nnote: required by a bound in `std::iter::Iterator::sum`\n    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/iter/traits/iterator.rs:3578:12\n     |\n3575 |     fn sum<S>(self) -> S\n     |        --- required by a bound in this associated function\n...\n3578 |         S: Sum<Self::Item>,\n     |            ^^^^^^^^^^^^^^^ required by this bound in `Iterator::sum`\n\nerror[E0277]: a value of type `i32` cannot be made by summing an iterator over elements of type `&usize`\n    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_001/target.rs:26:32\n     |\n  26 |     let sum_c = c.iter().sum::<i32>();\n     |                          ---   ^^^ value of type `i32` cannot be made by summing a `std::iter::Iterator<Item=&usize>`\n     |                          |\n     |                          required by a bound introduced by this call\n     |\n     = help: the trait `Sum<&usize>` is not implemented for `i32`\n     = help: the following other types implement trait `Sum<A>`:\n               `i32` implements `Sum<&i32>`\n               `i32` implements `Sum`\nnote: the method call chain might not have had the expected associated types\n    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_001/target.rs:26:19\n     |\n   4 |     let mut c = [0; 8];\n     |                 ------ this expression has type `[usize; 8]`\n...\n  26 |     let sum_c = c.iter().sum::<i32>();\n     |                   ^^^^^^ `Iterator::Item` is `&usize` here\nnote: required by a bound in `std::iter::Iterator::sum`\n    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/iter/traits/iterator.rs:3578:12\n     |\n3575 |     fn sum<S>(self) -> S\n     |        --- required by a bound in this associated function\n...\n3578 |         S: Sum<Self::Item>,\n     |            ^^^^^^^^^^^^^^^ required by this bound in `Iterator::sum`\n\nerror: aborting due to 3 previous errors\n\nFor more information about this error, try `rustc --explain E0277`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": true,
+      "stub_reasons": [
+        "function definitions dropped from 5 to 1 (threshold=0.75, require>=4)"
+      ],
+      "provider_error": false
+    },
+    {
+      "sample_index": 2,
+      "duration_seconds": 82.18076774990186,
+      "timeout_error": false,
+      "target_compiled": true,
+      "target_compile_errors": null,
+      "target_exit_code": 0,
+      "exit_codes_match": true,
+      "stdout_similarity": 1.0,
+      "stdout_match": true,
+      "match": true,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 3,
+      "duration_seconds": 64.7259781670291,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "warning: variable does not need to be mutable\n --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_003/target.rs:2:9\n  |\n2 |     let mut which_a = 0;\n  |         ----^^^^^^^\n  |         |\n  |         help: remove this `mut`\n  |\n  = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default\n\nwarning: variable does not need to be mutable\n --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_003/target.rs:3:9\n  |\n3 |     let mut which_b = 1;\n  |         ----^^^^^^^\n  |         |\n  |         help: remove this `mut`\n\nerror[E0499]: cannot borrow `bank_a` as mutable more than once at a time\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_003/target.rs:10:31\n   |\n 9 |     let a = if which_a == 0 { &mut bank_a } else { &mut bank_b };\n   |                               ----------- first mutable borrow occurs here\n10 |     let b = if which_b == 0 { &mut bank_a } else { &mut bank_b };\n   |                               ^^^^^^^^^^^ second mutable borrow occurs here\n11 |\n12 |     fill(a, 8, 100);\n   |          - first borrow later used here\n\nerror[E0499]: cannot borrow `bank_b` as mutable more than once at a time\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_003/target.rs:10:52\n   |\n 9 |     let a = if which_a == 0 { &mut bank_a } else { &mut bank_b };\n   |                                                    ----------- first mutable borrow occurs here\n10 |     let b = if which_b == 0 { &mut bank_a } else { &mut bank_b };\n   |                                                    ^^^^^^^^^^^ second mutable borrow occurs here\n11 |\n12 |     fill(a, 8, 100);\n   |          - first borrow later used here\n\nerror: aborting due to 2 previous errors; 2 warnings emitted\n\nFor more information about this error, try `rustc --explain E0499`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 4,
+      "duration_seconds": 65.36227337503806,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:39:25\n   |\n39 |     let a = choose_view(unsafe { &mut bank_a }, which_a);\n   |                         ^^^^^^^^^^^^^^^^^^^^^^\n   |\n   = note: requested on the command line with `-F unsafe-code`\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:40:25\n   |\n40 |     let b = choose_view(unsafe { &mut bank_b }, which_b);\n   |                         ^^^^^^^^^^^^^^^^^^^^^^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:54:16\n   |\n54 |     assert_eq!(unsafe { bank_a.left[0] }, 101);\n   |                ^^^^^^^^^^^^^^^^^^^^^^^^^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:55:16\n   |\n55 |     assert_eq!(unsafe { bank_b.right[7] }, 209);\n   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^\n\nerror[E0308]: mismatched types\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:42:10\n   |\n42 |     fill(a, 100);\n   |     ---- ^ types differ in mutability\n   |     |\n   |     arguments to this function are incorrect\n   |\n   = note: expected mutable reference `&mut _`\n                      found reference `&_`\nnote: function defined here\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:19:4\n   |\n19 | fn fill(p: &mut [i32], base: i32) {\n   |    ^^^^ -------------\n\nerror[E0308]: mismatched types\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:43:10\n   |\n43 |     fill(b, 200);\n   |     ---- ^ types differ in mutability\n   |     |\n   |     arguments to this function are incorrect\n   |\n   = note: expected mutable reference `&mut _`\n                      found reference `&_`\nnote: function defined here\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:19:4\n   |\n19 | fn fill(p: &mut [i32], base: i32) {\n   |    ^^^^ -------------\n\nerror[E0308]: mismatched types\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:46:10\n   |\n46 |     bump(a, 1);\n   |     ---- ^ types differ in mutability\n   |     |\n   |     arguments to this function are incorrect\n   |\n   = note: expected mutable reference `&mut _`\n                      found reference `&_`\nnote: function defined here\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:25:4\n   |\n25 | fn bump(p: &mut [i32], k: i32) {\n   |    ^^^^ -------------\n\nerror[E0308]: mismatched types\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:47:10\n   |\n47 |     bump(b, 2);\n   |     ---- ^ types differ in mutability\n   |     |\n   |     arguments to this function are incorrect\n   |\n   = note: expected mutable reference `&mut _`\n                      found reference `&_`\nnote: function defined here\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:25:4\n   |\n25 | fn bump(p: &mut [i32], k: i32) {\n   |    ^^^^ -------------\n\nerror[E0133]: access to union field is unsafe and requires unsafe function or block\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:13:10\n   |\n13 |         &u.right\n   |          ^^^^^^^ access to union field\n   |\n   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior\n\nerror[E0133]: access to union field is unsafe and requires unsafe function or block\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:15:10\n   |\n15 |         &u.left\n   |          ^^^^^^ access to union field\n   |\n   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior\n\nerror: aborting due to 10 previous errors\n\nSome errors have detailed explanations: E0133, E0308.\nFor more information about an error, try `rustc --explain E0133`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 5,
+      "duration_seconds": 69.12004433409311,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0499]: cannot borrow `bank_a` as mutable more than once at a time\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_005/target.rs:10:31\n   |\n 9 |     let a = if which_a == 0 { &mut bank_a } else { &mut bank_b };\n   |                               ----------- first mutable borrow occurs here\n10 |     let b = if which_b == 0 { &mut bank_a } else { &mut bank_b };\n   |                               ^^^^^^^^^^^ second mutable borrow occurs here\n11 |\n12 |     fill(a, 8, 100);\n   |          - first borrow later used here\n\nerror[E0499]: cannot borrow `bank_b` as mutable more than once at a time\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_005/target.rs:10:52\n   |\n 9 |     let a = if which_a == 0 { &mut bank_a } else { &mut bank_b };\n   |                                                    ----------- first mutable borrow occurs here\n10 |     let b = if which_b == 0 { &mut bank_a } else { &mut bank_b };\n   |                                                    ^^^^^^^^^^^ second mutable borrow occurs here\n11 |\n12 |     fill(a, 8, 100);\n   |          - first borrow later used here\n\nerror: aborting due to 2 previous errors\n\nFor more information about this error, try `rustc --explain E0499`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    }
+  ],
+  "winning_sample": 2,
+  "match": true
+}

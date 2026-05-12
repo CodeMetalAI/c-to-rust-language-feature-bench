@@ -1,0 +1,37 @@
+error[E0599]: no method named `hash` found for struct `TypeId` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/conversions/lvalue_array_fun_c2/sample_005/target.rs:4:33
+    |
+  4 |     std::any::TypeId::of::<T>().hash(&mut std::hash::BuildHasherDefault::<std::collections::hash_map::DefaultHasher>::default().build_hasher...
+    |                                 ^^^^ method not found in `TypeId`
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/hash/mod.rs:199:8
+    |
+199 |     fn hash<H: Hasher>(&self, state: &mut H);
+    |        ---- the method is available for `TypeId` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Hash` which provides `hash` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::hash::Hash;
+    |
+
+error[E0599]: no method named `build_hasher` found for struct `BuildHasherDefault<H>` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/conversions/lvalue_array_fun_c2/sample_005/target.rs:4:129
+    |
+  4 | ...sh_map::DefaultHasher>::default().build_hasher()) as u32
+    |                                      ^^^^^^^^^^^^ method not found in `BuildHasherDefault<DefaultHasher>`
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/hash/mod.rs:656:8
+    |
+656 |     fn build_hasher(&self) -> Self::Hasher;
+    |        ------------ the method is available for `BuildHasherDefault<DefaultHasher>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: trait `BuildHasher` which provides `build_hasher` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::hash::BuildHasher;
+    |
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

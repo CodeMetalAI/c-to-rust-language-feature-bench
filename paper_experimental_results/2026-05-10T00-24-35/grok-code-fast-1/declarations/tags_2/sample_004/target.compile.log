@@ -1,0 +1,22 @@
+error[E0369]: binary operation `!=` cannot be applied to type `&Rc<RefCell<S1>>`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/tags_2/sample_004/target.rs:40:72
+   |
+40 |     if a.borrow().s2p.as_ref().unwrap().borrow().s1p.as_ref().unwrap() != &a {
+   |        --------------------------------------------------------------- ^^ -- &Rc<RefCell<S1>>
+   |        |
+   |        &Rc<RefCell<S1>>
+   |
+note: an implementation of `PartialEq` might be missing for `S1`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/tags_2/sample_004/target.rs:5:1
+   |
+ 5 | struct S1 {
+   | ^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `S1` with `#[derive(PartialEq)]`
+   |
+ 5 + #[derive(PartialEq)]
+ 6 | struct S1 {
+   |
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0369`.

@@ -1,0 +1,26 @@
+error[E0308]: `if` and `else` have incompatible types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/cond_op_1/sample_005/target.rs:24:30
+   |
+24 |     f(&if true { vp } else { c_cp });
+   |                  --          ^^^^ types differ in mutability
+   |                  |
+   |                  expected because of this
+   |
+   = note: expected mutable reference `&mut (dyn Any + 'static)`
+                      found reference `&str`
+
+error[E0308]: `if` and `else` have incompatible types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/cond_op_1/sample_005/target.rs:25:32
+   |
+25 |     f(&if true { c_cp } else { vp });
+   |                  ----          ^^ expected `&str`, found `&mut dyn Any`
+   |                  |
+   |                  expected because of this
+   |
+   = note:      expected reference `&str`
+           found mutable reference `&mut (dyn Any + 'static)`
+   = help: `str` implements `Any` so you could change the expected type to `Box<dyn Any>`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

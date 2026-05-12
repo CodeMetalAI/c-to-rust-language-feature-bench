@@ -1,0 +1,110 @@
+warning: unused import: `std::mem`
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: type `usize_` should have an upper camel case name
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:3:6
+  |
+3 | type usize_ = usize;
+  |      ^^^^^^ help: convert the identifier to upper camel case: `Usize`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:12:22
+   |
+12 |     let member_ptr = unsafe { &(*base).member as *const _ };
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:29:14
+   |
+29 |         s += unsafe { *p.offset(i as isize) };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:46:5
+   |
+46 | /     unsafe {
+47 | |         *p.offset(1) += 5;
+48 | |         *p.offset(0) + *p.offset(1) + *p.offset(2)
+49 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:53:5
+    |
+ 53 | /     unsafe {
+ 54 | |         X = BACKING.as_ptr();
+ 55 | |         Y[0] = 1;
+ 56 | |         Y[1] = 2;
+...   |
+112 | |         std::process::exit(0);
+113 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:81:16
+   |
+81 |             if unsafe { *t.offset(6) } != 7 {
+   |                ^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:89:16
+   |
+89 |             if unsafe { *hp.p.offset(0) } != 1 {
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:103:16
+    |
+103 |             if unsafe { *a_ptr.offset(2) } != 3 {
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0609]: no field `member` on type `T`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:12:40
+   |
+10 | const fn offset_of<T, U>(_: &T, member: *const U) -> usize_ {
+   |                    - type parameter 'T' declared here
+11 |     let base = 0 as *const T;
+12 |     let member_ptr = unsafe { &(*base).member as *const _ };
+   |                                        ^^^^^^ unknown field
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:81:16
+   |
+53 |     unsafe {
+   |     ------ because it's nested under this `unsafe` block
+...
+81 |             if unsafe { *t.offset(6) } != 7 {
+   |                ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:89:16
+   |
+53 |     unsafe {
+   |     ------ because it's nested under this `unsafe` block
+...
+89 |             if unsafe { *hp.p.offset(0) } != 1 {
+   |                ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:103:16
+    |
+ 53 |     unsafe {
+    |     ------ because it's nested under this `unsafe` block
+...
+103 |             if unsafe { *a_ptr.offset(2) } != 3 {
+    |                ^^^^^^ unnecessary `unsafe` block
+
+error: aborting due to 8 previous errors; 5 warnings emitted
+
+For more information about this error, try `rustc --explain E0609`.

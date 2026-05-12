@@ -1,0 +1,46 @@
+warning: type `range` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_1/sample_005/target.rs:58:8
+   |
+58 | struct range {
+   |        ^^^^^ help: convert the identifier to upper camel case: `Range`
+   |
+   = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_1/sample_005/target.rs:87:5
+   |
+87 |     unsafe { g_store }
+   |     ^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+warning: type `double` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_1/sample_005/target.rs:90:6
+   |
+90 | type double = f64;
+   |      ^^^^^^ help: convert the identifier to upper camel case: `Double`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_1/sample_005/target.rs:18:45
+   |
+18 |     let metricp: fn(i32, i32, i32) -> i32 = f_plain;
+   |                  ------------------------   ^^^^^^^ incorrect number of function parameters
+   |                  |
+   |                  expected due to this
+   |
+   = note: expected fn pointer `fn(i32, i32, i32) -> _`
+                 found fn item `fn() -> _ {f_plain}`
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_1/sample_005/target.rs:75:9
+   |
+75 |     let mut out = range {
+   |         ----^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 2 previous errors; 3 warnings emitted
+
+For more information about this error, try `rustc --explain E0308`.

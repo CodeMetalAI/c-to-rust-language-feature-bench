@@ -1,0 +1,47 @@
+error: cannot find macro `offset_of` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_2/sample_004/target.rs:41:27
+   |
+41 |         let ha_a_offset = offset_of!(HoldA, a) as isize;
+   |                           ^^^^^^^^^ consider moving the definition of `offset_of` before this call
+   |
+note: a macro with the same name exists, but it appears later
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_2/sample_004/target.rs:85:14
+   |
+85 | macro_rules! offset_of {
+   |              ^^^^^^^^^
+help: consider importing this macro
+   |
+ 1 + use std::mem::offset_of;
+   |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_2/sample_004/target.rs:40:18
+   |
+40 |         let ha = unsafe { &*(y.as_ptr() as *const HoldA) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_2/sample_004/target.rs:42:24
+   |
+42 |         let ha_a_ptr = unsafe { (ha as *const _ as *const u8).offset(ha_a_offset) as *const _ };
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused macro definition: `offset_of`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_2/sample_004/target.rs:85:14
+   |
+85 | macro_rules! offset_of {
+   |              ^^^^^^^^^
+   |
+   = note: `#[warn(unused_macros)]` (part of `#[warn(unused)]`) on by default
+
+error[E0607]: cannot cast thin pointer `*const i32` to wide pointer `*const HoldA`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_2/sample_004/target.rs:40:29
+   |
+40 |         let ha = unsafe { &*(y.as_ptr() as *const HoldA) };
+   |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 4 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0607`.

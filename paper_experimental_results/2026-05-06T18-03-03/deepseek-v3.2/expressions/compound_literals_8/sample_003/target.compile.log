@@ -1,0 +1,22 @@
+error[E0369]: binary operation `==` cannot be applied to type `Option<&S>`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/compound_literals_8/sample_003/target.rs:16:7
+   |
+16 |     p == q && q.map(|s| s.i == 1).unwrap_or(false)
+   |     - ^^ - Option<&S>
+   |     |
+   |     Option<&S>
+   |
+note: an implementation of `PartialEq` might be missing for `S`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/compound_literals_8/sample_003/target.rs:1:1
+   |
+ 1 | struct S {
+   | ^^^^^^^^ must implement `PartialEq`
+help: consider annotating `S` with `#[derive(PartialEq)]`
+   |
+ 1 + #[derive(PartialEq)]
+ 2 | struct S {
+   |
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0369`.

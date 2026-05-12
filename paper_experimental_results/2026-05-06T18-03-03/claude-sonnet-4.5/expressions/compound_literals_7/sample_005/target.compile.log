@@ -1,0 +1,39 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/expressions/compound_literals_7/sample_005/target.rs:10:10
+   |
+10 |     cdr: unsafe { &ENDLESS_ZEROS as *const IntList },
+   |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/expressions/compound_literals_7/sample_005/target.rs:20:8
+   |
+20 |     if unsafe { (*x.cdr).cdr } != ptr::addr_of!(ENDLESS_ZEROS) {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: `*const IntList` cannot be shared between threads safely
+ --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/expressions/compound_literals_7/sample_005/target.rs:8:23
+  |
+8 | static ENDLESS_ZEROS: IntList = IntList {
+  |                       ^^^^^^^ `*const IntList` cannot be shared between threads safely
+  |
+  = help: within `IntList`, the trait `Sync` is not implemented for `*const IntList`
+note: required because it appears within the type `IntList`
+ --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/expressions/compound_literals_7/sample_005/target.rs:3:8
+  |
+3 | struct IntList {
+  |        ^^^^^^^
+  = note: shared static variables must have a type that implements `Sync`
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/expressions/compound_literals_7/sample_005/target.rs:10:10
+   |
+10 |     cdr: unsafe { &ENDLESS_ZEROS as *const IntList },
+   |          ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 3 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0277`.

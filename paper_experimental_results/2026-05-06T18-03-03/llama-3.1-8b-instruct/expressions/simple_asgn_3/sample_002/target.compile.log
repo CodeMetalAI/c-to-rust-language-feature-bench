@@ -1,0 +1,41 @@
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/simple_asgn_3/sample_002/target.rs:6:5
+  |
+6 |     *cpp = &c as *const u8;
+  |     ^^^^ dereference of raw pointer
+  |
+  = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/simple_asgn_3/sample_002/target.rs:7:5
+  |
+7 |     *p = 0;
+  |     ^^ dereference of raw pointer
+  |
+  = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/simple_asgn_3/sample_002/target.rs:2:9
+  |
+2 |     let mut p: *mut u8 = std::ptr::null_mut();
+  |         ----^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error[E0594]: cannot assign to `*cpp`, which is behind a `*const` pointer
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/simple_asgn_3/sample_002/target.rs:6:5
+  |
+6 |     *cpp = &c as *const u8;
+  |     ^^^^^^^^^^^^^^^^^^^^^^ `cpp` is a `*const` pointer, so the data it refers to cannot be written
+  |
+help: consider specifying this binding's type
+  |
+5 |     let cpp: *mut *const u8 = p as *const *const u8;
+  |            ++++++++++++++++
+
+error: aborting due to 3 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0133, E0594.
+For more information about an error, try `rustc --explain E0133`.

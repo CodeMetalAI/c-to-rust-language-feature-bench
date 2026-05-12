@@ -1,0 +1,49 @@
+error: expected expression, found `,`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/enum_specifiers/sample_004/target.rs:12:25
+   |
+12 |         Hue::Burgundy =>, 11,
+   |                       --^ expected expression
+   |                       |
+   |                       while parsing the `match` arm starting here
+
+error[E0369]: binary operation `!=` cannot be applied to type `Hue`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/enum_specifiers/sample_004/target.rs:35:12
+   |
+35 |     if *cp != Hue::Claret {
+   |        --- ^^ ----------- Hue
+   |        |
+   |        Hue
+   |
+note: an implementation of `PartialEq` might be missing for `Hue`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/enum_specifiers/sample_004/target.rs:2:1
+   |
+ 2 | enum Hue {
+   | ^^^^^^^^ must implement `PartialEq`
+help: consider annotating `Hue` with `#[derive(PartialEq)]`
+   |
+ 2 + #[derive(PartialEq)]
+ 3 | enum Hue {
+   |
+
+error[E0369]: binary operation `==` cannot be applied to type `Hue`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/enum_specifiers/sample_004/target.rs:38:12
+   |
+38 |     if *cp == Hue::Burgundy {
+   |        --- ^^ ------------- Hue
+   |        |
+   |        Hue
+   |
+note: an implementation of `PartialEq` might be missing for `Hue`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/enum_specifiers/sample_004/target.rs:2:1
+   |
+ 2 | enum Hue {
+   | ^^^^^^^^ must implement `PartialEq`
+help: consider annotating `Hue` with `#[derive(PartialEq)]`
+   |
+ 2 + #[derive(PartialEq)]
+ 3 | enum Hue {
+   |
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0369`.

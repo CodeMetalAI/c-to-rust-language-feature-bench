@@ -1,0 +1,23 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/function_specifiers_c8b/sample_002/target.rs:10:22
+   |
+10 |     _exit((x == 7 && unsafe { G }) as i32);
+   |                      ^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/function_specifiers_c8b/sample_002/target.rs:15:5
+   |
+15 |     unsafe { G = 9 };
+   |     ^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/function_specifiers_c8b/sample_002/target.rs:10:31
+   |
+10 |     _exit((x == 7 && unsafe { G }) as i32);
+   |                               ^ expected `bool`, found `i32`
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

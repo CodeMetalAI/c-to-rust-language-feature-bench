@@ -1,0 +1,99 @@
+// restrict_def_2b.rs
+
+static mut GATE: i32 = 1;
+
+fn f(n: i32, p: &mut [i32], q: &[i32]) {
+    let mut n = n;
+    let mut p = p.iter_mut();
+    let mut q = q.iter();
+    while n > 0 {
+        if let (Some(p_elem), Some(q_elem)) = (p.next(), q.next()) {
+            *p_elem = *q_elem;
+        }
+        n -= 1;
+    }
+}
+
+fn safe_move(n: i32, p: &mut [i32], q: &[i32]) {
+    if n <= 0 {
+        return;
+    }
+
+    if p.as_ptr() < q.as_ptr() {
+        for i in 0..n {
+            p[i as usize] = q[i as usize];
+        }
+    } else if p.as_ptr() > q.as_ptr() {
+        for i in (0..n).rev() {
+            p[i as usize] = q[i as usize];
+        }
+    }
+}
+
+fn ranges_overlap(base: &[i32], n_total: i32, p: &[i32], q: &[i32], n: i32) -> bool {
+    let g = unsafe { GATE };
+    let ps = p.as_ptr() as usize - base.as_ptr() as usize;
+    let qs = q.as_ptr() as usize - base.as_ptr() as usize;
+
+    if g != 0 {
+        // No operation, just to mimic the original code
+    }
+
+    if n < 0 || ps as i32 < 0 || qs as i32 < 0 || ps as i32 + n > n_total || qs as i32 + n > n_total {
+        return false;
+    }
+
+    (ps < qs + n as usize) && (qs < ps + n as usize)
+}
+
+fn call_f_checked(base: &[i32], n_total: i32, n: i32, p: &mut [i32], q: &[i32]) {
+    if ranges_overlap(base, n_total, p, q, n) {
+        safe_move(n, p, q);
+    } else {
+        f(n, p, q);
+    }
+}
+
+static mut D: [i32; 100] = [0; 100];
+
+fn init(x: &mut [i32], n: usize) {
+    for i in 0..n {
+        x[i] = (i * 13) as i32 + 5;
+    }
+}
+
+fn same(x: &[i32], y: &[i32], n: usize) -> bool {
+    for i in 0..n {
+        if x[i] != y[i] {
+            return false;
+        }
+    }
+    true
+}
+
+fn g_defined() {
+    unsafe {
+        call_f_checked(&D, 100, 50, &mut D[50..], &D);
+        call_f_checked(&D, 100, 50, &mut D[1..], &D);
+    }
+}
+
+fn main() {
+    let mut expect = [0; 100];
+
+    unsafe {
+        init(&mut D, 100);
+    }
+    init(&mut expect, 100);
+
+    safe_move(50, &mut expect[50..], &expect);
+    safe_move(50, &mut expect[1..], &expect);
+
+    g_defined();
+
+    if !same(&D, &expect, 100) {
+        std::process::exit(1);
+    }
+
+    std::process::exit(0);
+}

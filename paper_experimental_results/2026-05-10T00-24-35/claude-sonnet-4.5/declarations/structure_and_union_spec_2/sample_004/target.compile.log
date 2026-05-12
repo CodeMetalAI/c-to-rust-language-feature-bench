@@ -1,0 +1,78 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_2/sample_004/target.rs:31:18
+   |
+31 |     let s1_ptr = unsafe { alloc(s1_layout) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_2/sample_004/target.rs:32:18
+   |
+32 |     let s2_ptr = unsafe { alloc(s2_layout) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_2/sample_004/target.rs:36:13
+   |
+36 |             unsafe { dealloc(s1_ptr, s1_layout) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_2/sample_004/target.rs:39:13
+   |
+39 |             unsafe { dealloc(s2_ptr, s2_layout) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_2/sample_004/target.rs:44:18
+   |
+44 |     let d1_ptr = unsafe { s1_ptr.add(size_of::<S>()) as *mut f64 };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_2/sample_004/target.rs:45:18
+   |
+45 |     let d2_ptr = unsafe { s2_ptr.add(size_of::<S>()) as *mut f64 };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_2/sample_004/target.rs:47:5
+   |
+47 | /     unsafe {
+48 | |         ptr::write(d1_ptr, 42.0);
+49 | |         ptr::write(d2_ptr, 24.0);
+50 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_2/sample_004/target.rs:52:16
+   |
+52 |     let val1 = unsafe { ptr::read(d1_ptr) };
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_2/sample_004/target.rs:53:16
+   |
+53 |     let val2 = unsafe { ptr::read(d2_ptr) };
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_2/sample_004/target.rs:56:9
+   |
+56 | /         unsafe {
+57 | |             dealloc(s1_ptr, s1_layout);
+58 | |             dealloc(s2_ptr, s2_layout);
+59 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_2/sample_004/target.rs:63:5
+   |
+63 | /     unsafe {
+64 | |         dealloc(s1_ptr, s1_layout);
+65 | |         dealloc(s2_ptr, s2_layout);
+66 | |     }
+   | |_____^
+
+error: aborting due to 11 previous errors

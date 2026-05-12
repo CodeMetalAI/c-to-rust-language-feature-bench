@@ -1,0 +1,133 @@
+error[E0277]: the trait bound `{float}: Eq` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:11:27
+   |
+11 |     test_all_incdec_arith(1.5);
+   |     --------------------- ^^^ the trait `Eq` is not implemented for `{float}`
+   |     |
+   |     required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `Eq`:
+             i128
+             i16
+             i32
+             i64
+             i8
+             isize
+             u128
+             u16
+           and 4 others
+note: required by a bound in `test_all_incdec_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:26:8
+   |
+24 | fn test_all_incdec_arith<T>(value: T)
+   |    --------------------- required by a bound in this function
+25 | where
+26 |     T: std::cmp::Eq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + Copy + From<u8>,
+   |        ^^^^^^^^^^^^ required by this bound in `test_all_incdec_arith`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:28:30
+   |
+24 | fn test_all_incdec_arith<T>(value: T)
+   |                          - expected this type parameter
+...
+28 |     test_incdec_arith(value, 1);
+   |     ----------------- -----  ^ expected type parameter `T`, found integer
+   |     |                 |
+   |     |                 expected all arguments to be this type parameter `T` type because they need to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:32:4
+   |
+32 | fn test_incdec_arith<T>(mut value: T, change: T)
+   |    ^^^^^^^^^^^^^^^^^ -  ------------  --------- this parameter needs to match the type parameter `T` type of `value`
+   |                      |  |
+   |                      |  `change` needs to match the type parameter `T` type of this parameter
+   |                      `value` and `change` both reference this parameter `T`
+help: call `Into::into` on this expression to convert `{integer}` into `T`
+   |
+28 |     test_incdec_arith(value, 1.into());
+   |                               +++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:29:30
+   |
+24 | fn test_all_incdec_arith<T>(value: T)
+   |                          - expected this type parameter
+...
+29 |     test_incdec_arith(value, -1);
+   |     ----------------- -----  ^^ expected type parameter `T`, found integer
+   |     |                 |
+   |     |                 expected all arguments to be this type parameter `T` type because they need to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:32:4
+   |
+32 | fn test_incdec_arith<T>(mut value: T, change: T)
+   |    ^^^^^^^^^^^^^^^^^ -  ------------  --------- this parameter needs to match the type parameter `T` type of `value`
+   |                      |  |
+   |                      |  `change` needs to match the type parameter `T` type of this parameter
+   |                      `value` and `change` both reference this parameter `T`
+help: call `Into::into` on this expression to convert `{integer}` into `T`
+   |
+29 |     test_incdec_arith(value, (-1).into());
+   |                              +  ++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:38:5
+   |
+38 |     assert_eq!(value, original + change);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+34 |     T: std::cmp::Eq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + Copy + From<u8> + std::fmt::Debug,
+   |                                                                                               +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:38:5
+   |
+38 |     assert_eq!(value, original + change);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+34 |     T: std::cmp::Eq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + Copy + From<u8> + std::fmt::Debug,
+   |                                                                                               +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:42:5
+   |
+42 |     assert_eq!(value, original - change);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+34 |     T: std::cmp::Eq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + Copy + From<u8> + std::fmt::Debug,
+   |                                                                                               +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:42:5
+   |
+42 |     assert_eq!(value, original - change);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+34 |     T: std::cmp::Eq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + Copy + From<u8> + std::fmt::Debug,
+   |                                                                                               +++++++++++++++++
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

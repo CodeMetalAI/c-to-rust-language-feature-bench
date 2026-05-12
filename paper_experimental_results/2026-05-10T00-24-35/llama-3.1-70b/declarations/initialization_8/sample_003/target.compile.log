@@ -1,0 +1,28 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/initialization_8/sample_003/target.rs:4:3
+  |
+4 |   unsafe { std::ptr::copy("abc\0".as_ptr(), s_ptr, 4) };
+  |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/initialization_8/sample_003/target.rs:16:3
+   |
+16 |   unsafe { *s_ptr = b'x'; }
+   |   ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0594]: cannot assign to `t[_]`, as `t` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/initialization_8/sample_003/target.rs:17:3
+   |
+17 |   t[2] = b'y';
+   |   ^^^^^^^^^^^ cannot assign
+   |
+help: consider changing this to be mutable
+   |
+ 6 |   let mut t = [b'a', b'b', b'c'];
+   |       +++
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0594`.

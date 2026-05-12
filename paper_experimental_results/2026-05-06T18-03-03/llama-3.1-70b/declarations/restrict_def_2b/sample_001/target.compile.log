@@ -1,0 +1,73 @@
+warning: unused variable: `n`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_2b/sample_001/target.rs:56:31
+   |
+56 | fn same(x: &[i32], y: &[i32], n: usize) -> bool {
+   |                               ^ help: if this is intentional, prefix it with an underscore: `_n`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error[E0502]: cannot borrow `*d` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_2b/sample_001/target.rs:61:37
+   |
+61 |     call_f_checked(d, 100, 50, &mut d[50..], &d[..]);
+   |     -------------- -                ^ mutable borrow occurs here
+   |     |              |
+   |     |              immutable borrow occurs here
+   |     immutable borrow later used by call
+
+error[E0502]: cannot borrow `*d` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_2b/sample_001/target.rs:61:47
+   |
+61 |     call_f_checked(d, 100, 50, &mut d[50..], &d[..]);
+   |     --------------                  -         ^ immutable borrow occurs here
+   |     |                               |
+   |     |                               mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `*d` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_2b/sample_001/target.rs:62:37
+   |
+62 |     call_f_checked(d, 100, 50, &mut d[1..], &d[..]);
+   |     -------------- -                ^ mutable borrow occurs here
+   |     |              |
+   |     |              immutable borrow occurs here
+   |     immutable borrow later used by call
+
+error[E0502]: cannot borrow `*d` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_2b/sample_001/target.rs:62:46
+   |
+62 |     call_f_checked(d, 100, 50, &mut d[1..], &d[..]);
+   |     --------------                  -        ^ immutable borrow occurs here
+   |     |                               |
+   |     |                               mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_2b/sample_001/target.rs:72:39
+   |
+72 |     safe_move(50, &mut expect[50..], &expect[..]);
+   |     ---------          ------         ^^^^^^ immutable borrow occurs here
+   |     |                  |
+   |     |                  mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_2b/sample_001/target.rs:73:38
+   |
+73 |     safe_move(50, &mut expect[1..], &expect[..]);
+   |     ---------          ------        ^^^^^^ immutable borrow occurs here
+   |     |                  |
+   |     |                  mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 6 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0502`.

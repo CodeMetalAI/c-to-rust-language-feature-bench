@@ -1,0 +1,45 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_c4/sample_003/target.rs:4:5
+  |
+4 | /     unsafe {
+5 | |         g = gval;
+6 | |         ret
+7 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_c4/sample_003/target.rs:13:5
+   |
+13 | /     unsafe {
+14 | |         g = 0;
+15 | |         x = set_g_return(1, 1) as i32;
+16 | |         if x!= 1 {
+...  |
+22 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_c4/sample_003/target.rs:24:5
+   |
+24 | /     unsafe {
+25 | |         g = 0;
+26 | |         x = set_g_return(1, 0) as i32;
+27 | |         if x!= 1 {
+...  |
+33 | |     }
+   | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_c4/sample_003/target.rs:17:20
+   |
+10 | fn main() {
+   |          - expected `()` because of default return type
+...
+17 |             return 1;
+   |                    ^ expected `()`, found integer
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

@@ -1,0 +1,21 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/expressions/size_of_1/sample_004/target.rs:3:5
+  |
+3 |     unsafe { std::alloc::alloc(layout) as *mut f64 }
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/expressions/size_of_1/sample_004/target.rs:13:5
+   |
+13 | /     unsafe {
+14 | |         *dp = 3.14;
+15 | |         if *dp != 3.14 {
+16 | |             let layout = std::alloc::Layout::from_size_align(
+...  |
+30 | |         std::alloc::dealloc(dp as *mut u8, layout);
+31 | |     }
+   | |_____^
+
+error: aborting due to 2 previous errors

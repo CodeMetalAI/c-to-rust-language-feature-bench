@@ -1,0 +1,96 @@
+error[E0425]: cannot find function `sub_ptr` in module `ptr`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c9/sample_004/target.rs:13:30
+   |
+13 |     let d_pq = unsafe { ptr::sub_ptr(p, q) };
+   |                              ^^^^^^^ not found in `ptr`
+
+error[E0425]: cannot find function `sub_ptr` in module `ptr`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c9/sample_004/target.rs:18:30
+   |
+18 |     let d_qp = unsafe { ptr::sub_ptr(q, p) };
+   |                              ^^^^^^^ not found in `ptr`
+
+error[E0425]: cannot find function `sub_ptr` in module `ptr`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c9/sample_004/target.rs:23:29
+   |
+23 |     let lhs = unsafe { ptr::sub_ptr(one_past, p) };
+   |                             ^^^^^^^ not found in `ptr`
+
+error[E0425]: cannot find function `sub_ptr` in module `ptr`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c9/sample_004/target.rs:24:30
+   |
+24 |     let rhs1 = unsafe { ptr::sub_ptr(q, p) } + 1;
+   |                              ^^^^^^^ not found in `ptr`
+
+error[E0425]: cannot find function `sub_ptr` in module `ptr`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c9/sample_004/target.rs:29:31
+   |
+29 |     let rhs2 = unsafe { -ptr::sub_ptr(p, one_past) };
+   |                               ^^^^^^^ not found in `ptr`
+
+error[E0425]: cannot find function `sub_ptr` in module `ptr`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c9/sample_004/target.rs:34:22
+   |
+34 |     if unsafe { ptr::sub_ptr(one_past, one_past) } != 0 {
+   |                      ^^^^^^^ not found in `ptr`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c9/sample_004/target.rs:10:20
+   |
+10 |     let one_past = unsafe { q.add(1) };
+   |                    ^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c9/sample_004/target.rs:13:16
+   |
+13 |     let d_pq = unsafe { ptr::sub_ptr(p, q) };
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c9/sample_004/target.rs:18:16
+   |
+18 |     let d_qp = unsafe { ptr::sub_ptr(q, p) };
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c9/sample_004/target.rs:23:15
+   |
+23 |     let lhs = unsafe { ptr::sub_ptr(one_past, p) };
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c9/sample_004/target.rs:24:16
+   |
+24 |     let rhs1 = unsafe { ptr::sub_ptr(q, p) } + 1;
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c9/sample_004/target.rs:29:16
+   |
+29 |     let rhs2 = unsafe { -ptr::sub_ptr(p, one_past) };
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c9/sample_004/target.rs:34:8
+   |
+34 |     if unsafe { ptr::sub_ptr(one_past, one_past) } != 0 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `add` found for reference `&{integer}` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c9/sample_004/target.rs:10:31
+   |
+10 |     let one_past = unsafe { q.add(1) };
+   |                               ^^^ method not found in `&{integer}`
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::ops::Add;
+   |
+
+error: aborting due to 14 previous errors
+
+Some errors have detailed explanations: E0425, E0599.
+For more information about an error, try `rustc --explain E0425`.

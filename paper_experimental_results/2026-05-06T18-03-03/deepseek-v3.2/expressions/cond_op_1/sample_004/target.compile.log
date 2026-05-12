@@ -1,0 +1,62 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/cond_op_1/sample_004/target.rs:31:5
+   |
+31 | /     unsafe {
+32 | |         f(if true { C_VP } else { C_IP });
+33 | |         f(if true { C_IP } else { C_VP });
+...  |
+48 | |         f1(if true { IP as *mut std::ffi::c_void } else { VP });
+49 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `*const c_void` cannot be shared between threads safely
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/cond_op_1/sample_004/target.rs:3:14
+  |
+3 | static C_VP: *const std::ffi::c_void = ptr::null();
+  |              ^^^^^^^^^^^^^^^^^^^^^^^ `*const c_void` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*const c_void`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*const i32` cannot be shared between threads safely
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/cond_op_1/sample_004/target.rs:5:14
+  |
+5 | static C_IP: *const i32 = ptr::null();
+  |              ^^^^^^^^^^ `*const i32` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*const i32`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*const i8` cannot be shared between threads safely
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/cond_op_1/sample_004/target.rs:8:14
+  |
+8 | static C_CP: *const std::ffi::c_char = ptr::null();
+  |              ^^^^^^^^^^^^^^^^^^^^^^^ `*const i8` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*const i8`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/cond_op_1/sample_004/target.rs:32:35
+   |
+32 |         f(if true { C_VP } else { C_IP });
+   |                                   ^^^^ expected `*const c_void`, found `*const i32`
+   |
+   = note: expected raw pointer `*const c_void`
+              found raw pointer `*const i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/cond_op_1/sample_004/target.rs:33:21
+   |
+33 |         f(if true { C_IP } else { C_VP });
+   |                     ^^^^ expected `*const c_void`, found `*const i32`
+   |
+   = note: expected raw pointer `*const c_void`
+              found raw pointer `*const i32`
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

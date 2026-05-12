@@ -1,0 +1,33 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_001/target.rs:32:18
+   |
+32 |     let s1_ptr = unsafe { alloc(layout_s1) } as *mut S;
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_001/target.rs:42:18
+   |
+42 |     let s2_ptr = unsafe { alloc(layout_s2) } as *mut S;
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_001/target.rs:44:9
+   |
+44 |         unsafe { dealloc(s1_ptr as *mut u8, layout_s1) };
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_001/target.rs:48:5
+   |
+48 | /     unsafe {
+49 | |         // Initialize the flexible array part
+50 | |         let s1_d_ptr = (*s1_ptr).d.as_ptr() as *mut f64;
+51 | |         s1_d_ptr.write(42.0);
+...  |
+65 | |         dealloc(s2_ptr as *mut u8, layout_s2);
+66 | |     }
+   | |_____^
+
+error: aborting due to 4 previous errors

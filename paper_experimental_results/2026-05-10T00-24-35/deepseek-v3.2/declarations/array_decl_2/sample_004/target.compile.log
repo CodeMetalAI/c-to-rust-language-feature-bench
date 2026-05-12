@@ -1,0 +1,129 @@
+warning: unused import: `std::mem`
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_004/target.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: type `usize` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_004/target.rs:3:6
+  |
+3 | type usize = u64;
+  |      ^^^^^ help: convert the identifier to upper camel case (notice the capitalization): `Usize`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_004/target.rs:25:1
+   |
+25 | / unsafe fn sum_ptr(p: *const i32, n: i32) -> i32 {
+26 | |     let mut s = 0;
+27 | |     let mut i = 0;
+28 | |     while i < n {
+...  |
+32 | |     s
+33 | | }
+   | |_^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_004/target.rs:35:1
+   |
+35 | / unsafe fn sum_arr7(a: *const i32) -> i32 {
+36 | |     let mut s = 0;
+37 | |     let mut i = 0;
+38 | |     while i < 7 {
+...  |
+42 | |     s
+43 | | }
+   | |_^
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_004/target.rs:45:1
+   |
+45 | / unsafe fn mutate_through_pointer(p: *mut i32) -> i32 {
+46 | |     *p.add(1) += 5;
+47 | |     *p.add(0) + *p.add(1) + *p.add(2)
+48 | | }
+   | |_^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_004/target.rs:51:5
+    |
+ 51 | /     unsafe {
+ 52 | |         X = BACKING.as_ptr();
+ 53 | |         
+ 54 | |         Y[0] = 1;
+...   |
+111 | |         std::process::exit(0);
+112 | |     }
+    | |_____^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_004/target.rs:29:21
+    |
+ 29 |         s += *p.add(i as usize);
+    |                 --- ^^^^^^^^^^ expected `usize`, found `u64`
+    |                 |
+    |                 arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:881:25
+    |
+881 |     pub const unsafe fn add(self, count: usize) -> Self
+    |                         ^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+    |
+ 29 |         s += *p.add((i as usize).try_into().unwrap());
+    |                     +          +++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_004/target.rs:39:21
+    |
+ 39 |         s += *a.add(i as usize);
+    |                 --- ^^^^^^^^^^ expected `usize`, found `u64`
+    |                 |
+    |                 arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:881:25
+    |
+881 |     pub const unsafe fn add(self, count: usize) -> Self
+    |                         ^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+    |
+ 39 |         s += *a.add((i as usize).try_into().unwrap());
+    |                     +          +++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_004/target.rs:98:49
+    |
+ 98 |             if a_ptr as *const u8 != ha_ptr.add(expected_offset) {
+    |                                             --- ^^^^^^^^^^^^^^^ expected `usize`, found `u64`
+    |                                             |
+    |                                             arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:881:25
+    |
+881 |     pub const unsafe fn add(self, count: usize) -> Self
+    |                         ^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+    |
+ 98 |             if a_ptr as *const u8 != ha_ptr.add(expected_offset.try_into().unwrap()) {
+    |                                                                ++++++++++++++++++++
+
+error: pointers cannot be cast to integers during const eval
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_004/target.rs:22:5
+   |
+22 |     member as usize
+   |     ^^^^^^^^^^^^^^^
+   |
+   = note: at compile-time, pointers do not have an integer value
+   = note: avoiding this restriction via `transmute`, `union`, or raw pointers leads to compile-time undefined behavior
+
+error: aborting due to 8 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0308`.

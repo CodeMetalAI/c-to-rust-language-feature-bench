@@ -1,0 +1,110 @@
+error[E0609]: no field `x` on type `Outer`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_002/target.rs:79:10
+   |
+79 |     if o.x != 0x11223344 {
+   |          ^ unknown field
+   |
+help: a field with a similar name exists
+   |
+79 -     if o.x != 0x11223344 {
+79 +     if o.a != 0x11223344 {
+   |
+
+error[E0609]: no field `x` on type `Outer`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_002/target.rs:83:7
+   |
+83 |     o.x = 5;
+   |       ^ unknown field
+   |
+help: a field with a similar name exists
+   |
+83 -     o.x = 5;
+83 +     o.a = 5;
+   |
+
+error[E0609]: no field `y` on type `Outer`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_002/target.rs:84:7
+   |
+84 |     o.y = 6;
+   |       ^ unknown field
+   |
+help: a field with a similar name exists
+   |
+84 -     o.y = 6;
+84 +     o.a = 6;
+   |
+
+error[E0609]: no field `x` on type `Outer`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_002/target.rs:85:10
+   |
+85 |     if o.x != 5 {
+   |          ^ unknown field
+   |
+help: a field with a similar name exists
+   |
+85 -     if o.x != 5 {
+85 +     if o.a != 5 {
+   |
+
+error[E0609]: no field `y` on type `Outer`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_002/target.rs:88:10
+   |
+88 |     if o.y != 6 {
+   |          ^ unknown field
+   |
+help: a field with a similar name exists
+   |
+88 -     if o.y != 6 {
+88 +     if o.a != 6 {
+   |
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_002/target.rs:21:9
+   |
+21 |     let mut o = Outer {
+   |         ----^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_002/target.rs:111:9
+    |
+111 |     let mut o = Outer {
+    |         ----^
+    |         |
+    |         help: remove this `mut`
+
+error[E0384]: cannot assign twice to immutable variable `r`
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_002/target.rs:151:5
+    |
+146 |     r = check_designated_init();
+    |     --------------------------- first assignment to `r`
+...
+151 |     r = check_union_aliasing_via_flattened_names();
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot assign twice to immutable variable
+    |
+help: consider making this binding mutable
+    |
+144 |     let mut r: i32;
+    |         +++
+
+error[E0384]: cannot assign twice to immutable variable `r`
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_002/target.rs:156:5
+    |
+146 |     r = check_designated_init();
+    |     --------------------------- first assignment to `r`
+...
+156 |     r = check_addressability();
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot assign twice to immutable variable
+    |
+help: consider making this binding mutable
+    |
+144 |     let mut r: i32;
+    |         +++
+
+error: aborting due to 7 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0384, E0609.
+For more information about an error, try `rustc --explain E0384`.

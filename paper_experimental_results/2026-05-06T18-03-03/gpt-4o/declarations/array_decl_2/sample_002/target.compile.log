@@ -1,0 +1,62 @@
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_002/target.rs:42:5
+    |
+ 42 | /     unsafe {
+ 43 | |         let backing: &mut [i32; 3] = &mut [10, 20, 30];
+ 44 | |         X = Some(backing);
+...   |
+100 | |         0
+101 | |     }
+    | |_____^
+    |
+    = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_002/target.rs:41:14
+   |
+41 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0716]: temporary value dropped while borrowed
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_002/target.rs:43:43
+    |
+ 43 |         let backing: &mut [i32; 3] = &mut [10, 20, 30];
+    |                                           ^^^^^^^^^^^^ creates a temporary value which is freed while still in use
+ 44 |         X = Some(backing);
+    |         ----------------- assignment requires that borrow lasts for `'static`
+...
+101 |     }
+    |     - temporary value is freed at the end of this statement
+
+error[E0507]: cannot move out of `X.0` as `X` is a static item
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_002/target.rs:58:26
+   |
+58 |         if let Some(x) = X {
+   |                     -    ^
+   |                     |
+   |                     data moved here
+   |                     move occurs because `x` has type `&mut [i32; 3]`, which does not implement the `Copy` trait
+   |
+help: consider borrowing here
+   |
+58 |         if let Some(x) = &X {
+   |                          +
+
+error[E0503]: cannot use `backing[_]` because it was mutably borrowed
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_002/target.rs:67:16
+   |
+44 |         X = Some(backing);
+   |         -----------------
+   |         |        |
+   |         |        `*backing` is borrowed here
+   |         assignment requires that `*backing` is borrowed for `'static`
+...
+67 |             if backing[1] != 25 {
+   |                ^^^^^^^^^^ use of borrowed `*backing`
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0277, E0503, E0507, E0716.
+For more information about an error, try `rustc --explain E0277`.

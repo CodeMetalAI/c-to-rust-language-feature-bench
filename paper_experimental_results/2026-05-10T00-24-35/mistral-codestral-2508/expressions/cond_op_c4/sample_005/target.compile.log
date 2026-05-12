@@ -1,0 +1,41 @@
+error[E0596]: cannot borrow `set_g_return` as mutable, as it is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/cond_op_c4/sample_005/target.rs:4:9
+   |
+ 4 |     let set_g_return = |gval: i32, ret: i32| -> i32 {
+   |         ^^^^^^^^^^^^ not mutable
+ 5 |         g = gval;
+   |         - calling `set_g_return` requires mutable binding due to mutable borrow of `g`
+...
+10 |     let x = if set_g_return(1, 1) != 0 {
+   |                ------------ cannot borrow as mutable
+...
+13 |         set_g_return(2, 1);
+   |         ------------ cannot borrow as mutable
+...
+24 |     let x = if set_g_return(1, 0) != 0 {
+   |                ------------ cannot borrow as mutable
+25 |         set_g_return(2, 1);
+   |         ------------ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+ 4 |     let mut set_g_return = |gval: i32, ret: i32| -> i32 {
+   |         +++
+
+error[E0506]: cannot assign to `g` because it is borrowed
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/cond_op_c4/sample_005/target.rs:9:5
+   |
+ 4 |     let set_g_return = |gval: i32, ret: i32| -> i32 {
+   |                        ---------------------------- `g` is borrowed here
+ 5 |         g = gval;
+   |         - borrow occurs due to use in closure
+...
+ 9 |     g = 0;
+   |     ^^^^^ `g` is assigned to here but it was already borrowed
+10 |     let x = if set_g_return(1, 1) != 0 {
+   |                ------------ borrow later used here
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0506, E0596.
+For more information about an error, try `rustc --explain E0506`.

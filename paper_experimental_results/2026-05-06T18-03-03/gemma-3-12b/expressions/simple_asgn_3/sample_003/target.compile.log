@@ -1,0 +1,65 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_003/target.rs:9:5
+   |
+ 9 | /     unsafe {
+10 | |         *cpp_ptr = &c as &'static str;
+11 | |         *p_ptr = 0;
+12 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_003/target.rs:2:44
+  |
+2 |     let mut cpp: &'static [&'static str] = [&""];
+  |                  -----------------------   ^^^^^ expected `&[&str]`, found `[&&str; 1]`
+  |                  |
+  |                  expected due to this
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_003/target.rs:3:23
+  |
+3 |     let mut p: char = 0;
+  |                ----   ^ expected `char`, found `u8`
+  |                |
+  |                expected due to this
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_003/target.rs:11:18
+   |
+11 |         *p_ptr = 0;
+   |         ------   ^ expected `char`, found `u8`
+   |         |
+   |         expected due to the type of this binding
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_003/target.rs:15:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+15 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_003/target.rs:18:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+18 |     0
+   |     ^ expected `()`, found integer
+
+error[E0605]: non-primitive cast: `&char` as `&'static str`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/simple_asgn_3/sample_003/target.rs:10:20
+   |
+10 |         *cpp_ptr = &c as &'static str;
+   |                    ^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+   |
+   = note: casting reference expression `&c` because `&` binds tighter than `as`
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0308, E0605.
+For more information about an error, try `rustc --explain E0308`.

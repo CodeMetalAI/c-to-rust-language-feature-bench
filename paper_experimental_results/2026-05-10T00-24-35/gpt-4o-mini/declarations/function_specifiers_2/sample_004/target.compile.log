@@ -1,0 +1,52 @@
+error: declaration of a `no_mangle` function
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/function_specifiers_2/sample_004/target.rs:6:1
+  |
+6 | #[no_mangle]
+  | ^^^^^^^^^^^^
+  |
+  = note: the linker's behavior with multiple libraries exporting duplicate symbol names is undefined and Rust cannot provide guarantees when you manually override them
+  = note: requested on the command line with `-F unsafe-code`
+
+error: unwinding panics are not supported without std
+  |
+  = help: using nightly cargo, use -Zbuild-std with panic="abort" to avoid unwinding
+  = note: since the core library is usually precompiled with panic="unwind", rebuilding your crate with panic="abort" may not be enough to fix the problem
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/function_specifiers_2/sample_004/target.rs:14:5
+   |
+12 |     g(1);
+   |     ---- any code following this expression is unreachable
+13 |
+14 |     loop {}
+   |     ^^^^^^^ unreachable expression
+   |
+   = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+error[E0317]: `if` may be missing an `else` clause
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/function_specifiers_2/sample_004/target.rs:22:5
+   |
+21 |   fn g(i: i32) -> ! {
+   |                   - expected `!` because of this return type
+22 | /     if i > 0 {
+23 | |         stop();
+24 | |     }
+   | |_____^ expected `!`, found `()`
+   |
+   = note:   expected type `!`
+           found unit type `()`
+   = note: `if` expressions without `else` evaluate to `()`
+   = help: consider adding an `else` block that evaluates to the expected type
+
+warning: variable `x` is assigned to, but never used
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/function_specifiers_2/sample_004/target.rs:28:13
+   |
+28 |     let mut x = 0;
+   |             ^
+   |
+   = note: consider using `_x` instead
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 3 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0317`.

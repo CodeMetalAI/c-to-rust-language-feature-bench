@@ -1,0 +1,59 @@
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_def_1/sample_002/target.rs:29:5
+   |
+29 |     G_STORE
+   |     ^^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0382]: use of moved value: `x`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_def_1/sample_002/target.rs:66:37
+   |
+62 |     let x = Range { hi: 1.5, lo: -1.5 };
+   |         - move occurs because `x` has type `Range`, which does not implement the `Copy` trait
+...
+65 |         let y = takes_range(x);
+   |                             - value moved here
+66 |         if (y.hi + y.lo) != (x.hi + x.lo) {
+   |                                     ^^^^ value used here after move
+   |
+note: consider changing this parameter type in function `takes_range` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_def_1/sample_002/target.rs:17:19
+   |
+17 | fn takes_range(r: Range) -> Range {
+   |    -----------    ^^^^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `Range` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_def_1/sample_002/target.rs:1:1
+   |
+ 1 | struct Range {
+   | ^^^^^^^^^^^^ consider implementing `Clone` for this type
+...
+65 |         let y = takes_range(x);
+   |                             - you could clone this value
+
+error[E0507]: cannot move out of `*zp` which is behind a shared reference
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_def_1/sample_002/target.rs:79:20
+   |
+79 |         let copy = *zp;
+   |                    ^^^ move occurs because `*zp` has type `Range`, which does not implement the `Copy` trait
+   |
+note: if `Range` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_def_1/sample_002/target.rs:1:1
+   |
+ 1 | struct Range {
+   | ^^^^^^^^^^^^ consider implementing `Clone` for this type
+...
+79 |         let copy = *zp;
+   |                    --- you could clone this value
+help: consider removing the dereference here
+   |
+79 -         let copy = *zp;
+79 +         let copy = zp;
+   |
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0133, E0382, E0507.
+For more information about an error, try `rustc --explain E0133`.

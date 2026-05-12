@@ -1,0 +1,50 @@
+error[E0428]: the name `main` is defined multiple times
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/function_specifiers_2/sample_001/target.rs:24:1
+   |
+18 | fn main() {
+   | --------- previous definition of the value `main` here
+...
+24 | fn main() -> ! {
+   | ^^^^^^^^^^^^^^ `main` redefined here
+   |
+   = note: `main` must be defined only once in the value namespace of this module
+
+error[E0317]: `if` may be missing an `else` clause
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/function_specifiers_2/sample_001/target.rs:13:5
+   |
+12 |   fn g(i: i32) -> ! {
+   |                   - expected `!` because of this return type
+13 | /     if i > 0 {
+14 | |         stop()
+15 | |     }
+   | |_____^ expected `!`, found `()`
+   |
+   = note:   expected type `!`
+           found unit type `()`
+   = note: `if` expressions without `else` evaluate to `()`
+   = help: consider adding an `else` block that evaluates to the expected type
+
+warning: unreachable statement
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/function_specifiers_2/sample_001/target.rs:21:5
+   |
+19 |     f();
+   |     --- any code following this expression is unreachable
+20 |
+21 |     g(1);
+   |     ^^^^^ unreachable statement
+   |
+   = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable `x` is assigned to, but never used
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/function_specifiers_2/sample_001/target.rs:2:13
+  |
+2 |     let mut x = 0;
+  |             ^
+  |
+  = note: consider using `_x` instead
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 2 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0317, E0428.
+For more information about an error, try `rustc --explain E0317`.

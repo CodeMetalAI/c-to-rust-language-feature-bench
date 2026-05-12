@@ -1,0 +1,153 @@
+error: comparison operators cannot be chained
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:54:26
+   |
+54 |     test_incdec(AtomicPtr<u8>, ptr_ia, ++, , 1, 1);
+   |                          ^  ^
+   |
+   = help: use `::<...>` instead of `<...>` to specify lifetime, type, or const arguments
+   = help: or use `(...)` if you meant to specify fn arguments
+
+error: comparison operators cannot be chained
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:55:26
+   |
+55 |     test_incdec(AtomicPtr<u8>, ptr_ia, --, , 1, -1);
+   |                          ^  ^
+   |
+   = help: use `::<...>` instead of `<...>` to specify lifetime, type, or const arguments
+   = help: or use `(...)` if you meant to specify fn arguments
+
+error: comparison operators cannot be chained
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:56:26
+   |
+56 |     test_incdec(AtomicPtr<u8>, ptr_ia, , ++, 0, 1);
+   |                          ^  ^
+   |
+   = help: use `::<...>` instead of `<...>` to specify lifetime, type, or const arguments
+   = help: or use `(...)` if you meant to specify fn arguments
+
+error: comparison operators cannot be chained
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:57:26
+   |
+57 |     test_incdec(AtomicPtr<u8>, ptr_ia, , --, 0, -1);
+   |                          ^  ^
+   |
+   = help: use `::<...>` instead of `<...>` to specify lifetime, type, or const arguments
+   = help: or use `(...)` if you meant to specify fn arguments
+
+error[E0432]: unresolved imports `std::sync::atomic::AtomicF32`, `std::sync::atomic::AtomicF64`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:1:93
+  |
+1 | use std::sync::atomic::{AtomicBool, AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicIsize, AtomicF32, AtomicF64, AtomicPtr};
+  |                                                                                             ^^^^^^^^^  ^^^^^^^^^ no `AtomicF64` in `sync::atomic`
+  |                                                                                             |
+  |                                                                                             no `AtomicF32` in `sync::atomic`
+  |
+help: a similar name exists in the module
+  |
+1 - use std::sync::atomic::{AtomicBool, AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicIsize, AtomicF32, AtomicF64, AtomicPtr};
+1 + use std::sync::atomic::{AtomicBool, AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicIsize, AtomicI32, AtomicF64, AtomicPtr};
+  |
+help: a similar name exists in the module
+  |
+1 - use std::sync::atomic::{AtomicBool, AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicIsize, AtomicF32, AtomicF64, AtomicPtr};
+1 + use std::sync::atomic::{AtomicBool, AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicIsize, AtomicF32, AtomicI64, AtomicPtr};
+  |
+
+warning: unused imports: `AtomicBool`, `AtomicI16`, `AtomicI32`, `AtomicI64`, `AtomicI8`, `AtomicIsize`, and `AtomicPtr`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:1:25
+  |
+1 | use std::sync::atomic::{AtomicBool, AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicIsize, AtomicF32, AtomicF64, AtomicPtr};
+  |                         ^^^^^^^^^^  ^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^^^                        ^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused macro definition: `test_incdec`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:9:18
+  |
+9 |     macro_rules! test_incdec {
+  |                  ^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_macros)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused macro definition: `test_incdec_arith`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:21:18
+   |
+21 |     macro_rules! test_incdec_arith {
+   |                  ^^^^^^^^^^^^^^^^^
+
+warning: unused macro definition: `test_all_incdec_arith`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:35:18
+   |
+35 |     macro_rules! test_all_incdec_arith {
+   |                  ^^^^^^^^^^^^^^^^^^^^^
+
+error[E0423]: expected function, found macro `test_all_incdec_arith`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:44:5
+   |
+44 |     test_all_incdec_arith(0);
+   |     ^^^^^^^^^^^^^^^^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+44 |     test_all_incdec_arith!(0);
+   |                          +
+
+error[E0423]: expected function, found macro `test_all_incdec_arith`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:45:5
+   |
+45 |     test_all_incdec_arith(1);
+   |     ^^^^^^^^^^^^^^^^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+45 |     test_all_incdec_arith!(1);
+   |                          +
+
+error[E0423]: expected function, found macro `test_all_incdec_arith`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:46:5
+   |
+46 |     test_all_incdec_arith(2);
+   |     ^^^^^^^^^^^^^^^^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+46 |     test_all_incdec_arith!(2);
+   |                          +
+
+error[E0423]: expected function, found macro `test_all_incdec_arith`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:47:5
+   |
+47 |     test_all_incdec_arith(-1);
+   |     ^^^^^^^^^^^^^^^^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+47 |     test_all_incdec_arith!(-1);
+   |                          +
+
+error[E0423]: expected function, found macro `test_all_incdec_arith`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:48:5
+   |
+48 |     test_all_incdec_arith(1 << 60);
+   |     ^^^^^^^^^^^^^^^^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+48 |     test_all_incdec_arith!(1 << 60);
+   |                          +
+
+error[E0423]: expected function, found macro `test_all_incdec_arith`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:49:5
+   |
+49 |     test_all_incdec_arith(1.5);
+   |     ^^^^^^^^^^^^^^^^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+49 |     test_all_incdec_arith!(1.5);
+   |                          +
+
+error: aborting due to 11 previous errors; 4 warnings emitted
+
+Some errors have detailed explanations: E0423, E0432.
+For more information about an error, try `rustc --explain E0423`.

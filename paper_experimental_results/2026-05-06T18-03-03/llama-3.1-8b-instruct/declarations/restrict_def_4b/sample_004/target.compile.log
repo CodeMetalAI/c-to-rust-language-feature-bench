@@ -1,0 +1,169 @@
+warning: unused import: `std::mem`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_004/target.rs:3:5
+  |
+3 | use std::mem;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_004/target.rs:28:13
+   |
+28 |     let h = unsafe { H ^ (p as u64) + H };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_004/target.rs:29:5
+   |
+29 |     unsafe { H = h * 0x5851f42d4c957f2dull };
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_004/target.rs:44:9
+   |
+44 |         unsafe { *p.offset(i as isize) = base + i as f32; }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_004/target.rs:53:14
+   |
+53 |         s += unsafe { *p.offset(i as isize) };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: invalid suffix `ull` for number literal
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_004/target.rs:11:16
+   |
+11 | const H: u64 = 0x9e3779b97f4a7c15ull;
+   |                ^^^^^^^^^^^^^^^^^^^^^ invalid suffix `ull`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `ull` for number literal
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_004/target.rs:29:22
+   |
+29 |     unsafe { H = h * 0x5851f42d4c957f2dull };
+   |                      ^^^^^^^^^^^^^^^^^^^^^ invalid suffix `ull`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error[E0070]: invalid left-hand side of assignment
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_004/target.rs:29:16
+   |
+29 |     unsafe { H = h * 0x5851f42d4c957f2dull };
+   |              - ^
+   |              |
+   |              cannot assign to this expression
+
+error[E0277]: the trait bound `Vec<_, _>: From<*mut f32>` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_004/target.rs:37:12
+   |
+37 |         v: Vec::from(alloc_bytes(n as usize * std::mem::size_of::<f32>()) as *mut f32),
+   |            ^^^ the trait `From<*mut f32>` is not implemented for `Vec<_, _>`
+   |
+   = help: the following other types implement trait `From<T>`:
+             `Vec<T, A>` implements `From<BinaryHeap<T, A>>`
+             `Vec<T, A>` implements `From<Box<[T], A>>`
+             `Vec<T, A>` implements `From<VecDeque<T, A>>`
+             `Vec<T>` implements `From<&[T; N]>`
+             `Vec<T>` implements `From<&[T]>`
+             `Vec<T>` implements `From<&mut [T; N]>`
+             `Vec<T>` implements `From<&mut [T]>`
+             `Vec<T>` implements `From<Cow<'_, [T]>>`
+           and 5 others
+
+error[E0599]: no method named `is_null` found for struct `Vec<f32>` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_004/target.rs:71:12
+   |
+71 |     if a.v.is_null() {
+   |            ^^^^^^^ method not found in `Vec<f32>`
+
+error[E0599]: no method named `is_null` found for struct `Vec<f32>` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_004/target.rs:74:12
+   |
+74 |     if b.v.is_null() {
+   |            ^^^^^^^ method not found in `Vec<f32>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_004/target.rs:82:14
+   |
+82 |     fill_vec(a.v, a.n, 1.0);
+   |     -------- ^^^ expected `*mut f32`, found `Vec<f32>`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*mut f32`
+                   found struct `Vec<f32>`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_004/target.rs:41:4
+   |
+41 | fn fill_vec(p: *mut f32, n: i32, base: f32) {
+   |    ^^^^^^^^ -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_004/target.rs:83:14
+   |
+83 |     fill_vec(b.v, b.n, 100.0);
+   |     -------- ^^^ expected `*mut f32`, found `Vec<f32>`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*mut f32`
+                   found struct `Vec<f32>`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_004/target.rs:41:4
+   |
+41 | fn fill_vec(p: *mut f32, n: i32, base: f32) {
+   |    ^^^^^^^^ -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_004/target.rs:85:30
+   |
+85 |     if !close_enough(sum_vec(a.v, a.n), 1.0 * 16.0 + (15 * 16) as f32 / 2.0) {
+   |                      ------- ^^^ expected `*const f32`, found `Vec<f32>`
+   |                      |
+   |                      arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*const f32`
+                   found struct `Vec<f32>`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_004/target.rs:49:4
+   |
+49 | fn sum_vec(p: *const f32, n: i32) -> f32 {
+   |    ^^^^^^^ -------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_004/target.rs:89:30
+   |
+89 |     if !close_enough(sum_vec(b.v, b.n), 100.0 * 16.0 + (15 * 16) as f32 / 2.0) {
+   |                      ------- ^^^ expected `*const f32`, found `Vec<f32>`
+   |                      |
+   |                      arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*const f32`
+                   found struct `Vec<f32>`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_004/target.rs:49:4
+   |
+49 | fn sum_vec(p: *const f32, n: i32) -> f32 {
+   |    ^^^^^^^ -------------
+
+error[E0384]: cannot assign twice to immutable variable `d`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_004/target.rs:62:9
+   |
+60 |     let d = x - y;
+   |         - first assignment to `d`
+61 |     if d < 0.0 {
+62 |         d = -d;
+   |         ^^^^^^ cannot assign twice to immutable variable
+   |
+help: consider making this binding mutable
+   |
+60 |     let mut d = x - y;
+   |         +++
+
+error: aborting due to 15 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0070, E0277, E0308, E0384, E0599.
+For more information about an error, try `rustc --explain E0070`.

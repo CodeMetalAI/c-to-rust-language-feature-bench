@@ -1,0 +1,47 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c8/sample_002/target.rs:16:37
+   |
+16 |     let p_double2: fn(f64) -> f64 = unsafe { std::mem::transmute(v1) };
+   |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c8/sample_002/target.rs:17:34
+   |
+17 |     let p_int2: fn(i32) -> i32 = unsafe { std::mem::transmute(v2) };
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c8/sample_002/target.rs:29:34
+   |
+29 |     let p_int3: fn(i32) -> i32 = unsafe { std::mem::transmute(v1b) };
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c8/sample_002/target.rs:30:37
+   |
+30 |     let p_double3: fn(f64) -> f64 = unsafe { std::mem::transmute(v2b) };
+   |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c8/sample_002/target.rs:22:15
+   |
+22 |     if v1b != v1 {
+   |               ^^ expected `*const fn(f64) -> f64`, found `*const fn(i32) -> i32`
+   |
+   = note: expected raw pointer `*const fn(f64) -> f64`
+              found raw pointer `*const fn(i32) -> i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c8/sample_002/target.rs:25:15
+   |
+25 |     if v2b != v2 {
+   |               ^^ expected `*const fn(i32) -> i32`, found `*const fn(f64) -> f64`
+   |
+   = note: expected raw pointer `*const fn(i32) -> i32`
+              found raw pointer `*const fn(f64) -> f64`
+
+error: aborting due to 6 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

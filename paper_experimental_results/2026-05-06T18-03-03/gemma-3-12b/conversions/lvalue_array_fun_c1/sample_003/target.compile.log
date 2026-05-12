@@ -1,0 +1,80 @@
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_003/target.rs:5:29
+  |
+5 |     if !std::mem::size_of::<i>() > 0 {
+  |                             ^ non-constant value
+  |
+help: consider using `const` instead of `let`
+  |
+2 -     let mut i = 1;
+2 +     const i: /* Type */ = 1;
+  |
+
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_003/target.rs:8:29
+  |
+8 |     if !std::mem::size_of::<i>() > 0 {
+  |                             ^ non-constant value
+  |
+help: consider using `const` instead of `let`
+  |
+2 -     let mut i = 1;
+2 +     const i: /* Type */ = 1;
+  |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_003/target.rs:32:9
+   |
+32 | /         unsafe {
+33 | |             bp[0] = bp[0];
+34 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_003/target.rs:6:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+6 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0608]: cannot index into a value of type `*mut u8`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_003/target.rs:33:15
+   |
+33 |             bp[0] = bp[0];
+   |               ^^^
+   |
+help: consider using `wrapping_add` or `add` for indexing into raw pointer
+   |
+33 -             bp[0] = bp[0];
+33 +             bp.wrapping_add(0) = bp[0];
+   |
+
+error[E0608]: cannot index into a value of type `*mut u8`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_003/target.rs:33:23
+   |
+33 |             bp[0] = bp[0];
+   |                       ^^^
+   |
+help: consider using `wrapping_add` or `add` for indexing into raw pointer
+   |
+33 -             bp[0] = bp[0];
+33 +             bp[0] = bp.wrapping_add(0);
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_003/target.rs:41:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+41 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0308, E0435, E0608.
+For more information about an error, try `rustc --explain E0308`.

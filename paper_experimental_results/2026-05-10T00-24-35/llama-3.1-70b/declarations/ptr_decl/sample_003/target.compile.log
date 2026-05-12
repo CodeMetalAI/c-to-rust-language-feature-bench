@@ -1,0 +1,65 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_003/target.rs:17:17
+   |
+17 |         let v = unsafe { *p };
+   |                 ^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_003/target.rs:57:8
+   |
+57 |     if unsafe { *b.p_to_const }!= 10 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_003/target.rs:62:8
+   |
+62 |     if unsafe { *b.p_to_const }!= 21 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_003/target.rs:67:8
+   |
+67 |     if unsafe { *b.p_to_const }!= 21 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_003/target.rs:71:5
+   |
+71 |     unsafe { *b.const_p += 5 };
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_003/target.rs:76:5
+   |
+76 |     unsafe { *b.const_p_via_typedef += 7 };
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_003/target.rs:85:8
+   |
+85 |     if unsafe { *b.p_to_const }!= 21 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0392]: lifetime parameter `'a` is never used
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_003/target.rs:10:19
+   |
+10 |     struct Bundle<'a> {
+   |                   ^^ unused lifetime parameter
+   |
+   = help: consider removing `'a`, referring to it in a field, or using a marker such as `PhantomData`
+
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_003/target.rs:3:9
+  |
+3 |     let mut y = 21;
+  |         ----^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 8 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0392`.

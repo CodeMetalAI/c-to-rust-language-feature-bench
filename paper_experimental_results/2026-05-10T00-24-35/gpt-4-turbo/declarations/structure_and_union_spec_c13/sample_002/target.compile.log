@@ -1,0 +1,143 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_002/target.rs:86:5
+   |
+86 | /     unsafe {
+87 | |         if o.mid.bcd.bcd_struct.b != 2 {
+88 | |             return 3;
+...  |
+96 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_002/target.rs:100:5
+    |
+100 | /     unsafe {
+101 | |         if o.tail.tail_struct.tail_x != 7 {
+102 | |             return 7;
+...   |
+107 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_002/target.rs:144:5
+    |
+144 | /     unsafe {
+145 | |         o.mid.bcd.bcd_struct.deep_union.deep = 0x11223344;
+146 | |         if o.mid.bcd.bcd_struct.deep_union.xy.x != 0x11223344 {
+147 | |             return 20;
+...   |
+172 | |     }
+    | |_____^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_002/target.rs:15:5
+   |
+15 |     bcd_struct: BCDStruct,
+   |     ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+15 |     bcd_struct: std::mem::ManuallyDrop<BCDStruct>,
+   |                 +++++++++++++++++++++++         +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_002/target.rs:26:5
+   |
+26 |     xy: XY,
+   |     ^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+26 |     xy: std::mem::ManuallyDrop<XY>,
+   |         +++++++++++++++++++++++  +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_002/target.rs:36:5
+   |
+36 |     tail_struct: TailStruct,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+36 |     tail_struct: std::mem::ManuallyDrop<TailStruct>,
+   |                  +++++++++++++++++++++++          +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_002/target.rs:46:5
+   |
+46 |     tail_pq: PQ,
+   |     ^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+46 |     tail_pq: std::mem::ManuallyDrop<PQ>,
+   |              +++++++++++++++++++++++  +
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_002/target.rs:55:9
+   |
+55 |     let mut o = Outer {
+   |         ----^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_002/target.rs:204:15
+    |
+204 |     let pb = &o.mid.bcd.bcd_struct.b as *const _ as usize;
+    |               ^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_002/target.rs:205:18
+    |
+205 |     let pdeep = &o.mid.bcd.bcd_struct.deep_union.deep as *const _ as usize;
+    |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_002/target.rs:205:18
+    |
+205 |     let pdeep = &o.mid.bcd.bcd_struct.deep_union.deep as *const _ as usize;
+    |                  ^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_002/target.rs:206:16
+    |
+206 |     let ptx = &o.tail.tail_struct.tail_x as *const _ as usize;
+    |                ^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_002/target.rs:207:16
+    |
+207 |     let pty = &o.tail.tail_struct.tail_yu.tail_y as *const _ as usize;
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_002/target.rs:207:16
+    |
+207 |     let pty = &o.tail.tail_struct.tail_yu.tail_y as *const _ as usize;
+    |                ^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: aborting due to 13 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0133, E0740.
+For more information about an error, try `rustc --explain E0133`.

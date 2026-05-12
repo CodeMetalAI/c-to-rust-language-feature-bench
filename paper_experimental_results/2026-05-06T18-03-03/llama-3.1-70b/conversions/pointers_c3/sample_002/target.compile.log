@@ -1,0 +1,24 @@
+error[E0425]: cannot find value `null_fn` in module `std::ptr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/pointers_c3/sample_002/target.rs:14:41
+   |
+14 |     let nf1: fn(i32) -> i32 = std::ptr::null_fn;
+   |                                         ^^^^^^^ not found in `std::ptr`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/pointers_c3/sample_002/target.rs:16:31
+   |
+16 |     let nf2: fn(i32) -> i32 = unsafe { std::mem::transmute(vf0) };
+   |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0599]: no method named `is_null` found for fn pointer `fn(i32) -> i32` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/pointers_c3/sample_002/target.rs:38:12
+   |
+38 |     if!nf2.is_null() {
+   |            ^^^^^^^ method not found in `fn(i32) -> i32`
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0425, E0599.
+For more information about an error, try `rustc --explain E0425`.

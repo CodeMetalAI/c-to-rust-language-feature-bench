@@ -1,0 +1,53 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_002/target.rs:23:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+23 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0502]: cannot borrow `*d` as mutable because it is also borrowed as immutable
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_002/target.rs:102:37
+    |
+102 |     call_f_checked(d, 100, 50, &mut d[50..], &d[..]);
+    |     -------------- -                ^ mutable borrow occurs here
+    |     |              |
+    |     |              immutable borrow occurs here
+    |     immutable borrow later used by call
+
+error[E0502]: cannot borrow `*d` as immutable because it is also borrowed as mutable
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_002/target.rs:102:47
+    |
+102 |     call_f_checked(d, 100, 50, &mut d[50..], &d[..]);
+    |     --------------                  -         ^ immutable borrow occurs here
+    |     |                               |
+    |     |                               mutable borrow occurs here
+    |     mutable borrow later used by call
+    |
+    = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `*d` as mutable because it is also borrowed as immutable
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_002/target.rs:103:37
+    |
+103 |     call_f_checked(d, 100, 50, &mut d[1..], &d[..]);
+    |     -------------- -                ^ mutable borrow occurs here
+    |     |              |
+    |     |              immutable borrow occurs here
+    |     immutable borrow later used by call
+
+error[E0502]: cannot borrow `*d` as immutable because it is also borrowed as mutable
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_002/target.rs:103:46
+    |
+103 |     call_f_checked(d, 100, 50, &mut d[1..], &d[..]);
+    |     --------------                  -        ^ immutable borrow occurs here
+    |     |                               |
+    |     |                               mutable borrow occurs here
+    |     mutable borrow later used by call
+    |
+    = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0502.
+For more information about an error, try `rustc --explain E0308`.

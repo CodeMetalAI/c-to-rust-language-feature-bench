@@ -1,0 +1,50 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/type_def_1/sample_004/target.rs:32:5
+   |
+32 |     unsafe { G_STORE }
+   |     ^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/type_def_1/sample_004/target.rs:35:14
+   |
+35 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/type_def_1/sample_004/target.rs:36:9
+   |
+36 |     let mut distance: MILES = 40;
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error[E0507]: cannot move out of `*zp` which is behind a shared reference
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/type_def_1/sample_004/target.rs:79:20
+   |
+79 |         let copy = *zp;
+   |                    ^^^ move occurs because `*zp` has type `Range`, which does not implement the `Copy` trait
+   |
+note: if `Range` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/type_def_1/sample_004/target.rs:4:1
+   |
+ 4 | struct Range {
+   | ^^^^^^^^^^^^ consider implementing `Clone` for this type
+...
+79 |         let copy = *zp;
+   |                    --- you could clone this value
+help: consider removing the dereference here
+   |
+79 -         let copy = *zp;
+79 +         let copy = zp;
+   |
+
+error: aborting due to 3 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0507.
+For more information about an error, try `rustc --explain E0277`.

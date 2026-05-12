@@ -1,0 +1,61 @@
+error: no rules expected `,`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:35:17
+   |
+ 5 | macro_rules! F {
+   | -------------- when calling this macro
+...
+35 |     let u = F!(3, 4);
+   |                 ^ no rules expected this token in macro call
+   |
+note: while trying to match meta-variable `$a:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:6:6
+   |
+ 6 |     ($a:expr) => { $a + x!() };
+   |      ^^^^^^^
+
+error: unexpected end of macro invocation
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:41:14
+   |
+25 | macro_rules! r {
+   | -------------- when calling this macro
+...
+41 |         r!(4, ),
+   |              ^ missing tokens in macro arguments
+   |
+note: while trying to match meta-variable `$y:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:26:15
+   |
+26 |     ($x:expr, $y:expr) => { concat!($x, $y) };
+   |               ^^^^^^^
+
+error: no rules expected `,`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:42:12
+   |
+25 | macro_rules! r {
+   | -------------- when calling this macro
+...
+42 |         r!(, 5),
+   |            ^ no rules expected this token in macro call
+   |
+note: while trying to match meta-variable `$x:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:26:6
+   |
+26 |     ($x:expr, $y:expr) => { concat!($x, $y) };
+   |      ^^^^^^^
+
+error: no rules expected `,`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:43:12
+   |
+25 | macro_rules! r {
+   | -------------- when calling this macro
+...
+43 |         r!(, ),
+   |            ^ no rules expected this token in macro call
+   |
+note: while trying to match meta-variable `$x:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:26:6
+   |
+26 |     ($x:expr, $y:expr) => { concat!($x, $y) };
+   |      ^^^^^^^
+
+error: aborting due to 4 previous errors

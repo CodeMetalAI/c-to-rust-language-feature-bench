@@ -1,0 +1,30 @@
+error[E0015]: cannot call non-const associated function `Box::<IntList>::new` in statics
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_002/target.rs:10:15
+   |
+10 |     cdr: Some(Box::new(ENDLESS_ZEROS)),
+   |               ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+
+error[E0369]: binary operation `==` cannot be applied to type `&Box<IntList>`
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_002/target.rs:18:24
+    |
+ 18 |                 if cdr == &ENDLESS_ZEROS {
+    |                    --- ^^ -------------- &IntList
+    |                    |
+    |                    &Box<IntList>
+    |
+note: the foreign item type `Box<IntList>` doesn't implement `PartialEq<IntList>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/boxed.rs:231:1
+    |
+231 | / pub struct Box<
+232 | |     T: ?Sized,
+233 | |     #[unstable(feature = "allocator_api", issue = "32838")] A: Allocator = Global,
+234 | | >(Unique<T>, A);
+    | |_^ not implement `PartialEq<IntList>`
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0015, E0369.
+For more information about an error, try `rustc --explain E0015`.

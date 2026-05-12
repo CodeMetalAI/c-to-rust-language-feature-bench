@@ -1,0 +1,60 @@
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/bool_char_int_c3/sample_002/target.rs:1:14
+  |
+1 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+error[E0369]: cannot add `char` to `char`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/bool_char_int_c3/sample_002/target.rs:10:19
+   |
+10 |     if type_id(pc + 0 as char) != 1 {
+   |                -- ^ --------- char
+   |                |
+   |                char
+
+error[E0604]: only `u8` can be cast as `char`, not `i8`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/bool_char_int_c3/sample_002/target.rs:2:20
+  |
+2 |     let pc: char = -1i8 as char;
+  |                    ^^^^^^^^^^^^ invalid cast
+  |
+help: consider casting from `u8` instead
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/bool_char_int_c3/sample_002/target.rs:2:20
+  |
+2 |     let pc: char = -1i8 as char;
+  |                    ^^^^^^^^^^^^
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/bool_char_int_c3/sample_002/target.rs:44:8
+   |
+44 |     if std::any::TypeId::of::<T>() == std::any::TypeId::of::<i32>() {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |        |
+   |        the parameter type `T` must be valid for the static lifetime...
+   |        ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+43 | fn type_id<T: 'static>(_: T) -> i32 {
+   |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/bool_char_int_c3/sample_002/target.rs:46:15
+   |
+46 |     } else if std::any::TypeId::of::<T>() == std::any::TypeId::of::<u32>() {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |               |
+   |               the parameter type `T` must be valid for the static lifetime...
+   |               ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+43 | fn type_id<T: 'static>(_: T) -> i32 {
+   |             +++++++++
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0277, E0310, E0369, E0604.
+For more information about an error, try `rustc --explain E0277`.

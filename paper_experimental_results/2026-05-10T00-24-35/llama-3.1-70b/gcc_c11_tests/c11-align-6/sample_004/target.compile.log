@@ -1,0 +1,25 @@
+error[E0428]: the name `S` is defined multiple times
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-6/sample_004/target.rs:5:13
+   |
+ 5 |             struct S {
+   |             ^^^^^^^^
+   |             |
+   |             `S` redefined here
+   |             previous definition of the type `S` here
+...
+13 |     check_align!(bool);
+   |     ------------------ in this macro invocation
+   |
+   = note: `S` must be defined only once in the type namespace of this block
+   = note: this error originates in the macro `check_align` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0412]: cannot find type `f80` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-6/sample_004/target.rs:27:18
+   |
+27 |     check_align!(f80); // Note: f80 is not a standard type in Rust, but it's used here to match the C code
+   |                  ^^^ not found in this scope
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0412, E0428.
+For more information about an error, try `rustc --explain E0412`.

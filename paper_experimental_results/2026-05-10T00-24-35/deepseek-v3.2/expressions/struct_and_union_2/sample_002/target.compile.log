@@ -1,0 +1,46 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_2/sample_002/target.rs:33:5
+   |
+33 | /     unsafe {
+34 | |         f(&S_STATIC.i);
+35 | |         f4(&S_STATIC.ci);
+...  |
+71 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `Cell<i32>` cannot be shared between threads safely
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_2/sample_002/target.rs:10:12
+   |
+10 | static CS: &S = &S {
+   |            ^^ `Cell<i32>` cannot be shared between threads safely
+   |
+   = help: within `&'static S`, the trait `Sync` is not implemented for `Cell<i32>`
+   = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock` or `std::sync::atomic::AtomicI32` instead
+note: required because it appears within the type `S`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_2/sample_002/target.rs:1:8
+   |
+ 1 | struct S {
+   |        ^
+   = note: required because it appears within the type `&'static S`
+   = note: shared static variables must have a type that implements `Sync`
+
+error[E0492]: interior mutable shared borrows of temporaries that have their lifetime extended until the end of the program are not allowed
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_2/sample_002/target.rs:10:17
+   |
+10 |   static CS: &S = &S {
+   |  _________________^
+11 | |     i: std::cell::Cell::new(3),
+12 | |     ci: 4,
+13 | | };
+   | |_^ this borrow of an interior mutable value refers to such a temporary
+   |
+   = note: Temporaries in constants and statics can have their lifetime extended until the end of the program
+   = note: To avoid accidentally creating global mutable state, such temporaries must be immutable
+   = help: If you really want global mutable state, try replacing the temporary by an interior mutable `static` or a `static mut`
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0277, E0492.
+For more information about an error, try `rustc --explain E0277`.

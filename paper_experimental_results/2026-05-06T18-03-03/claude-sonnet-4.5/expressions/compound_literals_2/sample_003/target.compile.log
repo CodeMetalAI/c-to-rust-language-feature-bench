@@ -1,0 +1,20 @@
+error[E0716]: temporary value dropped while borrowed
+ --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/expressions/compound_literals_2/sample_003/target.rs:5:10
+  |
+5 |     p = &[p[0], 0];
+  |          ^^^^^^^^^- temporary value is freed at the end of this statement
+  |          |
+  |          creates a temporary value which is freed while still in use
+6 |     
+7 |     if p[0] != init {
+  |        ---- borrow later used here
+  |
+help: consider using a `let` binding to create a longer lived value
+  |
+5 ~     let binding = [p[0], 0];
+6 ~     p = &binding;
+  |
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0716`.

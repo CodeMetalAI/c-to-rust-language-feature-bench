@@ -1,0 +1,110 @@
+warning: unused import: `std::thread`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:2:5
+  |
+2 | use std::thread;
+  |     ^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:7:5
+  |
+7 | /     unsafe {
+8 | |         HITS += x + 1;
+9 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:13:5
+   |
+13 | /     unsafe {
+14 | |         HITS += x + 2;
+15 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:35:5
+   |
+35 |     unsafe { HITS }
+   |     ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:41:5
+   |
+41 |     unsafe { HITS }
+   |     ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:47:5
+   |
+47 |     unsafe { HITS }
+   |     ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:51:5
+   |
+51 | /     unsafe {
+52 | |         HITS = 0;
+53 | |
+54 | |         if call_signal_as_plain(1, handler_b, 3) != 4 {
+...  |
+68 | |         return 0;
+69 | |     }
+   | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:39:23
+   |
+39 |     let r = signal(s, h);
+   |             ------    ^ expected fn pointer, found `&fn(i32)`
+   |             |
+   |             arguments to this function are incorrect
+   |
+   = note: expected fn pointer `fn(_)`
+               found reference `&fn(_)`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:20:4
+   |
+20 | fn signal(s: i32, h: SignalHandler) -> SignalHandler {
+   |    ^^^^^^         ----------------
+help: consider dereferencing the borrow
+   |
+39 |     let r = signal(s, *h);
+   |                       +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:55:20
+   |
+50 | fn main() {
+   |          - expected `()` because of default return type
+...
+55 |             return 1;
+   |                    ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:59:33
+   |
+59 |         if call_signal_as_fv(2, &handler_b, 4) != 6 {
+   |            -----------------    ^^^^^^^^^^ expected `&fn(i32)`, found `&fn(i32) {handler_b}`
+   |            |
+   |            arguments to this function are incorrect
+   |
+   = note: expected reference `&fn(_)`
+              found reference `&fn(_) {handler_b}`
+   = note: fn items are distinct from fn pointers
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:38:4
+   |
+38 | fn call_signal_as_fv(s: i32, h: &fn(i32), arg: i32) -> i32 {
+   |    ^^^^^^^^^^^^^^^^^         -----------
+help: consider casting to a fn pointer
+   |
+59 -         if call_signal_as_fv(2, &handler_b, 4) != 6 {
+59 +         if call_signal_as_fv(2, &(handler_b as fn(i32)), 4) != 6 {
+   |
+
+error: aborting due to 9 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0308`.

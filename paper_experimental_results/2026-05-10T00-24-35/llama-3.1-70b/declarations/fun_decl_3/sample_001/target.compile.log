@@ -1,0 +1,90 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_001/target.rs:11:5
+   |
+11 |     unsafe { G_SEED + x + 1000 }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_001/target.rs:16:5
+   |
+16 |     unsafe { G_SEED + x - 2000 }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_001/target.rs:23:5
+   |
+23 | /     unsafe {
+24 | |         G_SEED = g_seed;
+25 | |         if g_seed & 1 == 0 {
+26 | |             v0
+...  |
+30 | |     }
+   | |_____^
+
+warning: unreachable pattern
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_001/target.rs:52:9
+   |
+47 |         v0 => {
+   |         -- matches any value
+...
+52 |         v1 => {
+   |         ^^ no value can reach this
+   |
+   = note: `#[warn(unreachable_patterns)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable pattern
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_001/target.rs:57:9
+   |
+47 |         v0 => {
+   |         -- matches any value
+...
+57 |         _ => unreachable!(),
+   |         ^ no value can reach this
+
+warning: unreachable pattern
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_001/target.rs:71:9
+   |
+66 |         v0 => {
+   |         -- matches any value
+...
+71 |         v1 => {
+   |         ^^ no value can reach this
+
+warning: unreachable pattern
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_001/target.rs:76:9
+   |
+66 |         v0 => {
+   |         -- matches any value
+...
+76 |         _ => unreachable!(),
+   |         ^ no value can reach this
+
+warning: unused variable: `v0`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_001/target.rs:47:9
+   |
+47 |         v0 => {
+   |         ^^ help: if this is intentional, prefix it with an underscore: `_v0`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `v1`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_001/target.rs:52:9
+   |
+52 |         v1 => {
+   |         ^^ help: if this is intentional, prefix it with an underscore: `_v1`
+
+warning: unused variable: `v0`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_001/target.rs:66:9
+   |
+66 |         v0 => {
+   |         ^^ help: if this is intentional, prefix it with an underscore: `_v0`
+
+warning: unused variable: `v1`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_3/sample_001/target.rs:71:9
+   |
+71 |         v1 => {
+   |         ^^ help: if this is intentional, prefix it with an underscore: `_v1`
+
+error: aborting due to 3 previous errors; 8 warnings emitted

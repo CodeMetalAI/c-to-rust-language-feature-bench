@@ -1,0 +1,52 @@
+error[E0425]: cannot find function `offset` in module `std::mem`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_2/sample_004/target.rs:17:18
+   |
+17 |     if std::mem::offset::<s, f64>("d") != std::mem::size_of::<s>() {
+   |                  ^^^^^^ not found in `std::mem`
+   |
+help: consider importing this function
+   |
+ 1 + use std::intrinsics::offset;
+   |
+help: if you import `offset`, refer to it directly
+   |
+17 -     if std::mem::offset::<s, f64>("d") != std::mem::size_of::<s>() {
+17 +     if offset::<s, f64>("d") != std::mem::size_of::<s>() {
+   |
+
+warning: type `s` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_2/sample_004/target.rs:2:8
+  |
+2 | struct s {
+  |        ^ help: convert the identifier to upper camel case (notice the capitalization): `S`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: type `ss` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_2/sample_004/target.rs:8:8
+  |
+8 | struct ss {
+  |        ^^ help: convert the identifier to upper camel case (notice the capitalization): `Ss`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_2/sample_004/target.rs:14:16
+   |
+12 | fn main() {
+   |          - expected `()` because of default return type
+13 |     if std::mem::size_of::<s>() < std::mem::size_of::<ss>() {
+14 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_2/sample_004/target.rs:41:5
+   |
+12 | fn main() {
+   |          - expected `()` because of default return type
+...
+41 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 3 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0308, E0425.
+For more information about an error, try `rustc --explain E0308`.

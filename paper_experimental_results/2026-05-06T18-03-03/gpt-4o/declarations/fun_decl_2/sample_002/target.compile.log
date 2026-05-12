@@ -1,0 +1,96 @@
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/fun_decl_2/sample_002/target.rs:50:20
+   |
+50 |     let mut sel = (hmix(v[0], v[5]) & 3) as usize;
+   |                    ^^^^ ----  ---- expected `i32`, found `usize`
+   |                         |
+   |                         expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/fun_decl_2/sample_002/target.rs:1:4
+   |
+ 1 | fn hmix(a: i32, b: i32) -> i32 {
+   |    ^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+50 |     let mut sel = (hmix(v[0].try_into().unwrap(), v[5]) & 3) as usize;
+   |                             ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+50 |     let mut sel = (hmix(v[0], v[5].try_into().unwrap()) & 3) as usize;
+   |                                   ++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/fun_decl_2/sample_002/target.rs:61:15
+   |
+61 |     let out = run(apfi[sel], x, y);
+   |               ^^^            -  - expected `&mut i32`, found `&mut usize`
+   |                              |
+   |                              expected `&mut i32`, found `&mut usize`
+   |
+   = note: expected mutable reference `&mut i32`
+              found mutable reference `&mut usize`
+   = note: expected mutable reference `&mut i32`
+              found mutable reference `&mut usize`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/fun_decl_2/sample_002/target.rs:36:4
+   |
+36 | fn run(pf: fn(&mut i32, &mut i32) -> i32, a: &mut i32, b: &mut i32) -> i32 {
+   |    ^^^                                    -----------  -----------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/fun_decl_2/sample_002/target.rs:70:26
+   |
+70 |         if (out ^ 3) != (hmix(*x, *y) ^ (hmix(*x, *y) + 3)) {
+   |                          ^^^^ --  -- expected `i32`, found `usize`
+   |                               |
+   |                               expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/fun_decl_2/sample_002/target.rs:1:4
+   |
+ 1 | fn hmix(a: i32, b: i32) -> i32 {
+   |    ^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+70 |         if (out ^ 3) != (hmix((*x).try_into().unwrap(), *y) ^ (hmix(*x, *y) + 3)) {
+   |                               +  +++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+70 |         if (out ^ 3) != (hmix(*x, (*y).try_into().unwrap()) ^ (hmix(*x, *y) + 3)) {
+   |                                   +  +++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/fun_decl_2/sample_002/target.rs:70:42
+   |
+70 |         if (out ^ 3) != (hmix(*x, *y) ^ (hmix(*x, *y) + 3)) {
+   |                                          ^^^^ --  -- expected `i32`, found `usize`
+   |                                               |
+   |                                               expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/fun_decl_2/sample_002/target.rs:1:4
+   |
+ 1 | fn hmix(a: i32, b: i32) -> i32 {
+   |    ^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+70 |         if (out ^ 3) != (hmix(*x, *y) ^ (hmix((*x).try_into().unwrap(), *y) + 3)) {
+   |                                               +  +++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+70 |         if (out ^ 3) != (hmix(*x, *y) ^ (hmix(*x, (*y).try_into().unwrap()) + 3)) {
+   |                                                   +  +++++++++++++++++++++
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/fun_decl_2/sample_002/target.rs:83:17
+   |
+83 |             d = -d;
+   |                 ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0600.
+For more information about an error, try `rustc --explain E0308`.

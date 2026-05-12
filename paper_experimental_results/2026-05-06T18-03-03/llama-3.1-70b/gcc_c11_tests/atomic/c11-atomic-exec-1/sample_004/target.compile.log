@@ -1,0 +1,66 @@
+error: attempted to repeat an expression containing no syntax variables matched as repeating at this depth
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:22:14
+   |
+22 |   ...   $(
+   |  ________^
+23 | | ...       test_simple_assign!(bool, char, i8, u8, i16, u16, i32, u32, i64, u64, f32, f64, std::num::NonZeroU8, std::num::NonZeroU16, std::n...
+24 | | ...       test_simple_assign!(std::complex::Complex<f32>, std::complex::Complex<f64>, std::complex::Complex<std::num::NonZeroU8>);
+25 | | ...   )*
+   | |_______^
+
+warning: unused macro definition: `test_simple_assign`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:7:18
+  |
+7 |     macro_rules! test_simple_assign {
+  |                  ^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_macros)]` (part of `#[warn(unused)]`) on by default
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:35:18
+   |
+35 |     let mut s1 = std::sync::atomic::Atomic::new(init);
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:36:18
+   |
+36 |     let mut s2 = std::sync::atomic::Atomic::new(init);
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:35:45
+    |
+ 35 |     let mut s1 = std::sync::atomic::Atomic::new(init);
+    |                                             ^^^ function or associated item not found in `_`
+    |
+help: there is a method `neg` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:708:5
+    |
+708 |     fn neg(self) -> Self::Output;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:36:45
+    |
+ 36 |     let mut s2 = std::sync::atomic::Atomic::new(init);
+    |                                             ^^^ function or associated item not found in `_`
+    |
+help: there is a method `neg` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:708:5
+    |
+708 |     fn neg(self) -> Self::Output;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 5 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0599, E0658.
+For more information about an error, try `rustc --explain E0599`.

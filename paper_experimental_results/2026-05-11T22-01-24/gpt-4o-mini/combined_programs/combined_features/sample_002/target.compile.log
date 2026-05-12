@@ -1,0 +1,173 @@
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-11T22-01-24/gpt-4o-mini/combined_programs/combined_features/sample_002/target.rs:59:8
+   |
+59 |     if make_t1(x[1][0], x[1][1]).x != x[1][0] {
+   |        ^^^^^^^ -------  ------- expected `i32`, found `usize`
+   |                |
+   |                expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-11T22-01-24/gpt-4o-mini/combined_programs/combined_features/sample_002/target.rs:10:4
+   |
+10 | fn make_t1(x: i32, y: i32) -> T1 {
+   |    ^^^^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+59 |     if make_t1(x[1][0].try_into().unwrap(), x[1][1]).x != x[1][0] {
+   |                       ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+59 |     if make_t1(x[1][0], x[1][1].try_into().unwrap()).x != x[1][0] {
+   |                                ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/gpt-4o-mini/combined_programs/combined_features/sample_002/target.rs:59:39
+   |
+59 |     if make_t1(x[1][0], x[1][1]).x != x[1][0] {
+   |        ---------------------------    ^^^^^^^ expected `i32`, found `usize`
+   |        |
+   |        expected because this is `i32`
+   |
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+59 |     if make_t1(x[1][0], x[1][1]).x != x[1][0].try_into().unwrap() {
+   |                                              ++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-11T22-01-24/gpt-4o-mini/combined_programs/combined_features/sample_002/target.rs:62:8
+   |
+62 |     if make_t1(x[1][0], x[1][1]).y != x[1][1] {
+   |        ^^^^^^^ -------  ------- expected `i32`, found `usize`
+   |                |
+   |                expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-11T22-01-24/gpt-4o-mini/combined_programs/combined_features/sample_002/target.rs:10:4
+   |
+10 | fn make_t1(x: i32, y: i32) -> T1 {
+   |    ^^^^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+62 |     if make_t1(x[1][0].try_into().unwrap(), x[1][1]).y != x[1][1] {
+   |                       ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+62 |     if make_t1(x[1][0], x[1][1].try_into().unwrap()).y != x[1][1] {
+   |                                ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/gpt-4o-mini/combined_programs/combined_features/sample_002/target.rs:62:39
+   |
+62 |     if make_t1(x[1][0], x[1][1]).y != x[1][1] {
+   |        ---------------------------    ^^^^^^^ expected `i32`, found `usize`
+   |        |
+   |        expected because this is `i32`
+   |
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+62 |     if make_t1(x[1][0], x[1][1]).y != x[1][1].try_into().unwrap() {
+   |                                              ++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-11T22-01-24/gpt-4o-mini/combined_programs/combined_features/sample_002/target.rs:65:8
+   |
+65 |     if make_t1(x[0][3], x[1][2]).x + make_t1(x[2][0], x[0][4]).y != 7 {
+   |        ^^^^^^^ -------  ------- expected `i32`, found `usize`
+   |                |
+   |                expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-11T22-01-24/gpt-4o-mini/combined_programs/combined_features/sample_002/target.rs:10:4
+   |
+10 | fn make_t1(x: i32, y: i32) -> T1 {
+   |    ^^^^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+65 |     if make_t1(x[0][3].try_into().unwrap(), x[1][2]).x + make_t1(x[2][0], x[0][4]).y != 7 {
+   |                       ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+65 |     if make_t1(x[0][3], x[1][2].try_into().unwrap()).x + make_t1(x[2][0], x[0][4]).y != 7 {
+   |                                ++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-11T22-01-24/gpt-4o-mini/combined_programs/combined_features/sample_002/target.rs:65:38
+   |
+65 |     if make_t1(x[0][3], x[1][2]).x + make_t1(x[2][0], x[0][4]).y != 7 {
+   |                                      ^^^^^^^ -------  ------- expected `i32`, found `usize`
+   |                                              |
+   |                                              expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-11T22-01-24/gpt-4o-mini/combined_programs/combined_features/sample_002/target.rs:10:4
+   |
+10 | fn make_t1(x: i32, y: i32) -> T1 {
+   |    ^^^^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+65 |     if make_t1(x[0][3], x[1][2]).x + make_t1(x[2][0].try_into().unwrap(), x[0][4]).y != 7 {
+   |                                                     ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+65 |     if make_t1(x[0][3], x[1][2]).x + make_t1(x[2][0], x[0][4].try_into().unwrap()).y != 7 {
+   |                                                              ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/gpt-4o-mini/combined_programs/combined_features/sample_002/target.rs:69:25
+   |
+69 |     let mut a = T1 { x: x[1][0], y: x[1][1] };
+   |                         ^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/gpt-4o-mini/combined_programs/combined_features/sample_002/target.rs:69:37
+   |
+69 |     let mut a = T1 { x: x[1][0], y: x[1][1] };
+   |                                     ^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/gpt-4o-mini/combined_programs/combined_features/sample_002/target.rs:70:21
+   |
+70 |     let b = T1 { x: x[2][0], y: x[2][1] };
+   |                     ^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/gpt-4o-mini/combined_programs/combined_features/sample_002/target.rs:70:33
+   |
+70 |     let b = T1 { x: x[2][0], y: x[2][1] };
+   |                                 ^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-11T22-01-24/gpt-4o-mini/combined_programs/combined_features/sample_002/target.rs:106:29
+    |
+106 |         let mut c = T2 { n: x[2][0] };
+    |                             ^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-11T22-01-24/gpt-4o-mini/combined_programs/combined_features/sample_002/target.rs:108:19
+    |
+108 |         if r.n != x[2][0] {
+    |            ---    ^^^^^^^ expected `i32`, found `usize`
+    |            |
+    |            expected because this is `i32`
+    |
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+    |
+108 |         if r.n != x[2][0].try_into().unwrap() {
+    |                          ++++++++++++++++++++
+
+error[E0606]: casting `&usize` as `*const i32` is invalid
+  --> benchmark_results/2026-05-11T22-01-24/gpt-4o-mini/combined_programs/combined_features/sample_002/target.rs:53:14
+   |
+53 |     let p0 = &x[0][0] as *const i32;
+   |              ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&usize` as `*const i32` is invalid
+  --> benchmark_results/2026-05-11T22-01-24/gpt-4o-mini/combined_programs/combined_features/sample_002/target.rs:54:14
+   |
+54 |     let p1 = &x[1][0] as *const i32;
+   |              ^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 14 previous errors
+
+Some errors have detailed explanations: E0308, E0606.
+For more information about an error, try `rustc --explain E0308`.

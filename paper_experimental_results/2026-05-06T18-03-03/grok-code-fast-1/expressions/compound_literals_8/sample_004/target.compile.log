@@ -1,0 +1,27 @@
+error[E0599]: no method named `as_ptr` found for reference `&Box<S>` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/compound_literals_8/sample_004/target.rs:22:13
+   |
+22 |         (pp.as_ptr() == qq.as_ptr()) && (qq.i == 1)
+   |          ---^^^^^^--
+   |          |  |
+   |          |  this is an associated function, not a method
+   |          help: use associated function syntax instead: `Box::<S>::as_ptr(&pp)`
+   |
+   = note: found the following associated functions; to be used as methods, functions must have a `self` parameter
+   = note: the candidate is defined in an impl for the type `Box<T, A>`
+
+error[E0599]: no method named `as_ptr` found for reference `&Box<S>` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/compound_literals_8/sample_004/target.rs:22:28
+   |
+22 |         (pp.as_ptr() == qq.as_ptr()) && (qq.i == 1)
+   |                         ---^^^^^^--
+   |                         |  |
+   |                         |  this is an associated function, not a method
+   |                         help: use associated function syntax instead: `Box::<S>::as_ptr(&qq)`
+   |
+   = note: found the following associated functions; to be used as methods, functions must have a `self` parameter
+   = note: the candidate is defined in an impl for the type `Box<T, A>`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

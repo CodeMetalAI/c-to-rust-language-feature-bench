@@ -1,0 +1,46 @@
+error: this trait cannot be derived for unions
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/struct_and_union_3a/sample_003/target.rs:1:10
+  |
+1 | #[derive(Debug)]
+  |          ^^^^^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/struct_and_union_3a/sample_003/target.rs:3:5
+  |
+3 |     n: NestedStruct,
+  |     ^^^^^^^^^^^^^^^
+  |
+  = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+  |
+3 |     n: std::mem::ManuallyDrop<NestedStruct>,
+  |        +++++++++++++++++++++++            +
+
+error[E0784]: union expressions should have exactly one field
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/struct_and_union_3a/sample_003/target.rs:26:17
+   |
+26 |     let mut u = U { n: NestedStruct { alltypes: 0 }, ni: NestedStruct2 { type_: 0, intnode: 0 }, nf: NestedStruct3 { type_: 0, doublenode: 0....
+   |                 ^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/struct_and_union_3a/sample_003/target.rs:32:16
+   |
+25 | fn main() {
+   |          - expected `()` because of default return type
+...
+32 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/struct_and_union_3a/sample_003/target.rs:44:5
+   |
+25 | fn main() {
+   |          - expected `()` because of default return type
+...
+44 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0740, E0784.
+For more information about an error, try `rustc --explain E0308`.

@@ -1,0 +1,23 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/add_op_1b/sample_001/target.rs:6:5
+  |
+6 | /     unsafe {
+7 | |         *p.offset(1).as_mut_ptr().offset(2) = 99;
+8 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error[E0658]: use of unstable library feature `array_ptr_get`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/add_op_1b/sample_001/target.rs:7:22
+  |
+7 |         *p.offset(1).as_mut_ptr().offset(2) = 99;
+  |                      ^^^^^^^^^^
+  |
+  = note: see issue #119834 <https://github.com/rust-lang/rust/issues/119834> for more information
+  = help: add `#![feature(array_ptr_get)]` to the crate attributes to enable
+  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0658`.

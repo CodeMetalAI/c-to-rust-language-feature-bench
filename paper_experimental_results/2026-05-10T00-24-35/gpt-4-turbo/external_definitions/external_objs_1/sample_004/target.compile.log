@@ -1,0 +1,110 @@
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/external_definitions/external_objs_1/sample_004/target.rs:4:9
+  |
+4 |     let mut i3 = 3;
+  |         ----^^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error[E0503]: cannot use `i1` because it was mutably borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/external_definitions/external_objs_1/sample_004/target.rs:14:8
+   |
+ 9 |     let p_i1 = &mut i1;
+   |                ------- `i1` is borrowed here
+...
+14 |     if i1 != 1 {
+   |        ^^ use of borrowed `i1`
+...
+31 |     if p_i1 != &i1 {
+   |        ---- borrow later used here
+
+error[E0503]: cannot use `i2` because it was mutably borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/external_definitions/external_objs_1/sample_004/target.rs:17:8
+   |
+10 |     let p_i2 = &mut i2;
+   |                ------- `i2` is borrowed here
+...
+17 |     if i2 != 2 {
+   |        ^^ use of borrowed `i2`
+...
+34 |     if p_i2 != &i2 {
+   |        ---- borrow later used here
+
+error[E0503]: cannot use `i4` because it was mutably borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/external_definitions/external_objs_1/sample_004/target.rs:24:8
+   |
+11 |     let p_i4 = &mut i4;
+   |                ------- `i4` is borrowed here
+...
+24 |     if i4 != 0 {
+   |        ^^ use of borrowed `i4`
+...
+37 |     if p_i4 != &i4 {
+   |        ---- borrow later used here
+
+error[E0503]: cannot use `i5` because it was mutably borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/external_definitions/external_objs_1/sample_004/target.rs:27:8
+   |
+12 |     let p_i5 = &mut i5;
+   |                ------- `i5` is borrowed here
+...
+27 |     if i5 != 0 {
+   |        ^^ use of borrowed `i5`
+...
+40 |     if p_i5 != &i5 {
+   |        ---- borrow later used here
+
+error[E0502]: cannot borrow `i1` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/external_definitions/external_objs_1/sample_004/target.rs:31:16
+   |
+ 9 |     let p_i1 = &mut i1;
+   |                ------- mutable borrow occurs here
+...
+31 |     if p_i1 != &i1 {
+   |                ^^^ immutable borrow occurs here
+...
+44 |     *p_i1 = 10;
+   |     ---------- mutable borrow later used here
+
+error[E0502]: cannot borrow `i2` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/external_definitions/external_objs_1/sample_004/target.rs:34:16
+   |
+10 |     let p_i2 = &mut i2;
+   |                ------- mutable borrow occurs here
+...
+34 |     if p_i2 != &i2 {
+   |                ^^^ immutable borrow occurs here
+...
+45 |     *p_i2 = 20;
+   |     ---------- mutable borrow later used here
+
+error[E0502]: cannot borrow `i4` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/external_definitions/external_objs_1/sample_004/target.rs:37:16
+   |
+11 |     let p_i4 = &mut i4;
+   |                ------- mutable borrow occurs here
+...
+37 |     if p_i4 != &i4 {
+   |                ^^^ immutable borrow occurs here
+...
+46 |     *p_i4 = 30;
+   |     ---------- mutable borrow later used here
+
+error[E0502]: cannot borrow `i5` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/external_definitions/external_objs_1/sample_004/target.rs:40:16
+   |
+12 |     let p_i5 = &mut i5;
+   |                ------- mutable borrow occurs here
+...
+40 |     if p_i5 != &i5 {
+   |                ^^^ immutable borrow occurs here
+...
+47 |     *p_i5 = 40;
+   |     ---------- mutable borrow later used here
+
+error: aborting due to 8 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0502, E0503.
+For more information about an error, try `rustc --explain E0502`.

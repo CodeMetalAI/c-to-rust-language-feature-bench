@@ -1,0 +1,91 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_2/sample_002/target.rs:18:5
+   |
+18 | /     unsafe {
+19 | |         f(&S_VAR.i);
+20 | |         f4(&S_VAR.ci);
+21 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_2/sample_002/target.rs:29:5
+   |
+29 | /     unsafe {
+30 | |         if S_VAR.i != 1 {
+31 | |             std::process::exit(1);
+...  |
+36 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_2/sample_002/target.rs:50:5
+   |
+50 | /     unsafe {
+51 | |         S_VAR.i = 10;
+52 | |         if S_VAR.i != 10 {
+53 | |             std::process::exit(7);
+54 | |         }
+55 | |     }
+   | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_2/sample_002/target.rs:10:23
+   |
+10 | static VS: S = S { i: Cell::new(5), ci: 6 };
+   |                       ^^^^^^^^^^^^ expected `i32`, found `Cell<{integer}>`
+   |
+   = note: expected type `i32`
+            found struct `Cell<{integer}>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_2/sample_002/target.rs:26:8
+   |
+26 |     f2(&VS.i);
+   |     -- ^^^^^ expected `&Cell<i32>`, found `&i32`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&Cell<i32>`
+              found reference `&i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_2/sample_002/target.rs:14:4
+   |
+14 | fn f2(_p: &Cell<i32>) {}
+   |    ^^ --------------
+
+error[E0599]: no method named `get` found for type `i32` in the current scope
+    --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_2/sample_002/target.rs:43:13
+     |
+  43 |     if VS.i.get() != 5 {
+     |             ^^^
+     |
+help: there is a method `ge` with a similar name, but with different arguments
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cmp.rs:1440:5
+     |
+1440 |     fn ge(&self, other: &Rhs) -> bool {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `set` found for type `i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_2/sample_002/target.rs:57:10
+   |
+57 |     VS.i.set(20);
+   |          ^^^ method not found in `i32`
+
+error[E0599]: no method named `get` found for type `i32` in the current scope
+    --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_2/sample_002/target.rs:58:13
+     |
+  58 |     if VS.i.get() != 20 {
+     |             ^^^
+     |
+help: there is a method `ge` with a similar name, but with different arguments
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cmp.rs:1440:5
+     |
+1440 |     fn ge(&self, other: &Rhs) -> bool {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.

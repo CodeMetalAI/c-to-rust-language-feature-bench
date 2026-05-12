@@ -1,0 +1,94 @@
+warning: value assigned to `i1` is never read
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/external_definitions/external_objs_1/sample_001/target.rs:45:5
+   |
+45 |     i1 = 10;
+   |     ^^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `i2` is never read
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/external_definitions/external_objs_1/sample_001/target.rs:46:5
+   |
+46 |     i2 = 20;
+   |     ^^
+   |
+   = help: maybe it is overwritten before being read?
+
+warning: value assigned to `i4` is never read
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/external_definitions/external_objs_1/sample_001/target.rs:47:5
+   |
+47 |     i4 = 30;
+   |     ^^
+   |
+   = help: maybe it is overwritten before being read?
+
+warning: value assigned to `i5` is never read
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/external_definitions/external_objs_1/sample_001/target.rs:48:5
+   |
+48 |     i5 = 40;
+   |     ^^
+   |
+   = help: maybe it is overwritten before being read?
+
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/external_definitions/external_objs_1/sample_001/target.rs:7:9
+  |
+7 |     let mut i3: i32 = 3;
+  |         ----^^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error[E0506]: cannot assign to `i1` because it is borrowed
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/external_definitions/external_objs_1/sample_001/target.rs:45:5
+   |
+11 |     let p_i1: &i32 = &i1;
+   |                      --- `i1` is borrowed here
+...
+45 |     i1 = 10;
+   |     ^^^^^^^ `i1` is assigned to here but it was already borrowed
+...
+50 |     if *p_i1 != 10 {
+   |        ----- borrow later used here
+
+error[E0506]: cannot assign to `i2` because it is borrowed
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/external_definitions/external_objs_1/sample_001/target.rs:46:5
+   |
+12 |     let p_i2: &i32 = &i2;
+   |                      --- `i2` is borrowed here
+...
+46 |     i2 = 20;
+   |     ^^^^^^^ `i2` is assigned to here but it was already borrowed
+...
+53 |     if *p_i2 != 20 {
+   |        ----- borrow later used here
+
+error[E0506]: cannot assign to `i4` because it is borrowed
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/external_definitions/external_objs_1/sample_001/target.rs:47:5
+   |
+13 |     let p_i4: &i32 = &i4;
+   |                      --- `i4` is borrowed here
+...
+47 |     i4 = 30;
+   |     ^^^^^^^ `i4` is assigned to here but it was already borrowed
+...
+56 |     if *p_i4 != 30 {
+   |        ----- borrow later used here
+
+error[E0506]: cannot assign to `i5` because it is borrowed
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/external_definitions/external_objs_1/sample_001/target.rs:48:5
+   |
+14 |     let p_i5: &i32 = &i5;
+   |                      --- `i5` is borrowed here
+...
+48 |     i5 = 40;
+   |     ^^^^^^^ `i5` is assigned to here but it was already borrowed
+...
+59 |     if *p_i5 != 40 {
+   |        ----- borrow later used here
+
+error: aborting due to 4 previous errors; 5 warnings emitted
+
+For more information about this error, try `rustc --explain E0506`.

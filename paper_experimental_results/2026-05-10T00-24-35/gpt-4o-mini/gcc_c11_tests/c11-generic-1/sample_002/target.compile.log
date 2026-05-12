@@ -1,0 +1,140 @@
+error: declaration of a `no_mangle` function
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_002/target.rs:6:1
+  |
+6 | #[no_mangle]
+  | ^^^^^^^^^^^^
+  |
+  = note: the linker's behavior with multiple libraries exporting duplicate symbol names is undefined and Rust cannot provide guarantees when you manually override them
+  = note: requested on the command line with `-F unsafe-code`
+
+error: declaration of a `no_mangle` function
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_002/target.rs:11:1
+   |
+11 | #[no_mangle]
+   | ^^^^^^^^^^^^
+   |
+   = note: the linker's behavior with multiple libraries exporting duplicate symbol names is undefined and Rust cannot provide guarantees when you manually override them
+
+error: declaration of a `no_mangle` function
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_002/target.rs:22:1
+   |
+22 | #[no_mangle]
+   | ^^^^^^^^^^^^
+   |
+   = note: the linker's behavior with multiple libraries exporting duplicate symbol names is undefined and Rust cannot provide guarantees when you manually override them
+
+error: unwinding panics are not supported without std
+  |
+  = help: using nightly cargo, use -Zbuild-std with panic="abort" to avoid unwinding
+  = note: since the core library is usually precompiled with panic="unwind", rebuilding your crate with panic="abort" may not be enough to fix the problem
+
+error[E0277]: cannot add-assign `bool` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_002/target.rs:26:21
+   |
+26 |     check(&mut n, n += 1 == 0);
+   |                     ^^ no implementation for `i32 += bool`
+   |
+   = help: the trait `AddAssign<bool>` is not implemented for `i32`
+   = help: the following other types implement trait `AddAssign<Rhs>`:
+             `i32` implements `AddAssign<&i32>`
+             `i32` implements `AddAssign`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_002/target.rs:26:19
+   |
+26 |     check(&mut n, n += 1 == 0);
+   |     -----         ^^^^^^^^^^^ expected `bool`, found `()`
+   |     |
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_002/target.rs:16:4
+   |
+16 | fn check(n: &mut i32, condition: bool) {
+   |    ^^^^^              ---------------
+
+error[E0599]: no method named `is` found for type `i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_002/target.rs:29:21
+   |
+29 |     check(&mut n, n.is::<f64>());
+   |                     ^^ method not found in `i32`
+
+error[E0599]: no method named `is` found for type `i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_002/target.rs:34:22
+   |
+34 |     check(&mut n, cn.is::<i32>());
+   |                      ^^ method not found in `i32`
+
+error[E0599]: no method named `is` found for type `i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_002/target.rs:36:31
+   |
+36 |     check(&mut n, (cn as i32).is::<i32>());
+   |                               ^^ method not found in `i32`
+
+error[E0599]: no method named `is` found for raw pointer `*const i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_002/target.rs:41:30
+   |
+41 |     check(&mut n, a.as_ptr().is::<*const i32>());
+   |                              ^^ method not found in `*const i32`
+
+error[E0599]: no method named `is` found for raw pointer `*const i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_002/target.rs:44:31
+   |
+44 |     check(&mut n, ca.as_ptr().is::<*const i32>());
+   |                               ^^ method not found in `*const i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_002/target.rs:49:43
+   |
+49 |     check(&mut n, f as extern "C" fn() == f);
+   |                                           ^ expected "C" fn, found "Rust" fn
+   |
+   = note: expected fn pointer `extern "C" fn()`
+                 found fn item `fn() {f}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_002/target.rs:52:47
+   |
+ 7 | pub extern "C" fn abort() -> ! {
+   | ------------------------------ function `abort` defined here
+...
+52 |     check(&mut n, abort as extern "C" fn() == abort);
+   |                                               ^^^^^ expected fn pointer, found fn item
+   |
+   = note: expected fn pointer `extern "C" fn() -> ()`
+                 found fn item `extern "C" fn() -> ! {abort}`
+help: use parentheses to call this function
+   |
+52 |     check(&mut n, abort as extern "C" fn() == abort());
+   |                                                    ++
+
+error[E0599]: no method named `is` found for type `i16` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_002/target.rs:56:21
+   |
+56 |     check(&mut n, s.is::<i16>());
+   |                     ^^ method not found in `i16`
+
+error[E0605]: non-primitive cast: `fn() {f}` as `extern "C" fn()`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_002/target.rs:49:19
+   |
+49 |     check(&mut n, f as extern "C" fn() == f);
+   |                   ^^^^^^^^^^^^^^^^^^^^ invalid cast
+
+error[E0605]: non-primitive cast: `extern "C" fn() -> ! {abort}` as `extern "C" fn()`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_002/target.rs:52:19
+   |
+52 |     check(&mut n, abort as extern "C" fn() == abort);
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^ invalid cast
+
+warning: unused variable: `n`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_002/target.rs:16:10
+   |
+16 | fn check(n: &mut i32, condition: bool) {
+   |          ^ help: if this is intentional, prefix it with an underscore: `_n`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 16 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308, E0599, E0605.
+For more information about an error, try `rustc --explain E0277`.

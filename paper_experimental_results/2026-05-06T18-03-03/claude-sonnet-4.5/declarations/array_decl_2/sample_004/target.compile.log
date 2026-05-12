@@ -1,0 +1,112 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/array_decl_2/sample_004/target.rs:43:5
+   |
+43 | /     unsafe {
+44 | |         Y[0] = 1;
+45 | |         Y[1] = 2;
+46 | |         Y[2] = 3;
+...  |
+99 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/array_decl_2/sample_004/target.rs:76:17
+   |
+76 |             let mut hp = HoldP { p: Y.as_ptr() };
+   |                 ----^^
+   |                 |
+   |                 help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: type alias `Usize` is never used
+ --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/array_decl_2/sample_004/target.rs:1:6
+  |
+1 | type Usize = usize;
+  |      ^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/array_decl_2/sample_004/target.rs:52:21
+   |
+52 |         if sum_arr7(&Y) != (1 + 2 + 3 + 4 + 5 + 6 + 7) {
+   |                     ^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw const` instead to create a raw pointer
+   |
+52 |         if sum_arr7(&raw const Y) != (1 + 2 + 3 + 4 + 5 + 6 + 7) {
+   |                      +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/array_decl_2/sample_004/target.rs:56:20
+   |
+56 |         if sum_ptr(&BACKING, 3) != (10 + 20 + 30) {
+   |                    ^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+56 |         if sum_ptr(&raw const BACKING, 3) != (10 + 20 + 30) {
+   |                     +++++++++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/array_decl_2/sample_004/target.rs:60:35
+   |
+60 |         if mutate_through_pointer(&mut BACKING) != (10 + 25 + 30) {
+   |                                   ^^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+60 |         if mutate_through_pointer(&raw mut BACKING) != (10 + 25 + 30) {
+   |                                    +++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/array_decl_2/sample_004/target.rs:69:21
+   |
+69 |             let t = &Y;
+   |                     ^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+69 |             let t = &raw const Y;
+   |                      +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/array_decl_2/sample_004/target.rs:76:37
+   |
+76 |             let mut hp = HoldP { p: Y.as_ptr() };
+   |                                     ^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/array_decl_2/sample_004/target.rs:81:22
+   |
+81 |             let ha = Y.as_ptr() as *const HoldA;
+   |                      ^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/array_decl_2/sample_004/target.rs:90:54
+   |
+90 |             let a_slice = std::slice::from_raw_parts(Y.as_ptr().add(1), 6);
+   |                                                      ^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+
+error: aborting due to 1 previous error; 9 warnings emitted

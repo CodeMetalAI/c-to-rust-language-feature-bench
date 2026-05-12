@@ -1,0 +1,100 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_002/target.rs:42:5
+   |
+42 | /     unsafe {
+43 | |         (*p).tag = 0xA1B2C3D4;
+44 | |         (*p).n = N as U32;
+...  |
+80 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_002/target.rs:13:25
+   |
+13 |         let field_ptr = unsafe { &(*base_ptr).$field as *const _ as usize };
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |         let off = offsetof!(Packet, data);
+   |                   ----------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `offsetof` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_002/target.rs:13:25
+   |
+13 |         let field_ptr = unsafe { &(*base_ptr).$field as *const _ as usize };
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+77 |         if mem::size_of::<Packet>() < offsetof!(Packet, data) {
+   |                                       ----------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `offsetof` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_002/target.rs:90:5
+    |
+ 90 | /     unsafe {
+ 91 | |         (*p).tag = 0;
+ 92 | |         (*p).n = 0;
+ 93 | |         (*p).sum = 0;
+...   |
+107 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_002/target.rs:13:25
+   |
+13 |         let field_ptr = unsafe { &(*base_ptr).$field as *const _ as usize };
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+95 |         let off = offsetof!(Packet, data);
+   |                   ----------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `offsetof` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_002/target.rs:13:25
+   |
+13 |         let field_ptr = unsafe { &(*base_ptr).$field as *const _ as usize };
+   |                         ^^^^^^ unnecessary `unsafe` block
+...
+42 |     unsafe {
+   |     ------ because it's nested under this `unsafe` block
+...
+46 |         let off = offsetof!(Packet, data);
+   |                   ----------------------- in this macro invocation
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+   = note: this warning originates in the macro `offsetof` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_002/target.rs:13:25
+   |
+13 |         let field_ptr = unsafe { &(*base_ptr).$field as *const _ as usize };
+   |                         ^^^^^^ unnecessary `unsafe` block
+...
+42 |     unsafe {
+   |     ------ because it's nested under this `unsafe` block
+...
+77 |         if mem::size_of::<Packet>() < offsetof!(Packet, data) {
+   |                                       ----------------------- in this macro invocation
+   |
+   = note: this warning originates in the macro `offsetof` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_002/target.rs:13:25
+   |
+13 |         let field_ptr = unsafe { &(*base_ptr).$field as *const _ as usize };
+   |                         ^^^^^^ unnecessary `unsafe` block
+...
+90 |     unsafe {
+   |     ------ because it's nested under this `unsafe` block
+...
+95 |         let off = offsetof!(Packet, data);
+   |                   ----------------------- in this macro invocation
+   |
+   = note: this warning originates in the macro `offsetof` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 5 previous errors; 3 warnings emitted

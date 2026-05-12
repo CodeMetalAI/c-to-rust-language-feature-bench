@@ -1,0 +1,95 @@
+error[E0599]: no method named `try_into` found for struct `Vec<i32>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o/preprocessing_directives/scope_of_macro_5/sample_004/target.rs:45:74
+    |
+ 45 |                     (0..=9).map(|c| vxyz(a, b, c)).collect::<Vec<i32>>().try_into().unwrap()
+    |                                                                          ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<i32>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 45 -                     (0..=9).map(|c| vxyz(a, b, c)).collect::<Vec<i32>>().try_into().unwrap()
+ 45 +                     (0..=9).map(|c| vxyz(a, b, c)).collect::<Vec<i32>>().into().unwrap()
+    |
+
+error[E0599]: no method named `try_into` found for struct `Vec<i32>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o/preprocessing_directives/scope_of_macro_5/sample_004/target.rs:57:62
+    |
+ 57 |             (0..=9).map(|c| vyz(b, c)).collect::<Vec<i32>>().try_into().unwrap()
+    |                                                              ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<i32>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 57 -             (0..=9).map(|c| vyz(b, c)).collect::<Vec<i32>>().try_into().unwrap()
+ 57 +             (0..=9).map(|c| vyz(b, c)).collect::<Vec<i32>>().into().unwrap()
+    |
+
+error[E0599]: no method named `try_into` found for struct `Vec<i32>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o/preprocessing_directives/scope_of_macro_5/sample_004/target.rs:65:62
+    |
+ 65 |             (0..=9).map(|c| vxz(a, c)).collect::<Vec<i32>>().try_into().unwrap()
+    |                                                              ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<i32>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 65 -             (0..=9).map(|c| vxz(a, c)).collect::<Vec<i32>>().try_into().unwrap()
+ 65 +             (0..=9).map(|c| vxz(a, c)).collect::<Vec<i32>>().into().unwrap()
+    |
+
+error[E0599]: no method named `try_into` found for struct `Vec<i32>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o/preprocessing_directives/scope_of_macro_5/sample_004/target.rs:73:62
+    |
+ 73 |             (0..=9).map(|b| vxy(a, b)).collect::<Vec<i32>>().try_into().unwrap()
+    |                                                              ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<i32>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 73 -             (0..=9).map(|b| vxy(a, b)).collect::<Vec<i32>>().try_into().unwrap()
+ 73 +             (0..=9).map(|b| vxy(a, b)).collect::<Vec<i32>>().into().unwrap()
+    |
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

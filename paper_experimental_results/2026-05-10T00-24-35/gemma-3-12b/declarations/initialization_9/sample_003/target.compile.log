@@ -1,0 +1,64 @@
+error[E0599]: `MyEnum` doesn't implement `std::fmt::Display`
+    --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/initialization_9/sample_003/target.rs:13:27
+     |
+   2 | enum MyEnum {
+     | ----------- method `to_string` not found for this enum because it doesn't satisfy `MyEnum: ToString` or `MyEnum: std::fmt::Display`
+...
+  13 |         MyEnum::MemberTwo.to_string(),
+     |                           ^^^^^^^^^ method cannot be called on `MyEnum` due to unsatisfied trait bounds
+     |
+     = note: the following trait bounds were not satisfied:
+             `MyEnum: std::fmt::Display`
+             which is required by `MyEnum: ToString`
+note: the trait `std::fmt::Display` must be implemented
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:1006:1
+     |
+1006 | pub trait Display: PointeeSized {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     = help: items from traits can only be used if the trait is implemented and in scope
+     = note: the following trait defines an item `to_string`, perhaps you need to implement it:
+             candidate #1: `ToString`
+
+error[E0599]: `MyEnum` doesn't implement `std::fmt::Display`
+    --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/initialization_9/sample_003/target.rs:14:27
+     |
+   2 | enum MyEnum {
+     | ----------- method `to_string` not found for this enum because it doesn't satisfy `MyEnum: ToString` or `MyEnum: std::fmt::Display`
+...
+  14 |         MyEnum::MemberOne.to_string(),
+     |                           ^^^^^^^^^ method cannot be called on `MyEnum` due to unsatisfied trait bounds
+     |
+     = note: the following trait bounds were not satisfied:
+             `MyEnum: std::fmt::Display`
+             which is required by `MyEnum: ToString`
+note: the trait `std::fmt::Display` must be implemented
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:1006:1
+     |
+1006 | pub trait Display: PointeeSized {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     = help: items from traits can only be used if the trait is implemented and in scope
+     = note: the following trait defines an item `to_string`, perhaps you need to implement it:
+             candidate #1: `ToString`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/initialization_9/sample_003/target.rs:18:16
+   |
+11 | fn main() {
+   |          - expected `()` because of default return type
+...
+18 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/initialization_9/sample_003/target.rs:34:5
+   |
+11 | fn main() {
+   |          - expected `()` because of default return type
+...
+34 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.

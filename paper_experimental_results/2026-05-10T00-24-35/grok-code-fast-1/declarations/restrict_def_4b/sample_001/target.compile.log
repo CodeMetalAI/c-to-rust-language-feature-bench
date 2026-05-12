@@ -1,0 +1,23 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/restrict_def_4b/sample_001/target.rs:44:9
+   |
+44 |         unsafe { Some(slice::from_raw_parts_mut(bytes.as_mut_ptr() as *mut f32, n)) }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0499]: cannot borrow `alloc` as mutable more than once at a time
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/restrict_def_4b/sample_001/target.rs:77:28
+   |
+72 |     let a_opt = new_vector(&mut alloc, 16);
+   |                            ---------- first mutable borrow occurs here
+...
+77 |     let b_opt = new_vector(&mut alloc, 16);
+   |                            ^^^^^^^^^^ second mutable borrow occurs here
+...
+82 |     if a.v.as_ptr() == b.v.as_ptr() {
+   |        --- first borrow later used here
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0499`.

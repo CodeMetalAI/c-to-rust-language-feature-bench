@@ -1,0 +1,32 @@
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/fun_decl_3/sample_004/target.rs:41:30
+   |
+41 |         if let Some(v0) = if vf == v0 { Some(v0) } else { None } {
+   |                              ^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+   = note: `#[warn(unpredictable_function_pointer_comparisons)]` on by default
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+41 -         if let Some(v0) = if vf == v0 { Some(v0) } else { None } {
+41 +         if let Some(v0) = if std::ptr::fn_addr_eq(vf, v0 as fn(i32, i32) -> i32) { Some(v0) } else { None } {
+   |
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/fun_decl_3/sample_004/target.rs:70:30
+   |
+70 |         if let Some(v0) = if vf == v0 { Some(v0) } else { None } {
+   |                              ^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+70 -         if let Some(v0) = if vf == v0 { Some(v0) } else { None } {
+70 +         if let Some(v0) = if std::ptr::fn_addr_eq(vf, v0 as fn(i32, i32) -> i32) { Some(v0) } else { None } {
+   |
+
+warning: 2 warnings emitted

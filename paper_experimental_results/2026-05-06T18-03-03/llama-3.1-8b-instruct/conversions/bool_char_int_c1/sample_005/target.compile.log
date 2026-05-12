@@ -1,0 +1,325 @@
+error[E0425]: cannot find function `type_id_of` in module `std::any`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:20:21
+   |
+20 |     match std::any::type_id_of::<T>() {
+   |                     ^^^^^^^^^^ not found in `std::any`
+
+error[E0599]: no associated item named `U8` found for struct `std::any::TypeId` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:21:27
+   |
+21 |         std::any::TypeId::U8 => TypeId::UnsignedChar,
+   |                           ^^ associated item not found in `std::any::TypeId`
+
+error[E0599]: no associated item named `I8` found for struct `std::any::TypeId` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:22:27
+   |
+22 |         std::any::TypeId::I8 => TypeId::SignedChar,
+   |                           ^^ associated item not found in `std::any::TypeId`
+
+error[E0599]: no associated item named `U16` found for struct `std::any::TypeId` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:23:27
+   |
+23 |         std::any::TypeId::U16 => TypeId::UnsignedShort,
+   |                           ^^^ associated item not found in `std::any::TypeId`
+
+error[E0599]: no associated item named `I16` found for struct `std::any::TypeId` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:24:27
+   |
+24 |         std::any::TypeId::I16 => TypeId::Short,
+   |                           ^^^ associated item not found in `std::any::TypeId`
+
+error[E0599]: no associated item named `U32` found for struct `std::any::TypeId` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:25:27
+   |
+25 |         std::any::TypeId::U32 => TypeId::UnsignedInt,
+   |                           ^^^ associated item not found in `std::any::TypeId`
+
+error[E0599]: no associated item named `I32` found for struct `std::any::TypeId` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:26:27
+   |
+26 |         std::any::TypeId::I32 => TypeId::Int,
+   |                           ^^^ associated item not found in `std::any::TypeId`
+
+error[E0599]: no associated item named `U64` found for struct `std::any::TypeId` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:27:27
+   |
+27 |         std::any::TypeId::U64 => TypeId::UnsignedLongLong,
+   |                           ^^^ associated item not found in `std::any::TypeId`
+
+error[E0599]: no associated item named `I64` found for struct `std::any::TypeId` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:28:27
+   |
+28 |         std::any::TypeId::I64 => TypeId::LongLong,
+   |                           ^^^ associated item not found in `std::any::TypeId`
+
+error[E0369]: binary operation `!=` cannot be applied to type `TypeId`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:53:12
+   |
+53 |     if got != want {
+   |        --- ^^ ---- TypeId
+   |        |
+   |        TypeId
+   |
+note: an implementation of `PartialEq` might be missing for `TypeId`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:2:1
+   |
+ 2 | enum TypeId {
+   | ^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `TypeId` with `#[derive(PartialEq)]`
+   |
+ 2 + #[derive(PartialEq)]
+ 3 | enum TypeId {
+   |
+
+error[E0599]: no variant or associated item named `Success` found for enum `ErrorCode` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:56:16
+   |
+34 | enum ErrorCode {
+   | -------------- variant or associated item `Success` not found for this enum
+...
+56 |     ErrorCode::Success
+   |                ^^^^^^^ variant or associated item not found in `ErrorCode`
+
+error[E0599]: no variant or associated item named `Success` found for enum `ErrorCode` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:61:65
+   |
+34 | enum ErrorCode {
+   | -------------- variant or associated item `Success` not found for this enum
+...
+61 |     if expect_type(type_id(1u8 + 0), TypeId::Int) != ErrorCode::Success {
+   |                                                                 ^^^^^^^ variant or associated item not found in `ErrorCode`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:62:16
+   |
+59 | fn main() {
+   |          - expected `()` because of default return type
+...
+62 |         return ErrorCode::Error1 as i32;
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^ expected `()`, found `i32`
+
+error[E0599]: no variant or associated item named `Success` found for enum `ErrorCode` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:64:65
+   |
+34 | enum ErrorCode {
+   | -------------- variant or associated item `Success` not found for this enum
+...
+64 |     if expect_type(type_id(1i8 + 0), TypeId::Int) != ErrorCode::Success {
+   |                                                                 ^^^^^^^ variant or associated item not found in `ErrorCode`
+
+error[E0599]: no variant or associated item named `Success` found for enum `ErrorCode` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:67:65
+   |
+34 | enum ErrorCode {
+   | -------------- variant or associated item `Success` not found for this enum
+...
+67 |     if expect_type(type_id(1u8 + 0), TypeId::Int) != ErrorCode::Success {
+   |                                                                 ^^^^^^^ variant or associated item not found in `ErrorCode`
+
+error[E0599]: no variant or associated item named `Success` found for enum `ErrorCode` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:70:66
+   |
+34 | enum ErrorCode {
+   | -------------- variant or associated item `Success` not found for this enum
+...
+70 |     if expect_type(type_id(1u16 + 0), TypeId::Int) != ErrorCode::Success {
+   |                                                                  ^^^^^^^ variant or associated item not found in `ErrorCode`
+
+error[E0599]: no variant or associated item named `Success` found for enum `ErrorCode` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:73:66
+   |
+34 | enum ErrorCode {
+   | -------------- variant or associated item `Success` not found for this enum
+...
+73 |     if expect_type(type_id(1i16 + 0), TypeId::Int) != ErrorCode::Success {
+   |                                                                  ^^^^^^^ variant or associated item not found in `ErrorCode`
+
+error[E0599]: no variant or associated item named `Success` found for enum `ErrorCode` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:76:66
+   |
+34 | enum ErrorCode {
+   | -------------- variant or associated item `Success` not found for this enum
+...
+76 |     if expect_type(type_id(1u32 + 0), TypeId::Int) != ErrorCode::Success {
+   |                                                                  ^^^^^^^ variant or associated item not found in `ErrorCode`
+
+error[E0599]: no variant or associated item named `Success` found for enum `ErrorCode` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:80:77
+   |
+34 | enum ErrorCode {
+   | -------------- variant or associated item `Success` not found for this enum
+...
+80 |     if expect_type(type_id(0u32 + 0u32), TypeId::UnsignedInt) != ErrorCode::Success {
+   |                                                                             ^^^^^^^ variant or associated item not found in `ErrorCode`
+
+error[E0599]: no variant or associated item named `Success` found for enum `ErrorCode` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:83:82
+   |
+34 | enum ErrorCode {
+   | -------------- variant or associated item `Success` not found for this enum
+...
+83 |     if expect_type(type_id(0u64 + 0u64), TypeId::UnsignedLongLong) != ErrorCode::Success {
+   |                                                                                  ^^^^^^^ variant or associated item not found in `ErrorCode`
+
+error[E0599]: no variant or associated item named `Success` found for enum `ErrorCode` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:86:74
+   |
+34 | enum ErrorCode {
+   | -------------- variant or associated item `Success` not found for this enum
+...
+86 |     if expect_type(type_id(0i64 + 0i64), TypeId::LongLong) != ErrorCode::Success {
+   |                                                                          ^^^^^^^ variant or associated item not found in `ErrorCode`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:90:35
+   |
+90 |     if expect_type(type_id(0i32 + 0u32), TypeId::UnsignedInt) != ErrorCode::Success {
+   |                                   ^^^^ expected `i32`, found `u32`
+
+error[E0277]: cannot add `u32` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:90:33
+   |
+90 |     if expect_type(type_id(0i32 + 0u32), TypeId::UnsignedInt) != ErrorCode::Success {
+   |                                 ^ no implementation for `i32 + u32`
+   |
+   = help: the trait `Add<u32>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0599]: no variant or associated item named `Success` found for enum `ErrorCode` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:90:77
+   |
+34 | enum ErrorCode {
+   | -------------- variant or associated item `Success` not found for this enum
+...
+90 |     if expect_type(type_id(0i32 + 0u32), TypeId::UnsignedInt) != ErrorCode::Success {
+   |                                                                             ^^^^^^^ variant or associated item not found in `ErrorCode`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:93:35
+   |
+93 |     if expect_type(type_id(0i64 + 0u64), TypeId::UnsignedLongLong) != ErrorCode::Success {
+   |                                   ^^^^ expected `i64`, found `u64`
+
+error[E0277]: cannot add `u64` to `i64`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:93:33
+   |
+93 |     if expect_type(type_id(0i64 + 0u64), TypeId::UnsignedLongLong) != ErrorCode::Success {
+   |                                 ^ no implementation for `i64 + u64`
+   |
+   = help: the trait `Add<u64>` is not implemented for `i64`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i64` implements `Add<i64>`
+             `&i64` implements `Add`
+             `i64` implements `Add<&i64>`
+             `i64` implements `Add`
+
+error[E0599]: no variant or associated item named `Success` found for enum `ErrorCode` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:93:82
+   |
+34 | enum ErrorCode {
+   | -------------- variant or associated item `Success` not found for this enum
+...
+93 |     if expect_type(type_id(0i64 + 0u64), TypeId::UnsignedLongLong) != ErrorCode::Success {
+   |                                                                                  ^^^^^^^ variant or associated item not found in `ErrorCode`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:96:35
+   |
+96 |     if expect_type(type_id(0i32 + 0i64), TypeId::LongLong) != ErrorCode::Success {
+   |                                   ^^^^ expected `i32`, found `i64`
+
+error[E0277]: cannot add `i64` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:96:33
+   |
+96 |     if expect_type(type_id(0i32 + 0i64), TypeId::LongLong) != ErrorCode::Success {
+   |                                 ^ no implementation for `i32 + i64`
+   |
+   = help: the trait `Add<i64>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0599]: no variant or associated item named `Success` found for enum `ErrorCode` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:96:74
+   |
+34 | enum ErrorCode {
+   | -------------- variant or associated item `Success` not found for this enum
+...
+96 |     if expect_type(type_id(0i32 + 0i64), TypeId::LongLong) != ErrorCode::Success {
+   |                                                                          ^^^^^^^ variant or associated item not found in `ErrorCode`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:100:71
+    |
+100 |     if expect_type(type_id(0i32 as i64 + 0u32 as i64), type_id(0i32 + 0u32)) != ErrorCode::Success {
+    |                                                                       ^^^^ expected `i32`, found `u32`
+
+error[E0277]: cannot add `u32` to `i32`
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:100:69
+    |
+100 |     if expect_type(type_id(0i32 as i64 + 0u32 as i64), type_id(0i32 + 0u32)) != ErrorCode::Success {
+    |                                                                     ^ no implementation for `i32 + u32`
+    |
+    = help: the trait `Add<u32>` is not implemented for `i32`
+    = help: the following other types implement trait `Add<Rhs>`:
+              `&i32` implements `Add<i32>`
+              `&i32` implements `Add`
+              `i32` implements `Add<&i32>`
+              `i32` implements `Add`
+
+error[E0599]: no variant or associated item named `Success` found for enum `ErrorCode` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:100:92
+    |
+ 34 | enum ErrorCode {
+    | -------------- variant or associated item `Success` not found for this enum
+...
+100 |     if expect_type(type_id(0i32 as i64 + 0u32 as i64), type_id(0i32 + 0u32)) != ErrorCode::Success {
+    |                                                                                            ^^^^^^^ variant or associated item not found in `ErrorCode`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:103:42
+    |
+103 |     if expect_type(type_id(0i32 as i64 + 0i32), type_id(0i32 + 0i32)) != ErrorCode::Success {
+    |                                          ^^^^ expected `i64`, found `i32`
+
+error[E0277]: cannot add `i32` to `i64`
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:103:40
+    |
+103 |     if expect_type(type_id(0i32 as i64 + 0i32), type_id(0i32 + 0i32)) != ErrorCode::Success {
+    |                                        ^ no implementation for `i64 + i32`
+    |
+    = help: the trait `Add<i32>` is not implemented for `i64`
+    = help: the following other types implement trait `Add<Rhs>`:
+              `&i64` implements `Add<i64>`
+              `&i64` implements `Add`
+              `i64` implements `Add<&i64>`
+              `i64` implements `Add`
+
+error[E0599]: no variant or associated item named `Success` found for enum `ErrorCode` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:103:85
+    |
+ 34 | enum ErrorCode {
+    | -------------- variant or associated item `Success` not found for this enum
+...
+103 |     if expect_type(type_id(0i32 as i64 + 0i32), type_id(0i32 + 0i32)) != ErrorCode::Success {
+    |                                                                                     ^^^^^^^ variant or associated item not found in `ErrorCode`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_005/target.rs:108:5
+    |
+ 59 | fn main() {
+    |          - expected `()` because of default return type
+...
+108 |     0
+    |     ^ expected `()`, found integer
+
+error: aborting due to 37 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0369, E0425, E0599.
+For more information about an error, try `rustc --explain E0277`.

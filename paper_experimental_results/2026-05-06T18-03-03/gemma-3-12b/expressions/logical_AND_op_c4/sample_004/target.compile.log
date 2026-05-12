@@ -1,0 +1,65 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/logical_AND_op_c4/sample_004/target.rs:2:5
+  |
+2 | /     unsafe {
+3 | |         g = gval;
+4 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/logical_AND_op_c4/sample_004/target.rs:13:5
+   |
+13 | /     unsafe {
+14 | |         g = 0;
+15 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/logical_AND_op_c4/sample_004/target.rs:23:5
+   |
+23 | /     unsafe {
+24 | |         g = 0;
+25 | |     }
+   | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/logical_AND_op_c4/sample_004/target.rs:16:8
+   |
+16 |     if set_g_return(0, 0) && (y += 1) {
+   |        ^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/logical_AND_op_c4/sample_004/target.rs:16:30
+   |
+16 |     if set_g_return(0, 0) && (y += 1) {
+   |                              ^^^^^^^^ expected `bool`, found `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/logical_AND_op_c4/sample_004/target.rs:17:16
+   |
+10 | fn main() {
+   |          - expected `()` because of default return type
+...
+17 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/logical_AND_op_c4/sample_004/target.rs:26:8
+   |
+26 |     if !set_g_return(1, 1) && (g == 1) {
+   |        ^^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/logical_AND_op_c4/sample_004/target.rs:30:5
+   |
+10 | fn main() {
+   |          - expected `()` because of default return type
+...
+30 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 8 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

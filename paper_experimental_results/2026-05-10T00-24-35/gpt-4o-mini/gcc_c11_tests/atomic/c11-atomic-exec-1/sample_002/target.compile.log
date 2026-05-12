@@ -1,0 +1,89 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:51:12
+   |
+51 |     copy = unsafe { std::ptr::read(&s1 as *const _ as *const S) };
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:56:12
+   |
+56 |     copy = unsafe { std::ptr::read(&s2 as *const _ as *const S) };
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:61:12
+   |
+61 |     copy = unsafe { std::ptr::read(&s1 as *const _ as *const S) };
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:66:12
+   |
+66 |     copy = unsafe { std::ptr::read(&s2 as *const _ as *const S) };
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0605]: non-primitive cast: `T` as `usize`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:12:34
+   |
+12 |         let b = AtomicUsize::new(value as usize);
+   |                                  ^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `usize`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:17:40
+   |
+17 |         if b.load(Ordering::SeqCst) != (value as usize) {
+   |                                        ^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `usize`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:21:40
+   |
+21 |         if a.load(Ordering::SeqCst) != (value as usize) {
+   |                                        ^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+warning: variable `copy` is assigned to, but never used
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:43:13
+   |
+43 |     let mut copy = S { a: [0; 1024] };
+   |             ^^^^
+   |
+   = note: consider using `_copy` instead
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `copy` is never read
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:51:5
+   |
+51 |     copy = unsafe { std::ptr::read(&s1 as *const _ as *const S) };
+   |     ^^^^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `copy` is never read
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:56:5
+   |
+56 |     copy = unsafe { std::ptr::read(&s2 as *const _ as *const S) };
+   |     ^^^^
+   |
+   = help: maybe it is overwritten before being read?
+
+warning: value assigned to `copy` is never read
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:61:5
+   |
+61 |     copy = unsafe { std::ptr::read(&s1 as *const _ as *const S) };
+   |     ^^^^
+   |
+   = help: maybe it is overwritten before being read?
+
+warning: value assigned to `copy` is never read
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:66:5
+   |
+66 |     copy = unsafe { std::ptr::read(&s2 as *const _ as *const S) };
+   |     ^^^^
+   |
+   = help: maybe it is overwritten before being read?
+
+error: aborting due to 7 previous errors; 5 warnings emitted
+
+For more information about this error, try `rustc --explain E0605`.

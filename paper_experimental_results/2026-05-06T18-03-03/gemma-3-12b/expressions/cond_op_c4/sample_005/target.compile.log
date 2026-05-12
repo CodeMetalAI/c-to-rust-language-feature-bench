@@ -1,0 +1,71 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/cond_op_c4/sample_005/target.rs:3:5
+  |
+3 | /     unsafe {
+4 | |         g = gval;
+5 | |         ret
+6 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/cond_op_c4/sample_005/target.rs:23:5
+   |
+23 | /     unsafe {
+24 | |         if g != 1 {
+25 | |             std::process::exit(2);
+26 | |         }
+27 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/cond_op_c4/sample_005/target.rs:40:5
+   |
+40 | /     unsafe {
+41 | |         if g != 1 {
+42 | |             std::process::exit(4);
+43 | |         }
+44 | |     }
+   | |_____^
+
+error[E0308]: `if` and `else` have incompatible types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/cond_op_c4/sample_005/target.rs:17:9
+   |
+13 |       let x = if set_g_return(1, 1) != 0 {
+   |  _____________-
+14 | |         g == 1
+   | |         ------ expected because of this
+15 | |     } else {
+16 | |         set_g_return(2, 1);
+17 | |         0
+   | |         ^ expected `bool`, found integer
+18 | |     };
+   | |_____- `if` and `else` have incompatible types
+
+error[E0308]: `if` and `else` have incompatible types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/cond_op_c4/sample_005/target.rs:34:9
+   |
+30 |       let x = if set_g_return(1, 0) != 0 {
+   |  _____________-
+31 | |         set_g_return(2, 1);
+32 | |         0
+   | |         - expected because of this
+33 | |     } else {
+34 | |         g == 1
+   | |         ^^^^^^ expected integer, found `bool`
+35 | |     };
+   | |_____- `if` and `else` have incompatible types
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/cond_op_c4/sample_005/target.rs:46:5
+   |
+ 9 | fn main() {
+   |          - expected `()` because of default return type
+...
+46 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 6 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

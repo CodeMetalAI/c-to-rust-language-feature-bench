@@ -1,0 +1,102 @@
+static mut G_SEED: i32 = 0;
+
+fn cb0(x: i64) -> i32 {
+    ((x ^ 0x13579) as i32).wrapping_add(7)
+}
+
+fn cb1(x: i64) -> i32 {
+    ((x * 3) as i32).wrapping_sub(11)
+}
+
+fn v0(x: i32) -> i32 {
+    unsafe { G_SEED + x + 1000 }
+}
+
+fn v1(x: i32) -> i32 {
+    unsafe { G_SEED + x - 2000 }
+}
+
+fn fpfi(pf: fn(i64) -> i32, k: i32) -> fn(i32) -> i32 {
+    let t = (k as i64) * 97 + 1234;
+    unsafe {
+        G_SEED = pf(t) + k;
+        if (G_SEED & 1) == 0 {
+            v0
+        } else {
+            v1
+        }
+    }
+}
+
+fn call_through(pf: fn(i32) -> i32, x: i32) -> i32 {
+    let r1 = pf(x);
+    let r2 = pf(x);
+    let r3 = pf(x);
+    r1 ^ (r2 + 5) ^ (r3 + 9)
+}
+
+fn main() {
+    let mut vf: fn(i32) -> i32;
+
+    vf = fpfi(cb0, 17);
+
+    {
+        let expected_seed = cb0(17i64 * 97 + 1234) + 17;
+        let base = expected_seed + 40;
+
+        let v0_ptr = v0 as fn(i32) -> i32;
+        if vf as usize == v0_ptr as usize {
+            if vf(40) != base + 1000 {
+                std::process::exit(1);
+            }
+            if vf(40) != base + 1000 {
+                std::process::exit(2);
+            }
+            if call_through(vf, 40) != ((base + 1000) ^ (base + 1000 + 5) ^ (base + 1000 + 9)) {
+                std::process::exit(3);
+            }
+        } else {
+            if vf(40) != base - 2000 {
+                std::process::exit(4);
+            }
+            if vf(40) != base - 2000 {
+                std::process::exit(5);
+            }
+            if call_through(vf, 40) != ((base - 2000) ^ (base - 2000 + 5) ^ (base - 2000 + 9)) {
+                std::process::exit(6);
+            }
+        }
+    }
+
+    vf = fpfi(cb1, 8);
+
+    {
+        let expected_seed = cb1(8i64 * 97 + 1234) + 8;
+        let base = expected_seed + 9;
+
+        let v0_ptr = v0 as fn(i32) -> i32;
+        if vf as usize == v0_ptr as usize {
+            if vf(9) != base + 1000 {
+                std::process::exit(7);
+            }
+            if vf(9) != base + 1000 {
+                std::process::exit(8);
+            }
+            if call_through(vf, 9) != ((base + 1000) ^ (base + 1000 + 5) ^ (base + 1000 + 9)) {
+                std::process::exit(9);
+            }
+        } else {
+            if vf(9) != base - 2000 {
+                std::process::exit(10);
+            }
+            if vf(9) != base - 2000 {
+                std::process::exit(11);
+            }
+            if call_through(vf, 9) != ((base - 2000) ^ (base - 2000 + 5) ^ (base - 2000 + 9)) {
+                std::process::exit(12);
+            }
+        }
+    }
+
+    std::process::exit(0);
+}

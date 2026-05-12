@@ -1,0 +1,29 @@
+warning: unnecessary parentheses around `if` condition
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c3/sample_001/target.rs:16:8
+   |
+16 |     if (!uc.is_ascii()) {
+   |        ^              ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+16 -     if (!uc.is_ascii()) {
+16 +     if !uc.is_ascii() {
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u8`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c3/sample_001/target.rs:2:20
+  |
+2 |     let pc: char = -1 as char;
+  |                    ^^ cannot apply unary operator `-`
+  |
+  = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u8`
+  |
+2 -     let pc: char = -1 as char;
+2 +     let pc: char = u8::MAX;
+  |
+
+error: aborting due to 1 previous error; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0600`.

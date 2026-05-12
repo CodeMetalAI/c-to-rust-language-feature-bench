@@ -1,0 +1,30 @@
+error[E0277]: `S1` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/tags_2/sample_003/target.rs:29:5
+   |
+29 |     assert_eq!(a.s2p as *const _ as *const S1, &*b.s1p);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `S1`
+   |
+   = note: add `#[derive(Debug)]` to `S1` or manually `impl Debug for S1`
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `S1` with `#[derive(Debug)]`
+   |
+ 2 + #[derive(Debug)]
+ 3 | struct S1 {
+   |
+
+error[E0609]: no field `s2p` on type `Box<S2>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/tags_2/sample_003/target.rs:35:21
+   |
+35 |     Box::from_raw(b.s2p);
+   |                     ^^^ unknown field
+   |
+help: a field with a similar name exists
+   |
+35 -     Box::from_raw(b.s2p);
+35 +     Box::from_raw(b.s1p);
+   |
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0277, E0609.
+For more information about an error, try `rustc --explain E0277`.

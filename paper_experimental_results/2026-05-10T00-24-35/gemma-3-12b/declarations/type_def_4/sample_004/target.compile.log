@@ -1,0 +1,143 @@
+error[E0425]: cannot find value `hits` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_4/sample_004/target.rs:38:5
+   |
+38 |     hits += arg + if s & 1 != 0 { 1 } else { 0 };
+   |     ^^^^ not found in this scope
+
+error[E0425]: cannot find value `hits` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_4/sample_004/target.rs:40:5
+   |
+40 |     hits
+   |     ^^^^ not found in this scope
+
+error[E0425]: cannot find value `hits` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_4/sample_004/target.rs:45:5
+   |
+45 |     hits += arg + if s & 1 != 0 { 1 } else { 0 };
+   |     ^^^^ not found in this scope
+
+error[E0425]: cannot find value `hits` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_4/sample_004/target.rs:47:5
+   |
+47 |     hits
+   |     ^^^^ not found in this scope
+
+error[E0425]: cannot find value `hits` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_4/sample_004/target.rs:52:5
+   |
+52 |     hits += arg + if s & 1 != 0 { 1 } else { 0 };
+   |     ^^^^ not found in this scope
+
+error[E0425]: cannot find value `hits` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_4/sample_004/target.rs:54:5
+   |
+54 |     hits
+   |     ^^^^ not found in this scope
+
+error[E0425]: cannot find value `hits` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_4/sample_004/target.rs:58:5
+   |
+58 |     hits += x + 1;
+   |     ^^^^ not found in this scope
+
+error[E0425]: cannot find value `hits` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_4/sample_004/target.rs:62:5
+   |
+62 |     hits += x + 2;
+   |     ^^^^ not found in this scope
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_4/sample_004/target.rs:4:32
+   |
+ 4 |     if call_signal_as_plain(1, &handler_b, 3) != (3 + 1) {
+   |        --------------------    ^^^^^^^^^^ expected `&fn(i32)`, found `&fn(i32) {handler_b}`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&fn(_)`
+              found reference `&fn(_) {handler_b}`
+   = note: fn items are distinct from fn pointers
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_4/sample_004/target.rs:36:4
+   |
+36 | fn call_signal_as_plain(s: i32, h: &Fv, arg: i32) -> i32 {
+   |    ^^^^^^^^^^^^^^^^^^^^         ------
+help: consider casting to a fn pointer
+   |
+ 4 -     if call_signal_as_plain(1, &handler_b, 3) != (3 + 1) {
+ 4 +     if call_signal_as_plain(1, &(handler_b as fn(i32)), 3) != (3 + 1) {
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_4/sample_004/target.rs:9:29
+   |
+ 9 |     if call_signal_as_fv(2, &handler_b, 4) != (4 + 2) {
+   |        -----------------    ^^^^^^^^^^ expected `&fn(i32)`, found `&fn(i32) {handler_b}`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&fn(_)`
+              found reference `&fn(_) {handler_b}`
+   = note: fn items are distinct from fn pointers
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_4/sample_004/target.rs:43:4
+   |
+43 | fn call_signal_as_fv(s: i32, h: &Fv, arg: i32) -> i32 {
+   |    ^^^^^^^^^^^^^^^^^         ------
+help: consider casting to a fn pointer
+   |
+ 9 -     if call_signal_as_fv(2, &handler_b, 4) != (4 + 2) {
+ 9 +     if call_signal_as_fv(2, &(handler_b as fn(i32)), 4) != (4 + 2) {
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_4/sample_004/target.rs:14:30
+   |
+14 |     if call_signal_as_pfv(3, &handler_b, 5) != (5 + 1) {
+   |        ------------------    ^^^^^^^^^^ expected fn pointer, found `&fn(i32) {handler_b}`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected fn pointer `fn(_)`
+               found reference `&fn(_) {handler_b}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_4/sample_004/target.rs:50:4
+   |
+50 | fn call_signal_as_pfv(s: i32, h: Pfv, arg: i32) -> i32 {
+   |    ^^^^^^^^^^^^^^^^^^         ------
+help: consider removing the reference
+   |
+14 -     if call_signal_as_pfv(3, &handler_b, 5) != (5 + 1) {
+14 +     if call_signal_as_pfv(3, handler_b, 5) != (5 + 1) {
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_4/sample_004/target.rs:18:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+18 |     0
+   |     ^ expected `()`, found integer
+
+error: lifetime may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_4/sample_004/target.rs:25:5
+   |
+24 |   fn signal(s: i32, h: &Fv) -> Box<dyn Fn(i32) -> ()> {
+   |                        - let's call the lifetime of this reference `'1`
+25 | /     if s & 1 != 0 {
+26 | |         Box::new(handler_a)
+27 | |     } else {
+28 | |         Box::new(h)
+29 | |     }
+   | |_____^ returning this value requires that `'1` must outlive `'static`
+   |
+help: to declare that the trait object captures data from argument `h`, you can add an explicit `'_` lifetime bound
+   |
+24 | fn signal(s: i32, h: &Fv) -> Box<dyn Fn(i32) -> () + '_> {
+   |                                                    ++++
+
+error: aborting due to 13 previous errors
+
+Some errors have detailed explanations: E0308, E0425.
+For more information about an error, try `rustc --explain E0308`.

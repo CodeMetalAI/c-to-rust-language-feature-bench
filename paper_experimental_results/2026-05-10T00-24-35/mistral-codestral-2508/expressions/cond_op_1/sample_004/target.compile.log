@@ -1,0 +1,43 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/cond_op_1/sample_004/target.rs:15:5
+   |
+15 | /     unsafe {
+16 | |         f(if 1 != 0 { C_VP } else { C_IP as *const () });
+17 | |         f(if 1 != 0 { C_IP as *const () } else { C_VP });
+...  |
+32 | |         f1(if 1 != 0 { IP as *mut () } else { VP });
+33 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `*const ()` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/cond_op_1/sample_004/target.rs:7:14
+  |
+7 | static C_VP: *const () = std::ptr::null();
+  |              ^^^^^^^^^ `*const ()` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*const ()`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*const i32` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/cond_op_1/sample_004/target.rs:9:14
+  |
+9 | static C_IP: *const i32 = std::ptr::null();
+  |              ^^^^^^^^^^ `*const i32` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*const i32`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*const u8` cannot be shared between threads safely
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/cond_op_1/sample_004/target.rs:12:14
+   |
+12 | static C_CP: *const u8 = std::ptr::null();
+   |              ^^^^^^^^^ `*const u8` cannot be shared between threads safely
+   |
+   = help: the trait `Sync` is not implemented for `*const u8`
+   = note: shared static variables must have a type that implements `Sync`
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

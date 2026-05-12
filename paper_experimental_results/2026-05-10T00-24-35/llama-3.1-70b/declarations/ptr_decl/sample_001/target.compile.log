@@ -1,0 +1,69 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_001/target.rs:9:13
+  |
+9 |     let v = unsafe { *p };
+  |             ^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_001/target.rs:58:8
+   |
+58 |     if unsafe { *b.p_to_const }!= 10 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_001/target.rs:63:8
+   |
+63 |     if unsafe { *b.p_to_const }!= 21 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_001/target.rs:68:8
+   |
+68 |     if unsafe { *b.p_to_const }!= 21 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_001/target.rs:72:5
+   |
+72 |     unsafe { *b.const_p += 5 };
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_001/target.rs:77:5
+   |
+77 |     unsafe { *b.const_p_via_typedef += 7 };
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_001/target.rs:86:8
+   |
+86 |     if unsafe { *b.p_to_const }!= 21 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0596]: cannot borrow `x` as mutable, as it is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_001/target.rs:40:9
+   |
+40 |     let x = 10;
+   |         ^ not mutable
+...
+45 |     let constant_ptr = &mut x as *mut _;
+   |                        ------ cannot borrow as mutable
+46 |     let clarified_constant_ptr = &mut x as *mut _;
+   |                                  ------ cannot borrow as mutable
+...
+54 |     if check_bundle(&b, &mut x as *mut _)!= 0 {
+   |                         ------ cannot borrow as mutable
+...
+82 |     if check_bundle(&b, &mut x as *mut _)!= 0 {
+   |                         ------ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+40 |     let mut x = 10;
+   |         +++
+
+error: aborting due to 8 previous errors
+
+For more information about this error, try `rustc --explain E0596`.

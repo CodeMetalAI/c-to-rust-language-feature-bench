@@ -1,0 +1,33 @@
+use std::process::exit;
+use std::ptr;
+
+fn main() {
+    let x = 7;
+    let p = &x;
+
+    if !ptr::eq(&x, p) {
+        exit(1);
+    }
+
+    if !ptr::eq(p, &*p) {
+        exit(2);
+    }
+
+    let a = [10, 20, 30];
+
+    if !ptr::eq(&a[0], &a[0]) {
+        exit(3);
+    }
+    if !ptr::eq(&a[1], &a[1]) {
+        exit(4);
+    }
+    if !ptr::eq(&a[2], &a[2]) {
+        exit(5);
+    }
+
+    if a[1] != 20 {
+        exit(6);
+    }
+
+    exit(0);
+}

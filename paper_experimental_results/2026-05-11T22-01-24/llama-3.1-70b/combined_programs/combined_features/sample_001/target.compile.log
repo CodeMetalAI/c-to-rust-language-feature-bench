@@ -1,0 +1,32 @@
+error[E0425]: cannot find value `n` in this scope
+  --> benchmark_results/2026-05-11T22-01-24/llama-3.1-70b/combined_programs/combined_features/sample_001/target.rs:76:22
+   |
+76 |         let r = &mut n;
+   |                      ^ help: a local variable with a similar name exists: `a`
+
+error[E0425]: cannot find value `n` in this scope
+  --> benchmark_results/2026-05-11T22-01-24/llama-3.1-70b/combined_programs/combined_features/sample_001/target.rs:80:21
+   |
+80 |         if takes_t2(n) != 7 {
+   |                     ^ help: a local variable with a similar name exists: `a`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/llama-3.1-70b/combined_programs/combined_features/sample_001/target.rs:13:22
+   |
+13 |             let b = *unsafe { &*(x.as_ptr().offset(i as isize) as *const [i32; 5]).offset(j as isize) };
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/llama-3.1-70b/combined_programs/combined_features/sample_001/target.rs:14:21
+   |
+14 |             if a != b {
+   |                -    ^ expected `i32`, found `[i32; 5]`
+   |                |
+   |                expected because this is `i32`
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0425.
+For more information about an error, try `rustc --explain E0308`.

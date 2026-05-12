@@ -1,0 +1,63 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_4/sample_005/target.rs:9:13
+   |
+ 9 | /             unsafe {
+10 | |                 BACKING[i][j] = (i as i32 + 1) * 100 + (j as i32 + 1);
+11 | |             }
+   | |_____________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_4/sample_005/target.rs:32:5
+   |
+32 | /     unsafe {
+33 | |         for i in 0..m {
+34 | |             for j in 0..m {
+35 | |                 BACKING[i][j] = c[i][j] + d[(i + j) % m];
+...  |
+38 | |         SINK ^= checksum_2d(m, &BACKING);
+39 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_4/sample_005/target.rs:68:9
+   |
+68 | /         unsafe {
+69 | |             if checksum_2d(m, &BACKING) != checksum_2d(m, &expect) {
+70 | |                 return 1;
+71 | |             }
+72 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_4/sample_005/target.rs:85:9
+   |
+85 | /         unsafe {
+86 | |             if checksum_2d(m, &BACKING) != checksum_2d(m, &expect2) {
+87 | |                 return 2;
+88 | |             }
+89 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_4/sample_005/target.rs:92:5
+   |
+92 | /     unsafe {
+93 | |         if SINK == 0 {
+94 | |             return 3;
+95 | |         }
+96 | |     }
+   | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_4/sample_005/target.rs:42:14
+   |
+42 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error: aborting due to 6 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

@@ -1,0 +1,153 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_1/sample_005/target.rs:13:9
+   |
+13 |         unsafe { &mut u.right }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_1/sample_005/target.rs:15:9
+   |
+15 |         unsafe { &mut u.left }
+   |         ^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_1/sample_005/target.rs:52:5
+   |
+52 | /     unsafe {
+53 | |         a = choose_view(&mut BANK_A, which_a);
+54 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_1/sample_005/target.rs:56:5
+   |
+56 | /     unsafe {
+57 | |         b = choose_view(&mut BANK_B, which_b);
+58 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_1/sample_005/target.rs:62:5
+   |
+62 | /     unsafe {
+63 | |         fill(&mut C, 8, 300);
+64 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_1/sample_005/target.rs:68:5
+   |
+68 | /     unsafe {
+69 | |         bump(&mut C, 8, 3);
+70 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_1/sample_005/target.rs:80:5
+   |
+80 | /     unsafe {
+81 | |         if sum(&C, 8) != (303 + 304 + 305 + 306 + 307 + 308 + 309 + 310) {
+82 | |             std::process::exit(3);
+83 | |         }
+84 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_1/sample_005/target.rs:86:5
+   |
+86 | /     unsafe {
+87 | |         if BANK_A.left[0] != 101 {
+88 | |             std::process::exit(4);
+89 | |         }
+90 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_1/sample_005/target.rs:92:5
+   |
+92 | /     unsafe {
+93 | |         if BANK_B.right[7] != 209 {
+94 | |             std::process::exit(5);
+95 | |         }
+96 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_1/sample_005/target.rs:98:5
+    |
+ 98 | /     unsafe {
+ 99 | |         if C[0] != 303 || C[7] != 310 {
+100 | |             std::process::exit(6);
+101 | |         }
+102 | |     }
+    | |_____^
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_1/sample_005/target.rs:53:25
+   |
+53 |         a = choose_view(&mut BANK_A, which_a);
+   |                         ^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw mut` instead to create a raw pointer
+   |
+53 |         a = choose_view(&raw mut BANK_A, which_a);
+   |                          +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_1/sample_005/target.rs:57:25
+   |
+57 |         b = choose_view(&mut BANK_B, which_b);
+   |                         ^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+57 |         b = choose_view(&raw mut BANK_B, which_b);
+   |                          +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_1/sample_005/target.rs:63:14
+   |
+63 |         fill(&mut C, 8, 300);
+   |              ^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+63 |         fill(&raw mut C, 8, 300);
+   |               +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_1/sample_005/target.rs:69:14
+   |
+69 |         bump(&mut C, 8, 3);
+   |              ^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+69 |         bump(&raw mut C, 8, 3);
+   |               +++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_1/sample_005/target.rs:81:16
+   |
+81 |         if sum(&C, 8) != (303 + 304 + 305 + 306 + 307 + 308 + 309 + 310) {
+   |                ^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+81 |         if sum(&raw const C, 8) != (303 + 304 + 305 + 306 + 307 + 308 + 309 + 310) {
+   |                 +++++++++
+
+error: aborting due to 10 previous errors; 5 warnings emitted

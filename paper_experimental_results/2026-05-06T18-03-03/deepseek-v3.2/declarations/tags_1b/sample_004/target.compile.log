@@ -1,0 +1,15 @@
+error[E0502]: cannot borrow `s.right` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/tags_1b/sample_004/target.rs:31:8
+   |
+25 |     let sp = &mut s;
+   |              ------ mutable borrow occurs here
+...
+31 |     if s.right.as_ref().unwrap().count != 3 {
+   |        ^^^^^^^ immutable borrow occurs here
+...
+37 |         sp.left.as_ref().unwrap().as_ref(),
+   |         ------- mutable borrow later used here
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0502`.

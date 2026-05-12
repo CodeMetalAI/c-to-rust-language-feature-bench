@@ -1,0 +1,71 @@
+error[E0433]: failed to resolve: use of undeclared type `Atomic`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:4:17
+  |
+4 |     let mut a = Atomic::new(T::default());
+  |                 ^^^^^^ use of undeclared type `Atomic`
+  |
+help: a struct with a similar name exists
+  |
+4 |     let mut a = AtomicI8::new(T::default());
+  |                       ++
+help: consider importing this type alias
+  |
+1 + use std::sync::atomic::Atomic;
+  |
+
+error[E0433]: failed to resolve: use of undeclared type `Atomic`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:5:13
+  |
+5 |     let b = Atomic::new(value);
+  |             ^^^^^^ use of undeclared type `Atomic`
+  |
+help: a struct with a similar name exists
+  |
+5 |     let b = AtomicI8::new(value);
+  |                   ++
+help: consider importing this type alias
+  |
+1 + use std::sync::atomic::Atomic;
+  |
+
+error[E0433]: failed to resolve: use of undeclared type `Atomic`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:59:14
+   |
+59 |     let s1 = Atomic::new(init);
+   |              ^^^^^^ use of undeclared type `Atomic`
+   |
+help: a struct with a similar name exists
+   |
+59 |     let s1 = AtomicI8::new(init);
+   |                    ++
+help: consider importing this type alias
+   |
+ 1 + use std::sync::atomic::Atomic;
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `Atomic`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:60:14
+   |
+60 |     let s2 = Atomic::new(S { a: [0; 1024] });
+   |              ^^^^^^ use of undeclared type `Atomic`
+   |
+help: a struct with a similar name exists
+   |
+60 |     let s2 = AtomicI8::new(S { a: [0; 1024] });
+   |                    ++
+help: consider importing this type alias
+   |
+ 1 + use std::sync::atomic::Atomic;
+   |
+
+warning: unused imports: `AtomicBool`, `AtomicI16`, `AtomicI32`, `AtomicI64`, `AtomicI8`, `AtomicU16`, `AtomicU32`, `AtomicU64`, `AtomicU8`, and `AtomicUsize`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:1:25
+  |
+1 | use std::sync::atomic::{AtomicBool, AtomicI8, AtomicU8, AtomicI16, AtomicU16, AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicUsize, Ordering};
+  |                         ^^^^^^^^^^  ^^^^^^^^  ^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 4 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0433`.

@@ -1,0 +1,446 @@
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:30:38
+    |
+ 30 |     if std::mem::size_of::<i32>() != std::mem::size_of(&x) {
+    |                                      ^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&i32`
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+help: remove the extra argument
+    |
+ 30 -     if std::mem::size_of::<i32>() != std::mem::size_of(&x) {
+ 30 +     if std::mem::size_of::<i32>() != std::mem::size_of() {
+    |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:31:16
+   |
+25 | fn main() {
+   |          - expected `()` because of default return type
+...
+31 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:33:39
+    |
+ 33 |     if std::mem::align_of::<i32>() != std::mem::align_of(&x) {
+    |                                       ^^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&i32`
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+help: remove the extra argument
+    |
+ 33 -     if std::mem::align_of::<i32>() != std::mem::align_of(&x) {
+ 33 +     if std::mem::align_of::<i32>() != std::mem::align_of() {
+    |
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:37:8
+   |
+37 |     if *ax.load(Ordering::Relaxed) != 3 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^ can't be dereferenced
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:7:48
+    |
+  7 |             x if std::mem::size_of::<i32>() == std::mem::size_of(&x) && std::mem::align_of::<i32>() == std::mem::align_of(&x) => {
+    |                                                ^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&i32`
+...
+ 41 |     if TYPE_ID!(x) != 1 {
+    |        ----------- in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:7:104
+    |
+  7 |             x if std::mem::size_of::<i32>() == std::mem::size_of(&x) && std::mem::align_of::<i32>() == std::mem::align_of(&x) => {
+    |                                                                                                        ^^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&i32`
+...
+ 41 |     if TYPE_ID!(x) != 1 {
+    |        ----------- in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:14:48
+    |
+ 14 |             x if std::mem::size_of::<u32>() == std::mem::size_of(&x) && std::mem::align_of::<u32>() == std::mem::align_of(&x) => {
+    |                                                ^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&i32`
+...
+ 41 |     if TYPE_ID!(x) != 1 {
+    |        ----------- in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:14:104
+    |
+ 14 |             x if std::mem::size_of::<u32>() == std::mem::size_of(&x) && std::mem::align_of::<u32>() == std::mem::align_of(&x) => {
+    |                                                                                                        ^^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&i32`
+...
+ 41 |     if TYPE_ID!(x) != 1 {
+    |        ----------- in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:17:54
+    |
+ 17 |             x if std::mem::size_of::<AtomicI32>() == std::mem::size_of(&x) && std::mem::align_of::<AtomicI32>() == std::mem::align_of(&x) => {
+    |                                                      ^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&i32`
+...
+ 41 |     if TYPE_ID!(x) != 1 {
+    |        ----------- in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:17:116
+    |
+ 17 |             x if std::mem::size_of::<AtomicI32>() == std::mem::size_of(&x) && std::mem::align_of::<AtomicI32>() == std::mem::align_of(&x) => {
+    |                                                                                                                    ^^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&i32`
+...
+ 41 |     if TYPE_ID!(x) != 1 {
+    |        ----------- in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:7:48
+    |
+  7 |             x if std::mem::size_of::<i32>() == std::mem::size_of(&x) && std::mem::align_of::<i32>() == std::mem::align_of(&x) => {
+    |                                                ^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&AtomicI32`
+...
+ 44 |     if TYPE_ID!(ax) != 3 {
+    |        ------------ in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:7:104
+    |
+  7 |             x if std::mem::size_of::<i32>() == std::mem::size_of(&x) && std::mem::align_of::<i32>() == std::mem::align_of(&x) => {
+    |                                                                                                        ^^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&AtomicI32`
+...
+ 44 |     if TYPE_ID!(ax) != 3 {
+    |        ------------ in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:14:48
+    |
+ 14 |             x if std::mem::size_of::<u32>() == std::mem::size_of(&x) && std::mem::align_of::<u32>() == std::mem::align_of(&x) => {
+    |                                                ^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&AtomicI32`
+...
+ 44 |     if TYPE_ID!(ax) != 3 {
+    |        ------------ in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:14:104
+    |
+ 14 |             x if std::mem::size_of::<u32>() == std::mem::size_of(&x) && std::mem::align_of::<u32>() == std::mem::align_of(&x) => {
+    |                                                                                                        ^^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&AtomicI32`
+...
+ 44 |     if TYPE_ID!(ax) != 3 {
+    |        ------------ in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:17:54
+    |
+ 17 |             x if std::mem::size_of::<AtomicI32>() == std::mem::size_of(&x) && std::mem::align_of::<AtomicI32>() == std::mem::align_of(&x) => {
+    |                                                      ^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&AtomicI32`
+...
+ 44 |     if TYPE_ID!(ax) != 3 {
+    |        ------------ in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:17:116
+    |
+ 17 |             x if std::mem::size_of::<AtomicI32>() == std::mem::size_of(&x) && std::mem::align_of::<AtomicI32>() == std::mem::align_of(&x) => {
+    |                                                                                                                    ^^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&AtomicI32`
+...
+ 44 |     if TYPE_ID!(ax) != 3 {
+    |        ------------ in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:7:48
+    |
+  7 |             x if std::mem::size_of::<i32>() == std::mem::size_of(&x) && std::mem::align_of::<i32>() == std::mem::align_of(&x) => {
+    |                                                ^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&i32`
+...
+ 48 |     if TYPE_ID!(cx) != 1 {
+    |        ------------ in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:7:104
+    |
+  7 |             x if std::mem::size_of::<i32>() == std::mem::size_of(&x) && std::mem::align_of::<i32>() == std::mem::align_of(&x) => {
+    |                                                                                                        ^^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&i32`
+...
+ 48 |     if TYPE_ID!(cx) != 1 {
+    |        ------------ in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:14:48
+    |
+ 14 |             x if std::mem::size_of::<u32>() == std::mem::size_of(&x) && std::mem::align_of::<u32>() == std::mem::align_of(&x) => {
+    |                                                ^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&i32`
+...
+ 48 |     if TYPE_ID!(cx) != 1 {
+    |        ------------ in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:14:104
+    |
+ 14 |             x if std::mem::size_of::<u32>() == std::mem::size_of(&x) && std::mem::align_of::<u32>() == std::mem::align_of(&x) => {
+    |                                                                                                        ^^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&i32`
+...
+ 48 |     if TYPE_ID!(cx) != 1 {
+    |        ------------ in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:17:54
+    |
+ 17 |             x if std::mem::size_of::<AtomicI32>() == std::mem::size_of(&x) && std::mem::align_of::<AtomicI32>() == std::mem::align_of(&x) => {
+    |                                                      ^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&i32`
+...
+ 48 |     if TYPE_ID!(cx) != 1 {
+    |        ------------ in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:17:116
+    |
+ 17 |             x if std::mem::size_of::<AtomicI32>() == std::mem::size_of(&x) && std::mem::align_of::<AtomicI32>() == std::mem::align_of(&x) => {
+    |                                                                                                                    ^^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&i32`
+...
+ 48 |     if TYPE_ID!(cx) != 1 {
+    |        ------------ in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:7:48
+    |
+  7 |             x if std::mem::size_of::<i32>() == std::mem::size_of(&x) && std::mem::align_of::<i32>() == std::mem::align_of(&x) => {
+    |                                                ^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&AtomicI32`
+...
+ 51 |     if TYPE_ID!(ax) != 1 {
+    |        ------------ in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:7:104
+    |
+  7 |             x if std::mem::size_of::<i32>() == std::mem::size_of(&x) && std::mem::align_of::<i32>() == std::mem::align_of(&x) => {
+    |                                                                                                        ^^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&AtomicI32`
+...
+ 51 |     if TYPE_ID!(ax) != 1 {
+    |        ------------ in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:14:48
+    |
+ 14 |             x if std::mem::size_of::<u32>() == std::mem::size_of(&x) && std::mem::align_of::<u32>() == std::mem::align_of(&x) => {
+    |                                                ^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&AtomicI32`
+...
+ 51 |     if TYPE_ID!(ax) != 1 {
+    |        ------------ in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:14:104
+    |
+ 14 |             x if std::mem::size_of::<u32>() == std::mem::size_of(&x) && std::mem::align_of::<u32>() == std::mem::align_of(&x) => {
+    |                                                                                                        ^^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&AtomicI32`
+...
+ 51 |     if TYPE_ID!(ax) != 1 {
+    |        ------------ in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:17:54
+    |
+ 17 |             x if std::mem::size_of::<AtomicI32>() == std::mem::size_of(&x) && std::mem::align_of::<AtomicI32>() == std::mem::align_of(&x) => {
+    |                                                      ^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&AtomicI32`
+...
+ 51 |     if TYPE_ID!(ax) != 1 {
+    |        ------------ in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:17:116
+    |
+ 17 |             x if std::mem::size_of::<AtomicI32>() == std::mem::size_of(&x) && std::mem::align_of::<AtomicI32>() == std::mem::align_of(&x) => {
+    |                                                                                                                    ^^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&AtomicI32`
+...
+ 51 |     if TYPE_ID!(ax) != 1 {
+    |        ------------ in this macro invocation
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+    = note: this error originates in the macro `TYPE_ID` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c2/sample_001/target.rs:78:5
+   |
+25 | fn main() {
+   |          - expected `()` because of default return type
+...
+78 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 29 previous errors
+
+Some errors have detailed explanations: E0061, E0308, E0614.
+For more information about an error, try `rustc --explain E0061`.

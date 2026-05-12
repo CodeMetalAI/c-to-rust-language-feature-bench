@@ -1,0 +1,35 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/addr_indr_c3/sample_002/target.rs:25:6
+   |
+25 |   if unsafe { *a.as_ptr().offset(1) }!= 20 {
+   |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/addr_indr_c3/sample_002/target.rs:15:45
+   |
+15 |   if std::ptr::addr_of!(a[0]) as *const _!= a.as_ptr().offset(0) {
+   |                                             ^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/addr_indr_c3/sample_002/target.rs:18:45
+   |
+18 |   if std::ptr::addr_of!(a[1]) as *const _!= a.as_ptr().offset(1) {
+   |                                             ^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/addr_indr_c3/sample_002/target.rs:21:45
+   |
+21 |   if std::ptr::addr_of!(a[2]) as *const _!= a.as_ptr().offset(2) {
+   |                                             ^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

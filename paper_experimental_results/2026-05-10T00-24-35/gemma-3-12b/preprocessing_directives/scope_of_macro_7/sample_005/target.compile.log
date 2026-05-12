@@ -1,0 +1,56 @@
+error: defining functions with C-variadic arguments is only allowed for free functions with the "C" or "C-unwind" calling convention
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_005/target.rs:37:65
+   |
+37 | fn report<T: Into<bool>, S: AsRef<str>>(test: T, format_str: S, args: ...) -> usize {
+   |                                                                 ^^^^^^^^^
+
+error[E0425]: cannot find function `try_concat` in module `std::vec`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_005/target.rs:40:41
+   |
+40 |     let args_vec: Vec<&str> = std::vec::try_concat(std::vec![s]).unwrap_or_default();
+   |                                         ^^^^^^^^^^ not found in `std::vec`
+
+error[E0658]: C-variadic functions are unstable
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_005/target.rs:37:1
+   |
+37 | / fn report<T: Into<bool>, S: AsRef<str>>(test: T, format_str: S, args: ...) -> usize {
+38 | |     let test_result = test.into();
+39 | |     let s = format_str.as_ref();
+40 | |     let args_vec: Vec<&str> = std::vec::try_concat(std::vec![s]).unwrap_or_default();
+41 | |     args_vec.len()
+42 | | }
+   | |_^
+   |
+   = note: see issue #44930 <https://github.com/rust-lang/rust/issues/44930> for more information
+   = help: add `#![feature(c_variadic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0061]: this function takes 1 argument but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_005/target.rs:8:8
+   |
+ 8 |     if debug("X = %d\n", x) != 2 {
+   |        ^^^^^             - unexpected argument #2 of type `{integer}`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_005/target.rs:27:4
+   |
+27 | fn debug<S: AsRef<str>>(format_str: S) -> usize {
+   |    ^^^^^
+help: remove the extra argument
+   |
+ 8 -     if debug("X = %d\n", x) != 2 {
+ 8 +     if debug("X = %d\n") != 2 {
+   |
+
+warning: unused variable: `i`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_005/target.rs:48:10
+   |
+48 |     for (i, (char_a, char_b)) in a.chars().zip(b.chars()).enumerate() {
+   |          ^ help: if this is intentional, prefix it with an underscore: `_i`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 4 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0061, E0425, E0658.
+For more information about an error, try `rustc --explain E0061`.

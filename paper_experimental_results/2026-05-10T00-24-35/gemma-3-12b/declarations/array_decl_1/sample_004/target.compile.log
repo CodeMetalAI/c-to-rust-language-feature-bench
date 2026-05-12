@@ -1,0 +1,230 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:12:9
+   |
+12 |         unsafe { FA[i] = (i as f32) + 1.0; }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:18:9
+   |
+18 | /         unsafe {
+19 | |             BACKING[i] = (100 + i as f32);
+20 | |             AFP[i] = &BACKING[i];
+21 | |         }
+   | |_________^
+
+warning: unnecessary parentheses around assigned value
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:19:26
+   |
+19 |             BACKING[i] = (100 + i as f32);
+   |                          ^              ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+19 -             BACKING[i] = (100 + i as f32);
+19 +             BACKING[i] = 100 + i as f32;
+   |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:27:5
+   |
+27 |     unsafe { CALLS += 1; }
+   |     ^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:39:9
+   |
+39 |         unsafe { s += (*p.add(i)) as i32; }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:49:9
+   |
+49 |         unsafe { s += (**pp.add(i)) as i32; }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:64:5
+    |
+ 64 | /     unsafe {
+ 65 | |         if FA[0] != 1.0 || FA[10] != 11.0 {
+ 66 | |             return 1;
+...   |
+116 | |     }
+    | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:61:14
+   |
+61 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0277]: cannot add `f32` to `{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:19:31
+   |
+19 |             BACKING[i] = (100 + i as f32);
+   |                               ^ no implementation for `{integer} + f32`
+   |
+   = help: the trait `Add<f32>` is not implemented for `{integer}`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&f128` implements `Add<f128>`
+             `&f128` implements `Add`
+             `&f16` implements `Add<f16>`
+             `&f16` implements `Add`
+             `&f32` implements `Add<f32>`
+             `&f32` implements `Add`
+             `&f64` implements `Add<f64>`
+             `&f64` implements `Add`
+           and 56 others
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:76:53
+    |
+ 76 |         let mut vla1: Vec<f32> = Vec::with_capacity(n1);
+    |                                  ------------------ ^^ expected `usize`, found `i32`
+    |                                  |
+    |                                  arguments to this function are incorrect
+    |
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:519:12
+    |
+519 |     pub fn with_capacity(capacity: usize) -> Self {
+    |            ^^^^^^^^^^^^^
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+    |
+ 76 |         let mut vla1: Vec<f32> = Vec::with_capacity(n1.try_into().unwrap());
+    |                                                       ++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:77:60
+    |
+ 77 |         let mut vla2: Vec<*const f32> = Vec::with_capacity(n2);
+    |                                         ------------------ ^^ expected `usize`, found `i32`
+    |                                         |
+    |                                         arguments to this function are incorrect
+    |
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:519:12
+    |
+519 |     pub fn with_capacity(capacity: usize) -> Self {
+    |            ^^^^^^^^^^^^^
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+    |
+ 77 |         let mut vla2: Vec<*const f32> = Vec::with_capacity(n2.try_into().unwrap());
+    |                                                              ++++++++++++++++++++
+
+error[E0277]: the type `[f32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:81:26
+   |
+81 |             vla1.push(FA[i] * 2.0);
+   |                          ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[f32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[f32]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[f32; 11]` to implement `Index<i32>`
+
+error[E0277]: the type `[*const f32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:87:27
+   |
+87 |             vla2.push(AFP[i]);
+   |                           ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[*const f32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[*const f32]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[*const f32; 17]` to implement `Index<i32>`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:100:47
+    |
+100 |         if sum_ints_from_float(vla1.as_ptr(), n1) !=
+    |            -------------------                ^^ expected `usize`, found `i32`
+    |            |
+    |            arguments to this function are incorrect
+    |
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:35:4
+    |
+ 35 | fn sum_ints_from_float(p: *const f32, n: usize) -> i32 {
+    |    ^^^^^^^^^^^^^^^^^^^                --------
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+    |
+100 |         if sum_ints_from_float(vla1.as_ptr(), n1.try_into().unwrap()) !=
+    |                                                 ++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:105:44
+    |
+105 |         if sum_pointed_ints(vla2.as_ptr(), n2) !=
+    |            ----------------                ^^ expected `usize`, found `i32`
+    |            |
+    |            arguments to this function are incorrect
+    |
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:45:4
+    |
+ 45 | fn sum_pointed_ints(pp: *const *const f32, n: usize) -> i32 {
+    |    ^^^^^^^^^^^^^^^^                        --------
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+    |
+105 |         if sum_pointed_ints(vla2.as_ptr(), n2.try_into().unwrap()) !=
+    |                                              ++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:111:12
+    |
+111 |         if takes_params(&vla1, &vla2) !=
+    |            ^^^^^^^^^^^^
+    |
+note: expected `&[f32; 11]`, found `&Vec<f32>`
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:111:25
+    |
+111 |         if takes_params(&vla1, &vla2) !=
+    |                         ^^^^^
+    = note: expected reference `&[f32; 11]`
+               found reference `&Vec<f32>`
+note: expected `&[*const f32; 17]`, found `&Vec<*const f32>`
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:111:32
+    |
+111 |         if takes_params(&vla1, &vla2) !=
+    |                                ^^^^^
+    = note: expected reference `&[*const f32; 17]`
+               found reference `&Vec<*const f32>`
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:55:4
+    |
+ 55 | fn takes_params(a: &[f32; 11], afp2: &[*const f32; 17]) -> i32 {
+    |    ^^^^^^^^^^^^ -------------  -----------------------
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:57:14
+   |
+57 |     let s2 = (*afp2[0]) as i32 + (*afp2[16]) as i32;
+   |              ^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_1/sample_004/target.rs:57:34
+   |
+57 |     let s2 = (*afp2[0]) as i32 + (*afp2[16]) as i32;
+   |                                  ^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error: aborting due to 17 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0133, E0277, E0308.
+For more information about an error, try `rustc --explain E0133`.

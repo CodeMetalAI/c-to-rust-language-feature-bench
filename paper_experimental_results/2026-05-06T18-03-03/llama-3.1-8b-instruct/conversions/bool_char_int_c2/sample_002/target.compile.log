@@ -1,0 +1,87 @@
+error[E0425]: cannot find function `type_id_of` in module `std::any`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_002/target.rs:2:21
+  |
+2 |     match std::any::type_id_of::<T>() {
+  |                     ^^^^^^^^^^ not found in `std::any`
+
+error[E0412]: cannot find type `f80` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_002/target.rs:58:28
+   |
+58 |     if type_id(1.0e3f80 as f80) != 9 {
+   |                            ^^^ not found in this scope
+
+error: invalid width `80` for float literal
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_002/target.rs:58:16
+   |
+58 |     if type_id(1.0e3f80 as f80) != 9 {
+   |                ^^^^^^^^
+   |
+   = help: valid widths are 32 and 64
+
+error[E0599]: no associated item named `Int` found for struct `TypeId` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_002/target.rs:3:27
+  |
+3 |         std::any::TypeId::Int => 1,
+  |                           ^^^ associated item not found in `TypeId`
+
+error[E0599]: no associated item named `Uint` found for struct `TypeId` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_002/target.rs:4:27
+  |
+4 |         std::any::TypeId::Uint => 2,
+  |                           ^^^^ associated item not found in `TypeId`
+
+error[E0599]: no associated item named `Long` found for struct `TypeId` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_002/target.rs:5:27
+  |
+5 |         std::any::TypeId::Long => 3,
+  |                           ^^^^ associated item not found in `TypeId`
+
+error[E0599]: no associated item named `Ulong` found for struct `TypeId` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_002/target.rs:6:27
+  |
+6 |         std::any::TypeId::Ulong => 4,
+  |                           ^^^^^ associated item not found in `TypeId`
+
+error[E0599]: no associated item named `Longlong` found for struct `TypeId` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_002/target.rs:7:27
+  |
+7 |         std::any::TypeId::Longlong => 5,
+  |                           ^^^^^^^^ associated item not found in `TypeId`
+
+error[E0599]: no associated item named `Ulonglong` found for struct `TypeId` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_002/target.rs:8:27
+  |
+8 |         std::any::TypeId::Ulonglong => 6,
+  |                           ^^^^^^^^^ associated item not found in `TypeId`
+
+error[E0599]: no associated item named `Float` found for struct `TypeId` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_002/target.rs:9:27
+  |
+9 |         std::any::TypeId::Float => 7,
+  |                           ^^^^^ associated item not found in `TypeId`
+
+error[E0599]: no associated item named `Double` found for struct `TypeId` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_002/target.rs:10:27
+   |
+10 |         std::any::TypeId::Double => 8,
+   |                           ^^^^^^ associated item not found in `TypeId`
+
+error[E0599]: no associated item named `Longdouble` found for struct `TypeId` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_002/target.rs:11:27
+   |
+11 |         std::any::TypeId::Longdouble => 9,
+   |                           ^^^^^^^^^^ associated item not found in `TypeId`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_002/target.rs:24:16
+   |
+22 | fn main() {
+   |          - expected `()` because of default return type
+23 |     if type_id((1i8 + 0) as u8) != 1 {
+24 |         return 1;
+   |                ^ expected `()`, found integer
+
+error: aborting due to 13 previous errors
+
+Some errors have detailed explanations: E0308, E0412, E0425, E0599.
+For more information about an error, try `rustc --explain E0308`.

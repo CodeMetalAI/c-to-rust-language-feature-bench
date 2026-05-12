@@ -1,0 +1,122 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:5:9
+  |
+5 |         unsafe { CALLS += 1; }
+  |         ^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:19:13
+   |
+19 |             unsafe { FA[i] = (i as f32) + 1.0; }
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:22:13
+   |
+22 |             unsafe { BACKING[i] = (100.0 + i as f32); }
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unnecessary parentheses around assigned value
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:22:35
+   |
+22 |             unsafe { BACKING[i] = (100.0 + i as f32); }
+   |                                   ^                ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+22 -             unsafe { BACKING[i] = (100.0 + i as f32); }
+22 +             unsafe { BACKING[i] = 100.0 + i as f32; }
+   |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:23:13
+   |
+23 |             unsafe { AFP[i] = &mut BACKING[i] as *mut f32; }
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:38:13
+   |
+38 |             unsafe { s += *pp[i] as i32; }
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:44:42
+   |
+44 |         (a[0] as i32) + (a[10] as i32) + unsafe { *afp2[0] as i32 } + unsafe { *afp2[16] as i32 }
+   |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:44:71
+   |
+44 |         (a[0] as i32) + (a[10] as i32) + unsafe { *afp2[0] as i32 } + unsafe { *afp2[16] as i32 }
+   |                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:49:8
+   |
+49 |     if unsafe { FA[0] }!= 1.0 || unsafe { FA[10] }!= 11.0 {
+   |        ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:49:34
+   |
+49 |     if unsafe { FA[0] }!= 1.0 || unsafe { FA[10] }!= 11.0 {
+   |                                  ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:53:8
+   |
+53 |     if unsafe { *AFP[0] } as i32!= 100 || unsafe { *AFP[16] } as i32!= 116 {
+   |        ^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:53:43
+   |
+53 |     if unsafe { *AFP[0] } as i32!= 100 || unsafe { *AFP[16] } as i32!= 116 {
+   |                                           ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:64:28
+   |
+64 |         vla1[i as usize] = unsafe { FA[i as usize] } * 2.0;
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:68:28
+   |
+68 |         vla2[i as usize] = unsafe { AFP[i as usize] };
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:71:8
+   |
+71 |     if unsafe { CALLS }!= 2 {
+   |        ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:92:51
+   |
+92 |        != ((vla1[0] as i32) + (vla1[10] as i32) + unsafe { *vla2[0] as i32 } + unsafe { *vla2[16] as i32 })
+   |                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:92:80
+   |
+92 |        != ((vla1[0] as i32) + (vla1[10] as i32) + unsafe { *vla2[0] as i32 } + unsafe { *vla2[16] as i32 })
+   |                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:75:16
+   |
+75 |     let span = (vla1.as_ptr() as *const u8).offset((n1 - 1) as isize) as usize
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: aborting due to 17 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0133`.

@@ -1,0 +1,56 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_OR_op_c4/sample_005/target.rs:3:5
+  |
+3 | /     unsafe {
+4 | |         G = gval;
+5 | |         ret
+6 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_OR_op_c4/sample_005/target.rs:12:5
+   |
+12 | /     unsafe {
+13 | |         set_g_return(0, 0);
+14 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_OR_op_c4/sample_005/target.rs:15:9
+   |
+15 |     if!(unsafe { set_g_return(1, 0) }!= 0 || (unsafe { set_g_return(0, 0) } == 1)) {
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_OR_op_c4/sample_005/target.rs:15:47
+   |
+15 |     if!(unsafe { set_g_return(1, 0) }!= 0 || (unsafe { set_g_return(0, 0) } == 1)) {
+   |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_OR_op_c4/sample_005/target.rs:19:5
+   |
+19 | /     unsafe {
+20 | |         set_g_return(0, 0);
+21 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_OR_op_c4/sample_005/target.rs:22:9
+   |
+22 |     if (unsafe { set_g_return(0, 1) }!= 0 || (y += 1)!= 0) {
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_OR_op_c4/sample_005/target.rs:22:57
+   |
+22 |     if (unsafe { set_g_return(0, 1) }!= 0 || (y += 1)!= 0) {
+   |                                              --------   ^ expected `()`, found integer
+   |                                              |
+   |                                              expected because this is `()`
+
+error: aborting due to 7 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

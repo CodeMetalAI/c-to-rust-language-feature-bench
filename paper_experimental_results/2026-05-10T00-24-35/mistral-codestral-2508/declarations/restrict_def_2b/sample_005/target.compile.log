@@ -1,0 +1,108 @@
+error[E0499]: cannot borrow `*d` as mutable more than once at a time
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_2b/sample_005/target.rs:64:5
+   |
+64 |     call_f_checked(d, 100, 50, &mut d[50..100], &d[0..50]);
+   |     --------------^^^^^^^^^^^^^^^^^^-^^^^^^^^^^^^^^^^^^^^^
+   |     |                               |
+   |     |                               first mutable borrow occurs here
+   |     second mutable borrow occurs here
+   |     first borrow later used by call
+
+error[E0499]: cannot borrow `*d` as mutable more than once at a time
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_2b/sample_005/target.rs:64:37
+   |
+64 |     call_f_checked(d, 100, 50, &mut d[50..100], &d[0..50]);
+   |     -------------- -                ^ second mutable borrow occurs here
+   |     |              |
+   |     |              first mutable borrow occurs here
+   |     first borrow later used by call
+   |
+help: try adding a local storing this argument...
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_2b/sample_005/target.rs:64:38
+   |
+64 |     call_f_checked(d, 100, 50, &mut d[50..100], &d[0..50]);
+   |                                      ^^^^^^^^^
+help: ...and then using that local as the argument to this call
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_2b/sample_005/target.rs:64:5
+   |
+64 |     call_f_checked(d, 100, 50, &mut d[50..100], &d[0..50]);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0502]: cannot borrow `*d` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_2b/sample_005/target.rs:64:50
+   |
+64 |     call_f_checked(d, 100, 50, &mut d[50..100], &d[0..50]);
+   |     --------------                  -            ^ immutable borrow occurs here
+   |     |                               |
+   |     |                               mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0499]: cannot borrow `*d` as mutable more than once at a time
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_2b/sample_005/target.rs:65:5
+   |
+65 |     call_f_checked(d, 100, 50, &mut d[1..51], &d[0..50]);
+   |     --------------^^^^^^^^^^^^^^^^^^-^^^^^^^^^^^^^^^^^^^
+   |     |                               |
+   |     |                               first mutable borrow occurs here
+   |     second mutable borrow occurs here
+   |     first borrow later used by call
+
+error[E0499]: cannot borrow `*d` as mutable more than once at a time
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_2b/sample_005/target.rs:65:37
+   |
+65 |     call_f_checked(d, 100, 50, &mut d[1..51], &d[0..50]);
+   |     -------------- -                ^ second mutable borrow occurs here
+   |     |              |
+   |     |              first mutable borrow occurs here
+   |     first borrow later used by call
+   |
+help: try adding a local storing this argument...
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_2b/sample_005/target.rs:65:38
+   |
+65 |     call_f_checked(d, 100, 50, &mut d[1..51], &d[0..50]);
+   |                                      ^^^^^^^
+help: ...and then using that local as the argument to this call
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_2b/sample_005/target.rs:65:5
+   |
+65 |     call_f_checked(d, 100, 50, &mut d[1..51], &d[0..50]);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0502]: cannot borrow `*d` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_2b/sample_005/target.rs:65:48
+   |
+65 |     call_f_checked(d, 100, 50, &mut d[1..51], &d[0..50]);
+   |     --------------                  -          ^ immutable borrow occurs here
+   |     |                               |
+   |     |                               mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_2b/sample_005/target.rs:75:42
+   |
+75 |     safe_move(50, &mut expect[50..100], &expect[0..50]);
+   |     ---------          ------            ^^^^^^ immutable borrow occurs here
+   |     |                  |
+   |     |                  mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_2b/sample_005/target.rs:76:40
+   |
+76 |     safe_move(50, &mut expect[1..51], &expect[0..50]);
+   |     ---------          ------          ^^^^^^ immutable borrow occurs here
+   |     |                  |
+   |     |                  mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0499, E0502.
+For more information about an error, try `rustc --explain E0499`.

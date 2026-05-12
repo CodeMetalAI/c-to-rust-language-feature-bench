@@ -1,0 +1,268 @@
+error[E0277]: the type `[i32]` cannot be indexed by `std::ops::Range<i32>`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:34:23
+   |
+34 |         f(n, &mut buf[0..n], &buf[off..off + n]);
+   |                       ^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `std::ops::Range<i32>`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `std::ops::Range<usize>` implements `SliceIndex<ByteStr>`
+             `std::ops::Range<usize>` implements `SliceIndex<[T]>`
+             `std::ops::Range<usize>` implements `SliceIndex<str>`
+   = note: required for `[i32]` to implement `Index<std::ops::Range<i32>>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[i32; 20]` to implement `Index<std::ops::Range<i32>>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:34:46
+   |
+34 |         f(n, &mut buf[0..n], &buf[off..off + n]);
+   |                                              ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:34:44
+   |
+34 |         f(n, &mut buf[0..n], &buf[off..off + n]);
+   |                                            ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0277]: the type `[i32]` cannot be indexed by `std::ops::Range<i32>`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:36:33
+   |
+36 |         if !check_range_eq(&buf[0..n], &snapshot[off..off + n], n) {
+   |                                 ^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `std::ops::Range<i32>`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `std::ops::Range<usize>` implements `SliceIndex<ByteStr>`
+             `std::ops::Range<usize>` implements `SliceIndex<[T]>`
+             `std::ops::Range<usize>` implements `SliceIndex<str>`
+   = note: required for `[i32]` to implement `Index<std::ops::Range<i32>>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[i32; 20]` to implement `Index<std::ops::Range<i32>>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:36:61
+   |
+36 |         if !check_range_eq(&buf[0..n], &snapshot[off..off + n], n) {
+   |                                                             ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:36:59
+   |
+36 |         if !check_range_eq(&buf[0..n], &snapshot[off..off + n], n) {
+   |                                                           ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:36:65
+   |
+36 |         if !check_range_eq(&buf[0..n], &snapshot[off..off + n], n) {
+   |             --------------                                      ^ expected `usize`, found `i32`
+   |             |
+   |             arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:12:4
+   |
+12 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^                       --------
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+36 |         if !check_range_eq(&buf[0..n], &snapshot[off..off + n], n.try_into().unwrap()) {
+   |                                                                  ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:40:44
+   |
+40 |         if !check_range_eq(&buf[off..off + n], &snapshot[off..off + n], n) {
+   |                                            ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:40:42
+   |
+40 |         if !check_range_eq(&buf[off..off + n], &snapshot[off..off + n], n) {
+   |                                          ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:40:69
+   |
+40 |         if !check_range_eq(&buf[off..off + n], &snapshot[off..off + n], n) {
+   |                                                                     ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:40:67
+   |
+40 |         if !check_range_eq(&buf[off..off + n], &snapshot[off..off + n], n) {
+   |                                                                   ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:40:73
+   |
+40 |         if !check_range_eq(&buf[off..off + n], &snapshot[off..off + n], n) {
+   |             -------------- arguments to this function are incorrect     ^ expected `usize`, found `i32`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:12:4
+   |
+12 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^                       --------
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+40 |         if !check_range_eq(&buf[off..off + n], &snapshot[off..off + n], n.try_into().unwrap()) {
+   |                                                                          ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:48:22
+   |
+48 |         if buf[off + n] != snapshot[off + n] {
+   |                      ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:48:20
+   |
+48 |         if buf[off + n] != snapshot[off + n] {
+   |                    ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:48:43
+   |
+48 |         if buf[off + n] != snapshot[off + n] {
+   |                                           ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:48:41
+   |
+48 |         if buf[off + n] != snapshot[off + n] {
+   |                                         ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:57:34
+   |
+57 |         f(n, &mut buf[off..off + n], &buf[0..n]);
+   |                                  ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:57:32
+   |
+57 |         f(n, &mut buf[off..off + n], &buf[0..n]);
+   |                                ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0277]: the type `[i32]` cannot be indexed by `std::ops::Range<i32>`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:57:43
+   |
+57 |         f(n, &mut buf[off..off + n], &buf[0..n]);
+   |                                           ^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `std::ops::Range<i32>`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `std::ops::Range<usize>` implements `SliceIndex<ByteStr>`
+             `std::ops::Range<usize>` implements `SliceIndex<[T]>`
+             `std::ops::Range<usize>` implements `SliceIndex<str>`
+   = note: required for `[i32]` to implement `Index<std::ops::Range<i32>>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[i32; 20]` to implement `Index<std::ops::Range<i32>>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:59:44
+   |
+59 |         if !check_range_eq(&buf[off..off + n], &buf[0..n], n) {
+   |                                            ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:59:42
+   |
+59 |         if !check_range_eq(&buf[off..off + n], &buf[0..n], n) {
+   |                                          ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0277]: the type `[i32]` cannot be indexed by `std::ops::Range<i32>`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:59:53
+   |
+59 |         if !check_range_eq(&buf[off..off + n], &buf[0..n], n) {
+   |                                                     ^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `std::ops::Range<i32>`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `std::ops::Range<usize>` implements `SliceIndex<ByteStr>`
+             `std::ops::Range<usize>` implements `SliceIndex<[T]>`
+             `std::ops::Range<usize>` implements `SliceIndex<str>`
+   = note: required for `[i32]` to implement `Index<std::ops::Range<i32>>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[i32; 20]` to implement `Index<std::ops::Range<i32>>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:59:60
+   |
+59 |         if !check_range_eq(&buf[off..off + n], &buf[0..n], n) {
+   |             --------------                                 ^ expected `usize`, found `i32`
+   |             |
+   |             arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_001/target.rs:12:4
+   |
+12 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^                       --------
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+59 |         if !check_range_eq(&buf[off..off + n], &buf[0..n], n.try_into().unwrap()) {
+   |                                                             ++++++++++++++++++++
+
+error: aborting due to 23 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

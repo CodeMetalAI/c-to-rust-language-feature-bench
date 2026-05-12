@@ -1,0 +1,57 @@
+error[E0428]: the name `AlignCheck` is defined multiple times
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/c11-align-6/sample_002/target.rs:5:13
+   |
+ 5 |             struct AlignCheck {
+   |             ^^^^^^^^^^^^^^^^^
+   |             |
+   |             `AlignCheck` redefined here
+   |             previous definition of the type `AlignCheck` here
+...
+16 |     check_align!(bool);
+   |     ------------------ in this macro invocation
+   |
+   = note: `AlignCheck` must be defined only once in the type namespace of this block
+   = note: this error originates in the macro `check_align` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: the type `f128` is unstable
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/c11-align-6/sample_002/target.rs:29:18
+   |
+29 |     check_align!(f128); // Note: f128 is not a standard type in Rust, but included for completeness
+   |                  ^^^^
+   |
+   = note: see issue #116909 <https://github.com/rust-lang/rust/issues/116909> for more information
+   = help: add `#![feature(f128)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: the type `f128` is unstable
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/c11-align-6/sample_002/target.rs:32:36
+   |
+32 |     check_align!(std::num::Complex<f128>); // Note: f128 is not a standard type in Rust, but included for completeness
+   |                                    ^^^^
+   |
+   = note: see issue #116909 <https://github.com/rust-lang/rust/issues/116909> for more information
+   = help: add `#![feature(f128)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0412]: cannot find type `Complex` in module `std::num`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/c11-align-6/sample_002/target.rs:30:28
+   |
+30 |     check_align!(std::num::Complex<f32>);
+   |                            ^^^^^^^ not found in `std::num`
+
+error[E0412]: cannot find type `Complex` in module `std::num`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/c11-align-6/sample_002/target.rs:31:28
+   |
+31 |     check_align!(std::num::Complex<f64>);
+   |                            ^^^^^^^ not found in `std::num`
+
+error[E0412]: cannot find type `Complex` in module `std::num`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/c11-align-6/sample_002/target.rs:32:28
+   |
+32 |     check_align!(std::num::Complex<f128>); // Note: f128 is not a standard type in Rust, but included for completeness
+   |                            ^^^^^^^ not found in `std::num`
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0412, E0428, E0658.
+For more information about an error, try `rustc --explain E0412`.

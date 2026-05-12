@@ -1,0 +1,63 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c8/sample_004/target.rs:13:25
+   |
+13 |     let v1: *const () = unsafe { std::mem::transmute(p_int) };
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c8/sample_004/target.rs:14:25
+   |
+14 |     let v2: *const () = unsafe { std::mem::transmute(p_double) };
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c8/sample_004/target.rs:16:37
+   |
+16 |     let p_double2: fn(f64) -> f64 = unsafe { std::mem::transmute(v1) };
+   |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c8/sample_004/target.rs:17:34
+   |
+17 |     let p_int2: fn(i32) -> i32 = unsafe { std::mem::transmute(v2) };
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c8/sample_004/target.rs:19:26
+   |
+19 |     let v1b: *const () = unsafe { std::mem::transmute(p_double2) };
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c8/sample_004/target.rs:20:26
+   |
+20 |     let v2b: *const () = unsafe { std::mem::transmute(p_int2) };
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c8/sample_004/target.rs:29:34
+   |
+29 |     let p_int3: fn(i32) -> i32 = unsafe { std::mem::transmute(v1b) };
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c8/sample_004/target.rs:30:37
+   |
+30 |     let p_double3: fn(f64) -> f64 = unsafe { std::mem::transmute(v2b) };
+   |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c8/sample_004/target.rs:32:8
+   |
+32 |     if unsafe { std::mem::transmute::<_, *const ()>(p_int3) } != v1 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c8/sample_004/target.rs:35:8
+   |
+35 |     if unsafe { std::mem::transmute::<_, *const ()>(p_double3) } != v2 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 10 previous errors

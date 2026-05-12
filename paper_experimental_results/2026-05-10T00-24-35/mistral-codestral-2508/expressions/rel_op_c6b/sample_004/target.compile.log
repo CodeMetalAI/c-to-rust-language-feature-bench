@@ -1,0 +1,40 @@
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/rel_op_c6b/sample_004/target.rs:16:15
+    |
+ 16 |     if !ps.eq(&px) {
+    |            -- ^^^ expected `&*const S`, found `&*const i32`
+    |            |
+    |            arguments to this method are incorrect
+    |
+    = note: expected reference `&*const S`
+               found reference `&*const i32`
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cmp.rs:256:8
+    |
+256 |     fn eq(&self, other: &Rhs) -> bool;
+    |        ^^
+
+error[E0277]: can't compare `{integer}` with `&{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/rel_op_c6b/sample_004/target.rs:23:17
+   |
+23 |     if !end1.eq(&end2) {
+   |              -- ^^^^^ no implementation for `{integer} == &{integer}`
+   |              |
+   |              required by a bound introduced by this call
+   |
+   = help: the trait `PartialEq<&{integer}>` is not implemented for `{integer}`
+   = help: the following other types implement trait `PartialEq<Rhs>`:
+             f128
+             f16
+             f32
+             f64
+             i128
+             i16
+             i32
+             i64
+           and 8 others
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

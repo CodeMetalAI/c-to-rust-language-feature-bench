@@ -1,0 +1,85 @@
+error: expected expression, found `;`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/fun_decl_5/sample_004/target.rs:1:47
+  |
+1 | fn maximum(n: usize, m: usize, a: &[[double]; ; m]) -> double {
+  |                                               ^ expected expression
+
+error: expected one of `,`, `]`, `if`, or `|`, found `;`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/fun_decl_5/sample_004/target.rs:21:36
+   |
+21 |     pf: fn(usize, usize, &[[double]; ; 6]) -> double,
+   |                                    ^ expected one of `,`, `]`, `if`, or `|`
+
+error: expected one of `!`, `&`, `(`, `-`, `...`, `..=`, `..`, `:`, `[`, `]`, `_`, `box`, `mut`, `ref`, `|`, identifier, or path, found `;`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/fun_decl_5/sample_004/target.rs:21:38
+   |
+21 |     pf: fn(usize, usize, &[[double]; ; 6]) -> double,
+   |                                      ^ expected one of 17 possible tokens
+
+error: expected expression, found `;`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/fun_decl_5/sample_004/target.rs:24:20
+   |
+24 |     a: &[[double]; ; m],
+   |                    ^ expected expression
+
+error: expected expression, found `;`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/fun_decl_5/sample_004/target.rs:26:30
+   |
+26 |     let p = a as &[[double]; ; 6];
+   |                              ^ expected expression
+
+error: expected expression, found `;`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/fun_decl_5/sample_004/target.rs:30:25
+   |
+30 | fn f(a: &mut [[double]; ; 5]) {
+   |                         ^ expected expression
+
+error: expected one of `.`, `?`, `]`, or an operator, found `;`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/fun_decl_5/sample_004/target.rs:43:30
+   |
+43 |     let mut mat: [[double]; 4; 6] = [[0.0; 6]; 4];
+   |                -             ^ expected one of `.`, `?`, `]`, or an operator
+   |                |
+   |                while parsing the type for the binding
+
+error[E0425]: cannot find value `a` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/fun_decl_5/sample_004/target.rs:2:18
+   |
+ 2 |     let mut mx = a[0][0];
+   |                  ^ help: a function with a similar name exists: `f`
+...
+30 | fn f(a: &mut [[double]; ; 5]) {
+   | ----------------------------- similarly named function `f` defined here
+
+error[E0425]: cannot find value `a` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/fun_decl_5/sample_004/target.rs:7:21
+   |
+ 7 |             let v = a[i][j];
+   |                     ^ help: a function with a similar name exists: `f`
+...
+30 | fn f(a: &mut [[double]; ; 5]) {
+   | ----------------------------- similarly named function `f` defined here
+
+error[E0425]: cannot find value `a` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/fun_decl_5/sample_004/target.rs:33:9
+   |
+33 |         a[i][0] += 1.0;
+   |         ^ not found in this scope
+
+error[E0425]: cannot find value `a` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/fun_decl_5/sample_004/target.rs:34:9
+   |
+34 |         a[i][4] += 1.0;
+   |         ^ not found in this scope
+
+warning: type `double` should have an upper camel case name
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/fun_decl_5/sample_004/target.rs:18:6
+   |
+18 | type double = f64;
+   |      ^^^^^^ help: convert the identifier to upper camel case: `Double`
+   |
+   = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: aborting due to 11 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0425`.

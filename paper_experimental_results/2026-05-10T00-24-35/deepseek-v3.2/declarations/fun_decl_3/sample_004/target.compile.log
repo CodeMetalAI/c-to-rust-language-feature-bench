@@ -1,0 +1,180 @@
+error: defining functions with C-variadic arguments is only allowed for free functions with the "C" or "C-unwind" calling convention
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/fun_decl_3/sample_004/target.rs:13:22
+   |
+13 | unsafe fn v0(x: i32, _: ...) -> i32 {
+   |                      ^^^^^^
+
+error: defining functions with C-variadic arguments is only allowed for free functions with the "C" or "C-unwind" calling convention
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/fun_decl_3/sample_004/target.rs:17:22
+   |
+17 | unsafe fn v1(x: i32, _: ...) -> i32 {
+   |                      ^^^^^^
+
+error[E0658]: C-variadic functions are unstable
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/fun_decl_3/sample_004/target.rs:13:1
+   |
+13 | / unsafe fn v0(x: i32, _: ...) -> i32 {
+14 | |     G_SEED + x + 1000
+15 | | }
+   | |_^
+   |
+   = note: see issue #44930 <https://github.com/rust-lang/rust/issues/44930> for more information
+   = help: add `#![feature(c_variadic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: C-variadic functions are unstable
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/fun_decl_3/sample_004/target.rs:17:1
+   |
+17 | / unsafe fn v1(x: i32, _: ...) -> i32 {
+18 | |     G_SEED + x - 2000
+19 | | }
+   | |_^
+   |
+   = note: see issue #44930 <https://github.com/rust-lang/rust/issues/44930> for more information
+   = help: add `#![feature(c_variadic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+warning: unused import: `std::arch::asm`
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/fun_decl_3/sample_004/target.rs:1:5
+  |
+1 | use std::arch::asm;
+  |     ^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: declaration of an `unsafe` function
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/fun_decl_3/sample_004/target.rs:5:1
+  |
+5 | / unsafe fn cb0(x: i64) -> i32 {
+6 | |     (x ^ 0x13579) as i32 + 7
+7 | | }
+  | |_^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/fun_decl_3/sample_004/target.rs:9:1
+   |
+ 9 | / unsafe fn cb1(x: i64) -> i32 {
+10 | |     (x * 3) as i32 - 11
+11 | | }
+   | |_^
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/fun_decl_3/sample_004/target.rs:13:1
+   |
+13 | / unsafe fn v0(x: i32, _: ...) -> i32 {
+14 | |     G_SEED + x + 1000
+15 | | }
+   | |_^
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/fun_decl_3/sample_004/target.rs:17:1
+   |
+17 | / unsafe fn v1(x: i32, _: ...) -> i32 {
+18 | |     G_SEED + x - 2000
+19 | | }
+   | |_^
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/fun_decl_3/sample_004/target.rs:24:1
+   |
+24 | / unsafe fn fpfi(pf: Fpfi, k: i32) -> Vf {
+25 | |     let t = k as i64 * 97 + 1234;
+26 | |     G_SEED = pf(t) + k;
+27 | |     if (G_SEED & 1) == 0 {
+...  |
+32 | | }
+   | |_^
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/fun_decl_3/sample_004/target.rs:34:1
+   |
+34 | / unsafe fn call_through(pf: Vf, x: i32) -> i32 {
+35 | |     let r1 = pf(x);
+36 | |     let r2 = pf(x, 1, 2, 3);
+37 | |     let r3 = pf(x, 1.25f64, pf as *const (), 0x1122334455667788i64);
+38 | |     r1 ^ (r2 + 5) ^ (r3 + 9)
+39 | | }
+   | |_^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/fun_decl_3/sample_004/target.rs:42:5
+    |
+ 42 | /     unsafe {
+ 43 | |         let mut vf: Vf;
+ 44 | |
+ 45 | |         vf = fpfi(cb0, 17);
+...   |
+101 | |         0
+102 | |     }
+    | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/fun_decl_3/sample_004/target.rs:41:14
+   |
+41 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/fun_decl_3/sample_004/target.rs:28:9
+   |
+24 | unsafe fn fpfi(pf: Fpfi, k: i32) -> Vf {
+   |                                     -- expected `unsafe extern "C" fn(i32, ...) -> i32` because of return type
+...
+28 |         v0
+   |         ^^ expected "C" fn, found "Rust" fn
+   |
+   = note: expected fn pointer `unsafe extern "C" fn(_, ...) -> _`
+                 found fn item `unsafe fn(_, ...) -> _ {v0}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/fun_decl_3/sample_004/target.rs:30:9
+   |
+24 | unsafe fn fpfi(pf: Fpfi, k: i32) -> Vf {
+   |                                     -- expected `unsafe extern "C" fn(i32, ...) -> i32` because of return type
+...
+30 |         v1
+   |         ^^ expected "C" fn, found "Rust" fn
+   |
+   = note: expected fn pointer `unsafe extern "C" fn(_, ...) -> _`
+                 found fn item `unsafe fn(_, ...) -> _ {v1}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/fun_decl_3/sample_004/target.rs:45:19
+   |
+45 |         vf = fpfi(cb0, 17);
+   |              ---- ^^^ expected "C" fn, found "Rust" fn
+   |              |
+   |              arguments to this function are incorrect
+   |
+   = note: expected fn pointer `unsafe extern "C" fn(_) -> _`
+                 found fn item `unsafe fn(_) -> _ {cb0}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/fun_decl_3/sample_004/target.rs:24:11
+   |
+24 | unsafe fn fpfi(pf: Fpfi, k: i32) -> Vf {
+   |           ^^^^ --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/fun_decl_3/sample_004/target.rs:73:19
+   |
+73 |         vf = fpfi(cb1, 8);
+   |              ---- ^^^ expected "C" fn, found "Rust" fn
+   |              |
+   |              arguments to this function are incorrect
+   |
+   = note: expected fn pointer `unsafe extern "C" fn(_) -> _`
+                 found fn item `unsafe fn(_) -> _ {cb1}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/fun_decl_3/sample_004/target.rs:24:11
+   |
+24 | unsafe fn fpfi(pf: Fpfi, k: i32) -> Vf {
+   |           ^^^^ --------
+
+error: aborting due to 16 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308, E0658.
+For more information about an error, try `rustc --explain E0277`.

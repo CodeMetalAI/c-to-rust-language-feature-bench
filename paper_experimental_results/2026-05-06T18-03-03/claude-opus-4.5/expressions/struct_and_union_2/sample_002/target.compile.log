@@ -1,0 +1,128 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_002/target.rs:18:11
+   |
+18 |         f(unsafe { &mut S_VAR.i });
+   |           ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_002/target.rs:19:12
+   |
+19 |         f4(unsafe { &S_VAR.ci });
+   |            ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_002/target.rs:24:12
+   |
+24 |         f2(unsafe { &mut VS.i });
+   |            ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_002/target.rs:25:11
+   |
+25 |         g(unsafe { &VS.ci });
+   |           ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_002/target.rs:27:12
+   |
+27 |         if unsafe { S_VAR.i } != 1 {
+   |            ^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_002/target.rs:29:19
+   |
+29 |         } else if unsafe { S_VAR.ci } != 2 {
+   |                   ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_002/target.rs:35:19
+   |
+35 |         } else if unsafe { VS.i } != 5 {
+   |                   ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_002/target.rs:37:19
+   |
+37 |         } else if unsafe { VS.ci } != 6 {
+   |                   ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_002/target.rs:40:13
+   |
+40 |             unsafe { S_VAR.i = 10 };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_002/target.rs:41:16
+   |
+41 |             if unsafe { S_VAR.i } != 10 {
+   |                ^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_002/target.rs:44:17
+   |
+44 |                 unsafe { VS.i = 20 };
+   |                 ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_002/target.rs:45:20
+   |
+45 |                 if unsafe { VS.i } != 20 {
+   |                    ^^^^^^^^^^^^^^^
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_002/target.rs:18:20
+   |
+18 |         f(unsafe { &mut S_VAR.i });
+   |                    ^^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw mut` instead to create a raw pointer
+   |
+18 |         f(unsafe { &raw mut S_VAR.i });
+   |                     +++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_002/target.rs:19:21
+   |
+19 |         f4(unsafe { &S_VAR.ci });
+   |                     ^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+19 |         f4(unsafe { &raw const S_VAR.ci });
+   |                      +++++++++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_002/target.rs:24:21
+   |
+24 |         f2(unsafe { &mut VS.i });
+   |                     ^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+24 |         f2(unsafe { &raw mut VS.i });
+   |                      +++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/expressions/struct_and_union_2/sample_002/target.rs:25:20
+   |
+25 |         g(unsafe { &VS.ci });
+   |                    ^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+25 |         g(unsafe { &raw const VS.ci });
+   |                     +++++++++
+
+error: aborting due to 12 previous errors; 4 warnings emitted

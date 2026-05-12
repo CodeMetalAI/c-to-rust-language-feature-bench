@@ -1,0 +1,145 @@
+error[E0412]: cannot find type `int` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_002/target.rs:5:8
+  |
+5 |     n: int,
+  |        ^^^
+  |        |
+  |        not found in this scope
+  |        help: perhaps you intended to use this type: `i32`
+
+error[E0412]: cannot find type `int` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_002/target.rs:33:18
+   |
+33 | fn new_vector(n: int) -> vector {
+   |                  ^^^
+   |                  |
+   |                  not found in this scope
+   |                  help: perhaps you intended to use this type: `i32`
+
+error[E0412]: cannot find type `int` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_002/target.rs:41:29
+   |
+41 | fn fill_vec(p: *mut f32, n: int, base: f32) {
+   |                             ^^^
+   |                             |
+   |                             not found in this scope
+   |                             help: perhaps you intended to use this type: `i32`
+
+error[E0412]: cannot find type `int` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_002/target.rs:51:30
+   |
+51 | fn sum_vec(p: *const f32, n: int) -> f32 {
+   |                              ^^^
+   |                              |
+   |                              not found in this scope
+   |                              help: perhaps you intended to use this type: `i32`
+
+warning: type `vector` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_002/target.rs:4:8
+  |
+4 | struct vector {
+  |        ^^^^^^ help: convert the identifier to upper camel case (notice the capitalization): `Vector`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_002/target.rs:25:5
+   |
+25 | /     unsafe {
+26 | |         h ^= (p as *const u8 as u64) + 0x9e3779b97f4a7c15;
+27 | |         h *= 0x5851f42d4c957f2d;
+28 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_002/target.rs:44:9
+   |
+44 | /         unsafe {
+45 | |             *p.add(i) = base + i as f32;
+46 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_002/target.rs:55:9
+   |
+55 | /         unsafe {
+56 | |             s += *p.add(i);
+57 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_002/target.rs:95:8
+   |
+95 |     if unsafe { (h & 1) == 0 } {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_002/target.rs:68:14
+   |
+68 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_002/target.rs:15:21
+   |
+15 |         return &mut pool[off] as *mut u8;
+   |                     ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_002/target.rs:15:26
+   |
+15 |         return &mut pool[off] as *mut u8;
+   |                          ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_002/target.rs:18:8
+   |
+18 |     if off + n > pool.len() {
+   |        ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_002/target.rs:18:18
+   |
+18 |     if off + n > pool.len() {
+   |                  ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_002/target.rs:22:18
+   |
+22 |     let p = &mut pool[off] as *mut u8;
+   |                  ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_002/target.rs:22:23
+   |
+22 |     let p = &mut pool[off] as *mut u8;
+   |                       ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_002/target.rs:23:5
+   |
+23 |     off += n;
+   |     ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 16 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0133, E0277, E0412.
+For more information about an error, try `rustc --explain E0133`.

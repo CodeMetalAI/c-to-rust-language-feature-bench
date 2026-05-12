@@ -1,0 +1,52 @@
+error[E0432]: unresolved import `lazy_static`
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/logical_OR_op_c4/sample_002/target.rs:2:5
+  |
+2 | use lazy_static::lazy_static;
+  |     ^^^^^^^^^^^ use of unresolved module or unlinked crate `lazy_static`
+  |
+help: you might be missing a crate named `lazy_static`, add it to your project and import it in your code
+  |
+1 + extern crate lazy_static;
+  |
+
+error[E0425]: cannot find value `G` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/logical_OR_op_c4/sample_002/target.rs:9:6
+  |
+9 |     *G.lock().unwrap() = gval;
+  |      ^ not found in this scope
+  |
+help: you might be missing a const parameter
+  |
+8 | fn set_g_return<const G: /* Type */>(gval: i32, ret: i32) -> i32 {
+  |                +++++++++++++++++++++
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/logical_OR_op_c4/sample_002/target.rs:16:6
+   |
+16 |     *G.lock().unwrap() = 0;
+   |      ^ help: a local variable with a similar name exists: `y`
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/logical_OR_op_c4/sample_002/target.rs:17:38
+   |
+17 |     if !(set_g_return(1, 0) != 0 || *G.lock().unwrap() == 1) {
+   |                                      ^ help: a local variable with a similar name exists: `y`
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/logical_OR_op_c4/sample_002/target.rs:21:6
+   |
+21 |     *G.lock().unwrap() = 0;
+   |      ^ help: a local variable with a similar name exists: `y`
+
+warning: unused import: `std::sync::Mutex`
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/logical_OR_op_c4/sample_002/target.rs:1:5
+  |
+1 | use std::sync::Mutex;
+  |     ^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 5 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0425, E0432.
+For more information about an error, try `rustc --explain E0425`.

@@ -1,0 +1,2338 @@
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:88:52
+   |
+88 |     test_simple_assign_atomic!(AtomicUsize, usize, i_addr);
+   |                                                    ^^^^^^ non-constant value
+   |
+help: consider using `let` instead of `static`
+   |
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+11 +         let B: $atomic_type = <$atomic_type>::new($value as $value_type);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u8`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:80:31
+   |
+80 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u8`
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 -         
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+14 -             abort();
+15 -         }
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+10 +         static A: $atomic_type = <$atomic_type>::new(0 as u8::MAX $value_type) {
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u8`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:80:31
+   |
+80 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u8`
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 -         
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+14 -             abort();
+15 -         }
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+17 -             abort();
+18 -         }
+19 -         let b_val = B.load(Ordering::SeqCst);
+20 -         A.store(b_val, Ordering::SeqCst);
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+10 +         static A: $atomic_type = <$atomic_type>::new(0 as u8::MAX $value_type) {
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u16`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:80:31
+   |
+80 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u16`
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 -         
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+14 -             abort();
+15 -         }
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+10 +         static A: $atomic_type = <$atomic_type>::new(0 as u16::MAX $value_type) {
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u16`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:80:31
+   |
+80 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u16`
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 -         
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+14 -             abort();
+15 -         }
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+17 -             abort();
+18 -         }
+19 -         let b_val = B.load(Ordering::SeqCst);
+20 -         A.store(b_val, Ordering::SeqCst);
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+10 +         static A: $atomic_type = <$atomic_type>::new(0 as u16::MAX $value_type) {
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u32`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:80:31
+   |
+80 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u32`
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 -         
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+14 -             abort();
+15 -         }
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+10 +         static A: $atomic_type = <$atomic_type>::new(0 as u32::MAX $value_type) {
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u32`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:80:31
+   |
+80 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u32`
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 -         
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+14 -             abort();
+15 -         }
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+17 -             abort();
+18 -         }
+19 -         let b_val = B.load(Ordering::SeqCst);
+20 -         A.store(b_val, Ordering::SeqCst);
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+10 +         static A: $atomic_type = <$atomic_type>::new(0 as u32::MAX $value_type) {
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:80:31
+   |
+80 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `usize`
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 -         
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+14 -             abort();
+15 -         }
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+10 +         static A: $atomic_type = <$atomic_type>::new(0 as usize::MAX $value_type) {
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:80:31
+   |
+80 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `usize`
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 -         
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+14 -             abort();
+15 -         }
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+17 -             abort();
+18 -         }
+19 -         let b_val = B.load(Ordering::SeqCst);
+20 -         A.store(b_val, Ordering::SeqCst);
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+10 +         static A: $atomic_type = <$atomic_type>::new(0 as usize::MAX $value_type) {
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u64`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:80:31
+   |
+80 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u64`
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 -         
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+14 -             abort();
+15 -         }
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+10 +         static A: $atomic_type = <$atomic_type>::new(0 as u64::MAX $value_type) {
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u64`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:80:31
+   |
+80 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u64`
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 -         
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+14 -             abort();
+15 -         }
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+17 -             abort();
+18 -         }
+19 -         let b_val = B.load(Ordering::SeqCst);
+20 -         A.store(b_val, Ordering::SeqCst);
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+10 +         static A: $atomic_type = <$atomic_type>::new(0 as u64::MAX $value_type) {
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+   | |___________________________________________^
+...
+77 |       test_simple_assign_arith!(0);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+13 +         if A.load(Ordering::SeqCst) != 0 != 0 $value_type {
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+...  |
+16 | |         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+   | |_________________________________________________^
+...
+77 |       test_simple_assign_arith!(0);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+17 -             abort();
+18 -         }
+19 -         let b_val = B.load(Ordering::SeqCst);
+20 -         A.store(b_val, Ordering::SeqCst);
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+16 +         if B.load(Ordering::SeqCst) != ($value as != 0);
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+...  |
+20 | |         A.store(b_val, Ordering::SeqCst);
+21 | |         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+   | |_________________________________________________^
+...
+77 |       test_simple_assign_arith!(0);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+21 +         if A.load(Ordering::SeqCst) != ($value as != 0);
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+   | |___________________________________________^
+...
+78 |       test_simple_assign_arith!(1);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+13 +         if A.load(Ordering::SeqCst) != 0 != 0 $value_type {
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+...  |
+16 | |         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+   | |_________________________________________________^
+...
+78 |       test_simple_assign_arith!(1);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+17 -             abort();
+18 -         }
+19 -         let b_val = B.load(Ordering::SeqCst);
+20 -         A.store(b_val, Ordering::SeqCst);
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+78 -     test_simple_assign_arith!(1);
+16 +         if B.load(Ordering::SeqCst) != ($value as != 0);
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+...  |
+20 | |         A.store(b_val, Ordering::SeqCst);
+21 | |         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+   | |_________________________________________________^
+...
+78 |       test_simple_assign_arith!(1);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+78 -     test_simple_assign_arith!(1);
+21 +         if A.load(Ordering::SeqCst) != ($value as != 0);
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+   | |___________________________________________^
+...
+79 |       test_simple_assign_arith!(2);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+13 +         if A.load(Ordering::SeqCst) != 0 != 0 $value_type {
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+...  |
+16 | |         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+   | |_________________________________________________^
+...
+79 |       test_simple_assign_arith!(2);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+17 -             abort();
+18 -         }
+19 -         let b_val = B.load(Ordering::SeqCst);
+20 -         A.store(b_val, Ordering::SeqCst);
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+78 -     test_simple_assign_arith!(1);
+79 -     test_simple_assign_arith!(2);
+16 +         if B.load(Ordering::SeqCst) != ($value as != 0);
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+...  |
+20 | |         A.store(b_val, Ordering::SeqCst);
+21 | |         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+   | |_________________________________________________^
+...
+79 |       test_simple_assign_arith!(2);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+78 -     test_simple_assign_arith!(1);
+79 -     test_simple_assign_arith!(2);
+21 +         if A.load(Ordering::SeqCst) != ($value as != 0);
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+   | |___________________________________________^
+...
+80 |       test_simple_assign_arith!(-1);
+   |       ----------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+13 +         if A.load(Ordering::SeqCst) != 0 != 0 $value_type {
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+...  |
+16 | |         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+   | |_________________________________________________^
+...
+80 |       test_simple_assign_arith!(-1);
+   |       ----------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+17 -             abort();
+18 -         }
+19 -         let b_val = B.load(Ordering::SeqCst);
+20 -         A.store(b_val, Ordering::SeqCst);
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+78 -     test_simple_assign_arith!(1);
+79 -     test_simple_assign_arith!(2);
+80 -     test_simple_assign_arith!(-1);
+16 +         if B.load(Ordering::SeqCst) != ($value as != 0);
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+...  |
+20 | |         A.store(b_val, Ordering::SeqCst);
+21 | |         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+   | |_________________________________________________^
+...
+80 |       test_simple_assign_arith!(-1);
+   |       ----------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+78 -     test_simple_assign_arith!(1);
+79 -     test_simple_assign_arith!(2);
+80 -     test_simple_assign_arith!(-1);
+21 +         if A.load(Ordering::SeqCst) != ($value as != 0);
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+   | |___________________________________________^
+...
+81 |       test_simple_assign_arith!(1u64 << 63);
+   |       ------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+13 +         if A.load(Ordering::SeqCst) != 0 != 0 $value_type {
+   |
+
+error[E0054]: cannot cast `u64` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+...  |
+16 | |         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+   | |_________________________________________________^
+...
+81 |       test_simple_assign_arith!(1u64 << 63);
+   |       ------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+17 -             abort();
+18 -         }
+19 -         let b_val = B.load(Ordering::SeqCst);
+20 -         A.store(b_val, Ordering::SeqCst);
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+78 -     test_simple_assign_arith!(1);
+79 -     test_simple_assign_arith!(2);
+80 -     test_simple_assign_arith!(-1);
+81 -     test_simple_assign_arith!(1u64 << 63);
+16 +         if B.load(Ordering::SeqCst) != ($value as != 0);
+   |
+
+error[E0054]: cannot cast `u64` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+...  |
+20 | |         A.store(b_val, Ordering::SeqCst);
+21 | |         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+   | |_________________________________________________^
+...
+81 |       test_simple_assign_arith!(1u64 << 63);
+   |       ------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+78 -     test_simple_assign_arith!(1);
+79 -     test_simple_assign_arith!(2);
+80 -     test_simple_assign_arith!(-1);
+81 -     test_simple_assign_arith!(1u64 << 63);
+21 +         if A.load(Ordering::SeqCst) != ($value as != 0);
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+   | |___________________________________________^
+...
+82 |       test_simple_assign_arith!(1.5);
+   |       ------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+13 +         if A.load(Ordering::SeqCst) != 0 != 0 $value_type {
+   |
+
+error[E0054]: cannot cast `{float}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+...  |
+16 | |         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+   | |_________________________________________________^
+...
+82 |       test_simple_assign_arith!(1.5);
+   |       ------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+17 -             abort();
+18 -         }
+19 -         let b_val = B.load(Ordering::SeqCst);
+20 -         A.store(b_val, Ordering::SeqCst);
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+78 -     test_simple_assign_arith!(1);
+79 -     test_simple_assign_arith!(2);
+80 -     test_simple_assign_arith!(-1);
+81 -     test_simple_assign_arith!(1u64 << 63);
+82 -     test_simple_assign_arith!(1.5);
+16 +         if B.load(Ordering::SeqCst) != ($value as != 0);
+   |
+
+error[E0054]: cannot cast `{float}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+...  |
+20 | |         A.store(b_val, Ordering::SeqCst);
+21 | |         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+   | |_________________________________________________^
+...
+82 |       test_simple_assign_arith!(1.5);
+   |       ------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+78 -     test_simple_assign_arith!(1);
+79 -     test_simple_assign_arith!(2);
+80 -     test_simple_assign_arith!(-1);
+81 -     test_simple_assign_arith!(1u64 << 63);
+82 -     test_simple_assign_arith!(1.5);
+21 +         if A.load(Ordering::SeqCst) != ($value as != 0);
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+   | |___________________________________________^
+...
+83 |       test_simple_assign_arith!(2.5);
+   |       ------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+13 +         if A.load(Ordering::SeqCst) != 0 != 0 $value_type {
+   |
+
+error[E0054]: cannot cast `{float}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+...  |
+16 | |         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+   | |_________________________________________________^
+...
+83 |       test_simple_assign_arith!(2.5);
+   |       ------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+17 -             abort();
+18 -         }
+19 -         let b_val = B.load(Ordering::SeqCst);
+20 -         A.store(b_val, Ordering::SeqCst);
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+78 -     test_simple_assign_arith!(1);
+79 -     test_simple_assign_arith!(2);
+80 -     test_simple_assign_arith!(-1);
+81 -     test_simple_assign_arith!(1u64 << 63);
+82 -     test_simple_assign_arith!(1.5);
+83 -     test_simple_assign_arith!(2.5);
+16 +         if B.load(Ordering::SeqCst) != ($value as != 0);
+   |
+
+error[E0054]: cannot cast `{float}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 | |         
+13 | |         if A.load(Ordering::SeqCst) != 0 as $value_type {
+...  |
+20 | |         A.store(b_val, Ordering::SeqCst);
+21 | |         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+   | |_________________________________________________^
+...
+83 |       test_simple_assign_arith!(2.5);
+   |       ------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+78 -     test_simple_assign_arith!(1);
+79 -     test_simple_assign_arith!(2);
+80 -     test_simple_assign_arith!(-1);
+81 -     test_simple_assign_arith!(1u64 << 63);
+82 -     test_simple_assign_arith!(1.5);
+83 -     test_simple_assign_arith!(2.5);
+21 +         if A.load(Ordering::SeqCst) != ($value as != 0);
+   |
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:54
+   |
+10 |         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |                                                      ^^^^^^^^^^^^^^^^
+...
+77 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+10 +         static A: $atomic_type = <$atomic_type>::new(0 != 0);
+   |
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+   | |______________________________________________________________^
+...
+77 |       test_simple_assign_arith!(0);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 -         
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+14 -             abort();
+15 -         }
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+17 -             abort();
+18 -         }
+19 -         let b_val = B.load(Ordering::SeqCst);
+20 -         A.store(b_val, Ordering::SeqCst);
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+11 +         static B: $atomic_type = <$atomic_type>::new($value as != 0);
+   |
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:54
+   |
+10 |         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |                                                      ^^^^^^^^^^^^^^^^
+...
+78 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+10 +         static A: $atomic_type = <$atomic_type>::new(0 != 0);
+   |
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+   | |______________________________________________________________^
+...
+78 |       test_simple_assign_arith!(1);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 -         
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+14 -             abort();
+15 -         }
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+17 -             abort();
+18 -         }
+19 -         let b_val = B.load(Ordering::SeqCst);
+20 -         A.store(b_val, Ordering::SeqCst);
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+78 -     test_simple_assign_arith!(1);
+11 +         static B: $atomic_type = <$atomic_type>::new($value as != 0);
+   |
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:54
+   |
+10 |         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |                                                      ^^^^^^^^^^^^^^^^
+...
+79 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+10 +         static A: $atomic_type = <$atomic_type>::new(0 != 0);
+   |
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+   | |______________________________________________________________^
+...
+79 |       test_simple_assign_arith!(2);
+   |       ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 -         
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+14 -             abort();
+15 -         }
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+17 -             abort();
+18 -         }
+19 -         let b_val = B.load(Ordering::SeqCst);
+20 -         A.store(b_val, Ordering::SeqCst);
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+78 -     test_simple_assign_arith!(1);
+79 -     test_simple_assign_arith!(2);
+11 +         static B: $atomic_type = <$atomic_type>::new($value as != 0);
+   |
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:54
+   |
+10 |         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |                                                      ^^^^^^^^^^^^^^^^
+...
+80 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+10 +         static A: $atomic_type = <$atomic_type>::new(0 != 0);
+   |
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+   | |______________________________________________________________^
+...
+80 |       test_simple_assign_arith!(-1);
+   |       ----------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 -         
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+14 -             abort();
+15 -         }
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+17 -             abort();
+18 -         }
+19 -         let b_val = B.load(Ordering::SeqCst);
+20 -         A.store(b_val, Ordering::SeqCst);
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+78 -     test_simple_assign_arith!(1);
+79 -     test_simple_assign_arith!(2);
+80 -     test_simple_assign_arith!(-1);
+11 +         static B: $atomic_type = <$atomic_type>::new($value as != 0);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u8`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:80:31
+   |
+80 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u8`
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+10 +         static A: $atomic_type = <$atomic_type>::new(0 as u8::MAX $value_type);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u16`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:80:31
+   |
+80 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u16`
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+10 +         static A: $atomic_type = <$atomic_type>::new(0 as u16::MAX $value_type);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u32`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:80:31
+   |
+80 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u32`
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+10 +         static A: $atomic_type = <$atomic_type>::new(0 as u32::MAX $value_type);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:80:31
+   |
+80 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `usize`
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+10 +         static A: $atomic_type = <$atomic_type>::new(0 as usize::MAX $value_type);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u64`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:80:31
+   |
+80 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u64`
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+10 +         static A: $atomic_type = <$atomic_type>::new(0 as u64::MAX $value_type);
+   |
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:54
+   |
+10 |         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |                                                      ^^^^^^^^^^^^^^^^
+...
+81 |     test_simple_assign_arith!(1u64 << 63);
+   |     ------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+10 +         static A: $atomic_type = <$atomic_type>::new(0 != 0);
+   |
+
+error[E0054]: cannot cast `u64` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+   | |______________________________________________________________^
+...
+81 |       test_simple_assign_arith!(1u64 << 63);
+   |       ------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 -         
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+14 -             abort();
+15 -         }
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+17 -             abort();
+18 -         }
+19 -         let b_val = B.load(Ordering::SeqCst);
+20 -         A.store(b_val, Ordering::SeqCst);
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+78 -     test_simple_assign_arith!(1);
+79 -     test_simple_assign_arith!(2);
+80 -     test_simple_assign_arith!(-1);
+81 -     test_simple_assign_arith!(1u64 << 63);
+11 +         static B: $atomic_type = <$atomic_type>::new($value as != 0);
+   |
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:54
+   |
+10 |         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |                                                      ^^^^^^^^^^^^^^^^
+...
+82 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+10 +         static A: $atomic_type = <$atomic_type>::new(0 != 0);
+   |
+
+error[E0054]: cannot cast `f64` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+   | |______________________________________________________________^
+...
+82 |       test_simple_assign_arith!(1.5);
+   |       ------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 -         
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+14 -             abort();
+15 -         }
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+17 -             abort();
+18 -         }
+19 -         let b_val = B.load(Ordering::SeqCst);
+20 -         A.store(b_val, Ordering::SeqCst);
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+78 -     test_simple_assign_arith!(1);
+79 -     test_simple_assign_arith!(2);
+80 -     test_simple_assign_arith!(-1);
+81 -     test_simple_assign_arith!(1u64 << 63);
+82 -     test_simple_assign_arith!(1.5);
+11 +         static B: $atomic_type = <$atomic_type>::new($value as != 0);
+   |
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:54
+   |
+10 |         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |                                                      ^^^^^^^^^^^^^^^^
+...
+83 |     test_simple_assign_arith!(2.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+10 -         static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+10 +         static A: $atomic_type = <$atomic_type>::new(0 != 0);
+   |
+
+error[E0054]: cannot cast `f64` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:10:59
+   |
+10 |           static A: $atomic_type = <$atomic_type>::new(0 as $value_type);
+   |  ___________________________________________________________^
+11 | |         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+   | |______________________________________________________________^
+...
+83 |       test_simple_assign_arith!(2.5);
+   |       ------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+11 -         static B: $atomic_type = <$atomic_type>::new($value as $value_type);
+12 -         
+13 -         if A.load(Ordering::SeqCst) != 0 as $value_type {
+14 -             abort();
+15 -         }
+16 -         if B.load(Ordering::SeqCst) != ($value as $value_type) {
+17 -             abort();
+18 -         }
+19 -         let b_val = B.load(Ordering::SeqCst);
+20 -         A.store(b_val, Ordering::SeqCst);
+21 -         if A.load(Ordering::SeqCst) != ($value as $value_type) {
+22 -             abort();
+23 -         }
+24 -     }};
+25 - }
+26 - 
+27 - macro_rules! test_simple_assign_cell {
+28 -     ($value_type:ty, $value:expr) => {{
+29 -         thread_local! {
+30 -             static A: Cell<$value_type> = Cell::new(0.0 as $value_type);
+31 -             static B: Cell<$value_type> = Cell::new($value as $value_type);
+32 -         }
+33 -         
+34 -         A.with(|a| {
+35 -             if a.get() != 0.0 as $value_type {
+36 -                 abort();
+37 -             }
+38 -         });
+39 -         B.with(|b| {
+40 -             if b.get() != ($value as $value_type) {
+41 -                 abort();
+42 -             }
+43 -             A.with(|a| {
+44 -                 a.set(b.get());
+45 -                 if a.get() != ($value as $value_type) {
+46 -                     abort();
+47 -                 }
+48 -             });
+49 -         });
+50 -     }};
+51 - }
+52 - 
+53 - macro_rules! test_simple_assign_arith {
+54 -     ($value:expr) => {{
+55 -         test_simple_assign_atomic!(AtomicBool, bool, $value);
+56 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+57 -         test_simple_assign_atomic!(AtomicI8, i8, $value);
+58 -         test_simple_assign_atomic!(AtomicU8, u8, $value);
+59 -         test_simple_assign_atomic!(AtomicI16, i16, $value);
+60 -         test_simple_assign_atomic!(AtomicU16, u16, $value);
+61 -         test_simple_assign_atomic!(AtomicI32, i32, $value);
+62 -         test_simple_assign_atomic!(AtomicU32, u32, $value);
+63 -         test_simple_assign_atomic!(AtomicIsize, isize, $value);
+64 -         test_simple_assign_atomic!(AtomicUsize, usize, $value);
+65 -         test_simple_assign_atomic!(AtomicI64, i64, $value);
+66 -         test_simple_assign_atomic!(AtomicU64, u64, $value);
+67 -         test_simple_assign_cell!(f32, $value);
+68 -         test_simple_assign_cell!(f64, $value);
+69 -         test_simple_assign_cell!(f64, $value);
+70 -         test_simple_assign_cell!(f32, $value);
+71 -         test_simple_assign_cell!(f64, $value);
+72 -         test_simple_assign_cell!(f64, $value);
+73 -     }};
+74 - }
+75 - 
+76 - fn test_simple_assign() {
+77 -     test_simple_assign_arith!(0);
+78 -     test_simple_assign_arith!(1);
+79 -     test_simple_assign_arith!(2);
+80 -     test_simple_assign_arith!(-1);
+81 -     test_simple_assign_arith!(1u64 << 63);
+82 -     test_simple_assign_arith!(1.5);
+83 -     test_simple_assign_arith!(2.5);
+11 +         static B: $atomic_type = <$atomic_type>::new($value as != 0);
+   |
+
+error: aborting due to 51 previous errors
+
+Some errors have detailed explanations: E0054, E0435, E0600.
+For more information about an error, try `rustc --explain E0054`.

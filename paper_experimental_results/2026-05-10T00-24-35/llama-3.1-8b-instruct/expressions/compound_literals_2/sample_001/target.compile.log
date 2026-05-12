@@ -1,0 +1,59 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_2/sample_001/target.rs:5:3
+   |
+ 5 | /   unsafe {
+ 6 | |     let p_pointer = p as *mut [i32];
+ 7 | |     let array = Box::from_raw(p_pointer as *mut [i32]);
+ 8 | |     let arr: &[i32] = std::slice::from_raw_parts(array.as_ptr(), 1);
+...  |
+13 | |     let p = Box::from_raw(new_p as *mut i32);
+14 | |   }
+   | |___^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_2/sample_001/target.rs:18:14
+   |
+18 |   } else if *unsafe { p.offset(1) } != 0 {
+   |              ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_2/sample_001/target.rs:25:14
+   |
+25 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0599]: no method named `copy_from_slice` found for raw pointer `*mut i32` in the current scope
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_2/sample_001/target.rs:10:9
+     |
+  10 |     arr.copy_from_slice(&[0]);
+     |         ^^^^^^^^^^^^^^^
+     |
+note: there's an earlier shadowed binding `arr` of type `&[i32]` that has method `copy_from_slice` available
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_2/sample_001/target.rs:8:9
+     |
+   8 |     let arr: &[i32] = std::slice::from_raw_parts(array.as_ptr(), 1);
+     |         ^^^ `arr` of type `&[i32]` that has method `copy_from_slice` defined earlier here
+   9 |     let mut arr = arr.as_mut_ptr();
+     |         ------- earlier `arr` shadowed here with type `*mut i32`
+help: there is a method `copy_from` with a similar name, but with different arguments
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mut_ptr.rs:1407:5
+     |
+1407 | /     pub const unsafe fn copy_from(self, src: *const T, count: usize)
+1408 | |     where
+1409 | |         T: Sized,
+     | |_________________^
+
+error[E0607]: cannot cast thin pointer `*mut i32` to wide pointer `*mut [i32]`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_2/sample_001/target.rs:6:21
+  |
+6 |     let p_pointer = p as *mut [i32];
+  |                     ^^^^^^^^^^^^^^^
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0277, E0599, E0607.
+For more information about an error, try `rustc --explain E0277`.

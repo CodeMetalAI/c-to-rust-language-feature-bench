@@ -1,0 +1,179 @@
+error[E0277]: the trait bound `u64: From<i8>` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:10:27
+   |
+10 |     test_all_incdec_arith(1u64 << 60);
+   |     --------------------- ^^^^^^^^^^ the trait `From<i8>` is not implemented for `u64`
+   |     |
+   |     required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `From<T>`:
+             `u64` implements `From<Char>`
+             `u64` implements `From<bool>`
+             `u64` implements `From<char>`
+             `u64` implements `From<u16>`
+             `u64` implements `From<u32>`
+             `u64` implements `From<u8>`
+note: required by a bound in `test_all_incdec_arith`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:17:104
+   |
+17 | fn test_all_incdec_arith<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + From<i8>>(value: T) {
+   |                                                                                                        ^^^^^^^^ required by this bound in `test_all_incdec_arith`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:32:30
+    |
+ 28 | fn test_incdec_op<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T>>(value: T, change: T, pre: bool) {
+    |                   - expected this type parameter
+...
+ 32 |         if change == T::from(1i8) { a += change; a } else { a -= change; a }
+    |                      ------- ^^^ expected type parameter `T`, found `i8`
+    |                      |
+    |                      arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `i8`
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:592:8
+    |
+592 |     fn from(value: T) -> Self;
+    |        ^^^^
+
+error[E0368]: binary assignment operation `+=` cannot be applied to type `T`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:32:37
+   |
+32 |         if change == T::from(1i8) { a += change; a } else { a -= change; a }
+   |                                     -^^^^^^^^^^
+   |                                     |
+   |                                     cannot use `+=` on type `T`
+   |
+help: consider further restricting type parameter `T` with trait `AddAssign`
+   |
+28 | fn test_incdec_op<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::ops::AddAssign>(value: T, change: T, pre: bool) {
+   |                                                                                               +++++++++++++++++++++
+
+error[E0368]: binary assignment operation `-=` cannot be applied to type `T`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:32:61
+   |
+32 |         if change == T::from(1i8) { a += change; a } else { a -= change; a }
+   |                                                             -^^^^^^^^^^
+   |                                                             |
+   |                                                             cannot use `-=` on type `T`
+   |
+help: consider further restricting type parameter `T` with trait `SubAssign`
+   |
+28 | fn test_incdec_op<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::ops::SubAssign>(value: T, change: T, pre: bool) {
+   |                                                                                               +++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:35:30
+    |
+ 28 | fn test_incdec_op<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T>>(value: T, change: T, pre: bool) {
+    |                   - expected this type parameter
+...
+ 35 |         if change == T::from(1i8) { a += change; } else { a -= change; }
+    |                      ------- ^^^ expected type parameter `T`, found `i8`
+    |                      |
+    |                      arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `i8`
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:592:8
+    |
+592 |     fn from(value: T) -> Self;
+    |        ^^^^
+
+error[E0368]: binary assignment operation `+=` cannot be applied to type `T`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:35:37
+   |
+35 |         if change == T::from(1i8) { a += change; } else { a -= change; }
+   |                                     -^^^^^^^^^^
+   |                                     |
+   |                                     cannot use `+=` on type `T`
+   |
+help: consider further restricting type parameter `T` with trait `AddAssign`
+   |
+28 | fn test_incdec_op<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::ops::AddAssign>(value: T, change: T, pre: bool) {
+   |                                                                                               +++++++++++++++++++++
+
+error[E0368]: binary assignment operation `-=` cannot be applied to type `T`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:35:59
+   |
+35 |         if change == T::from(1i8) { a += change; } else { a -= change; }
+   |                                                           -^^^^^^^^^^
+   |                                                           |
+   |                                                           cannot use `-=` on type `T`
+   |
+help: consider further restricting type parameter `T` with trait `SubAssign`
+   |
+28 | fn test_incdec_op<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::ops::SubAssign>(value: T, change: T, pre: bool) {
+   |                                                                                               +++++++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:38:5
+   |
+38 |     assert_eq!(new_value, expected, "Failed on pre/post operation check");
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+28 | fn test_incdec_op<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::fmt::Debug>(value: T, change: T, pre: bool) {
+   |                                                                                               +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:38:5
+   |
+38 |     assert_eq!(new_value, expected, "Failed on pre/post operation check");
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+28 | fn test_incdec_op<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::fmt::Debug>(value: T, change: T, pre: bool) {
+   |                                                                                               +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:39:5
+   |
+39 |     assert_eq!(a, value + change, "Failed on final value check");
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+28 | fn test_incdec_op<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::fmt::Debug>(value: T, change: T, pre: bool) {
+   |                                                                                               +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:39:5
+   |
+39 |     assert_eq!(a, value + change, "Failed on final value check");
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+28 | fn test_incdec_op<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::fmt::Debug>(value: T, change: T, pre: bool) {
+   |                                                                                               +++++++++++++++++
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:47:18
+   |
+47 |         a = &mut *(a as *mut i32).wrapping_offset(1);
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:49:18
+   |
+49 |         a = &mut *(a as *mut i32).wrapping_offset(-1);
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error: aborting due to 13 previous errors
+
+Some errors have detailed explanations: E0133, E0277, E0308, E0368.
+For more information about an error, try `rustc --explain E0133`.

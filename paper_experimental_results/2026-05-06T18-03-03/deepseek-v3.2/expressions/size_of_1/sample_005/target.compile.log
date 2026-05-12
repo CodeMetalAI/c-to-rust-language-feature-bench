@@ -1,0 +1,39 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/size_of_1/sample_005/target.rs:5:18
+  |
+5 |     let dp_ptr = unsafe { alloc(layout) as *mut f64 };
+  |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/size_of_1/sample_005/target.rs:11:5
+   |
+11 | /     unsafe {
+12 | |         *dp_ptr = 3.14;
+13 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/size_of_1/sample_005/target.rs:15:17
+   |
+15 |     let value = unsafe { *dp_ptr };
+   |                 ^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/size_of_1/sample_005/target.rs:17:9
+   |
+17 | /         unsafe {
+18 | |             dealloc(dp_ptr as *mut u8, layout);
+19 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/size_of_1/sample_005/target.rs:23:5
+   |
+23 | /     unsafe {
+24 | |         dealloc(dp_ptr as *mut u8, layout);
+25 | |     }
+   | |_____^
+
+error: aborting due to 5 previous errors

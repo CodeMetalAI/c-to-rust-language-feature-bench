@@ -1,0 +1,55 @@
+use std::process::exit;
+
+struct U {
+    type_field: i32,
+    intnode: i32,
+    doublenode: f64,
+}
+
+impl U {
+    fn new() -> Self {
+        Self {
+            type_field: 0,
+            intnode: 0,
+            doublenode: 0.0,
+        }
+    }
+
+    fn n_alltypes(&self) -> i32 {
+        self.type_field
+    }
+
+    fn ni_type(&self) -> i32 {
+        self.type_field
+    }
+
+    fn nf_type(&self) -> i32 {
+        self.type_field
+    }
+
+    fn nf_doublenode(&self) -> f64 {
+        self.doublenode
+    }
+}
+
+fn main() {
+    let mut u = U::new();
+
+    u.type_field = 1;
+    u.doublenode = 3.14;
+
+    if u.n_alltypes() != 1 {
+        exit(1);
+    }
+    if u.ni_type() != 1 {
+        exit(1);
+    }
+    if u.nf_type() != 1 {
+        exit(2);
+    }
+    if u.nf_doublenode() != 3.14 {
+        exit(3);
+    }
+
+    exit(0);
+}

@@ -1,0 +1,58 @@
+error[E0608]: cannot index into a value of type `*const [i32; 3]`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_005/target.rs:36:14
+   |
+36 |         if pa[1]!= 2 {
+   |              ^^^
+   |
+help: consider using `wrapping_add` or `add` for indexing into raw pointer
+   |
+36 -         if pa[1]!= 2 {
+36 +         if pa.wrapping_add(1)!= 2 {
+   |
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_005/target.rs:51:12
+   |
+51 |         if *pf()!= 2 {
+   |            ^^^^^ can't be dereferenced
+
+error[E0057]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_005/target.rs:66:12
+   |
+66 |         if af[0](4)!= 7 {
+   |            ^^^^^--- argument #2 of type `()` is missing
+   |
+note: closure defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_005/target.rs:8:17
+   |
+ 8 |     let f_var = |x: u32, _args: ()| -> i32 { (x + 3) as i32 };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the argument
+   |
+66 |         if af[0](4, ())!= 7 {
+   |                   ++++
+
+error[E0057]: this function takes 2 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_005/target.rs:70:12
+   |
+70 |         if af[1](10, 1, 2, 3)!= 13 {
+   |            ^^^^^     -  -  - unexpected argument #4 of type `{integer}`
+   |                      |  |
+   |                      |  unexpected argument #3 of type `{integer}`
+   |                      expected `()`, found integer
+   |
+note: closure defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_005/target.rs:8:17
+   |
+ 8 |     let f_var = |x: u32, _args: ()| -> i32 { (x + 3) as i32 };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: remove the extra arguments
+   |
+70 -         if af[1](10, 1, 2, 3)!= 13 {
+70 +         if af[1](10, ())!= 13 {
+   |
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0057, E0608, E0614.
+For more information about an error, try `rustc --explain E0057`.

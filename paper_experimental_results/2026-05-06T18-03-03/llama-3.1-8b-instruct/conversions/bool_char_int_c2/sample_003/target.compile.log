@@ -1,0 +1,60 @@
+error: invalid width `80` for float literal
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_003/target.rs:58:16
+   |
+58 |     if type_id(1.0f80) != 9 {
+   |                ^^^^^^
+   |
+   = help: valid widths are 32 and 64
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_003/target.rs:24:16
+   |
+22 | fn main() {
+   |          - expected `()` because of default return type
+23 |     if type_id((1 as i8) + 0) != 1 {
+24 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0369]: cannot add `{integer}` to `bool`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_003/target.rs:48:22
+   |
+48 |     if type_id(bf.b1 + 0) != 1 {
+   |                ----- ^ - {integer}
+   |                |
+   |                bool
+
+warning: multiple patterns overlap on their endpoints
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_003/target.rs:9:9
+  |
+8 |         4..=8 => 6,
+  |         ----- this range overlaps on `8_usize`...
+9 |         8..=16 => 7,
+  |         ^^^^^^ ... with this range
+  |
+  = note: you likely meant to write mutually exclusive ranges
+  = note: `#[warn(overlapping_range_endpoints)]` on by default
+
+warning: multiple patterns overlap on their endpoints
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_003/target.rs:10:9
+   |
+ 9 |         8..=16 => 7,
+   |         ------ this range overlaps on `16_usize`...
+10 |         16..=32 => 8,
+   |         ^^^^^^^ ... with this range
+   |
+   = note: you likely meant to write mutually exclusive ranges
+
+warning: multiple patterns overlap on their endpoints
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_003/target.rs:11:9
+   |
+10 |         16..=32 => 8,
+   |         ------- this range overlaps on `32_usize`...
+11 |         32..=64 => 9,
+   |         ^^^^^^^ ... with this range
+   |
+   = note: you likely meant to write mutually exclusive ranges
+
+error: aborting due to 3 previous errors; 3 warnings emitted
+
+Some errors have detailed explanations: E0308, E0369.
+For more information about an error, try `rustc --explain E0308`.

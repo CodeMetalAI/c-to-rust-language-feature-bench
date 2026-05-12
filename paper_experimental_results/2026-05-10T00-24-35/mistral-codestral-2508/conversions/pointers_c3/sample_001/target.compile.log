@@ -1,0 +1,35 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c3/sample_001/target.rs:14:31
+   |
+14 |     let nf1: fn(i32) -> i32 = unsafe { std::mem::zeroed() };
+   |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c3/sample_001/target.rs:16:31
+   |
+16 |     let nf2: fn(i32) -> i32 = unsafe { std::mem::transmute(vf0) };
+   |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c3/sample_001/target.rs:35:15
+   |
+35 |     if nf1 != unsafe { std::mem::zeroed() } {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c3/sample_001/target.rs:38:15
+   |
+38 |     if nf2 != unsafe { std::mem::zeroed() } {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&i32` as `*const ()` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/pointers_c3/sample_001/target.rs:48:14
+   |
+48 |     let vx = px as *const () as *const ();
+   |              ^^^^^^^^^^^^^^^
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0606`.

@@ -1,0 +1,57 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_4/sample_005/target.rs:10:13
+   |
+10 | /             unsafe {
+11 | |                 BACKING[i][j] = (i + 1) as i32 * 100 + (j + 1) as i32;
+12 | |             }
+   | |_____________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_4/sample_005/target.rs:29:33
+   |
+29 |     let q: &mut [[i32; N]; N] = unsafe { &mut BACKING };
+   |                                 ^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_4/sample_005/target.rs:41:5
+   |
+41 | /     unsafe {
+42 | |         SINK ^= checksum_2d(m, q);
+43 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_4/sample_005/target.rs:71:27
+   |
+71 |         if checksum_2d(m, unsafe { &BACKING }) != checksum_2d(m, &expect) {
+   |                           ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_4/sample_005/target.rs:86:27
+   |
+86 |         if checksum_2d(m, unsafe { &BACKING }) != checksum_2d(m, &expect2) {
+   |                           ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_4/sample_005/target.rs:91:5
+   |
+91 | /     unsafe {
+92 | |         if SINK == 0 {
+93 | |             return 3;
+94 | |         }
+95 | |     }
+   | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_4/sample_005/target.rs:46:14
+   |
+46 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error: aborting due to 7 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

@@ -1,0 +1,91 @@
+error: expected expression, found `==`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_c4/sample_005/target.rs:16:22
+   |
+16 |         unsafe { G } == 1
+   |                      ^^ expected expression
+
+error: expected expression, found `==`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_c4/sample_005/target.rs:35:22
+   |
+35 |         unsafe { G } == 1
+   |                      ^^ expected expression
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_c4/sample_005/target.rs:4:5
+  |
+4 | /     unsafe {
+5 | |         G = gval;
+6 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_c4/sample_005/target.rs:12:5
+   |
+12 | /     unsafe {
+13 | |         G = 0;
+14 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_c4/sample_005/target.rs:16:9
+   |
+16 |         unsafe { G } == 1
+   |         ^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_c4/sample_005/target.rs:24:8
+   |
+24 |     if unsafe { G }!= 1 {
+   |        ^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_c4/sample_005/target.rs:28:5
+   |
+28 | /     unsafe {
+29 | |         G = 0;
+30 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_c4/sample_005/target.rs:35:9
+   |
+35 |         unsafe { G } == 1
+   |         ^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_c4/sample_005/target.rs:40:8
+   |
+40 |     if unsafe { G }!= 1 {
+   |        ^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_c4/sample_005/target.rs:16:18
+   |
+15 |       x = if set_g_return(1, true) {
+   |  _________-
+16 | |         unsafe { G } == 1
+   | |                  ^ expected `()`, found `i32`
+17 | |     } else {
+18 | |         set_g_return(2, true);
+19 | |         false
+20 | |     };
+   | |_____- expected this to be `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_c4/sample_005/target.rs:35:18
+   |
+31 |       x = if set_g_return(1, false) {
+   |  _________-
+32 | |         set_g_return(2, true);
+33 | |         false
+34 | |     } else {
+35 | |         unsafe { G } == 1
+   | |                  ^ expected `()`, found `i32`
+36 | |     };
+   | |_____- expected this to be `()`
+
+error: aborting due to 11 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

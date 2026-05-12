@@ -1,0 +1,25 @@
+error[E0502]: cannot borrow `buf` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_003/target.rs:26:31
+   |
+26 |         f(n, &mut buf[0..n], &buf[off..off + n]);
+   |         -         ---         ^^^ immutable borrow occurs here
+   |         |         |
+   |         |         mutable borrow occurs here
+   |         mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `buf` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_003/target.rs:49:39
+   |
+49 |         f(n, &mut buf[off..off + n], &buf[0..n]);
+   |         -         ---                 ^^^ immutable borrow occurs here
+   |         |         |
+   |         |         mutable borrow occurs here
+   |         mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0502`.

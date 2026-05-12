@@ -1,0 +1,92 @@
+{
+  "test_name": "declarations/type_names",
+  "llm_name": "Llama 3.1 70B",
+  "timestamp": "2026-05-10T03:02:16.257997Z",
+  "duration_seconds": 58.93093100003898,
+  "timeout_error": false,
+  "primary_feature": "decl.type_names",
+  "source_compiled": true,
+  "source_compile_errors": null,
+  "source_exit_code": 0,
+  "samples": [
+    {
+      "sample_index": 1,
+      "duration_seconds": 50.75377074978314,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0434]: can't capture dynamic environment in a fn item\n --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_001/target.rs:5:10\n  |\n5 |         &g_arr[1]\n  |          ^^^^^\n  |\n  = help: use the `|| { ... }` closure form instead\n\nerror[E0106]: missing lifetime specifier\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_001/target.rs:45:21\n   |\n45 |     let pf: fn() -> &i32 = fip;\n   |                     ^ expected named lifetime parameter\n   |\n   = help: this function's return type contains a borrowed value, but there is no value for it to be borrowed from\nhelp: consider using the `'static` lifetime, but this is uncommon unless you're returning a borrowed value from a `const` or a `static`\n   |\n45 |     let pf: fn() -> &'static i32 = fip;\n   |                      +++++++\nhelp: instead, you are more likely to want to return an owned value\n   |\n45 -     let pf: fn() -> &i32 = fip;\n45 +     let pf: fn() -> i32 = fip;\n   |\n\nerror[E0308]: mismatched types\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_001/target.rs:55:49\n   |\n55 |     let af: [&dyn Fn(u32, &[i32]) -> i32; 2] = [f_var, f_var];\n   |                                                 ^^^^^ expected `&dyn Fn(u32, &[i32]) -> i32`, found fn item\n   |\n   = note: expected reference `&dyn for<'a> Fn(u32, &'a [i32]) -> i32`\n                found fn item `for<'a> fn(u32, &'a [i32]) -> i32 {f_var}`\nhelp: consider borrowing here\n   |\n55 |     let af: [&dyn Fn(u32, &[i32]) -> i32; 2] = [&f_var, f_var];\n   |                                                 +\n\nerror: aborting due to 3 previous errors\n\nSome errors have detailed explanations: E0106, E0308, E0434.\nFor more information about an error, try `rustc --explain E0106`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 2,
+      "duration_seconds": 57.87319550011307,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_002/target.rs:21:8\n   |\n21 |     if unsafe { *p }!= 1 {\n   |        ^^^^^^^^^^^^^\n   |\n   = note: requested on the command line with `-F unsafe-code`\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_002/target.rs:26:8\n   |\n26 |     if unsafe { *q }!= 3 {\n   |        ^^^^^^^^^^^^^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_002/target.rs:31:8\n   |\n31 |     if unsafe { (*pa)[1] }!= 2 {\n   |        ^^^^^^^^^^^^^^^^^^^\n\nerror: aborting due to 3 previous errors",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 3,
+      "duration_seconds": 58.77300991700031,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0428]: the name `f_var` is defined multiple times\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_003/target.rs:76:1\n   |\n 7 | fn f_var(x: u32, _args: ()) -> i32 { x as i32 + 3 }\n   | ---------------------------------- previous definition of the value `f_var` here\n...\n76 | fn f_var(x: u32) -> i32 {\n   | ^^^^^^^^^^^^^^^^^^^^^^^ `f_var` redefined here\n   |\n   = note: `f_var` must be defined only once in the value namespace of this module\n\nerror[E0435]: attempt to use a non-constant value in a constant\n --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_003/target.rs:9:38\n  |\n9 | fn use_vla(n: usize, p: *const [i32; n]) -> i32 { p[0] * 10 + p[n - 1] }\n  |            -                         ^\n  |            |\n  |            this would need to be a `const`\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_003/target.rs:20:8\n   |\n20 |     if unsafe { *p }!= 1 {\n   |        ^^^^^^^^^^^^^\n   |\n   = note: requested on the command line with `-F unsafe-code`\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_003/target.rs:27:8\n   |\n27 |     if unsafe { *q }!= 3 {\n   |        ^^^^^^^^^^^^^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_003/target.rs:34:8\n   |\n34 |     if unsafe { (*pa)[1] }!= 2 {\n   |        ^^^^^^^^^^^^^^^^^^^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_003/target.rs:49:8\n   |\n49 |     if unsafe { *pf() }!= 2 {\n   |        ^^^^^^^^^^^^^^^^\n\nerror[E0308]: mismatched types\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_003/target.rs:26:25\n   |\n26 |     let q: *const i32 = &[&g_arr[0], &g_arr[1], &g_arr[2]][2];\n   |            ----------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `*const i32`, found `&&i32`\n   |            |\n   |            expected due to this\n   |\n   = note: expected raw pointer `*const i32`\n                found reference `&&i32`\nhelp: consider dereferencing\n   |\n26 |     let q: *const i32 = &*[&g_arr[0], &g_arr[1], &g_arr[2]][2];\n   |                          +\n\nerror[E0593]: function is expected to take 1 argument, but it takes 2 arguments\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_003/target.rs:62:41\n   |\n 7 | fn f_var(x: u32, _args: ()) -> i32 { x as i32 + 3 }\n   | ---------------------------------- takes 2 arguments\n...\n62 |     let af: [&dyn Fn(u32) -> i32; 2] = [&f_var, &f_var];\n   |                                         ^^^^^^ expected function that takes 1 argument\n   |\n   = note: required for the cast from `&fn(u32, ()) -> i32 {f_var}` to `&dyn Fn(u32) -> i32`\n\nerror: aborting due to 8 previous errors\n\nSome errors have detailed explanations: E0308, E0428, E0435, E0593.\nFor more information about an error, try `rustc --explain E0308`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 4,
+      "duration_seconds": 55.27184975007549,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0434]: can't capture dynamic environment in a fn item\n --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_004/target.rs:4:31\n  |\n4 |     fn fip() -> *const i32 { &g_arr[1] as *const i32 }\n  |                               ^^^^^\n  |\n  = help: use the `|| { ... }` closure form instead\n\nerror[E0435]: attempt to use a non-constant value in a constant\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_004/target.rs:10:36\n   |\n10 |     fn use_vla(n: usize, p: &[i32; n]) -> i32 { p[0] * 10 + p[n - 1] }\n   |                -                   ^\n   |                |\n   |                this would need to be a `const`\n\nerror: aborting due to 2 previous errors\n\nSome errors have detailed explanations: E0434, E0435.\nFor more information about an error, try `rustc --explain E0434`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 5,
+      "duration_seconds": 54.654455750016496,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0106]: missing lifetime specifier\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_005/target.rs:37:21\n   |\n37 |     let pf: fn() -> &i32 = fip;\n   |                     ^ expected named lifetime parameter\n   |\n   = help: this function's return type contains a borrowed value, but there is no value for it to be borrowed from\nhelp: consider using the `'static` lifetime, but this is uncommon unless you're returning a borrowed value from a `const` or a `static`\n   |\n37 |     let pf: fn() -> &'static i32 = fip;\n   |                      +++++++\nhelp: instead, you are more likely to want to return an owned value\n   |\n37 -     let pf: fn() -> &i32 = fip;\n37 +     let pf: fn() -> i32 = fip;\n   |\n\nerror[E0308]: mismatched types\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_005/target.rs:13:16\n   |\n 1 | fn main() {\n   |          - expected `()` because of default return type\n...\n13 |         return 1;\n   |                ^ expected `()`, found integer\n\nerror[E0308]: mismatched types\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_005/target.rs:37:28\n   |\n 4 |     let fip = || &g_arr[1];\n   |               -- the found closure\n...\n37 |     let pf: fn() -> &i32 = fip;\n   |             ------------   ^^^ expected fn pointer, found closure\n   |             |\n   |             expected due to this\n   |\n   = note: expected fn pointer `fn() -> &i32`\n                 found closure `{closure@benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_005/target.rs:4:15: 4:17}`\nnote: closures can only be coerced to `fn` types if they do not capture any variables\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_005/target.rs:4:19\n   |\n 4 |     let fip = || &g_arr[1];\n   |                   ^^^^^ `g_arr` captured here\n\nerror[E0057]: this function takes 2 arguments but 1 argument was supplied\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_005/target.rs:49:8\n   |\n49 |     if af[0](4)!= 7 {\n   |        ^^^^^--- argument #2 is missing\n   |\nnote: closure defined here\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_005/target.rs:8:17\n   |\n 8 |     let f_var = |x: u32, _| x as i32 + 3;\n   |                 ^^^^^^^^^^^\nhelp: provide the argument\n   |\n49 |     if af[0](4, /* _ */)!= 7 {\n   |               +++++++++\n\nerror[E0057]: this function takes 2 arguments but 4 arguments were supplied\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_005/target.rs:53:8\n   |\n53 |     if af[1](10, 1, 2, 3)!= 13 {\n   |        ^^^^^        -  - unexpected argument #4 of type `{integer}`\n   |                     |\n   |                     unexpected argument #3 of type `{integer}`\n   |\nnote: closure defined here\n  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_005/target.rs:8:17\n   |\n 8 |     let f_var = |x: u32, _| x as i32 + 3;\n   |                 ^^^^^^^^^^^\nhelp: remove the extra arguments\n   |\n53 -     if af[1](10, 1, 2, 3)!= 13 {\n53 +     if af[1](10, 1)!= 13 {\n   |\n\nerror: aborting due to 5 previous errors\n\nSome errors have detailed explanations: E0057, E0106, E0308.\nFor more information about an error, try `rustc --explain E0057`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": true,
+      "stub_reasons": [
+        "function definitions dropped from 5 to 1 (threshold=0.75, require>=4)"
+      ],
+      "provider_error": false
+    }
+  ],
+  "winning_sample": null,
+  "match": false
+}

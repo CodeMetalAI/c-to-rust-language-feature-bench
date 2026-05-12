@@ -1,0 +1,88 @@
+use std::process::exit;
+
+trait TypeId {
+    const ID: i32;
+}
+
+impl TypeId for i32 {
+    const ID: i32 = 1;
+}
+impl TypeId for u32 {
+    const ID: i32 = 2;
+}
+impl TypeId for i64 {
+    const ID: i32 = 3;
+}
+impl TypeId for u64 {
+    const ID: i32 = 4;
+}
+impl TypeId for i128 {
+    const ID: i32 = 5;
+}
+impl TypeId for u128 {
+    const ID: i32 = 6;
+}
+impl TypeId for f32 {
+    const ID: i32 = 7;
+}
+impl TypeId for f64 {
+    const ID: i32 = 8;
+}
+
+#[derive(Clone, Copy)]
+struct LongDouble(f64);
+
+impl TypeId for LongDouble {
+    const ID: i32 = 9;
+}
+
+fn type_id_val<T: TypeId>(_v: T) -> i32 {
+    T::ID
+}
+
+struct BF {
+    u1: u32,
+    i1: i32,
+    b1: bool,
+}
+
+fn main() {
+    if type_id_val((1i8 as i32) + 0) != 1 {
+        exit(1);
+    }
+    if type_id_val((1u8 as i32) + 0) != 1 {
+        exit(2);
+    }
+    if type_id_val((1i16 as i32) + 0) != 1 {
+        exit(3);
+    }
+    if type_id_val((1u16 as i32) + 0) != 1 {
+        exit(4);
+    }
+
+    let bf = BF {
+        u1: 1u32,
+        i1: -1,
+        b1: true,
+    };
+
+    if type_id_val((bf.u1 as i32) + 0) != 1 {
+        exit(5);
+    }
+    if type_id_val((bf.i1 as i32) + 0) != 1 {
+        exit(6);
+    }
+    if type_id_val((bf.b1 as i32) + 0) != 1 {
+        exit(7);
+    }
+
+    if type_id_val(1.0f32) != 7 {
+        exit(8);
+    }
+    if type_id_val(1.0f64) != 8 {
+        exit(9);
+    }
+    if type_id_val(LongDouble(1.0)) != 9 {
+        exit(10);
+    }
+}

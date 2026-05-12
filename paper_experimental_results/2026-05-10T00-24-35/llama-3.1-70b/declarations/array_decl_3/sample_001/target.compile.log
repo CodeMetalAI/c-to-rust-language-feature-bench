@@ -1,0 +1,55 @@
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_3/sample_001/target.rs:57:8
+   |
+57 |     if check_a(n, m, &a, &a) || check_c(n, m, &c, &c) {
+   |        ^^^^^^^
+   |
+note: expected `&Vec<Vec<Vec<i32>>>`, found `&Vec<Vec<Vec<usize>>>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_3/sample_001/target.rs:57:22
+   |
+57 |     if check_a(n, m, &a, &a) || check_c(n, m, &c, &c) {
+   |                      ^^
+   = note: expected reference `&Vec<Vec<Vec<i32>>>`
+              found reference `&Vec<Vec<Vec<usize>>>`
+note: expected `&Vec<Vec<Vec<i32>>>`, found `&Vec<Vec<Vec<usize>>>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_3/sample_001/target.rs:57:26
+   |
+57 |     if check_a(n, m, &a, &a) || check_c(n, m, &c, &c) {
+   |                          ^^
+   = note: expected reference `&Vec<Vec<Vec<i32>>>`
+              found reference `&Vec<Vec<Vec<usize>>>`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_3/sample_001/target.rs:29:8
+   |
+29 |     fn check_a(n: usize, m: usize, a: &Vec<Vec<Vec<i32>>>, p: &Vec<Vec<Vec<i32>>>) -> bool {
+   |        ^^^^^^^                     ----------------------  ----------------------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_3/sample_001/target.rs:57:33
+   |
+57 |     if check_a(n, m, &a, &a) || check_c(n, m, &c, &c) {
+   |                                 ^^^^^^^
+   |
+note: expected `&Vec<Vec<Vec<Vec<i32>>>>`, found `&Vec<Vec<Vec<Vec<usize>>>>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_3/sample_001/target.rs:57:47
+   |
+57 |     if check_a(n, m, &a, &a) || check_c(n, m, &c, &c) {
+   |                                               ^^
+   = note: expected reference `&Vec<Vec<Vec<Vec<i32>>>>`
+              found reference `&Vec<Vec<Vec<Vec<usize>>>>`
+note: expected `&Vec<Vec<Vec<Vec<i32>>>>`, found `&Vec<Vec<Vec<Vec<usize>>>>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_3/sample_001/target.rs:57:51
+   |
+57 |     if check_a(n, m, &a, &a) || check_c(n, m, &c, &c) {
+   |                                                   ^^
+   = note: expected reference `&Vec<Vec<Vec<Vec<i32>>>>`
+              found reference `&Vec<Vec<Vec<Vec<usize>>>>`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_3/sample_001/target.rs:42:8
+   |
+42 |     fn check_c(n: usize, m: usize, c: &Vec<Vec<Vec<Vec<i32>>>>, r: &Vec<Vec<Vec<Vec<i32>>>>) -> bool {
+   |        ^^^^^^^                     ---------------------------  ---------------------------
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

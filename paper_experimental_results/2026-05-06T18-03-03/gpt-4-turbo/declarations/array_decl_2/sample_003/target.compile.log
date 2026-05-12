@@ -1,0 +1,53 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_2/sample_003/target.rs:6:5
+   |
+ 6 | /     unsafe {
+ 7 | |         Y[0] = 1;
+ 8 | |         Y[1] = 2;
+ 9 | |         Y[2] = 3;
+...  |
+53 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_2/sample_003/target.rs:67:17
+   |
+67 |     let slice = unsafe { std::slice::from_raw_parts(p, n) };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0607]: cannot cast thin pointer `*const i32` to wide pointer `*const HoldA`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_2/sample_003/target.rs:41:18
+   |
+41 |         let ha = &Y as *const i32 as *const HoldA;
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `*const [i32]` as `usize` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_2/sample_003/target.rs:42:12
+   |
+42 |         if &(*ha).a as *const _ as usize != ha as usize + std::mem::size_of::<i32>() {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: cast through a thin pointer first
+
+error[E0606]: casting `*const HoldA` as `usize` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_2/sample_003/target.rs:42:45
+   |
+42 |         if &(*ha).a as *const _ as usize != ha as usize + std::mem::size_of::<i32>() {
+   |                                             ^^^^^^^^^^^
+   |
+   = help: cast through a thin pointer first
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_2/sample_003/target.rs:4:32
+  |
+4 |     static mut X: *const i32 = BACKING.as_ptr();
+  |                                ^^^^^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0133, E0606, E0607.
+For more information about an error, try `rustc --explain E0133`.

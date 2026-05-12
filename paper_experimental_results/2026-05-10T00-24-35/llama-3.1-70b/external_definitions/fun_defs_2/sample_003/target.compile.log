@@ -1,0 +1,30 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/fun_defs_2/sample_003/target.rs:3:5
+  |
+3 | /     unsafe {
+4 | |         counter += 7;
+5 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/fun_defs_2/sample_003/target.rs:6:5
+  |
+6 |     unsafe { counter }
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: static variable `counter` should have an upper case name
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/fun_defs_2/sample_003/target.rs:2:16
+  |
+2 |     static mut counter: i32 = 0;
+  |                ^^^^^^^
+  |
+  = note: `#[warn(non_upper_case_globals)]` (part of `#[warn(nonstandard_style)]`) on by default
+help: convert the identifier to upper case
+  |
+2 -     static mut counter: i32 = 0;
+2 +     static mut COUNTER: i32 = 0;
+  |
+
+error: aborting due to 2 previous errors; 1 warning emitted

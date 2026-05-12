@@ -1,0 +1,221 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:16:27
+   |
+16 |             let row_ptr = unsafe { base_ptr.add(i) };
+   |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:17:23
+   |
+17 |             let row = unsafe { &*row_ptr };
+   |                       ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:27:8
+   |
+27 |     if unsafe { p1.offset_from(p0) } != 5 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:58:9
+   |
+58 | /         unsafe {
+59 | |             (*p).x += 100;
+60 | |             (*p).x
+61 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:133:12
+    |
+133 |         if unsafe { (*r).n } != x[2][0] {
+    |            ^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:19:21
+   |
+19 |             if a != b {
+   |                -    ^ expected `usize`, found `i32`
+   |                |
+   |                expected because this is `usize`
+   |
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+19 |             if a != b.try_into().unwrap() {
+   |                      ++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:71:8
+   |
+71 |     if make_t1(x[1][0], x[1][1]).x != x[1][0] {
+   |        ^^^^^^^ -------  ------- expected `i32`, found `usize`
+   |                |
+   |                expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:48:8
+   |
+48 |     fn make_t1(x: i32, y: i32) -> T1 {
+   |        ^^^^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+71 |     if make_t1(x[1][0].try_into().unwrap(), x[1][1]).x != x[1][0] {
+   |                       ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+71 |     if make_t1(x[1][0], x[1][1].try_into().unwrap()).x != x[1][0] {
+   |                                ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:71:39
+   |
+71 |     if make_t1(x[1][0], x[1][1]).x != x[1][0] {
+   |        ---------------------------    ^^^^^^^ expected `i32`, found `usize`
+   |        |
+   |        expected because this is `i32`
+   |
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+71 |     if make_t1(x[1][0], x[1][1]).x != x[1][0].try_into().unwrap() {
+   |                                              ++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:74:8
+   |
+74 |     if make_t1(x[1][0], x[1][1]).y != x[1][1] {
+   |        ^^^^^^^ -------  ------- expected `i32`, found `usize`
+   |                |
+   |                expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:48:8
+   |
+48 |     fn make_t1(x: i32, y: i32) -> T1 {
+   |        ^^^^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+74 |     if make_t1(x[1][0].try_into().unwrap(), x[1][1]).y != x[1][1] {
+   |                       ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+74 |     if make_t1(x[1][0], x[1][1].try_into().unwrap()).y != x[1][1] {
+   |                                ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:74:39
+   |
+74 |     if make_t1(x[1][0], x[1][1]).y != x[1][1] {
+   |        ---------------------------    ^^^^^^^ expected `i32`, found `usize`
+   |        |
+   |        expected because this is `i32`
+   |
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+74 |     if make_t1(x[1][0], x[1][1]).y != x[1][1].try_into().unwrap() {
+   |                                              ++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:77:8
+   |
+77 |     if make_t1(x[0][3], x[1][2]).x + make_t1(x[2][0], x[0][4]).y != 7 {
+   |        ^^^^^^^ -------  ------- expected `i32`, found `usize`
+   |                |
+   |                expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:48:8
+   |
+48 |     fn make_t1(x: i32, y: i32) -> T1 {
+   |        ^^^^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+77 |     if make_t1(x[0][3].try_into().unwrap(), x[1][2]).x + make_t1(x[2][0], x[0][4]).y != 7 {
+   |                       ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+77 |     if make_t1(x[0][3], x[1][2].try_into().unwrap()).x + make_t1(x[2][0], x[0][4]).y != 7 {
+   |                                ++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:77:38
+   |
+77 |     if make_t1(x[0][3], x[1][2]).x + make_t1(x[2][0], x[0][4]).y != 7 {
+   |                                      ^^^^^^^ -------  ------- expected `i32`, found `usize`
+   |                                              |
+   |                                              expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:48:8
+   |
+48 |     fn make_t1(x: i32, y: i32) -> T1 {
+   |        ^^^^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+77 |     if make_t1(x[0][3], x[1][2]).x + make_t1(x[2][0].try_into().unwrap(), x[0][4]).y != 7 {
+   |                                                     ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+77 |     if make_t1(x[0][3], x[1][2]).x + make_t1(x[2][0], x[0][4].try_into().unwrap()).y != 7 {
+   |                                                              ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:88:12
+   |
+88 |         x: x[1][0],
+   |            ^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:89:12
+   |
+89 |         y: x[1][1],
+   |            ^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:92:12
+   |
+92 |         x: x[2][0],
+   |            ^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:93:12
+   |
+93 |         y: x[2][1],
+   |            ^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:131:21
+    |
+131 |         c = T2 { n: x[2][0] }; // = 2, seeded from array
+    |                     ^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:133:33
+    |
+133 |         if unsafe { (*r).n } != x[2][0] {
+    |            -----------------    ^^^^^^^ expected `i32`, found `usize`
+    |            |
+    |            expected because this is `i32`
+    |
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+    |
+133 |         if unsafe { (*r).n } != x[2][0].try_into().unwrap() {
+    |                                        ++++++++++++++++++++
+
+error[E0606]: casting `&usize` as `*const i32` is invalid
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:25:14
+   |
+25 |     let p0 = &x[0][0] as *const i32;
+   |              ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&usize` as `*const i32` is invalid
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/combined_features/sample_001/target.rs:26:14
+   |
+26 |     let p1 = &x[1][0] as *const i32;
+   |              ^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 20 previous errors
+
+Some errors have detailed explanations: E0308, E0606.
+For more information about an error, try `rustc --explain E0308`.

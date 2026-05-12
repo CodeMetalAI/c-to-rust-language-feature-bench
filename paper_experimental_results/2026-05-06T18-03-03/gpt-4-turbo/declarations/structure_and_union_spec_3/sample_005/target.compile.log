@@ -1,0 +1,47 @@
+warning: unused import: `std::ptr`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_005/target.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_005/target.rs:17:15
+   |
+17 |     let ptr = unsafe { alloc_zeroed(layout) } as *mut S;
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_005/target.rs:23:5
+   |
+23 | /     unsafe {
+24 | |         (*ptr).i = 7;
+25 | |         ptr.add(1).cast::<i32>().write(11); // Equivalent to p->a[0] = 11;
+26 | |         ptr.add(1).cast::<i32>().add(3).write(22); // Equivalent to p->a[3] = 22;
+...  |
+32 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_005/target.rs:35:5
+   |
+35 | /     unsafe {
+36 | |         dealloc(ptr.cast::<u8>(), layout);
+37 | |     }
+   | |_____^
+
+warning: field `a` is never read
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_005/target.rs:7:5
+  |
+5 | struct S {
+  |        - field in this struct
+6 |     i: i32,
+7 |     a: [i32; 0], // Zero-sized array to mimic flexible array member
+  |     ^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 3 previous errors; 2 warnings emitted

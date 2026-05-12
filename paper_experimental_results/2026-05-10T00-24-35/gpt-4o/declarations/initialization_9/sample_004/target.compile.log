@@ -1,0 +1,40 @@
+error[E0277]: the trait bound `Members: Clone` is not satisfied in `(Members, &str)`
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/initialization_9/sample_004/target.rs:16:61
+     |
+  16 |     let nm_map: std::collections::HashMap<_, _> = nm.iter().cloned().collect();
+     |                                                             ^^^^^^ within `(Members, &str)`, the trait `Clone` is not implemented for `Members`
+     |
+     = note: required because it appears within the type `(Members, &str)`
+note: required by a bound in `cloned`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/iter/traits/iterator.rs:3467:12
+     |
+3465 |     fn cloned<'a, T>(self) -> Cloned<Self>
+     |        ------ required by a bound in this associated function
+3466 |     where
+3467 |         T: Clone + 'a,
+     |            ^^^^^ required by this bound in `Iterator::cloned`
+help: consider annotating `Members` with `#[derive(Clone)]`
+     |
+   6 +     #[derive(Clone)]
+   7 |     enum Members {
+     |
+
+error[E0599]: `Cloned<std::slice::Iter<'_, (Members, &str)>>` is not an iterator
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/initialization_9/sample_004/target.rs:16:70
+   |
+16 |     let nm_map: std::collections::HashMap<_, _> = nm.iter().cloned().collect();
+   |                                                                      ^^^^^^^ `Cloned<std::slice::Iter<'_, (Members, &str)>>` is not an iterator
+   |
+  ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/iter/adapters/cloned.rs:18:1
+   |
+18 | pub struct Cloned<I> {
+   | -------------------- doesn't satisfy `_: Iterator`
+   |
+   = note: the following trait bounds were not satisfied:
+           `Cloned<std::slice::Iter<'_, (Members, &str)>>: Iterator`
+           which is required by `&mut Cloned<std::slice::Iter<'_, (Members, &str)>>: Iterator`
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0277, E0599.
+For more information about an error, try `rustc --explain E0277`.

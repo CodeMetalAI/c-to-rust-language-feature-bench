@@ -1,0 +1,123 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:8:5
+   |
+ 8 | /     unsafe {
+ 9 | |         HITS += x + 1;
+10 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:14:5
+   |
+14 | /     unsafe {
+15 | |         HITS += x + 2;
+16 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:37:5
+   |
+37 |     unsafe { HITS }
+   |     ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:43:5
+   |
+43 |     unsafe { HITS }
+   |     ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:49:5
+   |
+49 |     unsafe { HITS }
+   |     ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:53:5
+   |
+53 | /     unsafe {
+54 | |         HITS = 0;
+55 | |
+56 | |         if call_signal_as_plain(1, handler_b, 3)!= 4 {
+...  |
+69 | |     }
+   | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:24:9
+   |
+22 | fn signal(s: i32, h: SignalHandler) -> SignalHandlerRef {
+   |                                        ---------------- expected `&'static fn(i32)` because of return type
+23 |     if s & 1!= 0 {
+24 |         &handler_a
+   |         ^^^^^^^^^^ expected `&fn(i32)`, found `&fn(i32) {handler_a}`
+   |
+   = note: expected reference `&'static fn(_)`
+              found reference `&fn(_) {handler_a}`
+   = note: fn items are distinct from fn pointers
+help: consider casting to a fn pointer
+   |
+24 -         &handler_a
+24 +         &(handler_a as fn(i32))
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:31:5
+   |
+30 | fn signal_alias(s: i32, h: SignalHandler) -> SignalHandler {
+   |                                              ------------- expected `fn(i32)` because of return type
+31 |     signal(s, h)
+   |     ^^^^^^^^^^^^ expected fn pointer, found `&fn(i32)`
+   |
+   = note: expected fn pointer `fn(_)`
+               found reference `&'static fn(_)`
+help: consider dereferencing the borrow
+   |
+31 |     *signal(s, h)
+   |     +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:57:20
+   |
+52 | fn main() {
+   |          - expected `()` because of default return type
+...
+57 |             return 1;
+   |                    ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:61:33
+   |
+61 |         if call_signal_as_fv(2, &handler_b, 4)!= 6 {
+   |            -----------------    ^^^^^^^^^^ expected `&fn(i32)`, found `&fn(i32) {handler_b}`
+   |            |
+   |            arguments to this function are incorrect
+   |
+   = note: expected reference `&'static fn(_)`
+              found reference `&fn(_) {handler_b}`
+   = note: fn items are distinct from fn pointers
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:40:4
+   |
+40 | fn call_signal_as_fv(s: i32, h: SignalHandlerRef, arg: i32) -> i32 {
+   |    ^^^^^^^^^^^^^^^^^         -------------------
+help: consider casting to a fn pointer
+   |
+61 -         if call_signal_as_fv(2, &handler_b, 4)!= 6 {
+61 +         if call_signal_as_fv(2, &(handler_b as fn(i32)), 4)!= 6 {
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_003/target.rs:70:5
+   |
+52 | fn main() {
+   |          - expected `()` because of default return type
+...
+70 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 11 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

@@ -1,0 +1,55 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/compound_literals_2/sample_001/target.rs:12:5
+   |
+12 | /     unsafe {
+13 | |         *p = arr[0];
+14 | |         let p_ptr = p.to_raw();
+15 | |         let p_mut = p.to_mut();
+16 | |         *p_mut = arr[1];
+17 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/compound_literals_2/sample_001/target.rs:5:10
+  |
+5 |     *p = [*p];
+  |     --   ^^^^ expected `i32`, found `[i32; 1]`
+  |     |
+  |     expected due to the type of this binding
+
+error[E0599]: no method named `to_raw` found for mutable reference `&mut i32` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/compound_literals_2/sample_001/target.rs:7:10
+  |
+7 |     if p.to_raw() as *mut i32 != &mut x as *mut i32 {
+  |          ^^^^^^
+  |
+help: there is a method `into_raw_fd` with a similar name
+  |
+7 -     if p.to_raw() as *mut i32 != &mut x as *mut i32 {
+7 +     if p.into_raw_fd() as *mut i32 != &mut x as *mut i32 {
+  |
+
+error[E0599]: no method named `to_raw` found for mutable reference `&mut i32` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/compound_literals_2/sample_001/target.rs:14:23
+   |
+14 |         let p_ptr = p.to_raw();
+   |                       ^^^^^^
+   |
+help: there is a method `into_raw_fd` with a similar name
+   |
+14 -         let p_ptr = p.to_raw();
+14 +         let p_ptr = p.into_raw_fd();
+   |
+
+error[E0599]: no method named `to_mut` found for mutable reference `&mut i32` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/compound_literals_2/sample_001/target.rs:15:23
+   |
+15 |         let p_mut = p.to_mut();
+   |                       ^^^^^^ method not found in `&mut i32`
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.

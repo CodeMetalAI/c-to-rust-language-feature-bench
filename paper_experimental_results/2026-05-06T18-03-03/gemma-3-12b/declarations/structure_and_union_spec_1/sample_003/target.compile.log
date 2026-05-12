@@ -1,0 +1,84 @@
+error: expected `:`, found `{`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_1/sample_003/target.rs:9:14
+  |
+8 | union Union {
+  |       ----- while parsing this union
+9 |     struct_1 {
+  |              ^ expected `:`
+
+error: this trait cannot be derived for unions
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_1/sample_003/target.rs:7:10
+  |
+7 | #[derive(Debug)]
+  |          ^^^^^
+
+error: unions cannot have zero fields
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_1/sample_003/target.rs:8:1
+   |
+ 8 | / union Union {
+ 9 | |     struct_1 {
+10 | |         i: i32,
+11 | |         j: i32,
+...  |
+17 | |     w: struct_2,
+18 | | }
+   | |_^
+
+warning: type `v` should have an upper camel case name
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_1/sample_003/target.rs:2:8
+  |
+2 | struct v {
+  |        ^ help: convert the identifier to upper camel case (notice the capitalization): `V`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error[E0277]: `Union` doesn't implement `Debug`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_1/sample_003/target.rs:3:5
+  |
+1 | #[derive(Debug)]
+  |          ----- in this derive macro expansion
+2 | struct v {
+3 |     union_field: Union,
+  |     ^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `Union`
+  |
+  = note: add `#[derive(Debug)]` to `Union` or manually `impl Debug for Union`
+help: consider annotating `Union` with `#[derive(Debug)]`
+  |
+8 + #[derive(Debug)]
+9 | union Union {
+  |
+
+error[E0223]: ambiguous associated type
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_1/sample_003/target.rs:23:23
+   |
+23 |             struct_1: Union::struct_1 { i: 0, j: 0 },
+   |                       ^^^^^^^^^^^^^^^
+   |
+help: if there were a trait named `Example` with associated type `struct_1` implemented for `Union`, you could use the fully-qualified path
+   |
+23 -             struct_1: Union::struct_1 { i: 0, j: 0 },
+23 +             struct_1: <Union as Example>::struct_1 { i: 0, j: 0 },
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_1/sample_003/target.rs:32:16
+   |
+20 | fn main() {
+   |          - expected `()` because of default return type
+...
+32 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_1/sample_003/target.rs:39:5
+   |
+20 | fn main() {
+   |          - expected `()` because of default return type
+...
+39 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 7 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0223, E0277, E0308.
+For more information about an error, try `rustc --explain E0223`.

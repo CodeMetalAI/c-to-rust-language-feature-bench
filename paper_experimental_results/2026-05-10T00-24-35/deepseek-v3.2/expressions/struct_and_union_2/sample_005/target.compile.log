@@ -1,0 +1,49 @@
+error[E0277]: `Cell<i32>` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_2/sample_005/target.rs:9:13
+  |
+9 | static S_S: S = S {
+  |             ^ `Cell<i32>` cannot be shared between threads safely
+  |
+  = help: within `S`, the trait `Sync` is not implemented for `Cell<i32>`
+  = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock` or `std::sync::atomic::AtomicI32` instead
+note: required because it appears within the type `S`
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_2/sample_005/target.rs:4:8
+  |
+4 | struct S {
+  |        ^
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `Cell<i32>` cannot be shared between threads safely
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_2/sample_005/target.rs:14:14
+   |
+14 | static CS_S: &S = &S {
+   |              ^^ `Cell<i32>` cannot be shared between threads safely
+   |
+   = help: within `&'static S`, the trait `Sync` is not implemented for `Cell<i32>`
+   = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock` or `std::sync::atomic::AtomicI32` instead
+note: required because it appears within the type `S`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_2/sample_005/target.rs:4:8
+   |
+ 4 | struct S {
+   |        ^
+   = note: required because it appears within the type `&'static S`
+   = note: shared static variables must have a type that implements `Sync`
+
+error[E0492]: interior mutable shared borrows of temporaries that have their lifetime extended until the end of the program are not allowed
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_2/sample_005/target.rs:14:19
+   |
+14 |   static CS_S: &S = &S {
+   |  ___________________^
+15 | |     i: Cell::new(3),
+16 | |     ci: 4,
+17 | | };
+   | |_^ this borrow of an interior mutable value refers to such a temporary
+   |
+   = note: Temporaries in constants and statics can have their lifetime extended until the end of the program
+   = note: To avoid accidentally creating global mutable state, such temporaries must be immutable
+   = help: If you really want global mutable state, try replacing the temporary by an interior mutable `static` or a `static mut`
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0277, E0492.
+For more information about an error, try `rustc --explain E0277`.

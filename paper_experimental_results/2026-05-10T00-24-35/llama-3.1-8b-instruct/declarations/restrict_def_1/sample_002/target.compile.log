@@ -1,0 +1,182 @@
+warning: unnecessary parentheses around method argument
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:23:36
+   |
+23 |     for (p, i) in p.iter_mut().zip((0..)) {
+   |                                    ^   ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+23 -     for (p, i) in p.iter_mut().zip((0..)) {
+23 +     for (p, i) in p.iter_mut().zip(0..) {
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:16:9
+   |
+14 | fn choose_view(u: &Bank, which: bool) -> &i32 {
+   |                                          ---- expected `&i32` because of return type
+15 |     if which {
+16 |         &u.right
+   |         ^^^^^^^^ expected `&i32`, found `&[i32; 8]`
+   |
+   = note: expected reference `&i32`
+              found reference `&[i32; 8]`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:18:9
+   |
+14 | fn choose_view(u: &Bank, which: bool) -> &i32 {
+   |                                          ---- expected `&i32` because of return type
+...
+18 |         &u.left
+   |         ^^^^^^^ expected `&i32`, found `&[i32; 8]`
+   |
+   = note: expected reference `&i32`
+              found reference `&[i32; 8]`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:42:38
+   |
+42 |     let a = choose_view(&mut bank_a, which_a);
+   |             -----------              ^^^^^^^ expected `bool`, found integer
+   |             |
+   |             arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:14:4
+   |
+14 | fn choose_view(u: &Bank, which: bool) -> &i32 {
+   |    ^^^^^^^^^^^           -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:43:38
+   |
+43 |     let b = choose_view(&mut bank_b, which_b);
+   |             -----------              ^^^^^^^ expected `bool`, found integer
+   |             |
+   |             arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:14:4
+   |
+14 | fn choose_view(u: &Bank, which: bool) -> &i32 {
+   |    ^^^^^^^^^^^           -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:45:10
+   |
+45 |     fill(a, 100);
+   |     ---- ^ types differ in mutability
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut [i32]`
+                      found reference `&i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:22:4
+   |
+22 | fn fill(p: &mut [i32], base: i32) {
+   |    ^^^^ -------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:46:10
+   |
+46 |     fill(b, 200);
+   |     ---- ^ types differ in mutability
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut [i32]`
+                      found reference `&i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:22:4
+   |
+22 | fn fill(p: &mut [i32], base: i32) {
+   |    ^^^^ -------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:49:10
+   |
+49 |     bump(a, 1);
+   |     ---- ^ types differ in mutability
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut [i32]`
+                      found reference `&i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:28:4
+   |
+28 | fn bump(p: &mut [i32], k: i32) {
+   |    ^^^^ -------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:50:10
+   |
+50 |     bump(b, 2);
+   |     ---- ^ types differ in mutability
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut [i32]`
+                      found reference `&i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:28:4
+   |
+28 | fn bump(p: &mut [i32], k: i32) {
+   |    ^^^^ -------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:53:12
+   |
+53 |     if sum(a) != (101 + 102 + 103 + 104 + 105 + 106 + 107 + 108) {
+   |        --- ^ expected `&[i32]`, found `&i32`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&[i32]`
+              found reference `&i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:34:4
+   |
+34 | fn sum(p: &[i32]) -> i32 {
+   |    ^^^ ---------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:54:16
+   |
+38 | fn main() {
+   |          - expected `()` because of default return type
+...
+54 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:57:12
+   |
+57 |     if sum(b) != (202 + 203 + 204 + 205 + 206 + 207 + 208 + 209) {
+   |        --- ^ expected `&[i32]`, found `&i32`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&[i32]`
+              found reference `&i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:34:4
+   |
+34 | fn sum(p: &[i32]) -> i32 {
+   |    ^^^ ---------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_002/target.rs:77:5
+   |
+38 | fn main() {
+   |          - expected `()` because of default return type
+...
+77 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 12 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0308`.

@@ -1,0 +1,288 @@
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:194:40
+    |
+194 |     if a_ptr.load(Ordering::SeqCst) != std::ptr::null() { abort(); }
+    |                                        ^^^^^^^^^^^^^^^^ types differ in mutability
+    |
+    = note: expected raw pointer `*mut i32`
+               found raw pointer `*const _`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:195:40
+    |
+195 |     if b_ptr.load(Ordering::SeqCst) != std::ptr::null() { abort(); }
+    |                                        ^^^^^^^^^^^^^^^^ types differ in mutability
+    |
+    = note: expected raw pointer `*mut i32`
+               found raw pointer `*const _`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:198:40
+    |
+198 |     if a_ptr.load(Ordering::SeqCst) != std::ptr::null() { abort(); }
+    |                                        ^^^^^^^^^^^^^^^^ types differ in mutability
+    |
+    = note: expected raw pointer `*mut i32`
+               found raw pointer `*const _`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:202:41
+    |
+202 |     if a_ptr2.load(Ordering::SeqCst) != std::ptr::null() { abort(); }
+    |                                         ^^^^^^^^^^^^^^^^ types differ in mutability
+    |
+    = note: expected raw pointer `*mut i32`
+               found raw pointer `*const _`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:203:41
+    |
+203 |     if b_ptr2.load(Ordering::SeqCst) != (&I as *const i32) { abort(); }
+    |                                         ^^^^^^^^^^^^^^^^^^ types differ in mutability
+    |
+    = note: expected raw pointer `*mut i32`
+               found raw pointer `*const i32`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:206:41
+    |
+206 |     if a_ptr2.load(Ordering::SeqCst) != (&I as *const i32) { abort(); }
+    |                                         ^^^^^^^^^^^^^^^^^^ types differ in mutability
+    |
+    = note: expected raw pointer `*mut i32`
+               found raw pointer `*const i32`
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:20:27
+   |
+20 |         let a = <$t>::new(0 as _);
+   |                           ^^^^^^
+...
+49 |     test_atomic_assign!(AtomicBool, false);
+   |     -------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+20 -         let a = <$t>::new(0 as _);
+20 +         let a = <$t>::new(0 != 0);
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:22:40
+   |
+22 |         if a.load(Ordering::SeqCst) != 0 as _ { abort(); }
+   |                                        ^^^^^^
+...
+49 |     test_atomic_assign!(AtomicBool, false);
+   |     -------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+22 -         if a.load(Ordering::SeqCst) != 0 as _ { abort(); }
+22 +         if a.load(Ordering::SeqCst) != 0 != 0 { abort(); }
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:20:27
+   |
+20 |         let a = <$t>::new(0 as _);
+   |                           ^^^^^^
+...
+69 |     test_atomic_assign!(AtomicBool, true);
+   |     ------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+20 -         let a = <$t>::new(0 as _);
+20 +         let a = <$t>::new(0 != 0);
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:22:40
+   |
+22 |         if a.load(Ordering::SeqCst) != 0 as _ { abort(); }
+   |                                        ^^^^^^
+...
+69 |     test_atomic_assign!(AtomicBool, true);
+   |     ------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+22 -         if a.load(Ordering::SeqCst) != 0 as _ { abort(); }
+22 +         if a.load(Ordering::SeqCst) != 0 != 0 { abort(); }
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:20:27
+   |
+20 |         let a = <$t>::new(0 as _);
+   |                           ^^^^^^
+...
+89 |     test_atomic_assign!(AtomicBool, true);
+   |     ------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+20 -         let a = <$t>::new(0 as _);
+20 +         let a = <$t>::new(0 != 0);
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:22:40
+   |
+22 |         if a.load(Ordering::SeqCst) != 0 as _ { abort(); }
+   |                                        ^^^^^^
+...
+89 |     test_atomic_assign!(AtomicBool, true);
+   |     ------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_atomic_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+22 -         if a.load(Ordering::SeqCst) != 0 as _ { abort(); }
+22 +         if a.load(Ordering::SeqCst) != 0 != 0 { abort(); }
+   |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:20:27
+    |
+ 20 |         let a = <$t>::new(0 as _);
+    |                           ^^^^^^
+...
+109 |     test_atomic_assign!(AtomicBool, true);
+    |     ------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `test_atomic_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+    |
+ 20 -         let a = <$t>::new(0 as _);
+ 20 +         let a = <$t>::new(0 != 0);
+    |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:22:40
+    |
+ 22 |         if a.load(Ordering::SeqCst) != 0 as _ { abort(); }
+    |                                        ^^^^^^
+...
+109 |     test_atomic_assign!(AtomicBool, true);
+    |     ------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `test_atomic_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+    |
+ 22 -         if a.load(Ordering::SeqCst) != 0 as _ { abort(); }
+ 22 +         if a.load(Ordering::SeqCst) != 0 != 0 { abort(); }
+    |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:20:27
+    |
+ 20 |         let a = <$t>::new(0 as _);
+    |                           ^^^^^^
+...
+130 |     test_atomic_assign!(AtomicBool, (val_u64 != 0));
+    |     ----------------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `test_atomic_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+    |
+ 20 -         let a = <$t>::new(0 as _);
+ 20 +         let a = <$t>::new(0 != 0);
+    |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:22:40
+    |
+ 22 |         if a.load(Ordering::SeqCst) != 0 as _ { abort(); }
+    |                                        ^^^^^^
+...
+130 |     test_atomic_assign!(AtomicBool, (val_u64 != 0));
+    |     ----------------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `test_atomic_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+    |
+ 22 -         if a.load(Ordering::SeqCst) != 0 as _ { abort(); }
+ 22 +         if a.load(Ordering::SeqCst) != 0 != 0 { abort(); }
+    |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:20:27
+    |
+ 20 |         let a = <$t>::new(0 as _);
+    |                           ^^^^^^
+...
+150 |     test_atomic_assign!(AtomicBool, true);
+    |     ------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `test_atomic_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+    |
+ 20 -         let a = <$t>::new(0 as _);
+ 20 +         let a = <$t>::new(0 != 0);
+    |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:22:40
+    |
+ 22 |         if a.load(Ordering::SeqCst) != 0 as _ { abort(); }
+    |                                        ^^^^^^
+...
+150 |     test_atomic_assign!(AtomicBool, true);
+    |     ------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `test_atomic_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+    |
+ 22 -         if a.load(Ordering::SeqCst) != 0 as _ { abort(); }
+ 22 +         if a.load(Ordering::SeqCst) != 0 != 0 { abort(); }
+    |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:20:27
+    |
+ 20 |         let a = <$t>::new(0 as _);
+    |                           ^^^^^^
+...
+171 |     test_atomic_assign!(AtomicBool, true);
+    |     ------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `test_atomic_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+    |
+ 20 -         let a = <$t>::new(0 as _);
+ 20 +         let a = <$t>::new(0 != 0);
+    |
+
+error[E0054]: cannot cast `{integer}` as `bool`
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:22:40
+    |
+ 22 |         if a.load(Ordering::SeqCst) != 0 as _ { abort(); }
+    |                                        ^^^^^^
+...
+171 |     test_atomic_assign!(AtomicBool, true);
+    |     ------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `test_atomic_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+    |
+ 22 -         if a.load(Ordering::SeqCst) != 0 as _ { abort(); }
+ 22 +         if a.load(Ordering::SeqCst) != 0 != 0 { abort(); }
+    |
+
+error[E0605]: non-primitive cast: `Complex<f64>` as `Complex<f32>`
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:186:38
+    |
+186 |     test_mutex_assign!(Complex<f32>, cmplx_val as Complex<f32>, Complex { real: 0f32, imag: 0f32 });
+    |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error: aborting due to 21 previous errors
+
+Some errors have detailed explanations: E0054, E0308, E0605.
+For more information about an error, try `rustc --explain E0054`.

@@ -1,0 +1,59 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/rel_op_c5/sample_002/target.rs:11:18
+   |
+11 |     let p_end2 = unsafe { arr.as_ptr().add(3) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/rel_op_c5/sample_002/target.rs:26:14
+   |
+26 |     let q1 = unsafe { q_last.add(1) };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/rel_op_c5/sample_002/target.rs:39:15
+   |
+39 |     let ui = &u.i as *const i32 as usize;
+   |               ^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/rel_op_c5/sample_002/target.rs:40:15
+   |
+40 |     let ud = &u.d as *const f64 as usize;
+   |               ^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/rel_op_c5/sample_002/target.rs:2:9
+  |
+2 |     let mut x = 0;
+  |         ----^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/rel_op_c5/sample_002/target.rs:38:9
+   |
+38 |     let mut u = Un { i: 0 };
+   |         ----^
+   |         |
+   |         help: remove this `mut`
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/rel_op_c5/sample_002/target.rs:10:19
+   |
+10 |     let p_end1 = &arr[3] as *const i32;
+   |                   ^^^^^^ index out of bounds: the length is 3 but the index is 3
+   |
+   = note: `#[deny(unconditional_panic)]` on by default
+
+error: aborting due to 5 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0133`.

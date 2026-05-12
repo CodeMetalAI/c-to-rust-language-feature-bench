@@ -1,0 +1,186 @@
+warning: unused import: `AtomicUsize`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:1:25
+  |
+1 | use std::sync::atomic::{AtomicUsize, Ordering};
+  |                         ^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0605]: non-primitive cast: `T` as `usize`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:7:49
+  |
+7 |     let a = std::sync::atomic::AtomicUsize::new(value as usize);
+  |                                                 ^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `usize`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:9:21
+  |
+9 |         a.fetch_add(change as usize, Ordering::SeqCst) as T
+  |                     ^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `usize` as `T`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:9:9
+  |
+9 |         a.fetch_add(change as usize, Ordering::SeqCst) as T
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `usize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:11:21
+   |
+11 |         a.fetch_add(change as usize, Ordering::SeqCst) as T + change
+   |                     ^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `usize` as `T`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:11:9
+   |
+11 |         a.fetch_add(change as usize, Ordering::SeqCst) as T + change
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `usize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:13:21
+   |
+13 |         a.fetch_sub(change as usize, Ordering::SeqCst) as T
+   |                     ^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `usize` as `T`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:13:9
+   |
+13 |         a.fetch_sub(change as usize, Ordering::SeqCst) as T
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `usize` as `T`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:18:8
+   |
+18 |     if a.load(Ordering::SeqCst) as T!= value + change {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:27:37
+   |
+23 | fn test_incdec_arith<T>(value: T)
+   |                      - expected this type parameter
+...
+27 |     test_incdec(value, true, false, 1);
+   |     ----------- -----               ^ expected type parameter `T`, found integer
+   |     |           |
+   |     |           expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:3:4
+   |
+ 3 | fn test_incdec<T>(value: T, preop: bool, postop: bool, change: T)
+   |    ^^^^^^^^^^^ -  --------                             --------- this parameter needs to match the type parameter `T` type of `value`
+   |                |  |
+   |                |  `change` needs to match the type parameter `T` type of this parameter
+   |                `value` and `change` both reference this parameter `T`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:28:37
+   |
+23 | fn test_incdec_arith<T>(value: T)
+   |                      - expected this type parameter
+...
+28 |     test_incdec(value, false, true, 1);
+   |     ----------- -----               ^ expected type parameter `T`, found integer
+   |     |           |
+   |     |           expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:3:4
+   |
+ 3 | fn test_incdec<T>(value: T, preop: bool, postop: bool, change: T)
+   |    ^^^^^^^^^^^ -  --------                             --------- this parameter needs to match the type parameter `T` type of `value`
+   |                |  |
+   |                |  `change` needs to match the type parameter `T` type of this parameter
+   |                `value` and `change` both reference this parameter `T`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:29:38
+   |
+23 | fn test_incdec_arith<T>(value: T)
+   |                      - expected this type parameter
+...
+29 |     test_incdec(value, false, false, -1);
+   |     ----------- -----                ^^ expected type parameter `T`, found integer
+   |     |           |
+   |     |           expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:3:4
+   |
+ 3 | fn test_incdec<T>(value: T, preop: bool, postop: bool, change: T)
+   |    ^^^^^^^^^^^ -  --------                             --------- this parameter needs to match the type parameter `T` type of `value`
+   |                |  |
+   |                |  `change` needs to match the type parameter `T` type of this parameter
+   |                `value` and `change` both reference this parameter `T`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:30:37
+   |
+23 | fn test_incdec_arith<T>(value: T)
+   |                      - expected this type parameter
+...
+30 |     test_incdec(value, true, false, -1);
+   |     ----------- -----               ^^ expected type parameter `T`, found integer
+   |     |           |
+   |     |           expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:3:4
+   |
+ 3 | fn test_incdec<T>(value: T, preop: bool, postop: bool, change: T)
+   |    ^^^^^^^^^^^ -  --------                             --------- this parameter needs to match the type parameter `T` type of `value`
+   |                |  |
+   |                |  `change` needs to match the type parameter `T` type of this parameter
+   |                `value` and `change` both reference this parameter `T`
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:45:34
+   |
+45 |     test_incdec(a, false, false, -1);
+   |                                  ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `usize`
+   |
+45 -     test_incdec(a, false, false, -1);
+45 +     test_incdec(a, false, false, usize::MAX);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:46:33
+   |
+46 |     test_incdec(a, true, false, -1);
+   |                                 ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `usize`
+   |
+46 -     test_incdec(a, true, false, -1);
+46 +     test_incdec(a, true, false, usize::MAX);
+   |
+
+error: this arithmetic operation will overflow
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:54:27
+   |
+54 |     test_all_incdec_arith(1 << 60);
+   |                           ^^^^^^^ attempt to shift left by `60_i32`, which would overflow
+   |
+   = note: `#[deny(arithmetic_overflow)]` on by default
+
+error: aborting due to 15 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0308, E0600, E0605.
+For more information about an error, try `rustc --explain E0308`.

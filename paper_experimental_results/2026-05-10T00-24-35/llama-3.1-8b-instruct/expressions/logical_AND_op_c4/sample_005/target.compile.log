@@ -1,0 +1,40 @@
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/logical_AND_op_c4/sample_005/target.rs:8:14
+  |
+8 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/logical_AND_op_c4/sample_005/target.rs:12:16
+   |
+12 |     let cond = set_g_return(0, 0) && (y + 1);
+   |                ^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/logical_AND_op_c4/sample_005/target.rs:12:38
+   |
+12 |     let cond = set_g_return(0, 0) && (y + 1);
+   |                                      ^^^^^^^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/logical_AND_op_c4/sample_005/target.rs:22:37
+   |
+22 |     let cond = set_g_return(1, 1)!= (G == 1);
+   |                ------------------   ^^^^^^^^ expected `i32`, found `bool`
+   |                |
+   |                expected because this is `i32`
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/logical_AND_op_c4/sample_005/target.rs:4:5
+  |
+4 |     G = gval;
+  |     ^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0133, E0277, E0308.
+For more information about an error, try `rustc --explain E0133`.

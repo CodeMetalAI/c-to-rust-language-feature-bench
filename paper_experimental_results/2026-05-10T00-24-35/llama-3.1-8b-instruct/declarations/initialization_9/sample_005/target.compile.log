@@ -1,0 +1,63 @@
+error[E0277]: the type `[(Member, &str)]` cannot be indexed by `Member`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_9/sample_005/target.rs:16:18
+   |
+16 |     if!check(&nm[Member::MemberOne].1, "member one") {
+   |                  ^^^^^^^^^^^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+help: the trait `SliceIndex<[(Member, &str)]>` is not implemented for `Member`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_9/sample_005/target.rs:1:1
+   |
+ 1 | enum Member {
+   | ^^^^^^^^^^^
+   = note: required for `[(Member, &str)]` to implement `Index<Member>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[(Member, &str); 2]` to implement `Index<Member>`
+
+error[E0277]: the type `[(Member, &str)]` cannot be indexed by `Member`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_9/sample_005/target.rs:19:18
+   |
+19 |     if!check(&nm[Member::MemberTwo].1, "member two") {
+   |                  ^^^^^^^^^^^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+help: the trait `SliceIndex<[(Member, &str)]>` is not implemented for `Member`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_9/sample_005/target.rs:1:1
+   |
+ 1 | enum Member {
+   | ^^^^^^^^^^^
+   = note: required for `[(Member, &str)]` to implement `Index<Member>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[(Member, &str); 2]` to implement `Index<Member>`
+
+error[E0277]: the type `[(Member, &str)]` cannot be indexed by `Member`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_9/sample_005/target.rs:25:14
+   |
+25 |         if p[Member::MemberOne].1.chars().nth(7).unwrap()!= 'o' {
+   |              ^^^^^^^^^^^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+help: the trait `SliceIndex<[(Member, &str)]>` is not implemented for `Member`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_9/sample_005/target.rs:1:1
+   |
+ 1 | enum Member {
+   | ^^^^^^^^^^^
+   = note: required for `[(Member, &str)]` to implement `Index<Member>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[(Member, &str); 2]` to implement `Index<Member>`
+
+error[E0277]: the type `[(Member, &str)]` cannot be indexed by `Member`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_9/sample_005/target.rs:28:14
+   |
+28 |         if p[Member::MemberTwo].1.chars().nth(7).unwrap()!= 't' {
+   |              ^^^^^^^^^^^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+help: the trait `SliceIndex<[(Member, &str)]>` is not implemented for `Member`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_9/sample_005/target.rs:1:1
+   |
+ 1 | enum Member {
+   | ^^^^^^^^^^^
+   = note: required for `[(Member, &str)]` to implement `Index<Member>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[(Member, &str); 2]` to implement `Index<Member>`
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

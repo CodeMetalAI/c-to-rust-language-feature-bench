@@ -1,0 +1,43 @@
+error[E0412]: cannot find type `c_longdouble` in module `std::ffi`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-6/sample_002/target.rs:23:29
+   |
+23 |     check_align::<std::ffi::c_longdouble>();
+   |                             ^^^^^^^^^^^^ help: a type alias with a similar name exists: `c_double`
+   |
+  ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ffi/primitives.rs:35:1
+   |
+35 | type_alias! { "c_double.md", c_double = f64; }
+   | ---------------------------------------------- similarly named type alias `c_double` defined here
+
+error[E0412]: cannot find type `Complex` in module `std::num`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-6/sample_002/target.rs:24:29
+   |
+24 |     check_align::<std::num::Complex<f32>>();
+   |                             ^^^^^^^ not found in `std::num`
+
+error[E0412]: cannot find type `Complex` in module `std::num`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-6/sample_002/target.rs:25:29
+   |
+25 |     check_align::<std::num::Complex<f64>>();
+   |                             ^^^^^^^ not found in `std::num`
+
+error[E0412]: cannot find type `Complex` in module `std::num`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-6/sample_002/target.rs:26:29
+   |
+26 |     check_align::<std::num::Complex<std::ffi::c_longdouble>>();
+   |                             ^^^^^^^ not found in `std::num`
+
+error[E0412]: cannot find type `c_longdouble` in module `std::ffi`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-6/sample_002/target.rs:26:47
+   |
+26 |     check_align::<std::num::Complex<std::ffi::c_longdouble>>();
+   |                                               ^^^^^^^^^^^^ help: a type alias with a similar name exists: `c_double`
+   |
+  ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ffi/primitives.rs:35:1
+   |
+35 | type_alias! { "c_double.md", c_double = f64; }
+   | ---------------------------------------------- similarly named type alias `c_double` defined here
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0412`.

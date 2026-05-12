@@ -1,0 +1,105 @@
+error[E0434]: can't capture dynamic environment in a fn item
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_4/sample_002/target.rs:5:9
+  |
+5 |         hits += x + 1;
+  |         ^^^^
+  |
+  = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_4/sample_002/target.rs:9:9
+  |
+9 |         hits += x + 2;
+  |         ^^^^
+  |
+  = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_4/sample_002/target.rs:17:13
+   |
+17 |             handler_a_ref
+   |             ^^^^^^^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_4/sample_002/target.rs:28:9
+   |
+28 |         hits
+   |         ^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_4/sample_002/target.rs:34:9
+   |
+34 |         hits
+   |         ^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_4/sample_002/target.rs:38:17
+   |
+38 |         let r = signal_alias(s, h);
+   |                 ^^^^^^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_4/sample_002/target.rs:40:9
+   |
+40 |         hits
+   |         ^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+warning: variable `hits` is assigned to, but never used
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_4/sample_002/target.rs:2:13
+  |
+2 |     let mut hits = 0;
+  |             ^^^^
+  |
+  = note: consider using `_hits` instead
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `handler_a_ref`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_4/sample_002/target.rs:12:9
+   |
+12 |     let handler_a_ref = handler_a as fn(i32);
+   |         ^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_handler_a_ref`
+
+warning: unused variable: `signal_alias`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_4/sample_002/target.rs:23:9
+   |
+23 |     let signal_alias = signal;
+   |         ^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_signal_alias`
+
+warning: value assigned to `hits` is never read
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_4/sample_002/target.rs:43:5
+   |
+43 |     hits = 0;
+   |     ^^^^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `hits` is never read
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_4/sample_002/target.rs:48:5
+   |
+48 |     hits = 0;
+   |     ^^^^
+   |
+   = help: maybe it is overwritten before being read?
+
+warning: value assigned to `hits` is never read
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_4/sample_002/target.rs:53:5
+   |
+53 |     hits = 0;
+   |     ^^^^
+   |
+   = help: maybe it is overwritten before being read?
+
+error: aborting due to 7 previous errors; 6 warnings emitted
+
+For more information about this error, try `rustc --explain E0434`.

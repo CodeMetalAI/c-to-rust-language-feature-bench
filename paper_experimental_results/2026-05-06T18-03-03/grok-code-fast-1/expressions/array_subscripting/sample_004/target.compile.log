@@ -1,0 +1,25 @@
+error[E0606]: casting `&i32` as `usize` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/array_subscripting/sample_004/target.rs:22:17
+   |
+22 |     let diff = (p1 as usize - p0 as usize) / std::mem::size_of::<i32>();
+   |                 ^^^^^^^^^^^
+   |
+help: dereference the expression
+   |
+22 |     let diff = (*p1 as usize - p0 as usize) / std::mem::size_of::<i32>();
+   |                 +
+
+error[E0606]: casting `&i32` as `usize` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/array_subscripting/sample_004/target.rs:22:31
+   |
+22 |     let diff = (p1 as usize - p0 as usize) / std::mem::size_of::<i32>();
+   |                               ^^^^^^^^^^^
+   |
+help: dereference the expression
+   |
+22 |     let diff = (p1 as usize - *p0 as usize) / std::mem::size_of::<i32>();
+   |                               +
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0606`.

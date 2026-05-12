@@ -1,0 +1,33 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_3b/sample_001/target.rs:15:5
+   |
+15 | /     unsafe {
+16 | |         if u.s1.m < 0 {
+17 | |             u.s2.m = -u.s2.m;
+...  |
+20 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_3b/sample_001/target.rs:32:8
+   |
+32 |     if unsafe { u.s2.m } != -7 {
+   |        ^^^^^^^^^^^^^^^^^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_3b/sample_001/target.rs:10:5
+   |
+10 |     s1: T1,
+   |     ^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+10 |     s1: std::mem::ManuallyDrop<T1>,
+   |         +++++++++++++++++++++++  +
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0740`.

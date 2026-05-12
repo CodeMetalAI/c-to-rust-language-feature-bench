@@ -1,0 +1,46 @@
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_2/sample_003/target.rs:5:9
+  |
+3 |     let mut p = &x;
+  |                 -- expected due to this value
+4 |
+5 |     p = (x, 0);
+  |         ^^^^^^ expected `&i32`, found `(i32, {integer})`
+  |
+  = note: expected reference `&i32`
+                 found tuple `(i32, {integer})`
+
+error[E0609]: no field `0` on type `&i32`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_2/sample_003/target.rs:7:10
+  |
+7 |     if p.0 != init {
+  |          ^ unknown field
+
+error[E0609]: no field `1` on type `&i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_2/sample_003/target.rs:10:10
+   |
+10 |     if p.1 != 0 {
+   |          ^ unknown field
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_2/sample_003/target.rs:19:16
+   |
+17 | fn main() {
+   |          - expected `()` because of default return type
+18 |     if f(7) != 0 {
+19 |         return 10;
+   |                ^^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_2/sample_003/target.rs:24:5
+   |
+17 | fn main() {
+   |          - expected `()` because of default return type
+...
+24 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0609.
+For more information about an error, try `rustc --explain E0308`.

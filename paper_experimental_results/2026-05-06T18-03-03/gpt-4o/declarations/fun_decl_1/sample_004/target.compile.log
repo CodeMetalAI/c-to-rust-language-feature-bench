@@ -1,0 +1,65 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/fun_decl_1/sample_004/target.rs:6:5
+  |
+6 | /     unsafe {
+7 | |         GSTORE[0] = 111;
+8 | |         GSTORE[0] + 1
+9 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/fun_decl_1/sample_004/target.rs:13:5
+   |
+13 | /     unsafe {
+14 | |         GSTORE[1] = 222;
+15 | |         &GSTORE[1]
+16 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/fun_decl_1/sample_004/target.rs:20:5
+   |
+20 | /     unsafe {
+21 | |         GSTORE[2] = 333;
+22 | |         GSTORE[2] - 1
+23 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/fun_decl_1/sample_004/target.rs:27:5
+   |
+27 | /     unsafe {
+28 | |         GSTORE[3] = 444;
+29 | |         GSTORE[3] + 2
+30 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/fun_decl_1/sample_004/target.rs:53:17
+   |
+53 |     let v_fip = unsafe { *fip() };
+   |                 ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/fun_decl_1/sample_004/target.rs:59:5
+   |
+59 | /     unsafe {
+60 | |         if choose(GSTORE[0]) == 0 {
+61 | |             pfi = alt1;
+62 | |         }
+63 | |     }
+   | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/fun_decl_1/sample_004/target.rs:45:14
+   |
+45 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error: aborting due to 7 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

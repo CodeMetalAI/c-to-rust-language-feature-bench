@@ -1,0 +1,26 @@
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_3b/sample_003/target.rs:18:10
+   |
+18 | #[derive(Debug, Copy, Clone)]
+   |          ^^^^^
+
+error[E0412]: cannot find type `u12` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_3b/sample_003/target.rs:1:14
+   |
+ 1 | fn f(u: &mut u12) -> i32 {
+   |              ^^^ help: a union with a similar name exists (notice the capitalization): `U12`
+...
+19 | union U12 {
+   | --------- similarly named union `U12` defined here
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_3b/sample_003/target.rs:31:18
+   |
+31 |     let s2: T2 = unsafe { std::mem::transmute(u) }.s2;
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0412`.

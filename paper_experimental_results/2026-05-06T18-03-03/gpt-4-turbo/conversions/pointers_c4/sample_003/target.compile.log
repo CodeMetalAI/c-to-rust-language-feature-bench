@@ -1,0 +1,29 @@
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/pointers_c4/sample_003/target.rs:8:39
+  |
+8 |     let fp2: Option<fn(i32) -> i32> = v0 as *const ();
+  |              ----------------------   ^^^^^^^^^^^^^^^ expected `Option<fn(i32) -> i32>`, found `*const ()`
+  |              |
+  |              expected due to this
+  |
+  = note:     expected enum `Option<fn(i32) -> i32>`
+          found raw pointer `*const ()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/pointers_c4/sample_003/target.rs:34:27
+   |
+34 |     if p0 as *const () != fp0.map(|f| f as *const ()) {
+   |        ---------------    ^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `*const ()`, found `Option<*const ()>`
+   |        |
+   |        expected because this is `*const ()`
+   |
+   = note: expected raw pointer `*const ()`
+                     found enum `Option<*const ()>`
+help: consider using `Option::expect` to unwrap the `Option<*const ()>` value, panicking if the value is an `Option::None`
+   |
+34 |     if p0 as *const () != fp0.map(|f| f as *const ()).expect("REASON") {
+   |                                                      +++++++++++++++++
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

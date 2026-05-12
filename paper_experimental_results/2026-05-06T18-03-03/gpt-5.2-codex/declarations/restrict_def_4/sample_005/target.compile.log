@@ -1,0 +1,34 @@
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/restrict_def_4/sample_005/target.rs:73:27
+   |
+57 |         let p1 = &mut x;
+   |                  ------ mutable borrow occurs here
+...
+73 |                 if !same(&x[8..], &expect, 16) {
+   |                           ^ immutable borrow occurs here
+...
+83 |         copy_restrict(8, &mut p1[0..], &q1[24..]);
+   |                               -- mutable borrow later used here
+
+error[E0382]: borrow of moved value: `p1`
+   --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/restrict_def_4/sample_005/target.rs:83:31
+    |
+ 57 |         let p1 = &mut x;
+    |             -- move occurs because `p1` has type `&mut [i32; 32]`, which does not implement the `Copy` trait
+...
+ 64 |             copy_restrict(16, &mut p2[8..], &q2[4..]);
+    |                                      ----- `p1` moved due to usage in operator
+...
+ 83 |         copy_restrict(8, &mut p1[0..], &q1[24..]);
+    |                               ^^ value borrowed here after move
+    |
+note: calling this operator moves the left-hand side
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/index.rs:179:23
+    |
+179 |     fn index_mut(&mut self, index: Idx) -> &mut Self::Output;
+    |                       ^^^^
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0382, E0502.
+For more information about an error, try `rustc --explain E0382`.

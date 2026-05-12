@@ -1,0 +1,44 @@
+warning: value assigned to `p` is never read
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_1b/sample_002/target.rs:4:13
+  |
+4 |     let mut p: &mut [i32; 3] = &mut a[0];
+  |             ^
+  |
+  = help: maybe it is overwritten before being read?
+  = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `p_index`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_1b/sample_002/target.rs:13:9
+   |
+13 |     let p_index = 1;
+   |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_p_index`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error[E0503]: cannot use `a[_][_]` because it was mutably borrowed
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_1b/sample_002/target.rs:9:8
+   |
+ 5 |     p = &mut a[1];
+   |         --------- `a[_]` is borrowed here
+...
+ 9 |     if a[1][2] != 99 {
+   |        ^^^^^^^ use of borrowed `a[_]`
+...
+15 |     let p_ptr = p.as_ptr() as usize;
+   |                 - borrow later used here
+
+error[E0502]: cannot borrow `a` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_1b/sample_002/target.rs:14:19
+   |
+ 5 |     p = &mut a[1];
+   |         --------- mutable borrow occurs here
+...
+14 |     let a_start = a.as_ptr() as usize;
+   |                   ^ immutable borrow occurs here
+15 |     let p_ptr = p.as_ptr() as usize;
+   |                 - mutable borrow later used here
+
+error: aborting due to 2 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0502, E0503.
+For more information about an error, try `rustc --explain E0502`.

@@ -1,0 +1,43 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/add_op_c8/sample_005/target.rs:11:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+11 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0277]: can't compare `{integer}` with `&{integer}`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/add_op_c8/sample_005/target.rs:23:19
+   |
+23 |     if p_from_end != p_last {
+   |                   ^^ no implementation for `{integer} == &{integer}`
+   |
+   = help: the trait `PartialEq<&{integer}>` is not implemented for `{integer}`
+help: consider dereferencing here
+   |
+23 |     if p_from_end != *p_last {
+   |                      +
+
+error[E0614]: type `{integer}` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/add_op_c8/sample_005/target.rs:26:8
+   |
+26 |     if *p_from_end != 50 {
+   |        ^^^^^^^^^^^ can't be dereferenced
+
+error[E0277]: can't compare `{integer}` with `&{integer}`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/add_op_c8/sample_005/target.rs:30:15
+   |
+30 |     if p0 + 5 != p_end {
+   |               ^^ no implementation for `{integer} == &{integer}`
+   |
+   = help: the trait `PartialEq<&{integer}>` is not implemented for `{integer}`
+help: consider dereferencing here
+   |
+30 |     if p0 + 5 != *p_end {
+   |                  +
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0614.
+For more information about an error, try `rustc --explain E0277`.

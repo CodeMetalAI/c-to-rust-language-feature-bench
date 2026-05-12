@@ -1,0 +1,95 @@
+error: free static item without body
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/logical_OR_op_c4/sample_005/target.rs:8:1
+  |
+8 | static mut g: i32;
+  | ^^^^^^^^^^^^^^^^^-
+  |                  |
+  |                  help: provide a definition for the static: `= <expr>;`
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/logical_OR_op_c4/sample_005/target.rs:2:5
+  |
+2 | /     unsafe {
+3 | |         g = gval;
+4 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/logical_OR_op_c4/sample_005/target.rs:13:5
+   |
+13 | /     unsafe {
+14 | |         g = 0;
+15 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/logical_OR_op_c4/sample_005/target.rs:21:5
+   |
+21 | /     unsafe {
+22 | |         g = 0;
+23 | |     }
+   | |_____^
+
+warning: unnecessary parentheses around `if` condition
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/logical_OR_op_c4/sample_005/target.rs:25:8
+   |
+25 |     if (set_g_return(0, 1) | (y += 1)) {
+   |        ^                             ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+25 -     if (set_g_return(0, 1) | (y += 1)) {
+25 +     if set_g_return(0, 1) | (y += 1) {
+   |
+
+error[E0277]: no implementation for `i32 | bool`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/logical_OR_op_c4/sample_005/target.rs:17:30
+   |
+17 |     if !((set_g_return(1, 0) | (g == 1))) {
+   |                              ^ no implementation for `i32 | bool`
+   |
+   = help: the trait `BitOr<bool>` is not implemented for `i32`
+   = help: the following other types implement trait `BitOr<Rhs>`:
+             `&i32` implements `BitOr<i32>`
+             `&i32` implements `BitOr`
+             `i32` implements `BitOr<&i32>`
+             `i32` implements `BitOr`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/logical_OR_op_c4/sample_005/target.rs:18:16
+   |
+10 | fn main() {
+   |          - expected `()` because of default return type
+...
+18 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0277]: no implementation for `i32 | ()`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/logical_OR_op_c4/sample_005/target.rs:25:28
+   |
+25 |     if (set_g_return(0, 1) | (y += 1)) {
+   |                            ^ no implementation for `i32 | ()`
+   |
+   = help: the trait `BitOr<()>` is not implemented for `i32`
+   = help: the following other types implement trait `BitOr<Rhs>`:
+             `&i32` implements `BitOr<i32>`
+             `&i32` implements `BitOr`
+             `i32` implements `BitOr<&i32>`
+             `i32` implements `BitOr`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/logical_OR_op_c4/sample_005/target.rs:33:5
+   |
+10 | fn main() {
+   |          - expected `()` because of default return type
+...
+33 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 8 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

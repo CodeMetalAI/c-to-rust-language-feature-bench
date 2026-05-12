@@ -1,0 +1,28 @@
+fn main() {
+    let x = 7;
+    let p = &x;
+
+    if p as *const _ != p {
+        std::process::exit(1);
+    }
+
+    if &*p as *const _ != p {
+        std::process::exit(2);
+    }
+
+    let a = [10, 20, 30];
+
+    if &a[0] as *const _ != &a[0] {
+        std::process::exit(3);
+    }
+    if &a[1] as *const _ != &a[1] {
+        std::process::exit(4);
+    }
+    if &a[2] as *const _ != &a[2] {
+        std::process::exit(5);
+    }
+
+    if a[1] != 20 {
+        std::process::exit(6);
+    }
+}

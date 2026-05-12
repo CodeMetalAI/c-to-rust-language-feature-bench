@@ -1,0 +1,73 @@
+warning: unused import: `std::ptr`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_001/target.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_001/target.rs:36:5
+   |
+36 | /     unsafe {
+37 | |         *p.offset(1) += 5;
+38 | |         *p.offset(0) + *p.offset(1) + *p.offset(2)
+39 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_001/target.rs:63:18
+   |
+63 |         let ha = unsafe { &*(hp.p as *const HoldA) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_001/target.rs:50:39
+   |
+50 |     assert_eq!(mutate_through_pointer(x), 10 + 25 + 30);
+   |                ---------------------- ^ types differ in mutability
+   |                |
+   |                arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*mut usize`
+              found raw pointer `*const usize`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_001/target.rs:35:4
+   |
+35 | fn mutate_through_pointer(p: *mut usize) -> usize {
+   |    ^^^^^^^^^^^^^^^^^^^^^^ -------------
+
+error[E0599]: no method named `offset` found for reference `&[usize; 7]` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_001/target.rs:56:23
+   |
+56 |         assert_eq!(*t.offset(6), 7);
+   |                       ^^^^^^ method not found in `&[usize; 7]`
+
+error[E0599]: no method named `offset` found for array `[usize; 6]` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_001/target.rs:65:26
+   |
+65 |         assert_eq!(*ha.a.offset(2), 3);
+   |                          ^^^^^^ method not found in `[usize; 6]`
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_001/target.rs:19:14
+   |
+19 |         s += *p.offset(i as isize);
+   |              ^^^^^^^^^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_001/target.rs:19:15
+   |
+19 |         s += *p.offset(i as isize);
+   |               ^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: aborting due to 7 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0133, E0308, E0599.
+For more information about an error, try `rustc --explain E0133`.

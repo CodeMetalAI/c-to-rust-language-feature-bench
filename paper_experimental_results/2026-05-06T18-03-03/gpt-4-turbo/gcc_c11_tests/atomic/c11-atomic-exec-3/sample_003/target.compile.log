@@ -1,0 +1,127 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:18:30
+   |
+17 | fn test_all_incdec_arith<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + From<u8>>(value: T) {
+   |                          - expected this type parameter
+18 |     test_incdec_arith(value, 1);
+   |     ----------------- -----  ^ expected type parameter `T`, found integer
+   |     |                 |
+   |     |                 expected all arguments to be this type parameter `T` type because they need to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:22:4
+   |
+22 | fn test_incdec_arith<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + From<u8>>(value: T, change: T) {
+   |    ^^^^^^^^^^^^^^^^^ -                                                                                       --------  --------- this parameter needs to match the type parameter `T` type of `value`
+   |                      |                                                                                       |
+   |                      `value` and `change` both reference this parameter `T`                                  `change` needs to match the type parameter `T` type of this parameter
+help: call `Into::into` on this expression to convert `{integer}` into `T`
+   |
+18 |     test_incdec_arith(value, 1.into());
+   |                               +++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:19:30
+   |
+17 | fn test_all_incdec_arith<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + From<u8>>(value: T) {
+   |                          - expected this type parameter
+18 |     test_incdec_arith(value, 1);
+19 |     test_incdec_arith(value, -1);
+   |     ----------------- -----  ^^ expected type parameter `T`, found integer
+   |     |                 |
+   |     |                 expected all arguments to be this type parameter `T` type because they need to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:22:4
+   |
+22 | fn test_incdec_arith<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + From<u8>>(value: T, change: T) {
+   |    ^^^^^^^^^^^^^^^^^ -                                                                                       --------  --------- this parameter needs to match the type parameter `T` type of `value`
+   |                      |                                                                                       |
+   |                      `value` and `change` both reference this parameter `T`                                  `change` needs to match the type parameter `T` type of this parameter
+help: call `Into::into` on this expression to convert `{integer}` into `T`
+   |
+19 |     test_incdec_arith(value, (-1).into());
+   |                              +  ++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:30:5
+   |
+30 |     assert_eq!(a, expected);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+26 | fn test_incdec_type<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + From<u8> + std::fmt::Debug>(value: T, change: T) {
+   |                                                                                                            +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:30:5
+   |
+30 |     assert_eq!(a, expected);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+26 | fn test_incdec_type<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + From<u8> + std::fmt::Debug>(value: T, change: T) {
+   |                                                                                                            +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:32:5
+   |
+32 |     assert_eq!(a, value);
+   |     ^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+26 | fn test_incdec_type<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + From<u8> + std::fmt::Debug>(value: T, change: T) {
+   |                                                                                                            +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:32:5
+   |
+32 |     assert_eq!(a, value);
+   |     ^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+26 | fn test_incdec_type<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + From<u8> + std::fmt::Debug>(value: T, change: T) {
+   |                                                                                                            +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:43:5
+   |
+43 |     assert_eq!(*ptr, expected);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+35 | fn test_incdec_generic<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + From<i32> + std::fmt::Debug>(ptr: &mut T, change: i32) {
+   |                                                                                                                +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:43:5
+   |
+43 |     assert_eq!(*ptr, expected);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+35 | fn test_incdec_generic<T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + From<i32> + std::fmt::Debug>(ptr: &mut T, change: i32) {
+   |                                                                                                                +++++++++++++++++
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

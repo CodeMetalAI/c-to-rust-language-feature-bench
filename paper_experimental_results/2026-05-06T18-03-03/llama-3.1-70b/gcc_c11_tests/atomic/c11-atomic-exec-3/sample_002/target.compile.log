@@ -1,0 +1,314 @@
+error[E0428]: the name `test_incdec` is defined multiple times
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:41:1
+   |
+ 1 | / fn test_incdec<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + std::fmt::Debug>(
+ 2 | |     value: T,
+ 3 | |     change: T,
+ 4 | |     pre_op: bool,
+...  |
+24 | | }
+   | |_- previous definition of the value `test_incdec` here
+...
+41 |   fn test_incdec() {
+   |   ^^^^^^^^^^^^^^^^ `test_incdec` redefined here
+   |
+   = note: `test_incdec` must be defined only once in the value namespace of this module
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:7:51
+     |
+   7 |     let mut a = std::sync::atomic::AtomicPtr::new(&value);
+     |                 --------------------------------- ^^^^^^ types differ in mutability
+     |                 |
+     |                 arguments to this function are incorrect
+     |
+     = note: expected raw pointer `*mut _`
+                  found reference `&T`
+note: associated function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:1486:18
+     |
+1486 |     pub const fn new(p: *mut T) -> AtomicPtr<T> {
+     |                  ^^^
+
+error[E0369]: cannot add `&T` to `&T`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:9:16
+  |
+9 |         &value + &change
+  |         ------ ^ ------- &T
+  |         |
+  |         &T
+  |
+help: consider introducing a `where` clause, but there might be an alternative better way to express this requirement
+  |
+6 | ) where &T: Add<&T> {
+  |   +++++++++++++++++
+
+error[E0599]: no method named `fetch_add` found for struct `AtomicPtr<T>` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:14:11
+   |
+14 |         a.fetch_add(&change, std::sync::atomic::Ordering::SeqCst)
+   |           ^^^^^^^^^
+   |
+help: there is a method `fetch_and` with a similar name
+   |
+14 -         a.fetch_add(&change, std::sync::atomic::Ordering::SeqCst)
+14 +         a.fetch_and(&change, std::sync::atomic::Ordering::SeqCst)
+   |
+
+error[E0599]: no method named `fetch_add` found for struct `AtomicPtr<T>` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:16:11
+   |
+16 |         a.fetch_add(&change, std::sync::atomic::Ordering::SeqCst)
+   |           ^^^^^^^^^
+   |
+help: there is a method `fetch_and` with a similar name
+   |
+16 -         a.fetch_add(&change, std::sync::atomic::Ordering::SeqCst)
+16 +         a.fetch_and(&change, std::sync::atomic::Ordering::SeqCst)
+   |
+
+error[E0369]: cannot add `&T` to `&T`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:21:61
+   |
+21 |     if a.load(std::sync::atomic::Ordering::SeqCst)!= &value + &change {
+   |                                                      ------ ^ ------- &T
+   |                                                      |
+   |                                                      &T
+   |
+help: consider introducing a `where` clause, but there might be an alternative better way to express this requirement
+   |
+ 6 | ) where &T: Add<&T> {
+   |   +++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:29:32
+    |
+ 26 | fn test_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + std::fmt::Debug>(
+    |                      - expected this type parameter
+...
+ 29 |     test_incdec(value, T::from(1).unwrap(), true, false);
+    |                        ------- ^ expected type parameter `T`, found integer
+    |                        |
+    |                        arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:592:8
+    |
+592 |     fn from(value: T) -> Self;
+    |        ^^^^
+
+error[E0599]: no method named `unwrap` found for type parameter `T` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:29:35
+   |
+26 | fn test_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + std::fmt::Debug>(
+   |                      - method `unwrap` not found for this type parameter
+...
+29 |     test_incdec(value, T::from(1).unwrap(), true, false);
+   |                                   ^^^^^^ method not found in `T`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:30:32
+    |
+ 26 | fn test_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + std::fmt::Debug>(
+    |                      - expected this type parameter
+...
+ 30 |     test_incdec(value, T::from(-1).unwrap(), true, false);
+    |                        ------- ^^ expected type parameter `T`, found integer
+    |                        |
+    |                        arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:592:8
+    |
+592 |     fn from(value: T) -> Self;
+    |        ^^^^
+
+error[E0599]: no method named `unwrap` found for type parameter `T` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:30:36
+   |
+26 | fn test_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + std::fmt::Debug>(
+   |                      - method `unwrap` not found for this type parameter
+...
+30 |     test_incdec(value, T::from(-1).unwrap(), true, false);
+   |                                    ^^^^^^ method not found in `T`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:31:32
+    |
+ 26 | fn test_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + std::fmt::Debug>(
+    |                      - expected this type parameter
+...
+ 31 |     test_incdec(value, T::from(1).unwrap(), false, true);
+    |                        ------- ^ expected type parameter `T`, found integer
+    |                        |
+    |                        arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:592:8
+    |
+592 |     fn from(value: T) -> Self;
+    |        ^^^^
+
+error[E0599]: no method named `unwrap` found for type parameter `T` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:31:35
+   |
+26 | fn test_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + std::fmt::Debug>(
+   |                      - method `unwrap` not found for this type parameter
+...
+31 |     test_incdec(value, T::from(1).unwrap(), false, true);
+   |                                   ^^^^^^ method not found in `T`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:32:32
+    |
+ 26 | fn test_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + std::fmt::Debug>(
+    |                      - expected this type parameter
+...
+ 32 |     test_incdec(value, T::from(-1).unwrap(), false, true);
+    |                        ------- ^^ expected type parameter `T`, found integer
+    |                        |
+    |                        arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:592:8
+    |
+592 |     fn from(value: T) -> Self;
+    |        ^^^^
+
+error[E0599]: no method named `unwrap` found for type parameter `T` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:32:36
+   |
+26 | fn test_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + std::fmt::Debug>(
+   |                      - method `unwrap` not found for this type parameter
+...
+32 |     test_incdec(value, T::from(-1).unwrap(), false, true);
+   |                                    ^^^^^^ method not found in `T`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:49:25
+   |
+49 |     test_incdec(&ia[1], 1, true, false);
+   |     ----------- ------  ^ expected `&{integer}`, found integer
+   |     |           |
+   |     |           expected some other arguments to be an `&{integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:1:4
+   |
+ 1 | fn test_incdec<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + std::fmt::Debug>(
+   |    ^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+ 2 |     value: T,
+   |     -------- `change` needs to match the `&{integer}` type of this parameter
+ 3 |     change: T,
+   |     --------- this parameter needs to match the `&{integer}` type of `value`
+help: consider borrowing here
+   |
+49 |     test_incdec(&ia[1], &1, true, false);
+   |                         +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:50:25
+   |
+50 |     test_incdec(&ia[1], -1, true, false);
+   |     ----------- ------  ^^ expected `&{integer}`, found integer
+   |     |           |
+   |     |           expected some other arguments to be an `&{integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:1:4
+   |
+ 1 | fn test_incdec<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + std::fmt::Debug>(
+   |    ^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+ 2 |     value: T,
+   |     -------- `change` needs to match the `&{integer}` type of this parameter
+ 3 |     change: T,
+   |     --------- this parameter needs to match the `&{integer}` type of `value`
+help: consider borrowing here
+   |
+50 |     test_incdec(&ia[1], &-1, true, false);
+   |                         +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:51:25
+   |
+51 |     test_incdec(&ia[1], 1, false, true);
+   |     ----------- ------  ^ expected `&{integer}`, found integer
+   |     |           |
+   |     |           expected some other arguments to be an `&{integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:1:4
+   |
+ 1 | fn test_incdec<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + std::fmt::Debug>(
+   |    ^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+ 2 |     value: T,
+   |     -------- `change` needs to match the `&{integer}` type of this parameter
+ 3 |     change: T,
+   |     --------- this parameter needs to match the `&{integer}` type of `value`
+help: consider borrowing here
+   |
+51 |     test_incdec(&ia[1], &1, false, true);
+   |                         +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:52:25
+   |
+52 |     test_incdec(&ia[1], -1, false, true);
+   |     ----------- ------  ^^ expected `&{integer}`, found integer
+   |     |           |
+   |     |           expected some other arguments to be an `&{integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:1:4
+   |
+ 1 | fn test_incdec<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + std::fmt::Debug>(
+   |    ^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+ 2 |     value: T,
+   |     -------- `change` needs to match the `&{integer}` type of this parameter
+ 3 |     change: T,
+   |     --------- this parameter needs to match the `&{integer}` type of `value`
+help: consider borrowing here
+   |
+52 |     test_incdec(&ia[1], &-1, false, true);
+   |                         +
+
+error[E0061]: this function takes 4 arguments but 0 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:56:5
+   |
+56 |     test_incdec();
+   |     ^^^^^^^^^^^-- multiple arguments are missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:1:4
+   |
+ 1 | fn test_incdec<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + std::fmt::Debug>(
+   |    ^^^^^^^^^^^
+ 2 |     value: T,
+   |     --------
+ 3 |     change: T,
+   |     ---------
+ 4 |     pre_op: bool,
+   |     ------------
+ 5 |     post_op: bool,
+   |     -------------
+help: provide the arguments
+   |
+56 |     test_incdec(/* value */, /* change */, /* bool */, /* bool */);
+   |                 +++++++++++++++++++++++++++++++++++++++++++++++++
+
+error: aborting due to 19 previous errors
+
+Some errors have detailed explanations: E0061, E0308, E0369, E0428, E0599.
+For more information about an error, try `rustc --explain E0061`.

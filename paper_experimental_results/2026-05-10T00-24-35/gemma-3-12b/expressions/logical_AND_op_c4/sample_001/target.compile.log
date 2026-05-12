@@ -1,0 +1,101 @@
+error[E0425]: cannot find value `g` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_AND_op_c4/sample_001/target.rs:12:9
+   |
+12 |         g = 0;
+   |         ^
+   |
+help: a local variable with a similar name exists
+   |
+12 -         g = 0;
+12 +         y = 0;
+   |
+help: you might have meant to introduce a new binding
+   |
+12 |         let g = 0;
+   |         +++
+
+error[E0425]: cannot find value `g` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_AND_op_c4/sample_001/target.rs:23:9
+   |
+23 |         g = 0;
+   |         ^
+   |
+help: a local variable with a similar name exists
+   |
+23 -         g = 0;
+23 +         y = 0;
+   |
+help: you might have meant to introduce a new binding
+   |
+23 |         let g = 0;
+   |         +++
+
+error[E0425]: cannot find value `g` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_AND_op_c4/sample_001/target.rs:26:41
+   |
+26 |     if !set_g_return(1, 1) && (unsafe { g == 1 }) {
+   |                                         ^ help: a local variable with a similar name exists: `y`
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_AND_op_c4/sample_001/target.rs:3:5
+  |
+3 | /     unsafe {
+4 | |         g = gval;
+5 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_AND_op_c4/sample_001/target.rs:11:5
+   |
+11 | /     unsafe {
+12 | |         g = 0;
+13 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_AND_op_c4/sample_001/target.rs:22:5
+   |
+22 | /     unsafe {
+23 | |         g = 0;
+24 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_AND_op_c4/sample_001/target.rs:26:32
+   |
+26 |     if !set_g_return(1, 1) && (unsafe { g == 1 }) {
+   |                                ^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_AND_op_c4/sample_001/target.rs:15:8
+   |
+15 |     if set_g_return(0, 0) && (y += 1) {
+   |        ^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_AND_op_c4/sample_001/target.rs:15:30
+   |
+15 |     if set_g_return(0, 0) && (y += 1) {
+   |                              ^^^^^^^^ expected `bool`, found `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_AND_op_c4/sample_001/target.rs:19:16
+   |
+ 9 | fn main() {
+   |          - expected `()` because of default return type
+...
+19 |         return 2;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_AND_op_c4/sample_001/target.rs:26:8
+   |
+26 |     if !set_g_return(1, 1) && (unsafe { g == 1 }) {
+   |        ^^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error: aborting due to 11 previous errors
+
+Some errors have detailed explanations: E0308, E0425.
+For more information about an error, try `rustc --explain E0308`.

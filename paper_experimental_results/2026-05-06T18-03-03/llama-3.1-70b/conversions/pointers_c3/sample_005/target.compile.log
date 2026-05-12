@@ -1,0 +1,43 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/pointers_c3/sample_005/target.rs:14:31
+   |
+14 |     let nf1: fn(i32) -> i32 = std::ptr::null();
+   |              --------------   ^^^^^^^^^^^^^^^^ expected fn pointer, found `*const _`
+   |              |
+   |              expected due to this
+   |
+   = note: expected fn pointer `fn(i32) -> i32`
+             found raw pointer `*const _`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/pointers_c3/sample_005/target.rs:35:14
+   |
+35 |     if nf1!= std::ptr::null() {
+   |        ---   ^^^^^^^^^^^^^^^^ expected fn pointer, found `*const _`
+   |        |
+   |        expected because this is `fn(i32) -> i32`
+   |
+   = note: expected fn pointer `fn(i32) -> i32`
+             found raw pointer `*const _`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/pointers_c3/sample_005/target.rs:38:14
+   |
+38 |     if nf2!= std::ptr::null() {
+   |        ---   ^^^^^^^^^^^^^^^^ expected fn pointer, found `*const _`
+   |        |
+   |        expected because this is `fn(i32) -> i32`
+   |
+   = note: expected fn pointer `fn(i32) -> i32`
+             found raw pointer `*const _`
+
+error[E0605]: non-primitive cast: `*const ()` as `fn(i32) -> i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/pointers_c3/sample_005/target.rs:16:31
+   |
+16 |     let nf2: fn(i32) -> i32 = vf0 as fn(i32) -> i32;
+   |                               ^^^^^^^^^^^^^^^^^^^^^ invalid cast
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0605.
+For more information about an error, try `rustc --explain E0308`.

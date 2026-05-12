@@ -1,0 +1,36 @@
+error: expected a literal
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_4/sample_003/target.rs:15:25
+   |
+15 | const a: &str = concat!(HIGHLOW, LOW);
+   |                         ^^^^^^^  ^^^
+   |
+   = note: only literals (like `"foo"`, `-42` and `3.14`) can be passed to `concat!()`
+
+error: expected a literal
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_4/sample_003/target.rs:16:25
+   |
+16 | const b: &str = concat!(HIGHLOW, LOW);
+   |                         ^^^^^^^  ^^^
+   |
+   = note: only literals (like `"foo"`, `-42` and `3.14`) can be passed to `concat!()`
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_4/sample_003/target.rs:18:14
+   |
+18 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_4/sample_003/target.rs:13:19
+   |
+13 | const fmt: &str = dbgfmt!(1, 2);
+   |                   ^^^^^^^^^^^^^ expected `&str`, found `String`
+   |
+   = note: this error originates in the macro `format` which comes from the expansion of the macro `dbgfmt` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

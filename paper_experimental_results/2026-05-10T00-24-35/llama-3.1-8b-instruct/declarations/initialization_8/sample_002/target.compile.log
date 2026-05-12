@@ -1,0 +1,43 @@
+warning: value assigned to `c` is never read
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_8/sample_002/target.rs:13:30
+   |
+13 |     s.chars().nth(0).map(|c| c = 'x');
+   |                              ^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `c`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_8/sample_002/target.rs:13:27
+   |
+13 |     s.chars().nth(0).map(|c| c = 'x');
+   |                           ^ help: if this is intentional, prefix it with an underscore: `_c`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error[E0384]: cannot assign to immutable argument `c`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_8/sample_002/target.rs:13:30
+   |
+13 |     s.chars().nth(0).map(|c| c = 'x');
+   |                              ^^^^^^^ cannot assign to immutable argument
+   |
+help: consider making this binding mutable
+   |
+13 |     s.chars().nth(0).map(|mut c| c = 'x');
+   |                           +++
+
+error[E0594]: cannot assign to `t[_]`, as `t` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_8/sample_002/target.rs:14:5
+   |
+14 |     t[2] = 'y';
+   |     ^^^^^^^^^^ cannot assign
+   |
+help: consider changing this to be mutable
+   |
+ 3 |     let mut t: [char; 3] = ['a', 'b', 'c'];
+   |         +++
+
+error: aborting due to 2 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0384, E0594.
+For more information about an error, try `rustc --explain E0384`.

@@ -1,0 +1,186 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:26:33
+   |
+26 |     let q: &mut [[i32; N]; N] = unsafe { &mut *(BACKING as *const _ as *mut _) };
+   |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:38:5
+   |
+38 | /     unsafe {
+39 | |         SINK ^= checksum_2d(m, q);
+40 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:87:5
+   |
+87 | /     unsafe {
+88 | |         if SINK == 0 {
+89 | |             return 3;
+90 | |         }
+91 | |     }
+   | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:43:14
+   |
+43 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:9:45
+  |
+9 |             BACKING[i][j] = (i + 1) * 100 + (j + 1) as i32;
+  |                                             ^^^^^^^^^^^^^^ expected `usize`, found `i32`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:9:29
+  |
+9 |             BACKING[i][j] = (i + 1) * 100 + (j + 1) as i32;
+  |             -------------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+  |             |
+  |             expected due to the type of this binding
+
+error[E0277]: cannot add `i32` to `usize`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:9:43
+  |
+9 |             BACKING[i][j] = (i + 1) * 100 + (j + 1) as i32;
+  |                                           ^ no implementation for `usize + i32`
+  |
+  = help: the trait `Add<i32>` is not implemented for `usize`
+  = help: the following other types implement trait `Add<Rhs>`:
+            `&usize` implements `Add<usize>`
+            `&usize` implements `Add`
+            `usize` implements `Add<&usize>`
+            `usize` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:34:33
+   |
+34 |             q[i][j] = c[i][j] + d[(i + j) % m];
+   |                                 ^^^^^^^^^^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:34:31
+   |
+34 |             q[i][j] = c[i][j] + d[(i + j) % m];
+   |                               ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:52:38
+   |
+52 |             x[i][j] = (i + 1) * 10 + (j + 1) as i32;
+   |                                      ^^^^^^^^^^^^^^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:52:36
+   |
+52 |             x[i][j] = (i + 1) * 10 + (j + 1) as i32;
+   |                                    ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:53:38
+   |
+53 |             y[i][j] = (i + 1) * 20 + (j + 1) as i32;
+   |                                      ^^^^^^^^^^^^^^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:53:36
+   |
+53 |             y[i][j] = (i + 1) * 20 + (j + 1) as i32;
+   |                                    ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:57:13
+   |
+57 |     fvla(m, &x);
+   |     ----    ^^ expected `&[[i32; 9]; 9]`, found `&[[usize; 9]; 9]`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&[[i32; 9]; 9]`
+              found reference `&[[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:24:4
+   |
+24 | fn fvla(m: usize, c: &[[i32; N]; N]) {
+   |    ^^^^           -----------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:67:55
+   |
+67 |         if checksum_2d(m, &BACKING) != checksum_2d(m, &expect) {
+   |                                        -----------    ^^^^^^^ expected `&[[i32; 9]; 9]`, found `&[[usize; 9]; 9]`
+   |                                        |
+   |                                        arguments to this function are incorrect
+   |
+   = note: expected reference `&[[i32; 9]; 9]`
+              found reference `&[[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:14:4
+   |
+14 | fn checksum_2d(m: usize, a: &[[i32; N]; N]) -> i32 {
+   |    ^^^^^^^^^^^           -----------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:72:13
+   |
+72 |     fvla(m, &y);
+   |     ----    ^^ expected `&[[i32; 9]; 9]`, found `&[[usize; 9]; 9]`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&[[i32; 9]; 9]`
+              found reference `&[[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:24:4
+   |
+24 | fn fvla(m: usize, c: &[[i32; N]; N]) {
+   |    ^^^^           -----------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:82:55
+   |
+82 |         if checksum_2d(m, &BACKING) != checksum_2d(m, &expect2) {
+   |                                        -----------    ^^^^^^^^ expected `&[[i32; 9]; 9]`, found `&[[usize; 9]; 9]`
+   |                                        |
+   |                                        arguments to this function are incorrect
+   |
+   = note: expected reference `&[[i32; 9]; 9]`
+              found reference `&[[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_4/sample_003/target.rs:14:4
+   |
+14 | fn checksum_2d(m: usize, a: &[[i32; N]; N]) -> i32 {
+   |    ^^^^^^^^^^^           -----------------
+
+error: aborting due to 17 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,87 @@
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_001/target.rs:50:16
+   |
+50 |     let sel = (hmix(v[0], v[5]) & 3) as usize;
+   |                ^^^^ ----  ---- expected `i32`, found `usize`
+   |                     |
+   |                     expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_001/target.rs:1:4
+   |
+ 1 | fn hmix(a: i32, b: i32) -> i32 {
+   |    ^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+50 |     let sel = (hmix(v[0].try_into().unwrap(), v[5]) & 3) as usize;
+   |                         ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+50 |     let sel = (hmix(v[0], v[5].try_into().unwrap()) & 3) as usize;
+   |                               ++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_001/target.rs:60:15
+   |
+60 |     let out = run(apfi[sel], x, y);
+   |               ^^^            -  - expected `&mut i32`, found `&mut usize`
+   |                              |
+   |                              expected `&mut i32`, found `&mut usize`
+   |
+   = note: expected mutable reference `&mut i32`
+              found mutable reference `&mut usize`
+   = note: expected mutable reference `&mut i32`
+              found mutable reference `&mut usize`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_001/target.rs:33:4
+   |
+33 | fn run<F>(pf: F, a: &mut i32, b: &mut i32) -> i32
+   |    ^^^           -----------  -----------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_001/target.rs:69:26
+   |
+69 |         if (out ^ 3) != (hmix(*x, *y) ^ (hmix(*x, *y) + 3)) {
+   |                          ^^^^ --  -- expected `i32`, found `usize`
+   |                               |
+   |                               expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_001/target.rs:1:4
+   |
+ 1 | fn hmix(a: i32, b: i32) -> i32 {
+   |    ^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+69 |         if (out ^ 3) != (hmix((*x).try_into().unwrap(), *y) ^ (hmix(*x, *y) + 3)) {
+   |                               +  +++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+69 |         if (out ^ 3) != (hmix(*x, (*y).try_into().unwrap()) ^ (hmix(*x, *y) + 3)) {
+   |                                   +  +++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_001/target.rs:69:42
+   |
+69 |         if (out ^ 3) != (hmix(*x, *y) ^ (hmix(*x, *y) + 3)) {
+   |                                          ^^^^ --  -- expected `i32`, found `usize`
+   |                                               |
+   |                                               expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_001/target.rs:1:4
+   |
+ 1 | fn hmix(a: i32, b: i32) -> i32 {
+   |    ^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+69 |         if (out ^ 3) != (hmix(*x, *y) ^ (hmix((*x).try_into().unwrap(), *y) + 3)) {
+   |                                               +  +++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+69 |         if (out ^ 3) != (hmix(*x, *y) ^ (hmix(*x, (*y).try_into().unwrap()) + 3)) {
+   |                                                   +  +++++++++++++++++++++
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

@@ -1,0 +1,23 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_2/sample_001/target.rs:47:12
+   |
+47 |         if unsafe { *hp.p }!= 1 {
+   |            ^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_2/sample_001/target.rs:56:12
+   |
+56 |         if unsafe { (*ha).a[2] }!= 3 {
+   |            ^^^^^^^^^^^^^^^^^^^^^
+
+error[E0607]: cannot cast thin pointer `*const i32` to wide pointer `*const HoldA`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_2/sample_001/target.rs:51:18
+   |
+51 |         let ha = y.as_ptr() as *const HoldA;
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0607`.

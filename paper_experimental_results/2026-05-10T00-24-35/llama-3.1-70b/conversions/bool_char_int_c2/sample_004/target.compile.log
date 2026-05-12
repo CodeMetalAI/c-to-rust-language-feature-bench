@@ -1,0 +1,25 @@
+error[E0277]: the trait bound `i16: From<i32>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c2/sample_004/target.rs:32:17
+   |
+32 |     if type_id((i16::from(1) + 0) as i16)!= 1 {
+   |                 ^^^ the trait `From<i32>` is not implemented for `i16`
+   |
+   = help: the following other types implement trait `From<T>`:
+             `i16` implements `From<bool>`
+             `i16` implements `From<i8>`
+             `i16` implements `From<u8>`
+
+error[E0277]: the trait bound `u16: From<i32>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c2/sample_004/target.rs:35:17
+   |
+35 |     if type_id((u16::from(1) + 0) as u16)!= 1 {
+   |                 ^^^ the trait `From<i32>` is not implemented for `u16`
+   |
+   = help: the following other types implement trait `From<T>`:
+             `u16` implements `From<Char>`
+             `u16` implements `From<bool>`
+             `u16` implements `From<u8>`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

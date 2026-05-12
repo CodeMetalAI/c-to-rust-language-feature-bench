@@ -1,0 +1,50 @@
+error[E0425]: cannot find function `size_of_val_mut` in module `std::mem`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c1/sample_005/target.rs:5:18
+    |
+  5 |     if!std::mem::size_of_val_mut(&mut i) > 0 {
+    |                  ^^^^^^^^^^^^^^^ help: a function with a similar name exists: `size_of_val_raw`
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:417:1
+    |
+417 | pub const unsafe fn size_of_val_raw<T: ?Sized>(val: *const T) -> usize {
+    | ---------------------------------------------------------------------- similarly named function `size_of_val_raw` defined here
+
+error[E0425]: cannot find function `size_of_val_mut` in module `std::mem`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c1/sample_005/target.rs:8:18
+    |
+  8 |     if!std::mem::size_of_val_mut(unsafe { &mut *p }) > 0 {
+    |                  ^^^^^^^^^^^^^^^ help: a function with a similar name exists: `size_of_val_raw`
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:417:1
+    |
+417 | pub const unsafe fn size_of_val_raw<T: ?Sized>(val: *const T) -> usize {
+    | ---------------------------------------------------------------------- similarly named function `size_of_val_raw` defined here
+
+error[E0425]: cannot find function `size_of_val_mut` in module `std::mem`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c1/sample_005/target.rs:20:18
+    |
+ 20 |     if!std::mem::size_of_val_mut(&mut s3.a) > 0 {
+    |                  ^^^^^^^^^^^^^^^ help: a function with a similar name exists: `size_of_val_raw`
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:417:1
+    |
+417 | pub const unsafe fn size_of_val_raw<T: ?Sized>(val: *const T) -> usize {
+    | ---------------------------------------------------------------------- similarly named function `size_of_val_raw` defined here
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c1/sample_005/target.rs:8:34
+  |
+8 |     if!std::mem::size_of_val_mut(unsafe { &mut *p }) > 0 {
+  |                                  ^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c1/sample_005/target.rs:60:9
+   |
+60 |         unsafe { std::slice::from_raw_parts_mut(self as *mut i32 as *mut u8, 4) }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0425`.

@@ -1,0 +1,45 @@
+error: no rules expected `"Flag"`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/preprocessing_directives/scope_of_macro_7/sample_003/target.rs:45:15
+   |
+ 9 | macro_rules! pp_arg_n {
+   | --------------------- when calling this macro
+...
+45 |     if debug!("Flag") != 1 {
+   |               ^^^^^^ no rules expected this token in macro call
+   |
+   = note: while trying to match sequence start
+
+error: no rules expected `"X = {}"`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/preprocessing_directives/scope_of_macro_7/sample_003/target.rs:48:15
+   |
+ 9 | macro_rules! pp_arg_n {
+   | --------------------- when calling this macro
+...
+48 |     if debug!("X = {}", x) != 2 {
+   |               ^^^^^^^^ no rules expected this token in macro call
+   |
+   = note: while trying to match sequence start
+
+error: no rules expected `"x is {} but y is {}"`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/preprocessing_directives/scope_of_macro_7/sample_003/target.rs:56:23
+   |
+ 9 | macro_rules! pp_arg_n {
+   | --------------------- when calling this macro
+...
+56 |     if report!(x > y, "x is {} but y is {}", x, y) != 1 {
+   |                       ^^^^^^^^^^^^^^^^^^^^^ no rules expected this token in macro call
+   |
+   = note: while trying to match sequence start
+
+error: no rules expected `"x is {} but y is {}"`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/preprocessing_directives/scope_of_macro_7/sample_003/target.rs:59:23
+   |
+ 9 | macro_rules! pp_arg_n {
+   | --------------------- when calling this macro
+...
+59 |     if report!(x < y, "x is {} but y is {}", x, y) != 3 {
+   |                       ^^^^^^^^^^^^^^^^^^^^^ no rules expected this token in macro call
+   |
+   = note: while trying to match sequence start
+
+error: aborting due to 4 previous errors

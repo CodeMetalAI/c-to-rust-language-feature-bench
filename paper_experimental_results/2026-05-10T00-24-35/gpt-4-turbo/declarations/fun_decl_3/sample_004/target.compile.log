@@ -1,0 +1,24 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_3/sample_004/target.rs:7:36
+  |
+7 |     fn v0(x: i32, _: i32) -> i32 { unsafe { G_SEED + x + 1000 } }
+  |                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_3/sample_004/target.rs:8:36
+  |
+8 |     fn v1(x: i32, _: i32) -> i32 { unsafe { G_SEED + x - 2000 } }
+  |                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_3/sample_004/target.rs:12:9
+   |
+12 | /         unsafe {
+13 | |             G_SEED = pf(t) + k;
+14 | |             if (G_SEED & 1) == 0 { v0 } else { v1 }
+15 | |         }
+   | |_________^
+
+error: aborting due to 3 previous errors

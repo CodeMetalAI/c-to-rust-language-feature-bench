@@ -1,0 +1,27 @@
+error[E0277]: can't compare `{integer}` with `&{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c4/sample_002/target.rs:16:15
+   |
+16 |     if px_end <= px {
+   |               ^^ no implementation for `{integer} < &{integer}` and `{integer} > &{integer}`
+   |
+   = help: the trait `PartialOrd<&{integer}>` is not implemented for `{integer}`
+help: consider dereferencing here
+   |
+16 |     if px_end <= *px {
+   |                  +
+
+error[E0277]: can't compare `{integer}` with `&{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c4/sample_002/target.rs:26:15
+   |
+26 |     if py_end <= py {
+   |               ^^ no implementation for `{integer} < &{integer}` and `{integer} > &{integer}`
+   |
+   = help: the trait `PartialOrd<&{integer}>` is not implemented for `{integer}`
+help: consider dereferencing here
+   |
+26 |     if py_end <= *py {
+   |                  +
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

@@ -1,0 +1,36 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c3/sample_003/target.rs:16:39
+   |
+16 |     let nf2: Option<fn(i32) -> i32> = unsafe { std::mem::transmute(vf0) };
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c3/sample_003/target.rs:49:25
+   |
+49 |     let vf: *const () = unsafe { std::mem::transmute(pf) };
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c3/sample_003/target.rs:41:8
+   |
+41 |     if nf1 == Some(pf) {
+   |        ^^^^^^^^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+   = note: `#[warn(unpredictable_function_pointer_comparisons)]` on by default
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c3/sample_003/target.rs:44:8
+   |
+44 |     if nf2 == Some(pf) {
+   |        ^^^^^^^^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+
+error: aborting due to 2 previous errors; 2 warnings emitted

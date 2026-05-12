@@ -1,0 +1,218 @@
+error[E0658]: use of unstable library feature `generic_atomic`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:2:17
+  |
+2 |     let mut a = std::sync::atomic::Atomic::new(value);
+  |                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+  = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:58:17
+   |
+58 |     let mut a = std::sync::atomic::Atomic::new(&ia[1]);
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:66:9
+   |
+66 |     a = std::sync::atomic::Atomic::new(&ia[1]);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:74:9
+   |
+74 |     a = std::sync::atomic::Atomic::new(&ia[1]);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:83:9
+   |
+83 |     a = std::sync::atomic::Atomic::new(&ia[1]);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:2:44
+    |
+  2 |     let mut a = std::sync::atomic::Atomic::new(value);
+    |                                            ^^^ function or associated item not found in `_`
+    |
+help: there is a method `neg` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:708:5
+    |
+708 |     fn neg(self) -> Self::Output;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0600]: cannot apply unary operator `-` to type `u8`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:23:36
+   |
+23 |     test_incdec::<u8>(value as u8, -1, true);
+   |                                    ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u8`
+   |
+23 -     test_incdec::<u8>(value as u8, -1, true);
+23 +     test_incdec::<u8>(value as u8, u8::MAX, true);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u8`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:25:36
+   |
+25 |     test_incdec::<u8>(value as u8, -1, false);
+   |                                    ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u8`
+   |
+25 -     test_incdec::<u8>(value as u8, -1, false);
+25 +     test_incdec::<u8>(value as u8, u8::MAX, false);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u16`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:31:38
+   |
+31 |     test_incdec::<u16>(value as u16, -1, true);
+   |                                      ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u16`
+   |
+31 -     test_incdec::<u16>(value as u16, -1, true);
+31 +     test_incdec::<u16>(value as u16, u16::MAX, true);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u16`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:33:38
+   |
+33 |     test_incdec::<u16>(value as u16, -1, false);
+   |                                      ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u16`
+   |
+33 -     test_incdec::<u16>(value as u16, -1, false);
+33 +     test_incdec::<u16>(value as u16, u16::MAX, false);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:39:38
+   |
+39 |     test_incdec::<u32>(value as u32, -1, true);
+   |                                      ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u32`
+   |
+39 -     test_incdec::<u32>(value as u32, -1, true);
+39 +     test_incdec::<u32>(value as u32, u32::MAX, true);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:41:38
+   |
+41 |     test_incdec::<u32>(value as u32, -1, false);
+   |                                      ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u32`
+   |
+41 -     test_incdec::<u32>(value as u32, -1, false);
+41 +     test_incdec::<u32>(value as u32, u32::MAX, false);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u64`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:47:38
+   |
+47 |     test_incdec::<u64>(value as u64, -1, true);
+   |                                      ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u64`
+   |
+47 -     test_incdec::<u64>(value as u64, -1, true);
+47 +     test_incdec::<u64>(value as u64, u64::MAX, true);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u64`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:49:38
+   |
+49 |     test_incdec::<u64>(value as u64, -1, false);
+   |                                      ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u64`
+   |
+49 -     test_incdec::<u64>(value as u64, -1, false);
+49 +     test_incdec::<u64>(value as u64, u64::MAX, false);
+   |
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:58:44
+    |
+ 58 |     let mut a = std::sync::atomic::Atomic::new(&ia[1]);
+    |                                            ^^^ function or associated item not found in `_`
+    |
+help: there is a method `neg` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:708:5
+    |
+708 |     fn neg(self) -> Self::Output;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:66:36
+    |
+ 66 |     a = std::sync::atomic::Atomic::new(&ia[1]);
+    |                                    ^^^ function or associated item not found in `_`
+    |
+help: there is a method `neg` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:708:5
+    |
+708 |     fn neg(self) -> Self::Output;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:74:36
+    |
+ 74 |     a = std::sync::atomic::Atomic::new(&ia[1]);
+    |                                    ^^^ function or associated item not found in `_`
+    |
+help: there is a method `neg` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:708:5
+    |
+708 |     fn neg(self) -> Self::Output;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:83:36
+    |
+ 83 |     a = std::sync::atomic::Atomic::new(&ia[1]);
+    |                                    ^^^ function or associated item not found in `_`
+    |
+help: there is a method `neg` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:708:5
+    |
+708 |     fn neg(self) -> Self::Output;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 18 previous errors
+
+Some errors have detailed explanations: E0599, E0600, E0658.
+For more information about an error, try `rustc --explain E0599`.

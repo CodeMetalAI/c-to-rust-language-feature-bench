@@ -1,0 +1,50 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/struct_and_union_3a/sample_002/target.rs:28:17
+   |
+28 |     let mut u = unsafe { mem::zeroed::<U>() };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/struct_and_union_3a/sample_002/target.rs:30:5
+   |
+30 | /     unsafe {
+31 | |         u.nf.type_ = 1;
+32 | |         u.nf.doublenode = 3.14;
+33 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/struct_and_union_3a/sample_002/target.rs:35:5
+   |
+35 | /     unsafe {
+36 | |         if u.n.alltypes != 1 {
+37 | |             std::process::exit(1);
+...  |
+48 | |     }
+   | |_____^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/struct_and_union_3a/sample_002/target.rs:5:5
+  |
+5 |     n: N,
+  |     ^^^^
+  |
+  = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+  |
+5 |     n: std::mem::ManuallyDrop<N>,
+  |        +++++++++++++++++++++++ +
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/struct_and_union_3a/sample_002/target.rs:30:5
+   |
+30 |     unsafe {
+   |     ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 4 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0740`.

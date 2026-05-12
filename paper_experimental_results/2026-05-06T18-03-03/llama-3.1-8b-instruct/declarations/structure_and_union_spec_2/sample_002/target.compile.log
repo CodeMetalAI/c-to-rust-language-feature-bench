@@ -1,0 +1,61 @@
+error[E0423]: expected function, found macro `std::mem::offset_of`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_002/target.rs:15:8
+   |
+15 |     if std::mem::offset_of::<S, [f64; 8]>() != std::mem::size_of::<S>() {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a function
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_002/target.rs:12:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+12 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_002/target.rs:26:12
+   |
+26 |         d: [0.0; 5],
+   |            ^^^^^^^^ expected an array with a size of 8, found one with a size of 5
+
+error[E0599]: no method named `is_none` found for struct `Box<S>` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_002/target.rs:29:11
+   |
+29 |     if s1.is_none() || s2.is_none() {
+   |           ^^^^^^^ method not found in `Box<S>`
+
+error[E0599]: no method named `is_none` found for struct `Box<S>` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_002/target.rs:29:27
+   |
+29 |     if s1.is_none() || s2.is_none() {
+   |                           ^^^^^^^ method not found in `Box<S>`
+
+error[E0599]: no method named `unwrap` found for mutable reference `&mut S` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_002/target.rs:33:17
+   |
+33 |     s1.as_mut().unwrap().d[0] = 42.0;
+   |                 ^^^^^^ method not found in `&mut S`
+
+error[E0599]: no method named `unwrap` found for mutable reference `&mut S` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_002/target.rs:34:17
+   |
+34 |     s2.as_mut().unwrap().d[0] = 24.0;
+   |                 ^^^^^^ method not found in `&mut S`
+
+error[E0599]: no method named `unwrap` found for reference `&S` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_002/target.rs:36:20
+   |
+36 |     if s1.as_ref().unwrap().d[0] != 42.0 || s2.as_ref().unwrap().d[0] != 24.0 {
+   |                    ^^^^^^ method not found in `&S`
+
+error[E0599]: no method named `unwrap` found for reference `&S` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_2/sample_002/target.rs:36:57
+   |
+36 |     if s1.as_ref().unwrap().d[0] != 42.0 || s2.as_ref().unwrap().d[0] != 24.0 {
+   |                                                         ^^^^^^ method not found in `&S`
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0308, E0423, E0599.
+For more information about an error, try `rustc --explain E0308`.

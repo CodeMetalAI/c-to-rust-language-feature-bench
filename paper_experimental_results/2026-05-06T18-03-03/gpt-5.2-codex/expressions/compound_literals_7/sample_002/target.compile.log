@@ -1,0 +1,20 @@
+error[E0277]: `Cell<Option<&'static IntList>>` cannot be shared between threads safely
+  --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/expressions/compound_literals_7/sample_002/target.rs:10:17
+   |
+10 | static ENDLESS: OnceLock<&'static IntList> = OnceLock::new();
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^ `Cell<Option<&'static IntList>>` cannot be shared between threads safely
+   |
+   = help: within `&'static IntList`, the trait `Sync` is not implemented for `Cell<Option<&'static IntList>>`
+   = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock`
+note: required because it appears within the type `IntList`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/expressions/compound_literals_7/sample_002/target.rs:5:8
+   |
+ 5 | struct IntList {
+   |        ^^^^^^^
+   = note: required because it appears within the type `&'static IntList`
+   = note: required for `OnceLock<&'static IntList>` to implement `Sync`
+   = note: shared static variables must have a type that implements `Sync`
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0277`.

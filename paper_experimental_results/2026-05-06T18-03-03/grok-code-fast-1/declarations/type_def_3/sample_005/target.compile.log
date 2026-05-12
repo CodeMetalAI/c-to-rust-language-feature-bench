@@ -1,0 +1,36 @@
+warning: unnecessary parentheses around block return value
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/type_def_3/sample_005/target.rs:28:9
+   |
+28 |         (((self.0 >> shift) & 0x1F) as i32)
+   |         ^                                 ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+28 -         (((self.0 >> shift) & 0x1F) as i32)
+28 +         ((self.0 >> shift) & 0x1F) as i32
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/type_def_3/sample_005/target.rs:13:36
+   |
+13 |         self.0 = (self.0 & !0xF) | (val & 0xF);
+   |                                    ^^^^^^^^^^^ expected `u16`, found `u32`
+
+error[E0277]: no implementation for `u16 | u32`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/type_def_3/sample_005/target.rs:13:34
+   |
+13 |         self.0 = (self.0 & !0xF) | (val & 0xF);
+   |                                  ^ no implementation for `u16 | u32`
+   |
+   = help: the trait `BitOr<u32>` is not implemented for `u16`
+   = help: the following other types implement trait `BitOr<Rhs>`:
+             `&u16` implements `BitOr<u16>`
+             `&u16` implements `BitOr`
+             `u16` implements `BitOr<&u16>`
+             `u16` implements `BitOr`
+
+error: aborting due to 2 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

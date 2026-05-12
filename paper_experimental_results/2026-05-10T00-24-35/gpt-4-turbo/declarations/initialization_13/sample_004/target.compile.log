@@ -1,0 +1,35 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/initialization_13/sample_004/target.rs:11:5
+   |
+11 | /     unsafe {
+12 | |         if x.any_member != 42 {
+13 | |             std::process::exit(1);
+14 | |         }
+15 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/initialization_13/sample_004/target.rs:19:5
+   |
+19 | /     unsafe {
+20 | |         if y.u_member != 7 {
+21 | |             std::process::exit(2);
+22 | |         }
+23 | |     }
+   | |_____^
+
+warning: field `bytes` is never read
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/initialization_13/sample_004/target.rs:5:5
+  |
+2 | union U {
+  |       - field in this union
+...
+5 |     bytes: [u8; 4],
+  |     ^^^^^
+  |
+  = note: `U` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 2 previous errors; 1 warning emitted

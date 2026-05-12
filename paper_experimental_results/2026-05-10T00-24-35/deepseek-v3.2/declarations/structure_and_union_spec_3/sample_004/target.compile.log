@@ -1,0 +1,52 @@
+error: implementation of an `unsafe` method
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_3/sample_004/target.rs:16:5
+   |
+16 | /     unsafe fn new_with_flexible_array(flex_len: usize) -> *mut S {
+17 | |         // Allocate memory for the main struct
+18 | |         let layout = Layout::new::<S>();
+19 | |         let ptr = alloc(layout) as *mut S;
+...  |
+40 | |         ptr
+41 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: implementation of an `unsafe` method
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_3/sample_004/target.rs:43:5
+   |
+43 | /     unsafe fn free(ptr: *mut S) {
+44 | |         if ptr.is_null() {
+45 | |             return;
+...  |
+57 | |         dealloc(ptr as *mut u8, layout);
+58 | |     }
+   | |_____^
+
+error: implementation of an `unsafe` method
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_3/sample_004/target.rs:60:5
+   |
+60 | /     unsafe fn a_mut(&mut self, index: usize) -> &mut i32 {
+61 | |         &mut *self.a_ptr.add(index)
+62 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_3/sample_004/target.rs:79:13
+   |
+79 |     let p = unsafe { S::new_with_flexible_array(4) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_3/sample_004/target.rs:84:5
+   |
+84 | /     unsafe {
+85 | |         // Set values
+86 | |         (*p).inner.i = 7;
+87 | |         *(*p).a_mut(0) = 11;
+...  |
+96 | |         S::free(p);
+97 | |     }
+   | |_____^
+
+error: aborting due to 5 previous errors

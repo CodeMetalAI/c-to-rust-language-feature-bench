@@ -1,0 +1,145 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_005/target.rs:11:74
+   |
+11 |                 if a[i][j][k] != (j as i32 + 1) * 100 + (k as i32 + 1) + (i + 1) * 10000 {
+   |                                                                          ^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_005/target.rs:11:72
+   |
+11 |                 if a[i][j][k] != (j as i32 + 1) * 100 + (k as i32 + 1) + (i + 1) * 10000 {
+   |                                                                        ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_005/target.rs:25:106
+   |
+25 |                     if c[i][j][u][v] != (u as i32 + 1) * 100 + (v as i32 + 1) + (j as i32 + 1) * 10000 + (i + 1) * 1000000 {
+   |                                                                                                          ^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_005/target.rs:25:104
+   |
+25 |                     if c[i][j][u][v] != (u as i32 + 1) * 100 + (v as i32 + 1) + (j as i32 + 1) * 10000 + (i + 1) * 1000000 {
+   |                                                                                                        ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_005/target.rs:36:36
+   |
+36 |     let mut a: [[[i32; M]; N]] = [[0; N]; N];
+   |                                    ^ expected `[i32; 7]`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_005/target.rs:36:34
+   |
+36 |     let mut a: [[[i32; M]; N]] = [[0; N]; N];
+   |                ---------------   ^^^^^^^^^^^ expected `[[[i32; 7]; 6]]`, found `[[[i32; 7]; 6]; 6]`
+   |                |
+   |                expected due to this
+
+error[E0277]: the size for values of type `[[[i32; 7]; 6]]` cannot be known at compilation time
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_005/target.rs:36:9
+   |
+36 |     let mut a: [[[i32; M]; N]] = [[0; N]; N];
+   |         ^^^^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[[[i32; 7]; 6]]`
+   = note: all local variables must have a statically known size
+help: consider borrowing here
+   |
+36 |     let mut a: &[[[i32; M]; N]] = [[0; N]; N];
+   |                +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_005/target.rs:37:42
+   |
+37 |     let mut c: [[[[i32; M]; N]; N]] = [[[0; N]; N]; N];
+   |                                          ^ expected `[i32; 7]`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_005/target.rs:37:39
+   |
+37 |     let mut c: [[[[i32; M]; N]; N]] = [[[0; N]; N]; N];
+   |                --------------------   ^^^^^^^^^^^^^^^^ expected `[[[[i32; 7]; 6]; 6]]`, found `[[[[i32; 7]; 6]; 6]; 6]`
+   |                |
+   |                expected due to this
+
+error[E0277]: the size for values of type `[[[[i32; 7]; 6]; 6]]` cannot be known at compilation time
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_005/target.rs:37:9
+   |
+37 |     let mut c: [[[[i32; M]; N]; N]] = [[[0; N]; N]; N];
+   |         ^^^^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[[[[i32; 7]; 6]; 6]]`
+   = note: all local variables must have a statically known size
+help: consider borrowing here
+   |
+37 |     let mut c: &[[[[i32; M]; N]; N]] = [[[0; N]; N]; N];
+   |                +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_005/target.rs:42:30
+   |
+42 |                 a[i][j][k] = (i + 1) * 10000 + (j + 1) * 100 + (k + 1);
+   |                 ----------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+   |                 |
+   |                 expected due to the type of this binding
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_005/target.rs:51:37
+   |
+51 |                     c[i][j][u][v] = (i + 1) * 1000000 + (j + 1) * 10000 + (u + 1) * 100 + (v + 1);
+   |                     -------------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+   |                     |
+   |                     expected due to the type of this binding
+
+warning: unused variable: `m`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_005/target.rs:70:9
+   |
+70 |     let m = n + 1;
+   |         ^
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+help: if this is intentional, prefix it with an underscore
+   |
+70 |     let _m = n + 1;
+   |         +
+help: you might have meant to pattern match on the similarly named constant `M`
+   |
+70 -     let m = n + 1;
+70 +     let M = n + 1;
+   |
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_005/target.rs:72:5
+   |
+72 |     GATE = 0;
+   |     ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_3/sample_005/target.rs:75:8
+   |
+75 |     if GATE != 0 {
+   |        ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 14 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0133, E0277, E0308.
+For more information about an error, try `rustc --explain E0133`.

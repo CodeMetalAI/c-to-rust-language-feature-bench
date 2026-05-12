@@ -1,0 +1,43 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_1/sample_001/target.rs:4:5
+  |
+4 | /     unsafe {
+5 | |         CALLS += 1;
+6 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_1/sample_001/target.rs:15:5
+   |
+15 | /     unsafe {
+16 | |         for i in 0..11 {
+17 | |             FA[i] = (i + 1) as f32;
+...  |
+23 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_1/sample_001/target.rs:31:24
+   |
+31 |     pp.iter().map(|&x| unsafe { *x as i32 }).sum()
+   |                        ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_1/sample_001/target.rs:36:14
+   |
+36 |     let s2 = unsafe { *afp2[0] as i32 + *afp2[16] as i32 };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_1/sample_001/target.rs:43:5
+   |
+43 | /     unsafe {
+44 | |         if FA[0] != 1.0 || FA[10] != 11.0 {
+45 | |             std::process::exit(1);
+...  |
+79 | |     }
+   | |_____^
+
+error: aborting due to 5 previous errors

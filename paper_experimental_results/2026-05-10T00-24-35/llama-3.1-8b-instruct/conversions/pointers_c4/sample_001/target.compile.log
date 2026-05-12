@@ -1,0 +1,15 @@
+error[E0605]: non-primitive cast: `*const ()` as `Option<fn(i32) -> i32>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c4/sample_001/target.rs:13:39
+   |
+13 |     let fp2: Option<fn(i32) -> i32> = v0 as Option<fn(i32) -> i32>;
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `Option<fn(i32) -> i32>` as `*const i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c4/sample_001/target.rs:46:14
+   |
+46 |     if p0 != fp0 as *const i32 {
+   |              ^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0605`.

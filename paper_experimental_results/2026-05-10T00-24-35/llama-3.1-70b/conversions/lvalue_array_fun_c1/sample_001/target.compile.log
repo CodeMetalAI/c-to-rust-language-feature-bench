@@ -1,0 +1,49 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c1/sample_001/target.rs:29:9
+   |
+29 |         unsafe { *bp = *bp };
+   |         ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c1/sample_001/target.rs:5:34
+     |
+   5 |     if !std::ptr::write_volatile(p, i) {
+     |         ------------------------ ^ types differ in mutability
+     |         |
+     |         arguments to this function are incorrect
+     |
+     = note: expected raw pointer `*mut i32`
+                found raw pointer `*const i32`
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:2190:15
+     |
+2190 | pub unsafe fn write_volatile<T>(dst: *mut T, src: T) {
+     |               ^^^^^^^^^^^^^^
+
+error[E0600]: cannot apply unary operator `!` to type `()`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c1/sample_001/target.rs:5:8
+  |
+5 |     if !std::ptr::write_volatile(p, i) {
+  |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot apply unary operator `!`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c1/sample_001/target.rs:6:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+6 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0600]: cannot apply unary operator `!` to type `()`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c1/sample_001/target.rs:17:8
+   |
+17 |     if !std::ptr::write_volatile(&mut s3.a, s3.a) {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot apply unary operator `!`
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0600.
+For more information about an error, try `rustc --explain E0308`.

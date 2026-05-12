@@ -1,0 +1,40 @@
+error[E0369]: cannot add `usize` to `*mut [i32; 5]`
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/expressions/array_subscripting/sample_001/target.rs:13:57
+   |
+13 |             let b = *(*(x.as_mut_ptr() as *mut [i32; 5] + i) + j);
+   |                         ------------------------------- ^ - usize
+   |                         |
+   |                         *mut [i32; 5]
+   |
+help: consider using `wrapping_add` or `add` for pointer + {integer}
+   |
+13 -             let b = *(*(x.as_mut_ptr() as *mut [i32; 5] + i) + j);
+13 +             let b = *(*(x.as_mut_ptr() as *mut [i32; 5].wrapping_add(i)) + j);
+   |
+
+error[E0606]: casting `&usize` as `usize` is invalid
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/expressions/array_subscripting/sample_001/target.rs:22:9
+   |
+22 |     if (p1 as usize - p0 as usize) / std::mem::size_of::<i32>() != 5 {
+   |         ^^^^^^^^^^^
+   |
+help: dereference the expression
+   |
+22 |     if (*p1 as usize - p0 as usize) / std::mem::size_of::<i32>() != 5 {
+   |         +
+
+error[E0606]: casting `&usize` as `usize` is invalid
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/expressions/array_subscripting/sample_001/target.rs:22:23
+   |
+22 |     if (p1 as usize - p0 as usize) / std::mem::size_of::<i32>() != 5 {
+   |                       ^^^^^^^^^^^
+   |
+help: dereference the expression
+   |
+22 |     if (p1 as usize - *p0 as usize) / std::mem::size_of::<i32>() != 5 {
+   |                       +
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0369, E0606.
+For more information about an error, try `rustc --explain E0369`.

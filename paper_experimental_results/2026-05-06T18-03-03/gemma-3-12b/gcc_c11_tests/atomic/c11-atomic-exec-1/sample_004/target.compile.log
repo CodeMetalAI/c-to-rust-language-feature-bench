@@ -1,0 +1,399 @@
+error: comparison operators cannot be chained
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:78:37
+   |
+78 |         test_simple_assign(AtomicPtr<i32>, ptr::null());
+   |                                     ^   ^
+   |
+   = help: use `::<...>` instead of `<...>` to specify lifetime, type, or const arguments
+   = help: or use `(...)` if you meant to specify fn arguments
+
+error: comparison operators cannot be chained
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:79:37
+   |
+79 |         test_simple_assign(AtomicPtr<i32>, &mut i);
+   |                                     ^   ^
+   |
+   = help: use `::<...>` instead of `<...>` to specify lifetime, type, or const arguments
+   = help: or use `(...)` if you meant to specify fn arguments
+
+error[E0252]: the name `AtomicU8` is defined multiple times
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:1:57
+  |
+1 | use std::sync::atomic::{AtomicBool, AtomicU8, AtomicI8, AtomicU8, AtomicI16, AtomicU16, AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicF32,...
+  |                                     --------            ^^^^^^^^--
+  |                                     |                   |
+  |                                     |                   `AtomicU8` reimported here
+  |                                     |                   help: remove unnecessary import
+  |                                     previous import of the type `AtomicU8` here
+  |
+  = note: `AtomicU8` must be defined only once in the type namespace of this module
+
+error[E0432]: unresolved imports `std::sync::atomic::AtomicF32`, `std::sync::atomic::AtomicF64`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:1:133
+  |
+1 | ...tomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicF32, AtomicF64, AtomicIsize, AtomicUsize, AtomicPtr};
+  |                                               ^^^^^^^^^  ^^^^^^^^^ no `AtomicF64` in `sync::atomic`
+  |                                               |
+  |                                               no `AtomicF32` in `sync::atomic`
+  |
+help: a similar name exists in the module
+  |
+1 - use std::sync::atomic::{AtomicBool, AtomicU8, AtomicI8, AtomicU8, AtomicI16, AtomicU16, AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicF32, AtomicF64, AtomicIsize, AtomicUsize, AtomicPtr};
+1 + use std::sync::atomic::{AtomicBool, AtomicU8, AtomicI8, AtomicU8, AtomicI16, AtomicU16, AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicI32, AtomicF64, AtomicIsize, AtomicUsize, AtomicPtr};
+  |
+help: a similar name exists in the module
+  |
+1 - use std::sync::atomic::{AtomicBool, AtomicU8, AtomicI8, AtomicU8, AtomicI16, AtomicU16, AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicF32, AtomicF64, AtomicIsize, AtomicUsize, AtomicPtr};
+1 + use std::sync::atomic::{AtomicBool, AtomicU8, AtomicI8, AtomicU8, AtomicI16, AtomicU16, AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicF32, AtomicI64, AtomicIsize, AtomicUsize, AtomicPtr};
+  |
+
+warning: unused imports: `AtomicBool`, `AtomicI16`, `AtomicI32`, `AtomicI64`, `AtomicI8`, `AtomicIsize`, `AtomicPtr`, `AtomicU16`, `AtomicU32`, `AtomicU64`, `AtomicU8`, `AtomicU8`, and `AtomicUsize`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:1:25
+  |
+1 | ...::{AtomicBool, AtomicU8, AtomicI8, AtomicU8, AtomicI16, AtomicU16, AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicF32, AtomicF64, AtomicIsize, AtomicUsize, AtomicPtr};
+  |       ^^^^^^^^^^  ^^^^^^^^  ^^^^^^^^  ^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^                        ^^^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `std::ptr`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:16:5
+   |
+16 | /     unsafe {
+17 | |         let mut i = 0;
+18 | |         while i < n {
+19 | |             if *s1.add(i) != *s2.add(i) {
+...  |
+24 | |         0
+25 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+warning: unused macro definition: `test_simple_assign`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:28:14
+   |
+28 | macro_rules! test_simple_assign {
+   |              ^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_macros)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused macro definition: `test_simple_assign_arith`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:50:14
+   |
+50 | macro_rules! test_simple_assign_arith {
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:77:5
+   |
+77 | /     unsafe {
+78 | |         test_simple_assign(AtomicPtr<i32>, ptr::null());
+79 | |         test_simple_assign(AtomicPtr<i32>, &mut i);
+80 | |     }
+   | |_____^
+
+warning: type `s` should have an upper camel case name
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:83:12
+   |
+83 |     struct s {
+   |            ^ help: convert the identifier to upper camel case (notice the capitalization): `S`
+   |
+   = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:92:5
+    |
+ 92 | /     unsafe {
+ 93 | |         for j in 0..1024 {
+ 94 | |             init.a[j] = j as i16;
+...   |
+116 | |     }
+    | |_____^
+
+warning: type `s` should have an upper camel case name
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:120:8
+    |
+120 | struct s {
+    |        ^ help: convert the identifier to upper camel case (notice the capitalization): `S`
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:130:9
+    |
+130 | /         unsafe {
+131 | |             let ptr = self as *const AtomicS as *const s;
+132 | |             *ptr
+133 | |         }
+    | |_________^
+
+error[E0423]: expected function, found macro `test_simple_assign_arith`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:69:5
+   |
+69 |     test_simple_assign_arith(0);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+69 |     test_simple_assign_arith!(0);
+   |                             +
+
+error[E0423]: expected function, found macro `test_simple_assign_arith`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:70:5
+   |
+70 |     test_simple_assign_arith(1);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+70 |     test_simple_assign_arith!(1);
+   |                             +
+
+error[E0423]: expected function, found macro `test_simple_assign_arith`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:71:5
+   |
+71 |     test_simple_assign_arith(2);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+71 |     test_simple_assign_arith!(2);
+   |                             +
+
+error[E0423]: expected function, found macro `test_simple_assign_arith`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:72:5
+   |
+72 |     test_simple_assign_arith(-1);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+72 |     test_simple_assign_arith!(-1);
+   |                             +
+
+error[E0423]: expected function, found macro `test_simple_assign_arith`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:73:5
+   |
+73 |     test_simple_assign_arith(1 << 63);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+73 |     test_simple_assign_arith!(1 << 63);
+   |                             +
+
+error[E0423]: expected function, found macro `test_simple_assign_arith`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:74:5
+   |
+74 |     test_simple_assign_arith(1.5);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+74 |     test_simple_assign_arith!(1.5);
+   |                             +
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:97:16
+    |
+ 88 |     let mut copy = s { a: [0; 1024] };
+    |                    ------------------ expected due to this value
+...
+ 97 |         copy = s1.load(Ordering::Relaxed);
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `test_simple_assign::s`, found `s`
+    |
+    = note: `s` and `test_simple_assign::s` have similar names, but are actually distinct types
+note: `s` is defined in module `crate` of the current crate
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:120:1
+    |
+120 | struct s {
+    | ^^^^^^^^
+note: `test_simple_assign::s` is defined in module `crate` of the current crate
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:83:5
+    |
+ 83 |     struct s {
+    |     ^^^^^^^^
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:98:12
+   |
+98 |         if memcmp(&init.a, &copy.a, 1024 * std::mem::size_of::<i16>()) != 0 {
+   |            ^^^^^^
+   |
+note: expected `*const u8`, found `&[i16; 1024]`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:98:19
+   |
+98 |         if memcmp(&init.a, &copy.a, 1024 * std::mem::size_of::<i16>()) != 0 {
+   |                   ^^^^^^^
+   = note: expected raw pointer `*const u8`
+                found reference `&[i16; 1024]`
+note: expected `*const u8`, found `&[i16; 1024]`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:98:28
+   |
+98 |         if memcmp(&init.a, &copy.a, 1024 * std::mem::size_of::<i16>()) != 0 {
+   |                            ^^^^^^^
+   = note: expected raw pointer `*const u8`
+                found reference `&[i16; 1024]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:15:4
+   |
+15 | fn memcmp(s1: *const u8, s2: *const u8, n: usize) -> i32 {
+   |    ^^^^^^ -------------  -------------
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:102:16
+    |
+ 88 |     let mut copy = s { a: [0; 1024] };
+    |                    ------------------ expected due to this value
+...
+102 |         copy = s2.load(Ordering::Relaxed);
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `test_simple_assign::s`, found `s`
+    |
+    = note: `s` and `test_simple_assign::s` have similar names, but are actually distinct types
+note: `s` is defined in module `crate` of the current crate
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:120:1
+    |
+120 | struct s {
+    | ^^^^^^^^
+note: `test_simple_assign::s` is defined in module `crate` of the current crate
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:83:5
+    |
+ 83 |     struct s {
+    |     ^^^^^^^^
+
+error[E0308]: arguments to this function are incorrect
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:103:12
+    |
+103 |         if memcmp(&init.a, &copy.a, 1024 * std::mem::size_of::<i16>()) != 0 {
+    |            ^^^^^^
+    |
+note: expected `*const u8`, found `&[i16; 1024]`
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:103:19
+    |
+103 |         if memcmp(&init.a, &copy.a, 1024 * std::mem::size_of::<i16>()) != 0 {
+    |                   ^^^^^^^
+    = note: expected raw pointer `*const u8`
+                 found reference `&[i16; 1024]`
+note: expected `*const u8`, found `&[i16; 1024]`
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:103:28
+    |
+103 |         if memcmp(&init.a, &copy.a, 1024 * std::mem::size_of::<i16>()) != 0 {
+    |                            ^^^^^^^
+    = note: expected raw pointer `*const u8`
+                 found reference `&[i16; 1024]`
+note: function defined here
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:15:4
+    |
+ 15 | fn memcmp(s1: *const u8, s2: *const u8, n: usize) -> i32 {
+    |    ^^^^^^ -------------  -------------
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:107:16
+    |
+ 88 |     let mut copy = s { a: [0; 1024] };
+    |                    ------------------ expected due to this value
+...
+107 |         copy = s1.load(Ordering::Relaxed);
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `test_simple_assign::s`, found `s`
+    |
+    = note: `s` and `test_simple_assign::s` have similar names, but are actually distinct types
+note: `s` is defined in module `crate` of the current crate
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:120:1
+    |
+120 | struct s {
+    | ^^^^^^^^
+note: `test_simple_assign::s` is defined in module `crate` of the current crate
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:83:5
+    |
+ 83 |     struct s {
+    |     ^^^^^^^^
+
+error[E0308]: arguments to this function are incorrect
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:108:12
+    |
+108 |         if memcmp(&init.a, &copy.a, 1024 * std::mem::size_of::<i16>()) != 0 {
+    |            ^^^^^^
+    |
+note: expected `*const u8`, found `&[i16; 1024]`
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:108:19
+    |
+108 |         if memcmp(&init.a, &copy.a, 1024 * std::mem::size_of::<i16>()) != 0 {
+    |                   ^^^^^^^
+    = note: expected raw pointer `*const u8`
+                 found reference `&[i16; 1024]`
+note: expected `*const u8`, found `&[i16; 1024]`
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:108:28
+    |
+108 |         if memcmp(&init.a, &copy.a, 1024 * std::mem::size_of::<i16>()) != 0 {
+    |                            ^^^^^^^
+    = note: expected raw pointer `*const u8`
+                 found reference `&[i16; 1024]`
+note: function defined here
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:15:4
+    |
+ 15 | fn memcmp(s1: *const u8, s2: *const u8, n: usize) -> i32 {
+    |    ^^^^^^ -------------  -------------
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:112:16
+    |
+ 88 |     let mut copy = s { a: [0; 1024] };
+    |                    ------------------ expected due to this value
+...
+112 |         copy = s2.load(Ordering::Relaxed);
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `test_simple_assign::s`, found `s`
+    |
+    = note: `s` and `test_simple_assign::s` have similar names, but are actually distinct types
+note: `s` is defined in module `crate` of the current crate
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:120:1
+    |
+120 | struct s {
+    | ^^^^^^^^
+note: `test_simple_assign::s` is defined in module `crate` of the current crate
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:83:5
+    |
+ 83 |     struct s {
+    |     ^^^^^^^^
+
+error[E0308]: arguments to this function are incorrect
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:113:12
+    |
+113 |         if memcmp(&init.a, &copy.a, 1024 * std::mem::size_of::<i16>()) != 0 {
+    |            ^^^^^^
+    |
+note: expected `*const u8`, found `&[i16; 1024]`
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:113:19
+    |
+113 |         if memcmp(&init.a, &copy.a, 1024 * std::mem::size_of::<i16>()) != 0 {
+    |                   ^^^^^^^
+    = note: expected raw pointer `*const u8`
+                 found reference `&[i16; 1024]`
+note: expected `*const u8`, found `&[i16; 1024]`
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:113:28
+    |
+113 |         if memcmp(&init.a, &copy.a, 1024 * std::mem::size_of::<i16>()) != 0 {
+    |                            ^^^^^^^
+    = note: expected raw pointer `*const u8`
+                 found reference `&[i16; 1024]`
+note: function defined here
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:15:4
+    |
+ 15 | fn memcmp(s1: *const u8, s2: *const u8, n: usize) -> i32 {
+    |    ^^^^^^ -------------  -------------
+
+warning: unused variable: `order`
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_004/target.rs:129:20
+    |
+129 |     fn load(&self, order: std::sync::atomic::Ordering) -> s {
+    |                    ^^^^^ help: if this is intentional, prefix it with an underscore: `_order`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 22 previous errors; 7 warnings emitted
+
+Some errors have detailed explanations: E0252, E0308, E0423, E0432.
+For more information about an error, try `rustc --explain E0252`.

@@ -1,0 +1,23 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/simple_asgn_3/sample_005/target.rs:7:5
+  |
+7 | /     unsafe {
+8 | |         *p = '\0';
+9 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: assigning to `&T` is undefined behavior, consider using an `UnsafeCell`
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/simple_asgn_3/sample_005/target.rs:8:9
+  |
+5 |     let p: *mut char = c_ptr as *mut char;
+  |                        ------------------ casting happened here
+...
+8 |         *p = '\0';
+  |         ^^^^^^^^^
+  |
+  = note: for more information, visit <https://doc.rust-lang.org/book/ch15-05-interior-mutability.html>
+  = note: `#[deny(invalid_reference_casting)]` on by default
+
+error: aborting due to 2 previous errors

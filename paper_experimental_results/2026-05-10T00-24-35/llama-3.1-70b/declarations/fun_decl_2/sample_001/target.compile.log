@@ -1,0 +1,82 @@
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_001/target.rs:47:16
+   |
+47 |     let sel = (hmix(v[0], v[5]) & 3) % 3;
+   |                ^^^^ ----  ---- expected `i32`, found `usize`
+   |                     |
+   |                     expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_001/target.rs:1:4
+   |
+ 1 | fn hmix(a: i32, b: i32) -> i32 {
+   |    ^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+47 |     let sel = (hmix(v[0].try_into().unwrap(), v[5]) & 3) % 3;
+   |                         ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+47 |     let sel = (hmix(v[0], v[5].try_into().unwrap()) & 3) % 3;
+   |                               ++++++++++++++++++++
+
+error[E0277]: the type `[usize]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_001/target.rs:49:26
+   |
+49 |     let (x, y) = (&mut v[sel], &mut v[sel + 1]);
+   |                          ^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[usize]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[usize]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[usize; 6]` to implement `Index<i32>`
+
+error[E0277]: the type `[usize]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_001/target.rs:49:39
+   |
+49 |     let (x, y) = (&mut v[sel], &mut v[sel + 1]);
+   |                                       ^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[usize]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[usize]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[usize; 6]` to implement `Index<i32>`
+
+error[E0277]: the type `[for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_001/target.rs:54:25
+   |
+54 |     let out = run(&apfi[sel], x, y);
+   |                         ^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32; 3]` to implement `Index<i32>`
+
+error[E0277]: the type `[for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_2/sample_001/target.rs:89:13
+   |
+89 |     if apfi[sel] as usize == 0 {
+   |             ^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32; 3]` to implement `Index<i32>`
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

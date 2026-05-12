@@ -1,0 +1,23 @@
+warning: unused variable: `q`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/compound_literals_8/sample_001/target.rs:10:13
+   |
+10 |         let q = p.take();
+   |             ^ help: if this is intentional, prefix it with an underscore: `_q`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error[E0716]: temporary value dropped while borrowed
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/compound_literals_8/sample_001/target.rs:11:19
+   |
+10 |         let q = p.take();
+   |                 - borrow later used here
+11 |         p = Some(&S { i: j });
+   |                   ^^^^^^^^^^ - temporary value is freed at the end of this statement
+   |                   |
+   |                   creates a temporary value which is freed while still in use
+   |
+   = note: consider using a `let` binding to create a longer lived value
+
+error: aborting due to 1 previous error; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0716`.

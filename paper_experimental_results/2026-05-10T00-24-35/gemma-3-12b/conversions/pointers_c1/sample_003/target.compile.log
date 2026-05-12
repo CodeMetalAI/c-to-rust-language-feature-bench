@@ -1,0 +1,158 @@
+error: expected `mut` or `const` keyword in raw pointer type
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c1/sample_003/target.rs:47:34
+   |
+47 |     let v1b = pi2 as *mut i32 as *void;
+   |                                  ^
+   |
+help: add `mut` or `const` here
+   |
+47 |     let v1b = pi2 as *mut i32 as *mut void;
+   |                                   +++
+47 |     let v1b = pi2 as *mut i32 as *const void;
+   |                                   +++++
+
+error: expected `mut` or `const` keyword in raw pointer type
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c1/sample_003/target.rs:48:34
+   |
+48 |     let v2b = pd2 as *mut f64 as *void;
+   |                                  ^
+   |
+help: add `mut` or `const` here
+   |
+48 |     let v2b = pd2 as *mut f64 as *mut void;
+   |                                   +++
+48 |     let v2b = pd2 as *mut f64 as *const void;
+   |                                   +++++
+
+error: expected `mut` or `const` keyword in raw pointer type
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c1/sample_003/target.rs:49:32
+   |
+49 |     let v3b = ps2 as *mut S as *void;
+   |                                ^
+   |
+help: add `mut` or `const` here
+   |
+49 |     let v3b = ps2 as *mut S as *mut void;
+   |                                 +++
+49 |     let v3b = ps2 as *mut S as *const void;
+   |                                 +++++
+
+error: expected `mut` or `const` keyword in raw pointer type
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c1/sample_003/target.rs:51:21
+   |
+51 |     if v1b != v1 as *void {
+   |                     ^
+   |
+help: add `mut` or `const` here
+   |
+51 |     if v1b != v1 as *mut void {
+   |                      +++
+51 |     if v1b != v1 as *const void {
+   |                      +++++
+
+error: expected `mut` or `const` keyword in raw pointer type
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c1/sample_003/target.rs:54:21
+   |
+54 |     if v2b != v2 as *void {
+   |                     ^
+   |
+help: add `mut` or `const` here
+   |
+54 |     if v2b != v2 as *mut void {
+   |                      +++
+54 |     if v2b != v2 as *const void {
+   |                      +++++
+
+error: expected `mut` or `const` keyword in raw pointer type
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c1/sample_003/target.rs:57:21
+   |
+57 |     if v3b != v3 as *void {
+   |                     ^
+   |
+help: add `mut` or `const` here
+   |
+57 |     if v3b != v3 as *mut void {
+   |                      +++
+57 |     if v3b != v3 as *const void {
+   |                      +++++
+
+error[E0412]: cannot find type `void` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c1/sample_003/target.rs:47:35
+   |
+47 |     let v1b = pi2 as *mut i32 as *void;
+   |                                   ^^^^ not found in this scope
+
+error[E0412]: cannot find type `void` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c1/sample_003/target.rs:48:35
+   |
+48 |     let v2b = pd2 as *mut f64 as *void;
+   |                                   ^^^^ not found in this scope
+
+error[E0412]: cannot find type `void` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c1/sample_003/target.rs:49:33
+   |
+49 |     let v3b = ps2 as *mut S as *void;
+   |                                 ^^^^ not found in this scope
+
+error[E0412]: cannot find type `void` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c1/sample_003/target.rs:51:22
+   |
+51 |     if v1b != v1 as *void {
+   |                      ^^^^ not found in this scope
+
+error[E0412]: cannot find type `void` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c1/sample_003/target.rs:54:22
+   |
+54 |     if v2b != v2 as *void {
+   |                      ^^^^ not found in this scope
+
+error[E0412]: cannot find type `void` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c1/sample_003/target.rs:57:22
+   |
+57 |     if v3b != v3 as *void {
+   |                      ^^^^ not found in this scope
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c1/sample_003/target.rs:25:16
+   |
+ 7 | fn main() {
+   |          - expected `()` because of default return type
+...
+25 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0609]: no field `a` on type `*const S`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c1/sample_003/target.rs:40:12
+   |
+40 |     if ps2.a != 7 {
+   |            ^ unknown field
+   |
+help: `ps2` is a raw pointer; try dereferencing it
+   |
+40 |     if (*ps2).a != 7 {
+   |        ++   +
+
+error[E0609]: no field `b` on type `*const S`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c1/sample_003/target.rs:43:12
+   |
+43 |     if ps2.b != 9.5 {
+   |            ^ unknown field
+   |
+help: `ps2` is a raw pointer; try dereferencing it
+   |
+43 |     if (*ps2).b != 9.5 {
+   |        ++   +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c1/sample_003/target.rs:61:5
+   |
+ 7 | fn main() {
+   |          - expected `()` because of default return type
+...
+61 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 16 previous errors
+
+Some errors have detailed explanations: E0308, E0412, E0609.
+For more information about an error, try `rustc --explain E0308`.

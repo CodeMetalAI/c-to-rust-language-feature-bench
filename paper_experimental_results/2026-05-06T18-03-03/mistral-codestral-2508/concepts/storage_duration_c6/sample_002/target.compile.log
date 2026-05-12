@@ -1,0 +1,17 @@
+error[E0381]: used binding `local` isn't initialized
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/concepts/storage_duration_c6/sample_002/target.rs:4:16
+  |
+2 |     let local: i32; // no initializer
+  |         ----- binding declared here but left uninitialized
+3 |
+4 |     let addr = &local as *const i32 as usize;
+  |                ^^^^^^ `local` used here but it isn't initialized
+  |
+help: consider assigning a value
+  |
+2 |     let local: i32 = 42; // no initializer
+  |                    ++++
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0381`.

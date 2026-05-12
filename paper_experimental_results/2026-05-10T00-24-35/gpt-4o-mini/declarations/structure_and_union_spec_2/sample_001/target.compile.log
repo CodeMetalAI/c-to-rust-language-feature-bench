@@ -1,0 +1,88 @@
+warning: unused import: `std::ptr`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_2/sample_001/target.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_2/sample_001/target.rs:29:18
+   |
+29 |     let s1_ptr = unsafe { alloc(s1_layout) as *mut S };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_2/sample_001/target.rs:30:18
+   |
+30 |     let s2_ptr = unsafe { alloc(s2_layout) as *mut S };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_2/sample_001/target.rs:33:9
+   |
+33 | /         unsafe {
+34 | |             if !s1_ptr.is_null() {
+35 | |                 dealloc(s1_ptr as *mut u8, s1_layout);
+...  |
+40 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_2/sample_001/target.rs:44:5
+   |
+44 | /     unsafe {
+45 | |         (*s1_ptr).d[0] = 42.0;
+46 | |         (*s2_ptr).d[0] = 24.0;
+...  |
+55 | |         dealloc(s2_ptr as *mut u8, s2_layout);
+56 | |     }
+   | |_____^
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_2/sample_001/target.rs:45:9
+   |
+45 |         (*s1_ptr).d[0] = 42.0;
+   |         ^^^^^^^^^^^^^^ index out of bounds: the length is 0 but the index is 0
+   |
+   = note: `#[deny(unconditional_panic)]` on by default
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_2/sample_001/target.rs:46:9
+   |
+46 |         (*s2_ptr).d[0] = 24.0;
+   |         ^^^^^^^^^^^^^^ index out of bounds: the length is 0 but the index is 0
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_2/sample_001/target.rs:48:12
+   |
+48 |         if (*s1_ptr).d[0] != 42.0 || (*s2_ptr).d[0] != 24.0 {
+   |            ^^^^^^^^^^^^^^ index out of bounds: the length is 0 but the index is 0
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_2/sample_001/target.rs:48:38
+   |
+48 |         if (*s1_ptr).d[0] != 42.0 || (*s2_ptr).d[0] != 24.0 {
+   |                                      ^^^^^^^^^^^^^^ index out of bounds: the length is 0 but the index is 0
+
+warning: field `n` is never read
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_2/sample_001/target.rs:6:5
+  |
+5 | struct S {
+  |        - field in this struct
+6 |     n: i32,
+  |     ^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `n` is never read
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_2/sample_001/target.rs:11:5
+   |
+10 | struct SS {
+   |        -- field in this struct
+11 |     n: i32,
+   |     ^
+
+error: aborting due to 8 previous errors; 3 warnings emitted

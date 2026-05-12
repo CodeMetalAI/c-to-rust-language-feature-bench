@@ -1,0 +1,33 @@
+error[E0432]: unresolved import `lazy_static`
+ --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/compound_literals_7/sample_003/target.rs:3:5
+  |
+3 | use lazy_static::lazy_static;
+  |     ^^^^^^^^^^^ use of unresolved module or unlinked crate `lazy_static`
+  |
+help: you might be missing a crate named `lazy_static`, add it to your project and import it in your code
+  |
+1 + extern crate lazy_static;
+  |
+
+error[E0425]: cannot find value `ENDLESS_ZEROS` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/compound_literals_7/sample_003/target.rs:24:30
+   |
+24 |     if !Rc::ptr_eq(&x.cdr, &*ENDLESS_ZEROS) {
+   |                              ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `ENDLESS_ZEROS` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/compound_literals_7/sample_003/target.rs:29:36
+   |
+29 |         if !Rc::ptr_eq(&cdr.cdr, &*ENDLESS_ZEROS) {
+   |                                    ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `ENDLESS_ZEROS` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/compound_literals_7/sample_003/target.rs:37:26
+   |
+37 |     let exit_code = eval(ENDLESS_ZEROS.borrow().clone());
+   |                          ^^^^^^^^^^^^^ not found in this scope
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0425, E0432.
+For more information about an error, try `rustc --explain E0425`.

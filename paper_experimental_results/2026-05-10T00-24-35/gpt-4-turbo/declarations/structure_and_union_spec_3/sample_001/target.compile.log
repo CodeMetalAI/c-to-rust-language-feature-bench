@@ -1,0 +1,42 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_001/target.rs:20:15
+   |
+20 |     let ptr = unsafe { std::alloc::alloc(layout) as *mut S };
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_001/target.rs:26:13
+   |
+26 |       let p = unsafe {
+   |  _____________^
+27 | |         ptr::write(&mut (*ptr).inner.i, 7);
+28 | |         let a_slice = std::slice::from_raw_parts_mut(&mut (*ptr).a as *mut i32 as *mut i32, 4);
+29 | |         a_slice[0] = 11;
+30 | |         a_slice[3] = 22;
+31 | |         &mut *ptr
+32 | |     };
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_001/target.rs:35:26
+   |
+35 |     if p.inner.i != 7 || unsafe { (*ptr).a.as_ptr().read() } != 11 || unsafe { (*ptr).a.as_ptr().add(3).read() } != 22 {
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_001/target.rs:35:71
+   |
+35 |     if p.inner.i != 7 || unsafe { (*ptr).a.as_ptr().read() } != 11 || unsafe { (*ptr).a.as_ptr().add(3).read() } != 22 {
+   |                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_001/target.rs:40:5
+   |
+40 | /     unsafe {
+41 | |         std::alloc::dealloc(ptr as *mut u8, layout);
+42 | |     }
+   | |_____^
+
+error: aborting due to 5 previous errors

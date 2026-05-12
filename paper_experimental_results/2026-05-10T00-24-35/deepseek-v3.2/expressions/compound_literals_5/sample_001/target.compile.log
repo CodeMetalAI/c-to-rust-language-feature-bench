@@ -1,0 +1,49 @@
+warning: unreachable expression
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/compound_literals_5/sample_001/target.rs:9:9
+  |
+9 |         return std::process::exit(1);
+  |         ^^^^^^^---------------------
+  |         |      |
+  |         |      any code following this expression is unreachable
+  |         unreachable expression
+  |
+  = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/compound_literals_5/sample_001/target.rs:12:9
+   |
+12 |         return std::process::exit(2);
+   |         ^^^^^^^---------------------
+   |         |      |
+   |         |      any code following this expression is unreachable
+   |         unreachable expression
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/compound_literals_5/sample_001/target.rs:22:9
+   |
+22 |         return std::process::exit(3);
+   |         ^^^^^^^---------------------
+   |         |      |
+   |         |      any code following this expression is unreachable
+   |         unreachable expression
+
+error[E0596]: cannot borrow data in a `&` reference as mutable
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/compound_literals_5/sample_001/target.rs:4:24
+  |
+4 |     let s2: &mut str = &mut s2_arr[0];
+  |                        ^^^^^^^^^^^^^^ cannot borrow as mutable
+
+error[E0596]: cannot borrow `s2_arr[_]` as mutable, as `s2_arr` is not declared as mutable
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/compound_literals_5/sample_001/target.rs:4:24
+  |
+4 |     let s2: &mut str = &mut s2_arr[0];
+  |                        ^^^^^^^^^^^^^^ cannot borrow as mutable
+  |
+help: consider changing this to be mutable
+  |
+3 |     let mut s2_arr = ["/tmp/fileXXXXXX"];
+  |         +++
+
+error: aborting due to 2 previous errors; 3 warnings emitted
+
+For more information about this error, try `rustc --explain E0596`.

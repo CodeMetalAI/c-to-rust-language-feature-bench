@@ -1,0 +1,19 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/add_op_1b/sample_003/target.rs:6:5
+  |
+6 | /     unsafe {
+7 | |         *p.offset(1).as_mut().unwrap()[2] = 99;
+8 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error[E0614]: type `i32` cannot be dereferenced
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/add_op_1b/sample_003/target.rs:7:9
+  |
+7 |         *p.offset(1).as_mut().unwrap()[2] = 99;
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ can't be dereferenced
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0614`.

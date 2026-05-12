@@ -1,0 +1,23 @@
+error[E0277]: `Rc<RefCell<Node>>` cannot be shared between threads safely
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/compound_literals_7/sample_002/target.rs:13:23
+   |
+13 | static ENDLESS_ZEROS: OnceLock<IntList> = OnceLock::new();
+   |                       ^^^^^^^^^^^^^^^^^ `Rc<RefCell<Node>>` cannot be shared between threads safely
+   |
+   = help: the trait `Sync` is not implemented for `Rc<RefCell<Node>>`
+   = note: required for `OnceLock<Rc<RefCell<Node>>>` to implement `Sync`
+   = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `Rc<RefCell<Node>>` cannot be sent between threads safely
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/compound_literals_7/sample_002/target.rs:13:23
+   |
+13 | static ENDLESS_ZEROS: OnceLock<IntList> = OnceLock::new();
+   |                       ^^^^^^^^^^^^^^^^^ `Rc<RefCell<Node>>` cannot be sent between threads safely
+   |
+   = help: the trait `Send` is not implemented for `Rc<RefCell<Node>>`
+   = note: required for `OnceLock<Rc<RefCell<Node>>>` to implement `Sync`
+   = note: shared static variables must have a type that implements `Sync`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

@@ -1,0 +1,42 @@
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/statements/return_1/sample_001/target.rs:6:5
+  |
+6 |     u1: S,
+  |     ^^^^^
+  |
+  = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+  |
+6 |     u1: std::mem::ManuallyDrop<S>,
+  |         +++++++++++++++++++++++ +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/statements/return_1/sample_001/target.rs:26:9
+   |
+18 | fn main() {
+   |          - expected `()` because of default return type
+...
+26 |         0
+   |         ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/statements/return_1/sample_001/target.rs:28:9
+   |
+18 | fn main() {
+   |          - expected `()` because of default return type
+...
+28 |         1
+   |         ^ expected `()`, found integer
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/statements/return_1/sample_001/target.rs:11:5
+   |
+11 |     U { u1: S { i: 0.0 } }.u1
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0133, E0308, E0740.
+For more information about an error, try `rustc --explain E0133`.

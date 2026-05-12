@@ -1,0 +1,15 @@
+error[E0502]: cannot borrow `*u` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/expressions/struct_and_union_3b/sample_001/target.rs:35:31
+   |
+33 |     if let Some(s1) = u.get_s1() {
+   |                       - immutable borrow occurs here
+34 |         if s1.m < 0 {
+35 |             if let Some(s2) = u.get_s2_mut() {
+   |                               ^^^^^^^^^^^^^^ mutable borrow occurs here
+...
+39 |         s1.m
+   |         ---- immutable borrow later used here
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0502`.

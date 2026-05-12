@@ -1,0 +1,65 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_003/target.rs:26:13
+   |
+26 |     let p = unsafe { &mut *(storage.as_mut_ptr() as *mut Packet) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_003/target.rs:33:24
+   |
+33 |         let expected = unsafe { storage.as_ptr().add(off) };
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_003/target.rs:35:20
+   |
+35 |         let got2 = unsafe { &(*p).data }.as_ptr() as *const u8;
+   |                    ^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_003/target.rs:50:13
+   |
+50 |             unsafe { (*p).data[i as usize] += 0 };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_003/target.rs:78:13
+   |
+78 |     let p = unsafe { &mut *(storage.as_mut_ptr() as *mut Packet) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_003/target.rs:86:24
+   |
+86 |         let expected = unsafe { storage.as_ptr().add(off) };
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_003/target.rs:88:20
+   |
+88 |         let got2 = unsafe { &(*p).data }.as_ptr() as *const u8;
+   |                    ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_003/target.rs:35:20
+   |
+35 |         let got2 = unsafe { &(*p).data }.as_ptr() as *const u8;
+   |                    ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_003/target.rs:50:13
+   |
+50 |             unsafe { (*p).data[i as usize] += 0 };
+   |             ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_003/target.rs:88:20
+   |
+88 |         let got2 = unsafe { &(*p).data }.as_ptr() as *const u8;
+   |                    ^^^^^^ unnecessary `unsafe` block
+
+error: aborting due to 7 previous errors; 3 warnings emitted

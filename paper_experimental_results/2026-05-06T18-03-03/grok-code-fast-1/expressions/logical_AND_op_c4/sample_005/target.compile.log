@@ -1,0 +1,13 @@
+error[E0277]: `RefCell<i32>` cannot be shared between threads safely
+ --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/logical_AND_op_c4/sample_005/target.rs:3:19
+  |
+3 |     pub static G: RefCell<i32> = RefCell::new(0);
+  |                   ^^^^^^^^^^^^ `RefCell<i32>` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `RefCell<i32>`
+  = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock` instead
+  = note: shared static variables must have a type that implements `Sync`
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0277`.

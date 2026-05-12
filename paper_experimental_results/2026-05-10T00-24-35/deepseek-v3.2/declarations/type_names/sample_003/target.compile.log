@@ -1,0 +1,93 @@
+error: defining functions with C-variadic arguments is only allowed for free functions with the "C" or "C-unwind" calling convention
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_names/sample_003/target.rs:10:18
+   |
+10 | fn f_var(x: u32, _: ...) -> i32 {
+   |                  ^^^^^^
+
+error[E0658]: C-variadic functions are unstable
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_names/sample_003/target.rs:10:1
+   |
+10 | / fn f_var(x: u32, _: ...) -> i32 {
+11 | |     (x + 3) as i32
+12 | | }
+   | |_^
+   |
+   = note: see issue #44930 <https://github.com/rust-lang/rust/issues/44930> for more information
+   = help: add `#![feature(c_variadic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_names/sample_003/target.rs:3:5
+  |
+3 |     unsafe { &G_ARR[1] }
+  |     ^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_names/sample_003/target.rs:15:5
+   |
+15 | /     unsafe {
+16 | |         let slice = &*p;
+17 | |         slice[0] * 10 + slice[n - 1]
+18 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_names/sample_003/target.rs:35:9
+   |
+35 | /         unsafe {
+36 | |             if *p != 1 {
+37 | |                 std::process::exit(2);
+38 | |             }
+39 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_names/sample_003/target.rs:46:9
+   |
+46 | /         unsafe {
+47 | |             if *q != 3 {
+48 | |                 std::process::exit(3);
+49 | |             }
+50 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_names/sample_003/target.rs:56:9
+   |
+56 | /         unsafe {
+57 | |             if (*pa)[1] != 2 {
+58 | |                 std::process::exit(4);
+59 | |             }
+60 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_names/sample_003/target.rs:75:9
+   |
+75 | /         unsafe {
+76 | |             if *pf() != 2 {
+77 | |                 std::process::exit(6);
+78 | |             }
+79 | |         }
+   | |_________^
+
+error[E0045]: C-variadic functions with the "Rust" calling convention are not supported
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_names/sample_003/target.rs:92:18
+   |
+92 |         let af: [fn(u32, ...) -> i32; 2] = [f_var, f_var];
+   |                  ^^^^^^^^^^^^^^^^^^^ C-variadic function must have a compatible calling convention
+
+warning: unnecessary `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_names/sample_003/target.rs:3:5
+  |
+3 |     unsafe { &G_ARR[1] }
+  |     ^^^^^^ unnecessary `unsafe` block
+  |
+  = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 9 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0045, E0658.
+For more information about an error, try `rustc --explain E0045`.

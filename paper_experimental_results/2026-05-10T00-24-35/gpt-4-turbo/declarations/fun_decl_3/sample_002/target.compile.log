@@ -1,0 +1,60 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_3/sample_002/target.rs:13:9
+   |
+13 |         unsafe { G_SEED + x + 1000 }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_3/sample_002/target.rs:17:9
+   |
+17 |         unsafe { G_SEED + x - 2000 }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_3/sample_002/target.rs:22:9
+   |
+22 | /         unsafe {
+23 | |             G_SEED = pf(t) + k;
+24 | |             if G_SEED & 1 == 0 {
+25 | |                 v0
+...  |
+29 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_3/sample_002/target.rs:46:12
+   |
+46 |         if unsafe { std::mem::transmute::<_, usize>(vf) == std::mem::transmute::<_, usize>(v0) } {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_3/sample_002/target.rs:68:12
+   |
+68 |         if unsafe { std::mem::transmute::<_, usize>(vf) == std::mem::transmute::<_, usize>(v0) } {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0591]: can't transmute zero-sized type
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_3/sample_002/target.rs:46:60
+   |
+46 |         if unsafe { std::mem::transmute::<_, usize>(vf) == std::mem::transmute::<_, usize>(v0) } {
+   |                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: source type: fn(i32) -> i32 {v0}
+   = note: target type: usize
+   = help: cast with `as` to a pointer instead
+
+error[E0591]: can't transmute zero-sized type
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_3/sample_002/target.rs:68:60
+   |
+68 |         if unsafe { std::mem::transmute::<_, usize>(vf) == std::mem::transmute::<_, usize>(v0) } {
+   |                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: source type: fn(i32) -> i32 {v0}
+   = note: target type: usize
+   = help: cast with `as` to a pointer instead
+
+error: aborting due to 7 previous errors
+
+For more information about this error, try `rustc --explain E0591`.

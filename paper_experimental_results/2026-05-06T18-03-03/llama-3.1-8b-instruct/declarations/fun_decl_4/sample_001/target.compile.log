@@ -1,0 +1,127 @@
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:12:47
+   |
+12 | fn hash_matrix(n: usize, k: usize, a: &[[f64; k]; n]) -> u64 {
+   |                          -                    ^
+   |                          |
+   |                          this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:12:51
+   |
+12 | fn hash_matrix(n: usize, k: usize, a: &[[f64; k]; n]) -> u64 {
+   |                - this would need to be a `const`  ^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:23:49
+   |
+23 | fn addscalar(n: usize, m: usize, a: &mut [[f64; n * m + 300]; n], x: f64) {
+   |              - this would need to be a `const`  ^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:23:53
+   |
+23 | fn addscalar(n: usize, m: usize, a: &mut [[f64; n * m + 300]; n], x: f64) {
+   |                        -                            ^
+   |                        |
+   |                        this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:23:63
+   |
+23 | fn addscalar(n: usize, m: usize, a: &mut [[f64; n * m + 300]; n], x: f64) {
+   |              - this would need to be a `const`                ^
+
+warning: unused import: `std::f64::consts::PI`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:1:5
+  |
+1 | use std::f64::consts::PI;
+  |     ^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0277]: cannot add `f64` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:40:33
+   |
+40 |             b[i][j] = (i * 1000 + j as f64) * 0.25;
+   |                                 ^ no implementation for `usize + f64`
+   |
+   = help: the trait `Add<f64>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0277]: cannot add `f64` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:56:36
+   |
+56 |             let expect = (i * 1000 + j as f64) * 0.25 + 2.17;
+   |                                    ^ no implementation for `usize + f64`
+   |
+   = help: the trait `Add<f64>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0384]: cannot assign to immutable argument `x`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:4:5
+  |
+4 |     x ^= x >> 33;
+  |     ^^^^^^^^^^^^ cannot assign to immutable argument
+  |
+help: consider making this binding mutable
+  |
+3 | fn mix_u64(mut x: u64) -> u64 {
+  |            +++
+
+error[E0384]: cannot assign to immutable argument `x`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:5:5
+  |
+5 |     x *= 0xff51afd7ed558ccd;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^ cannot assign to immutable argument
+  |
+help: consider making this binding mutable
+  |
+3 | fn mix_u64(mut x: u64) -> u64 {
+  |            +++
+
+error[E0384]: cannot assign to immutable argument `x`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:6:5
+  |
+6 |     x ^= x >> 33;
+  |     ^^^^^^^^^^^^ cannot assign to immutable argument
+  |
+help: consider making this binding mutable
+  |
+3 | fn mix_u64(mut x: u64) -> u64 {
+  |            +++
+
+error[E0384]: cannot assign to immutable argument `x`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:7:5
+  |
+7 |     x *= 0xc4ceb9fe1a85ec53;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^ cannot assign to immutable argument
+  |
+help: consider making this binding mutable
+  |
+3 | fn mix_u64(mut x: u64) -> u64 {
+  |            +++
+
+error[E0384]: cannot assign to immutable argument `x`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:8:5
+  |
+8 |     x ^= x >> 33;
+  |     ^^^^^^^^^^^^ cannot assign to immutable argument
+  |
+help: consider making this binding mutable
+  |
+3 | fn mix_u64(mut x: u64) -> u64 {
+  |            +++
+
+error: aborting due to 12 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0384, E0435.
+For more information about an error, try `rustc --explain E0277`.

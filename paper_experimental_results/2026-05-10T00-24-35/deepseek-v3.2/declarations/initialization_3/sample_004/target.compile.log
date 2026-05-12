@@ -1,0 +1,40 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/initialization_3/sample_004/target.rs:49:9
+   |
+49 | /         unsafe {
+50 | |             let elem = p1.add(11);
+51 | |             if *elem != 0 {
+52 | |                 std::process::exit(9);
+...  |
+58 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0599]: no method named `add` found for reference `&i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/initialization_3/sample_004/target.rs:50:27
+   |
+50 |             let elem = p1.add(11);
+   |                           ^^^ method not found in `&i32`
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::ops::Add;
+   |
+
+error[E0599]: no method named `add` found for reference `&i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/initialization_3/sample_004/target.rs:54:27
+   |
+54 |             let elem = p2.add(11);
+   |                           ^^^ method not found in `&i32`
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::ops::Add;
+   |
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

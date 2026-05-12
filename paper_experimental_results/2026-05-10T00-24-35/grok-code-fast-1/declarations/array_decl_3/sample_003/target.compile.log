@@ -1,0 +1,25 @@
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/array_decl_3/sample_003/target.rs:50:9
+   |
+50 |     let mut p_index = 0;
+   |         ----^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error[E0502]: cannot borrow `c` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/array_decl_3/sample_003/target.rs:77:21
+   |
+53 |     let r = &c;
+   |             -- immutable borrow occurs here
+...
+77 |                     c[i][j][u][v] = (i as i32 + 1) * 1000000 + (j as i32 + 1) * 10000 + (u as i32 + 1) * 100 + (v as i32 + 1);
+   |                     ^ mutable borrow occurs here
+...
+92 |     if check_c(nn, mm, &c, r) != 0 {
+   |                            - immutable borrow later used here
+
+error: aborting due to 1 previous error; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0502`.

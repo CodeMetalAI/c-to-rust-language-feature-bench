@@ -1,0 +1,38 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_def_2/sample_001/target.rs:26:5
+   |
+26 | /     unsafe {
+27 | |         (*p).x += 3;
+28 | |         (*p).x
+29 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_def_2/sample_001/target.rs:85:12
+   |
+85 |         if unsafe { (*r).x } != 30 {
+   |            ^^^^^^^^^^^^^^^^^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_def_2/sample_001/target.rs:40:14
+   |
+40 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_def_2/sample_001/target.rs:42:9
+   |
+42 |     let mut b = S1 { x: 20 };
+   |         ----^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 3 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0277`.

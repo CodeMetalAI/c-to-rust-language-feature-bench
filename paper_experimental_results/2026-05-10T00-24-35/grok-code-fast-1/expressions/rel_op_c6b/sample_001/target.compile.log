@@ -1,0 +1,25 @@
+error[E0615]: attempted to take value of method `cast` on type `*const S`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/rel_op_c6b/sample_001/target.rs:14:38
+   |
+14 |     let ps: usize = (&s as *const S).cast::<()> as usize;
+   |                                      ^^^^ method, not a field
+   |
+help: use parentheses to call the method
+   |
+14 |     let ps: usize = (&s as *const S).cast::<()>() as usize;
+   |                                                ++
+
+error[E0615]: attempted to take value of method `cast` on type `*const i32`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/rel_op_c6b/sample_001/target.rs:15:42
+   |
+15 |     let px: usize = (&s.x as *const i32).cast::<()> as usize;
+   |                                          ^^^^ method, not a field
+   |
+help: use parentheses to call the method
+   |
+15 |     let px: usize = (&s.x as *const i32).cast::<()>() as usize;
+   |                                                    ++
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0615`.

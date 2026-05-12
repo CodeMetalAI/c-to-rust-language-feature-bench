@@ -1,0 +1,95 @@
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_4/sample_003/target.rs:4:29
+  |
+4 |             backing[i][j] = (i + 1) * 100 + (j + 1);
+  |             -------------   ^^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+  |             |
+  |             expected due to the type of this binding
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_4/sample_003/target.rs:27:39
+   |
+27 |             backing[i][j] = c[i][j] + d[(i + j) % m];
+   |                                       ^^^^^^^^^^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_4/sample_003/target.rs:27:37
+   |
+27 |             backing[i][j] = c[i][j] + d[(i + j) % m];
+   |                                     ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_4/sample_003/target.rs:47:13
+   |
+47 |     fvla(m, &x, &mut backing);
+   |     ----    ^^ expected `&[[i32; 9]; 9]`, found `&[[usize; 9]; 9]`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&[[i32; 9]; 9]`
+              found reference `&[[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_4/sample_003/target.rs:19:4
+   |
+19 | fn fvla(m: usize, c: &[[i32; 9]; 9], backing: &mut [[i32; 9]; 9]) {
+   |    ^^^^           -----------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_4/sample_003/target.rs:56:45
+   |
+56 |     if checksum_2d(&backing) != checksum_2d(&expect) {
+   |                                 ----------- ^^^^^^^ expected `&[[i32; 9]; 9]`, found `&[[usize; 9]; 9]`
+   |                                 |
+   |                                 arguments to this function are incorrect
+   |
+   = note: expected reference `&[[i32; 9]; 9]`
+              found reference `&[[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_4/sample_003/target.rs:9:4
+   |
+ 9 | fn checksum_2d(a: &[[i32; 9]; 9]) -> i32 {
+   |    ^^^^^^^^^^^ -----------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_4/sample_003/target.rs:60:13
+   |
+60 |     fvla(m, &y, &mut backing);
+   |     ----    ^^ expected `&[[i32; 9]; 9]`, found `&[[usize; 9]; 9]`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&[[i32; 9]; 9]`
+              found reference `&[[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_4/sample_003/target.rs:19:4
+   |
+19 | fn fvla(m: usize, c: &[[i32; 9]; 9], backing: &mut [[i32; 9]; 9]) {
+   |    ^^^^           -----------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_4/sample_003/target.rs:69:45
+   |
+69 |     if checksum_2d(&backing) != checksum_2d(&expect2) {
+   |                                 ----------- ^^^^^^^^ expected `&[[i32; 9]; 9]`, found `&[[usize; 9]; 9]`
+   |                                 |
+   |                                 arguments to this function are incorrect
+   |
+   = note: expected reference `&[[i32; 9]; 9]`
+              found reference `&[[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_4/sample_003/target.rs:9:4
+   |
+ 9 | fn checksum_2d(a: &[[i32; 9]; 9]) -> i32 {
+   |    ^^^^^^^^^^^ -----------------
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,94 @@
+{
+  "test_name": "declarations/type_def_4",
+  "llm_name": "GPT-4 Turbo",
+  "timestamp": "2026-05-10T00:32:47.110837Z",
+  "duration_seconds": 60.5124073328916,
+  "timeout_error": false,
+  "primary_feature": "decl.type_defs",
+  "source_compiled": true,
+  "source_compile_errors": null,
+  "source_exit_code": 0,
+  "samples": [
+    {
+      "sample_index": 1,
+      "duration_seconds": 58.84750983398408,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error: usage of an `unsafe` block\n --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_001/target.rs:5:9\n  |\n5 |         unsafe { HITS += x + 1; }\n  |         ^^^^^^^^^^^^^^^^^^^^^^^^^\n  |\n  = note: requested on the command line with `-F unsafe-code`\n\nerror: usage of an `unsafe` block\n --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_001/target.rs:9:9\n  |\n9 |         unsafe { HITS += x + 2; }\n  |         ^^^^^^^^^^^^^^^^^^^^^^^^^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_001/target.rs:23:9\n   |\n23 |         unsafe { HITS }\n   |         ^^^^^^^^^^^^^^^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_001/target.rs:29:9\n   |\n29 |         unsafe { HITS }\n   |         ^^^^^^^^^^^^^^^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_001/target.rs:35:9\n   |\n35 |         unsafe { HITS }\n   |         ^^^^^^^^^^^^^^^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_001/target.rs:38:5\n   |\n38 |     unsafe { HITS = 0; }\n   |     ^^^^^^^^^^^^^^^^^^^^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_001/target.rs:43:5\n   |\n43 |     unsafe { HITS = 0; }\n   |     ^^^^^^^^^^^^^^^^^^^^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_001/target.rs:48:5\n   |\n48 |     unsafe { HITS = 0; }\n   |     ^^^^^^^^^^^^^^^^^^^^\n\nerror: aborting due to 8 previous errors",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 2,
+      "duration_seconds": 60.28202270809561,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_002/target.rs:52:5\n   |\n52 | /     unsafe {\n53 | |         HITS += x + 1;\n54 | |     }\n   | |_____^\n   |\n   = note: requested on the command line with `-F unsafe-code`\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_002/target.rs:59:5\n   |\n59 | /     unsafe {\n60 | |         HITS += x + 2;\n61 | |     }\n   | |_____^\n\nwarning: unreachable expression\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_002/target.rs:20:9\n   |\n20 |         return std::process::exit(1);\n   |         ^^^^^^^---------------------\n   |         |      |\n   |         |      any code following this expression is unreachable\n   |         unreachable expression\n   |\n   = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default\n\nwarning: unreachable expression\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_002/target.rs:31:9\n   |\n31 |         return std::process::exit(2);\n   |         ^^^^^^^---------------------\n   |         |      |\n   |         |      any code following this expression is unreachable\n   |         unreachable expression\n\nwarning: unreachable expression\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_002/target.rs:46:9\n   |\n46 |         return std::process::exit(3);\n   |         ^^^^^^^---------------------\n   |         |      |\n   |         |      any code following this expression is unreachable\n   |         unreachable expression\n\nwarning: value assigned to `hits` is never read\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_002/target.rs:44:5\n   |\n44 |     hits = 0;\n   |     ^^^^\n   |\n   = help: maybe it is overwritten before being read?\n   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default\n\nerror[E0506]: cannot assign to `hits` because it is borrowed\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_002/target.rs:18:5\n   |\n12 |     let call_signal_as_plain = |s: i32, h: fn(i32), arg: i32| -> i32 {\n   |                                ------------------------------------- `hits` is borrowed here\n...\n15 |         hits\n   |         ---- borrow occurs due to use in closure\n...\n18 |     hits = 0;\n   |     ^^^^^^^^ `hits` is assigned to here but it was already borrowed\n19 |     if call_signal_as_plain(1, handler_b, 3) != (3 + 1) {\n   |        -------------------- borrow later used here\n\nerror[E0506]: cannot assign to `hits` because it is borrowed\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_002/target.rs:29:5\n   |\n23 |     let call_signal_as_fv = |s: i32, h: fn(i32), arg: i32| -> i32 {\n   |                             ------------------------------------- `hits` is borrowed here\n...\n26 |         hits\n   |         ---- borrow occurs due to use in closure\n...\n29 |     hits = 0;\n   |     ^^^^^^^^ `hits` is assigned to here but it was already borrowed\n30 |     if call_signal_as_fv(2, handler_b, 4) != (4 + 2) {\n   |        ----------------- borrow later used here\n\nerror[E0506]: cannot assign to `hits` because it is borrowed\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_002/target.rs:44:5\n   |\n38 |     let call_signal_as_pfv = |s: i32, h: fn(i32), arg: i32| -> i32 {\n   |                              ------------------------------------- `hits` is borrowed here\n...\n41 |         hits\n   |         ---- borrow occurs due to use in closure\n...\n44 |     hits = 0;\n   |     ^^^^^^^^ `hits` is assigned to here but it was already borrowed\n45 |     if call_signal_as_pfv(3, handler_b, 5) != (5 + 1) {\n   |        ------------------ borrow later used here\n\nerror: aborting due to 5 previous errors; 4 warnings emitted\n\nFor more information about this error, try `rustc --explain E0506`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": true,
+      "stub_reasons": [
+        "function definitions dropped from 8 to 3 (threshold=0.75, require>=6)"
+      ],
+      "provider_error": false
+    },
+    {
+      "sample_index": 3,
+      "duration_seconds": 60.15205237502232,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error: usage of an `unsafe` block\n --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_003/target.rs:5:9\n  |\n5 |         unsafe { HITS += x + 1; }\n  |         ^^^^^^^^^^^^^^^^^^^^^^^^^\n  |\n  = note: requested on the command line with `-F unsafe-code`\n\nerror: usage of an `unsafe` block\n --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_003/target.rs:9:9\n  |\n9 |         unsafe { HITS += x + 2; }\n  |         ^^^^^^^^^^^^^^^^^^^^^^^^^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_003/target.rs:23:9\n   |\n23 |         unsafe { HITS }\n   |         ^^^^^^^^^^^^^^^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_003/target.rs:29:9\n   |\n29 |         unsafe { HITS }\n   |         ^^^^^^^^^^^^^^^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_003/target.rs:35:9\n   |\n35 |         unsafe { HITS }\n   |         ^^^^^^^^^^^^^^^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_003/target.rs:38:5\n   |\n38 |     unsafe { HITS = 0; }\n   |     ^^^^^^^^^^^^^^^^^^^^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_003/target.rs:43:5\n   |\n43 |     unsafe { HITS = 0; }\n   |     ^^^^^^^^^^^^^^^^^^^^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_003/target.rs:48:5\n   |\n48 |     unsafe { HITS = 0; }\n   |     ^^^^^^^^^^^^^^^^^^^^\n\nerror: aborting due to 8 previous errors",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 4,
+      "duration_seconds": 60.3409830420278,
+      "timeout_error": false,
+      "target_compiled": true,
+      "target_compile_errors": null,
+      "target_exit_code": 0,
+      "exit_codes_match": true,
+      "stdout_similarity": 1.0,
+      "stdout_match": true,
+      "match": true,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 5,
+      "duration_seconds": 58.59375304100104,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error: usage of an `unsafe` block\n --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_005/target.rs:5:9\n  |\n5 | /         unsafe {\n6 | |             HITS += x + 1;\n7 | |         }\n  | |_________^\n  |\n  = note: requested on the command line with `-F unsafe-code`\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_005/target.rs:11:9\n   |\n11 | /         unsafe {\n12 | |             HITS += x + 2;\n13 | |         }\n   | |_________^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_005/target.rs:27:9\n   |\n27 |         unsafe { HITS }\n   |         ^^^^^^^^^^^^^^^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_005/target.rs:30:5\n   |\n30 | /     unsafe {\n31 | |         HITS = 0;\n32 | |         if call_signal_as_plain(1, handler_b, 3) != (3 + 1) {\n33 | |             return std::process::exit(1);\n...  |\n45 | |     } \n   | |_____^\n\nwarning: unreachable expression\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_005/target.rs:33:13\n   |\n33 |             return std::process::exit(1);\n   |             ^^^^^^^---------------------\n   |             |      |\n   |             |      any code following this expression is unreachable\n   |             unreachable expression\n   |\n   = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default\n\nwarning: unreachable expression\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_005/target.rs:38:13\n   |\n38 |             return std::process::exit(2);\n   |             ^^^^^^^---------------------\n   |             |      |\n   |             |      any code following this expression is unreachable\n   |             unreachable expression\n\nwarning: unreachable expression\n  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_005/target.rs:43:13\n   |\n43 |             return std::process::exit(3);\n   |             ^^^^^^^---------------------\n   |             |      |\n   |             |      any code following this expression is unreachable\n   |             unreachable expression\n\nerror: aborting due to 4 previous errors; 3 warnings emitted",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": true,
+      "stub_reasons": [
+        "function definitions dropped from 8 to 5 (threshold=0.75, require>=6)"
+      ],
+      "provider_error": false
+    }
+  ],
+  "winning_sample": 4,
+  "match": true
+}

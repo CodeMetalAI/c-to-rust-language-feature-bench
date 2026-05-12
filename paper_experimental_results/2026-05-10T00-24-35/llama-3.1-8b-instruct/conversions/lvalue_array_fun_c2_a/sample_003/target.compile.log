@@ -1,0 +1,69 @@
+error[E0425]: cannot find function `type_id_of` in module `std::any`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_003/target.rs:97:21
+   |
+97 |     match std::any::type_id_of::<T>() {
+   |                     ^^^^^^^^^^ not found in `std::any`
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_003/target.rs:88:8
+    |
+ 88 |     if std::mem::align_of(a[0])!= alignment {
+    |        ^^^^^^^^^^^^^^^^^^ ---- unexpected argument of type `{integer}`
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+help: remove the extra argument
+    |
+ 88 -     if std::mem::align_of(a[0])!= alignment {
+ 88 +     if std::mem::align_of()!= alignment {
+    |
+
+error[E0599]: no associated item named `Int` found for struct `TypeId` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_003/target.rs:98:27
+   |
+98 |         std::any::TypeId::Int => 1,
+   |                           ^^^ associated item not found in `TypeId`
+
+error[E0599]: no associated item named `Slice` found for struct `TypeId` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_003/target.rs:99:27
+   |
+99 |         std::any::TypeId::Slice(_) => 2,
+   |                           ^^^^^ associated item not found in `TypeId`
+
+error[E0599]: no associated item named `Raw` found for struct `TypeId` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_003/target.rs:100:27
+    |
+100 |         std::any::TypeId::Raw(_) => 3,
+    |                           ^^^ associated item not found in `TypeId`
+
+error[E0599]: no associated item named `Int` found for struct `TypeId` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_003/target.rs:101:27
+    |
+101 |         std::any::TypeId::Int(_x) => 4,
+    |                           ^^^ associated item not found in `TypeId`
+
+error[E0599]: no associated item named `IntSlice` found for struct `TypeId` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_003/target.rs:102:27
+    |
+102 |         std::any::TypeId::IntSlice(_) => 5,
+    |                           ^^^^^^^^ associated item not found in `TypeId`
+
+error[E0599]: no associated item named `Fn` found for struct `TypeId` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_003/target.rs:103:27
+    |
+103 |         std::any::TypeId::Fn(_) => 6,
+    |                           ^^ associated item not found in `TypeId`
+
+error[E0599]: no associated item named `Unit` found for struct `TypeId` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2_a/sample_003/target.rs:104:27
+    |
+104 |         std::any::TypeId::Unit => 7,
+    |                           ^^^^ associated item not found in `TypeId`
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0061, E0425, E0599.
+For more information about an error, try `rustc --explain E0061`.

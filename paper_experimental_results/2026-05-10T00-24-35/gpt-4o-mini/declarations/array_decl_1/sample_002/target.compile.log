@@ -1,0 +1,313 @@
+warning: type `usize` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:1:6
+  |
+1 | type usize = u64;
+  |      ^^^^^ help: convert the identifier to upper camel case (notice the capitalization): `Usize`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:6:5
+  |
+6 | /     unsafe {
+7 | |         CALLS += 1;
+8 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:23:5
+   |
+23 | /     unsafe {
+24 | |         for i in 0..FA_LEN {
+25 | |             FA[i as usize] = (i + 1) as f32;
+...  |
+31 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:39:32
+   |
+39 |     pp.iter().take(n).map(|&p| unsafe { *p as i32 }).sum()
+   |                                ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:43:39
+   |
+43 |     (a[0] as i32) + (a[10] as i32) + (unsafe { *afp2[0] as i32 }) + (unsafe { *afp2[16] as i32 })
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:43:70
+   |
+43 |     (a[0] as i32) + (a[10] as i32) + (unsafe { *afp2[0] as i32 }) + (unsafe { *afp2[16] as i32 })
+   |                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:49:5
+   |
+49 | /     unsafe {
+50 | |         if FA[0] != 1.0 || FA[10] != 11.0 {
+51 | |             return 1;
+...  |
+56 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:72:5
+   |
+72 | /     unsafe {
+73 | |         if CALLS != 2 {
+74 | |             return 3;
+75 | |         }
+76 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:91:119
+   |
+91 | ...().unwrap()) != ((vla1[0] as i32) + (vla1[10] as i32) + (unsafe { *vla2[0] as i32 }) + (unsafe { *vla2[16] as i32 })) {
+   |                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:91:150
+   |
+91 | ...2) + (vla1[10] as i32) + (unsafe { *vla2[0] as i32 }) + (unsafe { *vla2[16] as i32 })) {
+   |                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:18:22
+   |
+18 | static mut FA: [f32; FA_LEN as usize] = [0.0; FA_LEN as usize];
+   |                      ^^^^^^^^^^^^^^^ expected `usize`, found `u64`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:19:30
+   |
+19 | static mut AFP: [*const f32; AFP_LEN as usize] = [std::ptr::null(); AFP_LEN as usize];
+   |                              ^^^^^^^^^^^^^^^^ expected `usize`, found `u64`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:20:27
+   |
+20 | static mut BACKING: [f32; AFP_LEN as usize] = [0.0; AFP_LEN as usize];
+   |                           ^^^^^^^^^^^^^^^^ expected `usize`, found `u64`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:42:27
+   |
+42 | fn takes_params(a: &[f32; FA_LEN as usize], afp2: &[*const f32; AFP_LEN as usize]) -> i32 {
+   |                           ^^^^^^^^^^^^^^^ expected `usize`, found `u64`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:42:65
+   |
+42 | fn takes_params(a: &[f32; FA_LEN as usize], afp2: &[*const f32; AFP_LEN as usize]) -> i32 {
+   |                                                                 ^^^^^^^^^^^^^^^^ expected `usize`, found `u64`
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:46:14
+   |
+46 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:18:47
+   |
+18 | static mut FA: [f32; FA_LEN as usize] = [0.0; FA_LEN as usize];
+   |                                               ^^^^^^^^^^^^^^^ expected `usize`, found `u64`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:19:69
+   |
+19 | static mut AFP: [*const f32; AFP_LEN as usize] = [std::ptr::null(); AFP_LEN as usize];
+   |                                                                     ^^^^^^^^^^^^^^^^ expected `usize`, found `u64`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:20:53
+   |
+20 | static mut BACKING: [f32; AFP_LEN as usize] = [0.0; AFP_LEN as usize];
+   |                                                     ^^^^^^^^^^^^^^^^ expected `usize`, found `u64`
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:35:19
+     |
+  35 |     p.iter().take(n).map(|&x| x as i32).sum()
+     |              ---- ^ expected `usize`, found `u64`
+     |              |
+     |              arguments to this method are incorrect
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/iter/traits/iterator.rs:1387:8
+     |
+1387 |     fn take(self, n: usize) -> Take<Self>
+     |        ^^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+     |
+  35 |     p.iter().take(n.try_into().unwrap()).map(|&x| x as i32).sum()
+     |                    ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:39:20
+     |
+  39 |     pp.iter().take(n).map(|&p| unsafe { *p as i32 }).sum()
+     |               ---- ^ expected `usize`, found `u64`
+     |               |
+     |               arguments to this method are incorrect
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/iter/traits/iterator.rs:1387:8
+     |
+1387 |     fn take(self, n: usize) -> Take<Self>
+     |        ^^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+     |
+  39 |     pp.iter().take(n.try_into().unwrap()).map(|&p| unsafe { *p as i32 }).sum()
+     |                     ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:61:30
+     |
+  61 |     let mut vla1 = vec![0.0; n1 as usize];
+     |                    ----------^^^^^^^^^^^-
+     |                    |         |
+     |                    |         expected `usize`, found `u64`
+     |                    arguments to this function are incorrect
+     |
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:3464:8
+     |
+3464 | pub fn from_elem<T: Clone>(elem: T, n: usize) -> Vec<T> {
+     |        ^^^^^^^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+     |
+  61 |     let mut vla1 = vec![0.0; (n1 as usize).try_into().unwrap()];
+     |                              +           +++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:62:43
+     |
+  62 |     let mut vla2 = vec![std::ptr::null(); n2 as usize];
+     |                    -----------------------^^^^^^^^^^^-
+     |                    |                      |
+     |                    |                      expected `usize`, found `u64`
+     |                    arguments to this function are incorrect
+     |
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:3464:8
+     |
+3464 | pub fn from_elem<T: Clone>(elem: T, n: usize) -> Vec<T> {
+     |        ^^^^^^^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+     |
+  62 |     let mut vla2 = vec![std::ptr::null(); (n2 as usize).try_into().unwrap()];
+     |                                           +           +++++++++++++++++++++
+
+error[E0277]: the type `[{float}]` cannot be indexed by `u64`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:65:14
+   |
+65 |         vla1[i as usize] = FA[i as usize] * 2.0;
+   |              ^^^^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[{float}]>` is not implemented for `u64`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `Vec<{float}>` to implement `Index<u64>`
+
+error[E0277]: the type `[*const _]` cannot be indexed by `u64`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:69:14
+   |
+69 |         vla2[i as usize] = AFP[i as usize];
+   |              ^^^^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[*const _]>` is not implemented for `u64`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `Vec<*const _>` to implement `Index<u64>`
+
+error[E0277]: the type `[{float}]` cannot be indexed by `u64`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:78:30
+   |
+78 |     let span: usize = (&vla1[n1 as usize - 1] as *const f32 as usize) - (&vla1[0] as *const f32 as usize);
+   |                              ^^^^^^^^^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[{float}]>` is not implemented for `u64`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `Vec<{float}>` to implement `Index<u64>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:79:36
+   |
+79 |     if span != (n1 as usize - 1) * std::mem::size_of::<f32>() {
+   |                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `u64`, found `usize`
+
+error[E0277]: cannot multiply `u64` by `usize`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:79:34
+   |
+79 |     if span != (n1 as usize - 1) * std::mem::size_of::<f32>() {
+   |                                  ^ no implementation for `u64 * usize`
+   |
+   = help: the trait `Mul<usize>` is not implemented for `u64`
+   = help: the following other types implement trait `Mul<Rhs>`:
+             `&u64` implements `Mul<u64>`
+             `&u64` implements `Mul`
+             `u64` implements `Mul<&u64>`
+             `u64` implements `Mul`
+
+error[E0599]: no method named `try_into` found for struct `Vec<f32>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:91:27
+    |
+ 91 |     if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap()) != ((vla1[0] as i32) + (vla1[10] as i32) + (unsafe { *vla2[0] as i32 ...
+    |                           ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<f32>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 91 -     if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap()) != ((vla1[0] as i32) + (vla1[10] as i32) + (unsafe { *vla2[0] as i32 }) + (unsafe { *vla2[16] as i32 })) {
+ 91 +     if takes_params(&vla1.into().unwrap(), &vla2.try_into().unwrap()) != ((vla1[0] as i32) + (vla1[10] as i32) + (unsafe { *vla2[0] as i32 }) + (unsafe { *vla2[16] as i32 })) {
+    |
+
+error[E0599]: no method named `try_into` found for struct `Vec<*const f32>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_002/target.rs:91:54
+    |
+ 91 |     if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap()) != ((vla1[0] as i32) + (vla1[10] as i32) + (unsafe { *vla2[0] as i32 ...
+    |                                                      ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<*const f32>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 91 -     if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap()) != ((vla1[0] as i32) + (vla1[10] as i32) + (unsafe { *vla2[0] as i32 }) + (unsafe { *vla2[16] as i32 })) {
+ 91 +     if takes_params(&vla1.try_into().unwrap(), &vla2.into().unwrap()) != ((vla1[0] as i32) + (vla1[10] as i32) + (unsafe { *vla2[0] as i32 }) + (unsafe { *vla2[16] as i32 })) {
+    |
+
+error: aborting due to 29 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308, E0599.
+For more information about an error, try `rustc --explain E0277`.

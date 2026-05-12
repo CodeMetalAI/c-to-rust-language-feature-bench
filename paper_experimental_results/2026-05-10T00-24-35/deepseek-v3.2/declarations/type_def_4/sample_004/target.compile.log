@@ -1,0 +1,127 @@
+error: declaration of an `unsafe` function
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:6:1
+  |
+6 | / unsafe fn handler_a(x: i32) {
+7 | |     HITS += x + 1;
+8 | | }
+  | |_^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:10:1
+   |
+10 | / unsafe fn handler_b(x: i32) {
+11 | |     HITS += x + 2;
+12 | | }
+   | |_^
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:26:1
+   |
+26 | / unsafe fn call_signal_as_plain(s: i32, h: Fv, arg: i32) -> i32 {
+27 | |     let r = signal(s, h);
+28 | |     r(arg);
+29 | |     HITS
+30 | | }
+   | |_^
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:32:1
+   |
+32 | / unsafe fn call_signal_as_fv(s: i32, h: Fv, arg: i32) -> i32 {
+33 | |     let r = signal(s, h);
+34 | |     r(arg);
+35 | |     HITS
+36 | | }
+   | |_^
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:38:1
+   |
+38 | / unsafe fn call_signal_as_pfv(s: i32, h: Pfv, arg: i32) -> i32 {
+39 | |     let r = signal_alias(s, h);
+40 | |     r(arg);
+41 | |     HITS
+42 | | }
+   | |_^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:45:5
+   |
+45 | /     unsafe {
+46 | |         HITS = 0;
+47 | |         if call_signal_as_plain(1, handler_b, 3) != (3 + 1) {
+48 | |             std::process::exit(1);
+...  |
+61 | |         std::process::exit(0);
+62 | |     }
+   | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:16:9
+   |
+14 | fn signal(s: i32, h: Fv) -> Fv {
+   |                             -- expected `fn(i32)` because of return type
+15 |     if s & 1 != 0 {
+16 |         handler_a
+   |         ^^^^^^^^^ expected safe fn, found unsafe fn
+   |
+   = note: expected fn pointer `fn(_)`
+                 found fn item `unsafe fn(_) {handler_a}`
+   = note: unsafe functions cannot be coerced into safe function pointers
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:47:36
+   |
+47 |         if call_signal_as_plain(1, handler_b, 3) != (3 + 1) {
+   |            --------------------    ^^^^^^^^^ expected safe fn, found unsafe fn
+   |            |
+   |            arguments to this function are incorrect
+   |
+   = note: expected fn pointer `fn(_)`
+                 found fn item `unsafe fn(_) {handler_b}`
+   = note: unsafe functions cannot be coerced into safe function pointers
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:26:11
+   |
+26 | unsafe fn call_signal_as_plain(s: i32, h: Fv, arg: i32) -> i32 {
+   |           ^^^^^^^^^^^^^^^^^^^^         -----
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:52:33
+   |
+52 |         if call_signal_as_fv(2, handler_b, 4) != (4 + 2) {
+   |            -----------------    ^^^^^^^^^ expected safe fn, found unsafe fn
+   |            |
+   |            arguments to this function are incorrect
+   |
+   = note: expected fn pointer `fn(_)`
+                 found fn item `unsafe fn(_) {handler_b}`
+   = note: unsafe functions cannot be coerced into safe function pointers
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:32:11
+   |
+32 | unsafe fn call_signal_as_fv(s: i32, h: Fv, arg: i32) -> i32 {
+   |           ^^^^^^^^^^^^^^^^^         -----
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:57:34
+   |
+57 |         if call_signal_as_pfv(3, handler_b, 5) != (5 + 1) {
+   |            ------------------    ^^^^^^^^^ expected safe fn, found unsafe fn
+   |            |
+   |            arguments to this function are incorrect
+   |
+   = note: expected fn pointer `fn(_)`
+                 found fn item `unsafe fn(_) {handler_b}`
+   = note: unsafe functions cannot be coerced into safe function pointers
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:38:11
+   |
+38 | unsafe fn call_signal_as_pfv(s: i32, h: Pfv, arg: i32) -> i32 {
+   |           ^^^^^^^^^^^^^^^^^^         ------
+
+error: aborting due to 10 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

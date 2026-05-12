@@ -1,0 +1,135 @@
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c4/sample_003/target.rs:13:64
+     |
+  13 |     if !std::mem::discriminant(&p1).eq(&std::mem::discriminant(&f1)) {
+     |                                         ---------------------- ^^^ expected `&fn(i32) -> i32`, found `&fn(i32) -> i32 {f1}`
+     |                                         |
+     |                                         arguments to this function are incorrect
+     |
+     = note: expected reference `&fn(_) -> _`
+                found reference `&fn(_) -> _ {f1}`
+     = note: fn items are distinct from fn pointers
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:1185:14
+     |
+1185 | pub const fn discriminant<T>(v: &T) -> Discriminant<T> {
+     |              ^^^^^^^^^^^^
+help: consider casting to a fn pointer
+     |
+  13 -     if !std::mem::discriminant(&p1).eq(&std::mem::discriminant(&f1)) {
+  13 +     if !std::mem::discriminant(&p1).eq(&std::mem::discriminant(&(f1 as fn(i32) -> i32))) {
+     |
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c4/sample_003/target.rs:16:64
+     |
+  16 |     if !std::mem::discriminant(&q1).eq(&std::mem::discriminant(&f1)) {
+     |                                         ---------------------- ^^^ expected `&fn(i32) -> i32`, found `&fn(i32) -> i32 {f1}`
+     |                                         |
+     |                                         arguments to this function are incorrect
+     |
+     = note: expected reference `&fn(_) -> _`
+                found reference `&fn(_) -> _ {f1}`
+     = note: fn items are distinct from fn pointers
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:1185:14
+     |
+1185 | pub const fn discriminant<T>(v: &T) -> Discriminant<T> {
+     |              ^^^^^^^^^^^^
+help: consider casting to a fn pointer
+     |
+  16 -     if !std::mem::discriminant(&q1).eq(&std::mem::discriminant(&f1)) {
+  16 +     if !std::mem::discriminant(&q1).eq(&std::mem::discriminant(&(f1 as fn(i32) -> i32))) {
+     |
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c4/sample_003/target.rs:32:64
+     |
+  32 |     if !std::mem::discriminant(&r1).eq(&std::mem::discriminant(&f1)) {
+     |                                         ---------------------- ^^^ expected `&fn(i32) -> i32`, found `&fn(i32) -> i32 {f1}`
+     |                                         |
+     |                                         arguments to this function are incorrect
+     |
+     = note: expected reference `&fn(_) -> _`
+                found reference `&fn(_) -> _ {f1}`
+     = note: fn items are distinct from fn pointers
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:1185:14
+     |
+1185 | pub const fn discriminant<T>(v: &T) -> Discriminant<T> {
+     |              ^^^^^^^^^^^^
+help: consider casting to a fn pointer
+     |
+  32 -     if !std::mem::discriminant(&r1).eq(&std::mem::discriminant(&f1)) {
+  32 +     if !std::mem::discriminant(&r1).eq(&std::mem::discriminant(&(f1 as fn(i32) -> i32))) {
+     |
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c4/sample_003/target.rs:42:64
+     |
+  42 |     if !std::mem::discriminant(&p2).eq(&std::mem::discriminant(&f2)) {
+     |                                         ---------------------- ^^^ expected `&fn(i32, i32) -> i32`, found `&fn(i32, i32) -> i32 {f2}`
+     |                                         |
+     |                                         arguments to this function are incorrect
+     |
+     = note: expected reference `&fn(_, _) -> _`
+                found reference `&fn(_, _) -> _ {f2}`
+     = note: fn items are distinct from fn pointers
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:1185:14
+     |
+1185 | pub const fn discriminant<T>(v: &T) -> Discriminant<T> {
+     |              ^^^^^^^^^^^^
+help: consider casting to a fn pointer
+     |
+  42 -     if !std::mem::discriminant(&p2).eq(&std::mem::discriminant(&f2)) {
+  42 +     if !std::mem::discriminant(&p2).eq(&std::mem::discriminant(&(f2 as fn(i32, i32) -> i32))) {
+     |
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c4/sample_003/target.rs:45:64
+     |
+  45 |     if !std::mem::discriminant(&q2).eq(&std::mem::discriminant(&f2)) {
+     |                                         ---------------------- ^^^ expected `&fn(i32, i32) -> i32`, found `&fn(i32, i32) -> i32 {f2}`
+     |                                         |
+     |                                         arguments to this function are incorrect
+     |
+     = note: expected reference `&fn(_, _) -> _`
+                found reference `&fn(_, _) -> _ {f2}`
+     = note: fn items are distinct from fn pointers
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:1185:14
+     |
+1185 | pub const fn discriminant<T>(v: &T) -> Discriminant<T> {
+     |              ^^^^^^^^^^^^
+help: consider casting to a fn pointer
+     |
+  45 -     if !std::mem::discriminant(&q2).eq(&std::mem::discriminant(&f2)) {
+  45 +     if !std::mem::discriminant(&q2).eq(&std::mem::discriminant(&(f2 as fn(i32, i32) -> i32))) {
+     |
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c4/sample_003/target.rs:60:64
+     |
+  60 |     if !std::mem::discriminant(&r2).eq(&std::mem::discriminant(&f2)) {
+     |                                         ---------------------- ^^^ expected `&fn(i32, i32) -> i32`, found `&fn(i32, i32) -> i32 {f2}`
+     |                                         |
+     |                                         arguments to this function are incorrect
+     |
+     = note: expected reference `&fn(_, _) -> _`
+                found reference `&fn(_, _) -> _ {f2}`
+     = note: fn items are distinct from fn pointers
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:1185:14
+     |
+1185 | pub const fn discriminant<T>(v: &T) -> Discriminant<T> {
+     |              ^^^^^^^^^^^^
+help: consider casting to a fn pointer
+     |
+  60 -     if !std::mem::discriminant(&r2).eq(&std::mem::discriminant(&f2)) {
+  60 +     if !std::mem::discriminant(&r2).eq(&std::mem::discriminant(&(f2 as fn(i32, i32) -> i32))) {
+     |
+
+error: aborting due to 6 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

@@ -1,0 +1,38 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_001/target.rs:24:5
+   |
+24 | /     unsafe {
+25 | |         *s1_ptr = 42.0;
+26 | |         *s2_ptr = 24.0;
+...  |
+29 | |         assert_eq!(*s2_ptr, 24.0);
+30 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0596]: cannot borrow `*s1` as mutable, as `s1` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_001/target.rs:21:18
+   |
+21 |     let s1_ptr = s1.as_mut_ptr() as *mut f64;
+   |                  ^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+16 |     let mut s1: Box<[f64]> = vec![0.0; 8].into_boxed_slice();
+   |         +++
+
+error[E0596]: cannot borrow `*s2` as mutable, as `s2` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_001/target.rs:22:18
+   |
+22 |     let s2_ptr = s2.as_mut_ptr() as *mut f64;
+   |                  ^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+17 |     let mut s2: Box<[f64]> = vec![0.0; 5].into_boxed_slice();
+   |         +++
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0596`.

@@ -1,0 +1,152 @@
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_5/sample_005/target.rs:1:47
+  |
+1 | fn maximum(n: usize, m: usize, a: &[[double]; m]) -> double {
+  |                      -                        ^
+  |                      |
+  |                      this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_5/sample_005/target.rs:24:20
+   |
+23 |     m: usize,
+   |     - this would need to be a `const`
+24 |     a: &[[double]; m],
+   |                    ^
+
+warning: type `double` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_5/sample_005/target.rs:18:6
+   |
+18 | type double = f64;
+   |      ^^^^^^ help: convert the identifier to upper camel case: `Double`
+   |
+   = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error[E0277]: the size for values of type `[f64]` cannot be known at compilation time
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_5/sample_005/target.rs:1:36
+  |
+1 | fn maximum(n: usize, m: usize, a: &[[double]; m]) -> double {
+  |                                    ^^^^^^^^^^^^^ doesn't have a size known at compile-time
+  |
+  = help: the trait `Sized` is not implemented for `[f64]`
+  = note: slice and array elements must have `Sized` type
+
+error[E0277]: the size for values of type `[f64]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_5/sample_005/target.rs:21:27
+   |
+21 |     pf: fn(usize, usize, &[[double]; 6]) -> double,
+   |                           ^^^^^^^^^^^^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[f64]`
+   = note: slice and array elements must have `Sized` type
+
+error[E0277]: the size for values of type `[f64]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_5/sample_005/target.rs:30:14
+   |
+30 | fn f(a: &mut [[double]; 5]) {
+   |              ^^^^^^^^^^^^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[f64]`
+   = note: slice and array elements must have `Sized` type
+
+error[E0277]: the size for values of type `[f64]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_5/sample_005/target.rs:26:18
+   |
+26 |     let p = a as &[[double]; 6];
+   |                  ^^^^^^^^^^^^^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[f64]`
+   = note: slice and array elements must have `Sized` type
+
+error[E0277]: the size for values of type `[f64]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_5/sample_005/target.rs:27:14
+   |
+27 |     pf(n, m, p)
+   |              ^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[f64]`
+   = note: slice and array elements must have `Sized` type
+
+error[E0277]: the size for values of type `[f64]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_5/sample_005/target.rs:33:9
+   |
+33 |         a[i][0] += 1.0;
+   |         ^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[f64]`
+   = note: required for `[[f64]; 5]` to implement `Index<_>`
+
+error[E0277]: the size for values of type `[f64]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_5/sample_005/target.rs:34:9
+   |
+34 |         a[i][4] += 1.0;
+   |         ^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[f64]`
+   = note: required for `[[f64]; 5]` to implement `Index<_>`
+
+error[E0277]: the size for values of type `[f64]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_5/sample_005/target.rs:60:32
+   |
+60 |         let r0 = maximum(n, m, &mat);
+   |                                ^^^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[f64]`
+   = note: slice and array elements must have `Sized` type
+
+error[E0277]: the size for values of type `[f64]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_5/sample_005/target.rs:61:28
+   |
+61 |         let r1 = call_as_6(maximum, n, m, &mat);
+   |                            ^^^^^^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[f64]`
+   = note: slice and array elements must have `Sized` type
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_5/sample_005/target.rs:64:20
+   |
+39 | fn main() {
+   |          - expected `()` because of default return type
+...
+64 |             return 1;
+   |                    ^ expected `()`, found integer
+
+error[E0277]: the size for values of type `[f64]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_5/sample_005/target.rs:83:11
+   |
+83 |         f(&mut a3);
+   |           ^^^^^^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[f64]`
+   = note: slice and array elements must have `Sized` type
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_5/sample_005/target.rs:83:11
+   |
+83 |         f(&mut a3);
+   |         - ^^^^^^^ expected `&mut [[f64]; 5]`, found `&mut [[f64; 5]; 3]`
+   |         |
+   |         arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut [[f64]; 5]`
+              found mutable reference `&mut [[f64; 5]; 3]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_5/sample_005/target.rs:30:4
+   |
+30 | fn f(a: &mut [[double]; 5]) {
+   |    ^ ---------------------
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_5/sample_005/target.rs:105:5
+    |
+ 39 | fn main() {
+    |          - expected `()` because of default return type
+...
+105 |     0
+    |     ^ expected `()`, found integer
+
+error: aborting due to 15 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308, E0435.
+For more information about an error, try `rustc --explain E0277`.

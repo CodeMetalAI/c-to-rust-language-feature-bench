@@ -1,0 +1,53 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/compound_literals_2/sample_004/target.rs:5:5
+  |
+5 | /     unsafe {
+6 | |         let arr: [i32; 2] = [x, 0];
+7 | |         p = &arr;
+8 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/compound_literals_2/sample_004/target.rs:7:13
+  |
+3 |     let mut p = &[x as *const i32];
+  |                 ------------------ expected due to this value
+...
+7 |         p = &arr;
+  |             ^^^^ expected `&[*const i32; 1]`, found `&[i32; 2]`
+  |
+  = note: expected reference `&[*const i32; 1]`
+             found reference `&[i32; 2]`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/compound_literals_2/sample_004/target.rs:10:16
+   |
+10 |     if p[0] != init {
+   |        ----    ^^^^ expected `*const i32`, found `i32`
+   |        |
+   |        expected because this is `*const i32`
+   |
+   = note: expected raw pointer `*const i32`
+                     found type `i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/compound_literals_2/sample_004/target.rs:13:16
+   |
+13 |     if p[1] != 0 {
+   |        ----    ^ expected `*const i32`, found `usize`
+   |        |
+   |        expected because this is `*const i32`
+   |
+   = note: expected raw pointer `*const i32`
+                     found type `usize`
+help: if you meant to create a null pointer, use `std::ptr::null()`
+   |
+13 -     if p[1] != 0 {
+13 +     if p[1] != std::ptr::null() {
+   |
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

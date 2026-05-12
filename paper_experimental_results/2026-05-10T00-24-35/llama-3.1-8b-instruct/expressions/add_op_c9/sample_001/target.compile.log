@@ -1,0 +1,58 @@
+error: cast cannot be followed by a method call
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_c9/sample_001/target.rs:7:16
+  |
+7 |     let d_pq = p as *const i32 as *const i32.offset(-2);
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+help: try surrounding the expression in parentheses
+  |
+7 |     let d_pq = (p as *const i32 as *const i32).offset(-2);
+  |                +                             +
+
+error: cast cannot be followed by a method call
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_c9/sample_001/target.rs:12:16
+   |
+12 |     let d_qp = q as *const i32 as *const i32.offset(2);
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: try surrounding the expression in parentheses
+   |
+12 |     let d_qp = (q as *const i32 as *const i32).offset(2);
+   |                +                             +
+
+error: cast cannot be followed by a method call
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_c9/sample_001/target.rs:18:16
+   |
+18 |     let rhs1 = q as *const i32 as *const i32.offset(1);
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: try surrounding the expression in parentheses
+   |
+18 |     let rhs1 = (q as *const i32 as *const i32).offset(1);
+   |                +                             +
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_c9/sample_001/target.rs:9:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+9 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0599]: no method named `offset` found for reference `&i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_c9/sample_001/target.rs:17:24
+   |
+17 |     let lhs = one_past.offset(1) as *const i32 as *const i32;
+   |                        ^^^^^^ method not found in `&i32`
+
+error[E0599]: no method named `offset` found for reference `&i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_c9/sample_001/target.rs:23:25
+   |
+23 |     let rhs2 = one_past.offset(-1) as *const i32 as *const i32;
+   |                         ^^^^^^ method not found in `&i32`
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.

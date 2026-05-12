@@ -1,0 +1,31 @@
+error[E0369]: cannot add `i32` to `Ref<'_, i32>`
+    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_001/target.rs:16:38
+     |
+  16 |     G_SEED.with(|seed| seed.borrow() + x + 1000)
+     |                        ------------- ^ - i32
+     |                        |
+     |                        Ref<'_, i32>
+     |
+note: the foreign item type `Ref<'_, i32>` doesn't implement `Add<i32>`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:1479:1
+     |
+1479 | pub struct Ref<'b, T: ?Sized + 'b> {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not implement `Add<i32>`
+
+error[E0369]: cannot add `i32` to `Ref<'_, i32>`
+    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_001/target.rs:20:38
+     |
+  20 |     G_SEED.with(|seed| seed.borrow() + x - 2000)
+     |                        ------------- ^ - i32
+     |                        |
+     |                        Ref<'_, i32>
+     |
+note: the foreign item type `Ref<'_, i32>` doesn't implement `Add<i32>`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:1479:1
+     |
+1479 | pub struct Ref<'b, T: ?Sized + 'b> {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not implement `Add<i32>`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0369`.

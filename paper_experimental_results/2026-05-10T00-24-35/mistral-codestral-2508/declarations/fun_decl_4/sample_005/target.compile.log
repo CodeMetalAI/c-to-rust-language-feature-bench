@@ -1,0 +1,33 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/fun_decl_4/sample_005/target.rs:14:26
+   |
+14 |             let u: u64 = unsafe { std::mem::transmute(a[i][j]) };
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/fun_decl_4/sample_005/target.rs:65:18
+   |
+65 |     let u: u64 = unsafe { std::mem::transmute(b[0][0]) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unnecessary transmute
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/fun_decl_4/sample_005/target.rs:14:35
+   |
+14 |             let u: u64 = unsafe { std::mem::transmute(a[i][j]) };
+   |                                   -------------------^^^^^^^^^
+   |                                   |
+   |                                   help: replace this with: `f64::to_bits`
+   |
+   = note: `#[warn(unnecessary_transmutes)]` on by default
+
+warning: unnecessary transmute
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/fun_decl_4/sample_005/target.rs:65:27
+   |
+65 |     let u: u64 = unsafe { std::mem::transmute(b[0][0]) };
+   |                           -------------------^^^^^^^^^
+   |                           |
+   |                           help: replace this with: `f64::to_bits`
+
+error: aborting due to 2 previous errors; 2 warnings emitted

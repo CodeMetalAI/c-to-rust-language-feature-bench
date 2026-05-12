@@ -1,0 +1,32 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/tags_1/sample_001/target.rs:29:16
+   |
+ 7 | fn main() {
+   |          - expected `()` because of default return type
+...
+29 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0369]: binary operation `==` cannot be applied to type `&Box<TNode>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/tags_1/sample_001/target.rs:36:34
+   |
+36 |     if sp.left.as_ref().unwrap() == sp.right.as_ref().unwrap() {
+   |        ------------------------- ^^ -------------------------- &Box<TNode>
+   |        |
+   |        &Box<TNode>
+   |
+note: an implementation of `PartialEq` might be missing for `TNode`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/tags_1/sample_001/target.rs:1:1
+   |
+ 1 | struct TNode {
+   | ^^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `TNode` with `#[derive(PartialEq)]`
+   |
+ 1 + #[derive(PartialEq)]
+ 2 | struct TNode {
+   |
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0308, E0369.
+For more information about an error, try `rustc --explain E0308`.

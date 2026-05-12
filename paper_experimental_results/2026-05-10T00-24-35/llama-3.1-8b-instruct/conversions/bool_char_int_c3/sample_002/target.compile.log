@@ -1,0 +1,49 @@
+error[E0369]: binary operation `>=` cannot be applied to type `T`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c3/sample_002/target.rs:3:39
+  |
+3 |         _ if T::try_from(-1).unwrap() >= 0 => 1,
+  |              ------------------------ ^^ - {integer}
+  |              |
+  |              T
+  |
+help: consider further restricting type parameter `T` with trait `PartialOrd`
+  |
+1 | fn type_id<T: std::convert::TryFrom<i8> + std::convert::TryFrom<u8> + std::cmp::PartialOrd<i32>>(x: T) -> u8 {
+  |                                                                     +++++++++++++++++++++++++++
+
+error[E0277]: `<T as TryFrom<u8>>::Error` doesn't implement `Debug`
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c3/sample_002/target.rs:4:33
+     |
+   4 |         _ if T::try_from(255u8).unwrap() <= 0 => 2,
+     |                                 ^^^^^^ the trait `Debug` is not implemented for `<T as TryFrom<u8>>::Error`
+     |
+note: required by a bound in `Result::<T, E>::unwrap`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/result.rs:1221:12
+     |
+1219 |     pub fn unwrap(self) -> T
+     |            ------ required by a bound in this associated function
+1220 |     where
+1221 |         E: fmt::Debug,
+     |            ^^^^^^^^^^ required by this bound in `Result::<T, E>::unwrap`
+help: consider further restricting the associated type
+     |
+   1 | fn type_id<T: std::convert::TryFrom<i8> + std::convert::TryFrom<u8>>(x: T) -> u8 where <T as TryFrom<u8>>::Error: Debug {
+     |                                                                                  ++++++++++++++++++++++++++++++++++++++
+
+error[E0369]: binary operation `<=` cannot be applied to type `T`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c3/sample_002/target.rs:4:42
+  |
+4 |         _ if T::try_from(255u8).unwrap() <= 0 => 2,
+  |              --------------------------- ^^ - {integer}
+  |              |
+  |              T
+  |
+help: consider further restricting type parameter `T` with trait `PartialOrd`
+  |
+1 | fn type_id<T: std::convert::TryFrom<i8> + std::convert::TryFrom<u8> + std::cmp::PartialOrd<i32>>(x: T) -> u8 {
+  |                                                                     +++++++++++++++++++++++++++
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0277, E0369.
+For more information about an error, try `rustc --explain E0277`.

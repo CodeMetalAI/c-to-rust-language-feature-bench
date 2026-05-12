@@ -1,0 +1,29 @@
+error[E0499]: cannot borrow `buf` as mutable more than once at a time
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_2/sample_001/target.rs:27:18
+   |
+26 |     let p = &mut buf[0..];
+   |                  --- first mutable borrow occurs here
+27 |     let q = &mut buf[g_off..];
+   |                  ^^^ second mutable borrow occurs here
+28 |
+29 |     f(n, &mut p[..n], &mut q[..n]);
+   |               - first borrow later used here
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0499]: cannot borrow `buf` as mutable more than once at a time
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_2/sample_001/target.rs:48:18
+   |
+47 |     let p = &mut buf[g_off..];
+   |                  --- first mutable borrow occurs here
+48 |     let q = &mut buf[0..];
+   |                  ^^^ second mutable borrow occurs here
+49 |
+50 |     f(n, &mut p[..n], &mut q[..n]);
+   |               - first borrow later used here
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0499`.

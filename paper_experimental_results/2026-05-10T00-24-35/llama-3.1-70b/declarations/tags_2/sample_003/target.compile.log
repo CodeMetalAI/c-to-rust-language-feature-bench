@@ -1,0 +1,73 @@
+error[E0428]: the name `S2` is defined multiple times
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/tags_2/sample_003/target.rs:8:1
+  |
+1 | struct S2;
+  | ---------- previous definition of the type `S2` here
+...
+8 | struct S2 {
+  | ^^^^^^^^^ `S2` redefined here
+  |
+  = note: `S2` must be defined only once in the type namespace of this module
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/tags_2/sample_003/target.rs:17:5
+   |
+17 | /     unsafe {
+18 | |         A.v1 = 10;
+19 | |         B.v2 = 20;
+...  |
+35 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0609]: no field `v2` on type `S2`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/tags_2/sample_003/target.rs:19:11
+   |
+19 |         B.v2 = 20;
+   |           ^^ unknown field
+
+error[E0609]: no field `s1p` on type `S2`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/tags_2/sample_003/target.rs:22:11
+   |
+22 |         B.s1p = Some(&A);
+   |           ^^^ unknown field
+
+error[E0609]: no field `v2` on type `&S2`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/tags_2/sample_003/target.rs:24:27
+   |
+24 |         if A.s2p.unwrap().v2!= 20 {
+   |                           ^^ unknown field
+
+error[E0609]: no field `s1p` on type `S2`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/tags_2/sample_003/target.rs:28:14
+   |
+28 |         if B.s1p.unwrap().v1!= 10 {
+   |              ^^^ unknown field
+
+error[E0609]: no field `s1p` on type `&S2`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/tags_2/sample_003/target.rs:32:27
+   |
+32 |         if A.s2p.unwrap().s1p.unwrap() as *const _!= &A as *const _ {
+   |                           ^^^ unknown field
+
+error[E0560]: struct `S2` has no field named `v2`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/tags_2/sample_003/target.rs:15:29
+   |
+15 |     static mut B: S2 = S2 { v2: 0, s1p: None };
+   |                             ^^ `S2` does not have this field
+   |
+   = note: all struct fields are already assigned
+
+error[E0560]: struct `S2` has no field named `s1p`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/tags_2/sample_003/target.rs:15:36
+   |
+15 |     static mut B: S2 = S2 { v2: 0, s1p: None };
+   |                                    ^^^ `S2` does not have this field
+   |
+   = note: all struct fields are already assigned
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0428, E0560, E0609.
+For more information about an error, try `rustc --explain E0428`.

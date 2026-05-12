@@ -1,0 +1,16 @@
+fn main() {
+    let x: u32 = 1;
+    let y = x << 3;
+    if y != 8 {
+        std::process::exit(1);
+    }
+    let zero_shift: u32 = 0 << 5;
+    if zero_shift != 0 {
+        std::process::exit(2);
+    }
+    let two_shift: u32 = 2 << 2;
+    if two_shift != 8 {
+        std::process::exit(3);
+    }
+    std::process::exit(0);
+}

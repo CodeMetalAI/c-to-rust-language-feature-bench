@@ -1,0 +1,40 @@
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/statements/stmt_switch_1/sample_003/target.rs:1:14
+  |
+1 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/statements/stmt_switch_1/sample_003/target.rs:11:5
+   |
+ 5 | /     match expr {
+ 6 | |         0 => {
+ 7 | |             i = 17;
+ 8 | |             return if i == 17 { 0 } else { 1 };
+ 9 | |         }
+10 | |     }
+   | |_____- any code following this `match` expression is unreachable, as all arms diverge
+11 |       0
+   |       ^ unreachable expression
+   |
+   = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+error[E0004]: non-exhaustive patterns: `i32::MIN..=-1_i32` and `1_i32..=i32::MAX` not covered
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/statements/stmt_switch_1/sample_003/target.rs:5:11
+  |
+5 |     match expr {
+  |           ^^^^ patterns `i32::MIN..=-1_i32` and `1_i32..=i32::MAX` not covered
+  |
+  = note: the matched value is of type `i32`
+help: ensure that all possible cases are being handled by adding a match arm with a wildcard pattern, a match arm with multiple or-patterns as shown, or multiple match arms
+  |
+9 ~         },
+10+         i32::MIN..=-1_i32 | 1_i32..=i32::MAX => todo!()
+  |
+
+error: aborting due to 2 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0004, E0277.
+For more information about an error, try `rustc --explain E0004`.

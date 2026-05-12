@@ -1,0 +1,29 @@
+error[E0412]: cannot find type `Complex` in module `std::num`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/c11-align-6/sample_005/target.rs:28:29
+   |
+28 |     check_align::<std::num::Complex<f32>>();
+   |                             ^^^^^^^ not found in `std::num`
+
+error[E0412]: cannot find type `Complex` in module `std::num`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/c11-align-6/sample_005/target.rs:29:29
+   |
+29 |     check_align::<std::num::Complex<f64>>();
+   |                             ^^^^^^^ not found in `std::num`
+
+error[E0412]: cannot find type `Complex` in module `std::num`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/c11-align-6/sample_005/target.rs:30:29
+   |
+30 |     check_align::<std::num::Complex<f64>>(); // Rust doesn't have long double complex, using f64 as a substitute
+   |                             ^^^^^^^ not found in `std::num`
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/c11-align-6/sample_005/target.rs:8:87
+  |
+8 |     if std::mem::align_of::<T>() > std::mem::align_of_val(&AlignCheck::<T> { c: 0, v: unsafe { std::mem::zeroed() } }.v) {
+  |                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0412`.

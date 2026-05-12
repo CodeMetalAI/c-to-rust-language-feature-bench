@@ -1,0 +1,29 @@
+warning: type `div_t` should have an upper camel case name
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/initialization_10/sample_003/target.rs:2:8
+  |
+2 | struct div_t {
+  |        ^^^^^ help: convert the identifier to upper camel case: `DivT`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/initialization_10/sample_003/target.rs:11:16
+   |
+ 7 | fn main() {
+   |          - expected `()` because of default return type
+...
+11 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/initialization_10/sample_003/target.rs:27:5
+   |
+ 7 | fn main() {
+   |          - expected `()` because of default return type
+...
+27 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 2 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0308`.

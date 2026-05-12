@@ -1,0 +1,54 @@
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:15:37
+   |
+15 | fn checksum_2d(m: usize, a: &[[i32; m]; m]) -> i32 {
+   |                -                    ^
+   |                |
+   |                this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:15:41
+   |
+15 | fn checksum_2d(m: usize, a: &[[i32; m]; m]) -> i32 {
+   |                -                        ^
+   |                |
+   |                this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:25:34
+   |
+25 | fn fvla(m: usize, C: &mut [[i32; m]; m]) {
+   |         -                        ^
+   |         |
+   |         this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:25:38
+   |
+25 | fn fvla(m: usize, C: &mut [[i32; m]; m]) {
+   |         -                            ^
+   |         |
+   |         this would need to be a `const`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:39:5
+   |
+39 | /     unsafe {
+40 | |         SINK ^= checksum_2d(m, &q);
+41 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:10:29
+   |
+10 |             BACKING[i][j] = (i + 1) * 100 + (j + 1);
+   |             -------------   ^^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+   |             |
+   |             expected due to the type of this binding
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0308, E0435.
+For more information about an error, try `rustc --explain E0308`.

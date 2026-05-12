@@ -1,0 +1,395 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:14:9
+   |
+14 |         unsafe { mem::zeroed() }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:50:9
+   |
+50 |         unsafe { mem::zeroed() }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:82:9
+   |
+82 |         unsafe { mem::zeroed() }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:114:9
+    |
+114 |         unsafe { mem::zeroed() }
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:145:9
+    |
+145 |         unsafe { mem::zeroed() }
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:168:9
+    |
+168 |         unsafe { mem::zeroed() }
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:203:9
+    |
+203 |         unsafe { mem::zeroed() }
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:227:9
+    |
+227 |         unsafe { mem::zeroed() }
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `inner_struct` found for struct `Outer` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:270:10
+    |
+219 | struct Outer {
+    | ------------ method `inner_struct` not found for this struct
+...
+270 |     if o.inner_struct().a() != 1 {
+    |          ^^^^^^^^^^^^ field, not a method
+    |
+help: remove the arguments
+    |
+270 -     if o.inner_struct().a() != 1 {
+270 +     if o.inner_struct.a() != 1 {
+    |
+help: there is a method `inner_struct_mut` with a similar name
+    |
+270 |     if o.inner_struct_mut().a() != 1 {
+    |                      ++++
+
+error[E0599]: no method named `inner_struct` found for struct `Outer` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:273:10
+    |
+219 | struct Outer {
+    | ------------ method `inner_struct` not found for this struct
+...
+273 |     if o.inner_struct().inner_union().nested().b() != 2 {
+    |          ^^^^^^^^^^^^ field, not a method
+    |
+help: remove the arguments
+    |
+273 -     if o.inner_struct().inner_union().nested().b() != 2 {
+273 +     if o.inner_struct.inner_union().nested().b() != 2 {
+    |
+help: there is a method `inner_struct_mut` with a similar name
+    |
+273 |     if o.inner_struct_mut().inner_union().nested().b() != 2 {
+    |                      ++++
+
+error[E0599]: no method named `inner_struct` found for struct `Outer` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:276:10
+    |
+219 | struct Outer {
+    | ------------ method `inner_struct` not found for this struct
+...
+276 |     if o.inner_struct()
+    |          ^^^^^^^^^^^^ field, not a method
+    |
+help: remove the arguments
+    |
+276 -     if o.inner_struct()
+276 +     if o.inner_struct
+    |
+help: there is a method `inner_struct_mut` with a similar name
+    |
+276 |     if o.inner_struct_mut()
+    |                      ++++
+
+error[E0599]: no method named `inner_struct` found for struct `Outer` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:285:10
+    |
+219 | struct Outer {
+    | ------------ method `inner_struct` not found for this struct
+...
+285 |     if o.inner_struct().inner_union().nested().c() != 3 {
+    |          ^^^^^^^^^^^^ field, not a method
+    |
+help: remove the arguments
+    |
+285 -     if o.inner_struct().inner_union().nested().c() != 3 {
+285 +     if o.inner_struct.inner_union().nested().c() != 3 {
+    |
+help: there is a method `inner_struct_mut` with a similar name
+    |
+285 |     if o.inner_struct_mut().inner_union().nested().c() != 3 {
+    |                      ++++
+
+error[E0599]: no method named `inner_struct` found for struct `Outer` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:288:10
+    |
+219 | struct Outer {
+    | ------------ method `inner_struct` not found for this struct
+...
+288 |     if o.inner_struct().d() != 4 {
+    |          ^^^^^^^^^^^^ field, not a method
+    |
+help: remove the arguments
+    |
+288 -     if o.inner_struct().d() != 4 {
+288 +     if o.inner_struct.d() != 4 {
+    |
+help: there is a method `inner_struct_mut` with a similar name
+    |
+288 |     if o.inner_struct_mut().d() != 4 {
+    |                      ++++
+
+error[E0599]: no method named `tail_union` found for struct `Outer` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:291:10
+    |
+219 | struct Outer {
+    | ------------ method `tail_union` not found for this struct
+...
+291 |     if o.tail_union().nested_tail().tail_x() != 7 {
+    |          ^^^^^^^^^^ field, not a method
+    |
+help: remove the arguments
+    |
+291 -     if o.tail_union().nested_tail().tail_x() != 7 {
+291 +     if o.tail_union.nested_tail().tail_x() != 7 {
+    |
+help: there is a method `tail_union_mut` with a similar name
+    |
+291 |     if o.tail_union_mut().nested_tail().tail_x() != 7 {
+    |                    ++++
+
+error[E0599]: no method named `tail_union` found for struct `Outer` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:294:10
+    |
+219 | struct Outer {
+    | ------------ method `tail_union` not found for this struct
+...
+294 |     if o.tail_union()
+    |          ^^^^^^^^^^ field, not a method
+    |
+help: remove the arguments
+    |
+294 -     if o.tail_union()
+294 +     if o.tail_union
+    |
+help: there is a method `tail_union_mut` with a similar name
+    |
+294 |     if o.tail_union_mut()
+    |                    ++++
+
+error[E0599]: no method named `inner_struct` found for struct `Outer` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:316:10
+    |
+219 | struct Outer {
+    | ------------ method `inner_struct` not found for this struct
+...
+316 |     if o.inner_struct()
+    |          ^^^^^^^^^^^^ field, not a method
+    |
+help: remove the arguments
+    |
+316 -     if o.inner_struct()
+316 +     if o.inner_struct
+    |
+help: there is a method `inner_struct_mut` with a similar name
+    |
+316 |     if o.inner_struct_mut()
+    |                      ++++
+
+error[E0599]: no method named `inner_struct` found for struct `Outer` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:336:10
+    |
+219 | struct Outer {
+    | ------------ method `inner_struct` not found for this struct
+...
+336 |     if o.inner_struct()
+    |          ^^^^^^^^^^^^ field, not a method
+    |
+help: remove the arguments
+    |
+336 -     if o.inner_struct()
+336 +     if o.inner_struct
+    |
+help: there is a method `inner_struct_mut` with a similar name
+    |
+336 |     if o.inner_struct_mut()
+    |                      ++++
+
+error[E0599]: no method named `inner_struct` found for struct `Outer` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:345:10
+    |
+219 | struct Outer {
+    | ------------ method `inner_struct` not found for this struct
+...
+345 |     if o.inner_struct()
+    |          ^^^^^^^^^^^^ field, not a method
+    |
+help: remove the arguments
+    |
+345 -     if o.inner_struct()
+345 +     if o.inner_struct
+    |
+help: there is a method `inner_struct_mut` with a similar name
+    |
+345 |     if o.inner_struct_mut()
+    |                      ++++
+
+error[E0599]: no method named `tail_union` found for struct `Outer` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:363:10
+    |
+219 | struct Outer {
+    | ------------ method `tail_union` not found for this struct
+...
+363 |     if o.tail_union()
+    |          ^^^^^^^^^^ field, not a method
+    |
+help: remove the arguments
+    |
+363 -     if o.tail_union()
+363 +     if o.tail_union
+    |
+help: there is a method `tail_union_mut` with a similar name
+    |
+363 |     if o.tail_union_mut()
+    |                    ++++
+
+error[E0599]: no method named `tail_union` found for struct `Outer` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:371:10
+    |
+219 | struct Outer {
+    | ------------ method `tail_union` not found for this struct
+...
+371 |     if o.tail_union()
+    |          ^^^^^^^^^^ field, not a method
+    |
+help: remove the arguments
+    |
+371 -     if o.tail_union()
+371 +     if o.tail_union
+    |
+help: there is a method `tail_union_mut` with a similar name
+    |
+371 |     if o.tail_union_mut()
+    |                    ++++
+
+error[E0599]: no method named `tail_union` found for struct `Outer` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:384:10
+    |
+219 | struct Outer {
+    | ------------ method `tail_union` not found for this struct
+...
+384 |     if o.tail_union()
+    |          ^^^^^^^^^^ field, not a method
+    |
+help: remove the arguments
+    |
+384 -     if o.tail_union()
+384 +     if o.tail_union
+    |
+help: there is a method `tail_union_mut` with a similar name
+    |
+384 |     if o.tail_union_mut()
+    |                    ++++
+
+error[E0599]: no method named `inner_struct` found for struct `Outer` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:399:17
+    |
+219 | struct Outer {
+    | ------------ method `inner_struct` not found for this struct
+...
+399 |     let pa = &o.inner_struct().a() as *const i32 as Uptr;
+    |                 ^^^^^^^^^^^^ field, not a method
+    |
+help: remove the arguments
+    |
+399 -     let pa = &o.inner_struct().a() as *const i32 as Uptr;
+399 +     let pa = &o.inner_struct.a() as *const i32 as Uptr;
+    |
+help: there is a method `inner_struct_mut` with a similar name
+    |
+399 |     let pa = &o.inner_struct_mut().a() as *const i32 as Uptr;
+    |                             ++++
+
+error[E0599]: no method named `inner_struct` found for struct `Outer` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:400:17
+    |
+219 | struct Outer {
+    | ------------ method `inner_struct` not found for this struct
+...
+400 |     let pb = &o.inner_struct().inner_union().nested().b() as *const i32 as Uptr;
+    |                 ^^^^^^^^^^^^ field, not a method
+    |
+help: remove the arguments
+    |
+400 -     let pb = &o.inner_struct().inner_union().nested().b() as *const i32 as Uptr;
+400 +     let pb = &o.inner_struct.inner_union().nested().b() as *const i32 as Uptr;
+    |
+help: there is a method `inner_struct_mut` with a similar name
+    |
+400 |     let pb = &o.inner_struct_mut().inner_union().nested().b() as *const i32 as Uptr;
+    |                             ++++
+
+error[E0599]: no method named `inner_struct` found for struct `Outer` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:401:20
+    |
+219 | struct Outer {
+    | ------------ method `inner_struct` not found for this struct
+...
+401 |     let pdeep = &o.inner_struct()
+    |                    ^^^^^^^^^^^^ field, not a method
+    |
+help: remove the arguments
+    |
+401 -     let pdeep = &o.inner_struct()
+401 +     let pdeep = &o.inner_struct
+    |
+help: there is a method `inner_struct_mut` with a similar name
+    |
+401 |     let pdeep = &o.inner_struct_mut()
+    |                                ++++
+
+error[E0599]: no method named `tail_union` found for struct `Outer` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:406:18
+    |
+219 | struct Outer {
+    | ------------ method `tail_union` not found for this struct
+...
+406 |     let ptx = &o.tail_union().nested_tail().tail_x() as *const i32 as Uptr;
+    |                  ^^^^^^^^^^ field, not a method
+    |
+help: remove the arguments
+    |
+406 -     let ptx = &o.tail_union().nested_tail().tail_x() as *const i32 as Uptr;
+406 +     let ptx = &o.tail_union.nested_tail().tail_x() as *const i32 as Uptr;
+    |
+help: there is a method `tail_union_mut` with a similar name
+    |
+406 |     let ptx = &o.tail_union_mut().nested_tail().tail_x() as *const i32 as Uptr;
+    |                            ++++
+
+error[E0599]: no method named `tail_union` found for struct `Outer` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c13/sample_003/target.rs:407:18
+    |
+219 | struct Outer {
+    | ------------ method `tail_union` not found for this struct
+...
+407 |     let pty = &o.tail_union()
+    |                  ^^^^^^^^^^ field, not a method
+    |
+help: remove the arguments
+    |
+407 -     let pty = &o.tail_union()
+407 +     let pty = &o.tail_union
+    |
+help: there is a method `tail_union_mut` with a similar name
+    |
+407 |     let pty = &o.tail_union_mut()
+    |                            ++++
+
+error: aborting due to 26 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

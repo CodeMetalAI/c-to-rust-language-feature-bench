@@ -1,0 +1,76 @@
+error[E0599]: no method named `offset` found for mutable reference `&mut i32` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_003/target.rs:6:15
+  |
+6 |         p = p.offset(1);
+  |               ^^^^^^ method not found in `&mut i32`
+
+error[E0599]: no method named `offset` found for mutable reference `&mut i32` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_003/target.rs:7:15
+  |
+7 |         q = q.offset(1);
+  |               ^^^^^^ method not found in `&mut i32`
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_003/target.rs:37:9
+   |
+37 |         f(n, p, q);
+   |         ^
+   |
+note: expected `&mut i32`, found `*mut i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_003/target.rs:37:14
+   |
+37 |         f(n, p, q);
+   |              ^
+   = note: expected mutable reference `&mut i32`
+                    found raw pointer `*mut i32`
+note: expected `&mut i32`, found `*mut i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_003/target.rs:37:17
+   |
+37 |         f(n, p, q);
+   |                 ^
+   = note: expected mutable reference `&mut i32`
+                    found raw pointer `*mut i32`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_003/target.rs:3:4
+   |
+ 3 | fn f(n: i32, p: &mut i32, q: &mut i32) {
+   |    ^         -----------  -----------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_003/target.rs:63:9
+   |
+63 |         f(n, p, q);
+   |         ^
+   |
+note: expected `&mut i32`, found `*mut i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_003/target.rs:63:14
+   |
+63 |         f(n, p, q);
+   |              ^
+   = note: expected mutable reference `&mut i32`
+                    found raw pointer `*mut i32`
+note: expected `&mut i32`, found `*mut i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_003/target.rs:63:17
+   |
+63 |         f(n, p, q);
+   |                 ^
+   = note: expected mutable reference `&mut i32`
+                    found raw pointer `*mut i32`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_003/target.rs:3:4
+   |
+ 3 | fn f(n: i32, p: &mut i32, q: &mut i32) {
+   |    ^         -----------  -----------
+
+warning: unused variable: `i`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_003/target.rs:13:10
+   |
+13 |     for (i, (x, y)) in a.iter().zip(b.iter()).take(n).enumerate() {
+   |          ^ help: if this is intentional, prefix it with an underscore: `_i`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 4 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.

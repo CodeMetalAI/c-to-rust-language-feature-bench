@@ -1,0 +1,75 @@
+error[E0428]: the name `S2` is defined multiple times
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/tags_2/sample_002/target.rs:9:5
+  |
+2 |     struct S2;
+  |     ---------- previous definition of the type `S2` here
+...
+9 |     struct S2 {
+  |     ^^^^^^^^^ `S2` redefined here
+  |
+  = note: `S2` must be defined only once in the type namespace of this block
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/tags_2/sample_002/target.rs:27:8
+   |
+27 |     if unsafe { (*a.s2p).v2 }!= 20 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/tags_2/sample_002/target.rs:31:8
+   |
+31 |     if unsafe { (*b.s1p).v1 }!= 10 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/tags_2/sample_002/target.rs:35:8
+   |
+35 |     if unsafe { (*a.s2p).s1p } as *mut S1!= &mut a as *mut S1 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0560]: struct `main::S2` has no field named `v2`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/tags_2/sample_002/target.rs:20:9
+   |
+20 |         v2: 20,
+   |         ^^ `main::S2` does not have this field
+   |
+   = note: all struct fields are already assigned
+
+error[E0560]: struct `main::S2` has no field named `s1p`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/tags_2/sample_002/target.rs:21:9
+   |
+21 |         s1p: std::ptr::null_mut(),
+   |         ^^^ `main::S2` does not have this field
+   |
+   = note: all struct fields are already assigned
+
+error[E0609]: no field `s1p` on type `main::S2`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/tags_2/sample_002/target.rs:25:7
+   |
+25 |     b.s1p = &mut a as *mut S1;
+   |       ^^^ unknown field
+
+error[E0609]: no field `v2` on type `main::S2`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/tags_2/sample_002/target.rs:27:26
+   |
+27 |     if unsafe { (*a.s2p).v2 }!= 20 {
+   |                          ^^ unknown field
+
+error[E0609]: no field `s1p` on type `main::S2`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/tags_2/sample_002/target.rs:31:21
+   |
+31 |     if unsafe { (*b.s1p).v1 }!= 10 {
+   |                     ^^^ unknown field
+
+error[E0609]: no field `s1p` on type `main::S2`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/tags_2/sample_002/target.rs:35:26
+   |
+35 |     if unsafe { (*a.s2p).s1p } as *mut S1!= &mut a as *mut S1 {
+   |                          ^^^ unknown field
+
+error: aborting due to 10 previous errors
+
+Some errors have detailed explanations: E0428, E0560, E0609.
+For more information about an error, try `rustc --explain E0428`.

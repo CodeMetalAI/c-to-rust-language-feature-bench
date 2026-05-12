@@ -1,0 +1,145 @@
+error[E0433]: failed to resolve: could not find `complex` in `std`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_003/target.rs:25:22
+   |
+25 | static mut cld: std::complex::Complex<f64> = std::complex::Complex { re: 0.0, im: 0.0 };
+   |                      ^^^^^^^ could not find `complex` in `std`
+
+error[E0433]: failed to resolve: could not find `complex` in `std`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_003/target.rs:25:51
+   |
+25 | static mut cld: std::complex::Complex<f64> = std::complex::Complex { re: 0.0, im: 0.0 };
+   |                                                   ^^^^^^^ could not find `complex` in `std`
+
+error[E0530]: let bindings cannot shadow statics
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_003/target.rs:47:13
+   |
+10 | static mut i: i32 = 0;
+   | ---------------------- the static `i` is defined here
+...
+47 |     let mut i = 0;
+   |             ^ cannot be named the same as a static
+
+warning: unused import: `std::cmp::Ordering`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_003/target.rs:1:5
+  |
+1 | use std::cmp::Ordering;
+  |     ^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: type `e` should have an upper camel case name
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_003/target.rs:34:6
+   |
+34 | enum e {
+   |      ^ help: convert the identifier to upper camel case: `E`
+   |
+   = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_003/target.rs:3:8
+  |
+3 | #[repr(align(16))] // Assuming max_align_t is 16, as it often is.  Adjust if needed.
+  |        ^^^^^^^^^
+4 | static mut c: char = ' ';
+  | ------------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_003/target.rs:6:8
+  |
+6 | #[repr(align(16))] // Assuming max_align_t is 16, as it often is.  Adjust if needed.
+  |        ^^^^^^^^^
+7 | static mut s: i16 = 0;
+  | ---------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_003/target.rs:9:8
+   |
+ 9 | #[repr(align(4))]
+   |        ^^^^^^^^
+10 | static mut i: i32 = 0;
+   | ---------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_003/target.rs:12:8
+   |
+12 | #[repr(align(16))] // Assuming max_align_t is 16, as it often is.  Adjust if needed.
+   |        ^^^^^^^^^
+13 | static mut l: i64 = 0;
+   | ---------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_003/target.rs:15:8
+   |
+15 | #[repr(align(16))] // Assuming max_align_t is 16, as it often is.  Adjust if needed.
+   |        ^^^^^^^^^
+16 | static mut ll: i64 = 0;
+   | ----------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_003/target.rs:18:8
+   |
+18 | #[repr(align(4))]
+   |        ^^^^^^^^
+19 | static mut f: f32 = 0.0;
+   | ------------------------ not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_003/target.rs:21:8
+   |
+21 | #[repr(align(8))]
+   |        ^^^^^^^^
+22 | static mut d: f64 = 0.0;
+   | ------------------------ not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_003/target.rs:24:8
+   |
+24 | #[repr(align(16))] // Assuming max_align_t is 16, as it often is.  Adjust if needed.
+   |        ^^^^^^^^^
+25 | static mut cld: std::complex::Complex<f64> = std::complex::Complex { re: 0.0, im: 0.0 };
+   | ---------------------------------------------------------------------------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_003/target.rs:27:8
+   |
+27 | #[repr(align(1))]
+   |        ^^^^^^^^
+28 | static mut ca: [char; 10] = [' '; 10];
+   | -------------------------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_003/target.rs:30:8
+   |
+30 | #[repr(align(16))] // Assuming max_align_t is 16, as it often is.  Adjust if needed.
+   |        ^^^^^^^^^
+31 | static mut x: i32 = 0;
+   | ---------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_003/target.rs:38:8
+   |
+38 | #[repr(align(16))] // Assuming max_align_t is 16, as it often is.  Adjust if needed.
+   |        ^^^^^^^^^
+39 | static mut y: i32 = 0;
+   | ---------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_003/target.rs:42:12
+   |
+42 |     #[repr(align(16))] // Assuming max_align_t is 16, as it often is.  Adjust if needed.
+   |            ^^^^^^^^^
+43 |     let auto_ll: i64 = 0;
+   |     --------------------- not a struct, enum, or union
+
+warning: unused variable: `auto_ll`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_003/target.rs:43:9
+   |
+43 |     let auto_ll: i64 = 0;
+   |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_auto_ll`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 15 previous errors; 3 warnings emitted
+
+Some errors have detailed explanations: E0433, E0517, E0530.
+For more information about an error, try `rustc --explain E0433`.

@@ -1,0 +1,45 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_001/target.rs:19:18
+   |
+19 |     let offset = unsafe { &(*(0 as *const S)).d as *const _ as usize };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_001/target.rs:24:14
+   |
+24 |     let s1 = unsafe { Box::from_raw(Box::into_raw(vec![0.0; 8].into_boxed_slice()) as *mut [f64]) };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_001/target.rs:25:14
+   |
+25 |     let s2 = unsafe { Box::from_raw(Box::into_raw(vec![0.0; 5].into_boxed_slice()) as *mut [f64]) };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0594]: cannot assign to `s1[_]`, as `s1` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_001/target.rs:27:5
+   |
+27 |     s1[0] = 42.0;
+   |     ^^^^^^^^^^^^ cannot assign
+   |
+help: consider changing this to be mutable
+   |
+24 |     let mut s1 = unsafe { Box::from_raw(Box::into_raw(vec![0.0; 8].into_boxed_slice()) as *mut [f64]) };
+   |         +++
+
+error[E0594]: cannot assign to `s2[_]`, as `s2` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_001/target.rs:28:5
+   |
+28 |     s2[0] = 24.0;
+   |     ^^^^^^^^^^^^ cannot assign
+   |
+help: consider changing this to be mutable
+   |
+25 |     let mut s2 = unsafe { Box::from_raw(Box::into_raw(vec![0.0; 5].into_boxed_slice()) as *mut [f64]) };
+   |         +++
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0594`.

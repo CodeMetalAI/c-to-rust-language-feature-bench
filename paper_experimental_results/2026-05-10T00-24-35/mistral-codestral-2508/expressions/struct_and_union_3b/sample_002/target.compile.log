@@ -1,0 +1,43 @@
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/struct_and_union_3b/sample_002/target.rs:11:10
+   |
+11 | #[derive(Debug)]
+   |          ^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/struct_and_union_3b/sample_002/target.rs:18:5
+   |
+18 | /     unsafe {
+19 | |         if (*u).s1.m < 0 {
+20 | |             (*u).s2.m = -(*u).s2.m;
+...  |
+23 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/struct_and_union_3b/sample_002/target.rs:35:5
+   |
+35 | /     unsafe {
+36 | |         if u.s2.m != -7 {
+37 | |             std::process::exit(2);
+38 | |         }
+39 | |     }
+   | |_____^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/struct_and_union_3b/sample_002/target.rs:13:5
+   |
+13 |     s1: T1,
+   |     ^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+13 |     s1: std::mem::ManuallyDrop<T1>,
+   |         +++++++++++++++++++++++  +
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0740`.

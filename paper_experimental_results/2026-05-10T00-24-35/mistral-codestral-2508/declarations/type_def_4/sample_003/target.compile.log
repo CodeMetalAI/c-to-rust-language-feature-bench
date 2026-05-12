@@ -1,0 +1,116 @@
+error[E0412]: cannot find type `int` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_def_4/sample_003/target.rs:1:14
+  |
+1 | type Fv = fn(int);
+  |              ^^^
+  |              |
+  |              not found in this scope
+  |              help: perhaps you intended to use this type: `i32`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_def_4/sample_003/target.rs:9:5
+   |
+ 9 | /     unsafe {
+10 | |         HITS += x + 1;
+11 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_def_4/sample_003/target.rs:15:5
+   |
+15 | /     unsafe {
+16 | |         HITS += x + 2;
+17 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_def_4/sample_003/target.rs:22:9
+   |
+22 |         unsafe { HANDLER_A }
+   |         ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_def_4/sample_003/target.rs:33:5
+   |
+33 | /     unsafe {
+34 | |         let r = signal(s, h);
+35 | |         if let Some(r) = r {
+36 | |             r(arg);
+37 | |         }
+38 | |         HITS
+39 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_def_4/sample_003/target.rs:43:5
+   |
+43 | /     unsafe {
+44 | |         let r = signal(s, h);
+45 | |         if let Some(r) = r {
+46 | |             r(arg);
+47 | |         }
+48 | |         HITS
+49 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_def_4/sample_003/target.rs:53:5
+   |
+53 | /     unsafe {
+54 | |         let r = signal_alias(s, h);
+55 | |         if let Some(r) = r {
+56 | |             r(arg);
+57 | |         }
+58 | |         HITS
+59 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_def_4/sample_003/target.rs:63:5
+   |
+63 | /     unsafe {
+64 | |         HITS = 0;
+65 | |         HANDLER_A = Some(handler_a);
+66 | |         HANDLER_B = Some(handler_b);
+67 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_def_4/sample_003/target.rs:69:32
+   |
+69 |     if call_signal_as_plain(1, unsafe { HANDLER_B }, 3) != 4 {
+   |                                ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_def_4/sample_003/target.rs:73:5
+   |
+73 | /     unsafe {
+74 | |         HITS = 0;
+75 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_def_4/sample_003/target.rs:76:29
+   |
+76 |     if call_signal_as_fv(2, unsafe { HANDLER_B }, 4) != 6 {
+   |                             ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_def_4/sample_003/target.rs:80:5
+   |
+80 | /     unsafe {
+81 | |         HITS = 0;
+82 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_def_4/sample_003/target.rs:83:30
+   |
+83 |     if call_signal_as_pfv(3, unsafe { HANDLER_B }, 5) != 6 {
+   |                              ^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 13 previous errors
+
+For more information about this error, try `rustc --explain E0412`.

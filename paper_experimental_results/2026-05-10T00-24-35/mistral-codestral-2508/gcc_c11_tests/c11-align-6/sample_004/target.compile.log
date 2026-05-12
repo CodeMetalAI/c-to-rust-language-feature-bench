@@ -1,0 +1,29 @@
+error[E0428]: the name `AlignCheck` is defined multiple times
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/c11-align-6/sample_004/target.rs:4:13
+   |
+ 4 |             struct AlignCheck<T> {
+   |             ^^^^^^^^^^^^^^^^^^^^
+   |             |
+   |             `AlignCheck` redefined here
+   |             previous definition of the type `AlignCheck` here
+...
+15 |     check_align!(bool);
+   |     ------------------ in this macro invocation
+   |
+   = note: `AlignCheck` must be defined only once in the type namespace of this block
+   = note: this error originates in the macro `check_align` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: the type `f128` is unstable
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/c11-align-6/sample_004/target.rs:28:18
+   |
+28 |     check_align!(f128);
+   |                  ^^^^
+   |
+   = note: see issue #116909 <https://github.com/rust-lang/rust/issues/116909> for more information
+   = help: add `#![feature(f128)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0428, E0658.
+For more information about an error, try `rustc --explain E0428`.

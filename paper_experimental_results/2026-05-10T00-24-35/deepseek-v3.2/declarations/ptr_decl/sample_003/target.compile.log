@@ -1,0 +1,54 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/ptr_decl/sample_003/target.rs:10:5
+   |
+10 | /     unsafe {
+11 | |         let v = *p;
+12 | |         if v & 1 != 0 {
+13 | |             v + bias
+...  |
+17 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/ptr_decl/sample_003/target.rs:63:5
+   |
+63 | /     unsafe {
+64 | |         if *b.p_to_const != 10 {
+65 | |             std::process::exit(2);
+...  |
+95 | |     }
+   | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/ptr_decl/sample_003/target.rs:68:47
+   |
+68 |         retarget_ptr_to_const(&mut b, &y, &x, pick(&y, 0) > 0);
+   |         ---------------------                 ^^^^^^^^^^^^^^^ expected `i32`, found `bool`
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/ptr_decl/sample_003/target.rs:20:4
+   |
+20 | fn retarget_ptr_to_const(b: &mut Bundle, a: *const i32, c: *const i32, sel: i32) {
+   |    ^^^^^^^^^^^^^^^^^^^^^                                               --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/ptr_decl/sample_003/target.rs:73:47
+   |
+73 |         retarget_ptr_to_const(&mut b, &x, &y, pick(&x, 1) < 0);
+   |         ---------------------                 ^^^^^^^^^^^^^^^ expected `i32`, found `bool`
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/ptr_decl/sample_003/target.rs:20:4
+   |
+20 | fn retarget_ptr_to_const(b: &mut Bundle, a: *const i32, c: *const i32, sel: i32) {
+   |    ^^^^^^^^^^^^^^^^^^^^^                                               --------
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

@@ -1,0 +1,67 @@
+error: `<` is interpreted as a start of generic arguments for `i8`, not a comparison
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c3/sample_003/target.rs:24:15
+   |
+24 |   if -1 as i8 < 0 {
+   |               ^ --- interpreted as generic arguments
+   |               |
+   |               not interpreted as comparison
+   |
+help: try comparing the cast value
+   |
+24 |   if (-1 as i8) < 0 {
+   |      +        +
+
+error[E0600]: cannot apply unary operator `-` to type `u8`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c3/sample_003/target.rs:4:12
+  |
+4 |   let uc = -1 as u8;
+  |            ^^ cannot apply unary operator `-`
+  |
+  = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u8`
+  |
+4 -   let uc = -1 as u8;
+4 +   let uc = u8::MAX;
+  |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c3/sample_003/target.rs:11:12
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+11 |     return 1;
+   |            ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c3/sample_003/target.rs:45:15
+   |
+43 | fn TYPE_ID<T: Copy + Eq>(x: T) -> u8 {
+   |            - expected this type parameter
+44 |   match x {
+45 |     _ if x == -1 && std::mem::size_of::<T>() == 1 => 1,
+   |          -    ^^ expected type parameter `T`, found integer
+   |          |
+   |          expected because this is `T`
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c3/sample_003/target.rs:46:15
+   |
+43 | fn TYPE_ID<T: Copy + Eq>(x: T) -> u8 {
+   |            - expected this type parameter
+...
+46 |     _ if x == 255 => 2,
+   |          -    ^^^ expected type parameter `T`, found integer
+   |          |
+   |          expected because this is `T`
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0600.
+For more information about an error, try `rustc --explain E0308`.

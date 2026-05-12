@@ -1,0 +1,29 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/structure_and_union_spec_3/sample_001/target.rs:23:15
+   |
+23 |     let ptr = unsafe { std::alloc::alloc(layout) as *mut S };
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/structure_and_union_spec_3/sample_001/target.rs:29:5
+   |
+29 | /     unsafe {
+30 | |         // Initialize the struct
+31 | |         ptr::write(&mut (*ptr).i, 7);
+32 | |         let a_ptr = (*ptr).a.as_mut_ptr() as *mut i32;
+...  |
+43 | |         std::alloc::dealloc(ptr as *mut u8, layout);
+44 | |     }
+   | |_____^
+
+warning: unused variable: `size`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/structure_and_union_spec_3/sample_001/target.rs:22:9
+   |
+22 |     let size = mem::size_of::<S>() + layout.size();
+   |         ^^^^ help: if this is intentional, prefix it with an underscore: `_size`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 2 previous errors; 1 warning emitted

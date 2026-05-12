@@ -1,0 +1,91 @@
+error: defining functions with C-variadic arguments is only allowed for free functions with the "C" or "C-unwind" calling convention
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_names/sample_005/target.rs:12:18
+   |
+12 | fn f_var(x: u32, _: ...) -> i32 {
+   |                  ^^^^^^
+
+error[E0106]: missing lifetime specifier
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_names/sample_005/target.rs:57:25
+   |
+57 |         let pf: fn() -> &i32 = fip;
+   |                         ^ expected named lifetime parameter
+   |
+   = help: this function's return type contains a borrowed value, but there is no value for it to be borrowed from
+help: consider using the `'static` lifetime, but this is uncommon unless you're returning a borrowed value from a `const` or a `static`
+   |
+57 |         let pf: fn() -> &'static i32 = fip;
+   |                          +++++++
+help: instead, you are more likely to want to return an owned value
+   |
+57 -         let pf: fn() -> &i32 = fip;
+57 +         let pf: fn() -> i32 = fip;
+   |
+
+error[E0658]: C-variadic functions are unstable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_names/sample_005/target.rs:12:1
+   |
+12 | / fn f_var(x: u32, _: ...) -> i32 {
+13 | |     (x + 3) as i32
+14 | | }
+   | |_^
+   |
+   = note: see issue #44930 <https://github.com/rust-lang/rust/issues/44930> for more information
+   = help: add `#![feature(c_variadic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_names/sample_005/target.rs:29:12
+   |
+29 |         if unsafe { *p } != 1 {
+   |            ^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_names/sample_005/target.rs:20:14
+   |
+20 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0277]: expected a `Fn(u32)` closure, found `fn(u32, ...) -> i32 {f_var}`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_names/sample_005/target.rs:71:57
+   |
+71 |         let af: [&(dyn Fn(u32) -> i32 + 'static); 2] = [&f_var, &f_var];
+   |                                                         ^^^^^^ expected an `Fn(u32)` closure, found `fn(u32, ...) -> i32 {f_var}`
+   |
+   = help: the trait `Fn(u32)` is not implemented for fn item `fn(u32, ...) -> i32 {f_var}`
+   = note: required for the cast from `&fn(u32, ...) -> i32 {f_var}` to `&(dyn Fn(u32) -> i32 + 'static)`
+
+error[E0057]: this function takes 1 argument but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_names/sample_005/target.rs:73:12
+   |
+73 |         if af[0](4, 0) != 7 {
+   |            ^^^^^    - unexpected argument #2 of type `{integer}`
+   |
+help: remove the extra argument
+   |
+73 -         if af[0](4, 0) != 7 {
+73 +         if af[0](4) != 7 {
+   |
+
+error[E0057]: this function takes 1 argument but 4 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_names/sample_005/target.rs:77:12
+   |
+77 |         if af[1](10, 1, 2, 3) != 13 {
+   |            ^^^^^     -  -  - unexpected argument #4 of type `{integer}`
+   |                      |  |
+   |                      |  unexpected argument #3 of type `{integer}`
+   |                      unexpected argument #2 of type `{integer}`
+   |
+help: remove the extra arguments
+   |
+77 -         if af[1](10, 1, 2, 3) != 13 {
+77 +         if af[1](10) != 13 {
+   |
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0057, E0106, E0277, E0658.
+For more information about an error, try `rustc --explain E0057`.

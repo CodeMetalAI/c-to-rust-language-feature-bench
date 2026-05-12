@@ -1,0 +1,32 @@
+error[E0106]: missing lifetime specifier
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_2/sample_003/target.rs:74:8
+   |
+74 |     p: &[i32],
+   |        ^ expected named lifetime parameter
+   |
+help: consider introducing a named lifetime parameter
+   |
+73 ~ struct HoldP<'a> {
+74 ~     p: &'a [i32],
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_2/sample_003/target.rs:22:31
+   |
+22 |     if mutate_through_pointer(x)!= (10 + 25 + 30) {
+   |        ---------------------- ^ types differ in mutability
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut [i32]`
+                      found reference `&[i32; 3]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_2/sample_003/target.rs:68:4
+   |
+68 | fn mutate_through_pointer(p: &mut [i32]) -> i32 {
+   |    ^^^^^^^^^^^^^^^^^^^^^^ -------------
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0106, E0308.
+For more information about an error, try `rustc --explain E0106`.

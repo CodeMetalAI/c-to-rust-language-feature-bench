@@ -1,0 +1,29 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2b/sample_003/target.rs:39:13
+   |
+39 |     let g = unsafe { GATE };
+   |             ^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0502]: cannot borrow `*d` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2b/sample_003/target.rs:94:20
+   |
+93 |     let (left, right) = d.split_at_mut(50);
+   |                         - mutable borrow occurs here
+94 |     call_f_checked(d, 100, 50, right, left);
+   |                    ^                  ---- mutable borrow later used here
+   |                    |
+   |                    immutable borrow occurs here
+
+error[E0502]: cannot borrow `*d` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2b/sample_003/target.rs:97:20
+   |
+96 |     let (first, rest) = d.split_at_mut(1);
+   |                         - mutable borrow occurs here
+97 |     call_f_checked(d, 100, 50, &mut rest[0..50], &first[0..50]);
+   |                    ^ immutable borrow occurs here ----- mutable borrow later used here
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0502`.

@@ -1,0 +1,84 @@
+error[E0106]: missing lifetime specifier
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_005/target.rs:37:21
+   |
+37 |     let pf: fn() -> &i32 = fip;
+   |                     ^ expected named lifetime parameter
+   |
+   = help: this function's return type contains a borrowed value, but there is no value for it to be borrowed from
+help: consider using the `'static` lifetime, but this is uncommon unless you're returning a borrowed value from a `const` or a `static`
+   |
+37 |     let pf: fn() -> &'static i32 = fip;
+   |                      +++++++
+help: instead, you are more likely to want to return an owned value
+   |
+37 -     let pf: fn() -> &i32 = fip;
+37 +     let pf: fn() -> i32 = fip;
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_005/target.rs:13:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+13 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_005/target.rs:37:28
+   |
+ 4 |     let fip = || &g_arr[1];
+   |               -- the found closure
+...
+37 |     let pf: fn() -> &i32 = fip;
+   |             ------------   ^^^ expected fn pointer, found closure
+   |             |
+   |             expected due to this
+   |
+   = note: expected fn pointer `fn() -> &i32`
+                 found closure `{closure@benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_005/target.rs:4:15: 4:17}`
+note: closures can only be coerced to `fn` types if they do not capture any variables
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_005/target.rs:4:19
+   |
+ 4 |     let fip = || &g_arr[1];
+   |                   ^^^^^ `g_arr` captured here
+
+error[E0057]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_005/target.rs:49:8
+   |
+49 |     if af[0](4)!= 7 {
+   |        ^^^^^--- argument #2 is missing
+   |
+note: closure defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_005/target.rs:8:17
+   |
+ 8 |     let f_var = |x: u32, _| x as i32 + 3;
+   |                 ^^^^^^^^^^^
+help: provide the argument
+   |
+49 |     if af[0](4, /* _ */)!= 7 {
+   |               +++++++++
+
+error[E0057]: this function takes 2 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_005/target.rs:53:8
+   |
+53 |     if af[1](10, 1, 2, 3)!= 13 {
+   |        ^^^^^        -  - unexpected argument #4 of type `{integer}`
+   |                     |
+   |                     unexpected argument #3 of type `{integer}`
+   |
+note: closure defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_005/target.rs:8:17
+   |
+ 8 |     let f_var = |x: u32, _| x as i32 + 3;
+   |                 ^^^^^^^^^^^
+help: remove the extra arguments
+   |
+53 -     if af[1](10, 1, 2, 3)!= 13 {
+53 +     if af[1](10, 1)!= 13 {
+   |
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0057, E0106, E0308.
+For more information about an error, try `rustc --explain E0057`.

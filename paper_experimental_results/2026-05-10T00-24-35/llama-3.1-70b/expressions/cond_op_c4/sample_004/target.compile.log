@@ -1,0 +1,70 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_c4/sample_004/target.rs:4:5
+  |
+4 | /     unsafe {
+5 | |         G = gval;
+6 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_c4/sample_004/target.rs:13:5
+   |
+13 | /     unsafe {
+14 | |         G = 0;
+15 | |         let x = if set_g_return(1, 1)!= 0 {
+16 | |             G == 1
+...  |
+41 | |     }
+   | |_____^
+
+error[E0308]: `if` and `else` have incompatible types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_c4/sample_004/target.rs:19:13
+   |
+15 |           let x = if set_g_return(1, 1)!= 0 {
+   |  _________________-
+16 | |             G == 1
+   | |             ------ expected because of this
+17 | |         } else {
+18 | |             set_g_return(2, 1);
+19 | |             0
+   | |             ^ expected `bool`, found integer
+20 | |         };
+   | |_________- `if` and `else` have incompatible types
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_c4/sample_004/target.rs:22:20
+   |
+10 | fn main() {
+   |          - expected `()` because of default return type
+...
+22 |             return 1;
+   |                    ^ expected `()`, found integer
+
+error[E0308]: `if` and `else` have incompatible types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_c4/sample_004/target.rs:33:13
+   |
+29 |           let x = if set_g_return(1, 0)!= 0 {
+   |  _________________-
+30 | |             set_g_return(2, 1);
+31 | |             0
+   | |             - expected because of this
+32 | |         } else {
+33 | |             G == 1
+   | |             ^^^^^^ expected integer, found `bool`
+34 | |         };
+   | |_________- `if` and `else` have incompatible types
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_c4/sample_004/target.rs:43:5
+   |
+10 | fn main() {
+   |          - expected `()` because of default return type
+...
+43 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 6 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

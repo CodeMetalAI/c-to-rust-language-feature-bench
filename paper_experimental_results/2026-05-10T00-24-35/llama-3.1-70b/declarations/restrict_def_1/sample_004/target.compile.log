@@ -1,0 +1,110 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:39:25
+   |
+39 |     let a = choose_view(unsafe { &mut bank_a }, which_a);
+   |                         ^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:40:25
+   |
+40 |     let b = choose_view(unsafe { &mut bank_b }, which_b);
+   |                         ^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:54:16
+   |
+54 |     assert_eq!(unsafe { bank_a.left[0] }, 101);
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:55:16
+   |
+55 |     assert_eq!(unsafe { bank_b.right[7] }, 209);
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:42:10
+   |
+42 |     fill(a, 100);
+   |     ---- ^ types differ in mutability
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut _`
+                      found reference `&_`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:19:4
+   |
+19 | fn fill(p: &mut [i32], base: i32) {
+   |    ^^^^ -------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:43:10
+   |
+43 |     fill(b, 200);
+   |     ---- ^ types differ in mutability
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut _`
+                      found reference `&_`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:19:4
+   |
+19 | fn fill(p: &mut [i32], base: i32) {
+   |    ^^^^ -------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:46:10
+   |
+46 |     bump(a, 1);
+   |     ---- ^ types differ in mutability
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut _`
+                      found reference `&_`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:25:4
+   |
+25 | fn bump(p: &mut [i32], k: i32) {
+   |    ^^^^ -------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:47:10
+   |
+47 |     bump(b, 2);
+   |     ---- ^ types differ in mutability
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut _`
+                      found reference `&_`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:25:4
+   |
+25 | fn bump(p: &mut [i32], k: i32) {
+   |    ^^^^ -------------
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:13:10
+   |
+13 |         &u.right
+   |          ^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_1/sample_004/target.rs:15:10
+   |
+15 |         &u.left
+   |          ^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: aborting due to 10 previous errors
+
+Some errors have detailed explanations: E0133, E0308.
+For more information about an error, try `rustc --explain E0133`.

@@ -1,0 +1,35 @@
+warning: unused import: `std::mem`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_002/target.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0599]: no method named `as_mut_slice` found for mutable reference `&mut [i32]` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_002/target.rs:47:29
+   |
+47 |             let mut p2 = p1.as_mut_slice();
+   |                             ^^^^^^^^^^^^
+   |
+help: there is a method `as_mut` with a similar name
+   |
+47 -             let mut p2 = p1.as_mut_slice();
+47 +             let mut p2 = p1.as_mut();
+   |
+
+error[E0599]: no method named `as_mut_slice` found for mutable reference `&mut [i32]` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_002/target.rs:48:29
+   |
+48 |             let mut q2 = q1.as_mut_slice();
+   |                             ^^^^^^^^^^^^
+   |
+help: there is a method `as_mut` with a similar name
+   |
+48 -             let mut q2 = q1.as_mut_slice();
+48 +             let mut q2 = q1.as_mut();
+   |
+
+error: aborting due to 2 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0599`.

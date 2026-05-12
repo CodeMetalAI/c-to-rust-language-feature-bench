@@ -1,0 +1,75 @@
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/pointers_c3/sample_004/target.rs:5:14
+  |
+5 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/pointers_c3/sample_004/target.rs:12:28
+   |
+12 |     let n2: Option<&i32> = v0;
+   |             ------------   ^^ expected `Option<&i32>`, found `Option<()>`
+   |             |
+   |             expected due to this
+   |
+   = note: expected enum `Option<&i32>`
+              found enum `Option<()>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/pointers_c3/sample_004/target.rs:16:39
+   |
+16 |     let nf2: Option<fn(i32) -> i32> = vf0;
+   |              ----------------------   ^^^ expected `Option<fn(i32) -> i32>`, found `Option<()>`
+   |              |
+   |              expected due to this
+   |
+   = note: expected enum `Option<fn(i32) -> i32>`
+              found enum `Option<()>`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/pointers_c3/sample_004/target.rs:48:34
+    |
+ 48 |     let vx: Option<&&i32> = Some(px);
+    |                             ---- ^^ expected `&&i32`, found `&i32`
+    |                             |
+    |                             arguments to this enum variant are incorrect
+    |
+    = note: expected reference `&&_`
+               found reference `&_`
+help: the type constructed contains `&i32` due to the type of the argument passed
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/pointers_c3/sample_004/target.rs:48:29
+    |
+ 48 |     let vx: Option<&&i32> = Some(px);
+    |                             ^^^^^--^
+    |                                  |
+    |                                  this argument influences the type of `Some`
+note: tuple variant defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/option.rs:601:5
+    |
+601 |     Some(#[stable(feature = "rust1", since = "1.0.0")] T),
+    |     ^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/pointers_c3/sample_004/target.rs:57:14
+   |
+57 |     if vx == v0 {
+   |              ^^ expected `Option<&&i32>`, found `Option<()>`
+   |
+   = note: expected enum `Option<&&i32>`
+              found enum `Option<()>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/pointers_c3/sample_004/target.rs:60:14
+   |
+60 |     if vf == vf0 {
+   |              ^^^ expected `Option<fn(i32) -> i32>`, found `Option<()>`
+   |
+   = note: expected enum `Option<fn(i32) -> i32>`
+              found enum `Option<()>`
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

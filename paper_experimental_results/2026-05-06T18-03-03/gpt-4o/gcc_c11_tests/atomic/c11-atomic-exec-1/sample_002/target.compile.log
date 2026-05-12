@@ -1,0 +1,127 @@
+warning: unused imports: `AtomicBool`, `AtomicI16`, `AtomicI32`, `AtomicI64`, `AtomicI8`, `AtomicIsize`, `AtomicU16`, `AtomicU32`, `AtomicU64`, `AtomicU8`, `AtomicUsize`, and `Ordering`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:1:25
+  |
+1 | ...::{AtomicBool, AtomicI8, AtomicU8, AtomicI16, AtomicU16, AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicIsize, AtomicUsize, Ordering};
+  |       ^^^^^^^^^^  ^^^^^^^^  ^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `std::mem`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:2:5
+  |
+2 | use std::mem;
+  |     ^^^^^^^^
+
+warning: value assigned to `copy` is never read
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:73:13
+   |
+73 |     let mut copy = S { a: [0; 1024] };
+   |             ^^^^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `s1` is never read
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:74:13
+   |
+74 |     let mut s1 = S { a: [0; 1024] };
+   |             ^^
+   |
+   = help: maybe it is overwritten before being read?
+
+warning: value assigned to `s2` is never read
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:75:13
+   |
+75 |     let mut s2 = S { a: [0; 1024] };
+   |             ^^
+   |
+   = help: maybe it is overwritten before being read?
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:63:9
+   |
+63 |     let mut i: i32 = 0;
+   |         ----^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error[E0382]: borrow of moved value: `init.a`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:83:8
+   |
+72 |     let mut init = S { a: [0; 1024] };
+   |         -------- move occurs because `init` has type `S`, which does not implement the `Copy` trait
+...
+81 |     s1 = init;
+   |          ---- value moved here
+82 |     copy = s1;
+83 |     if init.a != copy.a {
+   |        ^^^^^^ value borrowed here after move
+
+error[E0382]: use of moved value: `s1`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:87:10
+   |
+74 |     let mut s1 = S { a: [0; 1024] };
+   |         ------ move occurs because `s1` has type `S`, which does not implement the `Copy` trait
+...
+82 |     copy = s1;
+   |            -- value moved here
+...
+87 |     s2 = s1;
+   |          ^^ value used here after move
+   |
+note: if `S` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:68:5
+   |
+68 |     struct S {
+   |     ^^^^^^^^ consider implementing `Clone` for this type
+...
+82 |     copy = s1;
+   |            -- you could clone this value
+
+error[E0382]: use of moved value: `s1`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:93:12
+   |
+74 |     let mut s1 = S { a: [0; 1024] };
+   |         ------ move occurs because `s1` has type `S`, which does not implement the `Copy` trait
+...
+87 |     s2 = s1;
+   |          -- value moved here
+...
+93 |     copy = s1;
+   |            ^^ value used here after move
+   |
+note: if `S` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:68:5
+   |
+68 |     struct S {
+   |     ^^^^^^^^ consider implementing `Clone` for this type
+...
+87 |     s2 = s1;
+   |          -- you could clone this value
+
+error[E0382]: use of moved value: `s2`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:98:12
+   |
+75 |     let mut s2 = S { a: [0; 1024] };
+   |         ------ move occurs because `s2` has type `S`, which does not implement the `Copy` trait
+...
+88 |     copy = s2;
+   |            -- value moved here
+...
+98 |     copy = s2;
+   |            ^^ value used here after move
+   |
+note: if `S` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:68:5
+   |
+68 |     struct S {
+   |     ^^^^^^^^ consider implementing `Clone` for this type
+...
+88 |     copy = s2;
+   |            -- you could clone this value
+
+error: aborting due to 4 previous errors; 6 warnings emitted
+
+For more information about this error, try `rustc --explain E0382`.

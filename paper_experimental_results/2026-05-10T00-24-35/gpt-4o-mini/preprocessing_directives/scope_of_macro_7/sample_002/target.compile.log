@@ -1,0 +1,46 @@
+error: expected one of: `*`, `+`, or `?`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:27:45
+   |
+27 |     ($($args:tt)*) => { pp_narg_!($($args), pp_rseq_n!()) };
+   |                                             ^^^^^^^^^
+
+error: attempted to repeat an expression containing no syntax variables matched as repeating at this depth
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:11:10
+   |
+11 |           $(
+   |  __________^
+12 | |             0;
+13 | |         )*
+   | |_________^
+
+warning: unused macro definition: `pp_cat`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:1:14
+  |
+1 | macro_rules! pp_cat {
+  |              ^^^^^^
+  |
+  = note: `#[warn(unused_macros)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused macro definition: `pp_xcat`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:5:14
+  |
+5 | macro_rules! pp_xcat {
+  |              ^^^^^^^
+
+warning: unused macro definition: `pp_rseq_n`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:18:14
+   |
+18 | macro_rules! pp_rseq_n {
+   |              ^^^^^^^^^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:46:14
+   |
+46 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error: aborting due to 3 previous errors; 3 warnings emitted
+
+For more information about this error, try `rustc --explain E0277`.

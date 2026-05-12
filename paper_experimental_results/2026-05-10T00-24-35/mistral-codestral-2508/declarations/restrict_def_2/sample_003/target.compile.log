@@ -1,0 +1,29 @@
+error[E0502]: cannot borrow `buf` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_2/sample_003/target.rs:36:18
+   |
+35 |         let p = &mut buf[0..n];
+   |                      --- mutable borrow occurs here
+36 |         let q = &buf[off..off + n];
+   |                  ^^^ immutable borrow occurs here
+37 |
+38 |         f(n, p, q);
+   |              - mutable borrow later used here
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `buf` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_2/sample_003/target.rs:62:18
+   |
+61 |         let p = &mut buf[off..off + n];
+   |                      --- mutable borrow occurs here
+62 |         let q = &buf[0..n];
+   |                  ^^^ immutable borrow occurs here
+63 |
+64 |         f(n, p, q);
+   |              - mutable borrow later used here
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0502`.

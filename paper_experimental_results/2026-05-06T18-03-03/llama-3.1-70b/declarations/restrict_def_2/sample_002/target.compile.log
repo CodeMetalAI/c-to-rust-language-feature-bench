@@ -1,0 +1,37 @@
+warning: unused variable: `snapshot`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_2/sample_002/target.rs:13:9
+   |
+13 |     let snapshot = [0; 20];
+   |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_snapshot`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error[E0502]: cannot borrow `buf` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_2/sample_002/target.rs:25:18
+   |
+24 |         let p = &mut buf[0..n];
+   |                      --- mutable borrow occurs here
+25 |         let q = &buf[g_off..g_off + n];
+   |                  ^^^ immutable borrow occurs here
+26 |
+27 |         f(n, p, q);
+   |              - mutable borrow later used here
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `buf` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_2/sample_002/target.rs:50:18
+   |
+49 |         let p = &mut buf[g_off..g_off + n];
+   |                      --- mutable borrow occurs here
+50 |         let q = &buf[0..n];
+   |                  ^^^ immutable borrow occurs here
+51 |
+52 |         f(n, p, q);
+   |              - mutable borrow later used here
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 2 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0502`.

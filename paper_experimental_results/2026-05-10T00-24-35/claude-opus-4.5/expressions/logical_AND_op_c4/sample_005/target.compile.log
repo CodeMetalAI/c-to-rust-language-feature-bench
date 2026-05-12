@@ -1,0 +1,45 @@
+warning: value assigned to `g` is never read
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/expressions/logical_AND_op_c4/sample_005/target.rs:10:5
+   |
+10 |     g = 0;
+   |     ^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `g` is never read
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/expressions/logical_AND_op_c4/sample_005/target.rs:18:5
+   |
+18 |     g = 0;
+   |     ^
+   |
+   = help: maybe it is overwritten before being read?
+
+error[E0381]: used binding `g` is possibly-uninitialized
+ --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/expressions/logical_AND_op_c4/sample_005/target.rs:5:28
+  |
+2 |     let mut g: i32;
+  |         ----- binding declared here but left uninitialized
+...
+5 |     let mut set_g_return = |gval: i32, ret: i32| -> i32 {
+  |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `g` used here but it is possibly-uninitialized
+6 |         g = gval;
+  |         - borrow occurs due to use in closure
+
+error[E0506]: cannot assign to `g` because it is borrowed
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/expressions/logical_AND_op_c4/sample_005/target.rs:10:5
+   |
+ 5 |     let mut set_g_return = |gval: i32, ret: i32| -> i32 {
+   |                            ---------------------------- `g` is borrowed here
+ 6 |         g = gval;
+   |         - borrow occurs due to use in closure
+...
+10 |     g = 0;
+   |     ^^^^^ `g` is assigned to here but it was already borrowed
+11 |     if set_g_return(0, 0) != 0 && { y += 1; y != 0 } {
+   |        ------------ borrow later used here
+
+error: aborting due to 2 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0381, E0506.
+For more information about an error, try `rustc --explain E0381`.

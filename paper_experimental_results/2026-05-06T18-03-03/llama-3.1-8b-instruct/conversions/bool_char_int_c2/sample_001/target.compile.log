@@ -1,0 +1,60 @@
+error[E0425]: cannot find function `is_integral` in crate `std`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:3:19
+  |
+3 |         _ if std::is_integral::<T>() => 1,
+  |                   ^^^^^^^^^^^ not found in `std`
+
+error[E0425]: cannot find function `is_unsigned` in crate `std`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:4:19
+  |
+4 |         _ if std::is_unsigned::<T>() => 2,
+  |                   ^^^^^^^^^^^ not found in `std`
+
+error[E0425]: cannot find function `is_signed` in crate `std`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:5:19
+  |
+5 |         _ if std::is_signed::<T>() => 3,
+  |                   ^^^^^^^^^ not found in `std`
+
+error[E0425]: cannot find function `is_floating_point` in crate `std`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:6:19
+  |
+6 |         _ if std::is_floating_point::<T>() => 7,
+  |                   ^^^^^^^^^^^^^^^^^ not found in `std`
+
+error[E0412]: cannot find type `f80` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:53:26
+   |
+53 |     if type_id(1.0f80 as f80) != 9 {
+   |                          ^^^ not found in this scope
+
+error: invalid width `80` for float literal
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:53:16
+   |
+53 |     if type_id(1.0f80 as f80) != 9 {
+   |                ^^^^^^
+   |
+   = help: valid widths are 32 and 64
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:19:16
+   |
+17 | fn main() {
+   |          - expected `()` because of default return type
+18 |     if type_id((1 as i8 + 0) as i32) != 1 {
+19 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:57:5
+   |
+17 | fn main() {
+   |          - expected `()` because of default return type
+...
+57 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0308, E0412, E0425.
+For more information about an error, try `rustc --explain E0308`.

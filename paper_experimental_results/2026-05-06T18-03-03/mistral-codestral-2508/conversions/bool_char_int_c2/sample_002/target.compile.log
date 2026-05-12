@@ -1,0 +1,234 @@
+warning: unnecessary parentheses around function argument
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c2/sample_002/target.rs:37:16
+   |
+37 |     if type_id((1i8 + 0)) != 1 {
+   |                ^       ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+37 -     if type_id((1i8 + 0)) != 1 {
+37 +     if type_id(1i8 + 0) != 1 {
+   |
+
+warning: unnecessary parentheses around function argument
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c2/sample_002/target.rs:40:16
+   |
+40 |     if type_id((1u8 + 0)) != 1 {
+   |                ^       ^
+   |
+help: remove these parentheses
+   |
+40 -     if type_id((1u8 + 0)) != 1 {
+40 +     if type_id(1u8 + 0) != 1 {
+   |
+
+warning: unnecessary parentheses around function argument
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c2/sample_002/target.rs:43:16
+   |
+43 |     if type_id((1i16 + 0)) != 1 {
+   |                ^        ^
+   |
+help: remove these parentheses
+   |
+43 -     if type_id((1i16 + 0)) != 1 {
+43 +     if type_id(1i16 + 0) != 1 {
+   |
+
+warning: unnecessary parentheses around function argument
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c2/sample_002/target.rs:46:16
+   |
+46 |     if type_id((1u16 + 0)) != 1 {
+   |                ^        ^
+   |
+help: remove these parentheses
+   |
+46 -     if type_id((1u16 + 0)) != 1 {
+46 +     if type_id(1u16 + 0) != 1 {
+   |
+
+error[E0119]: conflicting implementations of trait `TypeId` for type `f64`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c2/sample_002/target.rs:11:11
+   |
+11 |           $(impl TypeId for $t {
+   |             ^^^^^^^^^^^^^^^^^^
+   |             |
+   |             first implementation here
+   |             conflicting implementation for `f64`
+...
+17 | / impl_type_id! {
+18 | |     i32 => 1,
+19 | |     u32 => 2,
+20 | |     i64 => 3,
+...  |
+27 | |     f64 => 9
+28 | | }
+   | |_- in this macro invocation
+   |
+   = note: this error originates in the macro `impl_type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `i8: TypeId` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c2/sample_002/target.rs:37:16
+   |
+37 |     if type_id((1i8 + 0)) != 1 {
+   |        ------- ^^^^^^^^^ the trait `TypeId` is not implemented for `i8`
+   |        |
+   |        required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `TypeId`:
+             f32
+             f64
+             i128
+             i32
+             i64
+             u128
+             u32
+             u64
+note: required by a bound in `type_id`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c2/sample_002/target.rs:1:15
+   |
+ 1 | fn type_id<T: TypeId>(_: T) -> u8 {
+   |               ^^^^^^ required by this bound in `type_id`
+
+error[E0277]: the trait bound `u8: TypeId` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c2/sample_002/target.rs:40:16
+   |
+40 |     if type_id((1u8 + 0)) != 1 {
+   |        ------- ^^^^^^^^^ the trait `TypeId` is not implemented for `u8`
+   |        |
+   |        required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `TypeId`:
+             f32
+             f64
+             i128
+             i32
+             i64
+             u128
+             u32
+             u64
+note: required by a bound in `type_id`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c2/sample_002/target.rs:1:15
+   |
+ 1 | fn type_id<T: TypeId>(_: T) -> u8 {
+   |               ^^^^^^ required by this bound in `type_id`
+
+error[E0277]: the trait bound `i16: TypeId` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c2/sample_002/target.rs:43:16
+   |
+43 |     if type_id((1i16 + 0)) != 1 {
+   |        ------- ^^^^^^^^^^ the trait `TypeId` is not implemented for `i16`
+   |        |
+   |        required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `TypeId`:
+             f32
+             f64
+             i128
+             i32
+             i64
+             u128
+             u32
+             u64
+note: required by a bound in `type_id`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c2/sample_002/target.rs:1:15
+   |
+ 1 | fn type_id<T: TypeId>(_: T) -> u8 {
+   |               ^^^^^^ required by this bound in `type_id`
+
+error[E0277]: the trait bound `u16: TypeId` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c2/sample_002/target.rs:46:16
+   |
+46 |     if type_id((1u16 + 0)) != 1 {
+   |        ------- ^^^^^^^^^^ the trait `TypeId` is not implemented for `u16`
+   |        |
+   |        required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `TypeId`:
+             f32
+             f64
+             i128
+             i32
+             i64
+             u128
+             u32
+             u64
+note: required by a bound in `type_id`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c2/sample_002/target.rs:1:15
+   |
+ 1 | fn type_id<T: TypeId>(_: T) -> u8 {
+   |               ^^^^^^ required by this bound in `type_id`
+
+error[E0277]: the trait bound `u8: TypeId` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c2/sample_002/target.rs:56:16
+   |
+56 |     if type_id(bf.u1 + 0) != 1 {
+   |        ------- ^^^^^^^^^ the trait `TypeId` is not implemented for `u8`
+   |        |
+   |        required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `TypeId`:
+             f32
+             f64
+             i128
+             i32
+             i64
+             u128
+             u32
+             u64
+note: required by a bound in `type_id`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c2/sample_002/target.rs:1:15
+   |
+ 1 | fn type_id<T: TypeId>(_: T) -> u8 {
+   |               ^^^^^^ required by this bound in `type_id`
+
+error[E0277]: the trait bound `i8: TypeId` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c2/sample_002/target.rs:59:16
+   |
+59 |     if type_id(bf.i1 + 0) != 1 {
+   |        ------- ^^^^^^^^^ the trait `TypeId` is not implemented for `i8`
+   |        |
+   |        required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `TypeId`:
+             f32
+             f64
+             i128
+             i32
+             i64
+             u128
+             u32
+             u64
+note: required by a bound in `type_id`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c2/sample_002/target.rs:1:15
+   |
+ 1 | fn type_id<T: TypeId>(_: T) -> u8 {
+   |               ^^^^^^ required by this bound in `type_id`
+
+error[E0277]: the trait bound `i8: TypeId` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c2/sample_002/target.rs:62:16
+   |
+62 |     if type_id(bf.b1 as i8 + 0) != 1 {
+   |        ------- ^^^^^^^^^^^^^^^ the trait `TypeId` is not implemented for `i8`
+   |        |
+   |        required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `TypeId`:
+             f32
+             f64
+             i128
+             i32
+             i64
+             u128
+             u32
+             u64
+note: required by a bound in `type_id`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/bool_char_int_c2/sample_002/target.rs:1:15
+   |
+ 1 | fn type_id<T: TypeId>(_: T) -> u8 {
+   |               ^^^^^^ required by this bound in `type_id`
+
+error: aborting due to 8 previous errors; 4 warnings emitted
+
+Some errors have detailed explanations: E0119, E0277.
+For more information about an error, try `rustc --explain E0119`.

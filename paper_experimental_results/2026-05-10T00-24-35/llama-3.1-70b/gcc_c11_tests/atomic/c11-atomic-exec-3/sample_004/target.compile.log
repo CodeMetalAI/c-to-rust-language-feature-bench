@@ -1,0 +1,468 @@
+warning: unused import: `AtomicUsize`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:1:25
+  |
+1 | use std::sync::atomic::{AtomicUsize, Ordering};
+  |                         ^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:19:49
+   |
+19 |         test_incdec!($value, true, false, true, -1);
+   |                                                 ^^ cannot apply unary operator `-`
+...
+26 |     test_incdec_arith!(0);
+   |     --------------------- in this macro invocation
+   |
+   = note: unsigned values cannot be negated
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you may have meant the maximum value of `usize`
+   |
+19 -         test_incdec!($value, true, false, true, -1);
+19 +         test_incdec!($value, true, false, true, usize::MAX);
+   |
+
+error[E0277]: the trait bound `usize: Neg` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:19:49
+   |
+19 |         test_incdec!($value, true, false, true, -1);
+   |                                                 ^^ the trait `Neg` is not implemented for `usize`
+...
+26 |     test_incdec_arith!(0);
+   |     --------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying an integer type that can be negative
+   |
+19 |         test_incdec!($value, true, false, true, -1isize);
+   |                                                   +++++
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:21:50
+   |
+21 |         test_incdec!($value, false, true, false, -1);
+   |                                                  ^^ cannot apply unary operator `-`
+...
+26 |     test_incdec_arith!(0);
+   |     --------------------- in this macro invocation
+   |
+   = note: unsigned values cannot be negated
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you may have meant the maximum value of `usize`
+   |
+21 -         test_incdec!($value, false, true, false, -1);
+21 +         test_incdec!($value, false, true, false, usize::MAX);
+   |
+
+error[E0277]: the trait bound `usize: Neg` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:21:50
+   |
+21 |         test_incdec!($value, false, true, false, -1);
+   |                                                  ^^ the trait `Neg` is not implemented for `usize`
+...
+26 |     test_incdec_arith!(0);
+   |     --------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying an integer type that can be negative
+   |
+21 |         test_incdec!($value, false, true, false, -1isize);
+   |                                                    +++++
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:19:49
+   |
+19 |         test_incdec!($value, true, false, true, -1);
+   |                                                 ^^ cannot apply unary operator `-`
+...
+27 |     test_incdec_arith!(1);
+   |     --------------------- in this macro invocation
+   |
+   = note: unsigned values cannot be negated
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you may have meant the maximum value of `usize`
+   |
+19 -         test_incdec!($value, true, false, true, -1);
+19 +         test_incdec!($value, true, false, true, usize::MAX);
+   |
+
+error[E0277]: the trait bound `usize: Neg` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:19:49
+   |
+19 |         test_incdec!($value, true, false, true, -1);
+   |                                                 ^^ the trait `Neg` is not implemented for `usize`
+...
+27 |     test_incdec_arith!(1);
+   |     --------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying an integer type that can be negative
+   |
+19 |         test_incdec!($value, true, false, true, -1isize);
+   |                                                   +++++
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:21:50
+   |
+21 |         test_incdec!($value, false, true, false, -1);
+   |                                                  ^^ cannot apply unary operator `-`
+...
+27 |     test_incdec_arith!(1);
+   |     --------------------- in this macro invocation
+   |
+   = note: unsigned values cannot be negated
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you may have meant the maximum value of `usize`
+   |
+21 -         test_incdec!($value, false, true, false, -1);
+21 +         test_incdec!($value, false, true, false, usize::MAX);
+   |
+
+error[E0277]: the trait bound `usize: Neg` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:21:50
+   |
+21 |         test_incdec!($value, false, true, false, -1);
+   |                                                  ^^ the trait `Neg` is not implemented for `usize`
+...
+27 |     test_incdec_arith!(1);
+   |     --------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying an integer type that can be negative
+   |
+21 |         test_incdec!($value, false, true, false, -1isize);
+   |                                                    +++++
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:19:49
+   |
+19 |         test_incdec!($value, true, false, true, -1);
+   |                                                 ^^ cannot apply unary operator `-`
+...
+28 |     test_incdec_arith!(2);
+   |     --------------------- in this macro invocation
+   |
+   = note: unsigned values cannot be negated
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you may have meant the maximum value of `usize`
+   |
+19 -         test_incdec!($value, true, false, true, -1);
+19 +         test_incdec!($value, true, false, true, usize::MAX);
+   |
+
+error[E0277]: the trait bound `usize: Neg` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:19:49
+   |
+19 |         test_incdec!($value, true, false, true, -1);
+   |                                                 ^^ the trait `Neg` is not implemented for `usize`
+...
+28 |     test_incdec_arith!(2);
+   |     --------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying an integer type that can be negative
+   |
+19 |         test_incdec!($value, true, false, true, -1isize);
+   |                                                   +++++
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:21:50
+   |
+21 |         test_incdec!($value, false, true, false, -1);
+   |                                                  ^^ cannot apply unary operator `-`
+...
+28 |     test_incdec_arith!(2);
+   |     --------------------- in this macro invocation
+   |
+   = note: unsigned values cannot be negated
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you may have meant the maximum value of `usize`
+   |
+21 -         test_incdec!($value, false, true, false, -1);
+21 +         test_incdec!($value, false, true, false, usize::MAX);
+   |
+
+error[E0277]: the trait bound `usize: Neg` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:21:50
+   |
+21 |         test_incdec!($value, false, true, false, -1);
+   |                                                  ^^ the trait `Neg` is not implemented for `usize`
+...
+28 |     test_incdec_arith!(2);
+   |     --------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying an integer type that can be negative
+   |
+21 |         test_incdec!($value, false, true, false, -1isize);
+   |                                                    +++++
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:29:24
+   |
+29 |     test_incdec_arith!(-1);
+   |                        ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `usize`
+   |
+29 -     test_incdec_arith!(-1);
+29 +     test_incdec_arith!(usize::MAX);
+   |
+
+error[E0277]: the trait bound `usize: Neg` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:29:24
+   |
+29 |     test_incdec_arith!(-1);
+   |                        ^^ the trait `Neg` is not implemented for `usize`
+   |
+help: consider specifying an integer type that can be negative
+   |
+29 |     test_incdec_arith!(-1isize);
+   |                          +++++
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:19:49
+   |
+19 |         test_incdec!($value, true, false, true, -1);
+   |                                                 ^^ cannot apply unary operator `-`
+...
+29 |     test_incdec_arith!(-1);
+   |     ---------------------- in this macro invocation
+   |
+   = note: unsigned values cannot be negated
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you may have meant the maximum value of `usize`
+   |
+19 -         test_incdec!($value, true, false, true, -1);
+19 +         test_incdec!($value, true, false, true, usize::MAX);
+   |
+
+error[E0277]: the trait bound `usize: Neg` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:19:49
+   |
+19 |         test_incdec!($value, true, false, true, -1);
+   |                                                 ^^ the trait `Neg` is not implemented for `usize`
+...
+29 |     test_incdec_arith!(-1);
+   |     ---------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying an integer type that can be negative
+   |
+19 |         test_incdec!($value, true, false, true, -1isize);
+   |                                                   +++++
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:21:50
+   |
+21 |         test_incdec!($value, false, true, false, -1);
+   |                                                  ^^ cannot apply unary operator `-`
+...
+29 |     test_incdec_arith!(-1);
+   |     ---------------------- in this macro invocation
+   |
+   = note: unsigned values cannot be negated
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you may have meant the maximum value of `usize`
+   |
+21 -         test_incdec!($value, false, true, false, -1);
+21 +         test_incdec!($value, false, true, false, usize::MAX);
+   |
+
+error[E0277]: the trait bound `usize: Neg` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:21:50
+   |
+21 |         test_incdec!($value, false, true, false, -1);
+   |                                                  ^^ the trait `Neg` is not implemented for `usize`
+...
+29 |     test_incdec_arith!(-1);
+   |     ---------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying an integer type that can be negative
+   |
+21 |         test_incdec!($value, false, true, false, -1isize);
+   |                                                    +++++
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:19:49
+   |
+19 |         test_incdec!($value, true, false, true, -1);
+   |                                                 ^^ cannot apply unary operator `-`
+...
+30 |     test_incdec_arith!(1 << 60);
+   |     --------------------------- in this macro invocation
+   |
+   = note: unsigned values cannot be negated
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you may have meant the maximum value of `usize`
+   |
+19 -         test_incdec!($value, true, false, true, -1);
+19 +         test_incdec!($value, true, false, true, usize::MAX);
+   |
+
+error[E0277]: the trait bound `usize: Neg` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:19:49
+   |
+19 |         test_incdec!($value, true, false, true, -1);
+   |                                                 ^^ the trait `Neg` is not implemented for `usize`
+...
+30 |     test_incdec_arith!(1 << 60);
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying an integer type that can be negative
+   |
+19 |         test_incdec!($value, true, false, true, -1isize);
+   |                                                   +++++
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:21:50
+   |
+21 |         test_incdec!($value, false, true, false, -1);
+   |                                                  ^^ cannot apply unary operator `-`
+...
+30 |     test_incdec_arith!(1 << 60);
+   |     --------------------------- in this macro invocation
+   |
+   = note: unsigned values cannot be negated
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you may have meant the maximum value of `usize`
+   |
+21 -         test_incdec!($value, false, true, false, -1);
+21 +         test_incdec!($value, false, true, false, usize::MAX);
+   |
+
+error[E0277]: the trait bound `usize: Neg` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:21:50
+   |
+21 |         test_incdec!($value, false, true, false, -1);
+   |                                                  ^^ the trait `Neg` is not implemented for `usize`
+...
+30 |     test_incdec_arith!(1 << 60);
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying an integer type that can be negative
+   |
+21 |         test_incdec!($value, false, true, false, -1isize);
+   |                                                    +++++
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:19:49
+   |
+19 |         test_incdec!($value, true, false, true, -1);
+   |                                                 ^^ cannot apply unary operator `-`
+...
+31 |     test_incdec_arith!(1.5 as usize);
+   |     -------------------------------- in this macro invocation
+   |
+   = note: unsigned values cannot be negated
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you may have meant the maximum value of `usize`
+   |
+19 -         test_incdec!($value, true, false, true, -1);
+19 +         test_incdec!($value, true, false, true, usize::MAX);
+   |
+
+error[E0277]: the trait bound `usize: Neg` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:19:49
+   |
+19 |         test_incdec!($value, true, false, true, -1);
+   |                                                 ^^ the trait `Neg` is not implemented for `usize`
+...
+31 |     test_incdec_arith!(1.5 as usize);
+   |     -------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying an integer type that can be negative
+   |
+19 |         test_incdec!($value, true, false, true, -1isize);
+   |                                                   +++++
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:21:50
+   |
+21 |         test_incdec!($value, false, true, false, -1);
+   |                                                  ^^ cannot apply unary operator `-`
+...
+31 |     test_incdec_arith!(1.5 as usize);
+   |     -------------------------------- in this macro invocation
+   |
+   = note: unsigned values cannot be negated
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you may have meant the maximum value of `usize`
+   |
+21 -         test_incdec!($value, false, true, false, -1);
+21 +         test_incdec!($value, false, true, false, usize::MAX);
+   |
+
+error[E0277]: the trait bound `usize: Neg` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:21:50
+   |
+21 |         test_incdec!($value, false, true, false, -1);
+   |                                                  ^^ the trait `Neg` is not implemented for `usize`
+...
+31 |     test_incdec_arith!(1.5 as usize);
+   |     -------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_incdec_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying an integer type that can be negative
+   |
+21 |         test_incdec!($value, false, true, false, -1isize);
+   |                                                    +++++
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:35:45
+   |
+35 |     test_incdec!(ia_ptr, true, false, true, -1);
+   |                                             ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `usize`
+   |
+35 -     test_incdec!(ia_ptr, true, false, true, -1);
+35 +     test_incdec!(ia_ptr, true, false, true, usize::MAX);
+   |
+
+error[E0277]: the trait bound `usize: Neg` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:35:45
+   |
+35 |     test_incdec!(ia_ptr, true, false, true, -1);
+   |                                             ^^ the trait `Neg` is not implemented for `usize`
+   |
+help: consider specifying an integer type that can be negative
+   |
+35 |     test_incdec!(ia_ptr, true, false, true, -1isize);
+   |                                               +++++
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:37:46
+   |
+37 |     test_incdec!(ia_ptr, false, true, false, -1);
+   |                                              ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `usize`
+   |
+37 -     test_incdec!(ia_ptr, false, true, false, -1);
+37 +     test_incdec!(ia_ptr, false, true, false, usize::MAX);
+   |
+
+error[E0277]: the trait bound `usize: Neg` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:37:46
+   |
+37 |     test_incdec!(ia_ptr, false, true, false, -1);
+   |                                              ^^ the trait `Neg` is not implemented for `usize`
+   |
+help: consider specifying an integer type that can be negative
+   |
+37 |     test_incdec!(ia_ptr, false, true, false, -1isize);
+   |                                                +++++
+
+error: aborting due to 30 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0600.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,46 @@
+fn main() {
+    let x = 0;
+    let px1 = &x as *const i32;
+    let px2 = &x as *const i32;
+    if px1!= px2 {
+        return;
+    }
+
+    let arr = [1, 2, 3];
+    let p_end1 = &arr[2] as *const i32;
+    let p_end2 = arr.as_ptr().offset(3);
+    if p_end1!= p_end2 {
+        return;
+    }
+
+    let p0 = &arr[0] as *const i32;
+    let p2 = &arr[2] as *const i32;
+    if!p2.offset_from(p0) > 0 {
+        return;
+    }
+    if!p0.offset_from(p2) < 0 {
+        return;
+    }
+
+    let q_last = &arr[2] as *const i32;
+    let q1 = q_last.offset(1);
+    if!q1.offset_from(p0) > 0 {
+        return;
+    }
+
+    let s = (0, 0);
+    let sa = &s.0 as *const i32 as *const u8;
+    let sb = &s.1 as *const i32 as *const u8;
+    if!sb.offset_from(sa) > 0 {
+        return;
+    }
+
+    let u = (0, 0.0); // initialize with dummy values
+    let ui = &u.0 as *const i32 as *const u8;
+    let ud = &u.1 as *const f64 as *const u8;
+    if ui!= ud {
+        return;
+    }
+
+    std::process::exit(0);
+}

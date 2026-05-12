@@ -1,0 +1,46 @@
+error[E0599]: no method named `clone` found for struct `S1` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_2/sample_001/target.rs:49:19
+   |
+ 6 | struct S1 {
+   | --------- method `clone` not found for this struct
+...
+49 |     if takes_t1(a.clone()) != 11 {
+   |                   ^^^^^ method not found in `S1`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `clone`, perhaps you need to implement it:
+           candidate #1: `Clone`
+
+error[E0599]: no method named `clone` found for struct `Ref<'_, S1>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_2/sample_001/target.rs:59:28
+   |
+59 |     if takes_t1(b.borrow().clone()) != 21 {
+   |                 -----------^^^^^--
+   |                 |          |
+   |                 |          this is an associated function, not a method
+   |                 help: use associated function syntax instead: `Ref::<'_, S1>::clone(&b.borrow())`
+   |
+   = note: found the following associated functions; to be used as methods, functions must have a `self` parameter
+   = note: the candidate is defined in an impl for the type `Ref<'b, T>`
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `clone`, perhaps you need to implement it:
+           candidate #1: `Clone`
+
+error[E0599]: no method named `clone` found for struct `Ref<'_, S1>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_2/sample_001/target.rs:64:28
+   |
+64 |     if takes_s1(b.borrow().clone()) != 22 {
+   |                 -----------^^^^^--
+   |                 |          |
+   |                 |          this is an associated function, not a method
+   |                 help: use associated function syntax instead: `Ref::<'_, S1>::clone(&b.borrow())`
+   |
+   = note: found the following associated functions; to be used as methods, functions must have a `self` parameter
+   = note: the candidate is defined in an impl for the type `Ref<'b, T>`
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `clone`, perhaps you need to implement it:
+           candidate #1: `Clone`
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

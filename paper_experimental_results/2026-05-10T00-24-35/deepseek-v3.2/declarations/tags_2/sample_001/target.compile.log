@@ -1,0 +1,44 @@
+error[E0382]: assign to part of moved value: `b`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/tags_2/sample_001/target.rs:22:5
+   |
+16 |     let mut b = S2 {
+   |         ----- move occurs because `b` has type `S2`, which does not implement the `Copy` trait
+...
+21 |     a.s2p = Some(Box::new(b));
+   |                           - value moved here
+22 |     b.s1p = Some(Box::new(a));
+   |     ^^^^^ value partially assigned here after move
+   |
+note: if `S2` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/tags_2/sample_001/target.rs:6:1
+   |
+ 6 | struct S2 {
+   | ^^^^^^^^^ consider implementing `Clone` for this type
+...
+21 |     a.s2p = Some(Box::new(b));
+   |                           - you could clone this value
+
+error[E0382]: use of moved value: `a`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/tags_2/sample_001/target.rs:35:20
+   |
+12 |     let mut a = S1 {
+   |         ----- move occurs because `a` has type `S1`, which does not implement the `Copy` trait
+...
+22 |     b.s1p = Some(Box::new(a));
+   |                           - value moved here
+...
+35 |     if a_ref.v1 != a.v1 || a_ref.s2p.is_none() {
+   |                    ^^^^ value used here after move
+   |
+note: if `S1` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/tags_2/sample_001/target.rs:1:1
+   |
+ 1 | struct S1 {
+   | ^^^^^^^^^ consider implementing `Clone` for this type
+...
+22 |     b.s1p = Some(Box::new(a));
+   |                           - you could clone this value
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0382`.

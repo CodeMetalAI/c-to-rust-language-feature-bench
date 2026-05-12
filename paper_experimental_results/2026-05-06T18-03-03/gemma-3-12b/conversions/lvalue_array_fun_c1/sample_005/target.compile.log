@@ -1,0 +1,84 @@
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_005/target.rs:5:29
+  |
+5 |     if !std::mem::size_of::<i>() > 0 {
+  |                             ^ non-constant value
+  |
+help: consider using `const` instead of `let`
+  |
+2 -     let mut i = 1;
+2 +     const i: /* Type */ = 1;
+  |
+
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_005/target.rs:8:29
+  |
+8 |     if !std::mem::size_of::<i>() > 0 {
+  |                             ^ non-constant value
+  |
+help: consider using `const` instead of `let`
+  |
+2 -     let mut i = 1;
+2 +     const i: /* Type */ = 1;
+  |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_005/target.rs:31:18
+   |
+31 |         let bp = unsafe { &mut (t as *mut i32) as *mut u8 };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_005/target.rs:6:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+6 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0608]: cannot index into a value of type `*mut u8`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_005/target.rs:32:11
+   |
+32 |         bp[0] = bp[0];
+   |           ^^^
+   |
+help: consider using `wrapping_add` or `add` for indexing into raw pointer
+   |
+32 -         bp[0] = bp[0];
+32 +         bp.wrapping_add(0) = bp[0];
+   |
+
+error[E0608]: cannot index into a value of type `*mut u8`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_005/target.rs:32:19
+   |
+32 |         bp[0] = bp[0];
+   |                   ^^^
+   |
+help: consider using `wrapping_add` or `add` for indexing into raw pointer
+   |
+32 -         bp[0] = bp[0];
+32 +         bp[0] = bp.wrapping_add(0);
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_005/target.rs:39:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+39 |     0
+   |     ^ expected `()`, found integer
+
+error[E0606]: casting `&mut *mut i32` as `*mut u8` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_005/target.rs:31:27
+   |
+31 |         let bp = unsafe { &mut (t as *mut i32) as *mut u8 };
+   |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0308, E0435, E0606, E0608.
+For more information about an error, try `rustc --explain E0308`.

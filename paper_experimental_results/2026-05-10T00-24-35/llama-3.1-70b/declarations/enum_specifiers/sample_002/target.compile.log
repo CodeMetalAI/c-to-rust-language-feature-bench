@@ -1,0 +1,41 @@
+error[E0369]: binary operation `!=` cannot be applied to type `Hue`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/enum_specifiers/sample_002/target.rs:36:11
+   |
+36 |     if *cp!= Hue::Claret {
+   |        ---^^ ----------- Hue
+   |        |
+   |        Hue
+   |
+note: an implementation of `PartialEq` might be missing for `Hue`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/enum_specifiers/sample_002/target.rs:3:1
+   |
+ 3 | enum Hue {
+   | ^^^^^^^^ must implement `PartialEq`
+help: consider annotating `Hue` with `#[derive(PartialEq)]`
+   |
+ 3 + #[derive(PartialEq)]
+ 4 | enum Hue {
+   |
+
+error[E0369]: binary operation `==` cannot be applied to type `Hue`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/enum_specifiers/sample_002/target.rs:39:12
+   |
+39 |     if *cp == Hue::Burgundy {
+   |        --- ^^ ------------- Hue
+   |        |
+   |        Hue
+   |
+note: an implementation of `PartialEq` might be missing for `Hue`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/enum_specifiers/sample_002/target.rs:3:1
+   |
+ 3 | enum Hue {
+   | ^^^^^^^^ must implement `PartialEq`
+help: consider annotating `Hue` with `#[derive(PartialEq)]`
+   |
+ 3 + #[derive(PartialEq)]
+ 4 | enum Hue {
+   |
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0369`.

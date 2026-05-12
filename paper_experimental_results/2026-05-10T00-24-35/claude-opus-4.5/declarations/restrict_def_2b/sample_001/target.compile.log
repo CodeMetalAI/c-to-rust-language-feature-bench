@@ -1,0 +1,31 @@
+error[E0502]: cannot borrow `*d` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_2b/sample_001/target.rs:67:9
+   |
+67 |         safe_move(n, d, p_start, d, q_start);
+   |         ---------^^^^^^^^^^^^^^^^-^^^^^^^^^^
+   |         |                        |
+   |         |                        immutable borrow occurs here
+   |         mutable borrow occurs here
+   |         immutable borrow later used by call
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+   --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_2b/sample_001/target.rs:105:37
+    |
+105 |     safe_move(50, &mut expect, 50, &expect.clone(), 0);
+    |     ---------     -----------       ^^^^^^ immutable borrow occurs here
+    |     |             |
+    |     |             mutable borrow occurs here
+    |     mutable borrow later used by call
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+   --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/restrict_def_2b/sample_001/target.rs:106:36
+    |
+106 |     safe_move(50, &mut expect, 1, &expect.clone(), 0);
+    |     ---------     -----------      ^^^^^^ immutable borrow occurs here
+    |     |             |
+    |     |             mutable borrow occurs here
+    |     mutable borrow later used by call
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0502`.

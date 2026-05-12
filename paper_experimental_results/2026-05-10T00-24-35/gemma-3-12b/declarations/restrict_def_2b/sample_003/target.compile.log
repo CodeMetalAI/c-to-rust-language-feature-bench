@@ -1,0 +1,83 @@
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:70:25
+   |
+70 |         call_f_checked(&d, 100, 50, &mut d[50..], &d[..]);
+   |                         ^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:70:42
+   |
+70 |         call_f_checked(&d, 100, 50, &mut d[50..], &d[..]);
+   |                                          ^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:70:52
+   |
+70 |         call_f_checked(&d, 100, 50, &mut d[50..], &d[..]);
+   |                                                    ^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:71:25
+   |
+71 |         call_f_checked(&d, 100, 50, &mut d[1..], &d[..]);
+   |                         ^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:71:42
+   |
+71 |         call_f_checked(&d, 100, 50, &mut d[1..], &d[..]);
+   |                                          ^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:71:51
+   |
+71 |         call_f_checked(&d, 100, 50, &mut d[1..], &d[..]);
+   |                                                   ^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:57:13
+   |
+57 | /             unsafe {
+58 | |                 let mut p_ptr = p.as_mut_ptr();
+59 | |                 let mut q_ptr = q.as_ptr();
+60 | |                 for _ in 0..n {
+...  |
+65 | |             }
+   | |_____________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:85:9
+   |
+85 |     if !same(&d, &expect, 100) {
+   |         ^^^^ --  ------- expected `&[i32]`, found `&[usize; 100]`
+   |              |
+   |              expected `&[i32]`, found `&[usize; 100]`
+   |
+   = note: expected reference `&[i32]`
+              found reference `&[usize; 100]`
+   = note: expected reference `&[i32]`
+              found reference `&[usize; 100]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:76:8
+   |
+76 |     fn same(x: &[i32], y: &[i32], n: usize) -> bool {
+   |        ^^^^ ---------  ---------
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0308, E0434.
+For more information about an error, try `rustc --explain E0308`.

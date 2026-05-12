@@ -1,0 +1,496 @@
+warning: unused imports: `AtomicBool`, `AtomicI16`, `AtomicI32`, `AtomicI64`, `AtomicI8`, `AtomicIsize`, `AtomicU16`, `AtomicU32`, `AtomicU64`, `AtomicU8`, and `AtomicUsize`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:2:25
+  |
+2 | ...:atomic::{AtomicBool, AtomicI8, AtomicU8, AtomicI16, AtomicU16, AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicIsize, AtomicUsize, Ordering};
+  |              ^^^^^^^^^^  ^^^^^^^^  ^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:55:26
+   |
+55 |     test_incdec(ptr, |x| unsafe { x.add(1) }, |x| unsafe { x.add(1) }, true, 1);
+   |                          ^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:55:51
+   |
+55 |     test_incdec(ptr, |x| unsafe { x.add(1) }, |x| unsafe { x.add(1) }, true, 1);
+   |                                                   ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:56:26
+   |
+56 |     test_incdec(ptr, |x| unsafe { x.sub(1) }, |x| unsafe { x.sub(1) }, true, -1);
+   |                          ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:56:51
+   |
+56 |     test_incdec(ptr, |x| unsafe { x.sub(1) }, |x| unsafe { x.sub(1) }, true, -1);
+   |                                                   ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:57:34
+   |
+57 |     test_incdec(ptr, |_| {}, |x| unsafe { x.add(1) }, false, 1);
+   |                                  ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:58:34
+   |
+58 |     test_incdec(ptr, |_| {}, |x| unsafe { x.sub(1) }, false, -1);
+   |                                  ^^^^^^^^^^^^^^^^^^^
+
+error[E0658]: use of unstable library feature `generic_atomic`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:8:13
+  |
+8 |     let a = std::sync::atomic::Atomic::new(value);
+  |             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+  = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:8:40
+    |
+  8 |     let a = std::sync::atomic::Atomic::new(value);
+    |                                        ^^^ function or associated item not found in `_`
+    |
+help: there is a method `neg` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:708:5
+    |
+708 |     fn neg(self) -> Self::Output;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `fetch_add` found for reference `&T` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:32:30
+   |
+32 |     test_incdec(value, |x| x.fetch_add(1, Ordering::SeqCst) + 1.into(), |_| {}, true, 1.into());
+   |                              ^^^^^^^^^ method not found in `&T`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:32:77
+   |
+28 | fn test_all_incdec_arith<T>(value: T)
+   |                          - expected this type parameter
+...
+32 |     test_incdec(value, |x| x.fetch_add(1, Ordering::SeqCst) + 1.into(), |_| {}, true, 1.into());
+   |                                                                             ^^ expected type parameter `T`, found `()`
+   |
+   = note: expected type parameter `T`
+                   found unit type `()`
+
+error[E0599]: no method named `fetch_sub` found for reference `&T` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:33:30
+   |
+33 |     test_incdec(value, |x| x.fetch_sub(1, Ordering::SeqCst) - 1.into(), |_| {}, true, (-1).into());
+   |                              ^^^^^^^^^ method not found in `&T`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:33:77
+   |
+28 | fn test_all_incdec_arith<T>(value: T)
+   |                          - expected this type parameter
+...
+33 |     test_incdec(value, |x| x.fetch_sub(1, Ordering::SeqCst) - 1.into(), |_| {}, true, (-1).into());
+   |                                                                             ^^ expected type parameter `T`, found `()`
+   |
+   = note: expected type parameter `T`
+                   found unit type `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:34:28
+   |
+28 | fn test_all_incdec_arith<T>(value: T)
+   |                          - expected this type parameter
+...
+34 |     test_incdec(value, |_| {}, |x| x.fetch_add(1, Ordering::SeqCst) + 1.into(), false, 1.into());
+   |                            ^^ expected type parameter `T`, found `()`
+   |
+   = note: expected type parameter `T`
+                   found unit type `()`
+
+error[E0599]: no method named `fetch_add` found for reference `&T` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:34:38
+   |
+34 |     test_incdec(value, |_| {}, |x| x.fetch_add(1, Ordering::SeqCst) + 1.into(), false, 1.into());
+   |                                      ^^^^^^^^^ method not found in `&T`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:35:28
+   |
+28 | fn test_all_incdec_arith<T>(value: T)
+   |                          - expected this type parameter
+...
+35 |     test_incdec(value, |_| {}, |x| x.fetch_sub(1, Ordering::SeqCst) - 1.into(), false, (-1).into());
+   |                            ^^ expected type parameter `T`, found `()`
+   |
+   = note: expected type parameter `T`
+                   found unit type `()`
+
+error[E0599]: no method named `fetch_sub` found for reference `&T` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:35:38
+   |
+35 |     test_incdec(value, |_| {}, |x| x.fetch_sub(1, Ordering::SeqCst) - 1.into(), false, (-1).into());
+   |                                      ^^^^^^^^^ method not found in `&T`
+
+error[E0277]: the trait bound `u64: From<i32>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:50:23
+   |
+50 |     test_incdec_arith(1u64 << 60);
+   |     ----------------- ^^^^^^^^^^ the trait `From<i32>` is not implemented for `u64`
+   |     |
+   |     required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `From<T>`:
+             `u64` implements `From<Char>`
+             `u64` implements `From<bool>`
+             `u64` implements `From<char>`
+             `u64` implements `From<u16>`
+             `u64` implements `From<u32>`
+             `u64` implements `From<u8>`
+note: required by a bound in `test_incdec_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:40:73
+   |
+38 | fn test_incdec_arith<T>(value: T)
+   |    ----------------- required by a bound in this function
+39 | where
+40 |     T: Copy + PartialEq + std::fmt::Debug + std::ops::Add<Output = T> + From<i32>,
+   |                                                                         ^^^^^^^^^ required by this bound in `test_incdec_arith`
+
+error[E0277]: cannot add `*mut {integer}` to `*mut {integer}`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:55:5
+   |
+55 |     test_incdec(ptr, |x| unsafe { x.add(1) }, |x| unsafe { x.add(1) }, true, 1);
+   |     ^^^^^^^^^^^ no implementation for `*mut {integer} + *mut {integer}`
+   |
+   = help: the trait `Add` is not implemented for `*mut {integer}`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&f128` implements `Add<f128>`
+             `&f128` implements `Add`
+             `&f16` implements `Add<f16>`
+             `&f16` implements `Add`
+             `&f32` implements `Add<f32>`
+             `&f32` implements `Add`
+             `&f64` implements `Add<f64>`
+             `&f64` implements `Add`
+           and 56 others
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:45
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: fn(&T) -> T, post_op: fn(&T) -> T, pre_p: bool, change: T)
+   |    ----------- required by a bound in this function
+ 5 | where
+ 6 |     T: Copy + PartialEq + std::fmt::Debug + std::ops::Add<Output = T> + From<i32>,
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0277]: the trait bound `*mut {integer}: From<i32>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:55:5
+   |
+55 |     test_incdec(ptr, |x| unsafe { x.add(1) }, |x| unsafe { x.add(1) }, true, 1);
+   |     ^^^^^^^^^^^ the trait `From<i32>` is not implemented for `*mut {integer}`
+   |
+   = help: the following other types implement trait `From<T>`:
+             `f128` implements `From<bool>`
+             `f128` implements `From<f16>`
+             `f128` implements `From<f32>`
+             `f128` implements `From<f64>`
+             `f128` implements `From<i16>`
+             `f128` implements `From<i32>`
+             `f128` implements `From<i8>`
+             `f128` implements `From<u16>`
+           and 77 others
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:73
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: fn(&T) -> T, post_op: fn(&T) -> T, pre_p: bool, change: T)
+   |    ----------- required by a bound in this function
+ 5 | where
+ 6 |     T: Copy + PartialEq + std::fmt::Debug + std::ops::Add<Output = T> + From<i32>,
+   |                                                                         ^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:55:78
+   |
+55 |     test_incdec(ptr, |x| unsafe { x.add(1) }, |x| unsafe { x.add(1) }, true, 1);
+   |     ----------- ---                                                          ^ expected `*mut {integer}`, found `usize`
+   |     |           |
+   |     |           expected some other arguments to be a `*mut {integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*mut {integer}`
+                     found type `usize`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:4:4
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: fn(&T) -> T, post_op: fn(&T) -> T, pre_p: bool, change: T)
+   |    ^^^^^^^^^^^ -  --------                                                          --------- this parameter needs to match the `*mut {integer}` type of `value`
+   |                |  |
+   |                |  `change` needs to match the `*mut {integer}` type of this parameter
+   |                `value` and `change` both reference this parameter `T`
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:56:78
+   |
+56 |     test_incdec(ptr, |x| unsafe { x.sub(1) }, |x| unsafe { x.sub(1) }, true, -1);
+   |                                                                              ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `usize`
+   |
+56 -     test_incdec(ptr, |x| unsafe { x.sub(1) }, |x| unsafe { x.sub(1) }, true, -1);
+56 +     test_incdec(ptr, |x| unsafe { x.sub(1) }, |x| unsafe { x.sub(1) }, true, usize::MAX);
+   |
+
+error[E0277]: cannot add `*mut {integer}` to `*mut {integer}`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:56:5
+   |
+56 |     test_incdec(ptr, |x| unsafe { x.sub(1) }, |x| unsafe { x.sub(1) }, true, -1);
+   |     ^^^^^^^^^^^ no implementation for `*mut {integer} + *mut {integer}`
+   |
+   = help: the trait `Add` is not implemented for `*mut {integer}`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&f128` implements `Add<f128>`
+             `&f128` implements `Add`
+             `&f16` implements `Add<f16>`
+             `&f16` implements `Add`
+             `&f32` implements `Add<f32>`
+             `&f32` implements `Add`
+             `&f64` implements `Add<f64>`
+             `&f64` implements `Add`
+           and 56 others
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:45
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: fn(&T) -> T, post_op: fn(&T) -> T, pre_p: bool, change: T)
+   |    ----------- required by a bound in this function
+ 5 | where
+ 6 |     T: Copy + PartialEq + std::fmt::Debug + std::ops::Add<Output = T> + From<i32>,
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0277]: the trait bound `*mut {integer}: From<i32>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:56:5
+   |
+56 |     test_incdec(ptr, |x| unsafe { x.sub(1) }, |x| unsafe { x.sub(1) }, true, -1);
+   |     ^^^^^^^^^^^ the trait `From<i32>` is not implemented for `*mut {integer}`
+   |
+   = help: the following other types implement trait `From<T>`:
+             `f128` implements `From<bool>`
+             `f128` implements `From<f16>`
+             `f128` implements `From<f32>`
+             `f128` implements `From<f64>`
+             `f128` implements `From<i16>`
+             `f128` implements `From<i32>`
+             `f128` implements `From<i8>`
+             `f128` implements `From<u16>`
+           and 77 others
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:73
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: fn(&T) -> T, post_op: fn(&T) -> T, pre_p: bool, change: T)
+   |    ----------- required by a bound in this function
+ 5 | where
+ 6 |     T: Copy + PartialEq + std::fmt::Debug + std::ops::Add<Output = T> + From<i32>,
+   |                                                                         ^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:56:78
+   |
+56 |     test_incdec(ptr, |x| unsafe { x.sub(1) }, |x| unsafe { x.sub(1) }, true, -1);
+   |     ----------- ---                                                          ^^ expected `*mut {integer}`, found `usize`
+   |     |           |
+   |     |           expected some other arguments to be a `*mut {integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*mut {integer}`
+                     found type `usize`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:4:4
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: fn(&T) -> T, post_op: fn(&T) -> T, pre_p: bool, change: T)
+   |    ^^^^^^^^^^^ -  --------                                                          --------- this parameter needs to match the `*mut {integer}` type of `value`
+   |                |  |
+   |                |  `change` needs to match the `*mut {integer}` type of this parameter
+   |                `value` and `change` both reference this parameter `T`
+
+error[E0277]: cannot add `*mut {integer}` to `*mut {integer}`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:57:5
+   |
+57 |     test_incdec(ptr, |_| {}, |x| unsafe { x.add(1) }, false, 1);
+   |     ^^^^^^^^^^^ no implementation for `*mut {integer} + *mut {integer}`
+   |
+   = help: the trait `Add` is not implemented for `*mut {integer}`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&f128` implements `Add<f128>`
+             `&f128` implements `Add`
+             `&f16` implements `Add<f16>`
+             `&f16` implements `Add`
+             `&f32` implements `Add<f32>`
+             `&f32` implements `Add`
+             `&f64` implements `Add<f64>`
+             `&f64` implements `Add`
+           and 56 others
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:45
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: fn(&T) -> T, post_op: fn(&T) -> T, pre_p: bool, change: T)
+   |    ----------- required by a bound in this function
+ 5 | where
+ 6 |     T: Copy + PartialEq + std::fmt::Debug + std::ops::Add<Output = T> + From<i32>,
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0277]: the trait bound `*mut {integer}: From<i32>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:57:5
+   |
+57 |     test_incdec(ptr, |_| {}, |x| unsafe { x.add(1) }, false, 1);
+   |     ^^^^^^^^^^^ the trait `From<i32>` is not implemented for `*mut {integer}`
+   |
+   = help: the following other types implement trait `From<T>`:
+             `f128` implements `From<bool>`
+             `f128` implements `From<f16>`
+             `f128` implements `From<f32>`
+             `f128` implements `From<f64>`
+             `f128` implements `From<i16>`
+             `f128` implements `From<i32>`
+             `f128` implements `From<i8>`
+             `f128` implements `From<u16>`
+           and 77 others
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:73
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: fn(&T) -> T, post_op: fn(&T) -> T, pre_p: bool, change: T)
+   |    ----------- required by a bound in this function
+ 5 | where
+ 6 |     T: Copy + PartialEq + std::fmt::Debug + std::ops::Add<Output = T> + From<i32>,
+   |                                                                         ^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:57:26
+   |
+57 |     test_incdec(ptr, |_| {}, |x| unsafe { x.add(1) }, false, 1);
+   |                          ^^ expected `*mut {integer}`, found `()`
+   |
+   = note: expected raw pointer `*mut {integer}`
+                found unit type `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:57:62
+   |
+57 |     test_incdec(ptr, |_| {}, |x| unsafe { x.add(1) }, false, 1);
+   |     ----------- ---                                          ^ expected `*mut {integer}`, found `usize`
+   |     |           |
+   |     |           expected some other arguments to be a `*mut {integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*mut {integer}`
+                     found type `usize`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:4:4
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: fn(&T) -> T, post_op: fn(&T) -> T, pre_p: bool, change: T)
+   |    ^^^^^^^^^^^ -  --------                                                          --------- this parameter needs to match the `*mut {integer}` type of `value`
+   |                |  |
+   |                |  `change` needs to match the `*mut {integer}` type of this parameter
+   |                `value` and `change` both reference this parameter `T`
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:58:62
+   |
+58 |     test_incdec(ptr, |_| {}, |x| unsafe { x.sub(1) }, false, -1);
+   |                                                              ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `usize`
+   |
+58 -     test_incdec(ptr, |_| {}, |x| unsafe { x.sub(1) }, false, -1);
+58 +     test_incdec(ptr, |_| {}, |x| unsafe { x.sub(1) }, false, usize::MAX);
+   |
+
+error[E0277]: cannot add `*mut {integer}` to `*mut {integer}`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:58:5
+   |
+58 |     test_incdec(ptr, |_| {}, |x| unsafe { x.sub(1) }, false, -1);
+   |     ^^^^^^^^^^^ no implementation for `*mut {integer} + *mut {integer}`
+   |
+   = help: the trait `Add` is not implemented for `*mut {integer}`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&f128` implements `Add<f128>`
+             `&f128` implements `Add`
+             `&f16` implements `Add<f16>`
+             `&f16` implements `Add`
+             `&f32` implements `Add<f32>`
+             `&f32` implements `Add`
+             `&f64` implements `Add<f64>`
+             `&f64` implements `Add`
+           and 56 others
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:45
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: fn(&T) -> T, post_op: fn(&T) -> T, pre_p: bool, change: T)
+   |    ----------- required by a bound in this function
+ 5 | where
+ 6 |     T: Copy + PartialEq + std::fmt::Debug + std::ops::Add<Output = T> + From<i32>,
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0277]: the trait bound `*mut {integer}: From<i32>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:58:5
+   |
+58 |     test_incdec(ptr, |_| {}, |x| unsafe { x.sub(1) }, false, -1);
+   |     ^^^^^^^^^^^ the trait `From<i32>` is not implemented for `*mut {integer}`
+   |
+   = help: the following other types implement trait `From<T>`:
+             `f128` implements `From<bool>`
+             `f128` implements `From<f16>`
+             `f128` implements `From<f32>`
+             `f128` implements `From<f64>`
+             `f128` implements `From<i16>`
+             `f128` implements `From<i32>`
+             `f128` implements `From<i8>`
+             `f128` implements `From<u16>`
+           and 77 others
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:6:73
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: fn(&T) -> T, post_op: fn(&T) -> T, pre_p: bool, change: T)
+   |    ----------- required by a bound in this function
+ 5 | where
+ 6 |     T: Copy + PartialEq + std::fmt::Debug + std::ops::Add<Output = T> + From<i32>,
+   |                                                                         ^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:58:26
+   |
+58 |     test_incdec(ptr, |_| {}, |x| unsafe { x.sub(1) }, false, -1);
+   |                          ^^ expected `*mut {integer}`, found `()`
+   |
+   = note: expected raw pointer `*mut {integer}`
+                found unit type `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:58:62
+   |
+58 |     test_incdec(ptr, |_| {}, |x| unsafe { x.sub(1) }, false, -1);
+   |     ----------- ---                                          ^^ expected `*mut {integer}`, found `usize`
+   |     |           |
+   |     |           expected some other arguments to be a `*mut {integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*mut {integer}`
+                     found type `usize`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:4:4
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: fn(&T) -> T, post_op: fn(&T) -> T, pre_p: bool, change: T)
+   |    ^^^^^^^^^^^ -  --------                                                          --------- this parameter needs to match the `*mut {integer}` type of `value`
+   |                |  |
+   |                |  `change` needs to match the `*mut {integer}` type of this parameter
+   |                `value` and `change` both reference this parameter `T`
+
+error: aborting due to 33 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308, E0599, E0600, E0658.
+For more information about an error, try `rustc --explain E0277`.

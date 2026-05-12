@@ -1,0 +1,35 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_2/sample_003/target.rs:30:27
+   |
+30 |         f(n, &mut p[..n], &q);
+   |         -                 ^^ types differ in mutability
+   |         |
+   |         arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut _`
+                      found reference `&&mut _`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_2/sample_003/target.rs:1:4
+   |
+ 1 | fn f(n: usize, p: &mut [i32], q: &mut [i32]) {
+   |    ^                          -------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_2/sample_003/target.rs:51:22
+   |
+51 |         f(n, &mut q, &p[..n]);
+   |         -            ^^^^^^^ types differ in mutability
+   |         |
+   |         arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut _`
+                      found reference `&_`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_2/sample_003/target.rs:1:4
+   |
+ 1 | fn f(n: usize, p: &mut [i32], q: &mut [i32]) {
+   |    ^                          -------------
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

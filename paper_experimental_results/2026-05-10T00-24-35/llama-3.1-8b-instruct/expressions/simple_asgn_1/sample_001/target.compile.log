@@ -1,0 +1,98 @@
+error: expected one of `,`, `.`, `>`, `?`, or an operator, found `;`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/simple_asgn_1/sample_001/target.rs:10:40
+   |
+10 |     let char_is_signed = -1 as char < 0;
+   |                                        ^ expected one of `,`, `.`, `>`, `?`, or an operator
+   |
+help: use a comma to separate type parameters
+   |
+10 -     let char_is_signed = -1 as char < 0;
+11 - 
+12 -     if char_is_signed {
+10 +     let char_is_signed = -1 as char < 0, if char_is_signed {
+   |
+
+error: invalid const generic expression
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/simple_asgn_1/sample_001/target.rs:12:5
+   |
+12 | /     if char_is_signed {
+13 | |         if eq!= true {
+14 | |             std::process::exit(1);
+...  |
+20 | |     }
+   | |_____^
+   |
+help: expressions must be enclosed in braces to be used as const generic arguments
+   |
+12 ~     { if char_is_signed {
+13 |         if eq!= true {
+...
+19 |         }
+20 ~     } }
+   |
+
+error: `<` is interpreted as a start of generic arguments for `char`, not a comparison
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/simple_asgn_1/sample_001/target.rs:10:37
+   |
+10 |       let char_is_signed = -1 as char < 0;
+   |  _____________________________________^_-
+   | |                                     |
+   | |                                     not interpreted as comparison
+11 | |
+12 | |     if char_is_signed {
+13 | |         if eq!= true {
+...  |
+22 | |     std::process::exit(0);
+   | |_______- interpreted as generic arguments
+   |
+help: try comparing the cast value
+   |
+10 |     let char_is_signed = (-1 as char) < 0;
+   |                          +          +
+
+error[E0600]: cannot apply unary operator `-` to type `u8`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/simple_asgn_1/sample_001/target.rs:8:19
+  |
+8 |     let eq = c == -1;
+  |                   ^^ cannot apply unary operator `-`
+  |
+  = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u8`
+  |
+8 -     let eq = c == -1;
+8 +     let eq = c == u8::MAX;
+  |
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/simple_asgn_1/sample_001/target.rs:8:19
+  |
+8 |     let eq = c == -1;
+  |              -    ^^ expected `char`, found `u8`
+  |              |
+  |              expected because this is `char`
+
+error[E0600]: cannot apply unary operator `-` to type `u8`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/simple_asgn_1/sample_001/target.rs:10:26
+   |
+10 |     let char_is_signed = -1 as char < 0;
+   |                          ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u8`
+   |
+10 -     let char_is_signed = -1 as char < 0;
+10 +     let char_is_signed = u8::MAX < 0;
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/simple_asgn_1/sample_001/target.rs:10:39
+   |
+10 |     let char_is_signed = -1 as char < 0;
+   |                          ----------   ^ expected `char`, found `u8`
+   |                          |
+   |                          expected because this is `char`
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0308, E0600.
+For more information about an error, try `rustc --explain E0308`.

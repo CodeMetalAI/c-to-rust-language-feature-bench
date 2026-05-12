@@ -1,0 +1,73 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c1/sample_004/target.rs:17:15
+   |
+17 |     let pi2 = unsafe { &*v1 };
+   |               ^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c1/sample_004/target.rs:18:15
+   |
+18 |     let pd2 = unsafe { &*v2 };
+   |               ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c1/sample_004/target.rs:19:15
+   |
+19 |     let ps2 = unsafe { &*v3 };
+   |               ^^^^^^^^^^^^^^^
+
+error[E0369]: binary operation `==` cannot be applied to type `&S`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c1/sample_004/target.rs:23:5
+   |
+23 |     assert_eq!(ps2, ps);
+   |     ^^^^^^^^^^^^^^^^^^^
+   |     |
+   |     &S
+   |     &S
+   |
+note: an implementation of `PartialEq` might be missing for `S`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c1/sample_004/target.rs:39:1
+   |
+39 | struct S {
+   | ^^^^^^^^ must implement `PartialEq`
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `S` with `#[derive(PartialEq)]`
+   |
+39 + #[derive(PartialEq)]
+40 | struct S {
+   |
+
+error[E0277]: `S` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c1/sample_004/target.rs:23:5
+   |
+23 |     assert_eq!(ps2, ps);
+   |     ^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `S`
+   |
+   = note: add `#[derive(Debug)]` to `S` or manually `impl Debug for S`
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `S` with `#[derive(Debug)]`
+   |
+39 + #[derive(Debug)]
+40 | struct S {
+   |
+
+error[E0277]: `S` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c1/sample_004/target.rs:23:5
+   |
+23 |     assert_eq!(ps2, ps);
+   |     ^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `S`
+   |
+   = note: add `#[derive(Debug)]` to `S` or manually `impl Debug for S`
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `S` with `#[derive(Debug)]`
+   |
+39 + #[derive(Debug)]
+40 | struct S {
+   |
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0277, E0369.
+For more information about an error, try `rustc --explain E0277`.

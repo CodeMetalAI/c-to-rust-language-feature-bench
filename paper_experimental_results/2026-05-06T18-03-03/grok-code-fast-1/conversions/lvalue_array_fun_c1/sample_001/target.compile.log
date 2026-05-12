@@ -1,0 +1,35 @@
+warning: value assigned to `i` is never read
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/conversions/lvalue_array_fun_c1/sample_001/target.rs:19:5
+   |
+19 |     i = i;
+   |     ^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+error[E0506]: cannot assign to `i` because it is borrowed
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/conversions/lvalue_array_fun_c1/sample_001/target.rs:19:5
+   |
+16 |     let p = &mut i;
+   |             ------ `i` is borrowed here
+...
+19 |     i = i;
+   |     ^^^^^ `i` is assigned to here but it was already borrowed
+20 |     *p = *p;
+   |          -- borrow later used here
+
+error[E0503]: cannot use `i` because it was mutably borrowed
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/conversions/lvalue_array_fun_c1/sample_001/target.rs:19:9
+   |
+16 |     let p = &mut i;
+   |             ------ `i` is borrowed here
+...
+19 |     i = i;
+   |         ^ use of borrowed `i`
+20 |     *p = *p;
+   |          -- borrow later used here
+
+error: aborting due to 2 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0503, E0506.
+For more information about an error, try `rustc --explain E0503`.

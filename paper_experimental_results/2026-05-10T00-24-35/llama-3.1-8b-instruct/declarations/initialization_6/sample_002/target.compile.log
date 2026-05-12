@@ -1,0 +1,26 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_6/sample_002/target.rs:52:13
+   |
+52 |     let p = unsafe { q_ptr.offset(0) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_6/sample_002/target.rs:6:19
+  |
+6 |     let q = [[1], [2, 3], [4, 5, 6]];
+  |                   ^^^^^^ expected an array with a size of 1, found one with a size of 2
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_6/sample_002/target.rs:8:16
+  |
+5 | fn main() {
+  |          - expected `()` because of default return type
+...
+8 |         return 1;
+  |                ^ expected `()`, found integer
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

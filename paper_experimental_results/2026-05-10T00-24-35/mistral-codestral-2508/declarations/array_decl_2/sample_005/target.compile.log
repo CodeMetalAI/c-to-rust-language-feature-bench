@@ -1,0 +1,129 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_005/target.rs:14:26
+   |
+14 | static mut X: *mut i32 = unsafe { &mut BACKING[0] };
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_005/target.rs:17:17
+   |
+17 |     let dummy = unsafe { mem::MaybeUninit::<T>::uninit().assume_init() };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_005/target.rs:27:14
+   |
+27 |         s += unsafe { *p.offset(i as isize) };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_005/target.rs:44:5
+   |
+44 | /     unsafe {
+45 | |         *p.offset(1) += 5;
+46 | |         *p.offset(0) + *p.offset(1) + *p.offset(2)
+47 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_005/target.rs:51:5
+    |
+ 51 | /     unsafe {
+ 52 | |         Y[0] = 1;
+ 53 | |         Y[1] = 2;
+ 54 | |         Y[2] = 3;
+...   |
+103 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_005/target.rs:78:16
+   |
+78 |             if unsafe { *t.offset(6) } != 7 {
+   |                ^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_005/target.rs:85:16
+   |
+85 |             if unsafe { *hp.p.offset(0) } != 1 {
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_005/target.rs:91:16
+   |
+91 |             if unsafe { &ha.offset(0).a[0] as *const i32 as *const u8 } != unsafe { ha as *const u8 }.offset(offset_of(|ha: &HoldA| &ha.a[0]) as isize) {
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_005/target.rs:91:76
+   |
+91 |             if unsafe { &ha.offset(0).a[0] as *const i32 as *const u8 } != unsafe { ha as *const u8 }.offset(offset_of(|ha: &HoldA| &ha.a[0]) as isize) {
+   |                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_005/target.rs:95:16
+   |
+95 |             if unsafe { ha.offset(0).a[2] } != 3 {
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0609]: no field `a` on type `*const HoldA`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_005/target.rs:91:39
+   |
+91 |             if unsafe { &ha.offset(0).a[0] as *const i32 as *const u8 } != unsafe { ha as *const u8 }.offset(offset_of(|ha: &HoldA| &ha.a[0]) as isize) {
+   |                                       ^ unknown field
+   |
+help: `ha.offset(0)` is a raw pointer; try dereferencing it
+   |
+91 |             if unsafe { &(*ha.offset(0)).a[0] as *const i32 as *const u8 } != unsafe { ha as *const u8 }.offset(offset_of(|ha: &HoldA| &ha.a[0]) as isize) {
+   |                          ++            +
+
+error[E0609]: no field `a` on type `*const HoldA`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_005/target.rs:95:38
+   |
+95 |             if unsafe { ha.offset(0).a[2] } != 3 {
+   |                                      ^ unknown field
+   |
+help: `ha.offset(0)` is a raw pointer; try dereferencing it
+   |
+95 |             if unsafe { (*ha.offset(0)).a[2] } != 3 {
+   |                         ++            +
+
+error: function pointer calls are not allowed in constant functions
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_005/target.rs:18:22
+   |
+18 |     let member_ptr = member(&dummy) as *const i32;
+   |                      ^^^^^^^^^^^^^^
+
+error: pointers cannot be cast to integers during const eval
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_005/target.rs:20:5
+   |
+20 |     member_ptr as usize - struct_ptr as usize
+   |     ^^^^^^^^^^^^^^^^^^^
+   |
+   = note: at compile-time, pointers do not have an integer value
+   = note: avoiding this restriction via `transmute`, `union`, or raw pointers leads to compile-time undefined behavior
+
+error: pointers cannot be cast to integers during const eval
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_005/target.rs:20:27
+   |
+20 |     member_ptr as usize - struct_ptr as usize
+   |                           ^^^^^^^^^^^^^^^^^^^
+   |
+   = note: at compile-time, pointers do not have an integer value
+   = note: avoiding this restriction via `transmute`, `union`, or raw pointers leads to compile-time undefined behavior
+
+error[E0493]: destructor of `T` cannot be evaluated at compile-time
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_005/target.rs:17:9
+   |
+17 |     let dummy = unsafe { mem::MaybeUninit::<T>::uninit().assume_init() };
+   |         ^^^^^ the destructor for this type cannot be evaluated in constant functions
+...
+21 | }
+   | - value is dropped here
+
+error: aborting due to 16 previous errors
+
+Some errors have detailed explanations: E0493, E0609.
+For more information about an error, try `rustc --explain E0493`.

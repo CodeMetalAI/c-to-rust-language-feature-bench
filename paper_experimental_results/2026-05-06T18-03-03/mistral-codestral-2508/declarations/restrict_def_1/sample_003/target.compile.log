@@ -1,0 +1,96 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_003/target.rs:13:9
+   |
+13 |         unsafe { &mut u.right }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_003/target.rs:15:9
+   |
+15 |         unsafe { &mut u.left }
+   |         ^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_003/target.rs:39:13
+   |
+39 |     let a = unsafe { choose_view(&mut BANK_A, which_a) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_003/target.rs:40:13
+   |
+40 |     let b = unsafe { choose_view(&mut BANK_B, which_b) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_003/target.rs:44:15
+   |
+44 |     fill(&mut unsafe { C }, 300);
+   |               ^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_003/target.rs:48:15
+   |
+48 |     bump(&mut unsafe { C }, 3);
+   |               ^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_003/target.rs:58:13
+   |
+58 |     if sum(&unsafe { C }) != (303 + 304 + 305 + 306 + 307 + 308 + 309 + 310) {
+   |             ^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_003/target.rs:62:8
+   |
+62 |     if unsafe { BANK_A.left[0] } != 101 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_003/target.rs:66:8
+   |
+66 |     if unsafe { BANK_B.right[7] } != 209 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_003/target.rs:70:8
+   |
+70 |     if unsafe { C[0] } != 303 || unsafe { C[7] } != 310 {
+   |        ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_003/target.rs:70:34
+   |
+70 |     if unsafe { C[0] } != 303 || unsafe { C[7] } != 310 {
+   |                                  ^^^^^^^^^^^^^^^
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_003/target.rs:39:34
+   |
+39 |     let a = unsafe { choose_view(&mut BANK_A, which_a) };
+   |                                  ^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw mut` instead to create a raw pointer
+   |
+39 |     let a = unsafe { choose_view(&raw mut BANK_A, which_a) };
+   |                                   +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/restrict_def_1/sample_003/target.rs:40:34
+   |
+40 |     let b = unsafe { choose_view(&mut BANK_B, which_b) };
+   |                                  ^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+40 |     let b = unsafe { choose_view(&raw mut BANK_B, which_b) };
+   |                                   +++
+
+error: aborting due to 11 previous errors; 2 warnings emitted

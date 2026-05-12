@@ -1,0 +1,110 @@
+warning: unused import: `std::mem`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_002/target.rs:2:5
+  |
+2 | use std::mem;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: invalid suffix `u` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_002/target.rs:28:31
+   |
+28 |     p.as_mut().unwrap().tag = 0xA1B2C3D4u;
+   |                               ^^^^^^^^^^^ invalid suffix `u`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `u` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_002/target.rs:73:31
+   |
+73 |     p.as_mut().unwrap().tag = 0u;
+   |                               ^^ invalid suffix `u`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `u` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_002/target.rs:74:29
+   |
+74 |     p.as_mut().unwrap().n = 0u;
+   |                             ^^ invalid suffix `u`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `u` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_002/target.rs:75:31
+   |
+75 |     p.as_mut().unwrap().sum = 0u;
+   |                               ^^ invalid suffix `u`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error[E0277]: the type `[u32]` cannot be indexed by `u32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_002/target.rs:46:34
+   |
+46 |         p.as_mut().unwrap().data[i] = v;
+   |                                  ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[u32]>` is not implemented for `u32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[u32]` to implement `Index<u32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[u32; 7]` to implement `Index<u32>`
+
+error[E0277]: the type `[u32]` cannot be indexed by `u32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_002/target.rs:47:19
+   |
+47 |         (*p).data[i] += 0u32;
+   |                   ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[u32]>` is not implemented for `u32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[u32]` to implement `Index<u32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[u32; 7]` to implement `Index<u32>`
+
+error[E0277]: the type `[u32]` cannot be indexed by `u32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_002/target.rs:54:61
+   |
+54 |         p.as_mut().unwrap().sum += p.as_mut().unwrap().data[i];
+   |                                                             ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[u32]>` is not implemented for `u32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[u32]` to implement `Index<u32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[u32; 7]` to implement `Index<u32>`
+
+error[E0606]: casting `&[u32; 7]` as `*const u8` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_002/target.rs:33:16
+   |
+33 |     let got1 = (&p.as_mut().unwrap().data) as *const u8;
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&[u32; 7]` as `*const u8` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_002/target.rs:34:16
+   |
+34 |     let got2 = (&(*p).data) as *const u8;
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&[u32; 7]` as `*const u8` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_002/target.rs:80:16
+   |
+80 |     let got1 = (&p.as_mut().unwrap().data) as *const u8;
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&[u32; 7]` as `*const u8` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_002/target.rs:81:16
+   |
+81 |     let got2 = (&(*p).data) as *const u8;
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 11 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0606.
+For more information about an error, try `rustc --explain E0277`.

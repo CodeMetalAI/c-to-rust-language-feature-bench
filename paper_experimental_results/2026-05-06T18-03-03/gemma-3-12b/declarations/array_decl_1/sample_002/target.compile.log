@@ -1,0 +1,305 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:6:5
+  |
+6 |     unsafe { CALLS += 1; }
+  |     ^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:21:9
+   |
+21 |         unsafe { FA[i] = (i + 1) as f32; }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:26:9
+   |
+26 | /         unsafe {
+27 | |             BACKING[i] = (100 + i) as f32;
+28 | |             AFP[i] = &BACKING[i];
+29 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:38:9
+   |
+38 |         unsafe { s += p.add(i as usize).cast::<i32>(); }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:48:9
+   |
+48 |         unsafe { s += (*pp.add(i as usize)).cast::<i32>(); }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:56:14
+   |
+56 |     let s2 = unsafe { (*afp2[0]).cast::<i32>() } + unsafe { (*afp2[16]).cast::<i32>() };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:56:52
+   |
+56 |     let s2 = unsafe { (*afp2[0]).cast::<i32>() } + unsafe { (*afp2[16]).cast::<i32>() };
+   |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:63:5
+   |
+63 | /     unsafe {
+64 | |         if FA[0] != 1.0f32 || FA[10] != 11.0f32 {
+65 | |             return 1;
+...  |
+71 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:91:5
+    |
+ 91 | /     unsafe {
+ 92 | |         if CALLS != 2 {
+ 93 | |             return 3;
+...   |
+112 | |     }
+    | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:60:14
+   |
+60 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0277]: cannot add-assign `*const i32` to `{integer}`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:38:20
+   |
+38 |         unsafe { s += p.add(i as usize).cast::<i32>(); }
+   |                    ^^ no implementation for `{integer} += *const i32`
+   |
+   = help: the trait `AddAssign<*const i32>` is not implemented for `{integer}`
+   = help: the following other types implement trait `AddAssign<Rhs>`:
+             `f128` implements `AddAssign<&f128>`
+             `f128` implements `AddAssign`
+             `f16` implements `AddAssign<&f16>`
+             `f16` implements `AddAssign`
+             `f32` implements `AddAssign<&f32>`
+             `f32` implements `AddAssign`
+             `f64` implements `AddAssign<&f64>`
+             `f64` implements `AddAssign`
+           and 24 others
+
+error[E0277]: cannot add-assign `*const i32` to `{integer}`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:48:20
+   |
+48 |         unsafe { s += (*pp.add(i as usize)).cast::<i32>(); }
+   |                    ^^ no implementation for `{integer} += *const i32`
+   |
+   = help: the trait `AddAssign<*const i32>` is not implemented for `{integer}`
+   = help: the following other types implement trait `AddAssign<Rhs>`:
+             `f128` implements `AddAssign<&f128>`
+             `f128` implements `AddAssign`
+             `f16` implements `AddAssign<&f16>`
+             `f16` implements `AddAssign`
+             `f32` implements `AddAssign<&f32>`
+             `f32` implements `AddAssign`
+             `f64` implements `AddAssign<&f64>`
+             `f64` implements `AddAssign`
+           and 24 others
+
+error[E0599]: no method named `cast` found for type `f32` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:55:19
+   |
+55 |     let s1 = a[0].cast::<i32>() + a[10].cast::<i32>();
+   |                   ^^^^ method not found in `f32`
+
+error[E0599]: no method named `cast` found for type `f32` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:55:41
+   |
+55 |     let s1 = a[0].cast::<i32>() + a[10].cast::<i32>();
+   |                                         ^^^^ method not found in `f32`
+
+error[E0599]: no method named `cast` found for type `f32` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:56:34
+   |
+56 |     let s2 = unsafe { (*afp2[0]).cast::<i32>() } + unsafe { (*afp2[16]).cast::<i32>() };
+   |                                  ^^^^ method not found in `f32`
+
+error[E0599]: no method named `cast` found for type `f32` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:56:73
+   |
+56 |     let s2 = unsafe { (*afp2[0]).cast::<i32>() } + unsafe { (*afp2[16]).cast::<i32>() };
+   |                                                                         ^^^^ method not found in `f32`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:76:49
+    |
+ 76 |     let mut vla1: Vec<f32> = Vec::with_capacity(n1);
+    |                              ------------------ ^^ expected `usize`, found `i32`
+    |                              |
+    |                              arguments to this function are incorrect
+    |
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:519:12
+    |
+519 |     pub fn with_capacity(capacity: usize) -> Self {
+    |            ^^^^^^^^^^^^^
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+    |
+ 76 |     let mut vla1: Vec<f32> = Vec::with_capacity(n1.try_into().unwrap());
+    |                                                   ++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:77:56
+    |
+ 77 |     let mut vla2: Vec<*const f32> = Vec::with_capacity(n2);
+    |                                     ------------------ ^^ expected `usize`, found `i32`
+    |                                     |
+    |                                     arguments to this function are incorrect
+    |
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:519:12
+    |
+519 |     pub fn with_capacity(capacity: usize) -> Self {
+    |            ^^^^^^^^^^^^^
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+    |
+ 77 |     let mut vla2: Vec<*const f32> = Vec::with_capacity(n2.try_into().unwrap());
+    |                                                          ++++++++++++++++++++
+
+error[E0277]: the type `[f32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:81:22
+   |
+81 |         vla1.push(FA[i] * 2.0f32);
+   |                      ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[f32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[f32]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[f32; 11]` to implement `Index<i32>`
+
+error[E0277]: the type `[*const f32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:87:23
+   |
+87 |         vla2.push(AFP[i]);
+   |                       ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[*const f32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[*const f32]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[*const f32; 17]` to implement `Index<i32>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:97:31
+   |
+97 |         if span != (n1 - 1) * mem::size_of::<f32>() as usize {
+   |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:97:20
+   |
+97 |         if span != (n1 - 1) * mem::size_of::<f32>() as usize {
+   |            ----    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `usize`, found `i32`
+   |            |
+   |            expected because this is `usize`
+   |
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+97 |         if span != ((n1 - 1) * mem::size_of::<f32>() as usize).try_into().unwrap() {
+   |                    +                                         +++++++++++++++++++++
+
+error[E0277]: cannot multiply `i32` by `usize`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:97:29
+   |
+97 |         if span != (n1 - 1) * mem::size_of::<f32>() as usize {
+   |                             ^ no implementation for `i32 * usize`
+   |
+   = help: the trait `Mul<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Mul<Rhs>`:
+             `&i32` implements `Mul<i32>`
+             `&i32` implements `Mul`
+             `i32` implements `Mul<&i32>`
+             `i32` implements `Mul`
+
+error[E0308]: arguments to this function are incorrect
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:109:12
+    |
+109 | ...   if takes_params(&vla1, &vla2) != ((vla1[0].cast::<i32>()) + (vla1[10].cast::<i32>()) + (*vla2[0]).cast::<i32>() + (*vla2[16]).cast::<i...
+    |          ^^^^^^^^^^^^
+    |
+note: expected `&[f32; 11]`, found `&Vec<f32>`
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:109:25
+    |
+109 | ...   if takes_params(&vla1, &vla2) != ((vla1[0].cast::<i32>()) + (vla1[10].cast::<i32>()) + (*vla2[0]).cast::<i32>() + (*vla2[16]).cast::<i...
+    |                       ^^^^^
+    = note: expected reference `&[f32; 11]`
+               found reference `&Vec<f32>`
+note: expected `&[*const f32; 17]`, found `&Vec<*const f32>`
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:109:32
+    |
+109 | ...   if takes_params(&vla1, &vla2) != ((vla1[0].cast::<i32>()) + (vla1[10].cast::<i32>()) + (*vla2[0]).cast::<i32>() + (*vla2[16]).cast::<i...
+    |                              ^^^^^
+    = note: expected reference `&[*const f32; 17]`
+               found reference `&Vec<*const f32>`
+note: function defined here
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:54:4
+    |
+ 54 | fn takes_params(a: &[f32; 11], afp2: &[*const f32; 17]) -> i32 {
+    |    ^^^^^^^^^^^^ -------------  -----------------------
+
+error[E0599]: no method named `cast` found for type `f32` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:109:52
+    |
+109 | ...   if takes_params(&vla1, &vla2) != ((vla1[0].cast::<i32>()) + (vla1[10].cast::<i32>()) + (*vla2[0]).cast::<i32>() + (*vla2[16]).cast::<i...
+    |                                                  ^^^^ method not found in `f32`
+
+error[E0599]: no method named `cast` found for type `f32` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:109:79
+    |
+109 | ...   if takes_params(&vla1, &vla2) != ((vla1[0].cast::<i32>()) + (vla1[10].cast::<i32>()) + (*vla2[0]).cast::<i32>() + (*vla2[16]).cast::<i...
+    |                                                                             ^^^^ method not found in `f32`
+
+error[E0599]: no method named `cast` found for type `f32` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:109:107
+    |
+109 | ...   if takes_params(&vla1, &vla2) != ((vla1[0].cast::<i32>()) + (vla1[10].cast::<i32>()) + (*vla2[0]).cast::<i32>() + (*vla2[16]).cast::<i...
+    |                                                                                                         ^^^^ method not found in `f32`
+
+error[E0599]: no method named `cast` found for type `f32` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:109:135
+    |
+109 | ...t::<i32>()) + (*vla2[0]).cast::<i32>() + (*vla2[16]).cast::<i32>()) {
+    |                                                         ^^^^ method not found in `f32`
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:21:9
+   |
+21 |         unsafe { FA[i] = (i + 1) as f32; }
+   |         ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error[E0594]: cannot assign to `FA[_]`, as `FA` is an immutable static item
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:21:18
+   |
+21 |         unsafe { FA[i] = (i + 1) as f32; }
+   |                  ^^^^^^^^^^^^^^^^^^^^^^ cannot assign
+
+error[E0594]: cannot assign to `BACKING[_]`, as `BACKING` is an immutable static item
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_002/target.rs:27:13
+   |
+27 |             BACKING[i] = (100 + i) as f32;
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot assign
+
+error: aborting due to 30 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308, E0594, E0599.
+For more information about an error, try `rustc --explain E0277`.

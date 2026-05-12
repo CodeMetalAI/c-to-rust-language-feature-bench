@@ -1,0 +1,48 @@
+error[E0596]: cannot borrow `s.i` as mutable, as `s` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_2/sample_002/target.rs:16:7
+   |
+16 |     f(&mut s.i);
+   |       ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+ 7 |     let mut s = S { i: 1, ci: 2 };
+   |         +++
+
+error[E0596]: cannot borrow `vs.i` as mutable, as `vs` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_2/sample_002/target.rs:22:8
+   |
+22 |     f2(&mut vs.i);
+   |        ^^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+ 9 |     let mut vs = S { i: 5, ci: 6 };
+   |         +++
+
+error[E0594]: cannot assign to `s.i`, as `s` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_2/sample_002/target.rs:44:5
+   |
+44 |     s.i = 10;
+   |     ^^^^^^^^ cannot assign
+   |
+help: consider changing this to be mutable
+   |
+ 7 |     let mut s = S { i: 1, ci: 2 };
+   |         +++
+
+error[E0594]: cannot assign to `vs.i`, as `vs` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_2/sample_002/target.rs:49:5
+   |
+49 |     vs.i = 20;
+   |     ^^^^^^^^^ cannot assign
+   |
+help: consider changing this to be mutable
+   |
+ 9 |     let mut vs = S { i: 5, ci: 6 };
+   |         +++
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0594, E0596.
+For more information about an error, try `rustc --explain E0594`.

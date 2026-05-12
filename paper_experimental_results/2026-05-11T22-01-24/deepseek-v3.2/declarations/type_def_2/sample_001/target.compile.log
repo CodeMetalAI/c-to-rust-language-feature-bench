@@ -1,0 +1,108 @@
+error[E0382]: use of moved value: `a`
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/declarations/type_def_2/sample_001/target.rs:44:17
+   |
+37 |     let mut a = T1 { x: 10 };
+   |         ----- move occurs because `a` has type `S1`, which does not implement the `Copy` trait
+...
+40 |     if takes_t1(a) != 11 {
+   |                 - value moved here
+...
+44 |     if takes_s1(a) != 12 {
+   |                 ^ value used here after move
+   |
+note: consider changing this parameter type in function `takes_t1` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/declarations/type_def_2/sample_001/target.rs:15:16
+   |
+15 | fn takes_t1(v: T1) -> i32 {
+   |    --------    ^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `S1` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/declarations/type_def_2/sample_001/target.rs:1:1
+   |
+ 1 | struct S1 {
+   | ^^^^^^^^^ consider implementing `Clone` for this type
+...
+40 |     if takes_t1(a) != 11 {
+   |                 - you could clone this value
+
+error[E0382]: use of moved value: `b`
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/declarations/type_def_2/sample_001/target.rs:52:17
+   |
+38 |     let b = S1 { x: 20 };
+   |         - move occurs because `b` has type `S1`, which does not implement the `Copy` trait
+...
+48 |     if takes_t1(b) != 21 {
+   |                 - value moved here
+...
+52 |     if takes_s1(b) != 22 {
+   |                 ^ value used here after move
+   |
+note: consider changing this parameter type in function `takes_t1` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/declarations/type_def_2/sample_001/target.rs:15:16
+   |
+15 | fn takes_t1(v: T1) -> i32 {
+   |    --------    ^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `S1` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/declarations/type_def_2/sample_001/target.rs:1:1
+   |
+ 1 | struct S1 {
+   | ^^^^^^^^^ consider implementing `Clone` for this type
+...
+48 |     if takes_t1(b) != 21 {
+   |                 - you could clone this value
+
+error[E0382]: use of moved value: `a`
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/declarations/type_def_2/sample_001/target.rs:56:22
+   |
+37 |     let mut a = T1 { x: 10 };
+   |         ----- move occurs because `a` has type `S1`, which does not implement the `Copy` trait
+...
+44 |     if takes_s1(a) != 12 {
+   |                 - value moved here
+...
+56 |     let p = Box::new(a);
+   |                      ^ value used here after move
+   |
+note: consider changing this parameter type in function `takes_s1` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/declarations/type_def_2/sample_001/target.rs:19:16
+   |
+19 | fn takes_s1(v: S1) -> i32 {
+   |    --------    ^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `S1` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/declarations/type_def_2/sample_001/target.rs:1:1
+   |
+ 1 | struct S1 {
+   | ^^^^^^^^^ consider implementing `Clone` for this type
+...
+44 |     if takes_s1(a) != 12 {
+   |                 - you could clone this value
+
+error[E0382]: assign to part of moved value: `a`
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/declarations/type_def_2/sample_001/target.rs:62:5
+   |
+37 |     let mut a = T1 { x: 10 };
+   |         ----- move occurs because `a` has type `S1`, which does not implement the `Copy` trait
+...
+56 |     let p = Box::new(a);
+   |                      - value moved here
+...
+62 |     a.x = 13;
+   |     ^^^^^^^^ value partially assigned here after move
+   |
+note: if `S1` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/declarations/type_def_2/sample_001/target.rs:1:1
+   |
+ 1 | struct S1 {
+   | ^^^^^^^^^ consider implementing `Clone` for this type
+...
+56 |     let p = Box::new(a);
+   |                      - you could clone this value
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0382`.

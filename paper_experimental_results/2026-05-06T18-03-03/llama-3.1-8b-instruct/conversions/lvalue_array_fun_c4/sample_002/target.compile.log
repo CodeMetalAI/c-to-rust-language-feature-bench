@@ -1,0 +1,62 @@
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_002/target.rs:15:8
+   |
+15 |     if p1 != q1 {
+   |        ^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+   = note: `#[warn(unpredictable_function_pointer_comparisons)]` on by default
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+15 -     if p1 != q1 {
+15 +     if !std::ptr::fn_addr_eq(p1, q1) {
+   |
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_002/target.rs:27:8
+   |
+27 |     if r1 != f1 {
+   |        ^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+27 -     if r1 != f1 {
+27 +     if !std::ptr::fn_addr_eq(r1, f1 as fn(i32) -> i32) {
+   |
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_002/target.rs:37:8
+   |
+37 |     if p2 != q2 {
+   |        ^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+37 -     if p2 != q2 {
+37 +     if !std::ptr::fn_addr_eq(p2, q2) {
+   |
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_002/target.rs:48:8
+   |
+48 |     if r2 != f2 {
+   |        ^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+48 -     if r2 != f2 {
+48 +     if !std::ptr::fn_addr_eq(r2, f2 as fn(i32, i32) -> i32) {
+   |
+
+warning: 4 warnings emitted

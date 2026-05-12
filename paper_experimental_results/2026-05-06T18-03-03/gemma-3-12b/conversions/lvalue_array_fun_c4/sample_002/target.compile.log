@@ -1,0 +1,220 @@
+error[E0428]: the name `TYPE_ID` is defined multiple times
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:82:1
+   |
+71 | fn TYPE_ID(func: &fn(i32) -> i32) -> i32 {
+   | ---------------------------------------- previous definition of the value `TYPE_ID` here
+...
+82 | fn TYPE_ID(func: &fn(i32, i32) -> i32) -> i32 {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `TYPE_ID` redefined here
+   |
+   = note: `TYPE_ID` must be defined only once in the value namespace of this module
+
+warning: unnecessary parentheses around assigned value
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:31:30
+   |
+31 |     let r1: fn(i32) -> i32 = (if true { f1 } else { f1 });
+   |                              ^                          ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+31 -     let r1: fn(i32) -> i32 = (if true { f1 } else { f1 });
+31 +     let r1: fn(i32) -> i32 = if true { f1 } else { f1 };
+   |
+
+warning: unnecessary parentheses around assigned value
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:59:35
+   |
+59 |     let r2: fn(i32, i32) -> i32 = (if false { f2 } else { f2 });
+   |                                   ^                           ^
+   |
+help: remove these parentheses
+   |
+59 -     let r2: fn(i32, i32) -> i32 = (if false { f2 } else { f2 });
+59 +     let r2: fn(i32, i32) -> i32 = if false { f2 } else { f2 };
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:11:30
+   |
+11 |     let q1: fn(i32) -> i32 = &f1;
+   |             --------------   ^^^ expected fn pointer, found `&fn(i32) -> i32 {f1}`
+   |             |
+   |             expected due to this
+   |
+   = note: expected fn pointer `fn(_) -> _`
+               found reference `&fn(_) -> _ {f1}`
+help: consider removing the reference
+   |
+11 -     let q1: fn(i32) -> i32 = &f1;
+11 +     let q1: fn(i32) -> i32 = f1;
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:14:16
+   |
+ 9 | fn main() {
+   |          - expected `()` because of default return type
+...
+14 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:40:35
+   |
+40 |     let q2: fn(i32, i32) -> i32 = &f2;
+   |             -------------------   ^^^ expected fn pointer, found `&fn(i32, i32) -> i32 {f2}`
+   |             |
+   |             expected due to this
+   |
+   = note: expected fn pointer `fn(_, _) -> _`
+               found reference `&fn(_, _) -> _ {f2}`
+help: consider removing the reference
+   |
+40 -     let q2: fn(i32, i32) -> i32 = &f2;
+40 +     let q2: fn(i32, i32) -> i32 = f2;
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:42:16
+   |
+42 |     if TYPE_ID(&p2) != 2 {
+   |        ------- ^^^ incorrect number of function parameters
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&fn(i32) -> _`
+              found reference `&fn(i32, i32) -> _`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:71:4
+   |
+71 | fn TYPE_ID(func: &fn(i32) -> i32) -> i32 {
+   |    ^^^^^^^ ---------------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:45:16
+   |
+45 |     if TYPE_ID(&q2) != 2 {
+   |        ------- ^^^ incorrect number of function parameters
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&fn(i32) -> _`
+              found reference `&fn(i32, i32) -> _`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:71:4
+   |
+71 | fn TYPE_ID(func: &fn(i32) -> i32) -> i32 {
+   |    ^^^^^^^ ---------------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:60:16
+   |
+60 |     if TYPE_ID(&r2) != 2 {
+   |        ------- ^^^ incorrect number of function parameters
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&fn(i32) -> _`
+              found reference `&fn(i32, i32) -> _`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:71:4
+   |
+71 | fn TYPE_ID(func: &fn(i32) -> i32) -> i32 {
+   |    ^^^^^^^ ---------------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:67:5
+   |
+ 9 | fn main() {
+   |          - expected `()` because of default return type
+...
+67 |     0
+   |     ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:72:16
+   |
+72 |     if func == &f1 {
+   |                ^^^ expected fn pointer, found fn item
+   |
+   = note: expected fn pointer `fn(_) -> _`
+                 found fn item `fn(_) -> _ {f1}`
+   = note: fn items are distinct from fn pointers
+help: consider casting to a fn pointer
+   |
+72 |     if func == &f1 as fn(i32) -> i32 {
+   |                    +++++++++++++++++
+
+error[E0277]: can't compare `fn(i32) -> i32` with `fn(i32) -> i32 {f1}`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:72:13
+   |
+72 |     if func == &f1 {
+   |             ^^ no implementation for `fn(i32) -> i32 == fn(i32) -> i32 {f1}`
+   |
+   = help: the trait `PartialEq<fn(i32) -> i32 {f1}>` is not implemented for `fn(i32) -> i32`
+   = note: required for `&fn(i32) -> i32` to implement `PartialEq<&fn(i32) -> i32 {f1}>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:74:23
+   |
+74 |     } else if func == &f2 {
+   |                       ^^^ expected fn pointer, found fn item
+   |
+   = note: expected fn pointer `fn(i32) -> _`
+                 found fn item `fn(i32, i32) -> _ {f2}`
+
+error[E0277]: can't compare `fn(i32) -> i32` with `fn(i32, i32) -> i32 {f2}`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:74:20
+   |
+74 |     } else if func == &f2 {
+   |                    ^^ no implementation for `fn(i32) -> i32 == fn(i32, i32) -> i32 {f2}`
+   |
+   = help: the trait `PartialEq<fn(i32, i32) -> i32 {f2}>` is not implemented for `fn(i32) -> i32`
+   = note: required for `&fn(i32) -> i32` to implement `PartialEq<&fn(i32, i32) -> i32 {f2}>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:83:16
+   |
+83 |     if func == &f1 {
+   |                ^^^ expected fn pointer, found fn item
+   |
+   = note: expected fn pointer `fn(i32, i32) -> _`
+                 found fn item `fn(i32) -> _ {f1}`
+
+error[E0277]: can't compare `fn(i32, i32) -> i32` with `fn(i32) -> i32 {f1}`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:83:13
+   |
+83 |     if func == &f1 {
+   |             ^^ no implementation for `fn(i32, i32) -> i32 == fn(i32) -> i32 {f1}`
+   |
+   = help: the trait `PartialEq<fn(i32) -> i32 {f1}>` is not implemented for `fn(i32, i32) -> i32`
+   = note: required for `&fn(i32, i32) -> i32` to implement `PartialEq<&fn(i32) -> i32 {f1}>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:85:23
+   |
+85 |     } else if func == &f2 {
+   |                       ^^^ expected fn pointer, found fn item
+   |
+   = note: expected fn pointer `fn(_, _) -> _`
+                 found fn item `fn(_, _) -> _ {f2}`
+   = note: fn items are distinct from fn pointers
+help: consider casting to a fn pointer
+   |
+85 |     } else if func == &f2 as fn(i32, i32) -> i32 {
+   |                           ++++++++++++++++++++++
+
+error[E0277]: can't compare `fn(i32, i32) -> i32` with `fn(i32, i32) -> i32 {f2}`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_002/target.rs:85:20
+   |
+85 |     } else if func == &f2 {
+   |                    ^^ no implementation for `fn(i32, i32) -> i32 == fn(i32, i32) -> i32 {f2}`
+   |
+   = help: the trait `PartialEq<fn(i32, i32) -> i32 {f2}>` is not implemented for `fn(i32, i32) -> i32`
+   = note: required for `&fn(i32, i32) -> i32` to implement `PartialEq<&fn(i32, i32) -> i32 {f2}>`
+
+error: aborting due to 16 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0277, E0308, E0428.
+For more information about an error, try `rustc --explain E0277`.

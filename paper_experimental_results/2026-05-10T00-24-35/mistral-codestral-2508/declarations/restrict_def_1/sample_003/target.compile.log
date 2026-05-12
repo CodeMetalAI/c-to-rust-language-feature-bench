@@ -1,0 +1,64 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_1/sample_003/target.rs:31:9
+   |
+31 | /         unsafe {
+32 | |             *p.add(i) = base + i as i32;
+33 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_1/sample_003/target.rs:39:9
+   |
+39 | /         unsafe {
+40 | |             *p.add(i) += k;
+41 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_1/sample_003/target.rs:48:9
+   |
+48 | /         unsafe {
+49 | |             s += *p.add(i);
+50 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_1/sample_003/target.rs:59:5
+   |
+59 | /     unsafe {
+60 | |         A = choose_view(&mut BANK_A, which_a);
+61 | |         B = choose_view(&mut BANK_B, which_b);
+...  |
+94 | |     }
+   | |_____^
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_1/sample_003/target.rs:60:25
+   |
+60 |         A = choose_view(&mut BANK_A, which_a);
+   |                         ^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw mut` instead to create a raw pointer
+   |
+60 |         A = choose_view(&raw mut BANK_A, which_a);
+   |                          +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/restrict_def_1/sample_003/target.rs:61:25
+   |
+61 |         B = choose_view(&mut BANK_B, which_b);
+   |                         ^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+61 |         B = choose_view(&raw mut BANK_B, which_b);
+   |                          +++
+
+error: aborting due to 4 previous errors; 2 warnings emitted

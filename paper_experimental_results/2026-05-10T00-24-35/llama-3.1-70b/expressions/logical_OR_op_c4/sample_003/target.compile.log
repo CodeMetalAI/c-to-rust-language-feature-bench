@@ -1,0 +1,48 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_OR_op_c4/sample_003/target.rs:3:5
+  |
+3 | /     unsafe {
+4 | |         G = gval;
+5 | |         ret
+6 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_OR_op_c4/sample_003/target.rs:12:5
+   |
+12 | /     unsafe {
+13 | |         let mut g = 0;
+14 | |         g = 0;
+15 | |         if!(set_g_return(1, 0)!= 0 || (g == 1)) {
+...  |
+26 | |     }
+   | |_____^
+
+warning: value assigned to `g` is never read
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_OR_op_c4/sample_003/target.rs:13:17
+   |
+13 |         let mut g = 0;
+   |                 ^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `g` is never read
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_OR_op_c4/sample_003/target.rs:19:9
+   |
+19 |         g = 0;
+   |         ^
+   |
+   = help: maybe it is overwritten before being read?
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_OR_op_c4/sample_003/target.rs:12:5
+   |
+12 |     unsafe {
+   |     ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 2 previous errors; 3 warnings emitted

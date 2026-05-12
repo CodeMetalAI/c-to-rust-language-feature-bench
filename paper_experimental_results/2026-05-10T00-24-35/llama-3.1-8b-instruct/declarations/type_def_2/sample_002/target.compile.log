@@ -1,0 +1,98 @@
+error[E0594]: cannot assign to `p.x`, which is behind a `&` reference
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_2/sample_002/target.rs:14:5
+   |
+14 |     p.x += 3;
+   |     ^^^^^^^^ `p` is a `&` reference, so the data it refers to cannot be written
+   |
+help: consider changing this to be a mutable reference
+   |
+13 | fn takes_s1_ptr(p: &mut S1) -> i32 {
+   |                     +++
+
+error[E0382]: use of moved value: `b`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_2/sample_002/target.rs:35:48
+   |
+28 |     let b = S1 { x: 20 };
+   |         - move occurs because `b` has type `S1`, which does not implement the `Copy` trait
+...
+34 |     if takes_s1(b) != 22 {
+   |                 - value moved here
+35 |         panic!("Expected 22, got {}", takes_s1(b));
+   |                                                ^ value used here after move
+   |
+note: consider changing this parameter type in function `takes_s1` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_2/sample_002/target.rs:9:16
+   |
+ 9 | fn takes_s1(v: S1) -> i32 {
+   |    --------    ^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `S1` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_2/sample_002/target.rs:1:1
+   |
+ 1 | struct S1 {
+   | ^^^^^^^^^ consider implementing `Clone` for this type
+...
+34 |     if takes_s1(b) != 22 {
+   |                 - you could clone this value
+
+error[E0382]: use of moved value: `a`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_2/sample_002/target.rs:44:8
+   |
+27 |     let a = S1 { x: 10 };
+   |         - move occurs because `a` has type `S1`, which does not implement the `Copy` trait
+...
+30 |     if takes_s1(a) != 12 {
+   |                 - value moved here
+...
+44 |     if a.x != 13 {
+   |        ^^^ value used here after move
+   |
+note: consider changing this parameter type in function `takes_s1` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_2/sample_002/target.rs:9:16
+   |
+ 9 | fn takes_s1(v: S1) -> i32 {
+   |    --------    ^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `S1` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_2/sample_002/target.rs:1:1
+   |
+ 1 | struct S1 {
+   | ^^^^^^^^^ consider implementing `Clone` for this type
+...
+30 |     if takes_s1(a) != 12 {
+   |                 - you could clone this value
+
+error[E0382]: use of moved value: `c`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_2/sample_002/target.rs:70:22
+   |
+58 |     let c = S2 { x: 30 };
+   |         - move occurs because `c` has type `S2`, which does not implement the `Copy` trait
+...
+65 |     if takes_s2(c) != 35 {
+   |                 - value moved here
+...
+70 |     assert!(takes_s2(c) == 35);
+   |                      ^ value used here after move
+   |
+note: consider changing this parameter type in function `takes_s2` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_2/sample_002/target.rs:22:16
+   |
+22 | fn takes_s2(v: S2) -> i32 {
+   |    --------    ^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `S2` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_2/sample_002/target.rs:5:1
+   |
+ 5 | struct S2 {
+   | ^^^^^^^^^ consider implementing `Clone` for this type
+...
+65 |     if takes_s2(c) != 35 {
+   |                 - you could clone this value
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0382, E0594.
+For more information about an error, try `rustc --explain E0382`.

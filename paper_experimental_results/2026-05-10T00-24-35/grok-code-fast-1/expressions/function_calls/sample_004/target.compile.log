@@ -1,0 +1,333 @@
+error[E0599]: no method named `borrow_mut` found for struct `LocalKey<T>` in the current scope
+    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/function_calls/sample_004/target.rs:13:25
+     |
+  13 |     let mut logn = LOGN.borrow_mut();
+     |                         ^^^^^^^^^^
+     |
+    ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/borrow.rs:207:8
+     |
+ 207 |     fn borrow_mut(&mut self) -> &mut Borrowed;
+     |        ---------- the method is available for `LocalKey<RefCell<usize>>` here
+     |
+     = help: use `with` or `try_with` to access thread local storage
+note: the method `borrow_mut` exists on the type `RefCell<usize>`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:1087:5
+     |
+1087 |     pub const fn borrow_mut(&self) -> RefMut<'_, T> {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     = help: items from traits can only be used if the trait is in scope
+help: trait `BorrowMut` which provides `borrow_mut` is implemented but not in scope; perhaps you want to import it
+     |
+   1 + use std::borrow::BorrowMut;
+     |
+help: there is a method `borrow` with a similar name
+     |
+  13 -     let mut logn = LOGN.borrow_mut();
+  13 +     let mut logn = LOGN.borrow();
+     |
+
+error[E0599]: no method named `borrow_mut` found for struct `LocalKey<T>` in the current scope
+    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/function_calls/sample_004/target.rs:15:29
+     |
+  15 |         let mut logv = LOGV.borrow_mut();
+     |                             ^^^^^^^^^^
+     |
+    ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/borrow.rs:207:8
+     |
+ 207 |     fn borrow_mut(&mut self) -> &mut Borrowed;
+     |        ---------- the method is available for `LocalKey<RefCell<Vec<i32>>>` here
+     |
+     = help: use `with` or `try_with` to access thread local storage
+note: the method `borrow_mut` exists on the type `RefCell<Vec<i32>>`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:1087:5
+     |
+1087 |     pub const fn borrow_mut(&self) -> RefMut<'_, T> {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     = help: items from traits can only be used if the trait is in scope
+help: trait `BorrowMut` which provides `borrow_mut` is implemented but not in scope; perhaps you want to import it
+     |
+   1 + use std::borrow::BorrowMut;
+     |
+help: there is a method `borrow` with a similar name
+     |
+  15 -         let mut logv = LOGV.borrow_mut();
+  15 +         let mut logv = LOGV.borrow();
+     |
+
+error[E0599]: no method named `borrow_mut` found for struct `LocalKey<T>` in the current scope
+    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/function_calls/sample_004/target.rs:22:14
+     |
+  22 |     *SEEN_F1.borrow_mut() = true;
+     |              ^^^^^^^^^^
+     |
+    ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/borrow.rs:207:8
+     |
+ 207 |     fn borrow_mut(&mut self) -> &mut Borrowed;
+     |        ---------- the method is available for `LocalKey<RefCell<bool>>` here
+     |
+     = help: use `with` or `try_with` to access thread local storage
+note: the method `borrow_mut` exists on the type `RefCell<bool>`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:1087:5
+     |
+1087 |     pub const fn borrow_mut(&self) -> RefMut<'_, T> {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     = help: items from traits can only be used if the trait is in scope
+help: trait `BorrowMut` which provides `borrow_mut` is implemented but not in scope; perhaps you want to import it
+     |
+   1 + use std::borrow::BorrowMut;
+     |
+help: there is a method `borrow` with a similar name
+     |
+  22 -     *SEEN_F1.borrow_mut() = true;
+  22 +     *SEEN_F1.borrow() = true;
+     |
+
+error[E0599]: no method named `borrow_mut` found for struct `LocalKey<T>` in the current scope
+    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/function_calls/sample_004/target.rs:28:14
+     |
+  28 |     *SEEN_F2.borrow_mut() = true;
+     |              ^^^^^^^^^^
+     |
+    ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/borrow.rs:207:8
+     |
+ 207 |     fn borrow_mut(&mut self) -> &mut Borrowed;
+     |        ---------- the method is available for `LocalKey<RefCell<bool>>` here
+     |
+     = help: use `with` or `try_with` to access thread local storage
+note: the method `borrow_mut` exists on the type `RefCell<bool>`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:1087:5
+     |
+1087 |     pub const fn borrow_mut(&self) -> RefMut<'_, T> {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     = help: items from traits can only be used if the trait is in scope
+help: trait `BorrowMut` which provides `borrow_mut` is implemented but not in scope; perhaps you want to import it
+     |
+   1 + use std::borrow::BorrowMut;
+     |
+help: there is a method `borrow` with a similar name
+     |
+  28 -     *SEEN_F2.borrow_mut() = true;
+  28 +     *SEEN_F2.borrow() = true;
+     |
+
+error[E0599]: no method named `borrow_mut` found for struct `LocalKey<T>` in the current scope
+    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/function_calls/sample_004/target.rs:34:14
+     |
+  34 |     *SEEN_F3.borrow_mut() = true;
+     |              ^^^^^^^^^^
+     |
+    ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/borrow.rs:207:8
+     |
+ 207 |     fn borrow_mut(&mut self) -> &mut Borrowed;
+     |        ---------- the method is available for `LocalKey<RefCell<bool>>` here
+     |
+     = help: use `with` or `try_with` to access thread local storage
+note: the method `borrow_mut` exists on the type `RefCell<bool>`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:1087:5
+     |
+1087 |     pub const fn borrow_mut(&self) -> RefMut<'_, T> {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     = help: items from traits can only be used if the trait is in scope
+help: trait `BorrowMut` which provides `borrow_mut` is implemented but not in scope; perhaps you want to import it
+     |
+   1 + use std::borrow::BorrowMut;
+     |
+help: there is a method `borrow` with a similar name
+     |
+  34 -     *SEEN_F3.borrow_mut() = true;
+  34 +     *SEEN_F3.borrow() = true;
+     |
+
+error[E0599]: no method named `borrow_mut` found for struct `LocalKey<T>` in the current scope
+    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/function_calls/sample_004/target.rs:40:14
+     |
+  40 |     *SEEN_F4.borrow_mut() = true;
+     |              ^^^^^^^^^^
+     |
+    ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/borrow.rs:207:8
+     |
+ 207 |     fn borrow_mut(&mut self) -> &mut Borrowed;
+     |        ---------- the method is available for `LocalKey<RefCell<bool>>` here
+     |
+     = help: use `with` or `try_with` to access thread local storage
+note: the method `borrow_mut` exists on the type `RefCell<bool>`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:1087:5
+     |
+1087 |     pub const fn borrow_mut(&self) -> RefMut<'_, T> {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     = help: items from traits can only be used if the trait is in scope
+help: trait `BorrowMut` which provides `borrow_mut` is implemented but not in scope; perhaps you want to import it
+     |
+   1 + use std::borrow::BorrowMut;
+     |
+help: there is a method `borrow` with a similar name
+     |
+  40 -     *SEEN_F4.borrow_mut() = true;
+  40 +     *SEEN_F4.borrow() = true;
+     |
+
+error[E0599]: no method named `borrow` found for struct `LocalKey<T>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/function_calls/sample_004/target.rs:47:18
+    |
+ 47 |     if !*SEEN_F1.borrow() || !*SEEN_F2.borrow() || !*SEEN_F3.borrow() || !*SEEN_F4.borrow() {
+    |                  ^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/borrow.rs:179:8
+    |
+179 |     fn borrow(&self) -> &Borrowed;
+    |        ------ the method is available for `LocalKey<RefCell<bool>>` here
+    |
+    = help: use `with` or `try_with` to access thread local storage
+note: the method `borrow` exists on the type `RefCell<bool>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:989:5
+    |
+989 |     pub const fn borrow(&self) -> Ref<'_, T> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Borrow` which provides `borrow` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::borrow::Borrow;
+    |
+help: there is a method `borrow_mut` with a similar name
+    |
+ 47 |     if !*SEEN_F1.borrow_mut() || !*SEEN_F2.borrow() || !*SEEN_F3.borrow() || !*SEEN_F4.borrow() {
+    |                        ++++
+
+error[E0599]: no method named `borrow` found for struct `LocalKey<T>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/function_calls/sample_004/target.rs:47:40
+    |
+ 47 |     if !*SEEN_F1.borrow() || !*SEEN_F2.borrow() || !*SEEN_F3.borrow() || !*SEEN_F4.borrow() {
+    |                                        ^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/borrow.rs:179:8
+    |
+179 |     fn borrow(&self) -> &Borrowed;
+    |        ------ the method is available for `LocalKey<RefCell<bool>>` here
+    |
+    = help: use `with` or `try_with` to access thread local storage
+note: the method `borrow` exists on the type `RefCell<bool>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:989:5
+    |
+989 |     pub const fn borrow(&self) -> Ref<'_, T> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Borrow` which provides `borrow` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::borrow::Borrow;
+    |
+help: there is a method `borrow_mut` with a similar name
+    |
+ 47 |     if !*SEEN_F1.borrow() || !*SEEN_F2.borrow_mut() || !*SEEN_F3.borrow() || !*SEEN_F4.borrow() {
+    |                                              ++++
+
+error[E0599]: no method named `borrow` found for struct `LocalKey<T>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/function_calls/sample_004/target.rs:47:62
+    |
+ 47 |     if !*SEEN_F1.borrow() || !*SEEN_F2.borrow() || !*SEEN_F3.borrow() || !*SEEN_F4.borrow() {
+    |                                                              ^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/borrow.rs:179:8
+    |
+179 |     fn borrow(&self) -> &Borrowed;
+    |        ------ the method is available for `LocalKey<RefCell<bool>>` here
+    |
+    = help: use `with` or `try_with` to access thread local storage
+note: the method `borrow` exists on the type `RefCell<bool>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:989:5
+    |
+989 |     pub const fn borrow(&self) -> Ref<'_, T> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Borrow` which provides `borrow` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::borrow::Borrow;
+    |
+help: there is a method `borrow_mut` with a similar name
+    |
+ 47 |     if !*SEEN_F1.borrow() || !*SEEN_F2.borrow() || !*SEEN_F3.borrow_mut() || !*SEEN_F4.borrow() {
+    |                                                                    ++++
+
+error[E0599]: no method named `borrow` found for struct `LocalKey<T>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/function_calls/sample_004/target.rs:47:84
+    |
+ 47 |     if !*SEEN_F1.borrow() || !*SEEN_F2.borrow() || !*SEEN_F3.borrow() || !*SEEN_F4.borrow() {
+    |                                                                                    ^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/borrow.rs:179:8
+    |
+179 |     fn borrow(&self) -> &Borrowed;
+    |        ------ the method is available for `LocalKey<RefCell<bool>>` here
+    |
+    = help: use `with` or `try_with` to access thread local storage
+note: the method `borrow` exists on the type `RefCell<bool>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:989:5
+    |
+989 |     pub const fn borrow(&self) -> Ref<'_, T> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Borrow` which provides `borrow` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::borrow::Borrow;
+    |
+help: there is a method `borrow_mut` with a similar name
+    |
+ 47 |     if !*SEEN_F1.borrow() || !*SEEN_F2.borrow() || !*SEEN_F3.borrow() || !*SEEN_F4.borrow_mut() {
+    |                                                                                          ++++
+
+error[E0599]: no method named `borrow` found for struct `LocalKey<T>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/function_calls/sample_004/target.rs:62:22
+    |
+ 62 |     let logn = *LOGN.borrow();
+    |                      ^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/borrow.rs:179:8
+    |
+179 |     fn borrow(&self) -> &Borrowed;
+    |        ------ the method is available for `LocalKey<RefCell<usize>>` here
+    |
+    = help: use `with` or `try_with` to access thread local storage
+note: the method `borrow` exists on the type `RefCell<usize>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:989:5
+    |
+989 |     pub const fn borrow(&self) -> Ref<'_, T> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Borrow` which provides `borrow` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::borrow::Borrow;
+    |
+help: there is a method `borrow_mut` with a similar name
+    |
+ 62 |     let logn = *LOGN.borrow_mut();
+    |                            ++++
+
+error[E0599]: no method named `borrow` found for struct `LocalKey<T>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/function_calls/sample_004/target.rs:66:21
+    |
+ 66 |     let logv = LOGV.borrow();
+    |                     ^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/borrow.rs:179:8
+    |
+179 |     fn borrow(&self) -> &Borrowed;
+    |        ------ the method is available for `LocalKey<RefCell<Vec<i32>>>` here
+    |
+    = help: use `with` or `try_with` to access thread local storage
+note: the method `borrow` exists on the type `RefCell<Vec<i32>>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:989:5
+    |
+989 |     pub const fn borrow(&self) -> Ref<'_, T> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Borrow` which provides `borrow` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::borrow::Borrow;
+    |
+help: there is a method `borrow_mut` with a similar name
+    |
+ 66 |     let logv = LOGV.borrow_mut();
+    |                           ++++
+
+error: aborting due to 12 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

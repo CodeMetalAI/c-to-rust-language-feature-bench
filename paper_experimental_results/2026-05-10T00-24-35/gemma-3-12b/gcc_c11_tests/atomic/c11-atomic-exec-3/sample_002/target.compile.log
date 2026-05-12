@@ -1,0 +1,124 @@
+error: expected expression, found `,`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:18:54
+   |
+18 |         TEST_INCDEC(AtomicI32, &ia[1] as *mut i32, ++, , 1, 1);
+   |                                                      ^ expected expression
+
+error: expected expression, found `,`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:19:54
+   |
+19 |         TEST_INCDEC(AtomicI32, &ia[1] as *mut i32, --, , 1, -1);
+   |                                                      ^ expected expression
+
+error: expected expression, found `,`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:20:52
+   |
+20 |         TEST_INCDEC(AtomicI32, &ia[1] as *mut i32, , ++, 0, 1);
+   |                                                    ^ expected expression
+
+error: expected expression, found `,`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:21:52
+   |
+21 |         TEST_INCDEC(AtomicI32, &ia[1] as *mut i32, , --, 0, -1);
+   |                                                    ^ expected expression
+
+error[E0432]: unresolved imports `std::sync::atomic::AtomicF32`, `std::sync::atomic::AtomicF64`
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:1:93
+  |
+1 | use std::sync::atomic::{AtomicBool, AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicIsize, AtomicF32, AtomicF64, AtomicPtr};
+  |                                                                                             ^^^^^^^^^  ^^^^^^^^^ no `AtomicF64` in `sync::atomic`
+  |                                                                                             |
+  |                                                                                             no `AtomicF32` in `sync::atomic`
+  |
+help: a similar name exists in the module
+  |
+1 - use std::sync::atomic::{AtomicBool, AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicIsize, AtomicF32, AtomicF64, AtomicPtr};
+1 + use std::sync::atomic::{AtomicBool, AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicIsize, AtomicI32, AtomicF64, AtomicPtr};
+  |
+help: a similar name exists in the module
+  |
+1 - use std::sync::atomic::{AtomicBool, AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicIsize, AtomicF32, AtomicF64, AtomicPtr};
+1 + use std::sync::atomic::{AtomicBool, AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicIsize, AtomicF32, AtomicI64, AtomicPtr};
+  |
+
+warning: unused imports: `AtomicBool`, `AtomicI16`, `AtomicI32`, `AtomicI64`, `AtomicI8`, `AtomicIsize`, and `AtomicPtr`
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:1:25
+  |
+1 | use std::sync::atomic::{AtomicBool, AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicIsize, AtomicF32, AtomicF64, AtomicPtr};
+  |                         ^^^^^^^^^^  ^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^^^                        ^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:17:5
+   |
+17 | /     unsafe {
+18 | |         TEST_INCDEC(AtomicI32, &ia[1] as *mut i32, ++, , 1, 1);
+19 | |         TEST_INCDEC(AtomicI32, &ia[1] as *mut i32, --, , 1, -1);
+20 | |         TEST_INCDEC(AtomicI32, &ia[1] as *mut i32, , ++, 0, 1);
+21 | |         TEST_INCDEC(AtomicI32, &ia[1] as *mut i32, , --, 0, -1);
+22 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+warning: unused macro definition: `TEST_INCDEC`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:25:14
+   |
+25 | macro_rules! TEST_INCDEC {
+   |              ^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_macros)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused macro definition: `TEST_INCDEC_ARITH`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:39:14
+   |
+39 | macro_rules! TEST_INCDEC_ARITH {
+   |              ^^^^^^^^^^^^^^^^^
+
+warning: unused macro definition: `TEST_ALL_INCDEC_ARITH`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:52:14
+   |
+52 | macro_rules! TEST_ALL_INCDEC_ARITH {
+   |              ^^^^^^^^^^^^^^^^^^^^^
+
+error[E0425]: cannot find function, tuple struct or tuple variant `TEST_ALL_INCDEC_ARITH` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:9:5
+  |
+9 |     TEST_ALL_INCDEC_ARITH(0);
+  |     ^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function, tuple struct or tuple variant `TEST_ALL_INCDEC_ARITH` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:10:5
+   |
+10 |     TEST_ALL_INCDEC_ARITH(1);
+   |     ^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function, tuple struct or tuple variant `TEST_ALL_INCDEC_ARITH` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:11:5
+   |
+11 |     TEST_ALL_INCDEC_ARITH(2);
+   |     ^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function, tuple struct or tuple variant `TEST_ALL_INCDEC_ARITH` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:12:5
+   |
+12 |     TEST_ALL_INCDEC_ARITH(-1);
+   |     ^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function, tuple struct or tuple variant `TEST_ALL_INCDEC_ARITH` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:13:5
+   |
+13 |     TEST_ALL_INCDEC_ARITH(1 << 60);
+   |     ^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function, tuple struct or tuple variant `TEST_ALL_INCDEC_ARITH` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:14:5
+   |
+14 |     TEST_ALL_INCDEC_ARITH(1.5);
+   |     ^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error: aborting due to 12 previous errors; 4 warnings emitted
+
+Some errors have detailed explanations: E0425, E0432.
+For more information about an error, try `rustc --explain E0425`.

@@ -1,0 +1,35 @@
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `i`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/preprocessing_directives/scope_of_macro_3/sample_005/target.rs:45:10
+   |
+45 |     p!() i[q!()] = [q!(), r!(2, 3).parse().unwrap(), r!(4, ).parse().unwrap(), r!(, 5).parse().unwrap(), r!(, ).parse().unwrap()];
+   |          ^ expected one of `.`, `;`, `?`, `}`, or an operator
+
+error[E0428]: the name `X` is defined multiple times
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/preprocessing_directives/scope_of_macro_3/sample_005/target.rs:8:5
+  |
+2 |     const X: i32 = 3;
+  |     ----------------- previous definition of the value `X` here
+...
+8 |     const X: i32 = 2;
+  |     ^^^^^^^^^^^^^^^^^ `X` redefined here
+  |
+  = note: `X` must be defined only once in the value namespace of this block
+
+error: no rules expected `!`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/preprocessing_directives/scope_of_macro_3/sample_005/target.rs:43:17
+   |
+10 |     macro_rules! t {
+   |     -------------- when calling this macro
+...
+43 |     let w = t!(g!)(0);
+   |                 ^ no rules expected this token in macro call
+   |
+note: while trying to match meta-variable `$a:ident`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/preprocessing_directives/scope_of_macro_3/sample_005/target.rs:11:10
+   |
+11 |         ($a:ident) => {{
+   |          ^^^^^^^^
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0428`.

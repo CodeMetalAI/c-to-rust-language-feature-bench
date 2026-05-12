@@ -1,0 +1,98 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_004/target.rs:74:5
+   |
+74 | /     unsafe {
+75 | |         if o.base != 10 {
+76 | |             return 1;
+...  |
+99 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_004/target.rs:128:5
+    |
+128 | /     unsafe {
+129 | |         o.inner.inner_struct.deep_union.xy.x = 0x11223344;
+130 | |
+131 | |         if o.inner.inner_struct.deep_union.xy.x != 0x11223344 {
+...   |
+157 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_004/target.rs:187:14
+    |
+187 |     let pb = unsafe { &o.inner.inner_struct.b } as *const _ as usize;
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_004/target.rs:188:17
+    |
+188 |     let pdeep = unsafe { &o.inner.inner_struct.deep_union.deep } as *const _ as usize;
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_004/target.rs:189:15
+    |
+189 |     let ptx = unsafe { &o.tail.tail_struct.tail_x } as *const _ as usize;
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_004/target.rs:190:15
+    |
+190 |     let pty = unsafe { &o.tail.tail_struct.tail_union.tail_y } as *const _ as usize;
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_004/target.rs:14:5
+   |
+14 |     inner_struct: InnerStruct,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+14 |     inner_struct: std::mem::ManuallyDrop<InnerStruct>,
+   |                   +++++++++++++++++++++++           +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_004/target.rs:26:5
+   |
+26 |     xy: XY,
+   |     ^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+26 |     xy: std::mem::ManuallyDrop<XY>,
+   |         +++++++++++++++++++++++  +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_004/target.rs:36:5
+   |
+36 |     tail_struct: TailStruct,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+36 |     tail_struct: std::mem::ManuallyDrop<TailStruct>,
+   |                  +++++++++++++++++++++++          +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_c13/sample_004/target.rs:46:5
+   |
+46 |     tail_pq: TailPQ,
+   |     ^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+46 |     tail_pq: std::mem::ManuallyDrop<TailPQ>,
+   |              +++++++++++++++++++++++      +
+
+error: aborting due to 10 previous errors
+
+For more information about this error, try `rustc --explain E0740`.

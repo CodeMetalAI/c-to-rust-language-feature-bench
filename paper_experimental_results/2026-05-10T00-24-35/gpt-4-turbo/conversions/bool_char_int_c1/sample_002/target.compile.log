@@ -1,0 +1,74 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/bool_char_int_c1/sample_002/target.rs:15:36
+   |
+15 |     if !expect_type(type_id(0i32 + 0u32), 8) {
+   |                                    ^^^^ expected `i32`, found `u32`
+
+error[E0277]: cannot add `u32` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/bool_char_int_c1/sample_002/target.rs:15:34
+   |
+15 |     if !expect_type(type_id(0i32 + 0u32), 8) {
+   |                                  ^ no implementation for `i32 + u32`
+   |
+   = help: the trait `Add<u32>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/bool_char_int_c1/sample_002/target.rs:18:36
+   |
+18 |     if !expect_type(type_id(0i64 + 0u64), 10) {
+   |                                    ^^^^ expected `i64`, found `u64`
+
+error[E0277]: cannot add `u64` to `i64`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/bool_char_int_c1/sample_002/target.rs:18:34
+   |
+18 |     if !expect_type(type_id(0i64 + 0u64), 10) {
+   |                                  ^ no implementation for `i64 + u64`
+   |
+   = help: the trait `Add<u64>` is not implemented for `i64`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i64` implements `Add<i64>`
+             `&i64` implements `Add`
+             `i64` implements `Add<&i64>`
+             `i64` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/bool_char_int_c1/sample_002/target.rs:22:36
+   |
+22 |     if !expect_type(type_id(0i32 + 0i64), 11) {
+   |                                    ^^^^ expected `i32`, found `i64`
+
+error[E0277]: cannot add `i64` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/bool_char_int_c1/sample_002/target.rs:22:34
+   |
+22 |     if !expect_type(type_id(0i32 + 0i64), 11) {
+   |                                  ^ no implementation for `i32 + i64`
+   |
+   = help: the trait `Add<i64>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0277]: the trait bound `usize: From<TypeId>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/bool_char_int_c1/sample_002/target.rs:36:33
+   |
+36 |     std::any::TypeId::of::<T>().into()
+   |                                 ^^^^ the trait `From<TypeId>` is not implemented for `usize`
+   |
+   = help: the following other types implement trait `From<T>`:
+             `usize` implements `From<bool>`
+             `usize` implements `From<std::ptr::Alignment>`
+             `usize` implements `From<u16>`
+             `usize` implements `From<u8>`
+   = note: required for `TypeId` to implement `Into<usize>`
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

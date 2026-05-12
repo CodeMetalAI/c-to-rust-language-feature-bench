@@ -1,0 +1,26 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/initialization_7/sample_002/target.rs:25:8
+   |
+25 |     if unsafe { *pa.offset(1) }!= 2 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/initialization_7/sample_002/target.rs:28:8
+   |
+28 |     if unsafe { *pb.offset(2) }!= 5 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/initialization_7/sample_002/target.rs:10:16
+   |
+ 5 | fn main() {
+   |          - expected `()` because of default return type
+...
+10 |         return 1;
+   |                ^ expected `()`, found integer
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

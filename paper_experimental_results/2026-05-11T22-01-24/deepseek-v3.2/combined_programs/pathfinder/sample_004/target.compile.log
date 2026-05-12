@@ -1,0 +1,46 @@
+warning: unused import: `std::ptr`
+ --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_004/target.rs:1:5
+  |
+1 | use std::ptr;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_004/target.rs:29:5
+   |
+29 | /     unsafe {
+30 | |         (*p).row += 100;
+31 | |         (*p).row
+32 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_004/target.rs:54:21
+   |
+54 |             let b = unsafe { *(*x.as_ptr().add(i)).add(j) };
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_004/target.rs:63:8
+   |
+63 |     if unsafe { p1.offset_from(p0) } != 5 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_004/target.rs:127:12
+    |
+127 |         if unsafe { (*wp_ptr).cost } != x[2][0] {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `add` found for array `[i32; 5]` in the current scope
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_004/target.rs:54:52
+   |
+54 |             let b = unsafe { *(*x.as_ptr().add(i)).add(j) };
+   |                                                    ^^^ method not found in `[i32; 5]`
+
+error: aborting due to 5 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0599`.

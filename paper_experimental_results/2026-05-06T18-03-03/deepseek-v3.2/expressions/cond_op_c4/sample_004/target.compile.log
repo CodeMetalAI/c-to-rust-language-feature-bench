@@ -1,0 +1,84 @@
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/cond_op_c4/sample_004/target.rs:4:5
+  |
+4 |     G = gval;
+  |     ^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/cond_op_c4/sample_004/target.rs:11:5
+   |
+11 |     G = 0;
+   |     ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/cond_op_c4/sample_004/target.rs:13:9
+   |
+13 |         G == 1
+   |         ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/cond_op_c4/sample_004/target.rs:21:8
+   |
+21 |     if G != 1 {
+   |        ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/cond_op_c4/sample_004/target.rs:25:5
+   |
+25 |     G = 0;
+   |     ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/cond_op_c4/sample_004/target.rs:30:9
+   |
+30 |         G == 1
+   |         ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/cond_op_c4/sample_004/target.rs:35:8
+   |
+35 |     if G != 1 {
+   |        ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0384]: cannot assign twice to immutable variable `x`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/cond_op_c4/sample_004/target.rs:26:5
+   |
+12 | /     x = if set_g_return(1, 1) != 0 {
+13 | |         G == 1
+14 | |     } else {
+15 | |         set_g_return(2, 1);
+16 | |         false
+17 | |     };
+   | |_____- first assignment to `x`
+...
+26 | /     x = if set_g_return(1, 0) != 0 {
+27 | |         set_g_return(2, 1);
+28 | |         false
+29 | |     } else {
+30 | |         G == 1
+31 | |     };
+   | |_____^ cannot assign twice to immutable variable
+   |
+help: consider making this binding mutable
+   |
+ 9 |     let mut x;
+   |         +++
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0133, E0384.
+For more information about an error, try `rustc --explain E0133`.

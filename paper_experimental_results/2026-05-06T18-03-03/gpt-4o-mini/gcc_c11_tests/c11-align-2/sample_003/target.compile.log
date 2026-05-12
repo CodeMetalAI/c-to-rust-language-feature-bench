@@ -1,0 +1,50 @@
+error[E0412]: cannot find type `alignas` in this scope
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_003/target.rs:4:40
+  |
+4 | const S1: &str = std::any::type_name::<alignas>();
+  |                                        ^^^^^^^ not found in this scope
+  |
+help: you might be missing a type parameter
+  |
+4 | const S1<alignas>: &str = std::any::type_name::<alignas>();
+  |         +++++++++
+
+error[E0412]: cannot find type `alignof` in this scope
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_003/target.rs:5:40
+  |
+5 | const S2: &str = std::any::type_name::<alignof>();
+  |                                        ^^^^^^^ not found in this scope
+  |
+help: you might be missing a type parameter
+  |
+5 | const S2<alignof>: &str = std::any::type_name::<alignof>();
+  |         +++++++++
+
+warning: unused import: `std::ptr`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_003/target.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_003/target.rs:12:5
+   |
+12 |     unsafe { libc::strcmp(c1.as_ptr(), c2.as_ptr()) }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `libc`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_003/target.rs:12:14
+   |
+12 |     unsafe { libc::strcmp(c1.as_ptr(), c2.as_ptr()) }
+   |              ^^^^ use of unresolved module or unlinked crate `libc`
+   |
+   = help: you might be missing a crate named `libc`
+
+error: aborting due to 4 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0412, E0433.
+For more information about an error, try `rustc --explain E0412`.

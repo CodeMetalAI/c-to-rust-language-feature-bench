@@ -1,0 +1,74 @@
+use std::sync::atomic::{AtomicI32, Ordering};
+
+fn type_id<T>(_x: T) -> u32 {
+    std::any::TypeId::of::<T>().hash(&mut std::collections::hash_map::DefaultHasher::new()) as u32
+}
+
+fn main() {
+    let mut x = 3;
+    let cx = 4;
+    let ax = AtomicI32::new(5);
+
+    if std::mem::size_of_val(&x) != std::mem::size_of::<i32>() {
+        std::process::exit(1);
+    }
+    if std::mem::align_of_val(&x) != std::mem::align_of::<i32>() {
+        std::process::exit(2);
+    }
+
+    // &x dereferences to x
+    if *(&x) != 3 {
+        std::process::exit(3);
+    }
+
+    // Simulate TYPE_ID checks with type comparisons
+    // We'll use a simple runtime check since Rust doesn't have _Generic
+    let type_id_x = type_id(x);
+    let type_id_int = type_id(0i32);
+    if type_id_x != type_id_int {
+        std::process::exit(4);
+    }
+
+    let type_id_ax = type_id(&ax);
+    let type_id_atomic = type_id(AtomicI32::new(0));
+    if type_id_ax != type_id_atomic {
+        std::process::exit(5);
+    }
+
+    // +cx and +ax promote to int in C, which is i32 in Rust
+    let plus_cx = cx;
+    let type_id_plus_cx = type_id(plus_cx);
+    if type_id_plus_cx != type_id_int {
+        std::process::exit(6);
+    }
+
+    let plus_ax = ax.load(Ordering::SeqCst);
+    let type_id_plus_ax = type_id(plus_ax);
+    if type_id_plus_ax != type_id_int {
+        std::process::exit(7);
+    }
+
+    let y = x;
+    if y != 3 {
+        std::process::exit(8);
+    }
+
+    x += 1;
+    if x != 4 {
+        std::process::exit(9);
+    }
+
+    struct S {
+        m: i32,
+    }
+    let mut s = S { m: 7 };
+    if s.m != 7 {
+        std::process::exit(10);
+    }
+    s.m = 8;
+    if s.m != 8 {
+        std::process::exit(11);
+    }
+
+    std::process::exit(0);
+}

@@ -1,0 +1,25 @@
+error[E0423]: expected function, found macro `std::mem::offset_of`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_004/target.rs:15:8
+   |
+15 |     if std::mem::offset_of::<S>() as usize!= 0 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^ not a function
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_004/target.rs:10:21
+   |
+10 |       let p: *mut S = Box::new(S {
+   |  ____________------___^
+   | |            |
+   | |            expected due to this
+11 | |         inner: 0,
+12 | |         array: [0; 4],
+13 | |     });
+   | |______^ expected `*mut S`, found `Box<S>`
+   |
+   = note: expected raw pointer `*mut S`
+                   found struct `Box<S>`
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0308, E0423.
+For more information about an error, try `rustc --explain E0308`.

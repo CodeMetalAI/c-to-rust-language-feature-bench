@@ -1,0 +1,15 @@
+error[E0054]: cannot cast `u8` as `bool`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o/conversions/bool_char_int_c1/sample_003/target.rs:6:29
+  |
+6 |     if !expect_type(type_id(1u8 as bool as i32 + 0), 7) {
+  |                             ^^^^^^^^^^^
+  |
+help: compare with zero instead
+  |
+6 -     if !expect_type(type_id(1u8 as bool as i32 + 0), 7) {
+6 +     if !expect_type(type_id(1u8 != 0 as i32 + 0), 7) {
+  |
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0054`.

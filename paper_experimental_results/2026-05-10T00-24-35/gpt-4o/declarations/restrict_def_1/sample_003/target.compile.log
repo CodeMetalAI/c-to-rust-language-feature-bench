@@ -1,0 +1,122 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_1/sample_003/target.rs:14:5
+   |
+14 | /     unsafe {
+15 | |         if which {
+16 | |             &u.right
+17 | |         } else {
+...  |
+20 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_1/sample_003/target.rs:24:5
+   |
+24 | /     unsafe {
+25 | |         if which {
+26 | |             &mut u.right
+27 | |         } else {
+...  |
+30 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_1/sample_003/target.rs:57:13
+   |
+57 |     let a = unsafe { choose_view_mut(&mut BANK_A, which_a) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_1/sample_003/target.rs:58:13
+   |
+58 |     let b = unsafe { choose_view_mut(&mut BANK_B, which_b) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_1/sample_003/target.rs:60:5
+   |
+60 | /     unsafe {
+61 | |         fill(a, 8, 100);
+62 | |         fill(b, 8, 200);
+63 | |         fill(&mut C, 8, 300);
+...  |
+92 | |     }
+   | |_____^
+
+warning: function `choose_view` is never used
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_1/sample_003/target.rs:13:4
+   |
+13 | fn choose_view(u: &Bank, which: bool) -> &[i32; 8] {
+   |    ^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_1/sample_003/target.rs:57:38
+   |
+57 |     let a = unsafe { choose_view_mut(&mut BANK_A, which_a) };
+   |                                      ^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw mut` instead to create a raw pointer
+   |
+57 |     let a = unsafe { choose_view_mut(&raw mut BANK_A, which_a) };
+   |                                       +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_1/sample_003/target.rs:58:38
+   |
+58 |     let b = unsafe { choose_view_mut(&mut BANK_B, which_b) };
+   |                                      ^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+58 |     let b = unsafe { choose_view_mut(&raw mut BANK_B, which_b) };
+   |                                       +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_1/sample_003/target.rs:63:14
+   |
+63 |         fill(&mut C, 8, 300);
+   |              ^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+63 |         fill(&raw mut C, 8, 300);
+   |               +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_1/sample_003/target.rs:67:14
+   |
+67 |         bump(&mut C, 8, 3);
+   |              ^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+67 |         bump(&raw mut C, 8, 3);
+   |               +++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_1/sample_003/target.rs:77:16
+   |
+77 |         if sum(&C, 8) != (303 + 304 + 305 + 306 + 307 + 308 + 309 + 310) {
+   |                ^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+77 |         if sum(&raw const C, 8) != (303 + 304 + 305 + 306 + 307 + 308 + 309 + 310) {
+   |                 +++++++++
+
+error: aborting due to 5 previous errors; 6 warnings emitted

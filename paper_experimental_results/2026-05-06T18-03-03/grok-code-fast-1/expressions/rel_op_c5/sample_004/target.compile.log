@@ -1,0 +1,109 @@
+error: `<` is interpreted as a start of generic arguments for `usize`, not a comparison
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/rel_op_c5/sample_004/target.rs:31:22
+   |
+31 |     if !(p0 as usize < p2 as usize) {
+   |                      ^ ----- interpreted as generic arguments
+   |                      |
+   |                      not interpreted as comparison
+   |
+help: try comparing the cast value
+   |
+31 |     if !((p0 as usize) < p2 as usize) {
+   |          +           +
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/rel_op_c5/sample_004/target.rs:20:18
+   |
+20 |     let p_end1 = unsafe { arr.as_ptr().add(3) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/rel_op_c5/sample_004/target.rs:21:18
+   |
+21 |     let p_end2 = unsafe { arr.as_ptr().add(3) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/rel_op_c5/sample_004/target.rs:36:14
+   |
+36 |     let q1 = unsafe { (q_last as *const i32).add(1) };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/rel_op_c5/sample_004/target.rs:48:13
+   |
+48 |     let u = unsafe { std::mem::MaybeUninit::<Un>::uninit().assume_init() };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/rel_op_c5/sample_004/target.rs:49:14
+   |
+49 |     let ui = unsafe { &u.i as *const i32 };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/rel_op_c5/sample_004/target.rs:50:14
+   |
+50 |     let ud = unsafe { &u.d as *const f64 };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&i32` as `usize` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/rel_op_c5/sample_004/target.rs:28:10
+   |
+28 |     if !(p2 as usize > p0 as usize) {
+   |          ^^^^^^^^^^^
+   |
+help: dereference the expression
+   |
+28 |     if !(*p2 as usize > p0 as usize) {
+   |          +
+
+error[E0606]: casting `&i32` as `usize` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/rel_op_c5/sample_004/target.rs:28:24
+   |
+28 |     if !(p2 as usize > p0 as usize) {
+   |                        ^^^^^^^^^^^
+   |
+help: dereference the expression
+   |
+28 |     if !(p2 as usize > *p0 as usize) {
+   |                        +
+
+error[E0606]: casting `&i32` as `usize` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/rel_op_c5/sample_004/target.rs:31:10
+   |
+31 |     if !(p0 as usize < p2 as usize) {
+   |          ^^^^^^^^^^^
+   |
+help: dereference the expression
+   |
+31 |     if !(*p0 as usize < p2 as usize) {
+   |          +
+
+error[E0606]: casting `&i32` as `usize` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/rel_op_c5/sample_004/target.rs:31:24
+   |
+31 |     if !(p0 as usize < p2 as usize) {
+   |                        ^^^^^^^^^^^
+   |
+help: dereference the expression
+   |
+31 |     if !(p0 as usize < *p2 as usize) {
+   |                        +
+
+error[E0606]: casting `&i32` as `usize` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/rel_op_c5/sample_004/target.rs:37:24
+   |
+37 |     if !(q1 as usize > p0 as usize) {
+   |                        ^^^^^^^^^^^
+   |
+help: dereference the expression
+   |
+37 |     if !(q1 as usize > *p0 as usize) {
+   |                        +
+
+error: aborting due to 12 previous errors
+
+For more information about this error, try `rustc --explain E0606`.

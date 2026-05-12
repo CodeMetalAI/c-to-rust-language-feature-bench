@@ -1,0 +1,51 @@
+error[E0015]: cannot call non-const associated function `Box::<IntList>::new` in statics
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/compound_literals_7/sample_003/target.rs:10:15
+   |
+10 |     cdr: Some(Box::new(ENDLESS_ZEROS)),
+   |               ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+
+error[E0369]: binary operation `!=` cannot be applied to type `&IntList`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/compound_literals_7/sample_003/target.rs:17:47
+   |
+17 |     } else if x.cdr.as_ref().unwrap().as_ref()!= &ENDLESS_ZEROS {
+   |               --------------------------------^^ -------------- &IntList
+   |               |
+   |               &IntList
+   |
+note: an implementation of `PartialEq` might be missing for `IntList`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/compound_literals_7/sample_003/target.rs:2:1
+   |
+ 2 | struct IntList {
+   | ^^^^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `IntList` with `#[derive(PartialEq)]`
+   |
+ 2 + #[derive(PartialEq)]
+ 3 | struct IntList {
+   |
+
+error[E0369]: binary operation `!=` cannot be applied to type `&IntList`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/compound_literals_7/sample_003/target.rs:19:69
+   |
+19 |     } else if x.cdr.as_ref().unwrap().cdr.as_ref().unwrap().as_ref()!= &ENDLESS_ZEROS {
+   |               ------------------------------------------------------^^ -------------- &IntList
+   |               |
+   |               &IntList
+   |
+note: an implementation of `PartialEq` might be missing for `IntList`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/compound_literals_7/sample_003/target.rs:2:1
+   |
+ 2 | struct IntList {
+   | ^^^^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `IntList` with `#[derive(PartialEq)]`
+   |
+ 2 + #[derive(PartialEq)]
+ 3 | struct IntList {
+   |
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0015, E0369.
+For more information about an error, try `rustc --explain E0015`.

@@ -1,0 +1,179 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:40:5
+   |
+40 | /     unsafe {
+41 | |         SINK ^= checksum_2d(m, &BACKING);
+42 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:12:29
+   |
+12 |             BACKING[i][j] = (i + 1) * 100 + (j + 1);
+   |             -------------   ^^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+   |             |
+   |             expected due to the type of this binding
+
+error[E0277]: the type `[[i32; 9]]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:21:20
+   |
+21 |             s ^= a[i][j] + i * 131 + j * 17;
+   |                    ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[[i32; 9]]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[[i32; 9]]` to implement `Index<i32>`
+
+error[E0277]: the type `[i32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:30:11
+   |
+30 |         d[i] = (i + 1) * 7 + 3;
+   |           ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[i32]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[i32; 9]` to implement `Index<i32>`
+
+error[E0277]: the type `[[i32; 9]]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:36:15
+   |
+36 |             q[i][j] = c[i][j] + d[(i + j) % m];
+   |               ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[[i32; 9]]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[[i32; 9]]` to implement `Index<i32>`
+
+error[E0277]: the type `[[i32; 9]]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:36:25
+   |
+36 |             q[i][j] = c[i][j] + d[(i + j) % m];
+   |                         ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[[i32; 9]]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[[i32; 9]]` to implement `Index<i32>`
+
+error[E0277]: the type `[i32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:36:35
+   |
+36 |             q[i][j] = c[i][j] + d[(i + j) % m];
+   |                                   ^^^^^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[i32]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[i32; 9]` to implement `Index<i32>`
+
+error[E0277]: the type `[[i32; 9]]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:55:15
+   |
+55 |             x[i][j] = (i + 1) * 10 + (j + 1);
+   |               ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[[i32; 9]]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[[i32; 9]]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[[i32; 9]; 9]` to implement `Index<i32>`
+
+error[E0277]: the type `[[i32; 9]]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:56:15
+   |
+56 |             y[i][j] = (i + 1) * 20 + (j + 1);
+   |               ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[[i32; 9]]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[[i32; 9]]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[[i32; 9]; 9]` to implement `Index<i32>`
+
+error[E0277]: the type `[[i32; 9]]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:66:20
+   |
+66 |             expect[i][j] = x[i][j] + d;
+   |                    ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[[i32; 9]]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[[i32; 9]]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[[i32; 9]; 9]` to implement `Index<i32>`
+
+error[E0277]: the type `[[i32; 9]]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:66:30
+   |
+66 |             expect[i][j] = x[i][j] + d;
+   |                              ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[[i32; 9]]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[[i32; 9]]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[[i32; 9]; 9]` to implement `Index<i32>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:70:16
+   |
+45 | fn main() {
+   |          - expected `()` because of default return type
+...
+70 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0277]: the type `[[i32; 9]]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:79:21
+   |
+79 |             expect2[i][j] = y[i][j] + d;
+   |                     ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[[i32; 9]]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[[i32; 9]]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[[i32; 9]; 9]` to implement `Index<i32>`
+
+error[E0277]: the type `[[i32; 9]]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:79:31
+   |
+79 |             expect2[i][j] = y[i][j] + d;
+   |                               ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[[i32; 9]]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[[i32; 9]]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[[i32; 9]; 9]` to implement `Index<i32>`
+
+error: aborting due to 14 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

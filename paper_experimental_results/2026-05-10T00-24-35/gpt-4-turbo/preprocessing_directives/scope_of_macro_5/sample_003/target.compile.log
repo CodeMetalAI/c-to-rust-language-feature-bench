@@ -1,0 +1,71 @@
+error[E0596]: cannot borrow `pick_1_9` as mutable, as it is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/preprocessing_directives/scope_of_macro_5/sample_003/target.rs:13:9
+   |
+13 |     let pick_1_9 = || (rng_next() % 9) as usize + 1;
+   |         ^^^^^^^^       -------- calling `pick_1_9` requires mutable binding due to mutable borrow of `rng_next`
+   |         |
+   |         not mutable
+...
+39 |         let a = pick_1_9();
+   |                 -------- cannot borrow as mutable
+...
+48 |         let b2 = pick_1_9();
+   |                  -------- cannot borrow as mutable
+...
+55 |         let a3 = pick_1_9();
+   |                  -------- cannot borrow as mutable
+...
+62 |         let a4 = pick_1_9();
+   |                  -------- cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+13 |     let mut pick_1_9 = || (rng_next() % 9) as usize + 1;
+   |         +++
+
+error[E0596]: cannot borrow `pick_0_9` as mutable, as it is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/preprocessing_directives/scope_of_macro_5/sample_003/target.rs:14:9
+   |
+14 |     let pick_0_9 = || (rng_next() % 10) as usize;
+   |         ^^^^^^^^       -------- calling `pick_0_9` requires mutable binding due to mutable borrow of `rng_next`
+   |         |
+   |         not mutable
+...
+40 |         let b = pick_0_9();
+   |                 -------- cannot borrow as mutable
+41 |         let c = pick_0_9();
+   |                 -------- cannot borrow as mutable
+...
+49 |         let c2 = pick_0_9();
+   |                  -------- cannot borrow as mutable
+...
+56 |         let c3 = pick_0_9();
+   |                  -------- cannot borrow as mutable
+...
+63 |         let b4 = pick_0_9();
+   |                  -------- cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+14 |     let mut pick_0_9 = || (rng_next() % 10) as usize;
+   |         +++
+
+error[E0499]: cannot borrow `rng_next` as mutable more than once at a time
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/preprocessing_directives/scope_of_macro_5/sample_003/target.rs:14:20
+   |
+13 |     let pick_1_9 = || (rng_next() % 9) as usize + 1;
+   |                    --  -------- first borrow occurs due to use of `rng_next` in closure
+   |                    |
+   |                    first mutable borrow occurs here
+14 |     let pick_0_9 = || (rng_next() % 10) as usize;
+   |                    ^^  -------- second borrow occurs due to use of `rng_next` in closure
+   |                    |
+   |                    second mutable borrow occurs here
+...
+39 |         let a = pick_1_9();
+   |                 -------- first borrow later used here
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0499, E0596.
+For more information about an error, try `rustc --explain E0499`.

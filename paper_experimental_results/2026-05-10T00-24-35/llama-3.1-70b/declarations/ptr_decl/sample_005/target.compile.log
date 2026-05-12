@@ -1,0 +1,53 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_005/target.rs:8:13
+  |
+8 |     let v = unsafe { *p };
+  |             ^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_005/target.rs:57:8
+   |
+57 |     if unsafe { *b.p_to_const }!= 10 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_005/target.rs:62:8
+   |
+62 |     if unsafe { *b.p_to_const }!= 21 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_005/target.rs:67:8
+   |
+67 |     if unsafe { *b.p_to_const }!= 21 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_005/target.rs:71:5
+   |
+71 |     unsafe { *b.const_p += 5 };
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_005/target.rs:76:5
+   |
+76 |     unsafe { *b.const_p_via_typedef += 7 };
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_005/target.rs:85:8
+   |
+85 |     if unsafe { *b.p_to_const }!= 21 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0594]: cannot assign to `*b.const_p_via_typedef`, which is behind a `*const` pointer
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_005/target.rs:76:14
+   |
+76 |     unsafe { *b.const_p_via_typedef += 7 };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot assign
+
+error: aborting due to 8 previous errors
+
+For more information about this error, try `rustc --explain E0594`.

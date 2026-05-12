@@ -1,0 +1,256 @@
+warning: variant `E_NEG` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:20:5
+   |
+20 |     E_NEG = -1,
+   |     ^^^^^ help: convert the identifier to upper camel case: `ENeg`
+   |
+   = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: variant `E_POS` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:21:5
+   |
+21 |     E_POS = 1,
+   |     ^^^^^ help: convert the identifier to upper camel case: `EPos`
+
+error: invalid suffix `u` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:68:55
+   |
+68 |     if!expect_type(type_id::<u32>((E::E_NEG as u32) + 0u), type_id::<i32>(0 + 0u)) {
+   |                                                       ^^ invalid suffix `u`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `u` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:68:79
+   |
+68 |     if!expect_type(type_id::<u32>((E::E_NEG as u32) + 0u), type_id::<i32>(0 + 0u)) {
+   |                                                                               ^^ invalid suffix `u`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:48:48
+   |
+48 |     if!expect_type(type_id::<u32>((0 as i32) + (0 as u32)), 8) {
+   |                                                ^^^^^^^^^^ expected `i32`, found `u32`
+
+error[E0277]: cannot add `u32` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:48:46
+   |
+48 |     if!expect_type(type_id::<u32>((0 as i32) + (0 as u32)), 8) {
+   |                                              ^ no implementation for `i32 + u32`
+   |
+   = help: the trait `Add<u32>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:48:35
+   |
+48 |     if!expect_type(type_id::<u32>((0 as i32) + (0 as u32)), 8) {
+   |                    -------------- ^^^^^^^^^^^^^^^^^^^^^^^ expected `u32`, found `i32`
+   |                    |
+   |                    arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:1:4
+   |
+ 1 | fn type_id<T>(_x: T) -> u32 {
+   |    ^^^^^^^    -----
+help: you can convert an `i32` to a `u32` and panic if the converted value doesn't fit
+   |
+48 |     if!expect_type(type_id::<u32>(((0 as i32) + (0 as u32)).try_into().unwrap()), 8) {
+   |                                   +                       +++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:51:48
+   |
+51 |     if!expect_type(type_id::<u64>((0 as i64) + (0 as u64)), 10) {
+   |                                                ^^^^^^^^^^ expected `i64`, found `u64`
+
+error[E0277]: cannot add `u64` to `i64`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:51:46
+   |
+51 |     if!expect_type(type_id::<u64>((0 as i64) + (0 as u64)), 10) {
+   |                                              ^ no implementation for `i64 + u64`
+   |
+   = help: the trait `Add<u64>` is not implemented for `i64`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i64` implements `Add<i64>`
+             `&i64` implements `Add`
+             `i64` implements `Add<&i64>`
+             `i64` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:51:35
+   |
+51 |     if!expect_type(type_id::<u64>((0 as i64) + (0 as u64)), 10) {
+   |                    -------------- ^^^^^^^^^^^^^^^^^^^^^^^ expected `u64`, found `i64`
+   |                    |
+   |                    arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:1:4
+   |
+ 1 | fn type_id<T>(_x: T) -> u32 {
+   |    ^^^^^^^    -----
+help: you can convert an `i64` to a `u64` and panic if the converted value doesn't fit
+   |
+51 |     if!expect_type(type_id::<u64>(((0 as i64) + (0 as u64)).try_into().unwrap()), 10) {
+   |                                   +                       +++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:54:50
+   |
+54 |     if!expect_type(type_id::<u128>((0 as i128) + (0 as u128)), 12) {
+   |                                                  ^^^^^^^^^^^ expected `i128`, found `u128`
+
+error[E0277]: cannot add `u128` to `i128`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:54:48
+   |
+54 |     if!expect_type(type_id::<u128>((0 as i128) + (0 as u128)), 12) {
+   |                                                ^ no implementation for `i128 + u128`
+   |
+   = help: the trait `Add<u128>` is not implemented for `i128`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i128` implements `Add<i128>`
+             `&i128` implements `Add`
+             `i128` implements `Add<&i128>`
+             `i128` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:54:36
+   |
+54 |     if!expect_type(type_id::<u128>((0 as i128) + (0 as u128)), 12) {
+   |                    --------------- ^^^^^^^^^^^^^^^^^^^^^^^^^ expected `u128`, found `i128`
+   |                    |
+   |                    arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:1:4
+   |
+ 1 | fn type_id<T>(_x: T) -> u32 {
+   |    ^^^^^^^    -----
+help: you can convert an `i128` to a `u128` and panic if the converted value doesn't fit
+   |
+54 |     if!expect_type(type_id::<u128>(((0 as i128) + (0 as u128)).try_into().unwrap()), 12) {
+   |                                    +                         +++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:58:48
+   |
+58 |     if!expect_type(type_id::<i64>((0 as i32) + (0 as i64)), 9) {
+   |                                                ^^^^^^^^^^ expected `i32`, found `i64`
+
+error[E0277]: cannot add `i64` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:58:46
+   |
+58 |     if!expect_type(type_id::<i64>((0 as i32) + (0 as i64)), 9) {
+   |                                              ^ no implementation for `i32 + i64`
+   |
+   = help: the trait `Add<i64>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:58:35
+   |
+58 |     if!expect_type(type_id::<i64>((0 as i32) + (0 as i64)), 9) {
+   |                    -------------- ^^^^^^^^^^^^^^^^^^^^^^^ expected `i64`, found `i32`
+   |                    |
+   |                    arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:1:4
+   |
+ 1 | fn type_id<T>(_x: T) -> u32 {
+   |    ^^^^^^^    -----
+help: you can convert an `i32` to an `i64`
+   |
+58 |     if!expect_type(type_id::<i64>(((0 as i32) + (0 as i64)).into()), 9) {
+   |                                   +                       ++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:61:49
+   |
+61 |     if!expect_type(type_id::<i128>((0 as i64) + (0 as i128)), 11) {
+   |                                                 ^^^^^^^^^^^ expected `i64`, found `i128`
+
+error[E0277]: cannot add `i128` to `i64`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:61:47
+   |
+61 |     if!expect_type(type_id::<i128>((0 as i64) + (0 as i128)), 11) {
+   |                                               ^ no implementation for `i64 + i128`
+   |
+   = help: the trait `Add<i128>` is not implemented for `i64`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i64` implements `Add<i64>`
+             `&i64` implements `Add`
+             `i64` implements `Add<&i64>`
+             `i64` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:61:36
+   |
+61 |     if!expect_type(type_id::<i128>((0 as i64) + (0 as i128)), 11) {
+   |                    --------------- ^^^^^^^^^^^^^^^^^^^^^^^^ expected `i128`, found `i64`
+   |                    |
+   |                    arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:1:4
+   |
+ 1 | fn type_id<T>(_x: T) -> u32 {
+   |    ^^^^^^^    -----
+help: you can convert an `i64` to an `i128`
+   |
+61 |     if!expect_type(type_id::<i128>(((0 as i64) + (0 as i128)).into()), 11) {
+   |                                    +                        ++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:64:49
+   |
+64 |     if!expect_type(type_id::<i128>((0 as i32) + (0 as i128)), 11) {
+   |                                                 ^^^^^^^^^^^ expected `i32`, found `i128`
+
+error[E0277]: cannot add `i128` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:64:47
+   |
+64 |     if!expect_type(type_id::<i128>((0 as i32) + (0 as i128)), 11) {
+   |                                               ^ no implementation for `i32 + i128`
+   |
+   = help: the trait `Add<i128>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:64:36
+   |
+64 |     if!expect_type(type_id::<i128>((0 as i32) + (0 as i128)), 11) {
+   |                    --------------- ^^^^^^^^^^^^^^^^^^^^^^^^ expected `i128`, found `i32`
+   |                    |
+   |                    arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_005/target.rs:1:4
+   |
+ 1 | fn type_id<T>(_x: T) -> u32 {
+   |    ^^^^^^^    -----
+help: you can convert an `i32` to an `i128`
+   |
+64 |     if!expect_type(type_id::<i128>(((0 as i32) + (0 as i128)).into()), 11) {
+   |                                    +                        ++++++++
+
+error: aborting due to 20 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

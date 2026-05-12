@@ -1,0 +1,43 @@
+error[E0369]: binary operation `!=` cannot be applied to type `Hue`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/enum_specifiers/sample_002/target.rs:27:11
+   |
+27 |     if *cp!= Hue::Claret {
+   |        ---^^ ----------- Hue
+   |        |
+   |        Hue
+   |
+note: an implementation of `PartialEq` might be missing for `Hue`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/enum_specifiers/sample_002/target.rs:1:1
+   |
+ 1 | enum Hue {
+   | ^^^^^^^^ must implement `PartialEq`
+help: consider annotating `Hue` with `#[derive(PartialEq)]`
+   |
+ 1 + #[derive(PartialEq)]
+ 2 | enum Hue {
+   |
+
+warning: unreachable pattern
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/enum_specifiers/sample_002/target.rs:14:9
+   |
+14 |         _ => 0,
+   |         ^ no value can reach this
+   |
+note: multiple earlier patterns match some of the same values
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/enum_specifiers/sample_002/target.rs:14:9
+   |
+10 |         Hue::Chartreuse => 10,
+   |         --------------- matches some of the same values
+11 |         Hue::Burgundy => 11,
+   |         ------------- matches some of the same values
+12 |         Hue::Claret => 12,
+   |         ----------- matches some of the same values
+13 |         Hue::Winedark => 13,
+   |         ------------- matches some of the same values
+14 |         _ => 0,
+   |         ^ collectively making this unreachable
+   = note: `#[warn(unreachable_patterns)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 1 previous error; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0369`.

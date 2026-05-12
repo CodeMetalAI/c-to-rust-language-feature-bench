@@ -1,0 +1,33 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_1/sample_005/target.rs:34:5
+   |
+34 |     unsafe { G_STORE }
+   |     ^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_1/sample_005/target.rs:41:16
+   |
+37 | fn main() {
+   |          - expected `()` because of default return type
+...
+41 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0614]: type `fn() -> i32` cannot be dereferenced
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_1/sample_005/target.rs:56:9
+   |
+56 |     if ((*metricp)()) != 7 {
+   |         ^^^^^^^^^^ can't be dereferenced
+
+error[E0614]: type `fn() -> i32` cannot be dereferenced
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_1/sample_005/target.rs:60:9
+   |
+60 |     if ((*metricp)()) != 7 {
+   |         ^^^^^^^^^^ can't be dereferenced
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0614.
+For more information about an error, try `rustc --explain E0308`.

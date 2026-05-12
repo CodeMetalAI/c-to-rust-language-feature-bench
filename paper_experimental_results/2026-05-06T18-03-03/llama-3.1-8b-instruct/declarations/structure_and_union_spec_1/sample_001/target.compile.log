@@ -1,0 +1,63 @@
+error: struct literals are not allowed here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_001/target.rs:21:20
+   |
+21 |     if v1.union == Union::Struct1 { i: 2, j: 0 } {
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: surround the struct literal with parentheses
+   |
+21 |     if v1.union == (Union::Struct1 { i: 2, j: 0 }) {
+   |                    +                             +
+
+error: struct literals are not allowed here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_001/target.rs:26:19
+   |
+26 |     if v1.union!= Union::Struct2 { k: 5, l: 0 } {
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: surround the struct literal with parentheses
+   |
+26 |     if v1.union!= (Union::Struct2 { k: 5, l: 0 }) {
+   |                   +                             +
+
+error[E0369]: binary operation `==` cannot be applied to type `main::Union`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_001/target.rs:21:17
+   |
+21 |     if v1.union == Union::Struct1 { i: 2, j: 0 } {
+   |        -------- ^^ ----------------------------- main::Union
+   |        |
+   |        main::Union
+   |
+note: an implementation of `PartialEq` might be missing for `main::Union`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_001/target.rs:9:5
+   |
+ 9 |     enum Union {
+   |     ^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `main::Union` with `#[derive(PartialEq)]`
+   |
+ 9 +     #[derive(PartialEq)]
+10 |     enum Union {
+   |
+
+error[E0369]: binary operation `!=` cannot be applied to type `main::Union`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_001/target.rs:26:16
+   |
+26 |     if v1.union!= Union::Struct2 { k: 5, l: 0 } {
+   |        --------^^ ----------------------------- main::Union
+   |        |
+   |        main::Union
+   |
+note: an implementation of `PartialEq` might be missing for `main::Union`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_001/target.rs:9:5
+   |
+ 9 |     enum Union {
+   |     ^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `main::Union` with `#[derive(PartialEq)]`
+   |
+ 9 +     #[derive(PartialEq)]
+10 |     enum Union {
+   |
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0369`.

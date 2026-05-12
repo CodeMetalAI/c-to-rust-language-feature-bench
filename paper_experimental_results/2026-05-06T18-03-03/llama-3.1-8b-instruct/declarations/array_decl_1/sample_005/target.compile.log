@@ -1,0 +1,189 @@
+error[E0425]: cannot find value `fa` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:55:8
+   |
+55 |     if fa[0]!= 1.0 || fa[10]!= 11.0 {
+   |        ^^ not found in this scope
+
+error[E0425]: cannot find value `fa` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:55:23
+   |
+55 |     if fa[0]!= 1.0 || fa[10]!= 11.0 {
+   |                       ^^ not found in this scope
+
+error[E0425]: cannot find value `afp` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:59:10
+   |
+59 |     if (*afp[0])!= 100.0 || (*afp[16])!= 116.0 {
+   |          ^^^ not found in this scope
+
+error[E0425]: cannot find value `afp` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:59:31
+   |
+59 |     if (*afp[0])!= 100.0 || (*afp[16])!= 116.0 {
+   |                               ^^^ not found in this scope
+
+error[E0425]: cannot find value `fa` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:71:21
+   |
+71 |             *vla1 = fa[i] * 2.0;
+   |                     ^^ not found in this scope
+
+error[E0425]: cannot find value `afp` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:75:21
+   |
+75 |             *vla2 = afp[i].clone();
+   |                     ^^^ not found in this scope
+
+error[E0425]: cannot find value `CALLS` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:78:21
+   |
+78 |         if unsafe { CALLS }!= 2 {
+   |                     ^^^^^ not found in this scope
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:5:5
+  |
+5 | /     unsafe {
+6 | |         CALLS += 1;
+7 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:78:12
+   |
+78 |         if unsafe { CALLS }!= 2 {
+   |            ^^^^^^^^^^^^^^^^
+
+error[E0608]: cannot index into a value of type `&mut f32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:26:24
+   |
+26 |         *afp = &backing[i];
+   |                        ^^^
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:67:34
+     |
+  67 |         let mut vla1 = vec![0.0; n1];
+     |                        ----------^^-
+     |                        |         |
+     |                        |         expected `usize`, found `i32`
+     |                        arguments to this function are incorrect
+     |
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:3464:8
+     |
+3464 | pub fn from_elem<T: Clone>(elem: T, n: usize) -> Vec<T> {
+     |        ^^^^^^^^^
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+     |
+  67 |         let mut vla1 = vec![0.0; n1.try_into().unwrap()];
+     |                                    ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:68:34
+     |
+  68 |         let mut vla2 = vec![0.0; n2];
+     |                        ----------^^-
+     |                        |         |
+     |                        |         expected `usize`, found `i32`
+     |                        arguments to this function are incorrect
+     |
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:3464:8
+     |
+3464 | pub fn from_elem<T: Clone>(elem: T, n: usize) -> Vec<T> {
+     |        ^^^^^^^^^
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+     |
+  68 |         let mut vla2 = vec![0.0; n2.try_into().unwrap()];
+     |                                    ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:83:48
+   |
+83 |             let span = mem::size_of::<f32>() * (n1 - 1);
+   |                                                ^^^^^^^^ expected `usize`, found `i32`
+
+error[E0277]: cannot multiply `usize` by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:83:46
+   |
+83 |             let span = mem::size_of::<f32>() * (n1 - 1);
+   |                                              ^ no implementation for `usize * i32`
+   |
+   = help: the trait `Mul<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Mul<Rhs>`:
+             `&usize` implements `Mul<usize>`
+             `&usize` implements `Mul`
+             `usize` implements `Mul<&usize>`
+             `usize` implements `Mul`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:84:34
+   |
+84 |             if span!= (n1 - 1) * mem::size_of::<f32>() {
+   |                                  ^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:84:23
+   |
+84 |             if span!= (n1 - 1) * mem::size_of::<f32>() {
+   |                ----   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `usize`, found `i32`
+   |                |
+   |                expected because this is `usize`
+   |
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+84 |             if span!= ((n1 - 1) * mem::size_of::<f32>()).try_into().unwrap() {
+   |                       +                                +++++++++++++++++++++
+
+error[E0277]: cannot multiply `i32` by `usize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:84:32
+   |
+84 |             if span!= (n1 - 1) * mem::size_of::<f32>() {
+   |                                ^ no implementation for `i32 * usize`
+   |
+   = help: the trait `Mul<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Mul<Rhs>`:
+             `&i32` implements `Mul<i32>`
+             `&i32` implements `Mul`
+             `i32` implements `Mul<&i32>`
+             `i32` implements `Mul`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:93:29
+   |
+93 |         if sum_pointed_ints(&vla2, 17)!= (100 + 101 + 102 + 103 + 104 + 105 + 106 + 107 + 108 + 109 + 110 + 111 + 112 + 113 + 114 + 115 + 116) {
+   |            ---------------- ^^^^^ expected `&[&f32]`, found `&Vec<{float}>`
+   |            |
+   |            arguments to this function are incorrect
+   |
+   = note: expected reference `&[&f32]`
+              found reference `&Vec<{float}>`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:38:4
+   |
+38 | fn sum_pointed_ints(pp: &[&f32], n: usize) -> i32 {
+   |    ^^^^^^^^^^^^^^^^ -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:97:32
+   |
+97 |         if takes_params(&vla1, &vla2)!= ((vla1[0] as i32) + (vla1[10] as i32) + (vla2[0].clone() as i32) + (vla2[16].clone() as i32)) {
+   |            ------------        ^^^^^ expected `&[&f32]`, found `&Vec<{float}>`
+   |            |
+   |            arguments to this function are incorrect
+   |
+   = note: expected reference `&[&f32]`
+              found reference `&Vec<{float}>`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_1/sample_005/target.rs:46:4
+   |
+46 | fn takes_params(a: &[f32], afp2: &[&f32]) -> i32 {
+   |    ^^^^^^^^^^^^            -------------
+
+error: aborting due to 19 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0425, E0608.
+For more information about an error, try `rustc --explain E0277`.

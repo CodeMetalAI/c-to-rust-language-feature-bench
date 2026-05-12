@@ -1,0 +1,29 @@
+error: expected `:`, found `any_member`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_13/sample_001/target.rs:2:9
+  |
+1 | union U {
+  |       - while parsing this union
+2 |     int any_member: 32,
+  |         ^^^^^^^^^^ expected `:`
+
+error: unions cannot have zero fields
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_13/sample_001/target.rs:1:1
+  |
+1 | / union U {
+2 | |     int any_member: 32,
+3 | |     u32 u_member: 32,
+4 | | }
+  | |_^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_13/sample_001/target.rs:10:16
+   |
+ 6 | fn main() {
+   |          - expected `()` because of default return type
+...
+10 |         return 1;
+   |                ^ expected `()`, found integer
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

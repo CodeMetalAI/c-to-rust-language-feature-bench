@@ -1,0 +1,32 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/simple_asgn_3/sample_002/target.rs:6:5
+   |
+ 6 | /     unsafe {
+ 7 | |         // This is inherently unsafe due to modifying a const char through a pointer.
+ 8 | |         // In Rust, we need to use unsafe to achieve the same behavior.
+ 9 | |         let mut_ptr = p as *mut char;
+10 | |         *mut_ptr = '\0';
+11 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+warning: unused variable: `cpp`
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/simple_asgn_3/sample_002/target.rs:4:9
+  |
+4 |     let cpp: *const *const char = &p;
+  |         ^^^ help: if this is intentional, prefix it with an underscore: `_cpp`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/simple_asgn_3/sample_002/target.rs:3:9
+  |
+3 |     let mut p: *const char = &c;
+  |         ----^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 1 previous error; 2 warnings emitted

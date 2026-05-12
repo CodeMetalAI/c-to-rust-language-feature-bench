@@ -1,0 +1,89 @@
+warning: unreachable expression
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c8/sample_001/target.rs:11:9
+   |
+11 |         return std::process::exit(1);
+   |         ^^^^^^^---------------------
+   |         |      |
+   |         |      any code following this expression is unreachable
+   |         unreachable expression
+   |
+   = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c8/sample_001/target.rs:14:9
+   |
+14 |         return std::process::exit(2);
+   |         ^^^^^^^---------------------
+   |         |      |
+   |         |      any code following this expression is unreachable
+   |         unreachable expression
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c8/sample_001/target.rs:19:9
+   |
+19 |         return std::process::exit(3);
+   |         ^^^^^^^---------------------
+   |         |      |
+   |         |      any code following this expression is unreachable
+   |         unreachable expression
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c8/sample_001/target.rs:24:9
+   |
+24 |         return std::process::exit(4);
+   |         ^^^^^^^---------------------
+   |         |      |
+   |         |      any code following this expression is unreachable
+   |         unreachable expression
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c8/sample_001/target.rs:27:9
+   |
+27 |         return std::process::exit(5);
+   |         ^^^^^^^---------------------
+   |         |      |
+   |         |      any code following this expression is unreachable
+   |         unreachable expression
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c8/sample_001/target.rs:40:9
+   |
+40 |         return std::process::exit(6);
+   |         ^^^^^^^---------------------
+   |         |      |
+   |         |      any code following this expression is unreachable
+   |         unreachable expression
+
+warning: unused variable: `p_end`
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c8/sample_001/target.rs:8:9
+  |
+8 |     let p_end = &a[5]; // This will point to the element after the last, which is out of bounds
+  |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_p_end`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::add` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c8/sample_001/target.rs:36:21
+   |
+36 |     let p_end_raw = p0_raw.add(5);
+   |                     ^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: this operation will panic at runtime
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c8/sample_001/target.rs:8:18
+  |
+8 |     let p_end = &a[5]; // This will point to the element after the last, which is out of bounds
+  |                  ^^^^ index out of bounds: the length is 5 but the index is 5
+  |
+  = note: `#[deny(unconditional_panic)]` on by default
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_c8/sample_001/target.rs:38:25
+   |
+38 |     let p_end_actual = &a[5] as *const i32; // This is actually invalid, but we can compare addresses
+   |                         ^^^^ index out of bounds: the length is 5 but the index is 5
+
+error: aborting due to 3 previous errors; 7 warnings emitted
+
+For more information about this error, try `rustc --explain E0133`.

@@ -1,0 +1,83 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_1/sample_002/target.rs:5:9
+  |
+5 | /         unsafe {
+6 | |             gstore[0] = 111;
+7 | |             gstore[0] + 1
+8 | |         }
+  | |_________^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_1/sample_002/target.rs:12:9
+   |
+12 | /         unsafe {
+13 | |             gstore[1] = 222;
+14 | |             &gstore[1]
+15 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_1/sample_002/target.rs:19:9
+   |
+19 | /         unsafe {
+20 | |             gstore[2] = 333;
+21 | |             gstore[2] - 1
+22 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_1/sample_002/target.rs:26:9
+   |
+26 | /         unsafe {
+27 | |             gstore[3] = 444;
+28 | |             gstore[3] + 2
+29 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_1/sample_002/target.rs:50:17
+   |
+50 |     let v_fip = unsafe { *fip() };
+   |                 ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_1/sample_002/target.rs:58:15
+   |
+58 |     if choose(unsafe { gstore[0] }) == 0 {
+   |               ^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_1/sample_002/target.rs:47:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+47 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_1/sample_002/target.rs:88:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+88 |     0
+   |     ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/fun_decl_1/sample_002/target.rs:14:13
+   |
+11 |     fn fip() -> &'static mut i32 {
+   |                 ---------------- expected `&'static mut i32` because of return type
+...
+14 |             &gstore[1]
+   |             ^^^^^^^^^^ types differ in mutability
+   |
+   = note: expected mutable reference `&'static mut _`
+                      found reference `&_`
+
+error: aborting due to 9 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

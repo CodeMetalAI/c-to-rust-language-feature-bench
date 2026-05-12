@@ -1,0 +1,103 @@
+error[E0432]: unresolved import `lazy_static`
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:2:5
+  |
+2 | use lazy_static::lazy_static;
+  |     ^^^^^^^^^^^ use of unresolved module or unlinked crate `lazy_static`
+  |
+help: you might be missing a crate named `lazy_static`, add it to your project and import it in your code
+  |
+1 + extern crate lazy_static;
+  |
+
+error[E0425]: cannot find value `GSTORE` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:9:5
+  |
+9 |     GSTORE.borrow_mut()[0] = 111;
+  |     ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `GSTORE` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:10:5
+   |
+10 |     GSTORE.borrow()[0] + 1
+   |     ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `GSTORE` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:14:5
+   |
+14 |     GSTORE.borrow_mut()[1] = 222;
+   |     ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `GSTORE` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:15:28
+   |
+15 |     std::cell::RefMut::map(GSTORE.borrow_mut(), |g| &mut g[1])
+   |                            ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `GSTORE` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:19:5
+   |
+19 |     GSTORE.borrow_mut()[2] = 333;
+   |     ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `GSTORE` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:20:5
+   |
+20 |     GSTORE.borrow()[2] - 1
+   |     ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `GSTORE` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:24:5
+   |
+24 |     GSTORE.borrow_mut()[3] = 444;
+   |     ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `GSTORE` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:25:5
+   |
+25 |     GSTORE.borrow()[3] + 2
+   |     ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `GSTORE` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:54:15
+   |
+54 |     if choose(GSTORE.borrow()[0]) == 0 {
+   |               ^^^^^^ not found in this scope
+
+warning: unused import: `std::cell::RefCell`
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:1:5
+  |
+1 | use std::cell::RefCell;
+  |     ^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0308]: arguments to this function are incorrect
+    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:66:12
+     |
+  66 |         if std::ptr::eq(pfi, alt0) {
+     |            ^^^^^^^^^^^^
+     |
+note: expected `*const _`, found fn pointer
+    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:66:25
+     |
+  66 |         if std::ptr::eq(pfi, alt0) {
+     |                         ^^^
+     = note: expected raw pointer `*const _`
+                 found fn pointer `fn() -> i32`
+note: expected `*const _`, found fn item
+    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:66:30
+     |
+  66 |         if std::ptr::eq(pfi, alt0) {
+     |                              ^^^^
+     = note: expected raw pointer `*const _`
+                    found fn item `fn() -> i32 {alt0}`
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:2442:8
+     |
+2442 | pub fn eq<T: PointeeSized>(a: *const T, b: *const T) -> bool {
+     |        ^^
+
+error: aborting due to 11 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0308, E0425, E0432.
+For more information about an error, try `rustc --explain E0308`.

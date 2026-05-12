@@ -1,0 +1,166 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/function_calls/sample_005/target.rs:9:5
+   |
+ 9 | /     unsafe {
+10 | |         if LOGN < 5 {
+11 | |             LOGV[LOGN as usize] = id;
+12 | |             LOGN += 1;
+13 | |         }
+14 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/function_calls/sample_005/target.rs:18:5
+   |
+18 | /     unsafe {
+19 | |         SEEN_F1 = 1;
+20 | |         log_call(1);
+21 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/function_calls/sample_005/target.rs:26:5
+   |
+26 | /     unsafe {
+27 | |         SEEN_F2 = 1;
+28 | |         log_call(2);
+29 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/function_calls/sample_005/target.rs:34:5
+   |
+34 | /     unsafe {
+35 | |         SEEN_F3 = 1;
+36 | |         log_call(3);
+37 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/function_calls/sample_005/target.rs:42:5
+   |
+42 | /     unsafe {
+43 | |         SEEN_F4 = 1;
+44 | |         log_call(4);
+45 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/function_calls/sample_005/target.rs:52:5
+   |
+52 | /     unsafe {
+53 | |         log_call(9);
+54 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/function_calls/sample_005/target.rs:65:14
+   |
+65 |       let rc = unsafe {
+   |  ______________^
+66 | |         (*pf[f1()])(f2(), f3() + f4())
+67 | |     };
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/function_calls/sample_005/target.rs:73:5
+   |
+73 | /     unsafe {
+74 | |         if LOGN != 5 {
+75 | |             return 1;
+...  |
+80 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/function_calls/sample_005/target.rs:83:5
+   |
+83 | /     unsafe {
+84 | |         for i in 0..4 {
+85 | |             counts[LOGV[i] as usize] += 1;
+86 | |         }
+87 | |     }
+   | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/function_calls/sample_005/target.rs:62:14
+   |
+62 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0277]: the type `[fn(i32, i32) -> i32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/function_calls/sample_005/target.rs:66:14
+   |
+66 |         (*pf[f1()])(f2(), f3() + f4())
+   |              ^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[fn(i32, i32) -> i32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[fn(i32, i32) -> i32]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[fn(i32, i32) -> i32; 1]` to implement `Index<i32>`
+
+warning: unused variable: `a`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/function_calls/sample_005/target.rs:51:11
+   |
+51 | fn target(a: i32, b: i32) -> i32 {
+   |           ^ help: if this is intentional, prefix it with an underscore: `_a`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `b`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/function_calls/sample_005/target.rs:51:19
+   |
+51 | fn target(a: i32, b: i32) -> i32 {
+   |                   ^ help: if this is intentional, prefix it with an underscore: `_b`
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/function_calls/sample_005/target.rs:55:8
+   |
+55 |     if SEEN_F1 == 0 || SEEN_F2 == 0 || SEEN_F3 == 0 || SEEN_F4 == 0 {
+   |        ^^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/function_calls/sample_005/target.rs:55:24
+   |
+55 |     if SEEN_F1 == 0 || SEEN_F2 == 0 || SEEN_F3 == 0 || SEEN_F4 == 0 {
+   |                        ^^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/function_calls/sample_005/target.rs:55:40
+   |
+55 |     if SEEN_F1 == 0 || SEEN_F2 == 0 || SEEN_F3 == 0 || SEEN_F4 == 0 {
+   |                                        ^^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/function_calls/sample_005/target.rs:55:56
+   |
+55 |     if SEEN_F1 == 0 || SEEN_F2 == 0 || SEEN_F3 == 0 || SEEN_F4 == 0 {
+   |                                                        ^^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/function_calls/sample_005/target.rs:52:5
+   |
+52 |     unsafe {
+   |     ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 15 previous errors; 3 warnings emitted
+
+Some errors have detailed explanations: E0133, E0277.
+For more information about an error, try `rustc --explain E0133`.

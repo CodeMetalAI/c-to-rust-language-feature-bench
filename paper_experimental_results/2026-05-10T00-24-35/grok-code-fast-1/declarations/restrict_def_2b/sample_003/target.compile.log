@@ -1,0 +1,97 @@
+error: `<` is interpreted as a start of generic arguments for `isize`, not a comparison
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/restrict_def_2b/sample_003/target.rs:35:19
+   |
+35 |     if n as isize < 0 {
+   |                   ^ --- interpreted as generic arguments
+   |                   |
+   |                   not interpreted as comparison
+   |
+help: try comparing the cast value
+   |
+35 |     if (n as isize) < 0 {
+   |        +          +
+
+error: `<` is interpreted as a start of generic arguments for `usize`, not a comparison
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/restrict_def_2b/sample_003/target.rs:44:18
+   |
+44 |     (ps as usize < qs as usize + n) && (qs as usize < ps as usize + n)
+   |                  ^ ----- interpreted as generic arguments
+   |                  |
+   |                  not interpreted as comparison
+   |
+help: try comparing the cast value
+   |
+44 |     ((ps as usize) < qs as usize + n) && (qs as usize < ps as usize + n)
+   |      +           +
+
+error: `<` is interpreted as a start of generic arguments for `usize`, not a comparison
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/restrict_def_2b/sample_003/target.rs:44:53
+   |
+44 |     (ps as usize < qs as usize + n) && (qs as usize < ps as usize + n)
+   |                                                     ^ ----- interpreted as generic arguments
+   |                                                     |
+   |                                                     not interpreted as comparison
+   |
+help: try comparing the cast value
+   |
+44 |     (ps as usize < qs as usize + n) && ((qs as usize) < ps as usize + n)
+   |                                         +           +
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/restrict_def_2b/sample_003/target.rs:81:14
+   |
+81 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0502]: cannot borrow `*d` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/restrict_def_2b/sample_003/target.rs:54:14
+   |
+49 |         safe_move(
+   |         --------- mutable borrow later used by call
+...
+53 |             &mut d[p_start..p_start + n],
+   |                  - mutable borrow occurs here
+54 |             &d[q_start..q_start + n],
+   |              ^ immutable borrow occurs here
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `*d` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/restrict_def_2b/sample_003/target.rs:57:45
+   |
+57 |         f(n, &mut d[p_start..p_start + n], &d[q_start..q_start + n]);
+   |         -         -                         ^ immutable borrow occurs here
+   |         |         |
+   |         |         mutable borrow occurs here
+   |         mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/restrict_def_2b/sample_003/target.rs:86:49
+   |
+86 |     safe_move(50, 0, 50, &mut expect[50..100], &expect[0..50]);
+   |     ---------                 ------            ^^^^^^ immutable borrow occurs here
+   |     |                         |
+   |     |                         mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/restrict_def_2b/sample_003/target.rs:87:46
+   |
+87 |     safe_move(1, 0, 50, &mut expect[1..51], &expect[0..50]);
+   |     ---------                ------          ^^^^^^ immutable borrow occurs here
+   |     |                        |
+   |     |                        mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0277, E0502.
+For more information about an error, try `rustc --explain E0277`.

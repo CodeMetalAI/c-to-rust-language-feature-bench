@@ -1,0 +1,59 @@
+error[E0310]: the parameter type `T` may not live long enough
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/lvalue_array_fun_c3_b/sample_005/target.rs:4:38
+  |
+4 |     if TypeId::of::<*const i32>() == TypeId::of::<T>() {
+  |                                      ^^^^^^^^^^^^^^^^^
+  |                                      |
+  |                                      the parameter type `T` must be valid for the static lifetime...
+  |                                      ...so that the type `T` will meet its required lifetime bounds
+  |
+help: consider adding an explicit lifetime bound
+  |
+1 | fn type_id<T: 'static>(_: &T) -> u8 {
+  |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/lvalue_array_fun_c3_b/sample_005/target.rs:6:50
+  |
+6 |     } else if TypeId::of::<*const [i32; 3]>() == TypeId::of::<T>() {
+  |                                                  ^^^^^^^^^^^^^^^^^
+  |                                                  |
+  |                                                  the parameter type `T` must be valid for the static lifetime...
+  |                                                  ...so that the type `T` will meet its required lifetime bounds
+  |
+help: consider adding an explicit lifetime bound
+  |
+1 | fn type_id<T: 'static>(_: &T) -> u8 {
+  |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/lvalue_array_fun_c3_b/sample_005/target.rs:8:39
+  |
+8 |     } else if TypeId::of::<&str>() == TypeId::of::<T>() {
+  |                                       ^^^^^^^^^^^^^^^^^
+  |                                       |
+  |                                       the parameter type `T` must be valid for the static lifetime...
+  |                                       ...so that the type `T` will meet its required lifetime bounds
+  |
+help: consider adding an explicit lifetime bound
+  |
+1 | fn type_id<T: 'static>(_: &T) -> u8 {
+  |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/lvalue_array_fun_c3_b/sample_005/target.rs:10:44
+   |
+10 |     } else if TypeId::of::<[char; 4]>() == TypeId::of::<T>() {
+   |                                            ^^^^^^^^^^^^^^^^^
+   |                                            |
+   |                                            the parameter type `T` must be valid for the static lifetime...
+   |                                            ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+ 1 | fn type_id<T: 'static>(_: &T) -> u8 {
+   |             +++++++++
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0310`.

@@ -1,0 +1,356 @@
+error: `Trait(...)` syntax does not support c_variadic parameters
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:19:57
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32,...) -> i32 {
+   |                                                         ^^^ help: remove the `...`
+
+error: `Trait(...)` syntax does not support c_variadic parameters
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:29:33
+   |
+29 | fn call_through(pf: impl Fn(i32,...) -> i32, x: i32) -> i32 {
+   |                                 ^^^ help: remove the `...`
+
+error: defining functions with C-variadic arguments is only allowed for free functions with the "C" or "C-unwind" calling convention
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:11:15
+   |
+11 | fn v0(x: i32, _args:...) -> i32 {
+   |               ^^^^^^^^^
+
+error: defining functions with C-variadic arguments is only allowed for free functions with the "C" or "C-unwind" calling convention
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:15:15
+   |
+15 | fn v1(x: i32, _args:...) -> i32 {
+   |               ^^^^^^^^^
+
+error[E0658]: C-variadic functions are unstable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:11:1
+   |
+11 | / fn v0(x: i32, _args:...) -> i32 {
+12 | |     g_seed + x + 1000
+13 | | }
+   | |_^
+   |
+   = note: see issue #44930 <https://github.com/rust-lang/rust/issues/44930> for more information
+   = help: add `#![feature(c_variadic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: C-variadic functions are unstable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:15:1
+   |
+15 | / fn v1(x: i32, _args:...) -> i32 {
+16 | |     g_seed + x - 2000
+17 | | }
+   | |_^
+   |
+   = note: see issue #44930 <https://github.com/rust-lang/rust/issues/44930> for more information
+   = help: add `#![feature(c_variadic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error: invalid suffix `L` for number literal
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:4:10
+  |
+4 |     (x ^ 0x13579L as i64) as i32 + 7
+  |          ^^^^^^^^ invalid suffix `L`
+  |
+  = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:8:10
+  |
+8 |     (x * 3L as i64) as i32 - 11
+  |          ^^ invalid suffix `L`
+  |
+  = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:20:26
+   |
+20 |     let t = (k as i64) * 97L + 1234L;
+   |                          ^^^ invalid suffix `L`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:20:32
+   |
+20 |     let t = (k as i64) * 97L + 1234L;
+   |                                ^^^^^ invalid suffix `L`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:32:31
+   |
+32 |     let r3 = pf(x, 1.25, &pf, 0x1122334455667788L);
+   |                               ^^^^^^^^^^^^^^^^^^^ invalid suffix `L`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:40:39
+   |
+40 |         let expected_seed = cb0((17 * 97L + 1234L) as i64) + 17;
+   |                                       ^^^ invalid suffix `L`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:40:45
+   |
+40 |         let expected_seed = cb0((17 * 97L + 1234L) as i64) + 17;
+   |                                             ^^^^^ invalid suffix `L`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:69:38
+   |
+69 |         let expected_seed = cb1((8 * 97L + 1234L) as i64) + 8;
+   |                                      ^^^ invalid suffix `L`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:69:44
+   |
+69 |         let expected_seed = cb1((8 * 97L + 1234L) as i64) + 8;
+   |                                            ^^^^^ invalid suffix `L`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error[E0057]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:30:14
+   |
+30 |     let r1 = pf(x);
+   |              ^^--- argument #2 is missing
+   |
+note: type parameter defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:29:21
+   |
+29 | fn call_through(pf: impl Fn(i32,...) -> i32, x: i32) -> i32 {
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the argument
+   |
+30 |     let r1 = pf(x, /* args */);
+   |                  ++++++++++++
+
+error[E0057]: this function takes 2 arguments but 3 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:31:14
+   |
+31 |     let r2 = pf(x, 1, 2);
+   |              ^^       - unexpected argument #3 of type `{integer}`
+   |
+note: type parameter defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:29:21
+   |
+29 | fn call_through(pf: impl Fn(i32,...) -> i32, x: i32) -> i32 {
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^
+help: remove the extra argument
+   |
+31 -     let r2 = pf(x, 1, 2);
+31 +     let r2 = pf(x, 1);
+   |
+
+error[E0057]: this function takes 2 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:32:14
+   |
+32 |     let r3 = pf(x, 1.25, &pf, 0x1122334455667788L);
+   |              ^^          ---  ------------------- unexpected argument #4
+   |                          |
+   |                          unexpected argument #3 of type `&impl Fn(i32, ...) -> i32`
+   |
+note: type parameter defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:29:21
+   |
+29 | fn call_through(pf: impl Fn(i32,...) -> i32, x: i32) -> i32 {
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^
+help: remove the extra arguments
+   |
+32 -     let r3 = pf(x, 1.25, &pf, 0x1122334455667788L);
+32 +     let r3 = pf(x, 1.25);
+   |
+
+error[E0369]: binary operation `==` cannot be applied to type `impl Fn(i32, {type error}) -> i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:43:15
+   |
+43 |         if vf == v0 {
+   |            -- ^^ -- fn(i32, ...) -> i32 {v0}
+   |            |
+   |            impl Fn(i32, {type error}) -> i32
+   |
+help: use parentheses to call these
+   |
+43 |         if vf(/* i32 */, /* value */) == v0(/* i32 */) {
+   |              ++++++++++++++++++++++++      +++++++++++
+
+error[E0057]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:44:16
+   |
+44 |             if vf(40)!= base + 1000 {
+   |                ^^---- argument #2 is missing
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:19:45
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32,...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the argument
+   |
+44 |             if vf(40, /* args */)!= base + 1000 {
+   |                     ++++++++++++
+
+error[E0057]: this function takes 2 arguments but 3 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:47:16
+   |
+47 |             if vf(40, 1, 2)!= base + 1000 {
+   |                ^^        - unexpected argument #3 of type `{integer}`
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:19:45
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32,...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^
+help: remove the extra argument
+   |
+47 -             if vf(40, 1, 2)!= base + 1000 {
+47 +             if vf(40, 1)!= base + 1000 {
+   |
+
+error[E0057]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:54:16
+   |
+54 |             if vf(40)!= base - 2000 {
+   |                ^^---- argument #2 is missing
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:19:45
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32,...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the argument
+   |
+54 |             if vf(40, /* args */)!= base - 2000 {
+   |                     ++++++++++++
+
+error[E0057]: this function takes 2 arguments but 3 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:57:16
+   |
+57 |             if vf(40, 1, 2)!= base - 2000 {
+   |                ^^        - unexpected argument #3 of type `{integer}`
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:19:45
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32,...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^
+help: remove the extra argument
+   |
+57 -             if vf(40, 1, 2)!= base - 2000 {
+57 +             if vf(40, 1)!= base - 2000 {
+   |
+
+error[E0369]: binary operation `==` cannot be applied to type `impl Fn(i32, {type error}) -> i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:72:15
+   |
+72 |         if vf == v0 {
+   |            -- ^^ -- fn(i32, ...) -> i32 {v0}
+   |            |
+   |            impl Fn(i32, {type error}) -> i32
+   |
+help: use parentheses to call these
+   |
+72 |         if vf(/* i32 */, /* value */) == v0(/* i32 */) {
+   |              ++++++++++++++++++++++++      +++++++++++
+
+error[E0057]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:73:16
+   |
+73 |             if vf(9)!= base + 1000 {
+   |                ^^--- argument #2 is missing
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:19:45
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32,...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the argument
+   |
+73 |             if vf(9, /* args */)!= base + 1000 {
+   |                    ++++++++++++
+
+error[E0057]: this function takes 2 arguments but 5 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:76:16
+   |
+76 |             if vf(9, 0, 0, 0, 0)!= base + 1000 {
+   |                ^^       -  -  - unexpected argument #5 of type `{integer}`
+   |                         |  |
+   |                         |  unexpected argument #4 of type `{integer}`
+   |                         unexpected argument #3 of type `{integer}`
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:19:45
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32,...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^
+help: remove the extra arguments
+   |
+76 -             if vf(9, 0, 0, 0, 0)!= base + 1000 {
+76 +             if vf(9, 0)!= base + 1000 {
+   |
+
+error[E0057]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:83:16
+   |
+83 |             if vf(9)!= base - 2000 {
+   |                ^^--- argument #2 is missing
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:19:45
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32,...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the argument
+   |
+83 |             if vf(9, /* args */)!= base - 2000 {
+   |                    ++++++++++++
+
+error[E0057]: this function takes 2 arguments but 5 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:86:16
+   |
+86 |             if vf(9, 0, 0, 0, 0)!= base - 2000 {
+   |                ^^       -  -  - unexpected argument #5 of type `{integer}`
+   |                         |  |
+   |                         |  unexpected argument #4 of type `{integer}`
+   |                         unexpected argument #3 of type `{integer}`
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:19:45
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32,...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^
+help: remove the extra arguments
+   |
+86 -             if vf(9, 0, 0, 0, 0)!= base - 2000 {
+86 +             if vf(9, 0)!= base - 2000 {
+   |
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:12:5
+   |
+12 |     g_seed + x + 1000
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:16:5
+   |
+16 |     g_seed + x - 2000
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 30 previous errors
+
+Some errors have detailed explanations: E0057, E0133, E0369, E0658.
+For more information about an error, try `rustc --explain E0057`.

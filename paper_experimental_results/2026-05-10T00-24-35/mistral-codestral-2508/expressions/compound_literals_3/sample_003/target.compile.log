@@ -1,0 +1,59 @@
+error[E0382]: borrow of moved value: `a`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/compound_literals_3/sample_003/target.rs:46:16
+   |
+39 |     let a = Point { x: 1, y: 1 };
+   |         - move occurs because `a` has type `Point`, which does not implement the `Copy` trait
+...
+42 |     if foo_val(a, b) != 0 {
+   |                - value moved here
+...
+46 |     if bar_ptr(&a, &b) != 0 {
+   |                ^^ value borrowed here after move
+   |
+note: consider changing this parameter type in function `foo_val` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/compound_literals_3/sample_003/target.rs:6:15
+   |
+ 6 | fn foo_val(a: Point, b: Point) -> i32 {
+   |    -------    ^^^^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `Point` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/compound_literals_3/sample_003/target.rs:1:1
+   |
+ 1 | struct Point {
+   | ^^^^^^^^^^^^ consider implementing `Clone` for this type
+...
+42 |     if foo_val(a, b) != 0 {
+   |                - you could clone this value
+
+error[E0382]: borrow of moved value: `b`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/compound_literals_3/sample_003/target.rs:46:20
+   |
+40 |     let b = Point { x: 3, y: 4 };
+   |         - move occurs because `b` has type `Point`, which does not implement the `Copy` trait
+41 |
+42 |     if foo_val(a, b) != 0 {
+   |                   - value moved here
+...
+46 |     if bar_ptr(&a, &b) != 0 {
+   |                    ^^ value borrowed here after move
+   |
+note: consider changing this parameter type in function `foo_val` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/compound_literals_3/sample_003/target.rs:6:25
+   |
+ 6 | fn foo_val(a: Point, b: Point) -> i32 {
+   |    -------              ^^^^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `Point` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/compound_literals_3/sample_003/target.rs:1:1
+   |
+ 1 | struct Point {
+   | ^^^^^^^^^^^^ consider implementing `Clone` for this type
+...
+42 |     if foo_val(a, b) != 0 {
+   |                   - you could clone this value
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0382`.

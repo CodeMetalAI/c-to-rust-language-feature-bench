@@ -1,0 +1,48 @@
+fn f(p: &mut i32) {}
+fn f4(p: &i32) {}
+fn f2(p: &mut i32) {}
+fn g(p: &i32) {}
+
+fn main() {
+    let mut s = (1, 2);
+    let cs = (3, 4);
+    let mut vs = (5, 6);
+
+    f(&mut s.0);
+    f4(&s.1);
+
+    f4(&cs.0);
+    f4(&cs.1);
+
+    f2(&mut vs.0);
+    g(&vs.1);
+
+    if s.0!= 1 {
+        return;
+    }
+    if s.1!= 2 {
+        return;
+    }
+    if cs.0!= 3 {
+        return;
+    }
+    if cs.1!= 4 {
+        return;
+    }
+    if vs.0!= 5 {
+        return;
+    }
+    if vs.1!= 6 {
+        return;
+    }
+
+    s.0 = 10;
+    if s.0!= 10 {
+        return;
+    }
+
+    vs.0 = 20;
+    if vs.0!= 20 {
+        return;
+    }
+}

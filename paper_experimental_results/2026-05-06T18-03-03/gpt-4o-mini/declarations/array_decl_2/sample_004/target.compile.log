@@ -1,0 +1,97 @@
+warning: type `usize` should have an upper camel case name
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_2/sample_004/target.rs:1:6
+  |
+1 | type usize = u64;
+  |      ^^^^^ help: convert the identifier to upper camel case (notice the capitalization): `Usize`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_2/sample_004/target.rs:30:5
+   |
+30 | /     unsafe {
+31 | |         Y[0] = 1;
+32 | |         Y[1] = 2;
+33 | |         Y[2] = 3;
+...  |
+78 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_2/sample_004/target.rs:66:16
+   |
+66 |             if unsafe { (*ha).a.as_ptr() as usize } != (ha as usize + std::mem::size_of::<HoldA>() as usize) {
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_2/sample_004/target.rs:70:16
+   |
+70 |             if unsafe { (*ha).a[2] } != 3 {
+   |                ^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_2/sample_004/target.rs:29:14
+   |
+29 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0277]: the type `[i32]` cannot be indexed by `u64`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_2/sample_004/target.rs:11:16
+   |
+11 |         s += p[i];
+   |                ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `u64`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[i32]` to implement `Index<u64>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_2/sample_004/target.rs:43:20
+   |
+43 |         if sum_ptr(&*X, 3) != (10 + 20 + 30) {
+   |            ------- ^^^ expected `&[i32]`, found `&i32`
+   |            |
+   |            arguments to this function are incorrect
+   |
+   = note: expected reference `&[i32]`
+              found reference `&i32`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_2/sample_004/target.rs:8:4
+   |
+ 8 | fn sum_ptr(p: &[i32], n: usize) -> i32 {
+   |    ^^^^^^^ ---------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_2/sample_004/target.rs:47:35
+   |
+47 |         if mutate_through_pointer(&mut *X as *const _ as *mut [i32; 3]) != (10 + 25 + 30) {
+   |            ---------------------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&mut [i32]`, found `*mut [i32; 3]`
+   |            |
+   |            arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut [i32]`
+                    found raw pointer `*mut [i32; 3]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_2/sample_004/target.rs:24:4
+   |
+24 | fn mutate_through_pointer(p: &mut [i32]) -> i32 {
+   |    ^^^^^^^^^^^^^^^^^^^^^^ -------------
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_2/sample_004/target.rs:4:28
+  |
+4 | static mut X: *const i32 = BACKING.as_ptr();
+  |                            ^^^^^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 8 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0133, E0277, E0308.
+For more information about an error, try `rustc --explain E0133`.

@@ -1,0 +1,39 @@
+warning: unused variable: `n`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/add_op_1a/sample_004/target.rs:2:9
+  |
+2 |     let n = 4;
+  |         ^ help: if this is intentional, prefix it with an underscore: `_n`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `m`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/add_op_1a/sample_004/target.rs:3:9
+  |
+3 |     let m = 3;
+  |         ^ help: if this is intentional, prefix it with an underscore: `_m`
+
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/add_op_1a/sample_004/target.rs:6:9
+  |
+6 |     let mut p = &mut a[1..]; // p points to the second row
+  |         ----^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error[E0503]: cannot use `a[_][_]` because it was mutably borrowed
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/add_op_1a/sample_004/target.rs:10:8
+   |
+ 6 |     let mut p = &mut a[1..]; // p points to the second row
+   |                      - `a` is borrowed here
+...
+10 |     if a[1][2] != 99 {
+   |        ^^^^^^^ use of borrowed `a`
+...
+14 |     let n = p.as_ptr() as usize / std::mem::size_of::<[i32; 3]>() / std::mem::size_of::<[i32; 3]>();
+   |             - borrow later used here
+
+error: aborting due to 1 previous error; 3 warnings emitted
+
+For more information about this error, try `rustc --explain E0503`.

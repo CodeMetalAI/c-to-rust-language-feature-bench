@@ -1,0 +1,188 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:49:5
+   |
+49 | /     unsafe {
+50 | |         if *P_I1 != 10 {
+51 | |             return println!("10");
+...  |
+62 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `*mut i32` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:8:14
+  |
+8 | static P_I1: *mut i32 = &mut I1;
+  |              ^^^^^^^^ `*mut i32` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*mut i32`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*mut i32` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:9:14
+  |
+9 | static P_I2: *mut i32 = &mut I2;
+  |              ^^^^^^^^ `*mut i32` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*mut i32`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*mut i32` cannot be shared between threads safely
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:10:14
+   |
+10 | static P_I4: *mut i32 = &mut I4;
+   |              ^^^^^^^^ `*mut i32` cannot be shared between threads safely
+   |
+   = help: the trait `Sync` is not implemented for `*mut i32`
+   = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*mut i32` cannot be shared between threads safely
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:11:14
+   |
+11 | static P_I5: *mut i32 = &mut I5;
+   |              ^^^^^^^^ `*mut i32` cannot be shared between threads safely
+   |
+   = help: the trait `Sync` is not implemented for `*mut i32`
+   = note: shared static variables must have a type that implements `Sync`
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:8:30
+  |
+8 | static P_I1: *mut i32 = &mut I1;
+  |                              ^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:9:30
+  |
+9 | static P_I2: *mut i32 = &mut I2;
+  |                              ^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:10:30
+   |
+10 | static P_I4: *mut i32 = &mut I4;
+   |                              ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:11:30
+   |
+11 | static P_I5: *mut i32 = &mut I5;
+   |                              ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:14:8
+   |
+14 |     if I1 != 1 {
+   |        ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:17:8
+   |
+17 |     if I2 != 2 {
+   |        ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:20:8
+   |
+20 |     if I3 != 3 {
+   |        ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:24:8
+   |
+24 |     if I4 != 0 {
+   |        ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:27:8
+   |
+27 |     if I5 != 0 {
+   |        ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:31:21
+   |
+31 |     if P_I1 != &mut I1 {
+   |                     ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:34:21
+   |
+34 |     if P_I2 != &mut I2 {
+   |                     ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:37:21
+   |
+37 |     if P_I4 != &mut I4 {
+   |                     ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:40:21
+   |
+40 |     if P_I5 != &mut I5 {
+   |                     ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:44:5
+   |
+44 |     I1 = 10;
+   |     ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:45:5
+   |
+45 |     I2 = 20;
+   |     ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:46:5
+   |
+46 |     I4 = 30;
+   |     ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/external_definitions/external_objs_1/sample_005/target.rs:47:5
+   |
+47 |     I5 = 40;
+   |     ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 22 previous errors
+
+Some errors have detailed explanations: E0133, E0277.
+For more information about an error, try `rustc --explain E0133`.

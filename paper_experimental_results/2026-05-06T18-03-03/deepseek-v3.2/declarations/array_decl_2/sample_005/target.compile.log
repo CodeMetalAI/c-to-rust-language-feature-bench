@@ -1,0 +1,129 @@
+warning: unused import: `std::mem`
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_005/target.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: type `usize` should have an upper camel case name
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_005/target.rs:3:6
+  |
+3 | type usize = std::os::raw::c_ulong;
+  |      ^^^^^ help: convert the identifier to upper camel case (notice the capitalization): `Usize`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_005/target.rs:28:14
+   |
+28 |         s += unsafe { *p.add(i) };
+   |              ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_005/target.rs:45:5
+   |
+45 | /     unsafe {
+46 | |         *p.add(1) += 5;
+47 | |         *p.add(0) + *p.add(1) + *p.add(2)
+48 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_005/target.rs:52:5
+    |
+ 52 | /     unsafe {
+ 53 | |         Y[0] = 1;
+ 54 | |         Y[1] = 2;
+ 55 | |         Y[2] = 3;
+...   |
+108 | |         0
+109 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_005/target.rs:79:16
+   |
+79 |             if unsafe { *t.add(6) } != 7 {
+   |                ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_005/target.rs:86:16
+   |
+86 |             if unsafe { *hp.p } != 1 {
+   |                ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_005/target.rs:91:28
+   |
+91 |             let ha_a_ptr = unsafe { &(*ha).a } as *const [i32; 0] as *const usize;
+   |                            ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_005/target.rs:99:16
+   |
+99 |             if unsafe { (*ha).a.as_ptr().add(2).read() } != 3 {
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_005/target.rs:51:14
+   |
+51 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_005/target.rs:28:30
+    |
+ 28 |         s += unsafe { *p.add(i) };
+    |                          --- ^ expected `usize`, found `u64`
+    |                          |
+    |                          arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:881:25
+    |
+881 |     pub const unsafe fn add(self, count: usize) -> Self
+    |                         ^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+    |
+ 28 |         s += unsafe { *p.add(i.try_into().unwrap()) };
+    |                               ++++++++++++++++++++
+
+error[E0063]: missing field `a` in initializer of `HoldA`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_005/target.rs:94:46
+   |
+94 |             let expected_offset = offset_of(&HoldA { tag: 0 }, &HoldA { tag: 0 }.a);
+   |                                              ^^^^^ missing `a`
+
+error[E0063]: missing field `a` in initializer of `HoldA`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_005/target.rs:94:65
+   |
+94 |             let expected_offset = offset_of(&HoldA { tag: 0 }, &HoldA { tag: 0 }.a);
+   |                                                                 ^^^^^ missing `a`
+
+error: pointers cannot be cast to integers during const eval
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_005/target.rs:12:5
+   |
+12 |     (member_ptr as usize) - (base_ptr as usize)
+   |     ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: at compile-time, pointers do not have an integer value
+   = note: avoiding this restriction via `transmute`, `union`, or raw pointers leads to compile-time undefined behavior
+
+error: pointers cannot be cast to integers during const eval
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_005/target.rs:12:29
+   |
+12 |     (member_ptr as usize) - (base_ptr as usize)
+   |                             ^^^^^^^^^^^^^^^^^^^
+   |
+   = note: at compile-time, pointers do not have an integer value
+   = note: avoiding this restriction via `transmute`, `union`, or raw pointers leads to compile-time undefined behavior
+
+error: aborting due to 13 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0063, E0277, E0308.
+For more information about an error, try `rustc --explain E0063`.

@@ -1,0 +1,57 @@
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_2b/sample_004/target.rs:60:38
+   |
+60 |     safe_move(50, &mut expect[50..], &expect);
+   |     ---------          ------        ^^^^^^^ immutable borrow occurs here
+   |     |                  |
+   |     |                  mutable borrow occurs here
+   |     mutable borrow later used by call
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_2b/sample_004/target.rs:61:37
+   |
+61 |     safe_move(50, &mut expect[1..], &expect);
+   |     ---------          ------       ^^^^^^^ immutable borrow occurs here
+   |     |                  |
+   |     |                  mutable borrow occurs here
+   |     mutable borrow later used by call
+
+error[E0502]: cannot borrow `d` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_2b/sample_004/target.rs:63:33
+   |
+63 |     call_f_checked(&d, 50, &mut d[50..], &d);
+   |     -------------- --           ^ mutable borrow occurs here
+   |     |              |
+   |     |              immutable borrow occurs here
+   |     immutable borrow later used by call
+
+error[E0502]: cannot borrow `d` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_2b/sample_004/target.rs:63:42
+   |
+63 |     call_f_checked(&d, 50, &mut d[50..], &d);
+   |     --------------              -        ^^ immutable borrow occurs here
+   |     |                           |
+   |     |                           mutable borrow occurs here
+   |     mutable borrow later used by call
+
+error[E0502]: cannot borrow `d` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_2b/sample_004/target.rs:64:33
+   |
+64 |     call_f_checked(&d, 50, &mut d[1..], &d);
+   |     -------------- --           ^ mutable borrow occurs here
+   |     |              |
+   |     |              immutable borrow occurs here
+   |     immutable borrow later used by call
+
+error[E0502]: cannot borrow `d` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/restrict_def_2b/sample_004/target.rs:64:41
+   |
+64 |     call_f_checked(&d, 50, &mut d[1..], &d);
+   |     --------------              -       ^^ immutable borrow occurs here
+   |     |                           |
+   |     |                           mutable borrow occurs here
+   |     mutable borrow later used by call
+
+error: aborting due to 6 previous errors
+
+For more information about this error, try `rustc --explain E0502`.

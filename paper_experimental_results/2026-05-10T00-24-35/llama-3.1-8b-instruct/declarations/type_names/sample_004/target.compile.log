@@ -1,0 +1,106 @@
+error: defining functions with C-variadic arguments is only allowed for free functions with the "C" or "C-unwind" calling convention
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_004/target.rs:12:22
+   |
+12 |     fn f_var(x: u32, _args: ...) -> i32 {
+   |                      ^^^^^^^^^^
+
+error[E0106]: missing lifetime specifier
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_004/target.rs:4:17
+  |
+4 |     fn fip() -> &i32 {
+  |                 ^ expected named lifetime parameter
+  |
+  = help: this function's return type contains a borrowed value, but there is no value for it to be borrowed from
+help: consider using the `'static` lifetime, but this is uncommon unless you're returning a borrowed value from a `const` or a `static`
+  |
+4 |     fn fip() -> &'static i32 {
+  |                  +++++++
+help: instead, you are more likely to want to return an owned value
+  |
+4 -     fn fip() -> &i32 {
+4 +     fn fip() -> i32 {
+  |
+
+error[E0434]: can't capture dynamic environment in a fn item
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_004/target.rs:5:10
+  |
+5 |         &g_arr[1]
+  |          ^^^^^
+  |
+  = help: use the `|| { ... }` closure form instead
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_004/target.rs:16:34
+   |
+16 |     fn use_vla(n: i32, p: &[i32; n as usize]) -> i32 {
+   |                -                 ^
+   |                |
+   |                this would need to be a `const`
+
+error[E0658]: C-variadic functions are unstable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_004/target.rs:12:5
+   |
+12 | /     fn f_var(x: u32, _args: ...) -> i32 {
+13 | |         (x + 3u32) as i32
+14 | |     }
+   | |_____^
+   |
+   = note: see issue #44930 <https://github.com/rust-lang/rust/issues/44930> for more information
+   = help: add `#![feature(c_variadic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_004/target.rs:21:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+21 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0277]: can't compare `[{integer}; 3]` with `{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_004/target.rs:26:15
+   |
+26 |         if *p != 1 {
+   |               ^^ no implementation for `[{integer}; 3] == {integer}`
+   |
+   = help: the trait `PartialEq<{integer}>` is not implemented for `[{integer}; 3]`
+   = help: the following other types implement trait `PartialEq<Rhs>`:
+             `&[T]` implements `PartialEq<Vec<U, A>>`
+             `&[T]` implements `PartialEq<[U; N]>`
+             `&[u8; N]` implements `PartialEq<ByteStr>`
+             `&[u8; N]` implements `PartialEq<ByteString>`
+             `&[u8]` implements `PartialEq<ByteStr>`
+             `&[u8]` implements `PartialEq<ByteString>`
+             `&mut [T]` implements `PartialEq<Vec<U, A>>`
+             `&mut [T]` implements `PartialEq<[U; N]>`
+           and 11 others
+
+error[E0045]: C-variadic functions with the "Rust" calling convention are not supported
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_004/target.rs:68:19
+   |
+68 |         let af: [&fn(u32, ...); 2] = [f_var, f_var];
+   |                   ^^^^^^^^^^^^ C-variadic function must have a compatible calling convention
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_004/target.rs:68:39
+   |
+68 |         let af: [&fn(u32, ...); 2] = [f_var, f_var];
+   |                                       ^^^^^ expected `&fn(u32, ...)`, found fn item
+   |
+   = note: expected reference `&fn(_, ...) -> ()`
+                found fn item `fn(_, ...) -> i32 {f_var}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_004/target.rs:79:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+79 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 10 previous errors
+
+Some errors have detailed explanations: E0045, E0106, E0277, E0308, E0434, E0435, E0658.
+For more information about an error, try `rustc --explain E0045`.

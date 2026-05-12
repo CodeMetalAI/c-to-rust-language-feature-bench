@@ -1,0 +1,29 @@
+error[E0425]: cannot find value `system` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/compound_literals_8/sample_001/target.rs:25:41
+   |
+25 |     let exit_code = if f() { 0 } else { system };
+   |                                         ^^^^^^ not found in this scope
+
+error[E0369]: binary operation `==` cannot be applied to type `Option<Box<S>>`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/compound_literals_8/sample_001/target.rs:17:20
+   |
+17 |     let p_eq_q = p == q;
+   |                  - ^^ - Option<Box<S>>
+   |                  |
+   |                  Option<Box<S>>
+   |
+note: an implementation of `PartialEq` might be missing for `S`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/compound_literals_8/sample_001/target.rs:1:1
+   |
+ 1 | struct S {
+   | ^^^^^^^^ must implement `PartialEq`
+help: consider annotating `S` with `#[derive(PartialEq)]`
+   |
+ 1 + #[derive(PartialEq)]
+ 2 | struct S {
+   |
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0369, E0425.
+For more information about an error, try `rustc --explain E0369`.

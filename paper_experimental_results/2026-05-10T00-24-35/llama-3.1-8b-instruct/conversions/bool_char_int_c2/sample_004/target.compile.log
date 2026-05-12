@@ -1,0 +1,298 @@
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:23:41
+    |
+ 23 |     let type_id = TypeId::TypeIdFromS32(signed_char(1) + 0);
+    |                   --------------------- ^^^^^^^^^^^^^^^^^^ expected `i32`, found `i8`
+    |                   |
+    |                   arguments to this function are incorrect
+    |
+note: associated function defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:196:8
+    |
+196 |     fn TypeIdFromS32(x: i32) -> TypeId {
+    |        ^^^^^^^^^^^^^ ------
+help: you can convert an `i8` to an `i32`
+    |
+ 23 |     let type_id = TypeId::TypeIdFromS32((signed_char(1) + 0).into());
+    |                                         +                  ++++++++
+
+error[E0369]: binary operation `!=` cannot be applied to type `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:24:16
+   |
+24 |     if type_id != TypeId::Int {
+   |        ------- ^^ ----------- TypeId
+   |        |
+   |        TypeId
+   |
+note: an implementation of `PartialEq` might be missing for `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:2:1
+   |
+ 2 | enum TypeId {
+   | ^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `TypeId` with `#[derive(PartialEq)]`
+   |
+ 2 + #[derive(PartialEq)]
+ 3 | enum TypeId {
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:25:16
+   |
+21 | fn main() {
+   |          - expected `()` because of default return type
+...
+25 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:29:41
+    |
+ 29 |     let type_id = TypeId::TypeIdFromU32(unsigned_char(1) + 0);
+    |                   --------------------- ^^^^^^^^^^^^^^^^^^^^ expected `u32`, found `u8`
+    |                   |
+    |                   arguments to this function are incorrect
+    |
+note: associated function defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:200:8
+    |
+200 |     fn TypeIdFromU32(x: u32) -> TypeId {
+    |        ^^^^^^^^^^^^^ ------
+help: you can convert a `u8` to a `u32`
+    |
+ 29 |     let type_id = TypeId::TypeIdFromU32((unsigned_char(1) + 0).into());
+    |                                         +                    ++++++++
+
+error[E0369]: binary operation `!=` cannot be applied to type `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:30:16
+   |
+30 |     if type_id != TypeId::UInt {
+   |        ------- ^^ ------------ TypeId
+   |        |
+   |        TypeId
+   |
+note: an implementation of `PartialEq` might be missing for `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:2:1
+   |
+ 2 | enum TypeId {
+   | ^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `TypeId` with `#[derive(PartialEq)]`
+   |
+ 2 + #[derive(PartialEq)]
+ 3 | enum TypeId {
+   |
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:35:41
+    |
+ 35 |     let type_id = TypeId::TypeIdFromS32(short(1) + 0);
+    |                   --------------------- ^^^^^^^^^^^^ expected `i32`, found `i16`
+    |                   |
+    |                   arguments to this function are incorrect
+    |
+note: associated function defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:196:8
+    |
+196 |     fn TypeIdFromS32(x: i32) -> TypeId {
+    |        ^^^^^^^^^^^^^ ------
+help: you can convert an `i16` to an `i32`
+    |
+ 35 |     let type_id = TypeId::TypeIdFromS32((short(1) + 0).into());
+    |                                         +            ++++++++
+
+error[E0369]: binary operation `!=` cannot be applied to type `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:36:16
+   |
+36 |     if type_id != TypeId::Int {
+   |        ------- ^^ ----------- TypeId
+   |        |
+   |        TypeId
+   |
+note: an implementation of `PartialEq` might be missing for `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:2:1
+   |
+ 2 | enum TypeId {
+   | ^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `TypeId` with `#[derive(PartialEq)]`
+   |
+ 2 + #[derive(PartialEq)]
+ 3 | enum TypeId {
+   |
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:41:41
+    |
+ 41 |     let type_id = TypeId::TypeIdFromU32(unsigned_short(1) + 0);
+    |                   --------------------- ^^^^^^^^^^^^^^^^^^^^^ expected `u32`, found `u16`
+    |                   |
+    |                   arguments to this function are incorrect
+    |
+note: associated function defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:200:8
+    |
+200 |     fn TypeIdFromU32(x: u32) -> TypeId {
+    |        ^^^^^^^^^^^^^ ------
+help: you can convert a `u16` to a `u32`
+    |
+ 41 |     let type_id = TypeId::TypeIdFromU32((unsigned_short(1) + 0).into());
+    |                                         +                     ++++++++
+
+error[E0369]: binary operation `!=` cannot be applied to type `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:42:16
+   |
+42 |     if type_id != TypeId::UInt {
+   |        ------- ^^ ------------ TypeId
+   |        |
+   |        TypeId
+   |
+note: an implementation of `PartialEq` might be missing for `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:2:1
+   |
+ 2 | enum TypeId {
+   | ^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `TypeId` with `#[derive(PartialEq)]`
+   |
+ 2 + #[derive(PartialEq)]
+ 3 | enum TypeId {
+   |
+
+error[E0369]: binary operation `!=` cannot be applied to type `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:54:16
+   |
+54 |     if type_id != TypeId::UInt {
+   |        ------- ^^ ------------ TypeId
+   |        |
+   |        TypeId
+   |
+note: an implementation of `PartialEq` might be missing for `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:2:1
+   |
+ 2 | enum TypeId {
+   | ^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `TypeId` with `#[derive(PartialEq)]`
+   |
+ 2 + #[derive(PartialEq)]
+ 3 | enum TypeId {
+   |
+
+error[E0599]: no variant or associated item named `TypeIdFromI8` found for enum `TypeId` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:57:27
+    |
+  2 | enum TypeId {
+    | ----------- variant or associated item `TypeIdFromI8` not found for this enum
+...
+ 57 |     let type_id = TypeId::TypeIdFromI8(bf.i1 + 0);
+    |                           ^^^^^^^^^^^^ variant or associated item not found in `TypeId`
+    |
+note: if you're trying to build a new `TypeId` consider using one of the following associated functions:
+      TypeId::TypeIdFromS8
+      TypeId::TypeIdFromU8
+      TypeId::TypeIdFromS16
+      TypeId::TypeIdFromU16
+      and 5 others
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:180:5
+    |
+180 |     fn TypeIdFromS8(x: i8) -> TypeId {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+184 |     fn TypeIdFromU8(x: u8) -> TypeId {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+188 |     fn TypeIdFromS16(x: i16) -> TypeId {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+192 |     fn TypeIdFromU16(x: u16) -> TypeId {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: there is an associated function `TypeIdFromS8` with a similar name
+    |
+ 57 -     let type_id = TypeId::TypeIdFromI8(bf.i1 + 0);
+ 57 +     let type_id = TypeId::TypeIdFromS8(bf.i1 + 0);
+    |
+
+error[E0369]: cannot add `{integer}` to `bool`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:61:48
+   |
+61 |     let type_id = TypeId::TypeIdFromBool(bf.b1 + 0);
+   |                                          ----- ^ - {integer}
+   |                                          |
+   |                                          bool
+
+error[E0369]: binary operation `!=` cannot be applied to type `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:62:16
+   |
+62 |     if type_id != TypeId::Int {
+   |        ------- ^^ ----------- TypeId
+   |        |
+   |        TypeId
+   |
+note: an implementation of `PartialEq` might be missing for `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:2:1
+   |
+ 2 | enum TypeId {
+   | ^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `TypeId` with `#[derive(PartialEq)]`
+   |
+ 2 + #[derive(PartialEq)]
+ 3 | enum TypeId {
+   |
+
+error[E0369]: binary operation `!=` cannot be applied to type `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:68:16
+   |
+68 |     if type_id != TypeId::Float {
+   |        ------- ^^ ------------- TypeId
+   |        |
+   |        TypeId
+   |
+note: an implementation of `PartialEq` might be missing for `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:2:1
+   |
+ 2 | enum TypeId {
+   | ^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `TypeId` with `#[derive(PartialEq)]`
+   |
+ 2 + #[derive(PartialEq)]
+ 3 | enum TypeId {
+   |
+
+error[E0369]: binary operation `!=` cannot be applied to type `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:72:16
+   |
+72 |     if type_id != TypeId::Double {
+   |        ------- ^^ -------------- TypeId
+   |        |
+   |        TypeId
+   |
+note: an implementation of `PartialEq` might be missing for `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:2:1
+   |
+ 2 | enum TypeId {
+   | ^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `TypeId` with `#[derive(PartialEq)]`
+   |
+ 2 + #[derive(PartialEq)]
+ 3 | enum TypeId {
+   |
+
+error[E0369]: binary operation `!=` cannot be applied to type `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:76:16
+   |
+76 |     if type_id != TypeId::LongDouble {
+   |        ------- ^^ ------------------ TypeId
+   |        |
+   |        TypeId
+   |
+note: an implementation of `PartialEq` might be missing for `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_004/target.rs:2:1
+   |
+ 2 | enum TypeId {
+   | ^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `TypeId` with `#[derive(PartialEq)]`
+   |
+ 2 + #[derive(PartialEq)]
+ 3 | enum TypeId {
+   |
+
+error: aborting due to 16 previous errors
+
+Some errors have detailed explanations: E0308, E0369, E0599.
+For more information about an error, try `rustc --explain E0308`.

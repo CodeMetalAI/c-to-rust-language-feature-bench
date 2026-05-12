@@ -1,0 +1,49 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_1/sample_004/target.rs:33:5
+   |
+33 | /     unsafe {
+34 | |         v1.u.s1.i = 2;
+35 | |         v1.u.s2.k = 5;
+36 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_1/sample_004/target.rs:42:8
+   |
+42 |     if unsafe { v1.u.s2.k } != 5 {
+   |        ^^^^^^^^^^^^^^^^^^^^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_1/sample_004/target.rs:4:9
+  |
+4 |         s1: S1,
+  |         ^^^^^^
+  |
+  = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+  |
+4 |         s1: std::mem::ManuallyDrop<S1>,
+  |             +++++++++++++++++++++++  +
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_1/sample_004/target.rs:38:8
+   |
+38 |     if v1.u.s1.i != 2 {
+   |        ^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_1/sample_004/target.rs:33:5
+   |
+33 |     unsafe {
+   |     ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 4 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0133, E0740.
+For more information about an error, try `rustc --explain E0133`.

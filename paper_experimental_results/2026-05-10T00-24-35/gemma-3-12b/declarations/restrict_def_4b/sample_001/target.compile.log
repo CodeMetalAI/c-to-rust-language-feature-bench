@@ -1,0 +1,103 @@
+warning: type `vector` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:2:8
+  |
+2 | struct vector {
+  |        ^^^^^^ help: convert the identifier to upper camel case (notice the capitalization): `Vector`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:23:5
+   |
+23 | /     unsafe {
+24 | |         h ^= (p as u64) + 0x9e3779b97f4a7c15u64;
+25 | |         h *= 0x5851f42d4c957f2dull;
+26 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:32:13
+   |
+32 |     let v = unsafe { Vec::from_raw_parts(alloc_bytes(n * std::mem::size_of::<f32>()), 0, n) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:56:5
+   |
+56 | /     unsafe {
+57 | |         let a = new_vector(16);
+58 | |         let b = new_vector(16);
+...  |
+87 | |         0
+88 | |     }
+   | |_____^
+
+error: invalid suffix `ull` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:25:14
+   |
+25 |         h *= 0x5851f42d4c957f2dull;
+   |              ^^^^^^^^^^^^^^^^^^^^^ invalid suffix `ull`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:55:14
+   |
+55 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:33:17
+   |
+33 |     vector { n, v }
+   |                 ^ expected `Vec<f32>`, found `Vec<u8>`
+   |
+   = note: expected struct `Vec<f32>`
+              found struct `Vec<u8>`
+
+error[E0599]: no method named `is_null` found for struct `Vec<f32>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:60:16
+   |
+60 |         if a.v.is_null() {
+   |                ^^^^^^^ method not found in `Vec<f32>`
+
+error[E0599]: no method named `is_null` found for struct `Vec<f32>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:63:16
+   |
+63 |         if b.v.is_null() {
+   |                ^^^^^^^ method not found in `Vec<f32>`
+
+error[E0308]: arguments to this function are incorrect
+    --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:67:12
+     |
+  67 |         if std::ptr::eq(a.v, b.v) {
+     |            ^^^^^^^^^^^^
+     |
+note: expected `*const _`, found `Vec<f32>`
+    --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:67:25
+     |
+  67 |         if std::ptr::eq(a.v, b.v) {
+     |                         ^^^
+     = note: expected raw pointer `*const _`
+                     found struct `Vec<f32>`
+note: expected `*const _`, found `Vec<f32>`
+    --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:67:30
+     |
+  67 |         if std::ptr::eq(a.v, b.v) {
+     |                              ^^^
+     = note: expected raw pointer `*const _`
+                     found struct `Vec<f32>`
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:2442:8
+     |
+2442 | pub fn eq<T: PointeeSized>(a: *const T, b: *const T) -> bool {
+     |        ^^
+
+error: aborting due to 9 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308, E0599.
+For more information about an error, try `rustc --explain E0277`.

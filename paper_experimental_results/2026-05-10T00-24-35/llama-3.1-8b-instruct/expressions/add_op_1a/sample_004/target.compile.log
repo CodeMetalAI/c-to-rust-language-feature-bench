@@ -1,0 +1,32 @@
+error[E0614]: type `{integer}` cannot be dereferenced
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_1a/sample_004/target.rs:6:5
+  |
+6 |     *p[2] = 99;
+  |     ^^^^^ can't be dereferenced
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_1a/sample_004/target.rs:9:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+9 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0277]: cannot subtract `*const _` from `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_1a/sample_004/target.rs:12:38
+   |
+12 |     let n = (p as *const _ as usize) - a as *const _;
+   |                                      ^ no implementation for `usize - *const _`
+   |
+   = help: the trait `Sub<*const _>` is not implemented for `usize`
+   = help: the following other types implement trait `Sub<Rhs>`:
+             `&usize` implements `Sub<usize>`
+             `&usize` implements `Sub`
+             `usize` implements `Sub<&usize>`
+             `usize` implements `Sub`
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0614.
+For more information about an error, try `rustc --explain E0277`.

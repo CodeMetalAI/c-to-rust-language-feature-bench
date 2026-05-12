@@ -1,0 +1,31 @@
+warning: type `s` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_004/target.rs:5:8
+  |
+5 | struct s;
+  |        ^ help: convert the identifier to upper camel case (notice the capitalization): `S`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_004/target.rs:12:12
+   |
+12 |     #[repr(align(64))] // Assume max_align_t is 64 for this conversion
+   |            ^^^^^^^^^
+13 |     let auto_ll;
+   |     ------------ not a struct, enum, or union
+
+error[E0282]: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_004/target.rs:13:9
+   |
+13 |     let auto_ll;
+   |         ^^^^^^^
+   |
+help: consider giving `auto_ll` an explicit type
+   |
+13 |     let auto_ll: /* Type */;
+   |                ++++++++++++
+
+error: aborting due to 2 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0282, E0517.
+For more information about an error, try `rustc --explain E0282`.

@@ -1,0 +1,87 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_003/target.rs:5:9
+  |
+5 |         unsafe { GSTORE[0] = 111 };
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_003/target.rs:6:9
+  |
+6 |         unsafe { GSTORE[0] + 1 }
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_003/target.rs:10:9
+   |
+10 |         unsafe { GSTORE[1] = 222 };
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_003/target.rs:11:9
+   |
+11 |         unsafe { GSTORE[1] }
+   |         ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_003/target.rs:15:9
+   |
+15 |         unsafe { GSTORE[2] = 333 };
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_003/target.rs:16:9
+   |
+16 |         unsafe { GSTORE[2] - 1 }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_003/target.rs:20:9
+   |
+20 |         unsafe { GSTORE[3] = 444 };
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_003/target.rs:21:9
+   |
+21 |         unsafe { GSTORE[3] + 2 }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_003/target.rs:43:15
+   |
+43 |     if choose(unsafe { GSTORE[0] }) == 0 {
+   |               ^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_003/target.rs:44:15
+   |
+42 |     let mut pfi = alt0;
+   |                   ---- expected due to this value
+43 |     if choose(unsafe { GSTORE[0] }) == 0 {
+44 |         pfi = alt1;
+   |               ^^^^ expected fn item, found a different fn item
+   |
+   = note: expected fn item `fn() -> _ {alt0}`
+              found fn item `fn() -> _ {alt1}`
+   = note: different fn items have unique types, even if their signatures are the same
+   = help: consider casting both fn items to fn pointers using `as fn() -> i32`
+
+error[E0369]: binary operation `==` cannot be applied to type `fn() -> i32 {alt0}`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_003/target.rs:55:16
+   |
+55 |         if pfi == alt0 {
+   |            --- ^^ ---- fn() -> i32 {alt0}
+   |            |
+   |            fn() -> i32 {alt0}
+   |
+help: use parentheses to call these
+   |
+55 |         if pfi() == alt0() {
+   |               ++        ++
+
+error: aborting due to 11 previous errors
+
+Some errors have detailed explanations: E0308, E0369.
+For more information about an error, try `rustc --explain E0308`.

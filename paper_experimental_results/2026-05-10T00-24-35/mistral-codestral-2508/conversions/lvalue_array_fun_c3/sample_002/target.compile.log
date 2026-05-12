@@ -1,0 +1,71 @@
+error[E0310]: the parameter type `T` may not live long enough
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c3/sample_002/target.rs:2:8
+  |
+2 |     if std::any::TypeId::of::<T>() == std::any::TypeId::of::<&[i32; 3]>() {
+  |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |        |
+  |        the parameter type `T` must be valid for the static lifetime...
+  |        ...so that the type `T` will meet its required lifetime bounds
+  |
+help: consider adding an explicit lifetime bound
+  |
+1 | fn type_id<T: 'static>(_: T) -> usize {
+  |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c3/sample_002/target.rs:4:15
+  |
+4 |     } else if std::any::TypeId::of::<T>() == std::any::TypeId::of::<&mut [i32; 3]>() {
+  |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |               |
+  |               the parameter type `T` must be valid for the static lifetime...
+  |               ...so that the type `T` will meet its required lifetime bounds
+  |
+help: consider adding an explicit lifetime bound
+  |
+1 | fn type_id<T: 'static>(_: T) -> usize {
+  |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c3/sample_002/target.rs:6:15
+  |
+6 |     } else if std::any::TypeId::of::<T>() == std::any::TypeId::of::<&str>() {
+  |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |               |
+  |               the parameter type `T` must be valid for the static lifetime...
+  |               ...so that the type `T` will meet its required lifetime bounds
+  |
+help: consider adding an explicit lifetime bound
+  |
+1 | fn type_id<T: 'static>(_: T) -> usize {
+  |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c3/sample_002/target.rs:8:15
+  |
+8 |     } else if std::any::TypeId::of::<T>() == std::any::TypeId::of::<[char; 4]>() {
+  |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |               |
+  |               the parameter type `T` must be valid for the static lifetime...
+  |               ...so that the type `T` will meet its required lifetime bounds
+  |
+help: consider adding an explicit lifetime bound
+  |
+1 | fn type_id<T: 'static>(_: T) -> usize {
+  |             +++++++++
+
+error[E0596]: cannot borrow `a` as mutable, as it is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c3/sample_002/target.rs:21:16
+   |
+21 |     if type_id(&mut a) != 2 {
+   |                ^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+16 |     let mut a: [i32; 3] = [10, 20, 30];
+   |         +++
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0310, E0596.
+For more information about an error, try `rustc --explain E0310`.

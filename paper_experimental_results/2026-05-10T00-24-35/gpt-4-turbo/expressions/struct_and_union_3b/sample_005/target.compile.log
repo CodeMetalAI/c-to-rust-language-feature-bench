@@ -1,0 +1,49 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/struct_and_union_3b/sample_005/target.rs:5:5
+  |
+5 | /     unsafe {
+6 | |         u.s2.m = 7;
+7 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/struct_and_union_3b/sample_005/target.rs:15:8
+   |
+15 |     if unsafe { u.s2.m } != -7 {
+   |        ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/struct_and_union_3b/sample_005/target.rs:34:5
+   |
+34 | /     unsafe {
+35 | |         if u.s1.m < 0 {
+36 | |             u.s2.m = -u.s2.m;
+...  |
+39 | |     }
+   | |_____^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/struct_and_union_3b/sample_005/target.rs:29:5
+   |
+29 |     s1: T1,
+   |     ^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+29 |     s1: std::mem::ManuallyDrop<T1>,
+   |         +++++++++++++++++++++++  +
+
+warning: unnecessary `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/struct_and_union_3b/sample_005/target.rs:5:5
+  |
+5 |     unsafe {
+  |     ^^^^^^ unnecessary `unsafe` block
+  |
+  = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 4 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0740`.

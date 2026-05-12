@@ -1,0 +1,82 @@
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_002/target.rs:22:25
+   |
+22 |         let vla1: [f32; n1] = [0.0; n1];
+   |                         ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+19 -         let n1 = position(11);
+19 +         const n1: /* Type */ = position(11);
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_002/target.rs:22:37
+   |
+22 |         let vla1: [f32; n1] = [0.0; n1];
+   |                                     ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+19 -         let n1 = position(11);
+19 +         const n1: /* Type */ = position(11);
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_002/target.rs:23:38
+   |
+23 |         let mut vla2: [Option<&f32>; n2] = [None; n2];
+   |                                      ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+20 -         let n2 = position(17);
+20 +         const n2: /* Type */ = position(17);
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_002/target.rs:23:51
+   |
+23 |         let mut vla2: [Option<&f32>; n2] = [None; n2];
+   |                                                   ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+20 -         let n2 = position(17);
+20 +         const n2: /* Type */ = position(17);
+   |
+
+error[E0425]: cannot find value `calls` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_002/target.rs:67:5
+   |
+67 |     calls += 1;
+   |     ^^^^^ not found in this scope
+
+error[E0599]: no method named `as_i32` found for reference `&f32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_002/target.rs:76:57
+   |
+76 |     a[0] as i32 + a[10] as i32 + afp[0].unwrap_or(&0.0).as_i32() + afp[16].unwrap_or(&0.0).as_i32()
+   |                                                         ^^^^^^
+   |
+help: there is a method `asin` with a similar name
+   |
+76 -     a[0] as i32 + a[10] as i32 + afp[0].unwrap_or(&0.0).as_i32() + afp[16].unwrap_or(&0.0).as_i32()
+76 +     a[0] as i32 + a[10] as i32 + afp[0].unwrap_or(&0.0).asin() + afp[16].unwrap_or(&0.0).as_i32()
+   |
+
+error[E0599]: no method named `as_i32` found for reference `&f32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_002/target.rs:76:92
+   |
+76 |     a[0] as i32 + a[10] as i32 + afp[0].unwrap_or(&0.0).as_i32() + afp[16].unwrap_or(&0.0).as_i32()
+   |                                                                                            ^^^^^^
+   |
+help: there is a method `asin` with a similar name
+   |
+76 -     a[0] as i32 + a[10] as i32 + afp[0].unwrap_or(&0.0).as_i32() + afp[16].unwrap_or(&0.0).as_i32()
+76 +     a[0] as i32 + a[10] as i32 + afp[0].unwrap_or(&0.0).as_i32() + afp[16].unwrap_or(&0.0).asin()
+   |
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0425, E0435, E0599.
+For more information about an error, try `rustc --explain E0425`.

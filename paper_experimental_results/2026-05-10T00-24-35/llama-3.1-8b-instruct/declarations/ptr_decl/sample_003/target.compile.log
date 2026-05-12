@@ -1,0 +1,91 @@
+error[E0599]: no method named `clone` found for struct `Bundle` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_003/target.rs:16:23
+   |
+16 |     if check_bundle(b.clone(), &x) != 0 {
+   |                       ^^^^^ method not found in `Bundle`
+...
+55 | struct Bundle {
+   | ------------- method `clone` not found for this struct
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `clone`, perhaps you need to implement it:
+           candidate #1: `Clone`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_003/target.rs:17:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+17 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0599]: no method named `clone` found for struct `Bundle` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_003/target.rs:44:23
+   |
+44 |     if check_bundle(b.clone(), &x) != 0 {
+   |                       ^^^^^ method not found in `Bundle`
+...
+55 | struct Bundle {
+   | ------------- method `clone` not found for this struct
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `clone`, perhaps you need to implement it:
+           candidate #1: `Clone`
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_003/target.rs:82:9
+   |
+82 |     if !same_addr(b.const_p, expected_const_p_target) {
+   |         ^^^^^^^^^
+   |
+note: expected `*const ()`, found `*const i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_003/target.rs:82:19
+   |
+82 |     if !same_addr(b.const_p, expected_const_p_target) {
+   |                   ^^^^^^^^^
+   = note: expected raw pointer `*const ()`
+              found raw pointer `*const i32`
+note: expected `*const ()`, found `&i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_003/target.rs:82:30
+   |
+82 |     if !same_addr(b.const_p, expected_const_p_target) {
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^
+   = note: expected raw pointer `*const ()`
+                found reference `&i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_003/target.rs:77:4
+   |
+77 | fn same_addr(x: *const (), y: *const ()) -> bool {
+   |    ^^^^^^^^^ ------------  ------------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_003/target.rs:85:9
+   |
+85 |     if !same_addr(b.const_p_via_typedef, expected_const_p_target) {
+   |         ^^^^^^^^^
+   |
+note: expected `*const ()`, found `*const i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_003/target.rs:85:19
+   |
+85 |     if !same_addr(b.const_p_via_typedef, expected_const_p_target) {
+   |                   ^^^^^^^^^^^^^^^^^^^^^
+   = note: expected raw pointer `*const ()`
+              found raw pointer `*const i32`
+note: expected `*const ()`, found `&i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_003/target.rs:85:42
+   |
+85 |     if !same_addr(b.const_p_via_typedef, expected_const_p_target) {
+   |                                          ^^^^^^^^^^^^^^^^^^^^^^^
+   = note: expected raw pointer `*const ()`
+                found reference `&i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/ptr_decl/sample_003/target.rs:77:4
+   |
+77 | fn same_addr(x: *const (), y: *const ()) -> bool {
+   |    ^^^^^^^^^ ------------  ------------
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.

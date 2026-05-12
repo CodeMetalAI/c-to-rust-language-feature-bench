@@ -1,0 +1,39 @@
+error[E0530]: let bindings cannot shadow statics
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/function_specifiers_c8b/sample_004/target.rs:6:9
+   |
+ 6 |     let g = 9;
+   |         ^ cannot be named the same as a static
+...
+12 | static mut g: i32 = 0;
+   | ---------------------- the static `g` is defined here
+
+warning: unreachable statement
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/function_specifiers_c8b/sample_004/target.rs:9:5
+  |
+8 |     p(7);
+  |     ---- any code following this expression is unreachable
+9 |     std::process::exit(3);
+  |     ^^^^^^^^^^^^^^^^^^^^^^ unreachable statement
+  |
+  = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/function_specifiers_c8b/sample_004/target.rs:2:37
+  |
+2 |     std::process::exit(if x == 7 && g == 9 { 0 } else { 2 });
+  |                                     ^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+warning: unused variable: `g`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/function_specifiers_c8b/sample_004/target.rs:6:9
+  |
+6 |     let g = 9;
+  |         ^ help: if this is intentional, prefix it with an underscore: `_g`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 2 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0133, E0530.
+For more information about an error, try `rustc --explain E0133`.

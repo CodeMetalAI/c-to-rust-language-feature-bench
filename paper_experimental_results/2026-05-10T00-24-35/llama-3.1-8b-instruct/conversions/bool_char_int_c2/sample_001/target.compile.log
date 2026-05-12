@@ -1,0 +1,2190 @@
+error[E0412]: cannot find type `f80` in this scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:235:20
+    |
+235 | impl FloatLike for f80 {
+    |                    ^^^ not found in this scope
+
+error[E0412]: cannot find type `f80` in this scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:255:25
+    |
+255 | impl LongDoubleLike for f80 {
+    |                         ^^^ not found in this scope
+
+error: invalid width `80` for float literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:91:17
+   |
+91 |     if type_id!(1.0f80)!= TypeId::LongDouble {
+   |                 ^^^^^^
+   |
+   = help: valid widths are 32 and 64
+
+error: invalid width `80` for float literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:92:68
+   |
+92 |         eprintln!("Error: Expected LongDouble, got {:?}", type_id!(1.0f80));
+   |                                                                    ^^^^^^
+   |
+   = help: valid widths are 32 and 64
+
+error[E0599]: no method named `is_uint` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:22:20
+    |
+ 22 |             _ if x.is_uint() => TypeId::Uint,
+    |                    ^^^^^^^
+...
+ 52 |     if type_id!(1i8 as i8 + 0)!= TypeId::Int {
+    |        ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UintLike` defines an item `is_uint`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:127:1
+    |
+127 | trait UintLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:23:20
+    |
+ 23 |             _ if x.is_long() => TypeId::Long,
+    |                    ^^^^^^^
+...
+ 52 |     if type_id!(1i8 as i8 + 0)!= TypeId::Int {
+    |        ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLike` defines an item `is_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:155:1
+    |
+155 | trait LongLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:24:20
+    |
+ 24 |             _ if x.is_ulong() => TypeId::Ulong,
+    |                    ^^^^^^^^
+...
+ 52 |     if type_id!(1i8 as i8 + 0)!= TypeId::Int {
+    |        ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLike` defines an item `is_ulong`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:171:1
+    |
+171 | trait UlongLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_long` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:25:20
+    |
+ 25 |             _ if x.is_long_long() => TypeId::LongLong,
+    |                    ^^^^^^^^^^^^ method not found in `i8`
+...
+ 52 |     if type_id!(1i8 as i8 + 0)!= TypeId::Int {
+    |        ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLongLike` defines an item `is_long_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:187:1
+    |
+187 | trait LongLongLike {
+    | ^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong_long` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:26:20
+    |
+ 26 |             _ if x.is_ulong_long() => TypeId::UlongLong,
+    |                    ^^^^^^^^^^^^^ method not found in `i8`
+...
+ 52 |     if type_id!(1i8 as i8 + 0)!= TypeId::Int {
+    |        ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLongLike` defines an item `is_ulong_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:203:1
+    |
+203 | trait UlongLongLike {
+    | ^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_float` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:27:20
+    |
+ 27 |             _ if x.is_float() => TypeId::Float,
+    |                    ^^^^^^^^ method not found in `i8`
+...
+ 52 |     if type_id!(1i8 as i8 + 0)!= TypeId::Int {
+    |        ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `FloatLike` defines an item `is_float`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:219:1
+    |
+219 | trait FloatLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_double` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:28:20
+    |
+ 28 |             _ if x.is_double() => TypeId::Double,
+    |                    ^^^^^^^^^ method not found in `i8`
+...
+ 52 |     if type_id!(1i8 as i8 + 0)!= TypeId::Int {
+    |        ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `DoubleLike` defines an item `is_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:241:1
+    |
+241 | trait DoubleLike {
+    | ^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_double` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:29:20
+    |
+ 29 |             _ if x.is_long_double() => TypeId::LongDouble,
+    |                    ^^^^^^^^^^^^^^ method not found in `i8`
+...
+ 52 |     if type_id!(1i8 as i8 + 0)!= TypeId::Int {
+    |        ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongDoubleLike` defines an item `is_long_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:251:1
+    |
+251 | trait LongDoubleLike {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_uint` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:22:20
+    |
+ 22 |             _ if x.is_uint() => TypeId::Uint,
+    |                    ^^^^^^^
+...
+ 53 |         eprintln!("Error: Expected Int, got {:?}", type_id!(1i8 as i8 + 0));
+    |                                                    ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UintLike` defines an item `is_uint`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:127:1
+    |
+127 | trait UintLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:23:20
+    |
+ 23 |             _ if x.is_long() => TypeId::Long,
+    |                    ^^^^^^^
+...
+ 53 |         eprintln!("Error: Expected Int, got {:?}", type_id!(1i8 as i8 + 0));
+    |                                                    ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLike` defines an item `is_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:155:1
+    |
+155 | trait LongLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:24:20
+    |
+ 24 |             _ if x.is_ulong() => TypeId::Ulong,
+    |                    ^^^^^^^^
+...
+ 53 |         eprintln!("Error: Expected Int, got {:?}", type_id!(1i8 as i8 + 0));
+    |                                                    ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLike` defines an item `is_ulong`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:171:1
+    |
+171 | trait UlongLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_long` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:25:20
+    |
+ 25 |             _ if x.is_long_long() => TypeId::LongLong,
+    |                    ^^^^^^^^^^^^ method not found in `i8`
+...
+ 53 |         eprintln!("Error: Expected Int, got {:?}", type_id!(1i8 as i8 + 0));
+    |                                                    ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLongLike` defines an item `is_long_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:187:1
+    |
+187 | trait LongLongLike {
+    | ^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong_long` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:26:20
+    |
+ 26 |             _ if x.is_ulong_long() => TypeId::UlongLong,
+    |                    ^^^^^^^^^^^^^ method not found in `i8`
+...
+ 53 |         eprintln!("Error: Expected Int, got {:?}", type_id!(1i8 as i8 + 0));
+    |                                                    ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLongLike` defines an item `is_ulong_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:203:1
+    |
+203 | trait UlongLongLike {
+    | ^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_float` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:27:20
+    |
+ 27 |             _ if x.is_float() => TypeId::Float,
+    |                    ^^^^^^^^ method not found in `i8`
+...
+ 53 |         eprintln!("Error: Expected Int, got {:?}", type_id!(1i8 as i8 + 0));
+    |                                                    ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `FloatLike` defines an item `is_float`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:219:1
+    |
+219 | trait FloatLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_double` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:28:20
+    |
+ 28 |             _ if x.is_double() => TypeId::Double,
+    |                    ^^^^^^^^^ method not found in `i8`
+...
+ 53 |         eprintln!("Error: Expected Int, got {:?}", type_id!(1i8 as i8 + 0));
+    |                                                    ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `DoubleLike` defines an item `is_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:241:1
+    |
+241 | trait DoubleLike {
+    | ^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_double` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:29:20
+    |
+ 29 |             _ if x.is_long_double() => TypeId::LongDouble,
+    |                    ^^^^^^^^^^^^^^ method not found in `i8`
+...
+ 53 |         eprintln!("Error: Expected Int, got {:?}", type_id!(1i8 as i8 + 0));
+    |                                                    ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongDoubleLike` defines an item `is_long_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:251:1
+    |
+251 | trait LongDoubleLike {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_int` found for type `u8` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:21:20
+   |
+21 |             _ if x.is_int() => TypeId::Int,
+   |                    ^^^^^^
+...
+56 |     if type_id!(1u8 as u8 + 0)!= TypeId::Uint {
+   |        ----------------------- in this macro invocation
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+note: `IntLike` defines an item `is_int`, perhaps you need to implement it
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:99:1
+   |
+99 | trait IntLike {
+   | ^^^^^^^^^^^^^
+   = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:23:20
+    |
+ 23 |             _ if x.is_long() => TypeId::Long,
+    |                    ^^^^^^^
+...
+ 56 |     if type_id!(1u8 as u8 + 0)!= TypeId::Uint {
+    |        ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLike` defines an item `is_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:155:1
+    |
+155 | trait LongLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:24:20
+    |
+ 24 |             _ if x.is_ulong() => TypeId::Ulong,
+    |                    ^^^^^^^^
+...
+ 56 |     if type_id!(1u8 as u8 + 0)!= TypeId::Uint {
+    |        ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLike` defines an item `is_ulong`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:171:1
+    |
+171 | trait UlongLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_long` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:25:20
+    |
+ 25 |             _ if x.is_long_long() => TypeId::LongLong,
+    |                    ^^^^^^^^^^^^ method not found in `u8`
+...
+ 56 |     if type_id!(1u8 as u8 + 0)!= TypeId::Uint {
+    |        ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLongLike` defines an item `is_long_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:187:1
+    |
+187 | trait LongLongLike {
+    | ^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong_long` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:26:20
+    |
+ 26 |             _ if x.is_ulong_long() => TypeId::UlongLong,
+    |                    ^^^^^^^^^^^^^ method not found in `u8`
+...
+ 56 |     if type_id!(1u8 as u8 + 0)!= TypeId::Uint {
+    |        ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLongLike` defines an item `is_ulong_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:203:1
+    |
+203 | trait UlongLongLike {
+    | ^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_float` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:27:20
+    |
+ 27 |             _ if x.is_float() => TypeId::Float,
+    |                    ^^^^^^^^ method not found in `u8`
+...
+ 56 |     if type_id!(1u8 as u8 + 0)!= TypeId::Uint {
+    |        ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `FloatLike` defines an item `is_float`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:219:1
+    |
+219 | trait FloatLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_double` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:28:20
+    |
+ 28 |             _ if x.is_double() => TypeId::Double,
+    |                    ^^^^^^^^^ method not found in `u8`
+...
+ 56 |     if type_id!(1u8 as u8 + 0)!= TypeId::Uint {
+    |        ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `DoubleLike` defines an item `is_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:241:1
+    |
+241 | trait DoubleLike {
+    | ^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_double` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:29:20
+    |
+ 29 |             _ if x.is_long_double() => TypeId::LongDouble,
+    |                    ^^^^^^^^^^^^^^ method not found in `u8`
+...
+ 56 |     if type_id!(1u8 as u8 + 0)!= TypeId::Uint {
+    |        ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongDoubleLike` defines an item `is_long_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:251:1
+    |
+251 | trait LongDoubleLike {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_int` found for type `u8` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:21:20
+   |
+21 |             _ if x.is_int() => TypeId::Int,
+   |                    ^^^^^^
+...
+57 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(1u8 as u8 + 0));
+   |                                                     ----------------------- in this macro invocation
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+note: `IntLike` defines an item `is_int`, perhaps you need to implement it
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:99:1
+   |
+99 | trait IntLike {
+   | ^^^^^^^^^^^^^
+   = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:23:20
+    |
+ 23 |             _ if x.is_long() => TypeId::Long,
+    |                    ^^^^^^^
+...
+ 57 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(1u8 as u8 + 0));
+    |                                                     ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLike` defines an item `is_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:155:1
+    |
+155 | trait LongLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:24:20
+    |
+ 24 |             _ if x.is_ulong() => TypeId::Ulong,
+    |                    ^^^^^^^^
+...
+ 57 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(1u8 as u8 + 0));
+    |                                                     ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLike` defines an item `is_ulong`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:171:1
+    |
+171 | trait UlongLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_long` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:25:20
+    |
+ 25 |             _ if x.is_long_long() => TypeId::LongLong,
+    |                    ^^^^^^^^^^^^ method not found in `u8`
+...
+ 57 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(1u8 as u8 + 0));
+    |                                                     ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLongLike` defines an item `is_long_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:187:1
+    |
+187 | trait LongLongLike {
+    | ^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong_long` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:26:20
+    |
+ 26 |             _ if x.is_ulong_long() => TypeId::UlongLong,
+    |                    ^^^^^^^^^^^^^ method not found in `u8`
+...
+ 57 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(1u8 as u8 + 0));
+    |                                                     ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLongLike` defines an item `is_ulong_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:203:1
+    |
+203 | trait UlongLongLike {
+    | ^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_float` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:27:20
+    |
+ 27 |             _ if x.is_float() => TypeId::Float,
+    |                    ^^^^^^^^ method not found in `u8`
+...
+ 57 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(1u8 as u8 + 0));
+    |                                                     ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `FloatLike` defines an item `is_float`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:219:1
+    |
+219 | trait FloatLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_double` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:28:20
+    |
+ 28 |             _ if x.is_double() => TypeId::Double,
+    |                    ^^^^^^^^^ method not found in `u8`
+...
+ 57 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(1u8 as u8 + 0));
+    |                                                     ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `DoubleLike` defines an item `is_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:241:1
+    |
+241 | trait DoubleLike {
+    | ^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_double` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:29:20
+    |
+ 29 |             _ if x.is_long_double() => TypeId::LongDouble,
+    |                    ^^^^^^^^^^^^^^ method not found in `u8`
+...
+ 57 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(1u8 as u8 + 0));
+    |                                                     ----------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongDoubleLike` defines an item `is_long_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:251:1
+    |
+251 | trait LongDoubleLike {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_uint` found for type `i16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:22:20
+    |
+ 22 |             _ if x.is_uint() => TypeId::Uint,
+    |                    ^^^^^^^
+...
+ 60 |     if type_id!(1i16 as i16 + 0)!= TypeId::Int {
+    |        ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UintLike` defines an item `is_uint`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:127:1
+    |
+127 | trait UintLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long` found for type `i16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:23:20
+    |
+ 23 |             _ if x.is_long() => TypeId::Long,
+    |                    ^^^^^^^
+...
+ 60 |     if type_id!(1i16 as i16 + 0)!= TypeId::Int {
+    |        ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLike` defines an item `is_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:155:1
+    |
+155 | trait LongLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong` found for type `i16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:24:20
+    |
+ 24 |             _ if x.is_ulong() => TypeId::Ulong,
+    |                    ^^^^^^^^
+...
+ 60 |     if type_id!(1i16 as i16 + 0)!= TypeId::Int {
+    |        ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLike` defines an item `is_ulong`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:171:1
+    |
+171 | trait UlongLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_long` found for type `i16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:25:20
+    |
+ 25 |             _ if x.is_long_long() => TypeId::LongLong,
+    |                    ^^^^^^^^^^^^ method not found in `i16`
+...
+ 60 |     if type_id!(1i16 as i16 + 0)!= TypeId::Int {
+    |        ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLongLike` defines an item `is_long_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:187:1
+    |
+187 | trait LongLongLike {
+    | ^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong_long` found for type `i16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:26:20
+    |
+ 26 |             _ if x.is_ulong_long() => TypeId::UlongLong,
+    |                    ^^^^^^^^^^^^^ method not found in `i16`
+...
+ 60 |     if type_id!(1i16 as i16 + 0)!= TypeId::Int {
+    |        ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLongLike` defines an item `is_ulong_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:203:1
+    |
+203 | trait UlongLongLike {
+    | ^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_float` found for type `i16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:27:20
+    |
+ 27 |             _ if x.is_float() => TypeId::Float,
+    |                    ^^^^^^^^ method not found in `i16`
+...
+ 60 |     if type_id!(1i16 as i16 + 0)!= TypeId::Int {
+    |        ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `FloatLike` defines an item `is_float`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:219:1
+    |
+219 | trait FloatLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_double` found for type `i16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:28:20
+    |
+ 28 |             _ if x.is_double() => TypeId::Double,
+    |                    ^^^^^^^^^ method not found in `i16`
+...
+ 60 |     if type_id!(1i16 as i16 + 0)!= TypeId::Int {
+    |        ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `DoubleLike` defines an item `is_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:241:1
+    |
+241 | trait DoubleLike {
+    | ^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_double` found for type `i16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:29:20
+    |
+ 29 |             _ if x.is_long_double() => TypeId::LongDouble,
+    |                    ^^^^^^^^^^^^^^ method not found in `i16`
+...
+ 60 |     if type_id!(1i16 as i16 + 0)!= TypeId::Int {
+    |        ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongDoubleLike` defines an item `is_long_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:251:1
+    |
+251 | trait LongDoubleLike {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_uint` found for type `i16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:22:20
+    |
+ 22 |             _ if x.is_uint() => TypeId::Uint,
+    |                    ^^^^^^^
+...
+ 61 |         eprintln!("Error: Expected Int, got {:?}", type_id!(1i16 as i16 + 0));
+    |                                                    ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UintLike` defines an item `is_uint`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:127:1
+    |
+127 | trait UintLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long` found for type `i16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:23:20
+    |
+ 23 |             _ if x.is_long() => TypeId::Long,
+    |                    ^^^^^^^
+...
+ 61 |         eprintln!("Error: Expected Int, got {:?}", type_id!(1i16 as i16 + 0));
+    |                                                    ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLike` defines an item `is_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:155:1
+    |
+155 | trait LongLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong` found for type `i16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:24:20
+    |
+ 24 |             _ if x.is_ulong() => TypeId::Ulong,
+    |                    ^^^^^^^^
+...
+ 61 |         eprintln!("Error: Expected Int, got {:?}", type_id!(1i16 as i16 + 0));
+    |                                                    ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLike` defines an item `is_ulong`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:171:1
+    |
+171 | trait UlongLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_long` found for type `i16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:25:20
+    |
+ 25 |             _ if x.is_long_long() => TypeId::LongLong,
+    |                    ^^^^^^^^^^^^ method not found in `i16`
+...
+ 61 |         eprintln!("Error: Expected Int, got {:?}", type_id!(1i16 as i16 + 0));
+    |                                                    ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLongLike` defines an item `is_long_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:187:1
+    |
+187 | trait LongLongLike {
+    | ^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong_long` found for type `i16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:26:20
+    |
+ 26 |             _ if x.is_ulong_long() => TypeId::UlongLong,
+    |                    ^^^^^^^^^^^^^ method not found in `i16`
+...
+ 61 |         eprintln!("Error: Expected Int, got {:?}", type_id!(1i16 as i16 + 0));
+    |                                                    ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLongLike` defines an item `is_ulong_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:203:1
+    |
+203 | trait UlongLongLike {
+    | ^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_float` found for type `i16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:27:20
+    |
+ 27 |             _ if x.is_float() => TypeId::Float,
+    |                    ^^^^^^^^ method not found in `i16`
+...
+ 61 |         eprintln!("Error: Expected Int, got {:?}", type_id!(1i16 as i16 + 0));
+    |                                                    ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `FloatLike` defines an item `is_float`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:219:1
+    |
+219 | trait FloatLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_double` found for type `i16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:28:20
+    |
+ 28 |             _ if x.is_double() => TypeId::Double,
+    |                    ^^^^^^^^^ method not found in `i16`
+...
+ 61 |         eprintln!("Error: Expected Int, got {:?}", type_id!(1i16 as i16 + 0));
+    |                                                    ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `DoubleLike` defines an item `is_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:241:1
+    |
+241 | trait DoubleLike {
+    | ^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_double` found for type `i16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:29:20
+    |
+ 29 |             _ if x.is_long_double() => TypeId::LongDouble,
+    |                    ^^^^^^^^^^^^^^ method not found in `i16`
+...
+ 61 |         eprintln!("Error: Expected Int, got {:?}", type_id!(1i16 as i16 + 0));
+    |                                                    ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongDoubleLike` defines an item `is_long_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:251:1
+    |
+251 | trait LongDoubleLike {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_int` found for type `u16` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:21:20
+   |
+21 |             _ if x.is_int() => TypeId::Int,
+   |                    ^^^^^^
+...
+64 |     if type_id!(1u16 as u16 + 0)!= TypeId::Uint {
+   |        ------------------------- in this macro invocation
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+note: `IntLike` defines an item `is_int`, perhaps you need to implement it
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:99:1
+   |
+99 | trait IntLike {
+   | ^^^^^^^^^^^^^
+   = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long` found for type `u16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:23:20
+    |
+ 23 |             _ if x.is_long() => TypeId::Long,
+    |                    ^^^^^^^
+...
+ 64 |     if type_id!(1u16 as u16 + 0)!= TypeId::Uint {
+    |        ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLike` defines an item `is_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:155:1
+    |
+155 | trait LongLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong` found for type `u16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:24:20
+    |
+ 24 |             _ if x.is_ulong() => TypeId::Ulong,
+    |                    ^^^^^^^^
+...
+ 64 |     if type_id!(1u16 as u16 + 0)!= TypeId::Uint {
+    |        ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLike` defines an item `is_ulong`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:171:1
+    |
+171 | trait UlongLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_long` found for type `u16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:25:20
+    |
+ 25 |             _ if x.is_long_long() => TypeId::LongLong,
+    |                    ^^^^^^^^^^^^ method not found in `u16`
+...
+ 64 |     if type_id!(1u16 as u16 + 0)!= TypeId::Uint {
+    |        ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLongLike` defines an item `is_long_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:187:1
+    |
+187 | trait LongLongLike {
+    | ^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong_long` found for type `u16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:26:20
+    |
+ 26 |             _ if x.is_ulong_long() => TypeId::UlongLong,
+    |                    ^^^^^^^^^^^^^ method not found in `u16`
+...
+ 64 |     if type_id!(1u16 as u16 + 0)!= TypeId::Uint {
+    |        ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLongLike` defines an item `is_ulong_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:203:1
+    |
+203 | trait UlongLongLike {
+    | ^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_float` found for type `u16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:27:20
+    |
+ 27 |             _ if x.is_float() => TypeId::Float,
+    |                    ^^^^^^^^ method not found in `u16`
+...
+ 64 |     if type_id!(1u16 as u16 + 0)!= TypeId::Uint {
+    |        ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `FloatLike` defines an item `is_float`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:219:1
+    |
+219 | trait FloatLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_double` found for type `u16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:28:20
+    |
+ 28 |             _ if x.is_double() => TypeId::Double,
+    |                    ^^^^^^^^^ method not found in `u16`
+...
+ 64 |     if type_id!(1u16 as u16 + 0)!= TypeId::Uint {
+    |        ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `DoubleLike` defines an item `is_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:241:1
+    |
+241 | trait DoubleLike {
+    | ^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_double` found for type `u16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:29:20
+    |
+ 29 |             _ if x.is_long_double() => TypeId::LongDouble,
+    |                    ^^^^^^^^^^^^^^ method not found in `u16`
+...
+ 64 |     if type_id!(1u16 as u16 + 0)!= TypeId::Uint {
+    |        ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongDoubleLike` defines an item `is_long_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:251:1
+    |
+251 | trait LongDoubleLike {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_int` found for type `u16` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:21:20
+   |
+21 |             _ if x.is_int() => TypeId::Int,
+   |                    ^^^^^^
+...
+65 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(1u16 as u16 + 0));
+   |                                                     ------------------------- in this macro invocation
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+note: `IntLike` defines an item `is_int`, perhaps you need to implement it
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:99:1
+   |
+99 | trait IntLike {
+   | ^^^^^^^^^^^^^
+   = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long` found for type `u16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:23:20
+    |
+ 23 |             _ if x.is_long() => TypeId::Long,
+    |                    ^^^^^^^
+...
+ 65 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(1u16 as u16 + 0));
+    |                                                     ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLike` defines an item `is_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:155:1
+    |
+155 | trait LongLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong` found for type `u16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:24:20
+    |
+ 24 |             _ if x.is_ulong() => TypeId::Ulong,
+    |                    ^^^^^^^^
+...
+ 65 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(1u16 as u16 + 0));
+    |                                                     ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLike` defines an item `is_ulong`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:171:1
+    |
+171 | trait UlongLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_long` found for type `u16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:25:20
+    |
+ 25 |             _ if x.is_long_long() => TypeId::LongLong,
+    |                    ^^^^^^^^^^^^ method not found in `u16`
+...
+ 65 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(1u16 as u16 + 0));
+    |                                                     ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLongLike` defines an item `is_long_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:187:1
+    |
+187 | trait LongLongLike {
+    | ^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong_long` found for type `u16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:26:20
+    |
+ 26 |             _ if x.is_ulong_long() => TypeId::UlongLong,
+    |                    ^^^^^^^^^^^^^ method not found in `u16`
+...
+ 65 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(1u16 as u16 + 0));
+    |                                                     ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLongLike` defines an item `is_ulong_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:203:1
+    |
+203 | trait UlongLongLike {
+    | ^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_float` found for type `u16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:27:20
+    |
+ 27 |             _ if x.is_float() => TypeId::Float,
+    |                    ^^^^^^^^ method not found in `u16`
+...
+ 65 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(1u16 as u16 + 0));
+    |                                                     ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `FloatLike` defines an item `is_float`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:219:1
+    |
+219 | trait FloatLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_double` found for type `u16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:28:20
+    |
+ 28 |             _ if x.is_double() => TypeId::Double,
+    |                    ^^^^^^^^^ method not found in `u16`
+...
+ 65 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(1u16 as u16 + 0));
+    |                                                     ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `DoubleLike` defines an item `is_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:241:1
+    |
+241 | trait DoubleLike {
+    | ^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_double` found for type `u16` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:29:20
+    |
+ 29 |             _ if x.is_long_double() => TypeId::LongDouble,
+    |                    ^^^^^^^^^^^^^^ method not found in `u16`
+...
+ 65 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(1u16 as u16 + 0));
+    |                                                     ------------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongDoubleLike` defines an item `is_long_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:251:1
+    |
+251 | trait LongDoubleLike {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_int` found for type `u8` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:21:20
+   |
+21 |             _ if x.is_int() => TypeId::Int,
+   |                    ^^^^^^
+...
+70 |     if type_id!(bf.u1 + 0)!= TypeId::Uint {
+   |        ------------------- in this macro invocation
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+note: `IntLike` defines an item `is_int`, perhaps you need to implement it
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:99:1
+   |
+99 | trait IntLike {
+   | ^^^^^^^^^^^^^
+   = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:23:20
+    |
+ 23 |             _ if x.is_long() => TypeId::Long,
+    |                    ^^^^^^^
+...
+ 70 |     if type_id!(bf.u1 + 0)!= TypeId::Uint {
+    |        ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLike` defines an item `is_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:155:1
+    |
+155 | trait LongLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:24:20
+    |
+ 24 |             _ if x.is_ulong() => TypeId::Ulong,
+    |                    ^^^^^^^^
+...
+ 70 |     if type_id!(bf.u1 + 0)!= TypeId::Uint {
+    |        ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLike` defines an item `is_ulong`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:171:1
+    |
+171 | trait UlongLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_long` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:25:20
+    |
+ 25 |             _ if x.is_long_long() => TypeId::LongLong,
+    |                    ^^^^^^^^^^^^ method not found in `u8`
+...
+ 70 |     if type_id!(bf.u1 + 0)!= TypeId::Uint {
+    |        ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLongLike` defines an item `is_long_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:187:1
+    |
+187 | trait LongLongLike {
+    | ^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong_long` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:26:20
+    |
+ 26 |             _ if x.is_ulong_long() => TypeId::UlongLong,
+    |                    ^^^^^^^^^^^^^ method not found in `u8`
+...
+ 70 |     if type_id!(bf.u1 + 0)!= TypeId::Uint {
+    |        ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLongLike` defines an item `is_ulong_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:203:1
+    |
+203 | trait UlongLongLike {
+    | ^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_float` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:27:20
+    |
+ 27 |             _ if x.is_float() => TypeId::Float,
+    |                    ^^^^^^^^ method not found in `u8`
+...
+ 70 |     if type_id!(bf.u1 + 0)!= TypeId::Uint {
+    |        ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `FloatLike` defines an item `is_float`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:219:1
+    |
+219 | trait FloatLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_double` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:28:20
+    |
+ 28 |             _ if x.is_double() => TypeId::Double,
+    |                    ^^^^^^^^^ method not found in `u8`
+...
+ 70 |     if type_id!(bf.u1 + 0)!= TypeId::Uint {
+    |        ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `DoubleLike` defines an item `is_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:241:1
+    |
+241 | trait DoubleLike {
+    | ^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_double` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:29:20
+    |
+ 29 |             _ if x.is_long_double() => TypeId::LongDouble,
+    |                    ^^^^^^^^^^^^^^ method not found in `u8`
+...
+ 70 |     if type_id!(bf.u1 + 0)!= TypeId::Uint {
+    |        ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongDoubleLike` defines an item `is_long_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:251:1
+    |
+251 | trait LongDoubleLike {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_int` found for type `u8` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:21:20
+   |
+21 |             _ if x.is_int() => TypeId::Int,
+   |                    ^^^^^^
+...
+71 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(bf.u1 + 0));
+   |                                                     ------------------- in this macro invocation
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+note: `IntLike` defines an item `is_int`, perhaps you need to implement it
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:99:1
+   |
+99 | trait IntLike {
+   | ^^^^^^^^^^^^^
+   = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:23:20
+    |
+ 23 |             _ if x.is_long() => TypeId::Long,
+    |                    ^^^^^^^
+...
+ 71 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(bf.u1 + 0));
+    |                                                     ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLike` defines an item `is_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:155:1
+    |
+155 | trait LongLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:24:20
+    |
+ 24 |             _ if x.is_ulong() => TypeId::Ulong,
+    |                    ^^^^^^^^
+...
+ 71 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(bf.u1 + 0));
+    |                                                     ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLike` defines an item `is_ulong`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:171:1
+    |
+171 | trait UlongLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_long` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:25:20
+    |
+ 25 |             _ if x.is_long_long() => TypeId::LongLong,
+    |                    ^^^^^^^^^^^^ method not found in `u8`
+...
+ 71 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(bf.u1 + 0));
+    |                                                     ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLongLike` defines an item `is_long_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:187:1
+    |
+187 | trait LongLongLike {
+    | ^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong_long` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:26:20
+    |
+ 26 |             _ if x.is_ulong_long() => TypeId::UlongLong,
+    |                    ^^^^^^^^^^^^^ method not found in `u8`
+...
+ 71 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(bf.u1 + 0));
+    |                                                     ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLongLike` defines an item `is_ulong_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:203:1
+    |
+203 | trait UlongLongLike {
+    | ^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_float` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:27:20
+    |
+ 27 |             _ if x.is_float() => TypeId::Float,
+    |                    ^^^^^^^^ method not found in `u8`
+...
+ 71 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(bf.u1 + 0));
+    |                                                     ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `FloatLike` defines an item `is_float`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:219:1
+    |
+219 | trait FloatLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_double` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:28:20
+    |
+ 28 |             _ if x.is_double() => TypeId::Double,
+    |                    ^^^^^^^^^ method not found in `u8`
+...
+ 71 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(bf.u1 + 0));
+    |                                                     ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `DoubleLike` defines an item `is_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:241:1
+    |
+241 | trait DoubleLike {
+    | ^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_double` found for type `u8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:29:20
+    |
+ 29 |             _ if x.is_long_double() => TypeId::LongDouble,
+    |                    ^^^^^^^^^^^^^^ method not found in `u8`
+...
+ 71 |         eprintln!("Error: Expected Uint, got {:?}", type_id!(bf.u1 + 0));
+    |                                                     ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongDoubleLike` defines an item `is_long_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:251:1
+    |
+251 | trait LongDoubleLike {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_uint` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:22:20
+    |
+ 22 |             _ if x.is_uint() => TypeId::Uint,
+    |                    ^^^^^^^
+...
+ 74 |     if type_id!(bf.i1 + 0)!= TypeId::Int {
+    |        ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UintLike` defines an item `is_uint`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:127:1
+    |
+127 | trait UintLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:23:20
+    |
+ 23 |             _ if x.is_long() => TypeId::Long,
+    |                    ^^^^^^^
+...
+ 74 |     if type_id!(bf.i1 + 0)!= TypeId::Int {
+    |        ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLike` defines an item `is_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:155:1
+    |
+155 | trait LongLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:24:20
+    |
+ 24 |             _ if x.is_ulong() => TypeId::Ulong,
+    |                    ^^^^^^^^
+...
+ 74 |     if type_id!(bf.i1 + 0)!= TypeId::Int {
+    |        ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLike` defines an item `is_ulong`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:171:1
+    |
+171 | trait UlongLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_long` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:25:20
+    |
+ 25 |             _ if x.is_long_long() => TypeId::LongLong,
+    |                    ^^^^^^^^^^^^ method not found in `i8`
+...
+ 74 |     if type_id!(bf.i1 + 0)!= TypeId::Int {
+    |        ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLongLike` defines an item `is_long_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:187:1
+    |
+187 | trait LongLongLike {
+    | ^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong_long` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:26:20
+    |
+ 26 |             _ if x.is_ulong_long() => TypeId::UlongLong,
+    |                    ^^^^^^^^^^^^^ method not found in `i8`
+...
+ 74 |     if type_id!(bf.i1 + 0)!= TypeId::Int {
+    |        ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLongLike` defines an item `is_ulong_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:203:1
+    |
+203 | trait UlongLongLike {
+    | ^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_float` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:27:20
+    |
+ 27 |             _ if x.is_float() => TypeId::Float,
+    |                    ^^^^^^^^ method not found in `i8`
+...
+ 74 |     if type_id!(bf.i1 + 0)!= TypeId::Int {
+    |        ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `FloatLike` defines an item `is_float`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:219:1
+    |
+219 | trait FloatLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_double` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:28:20
+    |
+ 28 |             _ if x.is_double() => TypeId::Double,
+    |                    ^^^^^^^^^ method not found in `i8`
+...
+ 74 |     if type_id!(bf.i1 + 0)!= TypeId::Int {
+    |        ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `DoubleLike` defines an item `is_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:241:1
+    |
+241 | trait DoubleLike {
+    | ^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_double` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:29:20
+    |
+ 29 |             _ if x.is_long_double() => TypeId::LongDouble,
+    |                    ^^^^^^^^^^^^^^ method not found in `i8`
+...
+ 74 |     if type_id!(bf.i1 + 0)!= TypeId::Int {
+    |        ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongDoubleLike` defines an item `is_long_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:251:1
+    |
+251 | trait LongDoubleLike {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_uint` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:22:20
+    |
+ 22 |             _ if x.is_uint() => TypeId::Uint,
+    |                    ^^^^^^^
+...
+ 75 |         eprintln!("Error: Expected Int, got {:?}", type_id!(bf.i1 + 0));
+    |                                                    ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UintLike` defines an item `is_uint`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:127:1
+    |
+127 | trait UintLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:23:20
+    |
+ 23 |             _ if x.is_long() => TypeId::Long,
+    |                    ^^^^^^^
+...
+ 75 |         eprintln!("Error: Expected Int, got {:?}", type_id!(bf.i1 + 0));
+    |                                                    ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLike` defines an item `is_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:155:1
+    |
+155 | trait LongLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:24:20
+    |
+ 24 |             _ if x.is_ulong() => TypeId::Ulong,
+    |                    ^^^^^^^^
+...
+ 75 |         eprintln!("Error: Expected Int, got {:?}", type_id!(bf.i1 + 0));
+    |                                                    ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLike` defines an item `is_ulong`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:171:1
+    |
+171 | trait UlongLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_long` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:25:20
+    |
+ 25 |             _ if x.is_long_long() => TypeId::LongLong,
+    |                    ^^^^^^^^^^^^ method not found in `i8`
+...
+ 75 |         eprintln!("Error: Expected Int, got {:?}", type_id!(bf.i1 + 0));
+    |                                                    ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLongLike` defines an item `is_long_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:187:1
+    |
+187 | trait LongLongLike {
+    | ^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong_long` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:26:20
+    |
+ 26 |             _ if x.is_ulong_long() => TypeId::UlongLong,
+    |                    ^^^^^^^^^^^^^ method not found in `i8`
+...
+ 75 |         eprintln!("Error: Expected Int, got {:?}", type_id!(bf.i1 + 0));
+    |                                                    ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLongLike` defines an item `is_ulong_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:203:1
+    |
+203 | trait UlongLongLike {
+    | ^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_float` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:27:20
+    |
+ 27 |             _ if x.is_float() => TypeId::Float,
+    |                    ^^^^^^^^ method not found in `i8`
+...
+ 75 |         eprintln!("Error: Expected Int, got {:?}", type_id!(bf.i1 + 0));
+    |                                                    ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `FloatLike` defines an item `is_float`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:219:1
+    |
+219 | trait FloatLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_double` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:28:20
+    |
+ 28 |             _ if x.is_double() => TypeId::Double,
+    |                    ^^^^^^^^^ method not found in `i8`
+...
+ 75 |         eprintln!("Error: Expected Int, got {:?}", type_id!(bf.i1 + 0));
+    |                                                    ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `DoubleLike` defines an item `is_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:241:1
+    |
+241 | trait DoubleLike {
+    | ^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_double` found for type `i8` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:29:20
+    |
+ 29 |             _ if x.is_long_double() => TypeId::LongDouble,
+    |                    ^^^^^^^^^^^^^^ method not found in `i8`
+...
+ 75 |         eprintln!("Error: Expected Int, got {:?}", type_id!(bf.i1 + 0));
+    |                                                    ------------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongDoubleLike` defines an item `is_long_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:251:1
+    |
+251 | trait LongDoubleLike {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0369]: cannot add `{integer}` to `bool`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:78:23
+   |
+78 |     if type_id!(bf.b1 + 0)!= TypeId::Int {
+   |                 ----- ^ - {integer}
+   |                 |
+   |                 bool
+
+error[E0369]: cannot add `{integer}` to `bool`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:79:67
+   |
+79 |         eprintln!("Error: Expected Int, got {:?}", type_id!(bf.b1 + 0));
+   |                                                             ----- ^ - {integer}
+   |                                                             |
+   |                                                             bool
+
+error[E0599]: no method named `is_int` found for type `f32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:21:20
+   |
+21 |             _ if x.is_int() => TypeId::Int,
+   |                    ^^^^^^
+...
+83 |     if type_id!(1.0f32)!= TypeId::Float {
+   |        ---------------- in this macro invocation
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+note: `IntLike` defines an item `is_int`, perhaps you need to implement it
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:99:1
+   |
+99 | trait IntLike {
+   | ^^^^^^^^^^^^^
+   = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_uint` found for type `f32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:22:20
+    |
+ 22 |             _ if x.is_uint() => TypeId::Uint,
+    |                    ^^^^^^^
+...
+ 83 |     if type_id!(1.0f32)!= TypeId::Float {
+    |        ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UintLike` defines an item `is_uint`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:127:1
+    |
+127 | trait UintLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long` found for type `f32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:23:20
+    |
+ 23 |             _ if x.is_long() => TypeId::Long,
+    |                    ^^^^^^^ method not found in `f32`
+...
+ 83 |     if type_id!(1.0f32)!= TypeId::Float {
+    |        ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLike` defines an item `is_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:155:1
+    |
+155 | trait LongLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong` found for type `f32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:24:20
+    |
+ 24 |             _ if x.is_ulong() => TypeId::Ulong,
+    |                    ^^^^^^^^ method not found in `f32`
+...
+ 83 |     if type_id!(1.0f32)!= TypeId::Float {
+    |        ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLike` defines an item `is_ulong`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:171:1
+    |
+171 | trait UlongLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_long` found for type `f32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:25:20
+    |
+ 25 |             _ if x.is_long_long() => TypeId::LongLong,
+    |                    ^^^^^^^^^^^^
+...
+ 83 |     if type_id!(1.0f32)!= TypeId::Float {
+    |        ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLongLike` defines an item `is_long_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:187:1
+    |
+187 | trait LongLongLike {
+    | ^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong_long` found for type `f32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:26:20
+    |
+ 26 |             _ if x.is_ulong_long() => TypeId::UlongLong,
+    |                    ^^^^^^^^^^^^^ method not found in `f32`
+...
+ 83 |     if type_id!(1.0f32)!= TypeId::Float {
+    |        ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLongLike` defines an item `is_ulong_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:203:1
+    |
+203 | trait UlongLongLike {
+    | ^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_double` found for type `f32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:28:20
+    |
+ 28 |             _ if x.is_double() => TypeId::Double,
+    |                    ^^^^^^^^^ method not found in `f32`
+...
+ 83 |     if type_id!(1.0f32)!= TypeId::Float {
+    |        ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `DoubleLike` defines an item `is_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:241:1
+    |
+241 | trait DoubleLike {
+    | ^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_double` found for type `f32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:29:20
+    |
+ 29 |             _ if x.is_long_double() => TypeId::LongDouble,
+    |                    ^^^^^^^^^^^^^^ method not found in `f32`
+...
+ 83 |     if type_id!(1.0f32)!= TypeId::Float {
+    |        ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongDoubleLike` defines an item `is_long_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:251:1
+    |
+251 | trait LongDoubleLike {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_int` found for type `f32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:21:20
+   |
+21 |             _ if x.is_int() => TypeId::Int,
+   |                    ^^^^^^
+...
+84 |         eprintln!("Error: Expected Float, got {:?}", type_id!(1.0f32));
+   |                                                      ---------------- in this macro invocation
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+note: `IntLike` defines an item `is_int`, perhaps you need to implement it
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:99:1
+   |
+99 | trait IntLike {
+   | ^^^^^^^^^^^^^
+   = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_uint` found for type `f32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:22:20
+    |
+ 22 |             _ if x.is_uint() => TypeId::Uint,
+    |                    ^^^^^^^
+...
+ 84 |         eprintln!("Error: Expected Float, got {:?}", type_id!(1.0f32));
+    |                                                      ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UintLike` defines an item `is_uint`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:127:1
+    |
+127 | trait UintLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long` found for type `f32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:23:20
+    |
+ 23 |             _ if x.is_long() => TypeId::Long,
+    |                    ^^^^^^^ method not found in `f32`
+...
+ 84 |         eprintln!("Error: Expected Float, got {:?}", type_id!(1.0f32));
+    |                                                      ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLike` defines an item `is_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:155:1
+    |
+155 | trait LongLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong` found for type `f32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:24:20
+    |
+ 24 |             _ if x.is_ulong() => TypeId::Ulong,
+    |                    ^^^^^^^^ method not found in `f32`
+...
+ 84 |         eprintln!("Error: Expected Float, got {:?}", type_id!(1.0f32));
+    |                                                      ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLike` defines an item `is_ulong`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:171:1
+    |
+171 | trait UlongLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_long` found for type `f32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:25:20
+    |
+ 25 |             _ if x.is_long_long() => TypeId::LongLong,
+    |                    ^^^^^^^^^^^^
+...
+ 84 |         eprintln!("Error: Expected Float, got {:?}", type_id!(1.0f32));
+    |                                                      ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLongLike` defines an item `is_long_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:187:1
+    |
+187 | trait LongLongLike {
+    | ^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong_long` found for type `f32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:26:20
+    |
+ 26 |             _ if x.is_ulong_long() => TypeId::UlongLong,
+    |                    ^^^^^^^^^^^^^ method not found in `f32`
+...
+ 84 |         eprintln!("Error: Expected Float, got {:?}", type_id!(1.0f32));
+    |                                                      ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLongLike` defines an item `is_ulong_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:203:1
+    |
+203 | trait UlongLongLike {
+    | ^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_double` found for type `f32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:28:20
+    |
+ 28 |             _ if x.is_double() => TypeId::Double,
+    |                    ^^^^^^^^^ method not found in `f32`
+...
+ 84 |         eprintln!("Error: Expected Float, got {:?}", type_id!(1.0f32));
+    |                                                      ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `DoubleLike` defines an item `is_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:241:1
+    |
+241 | trait DoubleLike {
+    | ^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_double` found for type `f32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:29:20
+    |
+ 29 |             _ if x.is_long_double() => TypeId::LongDouble,
+    |                    ^^^^^^^^^^^^^^ method not found in `f32`
+...
+ 84 |         eprintln!("Error: Expected Float, got {:?}", type_id!(1.0f32));
+    |                                                      ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongDoubleLike` defines an item `is_long_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:251:1
+    |
+251 | trait LongDoubleLike {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_int` found for type `f64` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:21:20
+   |
+21 |             _ if x.is_int() => TypeId::Int,
+   |                    ^^^^^^
+...
+87 |     if type_id!(1.0f64)!= TypeId::Double {
+   |        ---------------- in this macro invocation
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+note: `IntLike` defines an item `is_int`, perhaps you need to implement it
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:99:1
+   |
+99 | trait IntLike {
+   | ^^^^^^^^^^^^^
+   = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_uint` found for type `f64` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:22:20
+    |
+ 22 |             _ if x.is_uint() => TypeId::Uint,
+    |                    ^^^^^^^
+...
+ 87 |     if type_id!(1.0f64)!= TypeId::Double {
+    |        ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UintLike` defines an item `is_uint`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:127:1
+    |
+127 | trait UintLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long` found for type `f64` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:23:20
+    |
+ 23 |             _ if x.is_long() => TypeId::Long,
+    |                    ^^^^^^^ method not found in `f64`
+...
+ 87 |     if type_id!(1.0f64)!= TypeId::Double {
+    |        ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLike` defines an item `is_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:155:1
+    |
+155 | trait LongLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong` found for type `f64` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:24:20
+    |
+ 24 |             _ if x.is_ulong() => TypeId::Ulong,
+    |                    ^^^^^^^^ method not found in `f64`
+...
+ 87 |     if type_id!(1.0f64)!= TypeId::Double {
+    |        ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLike` defines an item `is_ulong`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:171:1
+    |
+171 | trait UlongLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_long` found for type `f64` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:25:20
+    |
+ 25 |             _ if x.is_long_long() => TypeId::LongLong,
+    |                    ^^^^^^^^^^^^
+...
+ 87 |     if type_id!(1.0f64)!= TypeId::Double {
+    |        ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLongLike` defines an item `is_long_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:187:1
+    |
+187 | trait LongLongLike {
+    | ^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong_long` found for type `f64` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:26:20
+    |
+ 26 |             _ if x.is_ulong_long() => TypeId::UlongLong,
+    |                    ^^^^^^^^^^^^^ method not found in `f64`
+...
+ 87 |     if type_id!(1.0f64)!= TypeId::Double {
+    |        ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLongLike` defines an item `is_ulong_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:203:1
+    |
+203 | trait UlongLongLike {
+    | ^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_double` found for type `f64` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:29:20
+    |
+ 29 |             _ if x.is_long_double() => TypeId::LongDouble,
+    |                    ^^^^^^^^^^^^^^
+...
+ 87 |     if type_id!(1.0f64)!= TypeId::Double {
+    |        ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongDoubleLike` defines an item `is_long_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:251:1
+    |
+251 | trait LongDoubleLike {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_int` found for type `f64` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:21:20
+   |
+21 |             _ if x.is_int() => TypeId::Int,
+   |                    ^^^^^^
+...
+88 |         eprintln!("Error: Expected Double, got {:?}", type_id!(1.0f64));
+   |                                                       ---------------- in this macro invocation
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+note: `IntLike` defines an item `is_int`, perhaps you need to implement it
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:99:1
+   |
+99 | trait IntLike {
+   | ^^^^^^^^^^^^^
+   = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_uint` found for type `f64` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:22:20
+    |
+ 22 |             _ if x.is_uint() => TypeId::Uint,
+    |                    ^^^^^^^
+...
+ 88 |         eprintln!("Error: Expected Double, got {:?}", type_id!(1.0f64));
+    |                                                       ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UintLike` defines an item `is_uint`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:127:1
+    |
+127 | trait UintLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long` found for type `f64` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:23:20
+    |
+ 23 |             _ if x.is_long() => TypeId::Long,
+    |                    ^^^^^^^ method not found in `f64`
+...
+ 88 |         eprintln!("Error: Expected Double, got {:?}", type_id!(1.0f64));
+    |                                                       ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLike` defines an item `is_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:155:1
+    |
+155 | trait LongLike {
+    | ^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong` found for type `f64` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:24:20
+    |
+ 24 |             _ if x.is_ulong() => TypeId::Ulong,
+    |                    ^^^^^^^^ method not found in `f64`
+...
+ 88 |         eprintln!("Error: Expected Double, got {:?}", type_id!(1.0f64));
+    |                                                       ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLike` defines an item `is_ulong`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:171:1
+    |
+171 | trait UlongLike {
+    | ^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_long` found for type `f64` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:25:20
+    |
+ 25 |             _ if x.is_long_long() => TypeId::LongLong,
+    |                    ^^^^^^^^^^^^
+...
+ 88 |         eprintln!("Error: Expected Double, got {:?}", type_id!(1.0f64));
+    |                                                       ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongLongLike` defines an item `is_long_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:187:1
+    |
+187 | trait LongLongLike {
+    | ^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_ulong_long` found for type `f64` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:26:20
+    |
+ 26 |             _ if x.is_ulong_long() => TypeId::UlongLong,
+    |                    ^^^^^^^^^^^^^ method not found in `f64`
+...
+ 88 |         eprintln!("Error: Expected Double, got {:?}", type_id!(1.0f64));
+    |                                                       ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `UlongLongLike` defines an item `is_ulong_long`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:203:1
+    |
+203 | trait UlongLongLike {
+    | ^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `is_long_double` found for type `f64` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:29:20
+    |
+ 29 |             _ if x.is_long_double() => TypeId::LongDouble,
+    |                    ^^^^^^^^^^^^^^
+...
+ 88 |         eprintln!("Error: Expected Double, got {:?}", type_id!(1.0f64));
+    |                                                       ---------------- in this macro invocation
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `LongDoubleLike` defines an item `is_long_double`, perhaps you need to implement it
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_001/target.rs:251:1
+    |
+251 | trait LongDoubleLike {
+    | ^^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 132 previous errors
+
+Some errors have detailed explanations: E0369, E0412, E0599.
+For more information about an error, try `rustc --explain E0369`.

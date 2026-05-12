@@ -1,0 +1,51 @@
+error[E0369]: binary operation `!=` cannot be applied to type `T`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-generic-1/sample_004/target.rs:2:10
+  |
+2 |     if n != 0 {
+  |        - ^^ - {integer}
+  |        |
+  |        T
+  |
+help: consider restricting type parameter `T` with trait `PartialEq`
+  |
+1 | fn check<T: std::cmp::PartialEq<i32>>(n: T) {
+  |           ++++++++++++++++++++++++++
+
+error[E0283]: type annotations needed
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-generic-1/sample_004/target.rs:10:11
+   |
+10 |     check(_generic(n + 1));
+   |           ^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `_generic`
+   |
+   = note: cannot satisfy `_: Copy`
+note: required by a bound in `_generic`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-generic-1/sample_004/target.rs:43:19
+   |
+43 | fn _generic<T, U: Copy>(x: T) -> U {
+   |                   ^^^^ required by this bound in `_generic`
+help: consider specifying the generic arguments
+   |
+10 |     check(_generic::<i32, U>(n + 1));
+   |                   ++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-generic-1/sample_004/target.rs:45:14
+   |
+43 | fn _generic<T, U: Copy>(x: T) -> U {
+   |                -                 -
+   |                |                 |
+   |                |                 expected `U` because of return type
+   |                |                 help: consider using an impl return type: `impl Copy`
+   |                expected this type parameter
+44 |     match x {
+45 |         _ => 0,
+   |              ^ expected type parameter `U`, found integer
+   |
+   = note: expected type parameter `U`
+                        found type `{integer}`
+   = note: the caller chooses a type for `U` which can be different from `i32`
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0283, E0308, E0369.
+For more information about an error, try `rustc --explain E0283`.

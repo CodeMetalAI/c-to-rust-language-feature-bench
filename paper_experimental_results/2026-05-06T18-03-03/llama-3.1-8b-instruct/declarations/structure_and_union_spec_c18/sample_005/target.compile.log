@@ -1,0 +1,210 @@
+error[E0428]: the name `main` is defined multiple times
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_005/target.rs:104:1
+    |
+ 90 | fn main() {
+    | --------- previous definition of the value `main` here
+...
+104 | fn main() {
+    | ^^^^^^^^^ `main` redefined here
+    |
+    = note: `main` must be defined only once in the value namespace of this module
+
+error[E0609]: no field `tag` on type `*mut Packet`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_005/target.rs:25:7
+   |
+25 |     p.tag = 0xA1B2C3D4;
+   |       ^^^ unknown field
+   |
+help: `p` is a raw pointer; try dereferencing it
+   |
+25 |     (*p).tag = 0xA1B2C3D4;
+   |     ++ +
+
+error[E0609]: no field `n` on type `*mut Packet`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_005/target.rs:26:7
+   |
+26 |     p.n = 7;
+   |       ^ unknown field
+   |
+help: `p` is a raw pointer; try dereferencing it
+   |
+26 |     (*p).n = 7;
+   |     ++ +
+
+error[E0609]: no field `data` on type `*mut Packet`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_005/target.rs:31:23
+   |
+31 |         let got1 = &p.data as *const _ as *const u8;
+   |                       ^^^^ unknown field
+   |
+help: `p` is a raw pointer; try dereferencing it
+   |
+31 |         let got1 = &(*p).data as *const _ as *const u8;
+   |                     ++ +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_005/target.rs:37:20
+   |
+37 |         if got2 != expected {
+   |                    ^^^^^^^^ expected `*const u8`, found `&[u8]`
+   |
+   = note: expected raw pointer `*const u8`
+                found reference `&[u8]`
+
+error[E0609]: no field `n` on type `*mut Packet`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_005/target.rs:42:19
+   |
+42 |     for i in 0..p.n {
+   |                   ^ unknown field
+   |
+help: `p` is a raw pointer; try dereferencing it
+   |
+42 |     for i in 0..(*p).n {
+   |                 ++ +
+
+error[E0609]: no field `data` on type `*mut Packet`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_005/target.rs:44:11
+   |
+44 |         p.data[i] = v;
+   |           ^^^^ unknown field
+   |
+help: `p` is a raw pointer; try dereferencing it
+   |
+44 |         (*p).data[i] = v;
+   |         ++ +
+
+error[E0609]: no field `sum` on type `*mut Packet`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_005/target.rs:48:7
+   |
+48 |     p.sum = 0;
+   |       ^^^ unknown field
+   |
+help: `p` is a raw pointer; try dereferencing it
+   |
+48 |     (*p).sum = 0;
+   |     ++ +
+
+error[E0609]: no field `n` on type `*mut Packet`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_005/target.rs:49:19
+   |
+49 |     for i in 0..p.n {
+   |                   ^ unknown field
+   |
+help: `p` is a raw pointer; try dereferencing it
+   |
+49 |     for i in 0..(*p).n {
+   |                 ++ +
+
+error[E0609]: no field `sum` on type `*mut Packet`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_005/target.rs:50:11
+   |
+50 |         p.sum += p.data[i];
+   |           ^^^ unknown field
+   |
+help: `p` is a raw pointer; try dereferencing it
+   |
+50 |         (*p).sum += p.data[i];
+   |         ++ +
+
+error[E0609]: no field `data` on type `*mut Packet`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_005/target.rs:50:20
+   |
+50 |         p.sum += p.data[i];
+   |                    ^^^^ unknown field
+   |
+help: `p` is a raw pointer; try dereferencing it
+   |
+50 |         p.sum += (*p).data[i];
+   |                  ++ +
+
+error[E0609]: no field `sum` on type `*mut Packet`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_005/target.rs:53:10
+   |
+53 |     if p.sum != compute_sum(p.n) {
+   |          ^^^ unknown field
+   |
+help: `p` is a raw pointer; try dereferencing it
+   |
+53 |     if (*p).sum != compute_sum(p.n) {
+   |        ++ +
+
+error[E0609]: no field `n` on type `*mut Packet`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_005/target.rs:53:31
+   |
+53 |     if p.sum != compute_sum(p.n) {
+   |                               ^ unknown field
+   |
+help: `p` is a raw pointer; try dereferencing it
+   |
+53 |     if p.sum != compute_sum((*p).n) {
+   |                             ++ +
+
+error[E0606]: casting `&mut [u8]` as `*mut Packet` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_005/target.rs:23:13
+   |
+23 |     let p = &mut storage[..] as *mut Packet;
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0609]: no field `tag` on type `*mut Packet`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_005/target.rs:68:7
+   |
+68 |     p.tag = 0;
+   |       ^^^ unknown field
+   |
+help: `p` is a raw pointer; try dereferencing it
+   |
+68 |     (*p).tag = 0;
+   |     ++ +
+
+error[E0609]: no field `n` on type `*mut Packet`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_005/target.rs:69:7
+   |
+69 |     p.n = 0;
+   |       ^ unknown field
+   |
+help: `p` is a raw pointer; try dereferencing it
+   |
+69 |     (*p).n = 0;
+   |     ++ +
+
+error[E0609]: no field `sum` on type `*mut Packet`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_005/target.rs:70:7
+   |
+70 |     p.sum = 0;
+   |       ^^^ unknown field
+   |
+help: `p` is a raw pointer; try dereferencing it
+   |
+70 |     (*p).sum = 0;
+   |     ++ +
+
+error[E0609]: no field `data` on type `*mut Packet`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_005/target.rs:76:23
+   |
+76 |         let got1 = &p.data as *const _ as *const u8;
+   |                       ^^^^ unknown field
+   |
+help: `p` is a raw pointer; try dereferencing it
+   |
+76 |         let got1 = &(*p).data as *const _ as *const u8;
+   |                     ++ +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_005/target.rs:82:20
+   |
+82 |         if got2 != expected {
+   |                    ^^^^^^^^ expected `*const u8`, found `&[u8]`
+   |
+   = note: expected raw pointer `*const u8`
+                found reference `&[u8]`
+
+error[E0606]: casting `&mut [u8]` as `*mut Packet` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c18/sample_005/target.rs:66:13
+   |
+66 |     let p = &mut storage[..] as *mut Packet;
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 20 previous errors
+
+Some errors have detailed explanations: E0308, E0428, E0606, E0609.
+For more information about an error, try `rustc --explain E0308`.

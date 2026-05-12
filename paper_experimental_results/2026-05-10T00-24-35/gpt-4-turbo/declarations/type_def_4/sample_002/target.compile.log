@@ -1,0 +1,101 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_002/target.rs:52:5
+   |
+52 | /     unsafe {
+53 | |         HITS += x + 1;
+54 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_002/target.rs:59:5
+   |
+59 | /     unsafe {
+60 | |         HITS += x + 2;
+61 | |     }
+   | |_____^
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_002/target.rs:20:9
+   |
+20 |         return std::process::exit(1);
+   |         ^^^^^^^---------------------
+   |         |      |
+   |         |      any code following this expression is unreachable
+   |         unreachable expression
+   |
+   = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_002/target.rs:31:9
+   |
+31 |         return std::process::exit(2);
+   |         ^^^^^^^---------------------
+   |         |      |
+   |         |      any code following this expression is unreachable
+   |         unreachable expression
+
+warning: unreachable expression
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_002/target.rs:46:9
+   |
+46 |         return std::process::exit(3);
+   |         ^^^^^^^---------------------
+   |         |      |
+   |         |      any code following this expression is unreachable
+   |         unreachable expression
+
+warning: value assigned to `hits` is never read
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_002/target.rs:44:5
+   |
+44 |     hits = 0;
+   |     ^^^^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+error[E0506]: cannot assign to `hits` because it is borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_002/target.rs:18:5
+   |
+12 |     let call_signal_as_plain = |s: i32, h: fn(i32), arg: i32| -> i32 {
+   |                                ------------------------------------- `hits` is borrowed here
+...
+15 |         hits
+   |         ---- borrow occurs due to use in closure
+...
+18 |     hits = 0;
+   |     ^^^^^^^^ `hits` is assigned to here but it was already borrowed
+19 |     if call_signal_as_plain(1, handler_b, 3) != (3 + 1) {
+   |        -------------------- borrow later used here
+
+error[E0506]: cannot assign to `hits` because it is borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_002/target.rs:29:5
+   |
+23 |     let call_signal_as_fv = |s: i32, h: fn(i32), arg: i32| -> i32 {
+   |                             ------------------------------------- `hits` is borrowed here
+...
+26 |         hits
+   |         ---- borrow occurs due to use in closure
+...
+29 |     hits = 0;
+   |     ^^^^^^^^ `hits` is assigned to here but it was already borrowed
+30 |     if call_signal_as_fv(2, handler_b, 4) != (4 + 2) {
+   |        ----------------- borrow later used here
+
+error[E0506]: cannot assign to `hits` because it is borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_4/sample_002/target.rs:44:5
+   |
+38 |     let call_signal_as_pfv = |s: i32, h: fn(i32), arg: i32| -> i32 {
+   |                              ------------------------------------- `hits` is borrowed here
+...
+41 |         hits
+   |         ---- borrow occurs due to use in closure
+...
+44 |     hits = 0;
+   |     ^^^^^^^^ `hits` is assigned to here but it was already borrowed
+45 |     if call_signal_as_pfv(3, handler_b, 5) != (5 + 1) {
+   |        ------------------ borrow later used here
+
+error: aborting due to 5 previous errors; 4 warnings emitted
+
+For more information about this error, try `rustc --explain E0506`.

@@ -1,0 +1,29 @@
+error: expected `:`, found `W`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_004/target.rs:2:11
+  |
+1 | struct V {
+  |        - while parsing this struct
+2 |     union W {
+  |           ^ expected `:`
+
+error[E0422]: cannot find struct, variant or union type `W` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_004/target.rs:17:12
+   |
+ 1 | struct V {
+   | -------- similarly named struct `V` defined here
+...
+17 |         W: W {
+   |            ^ help: a struct with a similar name exists: `V`
+
+error[E0422]: cannot find struct, variant or union type `X` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_004/target.rs:18:16
+   |
+ 1 | struct V {
+   | -------- similarly named struct `V` defined here
+...
+18 |             X: X { i: 2, j: 0 },
+   |                ^ help: a struct with a similar name exists: `V`
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0422`.

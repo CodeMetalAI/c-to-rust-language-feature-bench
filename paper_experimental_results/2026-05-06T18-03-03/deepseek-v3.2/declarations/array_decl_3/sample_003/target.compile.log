@@ -1,0 +1,42 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_3/sample_003/target.rs:62:66
+   |
+62 |                 a[i as usize][j][k as usize] = (i + 1) * 10000 + (j + 1) * 100 + (k + 1);
+   |                                                                  ^^^^^^^^^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_3/sample_003/target.rs:62:64
+   |
+62 |                 a[i as usize][j][k as usize] = (i + 1) * 10000 + (j + 1) * 100 + (k + 1);
+   |                                                                ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_3/sample_003/target.rs:79:63
+   |
+79 |                         (i + 1) * 1000000 + (j + 1) * 10000 + (u + 1) * 100 + (v + 1);
+   |                                                               ^^^^^^^^^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_3/sample_003/target.rs:79:61
+   |
+79 |                         (i + 1) * 1000000 + (j + 1) * 10000 + (u + 1) * 100 + (v + 1);
+   |                                                             ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

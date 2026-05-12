@@ -1,0 +1,66 @@
+error: defining functions with C-variadic arguments is only allowed for free functions with the "C" or "C-unwind" calling convention
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_names/sample_001/target.rs:10:18
+   |
+10 | fn f_var(x: u32, _: ...) -> i32 {
+   |                  ^^^^^^
+
+error[E0658]: C-variadic functions are unstable
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_names/sample_001/target.rs:10:1
+   |
+10 | / fn f_var(x: u32, _: ...) -> i32 {
+11 | |     x as i32 + 3
+12 | | }
+   | |_^
+   |
+   = note: see issue #44930 <https://github.com/rust-lang/rust/issues/44930> for more information
+   = help: add `#![feature(c_variadic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_names/sample_001/target.rs:3:5
+  |
+3 |     unsafe { &mut G_ARR[1] }
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error[E0599]: no method named `clone` found for type parameter `T` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_names/sample_001/target.rs:18:11
+   |
+14 | fn use_vla<T, const N: usize>(n: usize, p: &[T; N]) -> i32 {
+   |            - method `clone` not found for this type parameter
+...
+18 |     (p[0].clone() as i32) * 10 + (p[n - 1].clone() as i32)
+   |           ^^^^^ method not found in `T`
+   |
+   = help: items from traits can only be used if the type parameter is bounded by the trait
+help: the following trait defines an item `clone`, perhaps you need to restrict type parameter `T` with it:
+   |
+14 | fn use_vla<T: Clone, const N: usize>(n: usize, p: &[T; N]) -> i32 {
+   |             +++++++
+
+error[E0599]: no method named `clone` found for type parameter `T` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_names/sample_001/target.rs:18:44
+   |
+14 | fn use_vla<T, const N: usize>(n: usize, p: &[T; N]) -> i32 {
+   |            - method `clone` not found for this type parameter
+...
+18 |     (p[0].clone() as i32) * 10 + (p[n - 1].clone() as i32)
+   |                                            ^^^^^ method not found in `T`
+   |
+   = help: items from traits can only be used if the type parameter is bounded by the trait
+help: the following trait defines an item `clone`, perhaps you need to restrict type parameter `T` with it:
+   |
+14 | fn use_vla<T: Clone, const N: usize>(n: usize, p: &[T; N]) -> i32 {
+   |             +++++++
+
+error[E0045]: C-variadic functions with the "Rust" calling convention are not supported
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/type_names/sample_001/target.rs:62:18
+   |
+62 |         let af: [fn(u32, ...) -> i32; 2] = [f_var, f_var];
+   |                  ^^^^^^^^^^^^^^^^^^^ C-variadic function must have a compatible calling convention
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0045, E0599, E0658.
+For more information about an error, try `rustc --explain E0045`.

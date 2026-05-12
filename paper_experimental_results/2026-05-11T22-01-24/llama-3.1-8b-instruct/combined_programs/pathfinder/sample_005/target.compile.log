@@ -1,0 +1,61 @@
+error: expected type, found keyword `struct`
+  --> benchmark_results/2026-05-11T22-01-24/llama-3.1-8b-instruct/combined_programs/pathfinder/sample_005/target.rs:16:19
+   |
+16 | fn coord_sum_s(v: struct coord) -> i32 {
+   |                   ^^^^^^ expected type
+
+error: expected one of `>`, a const expression, lifetime, or type, found keyword `struct`
+   --> benchmark_results/2026-05-11T22-01-24/llama-3.1-8b-instruct/combined_programs/pathfinder/sample_005/target.rs:113:73
+    |
+113 |         let q = std::mem::size_of::<(i32, i32)>() + std::mem::size_of::<struct coord>();
+    |                                                                         ^^^^^^ expected one of `>`, a const expression, lifetime, or type
+
+error[E0425]: cannot find value `v` in this scope
+  --> benchmark_results/2026-05-11T22-01-24/llama-3.1-8b-instruct/combined_programs/pathfinder/sample_005/target.rs:17:5
+   |
+17 |     v.row + v.col + 2
+   |     ^ not found in this scope
+
+error[E0425]: cannot find value `v` in this scope
+  --> benchmark_results/2026-05-11T22-01-24/llama-3.1-8b-instruct/combined_programs/pathfinder/sample_005/target.rs:17:13
+   |
+17 |     v.row + v.col + 2
+   |             ^ not found in this scope
+
+warning: type `coord` should have an upper camel case name
+   --> benchmark_results/2026-05-11T22-01-24/llama-3.1-8b-instruct/combined_programs/pathfinder/sample_005/target.rs:137:8
+    |
+137 | struct coord {
+    |        ^^^^^ help: convert the identifier to upper camel case (notice the capitalization): `Coord`
+    |
+    = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/llama-3.1-8b-instruct/combined_programs/pathfinder/sample_005/target.rs:45:34
+   |
+45 |             let b = *(&x[i][0] + j);
+   |                                  ^ expected `i32`, found `usize`
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-11T22-01-24/llama-3.1-8b-instruct/combined_programs/pathfinder/sample_005/target.rs:45:21
+   |
+45 |             let b = *(&x[i][0] + j);
+   |                     ^^^^^^^^^^^^^^^ can't be dereferenced
+
+error[E0277]: cannot add `usize` to `&i32`
+  --> benchmark_results/2026-05-11T22-01-24/llama-3.1-8b-instruct/combined_programs/pathfinder/sample_005/target.rs:45:32
+   |
+45 |             let b = *(&x[i][0] + j);
+   |                                ^ no implementation for `&i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `&i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error: aborting due to 7 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308, E0425, E0614.
+For more information about an error, try `rustc --explain E0277`.

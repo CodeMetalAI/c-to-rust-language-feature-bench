@@ -1,0 +1,127 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_004/target.rs:38:14
+   |
+38 |         s += unsafe { *pp[i] } as i32;
+   |              ^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_004/target.rs:45:14
+   |
+45 |     let s2 = unsafe { *afp2[0] } as i32 + unsafe { *afp2[16] } as i32;
+   |              ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_004/target.rs:45:43
+   |
+45 |     let s2 = unsafe { *afp2[0] } as i32 + unsafe { *afp2[16] } as i32;
+   |                                           ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_004/target.rs:56:8
+   |
+56 |     if unsafe { *AFP[0] } as i32 != 100 || unsafe { *AFP[16] } as i32 != 116 {
+   |        ^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_004/target.rs:56:44
+   |
+56 |     if unsafe { *AFP[0] } as i32 != 100 || unsafe { *AFP[16] } as i32 != 116 {
+   |                                            ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_004/target.rs:91:74
+   |
+91 |     if takes_params(&vla1, &vla2) != (vla1[0] as i32 + vla1[10] as i32 + unsafe { *vla2[0] } as i32 + unsafe { *vla2[16] } as i32) {
+   |                                                                          ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_004/target.rs:91:103
+   |
+91 |     if takes_params(&vla1, &vla2) != (vla1[0] as i32 + vla1[10] as i32 + unsafe { *vla2[0] } as i32 + unsafe { *vla2[16] } as i32) {
+   |                                                                                                       ^^^^^^^^^^^^^^^^^^^^
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_004/target.rs:6:5
+  |
+6 |     CALLS += 1;
+  |     ^^^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_004/target.rs:19:9
+   |
+19 |         FA[i] = (i + 1) as f32;
+   |         ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_004/target.rs:22:9
+   |
+22 |         BACKING[i] = (100 + i) as f32;
+   |         ^^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_004/target.rs:23:9
+   |
+23 |         AFP[i] = &mut BACKING[i];
+   |         ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_004/target.rs:23:23
+   |
+23 |         AFP[i] = &mut BACKING[i];
+   |                       ^^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_004/target.rs:52:8
+   |
+52 |     if FA[0] != 1.0 || FA[10] != 11.0 {
+   |        ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_004/target.rs:52:24
+   |
+52 |     if FA[0] != 1.0 || FA[10] != 11.0 {
+   |                        ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_004/target.rs:67:19
+   |
+67 |         vla1[i] = FA[i] * 2.0;
+   |                   ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_004/target.rs:71:19
+   |
+71 |         vla2[i] = AFP[i];
+   |                   ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_004/target.rs:74:8
+   |
+74 |     if CALLS != 2 {
+   |        ^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 17 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

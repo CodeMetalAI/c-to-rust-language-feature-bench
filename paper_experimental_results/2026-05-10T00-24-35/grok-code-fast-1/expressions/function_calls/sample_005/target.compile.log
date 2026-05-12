@@ -1,0 +1,18 @@
+error[E0525]: expected a closure that implements the `Fn` trait, but this closure only implements `FnMut`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/function_calls/sample_005/target.rs:26:18
+   |
+26 |     let target = |_: i32, _: i32| {
+   |                  ^^^^^^^^^^^^^^^^ this closure implements `FnMut`, not `Fn`
+27 |         log.push(9);
+   |         --- closure is `FnMut` because it mutates the variable `log` here
+...
+35 |     let pf: Vec<Box<dyn Fn(i32, i32) -> i32>> = vec![Box::new(target)];
+   |                                                      ---------------- the requirement to implement `Fn` derives from here
+   |
+   = note: required for the cast from `Box<{closure@target.rs:26:18}>` to `Box<dyn Fn(i32, i32) -> i32>`
+   = note: the full name for the type has been written to 'benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/function_calls/sample_005/target.long-type-7473128279472413823.txt'
+   = note: consider using `--verbose` to print the full type name to the console
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0525`.

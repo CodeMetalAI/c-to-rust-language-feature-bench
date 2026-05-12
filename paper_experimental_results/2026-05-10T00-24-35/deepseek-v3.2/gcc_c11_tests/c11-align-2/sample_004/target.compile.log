@@ -1,0 +1,273 @@
+error[E0428]: the name `S` is defined multiple times
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:60:1
+   |
+18 | static mut S: i16 = 0;
+   | ---------------------- previous definition of the value `S` here
+...
+60 | struct S;
+   | ^^^^^^^^^ `S` redefined here
+   |
+   = note: `S` must be defined only once in the value namespace of this module
+
+error[E0425]: cannot find value `alignas` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:86:25
+   |
+86 |     let s1 = xstr_macro(alignas);
+   |                         ^^^^^^^ not found in this scope
+
+error: expected identifier, found keyword `as`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:55:19
+   |
+55 | #[repr(align(E::E as usize))]
+   |                   ^^ expected identifier, found keyword
+
+error: expected one of `(`, `)`, `,`, `::`, or `=`, found keyword `as`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:55:19
+   |
+55 | #[repr(align(E::E as usize))]
+   |                  -^^ expected one of `(`, `)`, `,`, `::`, or `=`
+   |                  |
+   |                  help: missing `,`
+
+error: expected one of `(`, `)`, `,`, `::`, or `=`, found `usize`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:55:22
+   |
+55 | #[repr(align(E::E as usize))]
+   |                     -^^^^^ expected one of `(`, `)`, `,`, `::`, or `=`
+   |                     |
+   |                     help: missing `,`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:73:29
+   |
+73 |     assert_eq!(align_of_val(unsafe { &C }), MAX_ALIGN);
+   |                             ^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:74:29
+   |
+74 |     assert_eq!(align_of_val(unsafe { &S }), MAX_ALIGN);
+   |                             ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:75:29
+   |
+75 |     assert_eq!(align_of_val(unsafe { &I }), 4);
+   |                             ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:76:29
+   |
+76 |     assert_eq!(align_of_val(unsafe { &L }), MAX_ALIGN);
+   |                             ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:77:29
+   |
+77 |     assert_eq!(align_of_val(unsafe { &LL }), MAX_ALIGN);
+   |                             ^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:78:29
+   |
+78 |     assert_eq!(align_of_val(unsafe { &F }), MAX_ALIGN);
+   |                             ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:79:29
+   |
+79 |     assert_eq!(align_of_val(unsafe { &D }), MAX_ALIGN);
+   |                             ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:80:29
+   |
+80 |     assert_eq!(align_of_val(unsafe { &CLD }), MAX_ALIGN);
+   |                             ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:81:29
+   |
+81 |     assert_eq!(align_of_val(unsafe { &CA }), 4);
+   |                             ^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:82:29
+   |
+82 |     assert_eq!(align_of_val(unsafe { &X }), MAX_ALIGN);
+   |                             ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:83:29
+   |
+83 |     assert_eq!(align_of_val(unsafe { &Y }), MAX_ALIGN);
+   |                             ^^^^^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:14:14
+   |
+14 | #[repr(align(MAX_ALIGN))]
+   |              ^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:17:14
+   |
+17 | #[repr(align(MAX_ALIGN))]
+   |              ^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:23:14
+   |
+23 | #[repr(align(MAX_ALIGN))]
+   |              ^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:26:14
+   |
+26 | #[repr(align(MAX_ALIGN))]
+   |              ^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:29:14
+   |
+29 | #[repr(align(MAX_ALIGN))]
+   |              ^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:32:14
+   |
+32 | #[repr(align(MAX_ALIGN))]
+   |              ^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:42:14
+   |
+42 | #[repr(align(MAX_ALIGN))]
+   |              ^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:48:14
+   |
+48 | #[repr(align(MAX_ALIGN))]
+   |              ^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` takes exactly one argument in parentheses
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:55:8
+   |
+55 | #[repr(align(E::E as usize))]
+   |        ^^^^^^^^^^^^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:105:18
+    |
+105 |     #[repr(align(MAX_ALIGN))]
+    |                  ^^^^^^^^^
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:14:1
+   |
+14 | #[repr(align(MAX_ALIGN))]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+15 | static mut C: [u8; 1] = [0];
+   | ---------------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:17:1
+   |
+17 | #[repr(align(MAX_ALIGN))]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+18 | static mut S: i16 = 0;
+   | ---------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:20:8
+   |
+20 | #[repr(align(4))]
+   |        ^^^^^^^^
+21 | static mut I: i32 = 0;
+   | ---------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:23:1
+   |
+23 | #[repr(align(MAX_ALIGN))]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+24 | static mut L: i64 = 0;
+   | ---------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:26:1
+   |
+26 | #[repr(align(MAX_ALIGN))]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+27 | static mut LL: i64 = 0;
+   | ----------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:29:1
+   |
+29 | #[repr(align(MAX_ALIGN))]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+30 | static mut F: f32 = 0.0;
+   | ------------------------ not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:32:1
+   |
+32 | #[repr(align(MAX_ALIGN))]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+33 | static mut D: f64 = 0.0;
+   | ------------------------ not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:42:1
+   |
+42 | #[repr(align(MAX_ALIGN))]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+43 | static mut CLD: ComplexLongDouble = ComplexLongDouble { real: 0.0, imag: 0.0 };
+   | ------------------------------------------------------------------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:45:8
+   |
+45 | #[repr(align(1), align(4))]
+   |        ^^^^^^^^
+46 | static mut CA: [u8; 10] = [0; 10];
+   | ---------------------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:45:18
+   |
+45 | #[repr(align(1), align(4))]
+   |                  ^^^^^^^^
+46 | static mut CA: [u8; 10] = [0; 10];
+   | ---------------------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:48:1
+   |
+48 | #[repr(align(MAX_ALIGN))]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+49 | static mut X: i32 = 0;
+   | ---------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:55:1
+   |
+55 | #[repr(align(E::E as usize))]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+56 | static mut Y: i32 = 0;
+   | ---------------------- not a struct, enum, or union
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-align-2/sample_004/target.rs:52:9
+   |
+52 |     E = MAX_ALIGN,
+   |         ^^^^^^^^^ expected `isize`, found `usize`
+
+error: aborting due to 39 previous errors
+
+Some errors have detailed explanations: E0308, E0425, E0428, E0517, E0693.
+For more information about an error, try `rustc --explain E0308`.

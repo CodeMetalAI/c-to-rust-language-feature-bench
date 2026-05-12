@@ -1,0 +1,106 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_004/target.rs:79:9
+   |
+79 | /         unsafe {
+80 | |             *p_ptr = *q_ptr;
+81 | |             p_ptr = p_ptr.add(1);
+82 | |             q_ptr = q_ptr.add(1);
+83 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_004/target.rs:19:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+19 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_004/target.rs:22:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+22 |     0
+   |     ^ expected `()`, found integer
+
+error[E0606]: casting `*const [i32]` as `usize` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_004/target.rs:50:14
+   |
+50 |     let ps = p as *const [i32] as usize - base as *const [i32] as usize;
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: cast through a thin pointer first
+
+error[E0606]: casting `*const [i32]` as `usize` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_004/target.rs:50:43
+   |
+50 |     let ps = p as *const [i32] as usize - base as *const [i32] as usize;
+   |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: cast through a thin pointer first
+
+error[E0606]: casting `*const [i32]` as `usize` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_004/target.rs:51:14
+   |
+51 |     let qs = q as *const [i32] as usize - base as *const [i32] as usize;
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: cast through a thin pointer first
+
+error[E0606]: casting `*const [i32]` as `usize` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_004/target.rs:51:43
+   |
+51 |     let qs = q as *const [i32] as usize - base as *const [i32] as usize;
+   |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: cast through a thin pointer first
+
+error[E0502]: cannot borrow `*d` as mutable because it is also borrowed as immutable
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_004/target.rs:103:37
+    |
+103 |     call_f_checked(d, 100, 50, &mut d[50..], &d[..]);
+    |     -------------- -                ^ mutable borrow occurs here
+    |     |              |
+    |     |              immutable borrow occurs here
+    |     immutable borrow later used by call
+
+error[E0502]: cannot borrow `*d` as immutable because it is also borrowed as mutable
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_004/target.rs:103:47
+    |
+103 |     call_f_checked(d, 100, 50, &mut d[50..], &d[..]);
+    |     --------------                  -         ^ immutable borrow occurs here
+    |     |                               |
+    |     |                               mutable borrow occurs here
+    |     mutable borrow later used by call
+    |
+    = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `*d` as mutable because it is also borrowed as immutable
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_004/target.rs:104:37
+    |
+104 |     call_f_checked(d, 100, 50, &mut d[1..], &d[..]);
+    |     -------------- -                ^ mutable borrow occurs here
+    |     |              |
+    |     |              immutable borrow occurs here
+    |     immutable borrow later used by call
+
+error[E0502]: cannot borrow `*d` as immutable because it is also borrowed as mutable
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_004/target.rs:104:46
+    |
+104 |     call_f_checked(d, 100, 50, &mut d[1..], &d[..]);
+    |     --------------                  -        ^ immutable borrow occurs here
+    |     |                               |
+    |     |                               mutable borrow occurs here
+    |     mutable borrow later used by call
+    |
+    = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 11 previous errors
+
+Some errors have detailed explanations: E0308, E0502, E0606.
+For more information about an error, try `rustc --explain E0308`.

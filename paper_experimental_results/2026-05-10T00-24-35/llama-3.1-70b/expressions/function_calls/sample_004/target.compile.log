@@ -1,0 +1,98 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_004/target.rs:11:5
+   |
+11 | /     unsafe {
+12 | |         if LOGN.get() < 5 {
+13 | |             LOGV[LOGN.get() as usize].set(id);
+14 | |             LOGN.set(LOGN.get() + 1);
+15 | |         }
+16 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_004/target.rs:20:5
+   |
+20 | /     unsafe {
+21 | |         SEEN_F1.set(true);
+22 | |         log_call(1);
+23 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_004/target.rs:28:5
+   |
+28 | /     unsafe {
+29 | |         SEEN_F2.set(true);
+30 | |         log_call(2);
+31 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_004/target.rs:36:5
+   |
+36 | /     unsafe {
+37 | |         SEEN_F3.set(true);
+38 | |         log_call(3);
+39 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_004/target.rs:44:5
+   |
+44 | /     unsafe {
+45 | |         SEEN_F4.set(true);
+46 | |         log_call(4);
+47 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_004/target.rs:55:5
+   |
+55 | /     unsafe {
+56 | |         if !(SEEN_F1.get() && SEEN_F2.get() && SEEN_F3.get() && SEEN_F4.get()) {
+57 | |             return 100;
+58 | |         }
+59 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_004/target.rs:71:5
+   |
+71 | /     unsafe {
+72 | |         if LOGN.get() != 5 {
+73 | |             std::process::exit(1);
+...  |
+87 | |     }
+   | |_____^
+
+error[E0277]: the trait bound `Cell<i32>: Copy` is not satisfied
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_004/target.rs:7:36
+  |
+7 | static mut LOGV: [Cell<i32>; 5] = [Cell::new(0); 5];
+  |                                    ^^^^^^^^^^^^ the trait `Copy` is not implemented for `Cell<i32>`
+  |
+  = note: the `Copy` trait is required because this value will be copied for each element of the array
+help: create an inline `const` block
+  |
+7 | static mut LOGV: [Cell<i32>; 5] = [const { Cell::new(0) }; 5];
+  |                                    +++++++              +
+
+warning: unused variable: `a`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_004/target.rs:53:11
+   |
+53 | fn target(a: i32, b: i32) -> i32 {
+   |           ^ help: if this is intentional, prefix it with an underscore: `_a`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `b`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_004/target.rs:53:19
+   |
+53 | fn target(a: i32, b: i32) -> i32 {
+   |                   ^ help: if this is intentional, prefix it with an underscore: `_b`
+
+error: aborting due to 8 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0277`.

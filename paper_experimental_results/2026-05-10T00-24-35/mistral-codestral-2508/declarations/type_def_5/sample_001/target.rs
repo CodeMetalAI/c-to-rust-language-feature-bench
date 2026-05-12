@@ -1,0 +1,36 @@
+fn copyt(n: usize) {
+    let mut n = n + 1;
+
+    let mut a: Vec<i32> = vec![0; n - 1];
+    let mut b: Vec<i32> = vec![0; n];
+
+    let mut i = 0;
+    while i < n {
+        b[i] = 1000 + i as i32;
+        i += 1;
+    }
+
+    i = 1;
+    while i < n {
+        a[i - 1] = b[i];
+        i += 1;
+    }
+
+    if a.len() != n - 1 {
+        panic!("a.len() != n - 1");
+    }
+    if b.len() != n {
+        panic!("b.len() != n");
+    }
+
+    if a[0] != 1001 {
+        panic!("a[0] != 1001");
+    }
+    if a[n - 2] != 1000 + (n - 1) as i32 {
+        panic!("a[n - 2] != 1000 + (n - 1)");
+    }
+}
+
+fn main() {
+    copyt(7);
+}

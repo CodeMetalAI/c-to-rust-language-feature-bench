@@ -1,0 +1,96 @@
+warning: type `s1` should have an upper camel case name
+ --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_004/target.rs:2:8
+  |
+2 | struct s1 {
+  |        ^^ help: convert the identifier to upper camel case (notice the capitalization): `S1`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: type `t1` should have an upper camel case name
+ --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_004/target.rs:6:6
+  |
+6 | type t1 = s1;
+  |      ^^ help: convert the identifier to upper camel case: `T1`
+
+warning: type `tp1` should have an upper camel case name
+ --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_004/target.rs:7:6
+  |
+7 | type tp1 = *mut s1;
+  |      ^^^ help: convert the identifier to upper camel case: `Tp1`
+
+warning: type `s2` should have an upper camel case name
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_004/target.rs:10:8
+   |
+10 | struct s2 {
+   |        ^^ help: convert the identifier to upper camel case (notice the capitalization): `S2`
+
+warning: type `t2` should have an upper camel case name
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_004/target.rs:14:6
+   |
+14 | type t2 = s2;
+   |      ^^ help: convert the identifier to upper camel case: `T2`
+
+warning: type `tp2` should have an upper camel case name
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_004/target.rs:15:6
+   |
+15 | type tp2 = *mut s2;
+   |      ^^^ help: convert the identifier to upper camel case: `Tp2`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_004/target.rs:26:5
+   |
+26 | /     unsafe {
+27 | |         (*p).x += 3;
+28 | |         (*p).x
+29 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_004/target.rs:61:5
+   |
+61 | /     unsafe {
+62 | |         p = &mut a;
+63 | |         if takes_tp1(p) != 13 {
+64 | |             return 5;
+...  |
+69 | |     }
+   | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_004/target.rs:46:16
+   |
+40 | fn main() {
+   |          - expected `()` because of default return type
+...
+46 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0369]: binary operation `!=` cannot be applied to type `s2`
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_004/target.rs:85:15
+   |
+85 |         if *r != 30 {
+   |            -- ^^ -- {integer}
+   |            |
+   |            s2
+   |
+note: an implementation of `PartialEq<{integer}>` might be missing for `s2`
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_004/target.rs:10:1
+   |
+10 | struct s2 {
+   | ^^^^^^^^^ must implement `PartialEq<{integer}>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_004/target.rs:93:5
+   |
+40 | fn main() {
+   |          - expected `()` because of default return type
+...
+93 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 5 previous errors; 6 warnings emitted
+
+Some errors have detailed explanations: E0308, E0369.
+For more information about an error, try `rustc --explain E0308`.

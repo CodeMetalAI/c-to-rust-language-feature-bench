@@ -1,0 +1,59 @@
+error[E0425]: cannot find function `offset` in module `std::mem`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_3/sample_001/target.rs:14:39
+   |
+14 |     let offset_i = unsafe { std::mem::offset::<int_field>(std::ptr::null::<s>()) };
+   |                                       ^^^^^^ not found in `std::mem`
+   |
+help: consider importing this function
+   |
+ 1 + use std::intrinsics::offset;
+   |
+help: if you import `offset`, refer to it directly
+   |
+14 -     let offset_i = unsafe { std::mem::offset::<int_field>(std::ptr::null::<s>()) };
+14 +     let offset_i = unsafe { offset::<int_field>(std::ptr::null::<s>()) };
+   |
+
+error[E0425]: cannot find function `offset` in module `std::mem`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_3/sample_001/target.rs:15:39
+   |
+15 |     let offset_a = unsafe { std::mem::offset::<[i32; 4]>(std::ptr::null::<s>()) };
+   |                                       ^^^^^^ not found in `std::mem`
+   |
+help: consider importing this function
+   |
+ 1 + use std::intrinsics::offset;
+   |
+help: if you import `offset`, refer to it directly
+   |
+15 -     let offset_a = unsafe { std::mem::offset::<[i32; 4]>(std::ptr::null::<s>()) };
+15 +     let offset_a = unsafe { offset::<[i32; 4]>(std::ptr::null::<s>()) };
+   |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_3/sample_001/target.rs:14:20
+   |
+14 |     let offset_i = unsafe { std::mem::offset::<int_field>(std::ptr::null::<s>()) };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_3/sample_001/target.rs:15:20
+   |
+15 |     let offset_a = unsafe { std::mem::offset::<[i32; 4]>(std::ptr::null::<s>()) };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/structure_and_union_spec_3/sample_001/target.rs:18:16
+   |
+12 | fn main() {
+   |          - expected `()` because of default return type
+...
+18 |         return 1;
+   |                ^ expected `()`, found integer
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0425.
+For more information about an error, try `rustc --explain E0308`.

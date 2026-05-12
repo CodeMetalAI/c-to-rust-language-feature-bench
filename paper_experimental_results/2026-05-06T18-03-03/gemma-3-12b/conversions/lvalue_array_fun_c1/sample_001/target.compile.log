@@ -1,0 +1,66 @@
+error: const trait bounds are not allowed in trait object types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_001/target.rs:44:8
+   |
+44 |     b: const int,
+   |        ^^^^^^^^^
+
+error[E0412]: cannot find type `int` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_001/target.rs:43:8
+   |
+43 |     a: int,
+   |        ^^^
+   |        |
+   |        not found in this scope
+   |        help: perhaps you intended to use this type: `i32`
+
+error[E0405]: cannot find trait `int` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_001/target.rs:44:14
+   |
+44 |     b: const int,
+   |              ^^^ not found in this scope
+
+error[E0412]: cannot find type `int` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_001/target.rs:50:8
+   |
+50 |     a: int,
+   |        ^^^
+   |        |
+   |        not found in this scope
+   |        help: perhaps you intended to use this type: `i32`
+
+error[E0658]: const trait impls are experimental
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_001/target.rs:44:8
+   |
+44 |     b: const int,
+   |        ^^^^^
+   |
+   = note: see issue #143874 <https://github.com/rust-lang/rust/issues/143874> for more information
+   = help: add `#![feature(const_trait_impl)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_001/target.rs:31:18
+   |
+31 |         let bp = unsafe { &mut (t as *mut i32) as *mut u8 };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_001/target.rs:44:8
+   |
+44 |     b: const int,
+   |        ^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2021/warnings-promoted-to-error.html>
+   = note: `#[warn(bare_trait_objects)]` (part of `#[warn(rust_2021_compatibility)]`) on by default
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+44 |     b: dyn const int,
+   |        +++
+
+error: aborting due to 6 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0405, E0412, E0658.
+For more information about an error, try `rustc --explain E0405`.

@@ -1,0 +1,75 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_001/target.rs:11:29
+   |
+11 |     let member_ptr = member(unsafe { &*base });
+   |                             ^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_001/target.rs:46:5
+   |
+46 | /     unsafe {
+47 | |         Y = [1, 2, 3, 4, 5, 6, 7];
+48 | |         X = BACKING.as_ptr();
+...  |
+96 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_001/target.rs:76:16
+   |
+76 |             if unsafe { *hp.p } != 1 {
+   |                ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_001/target.rs:88:16
+   |
+88 |             if unsafe { (*ha).a[2] } != 3 {
+   |                ^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_001/target.rs:45:14
+   |
+45 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_001/target.rs:76:16
+   |
+46 |     unsafe {
+   |     ------ because it's nested under this `unsafe` block
+...
+76 |             if unsafe { *hp.p } != 1 {
+   |                ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_001/target.rs:88:16
+   |
+46 |     unsafe {
+   |     ------ because it's nested under this `unsafe` block
+...
+88 |             if unsafe { (*ha).a[2] } != 3 {
+   |                ^^^^^^ unnecessary `unsafe` block
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_001/target.rs:88:25
+   |
+88 |             if unsafe { (*ha).a[2] } != 3 {
+   |                         ^^^^^^^^^^ index out of bounds: the length is 0 but the index is 2
+   |
+   = note: `#[deny(unconditional_panic)]` on by default
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_001/target.rs:82:70
+   |
+82 |             if (ha as *const u8).wrapping_add(offsetof(|ha: &HoldA| &ha.a[0]))
+   |                                                                      ^^^^^^^ index out of bounds: the length is 0 but the index is 0
+
+error: aborting due to 7 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0277`.

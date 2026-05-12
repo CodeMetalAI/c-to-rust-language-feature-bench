@@ -1,0 +1,22 @@
+error: expected `mut` or `const` keyword in raw pointer type
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c2/sample_002/target.rs:6:13
+  |
+6 |     let pv: *volatile i32 = p;
+  |             ^
+  |
+help: add `mut` or `const` here
+  |
+6 |     let pv: *mut volatile i32 = p;
+  |              +++
+6 |     let pv: *const volatile i32 = p;
+  |              +++++
+
+error: expected one of `!`, `(`, `::`, `;`, `<`, or `=`, found `i32`
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c2/sample_002/target.rs:6:23
+  |
+6 |     let pv: *volatile i32 = p;
+  |           -           ^^^ expected one of `!`, `(`, `::`, `;`, `<`, or `=`
+  |           |
+  |           while parsing the type for `pv`
+
+error: aborting due to 2 previous errors

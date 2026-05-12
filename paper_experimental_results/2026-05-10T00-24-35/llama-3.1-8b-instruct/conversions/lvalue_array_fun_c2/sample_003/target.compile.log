@@ -1,0 +1,57 @@
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2/sample_003/target.rs:9:16
+  |
+3 | fn main() {
+  |          - expected `()` because of default return type
+...
+9 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2/sample_003/target.rs:15:8
+   |
+15 |     if *x!= 3 {
+   |        ^^ can't be dereferenced
+
+error[E0369]: binary operation `!=` cannot be applied to type `main::TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2/sample_003/target.rs:33:15
+   |
+33 |     if type_id!= TypeId::Int {
+   |        -------^^ ----------- main::TypeId
+   |        |
+   |        main::TypeId
+   |
+note: an implementation of `PartialEq` might be missing for `main::TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2/sample_003/target.rs:19:5
+   |
+19 |     enum TypeId {
+   |     ^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `main::TypeId` with `#[derive(PartialEq)]`
+   |
+19 +     #[derive(PartialEq)]
+20 |     enum TypeId {
+   |
+
+error[E0369]: binary operation `!=` cannot be applied to type `main::TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2/sample_003/target.rs:43:15
+   |
+43 |     if type_id!= TypeId::AtomicInt {
+   |        -------^^ ----------------- main::TypeId
+   |        |
+   |        main::TypeId
+   |
+note: an implementation of `PartialEq` might be missing for `main::TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2/sample_003/target.rs:19:5
+   |
+19 |     enum TypeId {
+   |     ^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `main::TypeId` with `#[derive(PartialEq)]`
+   |
+19 +     #[derive(PartialEq)]
+20 |     enum TypeId {
+   |
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0369, E0614.
+For more information about an error, try `rustc --explain E0308`.

@@ -1,0 +1,89 @@
+error[E0600]: cannot apply unary operator `-` to type `u8`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:73:18
+   |
+73 |     if result != -1 { abort(); }
+   |                  ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u8`
+   |
+73 -     if result != -1 { abort(); }
+73 +     if result != u8::MAX { abort(); }
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u8`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:74:41
+   |
+74 |     if A_BOOL.load(Ordering::SeqCst) != -1 { abort(); }
+   |                                         ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u8`
+   |
+74 -     if A_BOOL.load(Ordering::SeqCst) != -1 { abort(); }
+74 +     if A_BOOL.load(Ordering::SeqCst) != u8::MAX { abort(); }
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u8`
+   --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:172:41
+    |
+172 |     if A_BOOL.load(Ordering::SeqCst) != -1 { abort(); }
+    |                                         ^^ cannot apply unary operator `-`
+    |
+    = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u8`
+    |
+172 -     if A_BOOL.load(Ordering::SeqCst) != -1 { abort(); }
+172 +     if A_BOOL.load(Ordering::SeqCst) != u8::MAX { abort(); }
+    |
+
+error[E0599]: no method named `fetch_add` found for struct `AtomicPtr<T>` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:219:25
+    |
+219 |     let old = A_INT_PTR.fetch_add(1, Ordering::SeqCst);
+    |                         ^^^^^^^^^
+    |
+help: there is a method `fetch_and` with a similar name
+    |
+219 -     let old = A_INT_PTR.fetch_add(1, Ordering::SeqCst);
+219 +     let old = A_INT_PTR.fetch_and(1, Ordering::SeqCst);
+    |
+
+error[E0599]: no method named `fetch_sub` found for struct `AtomicPtr<T>` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:225:25
+    |
+225 |     let old = A_INT_PTR.fetch_sub(1, Ordering::SeqCst);
+    |                         ^^^^^^^^^
+    |
+help: there is a method `fetch_ptr_sub` with a similar name
+    |
+225 |     let old = A_INT_PTR.fetch_ptr_sub(1, Ordering::SeqCst);
+    |                               ++++
+
+error[E0599]: no method named `fetch_add` found for struct `AtomicPtr<T>` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:231:28
+    |
+231 |     let result = A_INT_PTR.fetch_add(1, Ordering::SeqCst);
+    |                            ^^^^^^^^^
+    |
+help: there is a method `fetch_and` with a similar name
+    |
+231 -     let result = A_INT_PTR.fetch_add(1, Ordering::SeqCst);
+231 +     let result = A_INT_PTR.fetch_and(1, Ordering::SeqCst);
+    |
+
+error[E0599]: no method named `fetch_sub` found for struct `AtomicPtr<T>` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:237:28
+    |
+237 |     let result = A_INT_PTR.fetch_sub(1, Ordering::SeqCst);
+    |                            ^^^^^^^^^
+    |
+help: there is a method `fetch_ptr_sub` with a similar name
+    |
+237 |     let result = A_INT_PTR.fetch_ptr_sub(1, Ordering::SeqCst);
+    |                                  ++++
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0599, E0600.
+For more information about an error, try `rustc --explain E0599`.

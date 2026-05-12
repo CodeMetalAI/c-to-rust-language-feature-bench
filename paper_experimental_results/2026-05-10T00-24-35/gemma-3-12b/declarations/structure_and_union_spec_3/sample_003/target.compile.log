@@ -1,0 +1,68 @@
+error[E0425]: cannot find function `offset` in module `std::mem`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_3/sample_003/target.rs:14:39
+   |
+14 |     let offset_i = unsafe { std::mem::offset::<s, int_struct>() };
+   |                                       ^^^^^^ not found in `std::mem`
+   |
+help: consider importing this function
+   |
+ 1 + use std::intrinsics::offset;
+   |
+help: if you import `offset`, refer to it directly
+   |
+14 -     let offset_i = unsafe { std::mem::offset::<s, int_struct>() };
+14 +     let offset_i = unsafe { offset::<s, int_struct>() };
+   |
+
+error[E0425]: cannot find function `offset` in module `std::mem`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_3/sample_003/target.rs:15:39
+   |
+15 |     let offset_a = unsafe { std::mem::offset::<s, [i32; 4]>() };
+   |                                       ^^^^^^ not found in `std::mem`
+   |
+help: consider importing this function
+   |
+ 1 + use std::intrinsics::offset;
+   |
+help: if you import `offset`, refer to it directly
+   |
+15 -     let offset_a = unsafe { std::mem::offset::<s, [i32; 4]>() };
+15 +     let offset_a = unsafe { offset::<s, [i32; 4]>() };
+   |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_3/sample_003/target.rs:14:20
+   |
+14 |     let offset_i = unsafe { std::mem::offset::<s, int_struct>() };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_3/sample_003/target.rs:15:20
+   |
+15 |     let offset_a = unsafe { std::mem::offset::<s, [i32; 4]>() };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_3/sample_003/target.rs:18:16
+   |
+12 | fn main() {
+   |          - expected `()` because of default return type
+...
+18 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_3/sample_003/target.rs:39:5
+   |
+12 | fn main() {
+   |          - expected `()` because of default return type
+...
+39 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0308, E0425.
+For more information about an error, try `rustc --explain E0308`.

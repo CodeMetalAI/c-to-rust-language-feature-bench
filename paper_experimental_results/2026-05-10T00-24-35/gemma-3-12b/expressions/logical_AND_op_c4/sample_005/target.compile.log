@@ -1,0 +1,57 @@
+error: free static item without body
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_AND_op_c4/sample_005/target.rs:8:1
+  |
+8 | static mut g: i32;
+  | ^^^^^^^^^^^^^^^^^-
+  |                  |
+  |                  help: provide a definition for the static: `= <expr>;`
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_AND_op_c4/sample_005/target.rs:2:5
+  |
+2 | /     unsafe {
+3 | |         g = gval;
+4 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_AND_op_c4/sample_005/target.rs:14:8
+   |
+14 |     if set_g_return(0, 0) && (y += 1) {
+   |        ^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_AND_op_c4/sample_005/target.rs:14:30
+   |
+14 |     if set_g_return(0, 0) && (y += 1) {
+   |                              ^^^^^^^^ expected `bool`, found `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_AND_op_c4/sample_005/target.rs:15:16
+   |
+10 | fn main() {
+   |          - expected `()` because of default return type
+...
+15 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_AND_op_c4/sample_005/target.rs:22:11
+   |
+22 |     if !((set_g_return(1, 1) && (g == 1))) {
+   |           ^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_AND_op_c4/sample_005/target.rs:26:5
+   |
+10 | fn main() {
+   |          - expected `()` because of default return type
+...
+26 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 7 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

@@ -1,0 +1,43 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/addr_indr_c3/sample_001/target.rs:25:8
+   |
+25 |     if unsafe { *a.as_ptr().add(1) } != 20 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/addr_indr_c3/sample_001/target.rs:9:10
+  |
+9 |     if (&(*p) as *const i32) != p {
+  |          ^^^^ dereference of raw pointer
+  |
+  = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::add` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/addr_indr_c3/sample_001/target.rs:15:33
+   |
+15 |     if (&a[0] as *const i32) != a.as_ptr().add(0) {
+   |                                 ^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::add` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/addr_indr_c3/sample_001/target.rs:18:33
+   |
+18 |     if (&a[1] as *const i32) != a.as_ptr().add(1) {
+   |                                 ^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::add` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/addr_indr_c3/sample_001/target.rs:21:33
+   |
+21 |     if (&a[2] as *const i32) != a.as_ptr().add(2) {
+   |                                 ^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

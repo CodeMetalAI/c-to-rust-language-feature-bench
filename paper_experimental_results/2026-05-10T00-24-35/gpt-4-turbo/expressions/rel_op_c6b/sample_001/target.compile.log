@@ -1,0 +1,28 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/rel_op_c6b/sample_001/target.rs:22:16
+   |
+22 |     let end2 = unsafe { a.as_ptr().add(3) };
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/rel_op_c6b/sample_001/target.rs:21:17
+   |
+21 |     let end1 = &a[3] as *const i32;
+   |                 ^^^^ index out of bounds: the length is 3 but the index is 3
+   |
+   = note: `#[deny(unconditional_panic)]` on by default
+
+warning: field `y` is never read
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/rel_op_c6b/sample_001/target.rs:10:9
+   |
+ 8 |     struct S {
+   |            - field in this struct
+ 9 |         x: i32,
+10 |         y: i32,
+   |         ^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 2 previous errors; 1 warning emitted

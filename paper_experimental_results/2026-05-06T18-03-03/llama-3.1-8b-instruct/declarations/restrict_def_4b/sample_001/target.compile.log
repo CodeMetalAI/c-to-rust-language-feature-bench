@@ -1,0 +1,49 @@
+warning: unused import: `std::mem`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_001/target.rs:3:5
+  |
+3 | use std::mem;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: invalid suffix `ull` for number literal
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_001/target.rs:11:16
+   |
+11 | const H: u64 = 0x9e3779b97f4a7c15ull;
+   |                ^^^^^^^^^^^^^^^^^^^^^ invalid suffix `ull`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `ull` for number literal
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_001/target.rs:29:24
+   |
+29 |     h = h.wrapping_mul(0x5851f42d4c957f2dull);
+   |                        ^^^^^^^^^^^^^^^^^^^^^ invalid suffix `ull`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error[E0596]: cannot borrow `a.v` as mutable, as `a` is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_001/target.rs:72:14
+   |
+72 |     fill_vec(&mut a.v, 1.0f32);
+   |              ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+55 |     let mut a = new_vector(16);
+   |         +++
+
+error[E0596]: cannot borrow `b.v` as mutable, as `b` is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_001/target.rs:73:14
+   |
+73 |     fill_vec(&mut b.v, 100.0f32);
+   |              ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+56 |     let mut b = new_vector(16);
+   |         +++
+
+error: aborting due to 4 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0596`.

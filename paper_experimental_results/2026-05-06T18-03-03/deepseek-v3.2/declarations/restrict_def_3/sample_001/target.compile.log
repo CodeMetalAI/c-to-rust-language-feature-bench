@@ -1,0 +1,46 @@
+error: expected one of `!`, `)`, `,`, `.`, `::`, `?`, `{`, or an operator, found `64`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_3/sample_001/target.rs:47:26
+   |
+47 |     init_seq(&mut b,我们发现 64, 100);
+   |                             -^^ expected one of 8 possible tokens
+   |                             |
+   |                             help: missing `,`
+
+error[E0425]: cannot find value `我们发现` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_3/sample_001/target.rs:47:21
+   |
+47 |     init_seq(&mut b,我们发现 64, 100);
+   |                     ^^^^^^^^ not found in this scope
+
+error[E0061]: this function takes 3 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_3/sample_001/target.rs:47:5
+   |
+47 |     init_seq(&mut b,我们发现 64, 100);
+   |     ^^^^^^^^                     --- unexpected argument #4 of type `{integer}`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_3/sample_001/target.rs:10:8
+   |
+10 |     fn init_seq(x: &mut [i32], n: usize, base: i32) {
+   |        ^^^^^^^^
+help: remove the extra argument
+   |
+47 -     init_seq(&mut b,我们发现 64, 100);
+47 +     init_seq(&mut b,我们发现 64);
+   |
+
+error[E0277]: the trait bound `usize: Neg` is not satisfied
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_3/sample_001/target.rs:5:18
+  |
+5 |         for i in -0..n {
+  |                  ^^ the trait `Neg` is not implemented for `usize`
+  |
+help: consider specifying an integer type that can be negative
+  |
+5 |         for i in -0isize..n {
+  |                    +++++
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0061, E0277, E0425.
+For more information about an error, try `rustc --explain E0061`.

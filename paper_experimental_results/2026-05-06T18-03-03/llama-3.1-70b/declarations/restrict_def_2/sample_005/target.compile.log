@@ -1,0 +1,54 @@
+error[E0594]: cannot assign to `snapshot[_]`, as `snapshot` is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_2/sample_005/target.rs:17:9
+   |
+17 |         snapshot[i] = buf[i];
+   |         ^^^^^^^^^^^^^^^^^^^^ cannot assign
+   |
+help: consider changing this to be mutable
+   |
+13 |     let mut snapshot = [0; 20];
+   |         +++
+
+error[E0502]: cannot borrow `buf` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_2/sample_005/target.rs:25:18
+   |
+24 |         let p = &mut buf[..];
+   |                      --- mutable borrow occurs here
+25 |         let q = &buf[off..];
+   |                  ^^^ immutable borrow occurs here
+26 |
+27 |         f(n, &mut p[..n], &q[..n]);
+   |                   - mutable borrow later used here
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `buf` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_2/sample_005/target.rs:51:18
+   |
+50 |         let p = &mut buf[off..];
+   |                      --- mutable borrow occurs here
+51 |         let q = &buf[..];
+   |                  ^^^ immutable borrow occurs here
+52 |
+53 |         f(n, &mut p[..n], &q[..n]);
+   |                   - mutable borrow later used here
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `buf` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_2/sample_005/target.rs:55:37
+   |
+50 |         let p = &mut buf[off..];
+   |                      --- mutable borrow occurs here
+...
+55 |         if!check_range_eq(&p[..n], &buf[..n]) {
+   |            --------------           ^^^ immutable borrow occurs here
+   |            |
+   |            mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0502, E0594.
+For more information about an error, try `rustc --explain E0502`.

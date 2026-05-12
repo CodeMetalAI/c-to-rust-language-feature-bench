@@ -1,0 +1,107 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_2b/sample_001/target.rs:38:13
+   |
+38 |     let g = unsafe { GATE };
+   |             ^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_2b/sample_001/target.rs:94:5
+    |
+ 94 | /     unsafe {
+ 95 | |         let (left, right) = D.split_at_mut(50);
+ 96 | |         call_f_checked(&D, 100, 50, right, left);
+...   |
+102 | |         call_f_checked(base_slice, 100, 50, p, q);
+103 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_2b/sample_001/target.rs:109:5
+    |
+109 | /     unsafe {
+110 | |         init(&mut D, 100);
+111 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_2b/sample_001/target.rs:120:5
+    |
+120 | /     unsafe {
+121 | |         let base = expect.as_ptr();
+122 | |         let p = std::slice::from_raw_parts_mut(base.add(1) as *mut i32, 99);
+123 | |         let q = std::slice::from_raw_parts(base, 99);
+124 | |         safe_move(50, p, q);
+125 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_2b/sample_001/target.rs:129:5
+    |
+129 | /     unsafe {
+130 | |         if !same(&D, &expect, 100) {
+131 | |             std::process::exit(1);
+132 | |         }
+133 | |     }
+    | |_____^
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_2b/sample_001/target.rs:95:29
+   |
+95 |         let (left, right) = D.split_at_mut(50);
+   |                             ^^^^^^^^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_2b/sample_001/target.rs:96:24
+   |
+96 |         call_f_checked(&D, 100, 50, right, left);
+   |                        ^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+96 |         call_f_checked(&raw const D, 100, 50, right, left);
+   |                         +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_2b/sample_001/target.rs:98:20
+   |
+98 |         let base = D.as_ptr();
+   |                    ^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+
+warning: creating a mutable reference to mutable static
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_2b/sample_001/target.rs:110:14
+    |
+110 |         init(&mut D, 100);
+    |              ^^^^^^ mutable reference to mutable static
+    |
+    = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+    = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+    |
+110 |         init(&raw mut D, 100);
+    |               +++
+
+warning: creating a shared reference to mutable static
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_2b/sample_001/target.rs:130:18
+    |
+130 |         if !same(&D, &expect, 100) {
+    |                  ^^ shared reference to mutable static
+    |
+    = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+    = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+    |
+130 |         if !same(&raw const D, &expect, 100) {
+    |                   +++++++++
+
+error: aborting due to 5 previous errors; 5 warnings emitted

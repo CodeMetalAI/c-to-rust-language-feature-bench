@@ -1,0 +1,137 @@
+error[E0277]: the trait bound `Vec<_, _>: From<*mut f32>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_003/target.rs:31:17
+   |
+31 |         let v = Vec::from(alloc_bytes(n as usize * std::mem::size_of::<f32>()) as *mut f32);
+   |                 ^^^ the trait `From<*mut f32>` is not implemented for `Vec<_, _>`
+   |
+   = help: the following other types implement trait `From<T>`:
+             `Vec<T, A>` implements `From<BinaryHeap<T, A>>`
+             `Vec<T, A>` implements `From<Box<[T], A>>`
+             `Vec<T, A>` implements `From<VecDeque<T, A>>`
+             `Vec<T>` implements `From<&[T; N]>`
+             `Vec<T>` implements `From<&[T]>`
+             `Vec<T>` implements `From<&mut [T; N]>`
+             `Vec<T>` implements `From<&mut [T]>`
+             `Vec<T>` implements `From<Cow<'_, [T]>>`
+           and 5 others
+
+error[E0599]: no method named `is_null` found for struct `Vec<f32>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_003/target.rs:56:12
+   |
+56 |     if a.v.is_null() {
+   |            ^^^^^^^ method not found in `Vec<f32>`
+
+error[E0599]: no method named `is_null` found for struct `Vec<f32>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_003/target.rs:59:12
+   |
+59 |     if b.v.is_null() {
+   |            ^^^^^^^ method not found in `Vec<f32>`
+
+error[E0133]: call to unsafe function `std::ptr::mut_ptr::<impl *mut T>::add` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_003/target.rs:17:9
+   |
+17 |         POOL.as_mut_ptr().add(OFF)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_003/target.rs:17:9
+   |
+17 |         POOL.as_mut_ptr().add(OFF)
+   |         ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_003/target.rs:17:31
+   |
+17 |         POOL.as_mut_ptr().add(OFF)
+   |                               ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_003/target.rs:18:15
+   |
+18 |     } else if OFF + n > POOL.len() as usize {
+   |               ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_003/target.rs:18:25
+   |
+18 |     } else if OFF + n > POOL.len() as usize {
+   |                         ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::mut_ptr::<impl *mut T>::add` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_003/target.rs:21:17
+   |
+21 |         let p = POOL.as_mut_ptr().add(OFF);
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_003/target.rs:21:17
+   |
+21 |         let p = POOL.as_mut_ptr().add(OFF);
+   |                 ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_003/target.rs:21:39
+   |
+21 |         let p = POOL.as_mut_ptr().add(OFF);
+   |                                       ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_003/target.rs:22:9
+   |
+22 |         OFF += n;
+   |         ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::write` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_003/target.rs:24:9
+   |
+24 |         std::ptr::write(p as *mut u64, h);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0502]: cannot borrow `self` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_003/target.rs:36:36
+   |
+36 |         self.v.iter_mut().for_each(|p| *p = base + self.v.iter().position(|_| true).unwrap() as f32);
+   |         ------            -------- ^^^             ------ second borrow occurs due to use of `self` in closure
+   |         |                 |        |
+   |         |                 |        immutable borrow occurs here
+   |         |                 mutable borrow later used by call
+   |         mutable borrow occurs here
+
+error[E0384]: cannot assign twice to immutable variable `d`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4b/sample_003/target.rs:47:9
+   |
+45 |     let d = x - y;
+   |         - first assignment to `d`
+46 |     if d < 0.0 {
+47 |         d = -d;
+   |         ^^^^^^ cannot assign twice to immutable variable
+   |
+help: consider making this binding mutable
+   |
+45 |     let mut d = x - y;
+   |         +++
+
+error: aborting due to 15 previous errors
+
+Some errors have detailed explanations: E0133, E0277, E0384, E0502, E0599.
+For more information about an error, try `rustc --explain E0133`.

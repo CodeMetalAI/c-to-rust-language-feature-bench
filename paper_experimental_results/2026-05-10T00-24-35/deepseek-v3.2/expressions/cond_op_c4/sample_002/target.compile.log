@@ -1,0 +1,85 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_c4/sample_002/target.rs:4:5
+  |
+4 | /     unsafe {
+5 | |         G = gval;
+6 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_c4/sample_002/target.rs:12:5
+   |
+12 | /     unsafe {
+13 | |         G = 0;
+14 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_c4/sample_002/target.rs:16:9
+   |
+16 |         unsafe { (G == 1) as i32 }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_c4/sample_002/target.rs:24:5
+   |
+24 | /     unsafe {
+25 | |         if G != 1 {
+26 | |             std::process::exit(2);
+27 | |         }
+28 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_c4/sample_002/target.rs:30:5
+   |
+30 | /     unsafe {
+31 | |         G = 0;
+32 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_c4/sample_002/target.rs:37:9
+   |
+37 |         unsafe { (G == 1) as i32 }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_c4/sample_002/target.rs:42:5
+   |
+42 | /     unsafe {
+43 | |         if G != 1 {
+44 | |             std::process::exit(4);
+45 | |         }
+46 | |     }
+   | |_____^
+
+error[E0384]: cannot assign twice to immutable variable `x`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_c4/sample_002/target.rs:33:5
+   |
+15 | /     x = if set_g_return(1, 1) != 0 {
+16 | |         unsafe { (G == 1) as i32 }
+17 | |     } else {
+18 | |         let _ = set_g_return(2, 1);
+19 | |         0
+20 | |     };
+   | |_____- first assignment to `x`
+...
+33 | /     x = if set_g_return(1, 0) != 0 {
+34 | |         let _ = set_g_return(2, 1);
+35 | |         0
+36 | |     } else {
+37 | |         unsafe { (G == 1) as i32 }
+38 | |     };
+   | |_____^ cannot assign twice to immutable variable
+   |
+help: consider making this binding mutable
+   |
+11 |     let mut x: i32;
+   |         +++
+
+error: aborting due to 8 previous errors
+
+For more information about this error, try `rustc --explain E0384`.

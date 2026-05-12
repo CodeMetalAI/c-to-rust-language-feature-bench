@@ -1,0 +1,166 @@
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:17:30
+   |
+17 |             return Some(&mut pool[off..]);
+   |                              ^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:17:35
+   |
+17 |             return Some(&mut pool[off..]);
+   |                                   ^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:19:12
+   |
+19 |         if off + n > POOL_SIZE {
+   |            ^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:22:22
+   |
+22 |         let p = &mut pool[off..off + n];
+   |                      ^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:22:27
+   |
+22 |         let p = &mut pool[off..off + n];
+   |                           ^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:22:32
+   |
+22 |         let p = &mut pool[off..off + n];
+   |                                ^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:23:9
+   |
+23 |         off += n;
+   |         ^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:24:9
+   |
+24 |         h ^= (p.as_ptr() as u64) ^ H_INIT;
+   |         ^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:25:9
+   |
+25 |         h *= HASH_MULT;
+   |         ^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0599]: no method named `try_into` found for mutable reference `&mut [u8]` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:35:46
+   |
+35 |                .map(|b| f32::from_ne_bytes(b.try_into().unwrap()))
+   |                                              ^^^^^^^^
+   |
+   = help: items from traits can only be used if the trait is in scope
+   = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::convert::TryInto;
+   |
+help: there is a method `into` with a similar name
+   |
+35 -                .map(|b| f32::from_ne_bytes(b.try_into().unwrap()))
+35 +                .map(|b| f32::from_ne_bytes(b.into().unwrap()))
+   |
+
+warning: unused variable: `pool`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:7:13
+  |
+7 |     let mut pool: [u8; POOL_SIZE] = [0; POOL_SIZE];
+  |             ^^^^ help: if this is intentional, prefix it with an underscore: `_pool`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `off`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:8:13
+  |
+8 |     let mut off: usize = 0;
+  |             ^^^
+  |
+help: if this is intentional, prefix it with an underscore
+  |
+8 |     let mut _off: usize = 0;
+  |             +
+help: you might have meant to pattern match on the similarly named constant `POOL_SIZE`
+  |
+8 -     let mut off: usize = 0;
+8 +     let mut main::POOL_SIZE: usize = 0;
+  |
+
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:6:9
+  |
+6 |     let mut h: u64 = H_INIT;
+  |         ----^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:7:9
+  |
+7 |     let mut pool: [u8; POOL_SIZE] = [0; POOL_SIZE];
+  |         ----^^^^
+  |         |
+  |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:8:9
+  |
+8 |     let mut off: usize = 0;
+  |         ----^^^
+  |         |
+  |         help: remove this `mut`
+
+error[E0596]: cannot borrow `a.v` as mutable, as `a` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:68:14
+   |
+68 |     fill_vec(&mut a.v, a.n, 1.0);
+   |              ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+55 |     let mut a = new_vector(16);
+   |         +++
+
+error[E0596]: cannot borrow `b.v` as mutable, as `b` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:69:14
+   |
+69 |     fill_vec(&mut b.v, b.n, 100.0);
+   |              ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+56 |     let mut b = new_vector(16);
+   |         +++
+
+error: aborting due to 12 previous errors; 5 warnings emitted
+
+Some errors have detailed explanations: E0434, E0596, E0599.
+For more information about an error, try `rustc --explain E0434`.

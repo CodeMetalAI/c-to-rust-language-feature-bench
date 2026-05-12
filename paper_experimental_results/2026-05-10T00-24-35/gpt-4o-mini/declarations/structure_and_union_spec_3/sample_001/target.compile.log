@@ -1,0 +1,36 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_3/sample_001/target.rs:20:15
+   |
+20 |     let ptr = unsafe { alloc(layout) as *mut S };
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_3/sample_001/target.rs:28:5
+   |
+28 | /     unsafe {
+29 | |         ptr.write(MaybeUninit::zeroed().assume_init());
+30 | |         (*ptr).inner.i = 7;
+31 | |         (*ptr).a = [0; 0]; // This is just a placeholder, we will access the raw pointer for the allocated space
+...  |
+41 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_3/sample_001/target.rs:44:5
+   |
+44 | /     unsafe {
+45 | |         dealloc(ptr as *mut u8, layout);
+46 | |     }
+   | |_____^
+
+error[E0605]: non-primitive cast: `S` as `*mut i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_3/sample_001/target.rs:33:21
+   |
+33 |         let a_ptr = ((*ptr) as *mut i32).add(1); // Starting from the second element to accommodate the flexible array member
+   |                     ^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0605`.

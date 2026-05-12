@@ -1,0 +1,98 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:60:5
+   |
+60 | /     unsafe {
+61 | |         let mut x = rng_state;
+62 | |         x ^= x << 13;
+63 | |         x ^= x >> 17;
+...  |
+66 | |         x
+67 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:83:32
+   |
+83 |                 arr[i][j][k] = 100 * (i + 1) as i32 + 10 * j as i32 + k as i32;
+   |                 ------------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `[{integer}; 10]`, found `i32`
+   |                 |
+   |                 expected due to the type of this binding
+
+error[E0015]: cannot use `for` loop on `std::ops::Range<usize>` in statics
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:92:14
+   |
+92 |     for i in 0..9 {
+   |              ^^^^
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+
+error[E0015]: cannot use `for` loop on `std::ops::Range<usize>` in statics
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:93:18
+   |
+93 |         for j in 0..10 {
+   |                  ^^^^^
+   |
+   = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+
+error[E0015]: cannot use `for` loop on `std::ops::Range<usize>` in statics
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:102:14
+    |
+102 |     for i in 0..9 {
+    |              ^^^^
+    |
+    = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+    = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+
+error[E0015]: cannot use `for` loop on `std::ops::Range<usize>` in statics
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:103:18
+    |
+103 |         for j in 0..10 {
+    |                  ^^^^^
+    |
+    = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+    = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+
+error[E0015]: cannot use `for` loop on `std::ops::Range<usize>` in statics
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:112:14
+    |
+112 |     for i in 0..9 {
+    |              ^^^^
+    |
+    = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+    = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+
+error[E0015]: cannot use `for` loop on `std::ops::Range<usize>` in statics
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:113:18
+    |
+113 |         for j in 0..10 {
+    |                  ^^^^^
+    |
+    = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+    = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+
+error[E0277]: can't compare `[i32; 10]` with `i32`
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:127:15
+    |
+127 |         if v1 != 100 * a + 10 * b + c {
+    |               ^^ no implementation for `[i32; 10] == i32`
+    |
+    = help: the trait `PartialEq<i32>` is not implemented for `[i32; 10]`
+    = help: the following other types implement trait `PartialEq<Rhs>`:
+              `&[T]` implements `PartialEq<Vec<U, A>>`
+              `&[T]` implements `PartialEq<[U; N]>`
+              `&[u8; N]` implements `PartialEq<ByteStr>`
+              `&[u8; N]` implements `PartialEq<ByteString>`
+              `&[u8]` implements `PartialEq<ByteStr>`
+              `&[u8]` implements `PartialEq<ByteString>`
+              `&mut [T]` implements `PartialEq<Vec<U, A>>`
+              `&mut [T]` implements `PartialEq<[U; N]>`
+            and 11 others
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0015, E0277, E0308.
+For more information about an error, try `rustc --explain E0015`.

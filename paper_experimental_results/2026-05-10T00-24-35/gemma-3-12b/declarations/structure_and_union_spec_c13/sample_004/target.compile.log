@@ -1,0 +1,152 @@
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_004/target.rs:43:5
+   |
+43 |     tail_nested: Nested3,
+   |     ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+43 |     tail_nested: std::mem::ManuallyDrop<Nested3>,
+   |                  +++++++++++++++++++++++       +
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_004/target.rs:184:14
+    |
+184 |     if pa == 0 || pb == 0 || pdeep == 0 || ptx == 0 || pty == 0 {
+    |        --    ^ expected `*const i32`, found `usize`
+    |        |
+    |        expected because this is `*const i32`
+    |
+    = note: expected raw pointer `*const i32`
+                      found type `usize`
+help: if you meant to create a null pointer, use `std::ptr::null()`
+    |
+184 -     if pa == 0 || pb == 0 || pdeep == 0 || ptx == 0 || pty == 0 {
+184 +     if pa == std::ptr::null() || pb == 0 || pdeep == 0 || ptx == 0 || pty == 0 {
+    |
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_004/target.rs:184:25
+    |
+184 |     if pa == 0 || pb == 0 || pdeep == 0 || ptx == 0 || pty == 0 {
+    |                   --    ^ expected `*const i32`, found `usize`
+    |                   |
+    |                   expected because this is `*const i32`
+    |
+    = note: expected raw pointer `*const i32`
+                      found type `usize`
+help: if you meant to create a null pointer, use `std::ptr::null()`
+    |
+184 -     if pa == 0 || pb == 0 || pdeep == 0 || ptx == 0 || pty == 0 {
+184 +     if pa == 0 || pb == std::ptr::null() || pdeep == 0 || ptx == 0 || pty == 0 {
+    |
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_004/target.rs:184:39
+    |
+184 |     if pa == 0 || pb == 0 || pdeep == 0 || ptx == 0 || pty == 0 {
+    |                              -----    ^ expected `*const i32`, found `usize`
+    |                              |
+    |                              expected because this is `*const i32`
+    |
+    = note: expected raw pointer `*const i32`
+                      found type `usize`
+help: if you meant to create a null pointer, use `std::ptr::null()`
+    |
+184 -     if pa == 0 || pb == 0 || pdeep == 0 || ptx == 0 || pty == 0 {
+184 +     if pa == 0 || pb == 0 || pdeep == std::ptr::null() || ptx == 0 || pty == 0 {
+    |
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_004/target.rs:184:51
+    |
+184 |     if pa == 0 || pb == 0 || pdeep == 0 || ptx == 0 || pty == 0 {
+    |                                            ---    ^ expected `*const i32`, found `usize`
+    |                                            |
+    |                                            expected because this is `*const i32`
+    |
+    = note: expected raw pointer `*const i32`
+                      found type `usize`
+help: if you meant to create a null pointer, use `std::ptr::null()`
+    |
+184 -     if pa == 0 || pb == 0 || pdeep == 0 || ptx == 0 || pty == 0 {
+184 +     if pa == 0 || pb == 0 || pdeep == 0 || ptx == std::ptr::null() || pty == 0 {
+    |
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_004/target.rs:184:63
+    |
+184 |     if pa == 0 || pb == 0 || pdeep == 0 || ptx == 0 || pty == 0 {
+    |                                                        ---    ^ expected `*const i32`, found `usize`
+    |                                                        |
+    |                                                        expected because this is `*const i32`
+    |
+    = note: expected raw pointer `*const i32`
+                      found type `usize`
+help: if you meant to create a null pointer, use `std::ptr::null()`
+    |
+184 -     if pa == 0 || pb == 0 || pdeep == 0 || ptx == 0 || pty == 0 {
+184 +     if pa == 0 || pb == 0 || pdeep == 0 || ptx == 0 || pty == std::ptr::null() {
+    |
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_004/target.rs:83:8
+   |
+83 |     if o.a.b.deep.u_as_int != 99 {
+   |        ^^^^^^^^^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_004/target.rs:95:8
+   |
+95 |     if o.tail.tail_y.tail_y != 8 {
+   |        ^^^^^^^^^^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_004/target.rs:126:8
+    |
+126 |     if o.a.b.deep.u_as_int != 0x11223344 as i32 {
+    |        ^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_004/target.rs:132:8
+    |
+132 |     if o.a.b.deep.u_as_int != 5 {
+    |        ^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_004/target.rs:141:8
+    |
+141 |     if o.tail.tail_y.tail_nested.tail_p != 40 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_004/target.rs:144:8
+    |
+144 |     if o.tail.tail_y.tail_nested.tail_q != 41 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_c13/sample_004/target.rs:149:8
+    |
+149 |     if o.tail.tail_y.tail_y != -9 {
+    |        ^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: aborting due to 13 previous errors
+
+Some errors have detailed explanations: E0133, E0308, E0740.
+For more information about an error, try `rustc --explain E0133`.

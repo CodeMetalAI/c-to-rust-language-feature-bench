@@ -1,0 +1,348 @@
+warning: unused imports: `AtomicIsize`, `AtomicUsize`, and `Ordering`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:1:123
+  |
+1 | ...tomicU16, AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicIsize, AtomicUsize, Ordering};
+  |                                                          ^^^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0599]: no function or associated item named `default` found for type parameter `T` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:10:28
+   |
+ 5 | fn test_simple_assign_arith<T, F>(value: T, atomic_init: F)
+   |                             - function or associated item `default` not found for this type parameter
+...
+10 |     let a = atomic_init(T::default());
+   |                            ^^^^^^^ function or associated item not found in `T`
+   |
+   = help: items from traits can only be used if the type parameter is bounded by the trait
+help: the following trait defines an item `default`, perhaps you need to restrict type parameter `T` with it:
+   |
+ 7 |     T: PartialEq + Copy + Default,
+   |                         +++++++++
+
+error[E0599]: no function or associated item named `default` found for type parameter `T` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:13:16
+   |
+ 5 | fn test_simple_assign_arith<T, F>(value: T, atomic_init: F)
+   |                             - function or associated item `default` not found for this type parameter
+...
+13 |     if a != T::default() {
+   |                ^^^^^^^ function or associated item not found in `T`
+   |
+   = help: items from traits can only be used if the type parameter is bounded by the trait
+help: the following trait defines an item `default`, perhaps you need to restrict type parameter `T` with it:
+   |
+ 7 |     T: PartialEq + Copy + Default,
+   |                         +++++++++
+
+error[E0271]: expected `new` to return `bool`, but it returns `AtomicBool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:29:37
+   |
+29 |     test_simple_assign_arith(false, AtomicBool::new);
+   |     ------------------------        ^^^^^^^^^^^^^^^ expected `bool`, found `AtomicBool`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:8:17
+   |
+ 5 | fn test_simple_assign_arith<T, F>(value: T, atomic_init: F)
+   |    ------------------------ required by a bound in this function
+...
+ 8 |     F: Fn(T) -> T,
+   |                 ^ required by this bound in `test_simple_assign_arith`
+
+error[E0271]: expected `new` to return `bool`, but it returns `AtomicBool`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:30:36
+   |
+30 |     test_simple_assign_arith(true, AtomicBool::new);
+   |     ------------------------       ^^^^^^^^^^^^^^^ expected `bool`, found `AtomicBool`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:8:17
+   |
+ 5 | fn test_simple_assign_arith<T, F>(value: T, atomic_init: F)
+   |    ------------------------ required by a bound in this function
+...
+ 8 |     F: Fn(T) -> T,
+   |                 ^ required by this bound in `test_simple_assign_arith`
+
+error[E0271]: expected `new` to return `i8`, but it returns `AtomicI8`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:31:35
+   |
+31 |     test_simple_assign_arith(0i8, AtomicI8::new);
+   |     ------------------------      ^^^^^^^^^^^^^ expected `i8`, found `AtomicI8`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:8:17
+   |
+ 5 | fn test_simple_assign_arith<T, F>(value: T, atomic_init: F)
+   |    ------------------------ required by a bound in this function
+...
+ 8 |     F: Fn(T) -> T,
+   |                 ^ required by this bound in `test_simple_assign_arith`
+
+error[E0271]: expected `new` to return `i8`, but it returns `AtomicI8`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:32:35
+   |
+32 |     test_simple_assign_arith(1i8, AtomicI8::new);
+   |     ------------------------      ^^^^^^^^^^^^^ expected `i8`, found `AtomicI8`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:8:17
+   |
+ 5 | fn test_simple_assign_arith<T, F>(value: T, atomic_init: F)
+   |    ------------------------ required by a bound in this function
+...
+ 8 |     F: Fn(T) -> T,
+   |                 ^ required by this bound in `test_simple_assign_arith`
+
+error[E0271]: expected `new` to return `u8`, but it returns `AtomicU8`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:33:35
+   |
+33 |     test_simple_assign_arith(0u8, AtomicU8::new);
+   |     ------------------------      ^^^^^^^^^^^^^ expected `u8`, found `AtomicU8`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:8:17
+   |
+ 5 | fn test_simple_assign_arith<T, F>(value: T, atomic_init: F)
+   |    ------------------------ required by a bound in this function
+...
+ 8 |     F: Fn(T) -> T,
+   |                 ^ required by this bound in `test_simple_assign_arith`
+
+error[E0271]: expected `new` to return `u8`, but it returns `AtomicU8`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:34:35
+   |
+34 |     test_simple_assign_arith(1u8, AtomicU8::new);
+   |     ------------------------      ^^^^^^^^^^^^^ expected `u8`, found `AtomicU8`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:8:17
+   |
+ 5 | fn test_simple_assign_arith<T, F>(value: T, atomic_init: F)
+   |    ------------------------ required by a bound in this function
+...
+ 8 |     F: Fn(T) -> T,
+   |                 ^ required by this bound in `test_simple_assign_arith`
+
+error[E0271]: expected `new` to return `i16`, but it returns `AtomicI16`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:35:36
+   |
+35 |     test_simple_assign_arith(0i16, AtomicI16::new);
+   |     ------------------------       ^^^^^^^^^^^^^^ expected `i16`, found `AtomicI16`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:8:17
+   |
+ 5 | fn test_simple_assign_arith<T, F>(value: T, atomic_init: F)
+   |    ------------------------ required by a bound in this function
+...
+ 8 |     F: Fn(T) -> T,
+   |                 ^ required by this bound in `test_simple_assign_arith`
+
+error[E0271]: expected `new` to return `i16`, but it returns `AtomicI16`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:36:36
+   |
+36 |     test_simple_assign_arith(1i16, AtomicI16::new);
+   |     ------------------------       ^^^^^^^^^^^^^^ expected `i16`, found `AtomicI16`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:8:17
+   |
+ 5 | fn test_simple_assign_arith<T, F>(value: T, atomic_init: F)
+   |    ------------------------ required by a bound in this function
+...
+ 8 |     F: Fn(T) -> T,
+   |                 ^ required by this bound in `test_simple_assign_arith`
+
+error[E0271]: expected `new` to return `u16`, but it returns `AtomicU16`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:37:36
+   |
+37 |     test_simple_assign_arith(0u16, AtomicU16::new);
+   |     ------------------------       ^^^^^^^^^^^^^^ expected `u16`, found `AtomicU16`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:8:17
+   |
+ 5 | fn test_simple_assign_arith<T, F>(value: T, atomic_init: F)
+   |    ------------------------ required by a bound in this function
+...
+ 8 |     F: Fn(T) -> T,
+   |                 ^ required by this bound in `test_simple_assign_arith`
+
+error[E0271]: expected `new` to return `u16`, but it returns `AtomicU16`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:38:36
+   |
+38 |     test_simple_assign_arith(1u16, AtomicU16::new);
+   |     ------------------------       ^^^^^^^^^^^^^^ expected `u16`, found `AtomicU16`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:8:17
+   |
+ 5 | fn test_simple_assign_arith<T, F>(value: T, atomic_init: F)
+   |    ------------------------ required by a bound in this function
+...
+ 8 |     F: Fn(T) -> T,
+   |                 ^ required by this bound in `test_simple_assign_arith`
+
+error[E0271]: expected `new` to return `i32`, but it returns `AtomicI32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:39:36
+   |
+39 |     test_simple_assign_arith(0i32, AtomicI32::new);
+   |     ------------------------       ^^^^^^^^^^^^^^ expected `i32`, found `AtomicI32`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:8:17
+   |
+ 5 | fn test_simple_assign_arith<T, F>(value: T, atomic_init: F)
+   |    ------------------------ required by a bound in this function
+...
+ 8 |     F: Fn(T) -> T,
+   |                 ^ required by this bound in `test_simple_assign_arith`
+
+error[E0271]: expected `new` to return `i32`, but it returns `AtomicI32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:40:36
+   |
+40 |     test_simple_assign_arith(1i32, AtomicI32::new);
+   |     ------------------------       ^^^^^^^^^^^^^^ expected `i32`, found `AtomicI32`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:8:17
+   |
+ 5 | fn test_simple_assign_arith<T, F>(value: T, atomic_init: F)
+   |    ------------------------ required by a bound in this function
+...
+ 8 |     F: Fn(T) -> T,
+   |                 ^ required by this bound in `test_simple_assign_arith`
+
+error[E0271]: expected `new` to return `u32`, but it returns `AtomicU32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:41:36
+   |
+41 |     test_simple_assign_arith(0u32, AtomicU32::new);
+   |     ------------------------       ^^^^^^^^^^^^^^ expected `u32`, found `AtomicU32`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:8:17
+   |
+ 5 | fn test_simple_assign_arith<T, F>(value: T, atomic_init: F)
+   |    ------------------------ required by a bound in this function
+...
+ 8 |     F: Fn(T) -> T,
+   |                 ^ required by this bound in `test_simple_assign_arith`
+
+error[E0271]: expected `new` to return `u32`, but it returns `AtomicU32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:42:36
+   |
+42 |     test_simple_assign_arith(1u32, AtomicU32::new);
+   |     ------------------------       ^^^^^^^^^^^^^^ expected `u32`, found `AtomicU32`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:8:17
+   |
+ 5 | fn test_simple_assign_arith<T, F>(value: T, atomic_init: F)
+   |    ------------------------ required by a bound in this function
+...
+ 8 |     F: Fn(T) -> T,
+   |                 ^ required by this bound in `test_simple_assign_arith`
+
+error[E0271]: expected `new` to return `i64`, but it returns `AtomicI64`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:43:36
+   |
+43 |     test_simple_assign_arith(0i64, AtomicI64::new);
+   |     ------------------------       ^^^^^^^^^^^^^^ expected `i64`, found `AtomicI64`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:8:17
+   |
+ 5 | fn test_simple_assign_arith<T, F>(value: T, atomic_init: F)
+   |    ------------------------ required by a bound in this function
+...
+ 8 |     F: Fn(T) -> T,
+   |                 ^ required by this bound in `test_simple_assign_arith`
+
+error[E0271]: expected `new` to return `i64`, but it returns `AtomicI64`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:44:36
+   |
+44 |     test_simple_assign_arith(1i64, AtomicI64::new);
+   |     ------------------------       ^^^^^^^^^^^^^^ expected `i64`, found `AtomicI64`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:8:17
+   |
+ 5 | fn test_simple_assign_arith<T, F>(value: T, atomic_init: F)
+   |    ------------------------ required by a bound in this function
+...
+ 8 |     F: Fn(T) -> T,
+   |                 ^ required by this bound in `test_simple_assign_arith`
+
+error[E0271]: expected `new` to return `u64`, but it returns `AtomicU64`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:45:36
+   |
+45 |     test_simple_assign_arith(0u64, AtomicU64::new);
+   |     ------------------------       ^^^^^^^^^^^^^^ expected `u64`, found `AtomicU64`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:8:17
+   |
+ 5 | fn test_simple_assign_arith<T, F>(value: T, atomic_init: F)
+   |    ------------------------ required by a bound in this function
+...
+ 8 |     F: Fn(T) -> T,
+   |                 ^ required by this bound in `test_simple_assign_arith`
+
+error[E0271]: expected `new` to return `u64`, but it returns `AtomicU64`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:46:36
+   |
+46 |     test_simple_assign_arith(1u64, AtomicU64::new);
+   |     ------------------------       ^^^^^^^^^^^^^^ expected `u64`, found `AtomicU64`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:8:17
+   |
+ 5 | fn test_simple_assign_arith<T, F>(value: T, atomic_init: F)
+   |    ------------------------ required by a bound in this function
+...
+ 8 |     F: Fn(T) -> T,
+   |                 ^ required by this bound in `test_simple_assign_arith`
+
+error: aborting due to 20 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0271, E0599.
+For more information about an error, try `rustc --explain E0271`.

@@ -1,0 +1,62 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_005/target.rs:11:5
+   |
+11 | /     unsafe {
+12 | |         (*p).tag = 0xA1B2C3D4;
+13 | |         (*p).n = N as u32;
+...  |
+43 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_005/target.rs:52:5
+   |
+52 | /     unsafe {
+53 | |         (*p).tag = 0;
+54 | |         (*p).n = 0;
+55 | |         (*p).sum = 0;
+...  |
+67 | |     }
+   | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_005/target.rs:19:19
+   |
+19 |         if got1!= expected {
+   |                   ^^^^^^^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut u8`
+              found raw pointer `*const u8`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_005/target.rs:22:19
+   |
+22 |         if got2!= expected {
+   |                   ^^^^^^^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut u8`
+              found raw pointer `*const u8`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_005/target.rs:61:19
+   |
+61 |         if got1!= expected {
+   |                   ^^^^^^^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut u8`
+              found raw pointer `*const u8`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c18/sample_005/target.rs:64:19
+   |
+64 |         if got2!= expected {
+   |                   ^^^^^^^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut u8`
+              found raw pointer `*const u8`
+
+error: aborting due to 6 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

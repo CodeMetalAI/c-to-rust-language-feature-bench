@@ -1,0 +1,54 @@
+error[E0412]: cannot find type `i` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c5/sample_002/target.rs:44:14
+   |
+31 |     struct S {
+   |     -------- similarly named struct `S` defined here
+...
+44 |         i32: i,
+   |              ^ help: a struct with a similar name exists: `S`
+
+error[E0412]: cannot find type `d` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c5/sample_002/target.rs:45:14
+   |
+31 |     struct S {
+   |     -------- similarly named struct `S` defined here
+...
+45 |         f64: d,
+   |              ^ help: a struct with a similar name exists: `S`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c5/sample_002/target.rs:26:26
+   |
+26 |     let q1: *const i32 = unsafe { q_last.offset(1) };
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0560]: union `U` has no field named `i`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c5/sample_002/target.rs:48:17
+   |
+48 |     let u = U { i: 0 };
+   |                 ^ `U` does not have this field
+   |
+   = note: available fields are: `i32`, `f64`
+
+error[E0609]: no field `i` on type `U`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c5/sample_002/target.rs:49:29
+   |
+49 |     let ui: *const i32 = &u.i as *const _;
+   |                             ^ unknown field
+   |
+   = note: available fields are: `i32`, `f64`
+
+error[E0609]: no field `d` on type `U`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c5/sample_002/target.rs:50:29
+   |
+50 |     let ud: *const f64 = &u.d as *const _;
+   |                             ^ unknown field
+   |
+   = note: available fields are: `i32`, `f64`
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0412, E0560, E0609.
+For more information about an error, try `rustc --explain E0412`.

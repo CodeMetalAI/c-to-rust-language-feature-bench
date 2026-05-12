@@ -1,0 +1,213 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:21:17
+   |
+21 |     G_SEED = pf(t) + k;
+   |              -- ^ expected `i64`, found `i32`
+   |              |
+   |              arguments to this function are incorrect
+   |
+note: type parameter defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:19:13
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, i32, i32, i32, i32) -> i32 {
+   |             ^^^^^^^^^^^^^^^^^^^
+help: you can convert an `i32` to an `i64`
+   |
+21 |     G_SEED = pf(t.into()) + k;
+   |                  +++++++
+
+error[E0308]: `if` and `else` have incompatible types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:25:9
+   |
+22 | /     if G_SEED & 1 == 0 {
+23 | |         Some(v0)
+   | |         -------- expected because of this
+24 | |     } else {
+25 | |         Some(v1)
+   | |         ^^^^^^^^ expected `Option<fn(i32, i32, i32, i32, i32) -> i32 {v0}>`, found `Option<fn(i32, i32, i32, i32, i32) -> i32 {v1}>`
+26 | |     }
+   | |_____- `if` and `else` have incompatible types
+   |
+   = note: expected enum `Option<fn(_, _, _, _, _) -> _ {v0}>`
+              found enum `Option<fn(_, _, _, _, _) -> _ {v1}>`
+   = note: different fn items have unique types, even if their signatures are the same
+   = help: consider casting both fn items to fn pointers using `as fn(i32, i32, i32, i32, i32) -> i32`
+
+error[E0057]: this function takes 5 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:30:14
+   |
+30 |     let r1 = pf(x);
+   |              ^^--- multiple arguments are missing
+   |
+note: type parameter defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:29:21
+   |
+29 | fn call_through(pf: impl Fn(i32, i32, i32, i32, i32) -> i32, x: i32) -> i32 {
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the arguments
+   |
+30 |     let r1 = pf(x, /* i32 */, /* i32 */, /* i32 */, /* i32 */);
+   |                  ++++++++++++++++++++++++++++++++++++++++++++
+
+error[E0057]: this function takes 5 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:32:14
+   |
+32 |     let r3 = pf(x, 1.25, &pf, 0x1122334455667788 as i64);
+   |              ^^-----------------------------------------
+   |                |   |          |
+   |                |   |          expected `i32`, found `i64`
+   |                |   expected `i32`, found floating-point number
+   |                argument #5 of type `i32` is missing
+   |
+note: expected `i32`, found `&impl Fn(i32, i32, i32, i32, i32) -> i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:32:26
+   |
+32 |     let r3 = pf(x, 1.25, &pf, 0x1122334455667788 as i64);
+   |                          ^^^
+   = note:   expected type `i32`
+           found reference `&impl Fn(i32, i32, i32, i32, i32) -> i32`
+note: type parameter defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:29:21
+   |
+29 | fn call_through(pf: impl Fn(i32, i32, i32, i32, i32) -> i32, x: i32) -> i32 {
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: use parentheses to call this type parameter
+   |
+32 |     let r3 = pf(x, 1.25, (&pf)(/* ... */), 0x1122334455667788 as i64);
+   |                          +   ++++++++++++
+help: you can convert an `i64` to an `i32` and panic if the converted value doesn't fit
+   |
+32 |     let r3 = pf(x, 1.25, &pf, (0x1122334455667788 as i64).try_into().unwrap());
+   |                               +                         +++++++++++++++++++++
+help: provide the argument
+   |
+32 -     let r3 = pf(x, 1.25, &pf, 0x1122334455667788 as i64);
+32 +     let r3 = pf(x, /* i32 */, /* i32 */, /* i32 */, /* i32 */);
+   |
+
+error[E0057]: this function takes 5 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:46:25
+   |
+46 |             Some(v0) if v0(40) != base + 1000 => panic!("expected 3000"),
+   |                         ^^---- multiple arguments are missing
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:19:45
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, i32, i32, i32, i32) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the arguments
+   |
+46 |             Some(v0) if v0(40, /* i32 */, /* i32 */, /* i32 */, /* i32 */) != base + 1000 => panic!("expected 3000"),
+   |                              ++++++++++++++++++++++++++++++++++++++++++++
+
+error[E0057]: this function takes 5 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:49:25
+   |
+49 |             Some(v1) if v1(40) != base - 2000 => panic!("expected -2000"),
+   |                         ^^---- multiple arguments are missing
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:19:45
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, i32, i32, i32, i32) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the arguments
+   |
+49 |             Some(v1) if v1(40, /* i32 */, /* i32 */, /* i32 */, /* i32 */) != base - 2000 => panic!("expected -2000"),
+   |                              ++++++++++++++++++++++++++++++++++++++++++++
+
+warning: unreachable statement
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:56:5
+   |
+45 | /         match vf {
+46 | |             Some(v0) if v0(40) != base + 1000 => panic!("expected 3000"),
+47 | |             Some(v0) if v0(40, 1, 2, 3, 4) != base + 1000 => panic!("expected 3000"),
+48 | |             Some(v0) if call_through(v0, 40) != (base + 1000) ^ (base + 1000 + 5) ^ (base + 1000 + 9) => panic!("expected 3000"),
+...  |
+52 | |             None => panic!("expected Some(_)")
+53 | |         }
+   | |_________- any code following this `match` expression is unreachable, as all arms diverge
+...
+56 |       vf = Some(fpfi(cb1, 8));
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^ unreachable statement
+   |
+   = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:56:20
+   |
+56 |     vf = Some(fpfi(cb1, 8));
+   |               ---- ^^^ expected fn item, found a different fn item
+   |               |
+   |               arguments to this function are incorrect
+   |
+   = note: expected fn item `fn(_) -> _ {cb0}`
+              found fn item `fn(_) -> _ {cb1}`
+   = note: different fn items have unique types, even if their signatures are the same
+help: the return type of this call is `fn(i64) -> i32 {cb1}` due to the type of the argument passed
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:56:15
+   |
+56 |     vf = Some(fpfi(cb1, 8));
+   |               ^^^^^---^^^^
+   |                    |
+   |                    this argument influences the return type of `fpfi`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:19:4
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, i32, i32, i32, i32) -> i32 {
+   |    ^^^^ -----------------------
+   = help: consider casting both fn items to fn pointers using `as fn(i64) -> i32`
+
+error[E0057]: this function takes 5 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:63:25
+   |
+63 |             Some(v0) if v0(9) != base + 1000 => panic!("expected 3000"),
+   |                         ^^--- multiple arguments are missing
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:19:45
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, i32, i32, i32, i32) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the arguments
+   |
+63 |             Some(v0) if v0(9, /* i32 */, /* i32 */, /* i32 */, /* i32 */) != base + 1000 => panic!("expected 3000"),
+   |                             ++++++++++++++++++++++++++++++++++++++++++++
+
+error[E0057]: this function takes 5 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:66:25
+   |
+66 |             Some(v1) if v1(9) != base - 2000 => panic!("expected -2000"),
+   |                         ^^--- multiple arguments are missing
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:19:45
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, i32, i32, i32, i32) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the arguments
+   |
+66 |             Some(v1) if v1(9, /* i32 */, /* i32 */, /* i32 */, /* i32 */) != base - 2000 => panic!("expected -2000"),
+   |                             ++++++++++++++++++++++++++++++++++++++++++++
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:12:5
+   |
+12 |     G_SEED + x + 1000
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_005/target.rs:16:5
+   |
+16 |     G_SEED + x - 2000
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 11 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0057, E0133, E0308.
+For more information about an error, try `rustc --explain E0057`.

@@ -1,0 +1,65 @@
+error[E0277]: the size for values of type `str` cannot be known at compilation time
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/lvalue_array_fun_c3/sample_004/target.rs:29:16
+   |
+29 |     if type_id("abc") != 3 {
+   |        ------- ^^^^^ doesn't have a size known at compile-time
+   |        |
+   |        required by a bound introduced by this call
+   |
+   = help: the trait `Sized` is not implemented for `str`
+note: required by an implicit `Sized` bound in `type_id`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/lvalue_array_fun_c3/sample_004/target.rs:46:12
+   |
+46 | fn type_id<T>(_: &T) -> i32 {
+   |            ^ required by the implicit `Sized` requirement on this type parameter in `type_id`
+help: consider relaxing the implicit `Sized` restriction
+   |
+46 | fn type_id<T: ?Sized>(_: &T) -> i32 {
+   |             ++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/lvalue_array_fun_c3/sample_004/target.rs:47:8
+   |
+47 |     if std::any::TypeId::of::<T>() == std::any::TypeId::of::<&[i32; 3]>() {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |        |
+   |        the parameter type `T` must be valid for the static lifetime...
+   |        ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+46 | fn type_id<T: 'static>(_: &T) -> i32 {
+   |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/lvalue_array_fun_c3/sample_004/target.rs:49:15
+   |
+49 |     } else if std::any::TypeId::of::<T>() == std::any::TypeId::of::<&&[i32; 3]>() {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |               |
+   |               the parameter type `T` must be valid for the static lifetime...
+   |               ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+46 | fn type_id<T: 'static>(_: &T) -> i32 {
+   |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/lvalue_array_fun_c3/sample_004/target.rs:51:15
+   |
+51 |     } else if std::any::TypeId::of::<T>() == std::any::TypeId::of::<&str>() {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |               |
+   |               the parameter type `T` must be valid for the static lifetime...
+   |               ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+46 | fn type_id<T: 'static>(_: &T) -> i32 {
+   |             +++++++++
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0277, E0310.
+For more information about an error, try `rustc --explain E0277`.

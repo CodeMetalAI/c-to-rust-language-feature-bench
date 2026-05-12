@@ -1,0 +1,579 @@
+error: expected argument name, found `*`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:18:18
+   |
+18 | static mut F: fn(*const volatile i32) -> () = std::mem::forget(f3);
+   |                  ^ expected argument name
+
+error[E0428]: the name `F` is defined multiple times
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:17:1
+   |
+16 | static mut F: fn(*const ()) -> () = std::mem::forget(f);
+   | -------------------------------------------------------- previous definition of the value `F` here
+17 | static mut F: fn(*const i32) -> () = std::mem::forget(f);
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `F` redefined here
+   |
+   = note: `F` must be defined only once in the value namespace of this module
+
+error[E0428]: the name `F` is defined multiple times
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:18:1
+   |
+16 | static mut F: fn(*const ()) -> () = std::mem::forget(f);
+   | -------------------------------------------------------- previous definition of the value `F` here
+17 | static mut F: fn(*const i32) -> () = std::mem::forget(f);
+18 | static mut F: fn(*const volatile i32) -> () = std::mem::forget(f3);
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `F` redefined here
+   |
+   = note: `F` must be defined only once in the value namespace of this module
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:20:1
+   |
+20 | / unsafe fn f(p: *const ()) {
+21 | |     let _ = p;
+22 | | }
+   | |_^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:24:1
+   |
+24 | / unsafe fn f1(p: *mut ()) {
+25 | |     let _ = p;
+26 | | }
+   | |_^
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:28:1
+   |
+28 | / unsafe fn f2(p: *mut i32) {
+29 | |     let _ = p;
+30 | | }
+   | |_^
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:32:1
+   |
+32 | / unsafe fn f4(p: *const i32) {
+33 | |     let _ = p;
+34 | | }
+   | |_^
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:36:1
+   |
+36 | / unsafe fn f3(p: *const i32) {
+37 | |     let _ = p;
+38 | | }
+   | |_^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:41:5
+   |
+41 | /     unsafe {
+42 | |         F(1 as usize == 0 as usize && C_vp as *const () || C_ip);
+43 | |         F(1 as usize == 0 as usize && C_ip as *const i32 || C_vp);
+...  |
+58 | |         F1(1 as usize == 0 as usize && IP || VP);
+59 | |     }
+   | |_____^
+
+error[E0277]: `*const i32` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:6:14
+  |
+6 | static C_ip: *const i32 = 0 as *const i32;
+  |              ^^^^^^^^^^ `*const i32` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*const i32`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*mut i32` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:7:14
+  |
+7 | static V_ip: *mut i32 = 0 as *mut i32;
+  |              ^^^^^^^^ `*mut i32` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*mut i32`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*mut i32` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:8:12
+  |
+8 | static IP: *mut i32 = 0 as *mut i32;
+  |            ^^^^^^^^ `*mut i32` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*mut i32`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*const u8` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:9:14
+  |
+9 | static C_cp: *const u8 = 0 as *const u8;
+  |              ^^^^^^^^^ `*const u8` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*const u8`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*mut ()` cannot be shared between threads safely
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:10:12
+   |
+10 | static VP: *mut () = 0 as *mut ();
+   |            ^^^^^^^ `*mut ()` cannot be shared between threads safely
+   |
+   = help: the trait `Sync` is not implemented for `*mut ()`
+   = note: shared static variables must have a type that implements `Sync`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:12:36
+   |
+12 | static mut F1: fn(*mut ()) -> () = std::mem::forget(f1);
+   |                                    ^^^^^^^^^^^^^^^^^^^^ expected fn pointer, found `()`
+   |
+   = note: expected fn pointer `fn(*mut ())`
+               found unit type `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:13:37
+   |
+13 | static mut F2: fn(*mut i32) -> () = std::mem::forget(f2);
+   |                                     ^^^^^^^^^^^^^^^^^^^^ expected fn pointer, found `()`
+   |
+   = note: expected fn pointer `fn(*mut i32)`
+               found unit type `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:14:39
+   |
+14 | static mut F3: fn(*const i32) -> () = std::mem::forget(f3);
+   |                                       ^^^^^^^^^^^^^^^^^^^^ expected fn pointer, found `()`
+   |
+   = note: expected fn pointer `fn(*const i32)`
+               found unit type `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:15:39
+   |
+15 | static mut F4: fn(*const i32) -> () = std::mem::forget(f4);
+   |                                       ^^^^^^^^^^^^^^^^^^^^ expected fn pointer, found `()`
+   |
+   = note: expected fn pointer `fn(*const i32)`
+               found unit type `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:16:37
+   |
+16 | static mut F: fn(*const ()) -> () = std::mem::forget(f);
+   |                                     ^^^^^^^^^^^^^^^^^^^ expected fn pointer, found `()`
+   |
+   = note: expected fn pointer `fn(*const ())`
+               found unit type `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:17:38
+   |
+17 | static mut F: fn(*const i32) -> () = std::mem::forget(f);
+   |                                      ^^^^^^^^^^^^^^^^^^^ expected fn pointer, found `()`
+   |
+   = note: expected fn pointer `fn(*const i32)`
+               found unit type `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:42:39
+   |
+42 |         F(1 as usize == 0 as usize && C_vp as *const () || C_ip);
+   |           ------------------------    ^^^^^^^^^^^^^^^^^ expected `bool`, found `*const ()`
+   |           |
+   |           expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*const ()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:42:60
+   |
+42 |         F(1 as usize == 0 as usize && C_vp as *const () || C_ip);
+   |           ---------------------------------------------    ^^^^ expected `bool`, found `*const i32`
+   |           |
+   |           expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*const i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:42:11
+   |
+42 |         F(1 as usize == 0 as usize && C_vp as *const () || C_ip);
+   |         - ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `*const ()`, found `bool`
+   |         |
+   |         arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*const ()`
+                     found type `bool`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:43:39
+   |
+43 |         F(1 as usize == 0 as usize && C_ip as *const i32 || C_vp);
+   |           ------------------------    ^^^^^^^^^^^^^^^^^^ expected `bool`, found `*const i32`
+   |           |
+   |           expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*const i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:43:61
+   |
+43 |         F(1 as usize == 0 as usize && C_ip as *const i32 || C_vp);
+   |           ----------------------------------------------    ^^^^ expected `bool`, found `*const ()`
+   |           |
+   |           expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*const ()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:43:11
+   |
+43 |         F(1 as usize == 0 as usize && C_ip as *const i32 || C_vp);
+   |         - ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `*const ()`, found `bool`
+   |         |
+   |         arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*const ()`
+                     found type `bool`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:45:40
+   |
+45 |         F2(1 as usize == 0 as usize && V_ip || 0 as *mut i32);
+   |            ------------------------    ^^^^ expected `bool`, found `*mut i32`
+   |            |
+   |            expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*mut i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:45:48
+   |
+45 |         F2(1 as usize == 0 as usize && V_ip || 0 as *mut i32);
+   |            --------------------------------    ^^^^^^^^^^^^^ expected `bool`, found `*mut i32`
+   |            |
+   |            expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*mut i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:45:12
+   |
+45 |         F2(1 as usize == 0 as usize && V_ip || 0 as *mut i32);
+   |         -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `*mut i32`, found `bool`
+   |         |
+   |         arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*mut i32`
+                     found type `bool`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:46:40
+   |
+46 |         F2(1 as usize == 0 as usize && 0 as *mut i32 || V_ip);
+   |            ------------------------    ^^^^^^^^^^^^^ expected `bool`, found `*mut i32`
+   |            |
+   |            expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*mut i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:46:57
+   |
+46 |         F2(1 as usize == 0 as usize && 0 as *mut i32 || V_ip);
+   |            -----------------------------------------    ^^^^ expected `bool`, found `*mut i32`
+   |            |
+   |            expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*mut i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:46:12
+   |
+46 |         F2(1 as usize == 0 as usize && 0 as *mut i32 || V_ip);
+   |         -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `*mut i32`, found `bool`
+   |         |
+   |         arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*mut i32`
+                     found type `bool`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:48:40
+   |
+48 |         F3(1 as usize == 0 as usize && C_ip as *const i32 || V_ip);
+   |            ------------------------    ^^^^^^^^^^^^^^^^^^ expected `bool`, found `*const i32`
+   |            |
+   |            expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*const i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:48:62
+   |
+48 |         F3(1 as usize == 0 as usize && C_ip as *const i32 || V_ip);
+   |            ----------------------------------------------    ^^^^ expected `bool`, found `*mut i32`
+   |            |
+   |            expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*mut i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:48:12
+   |
+48 |         F3(1 as usize == 0 as usize && C_ip as *const i32 || V_ip);
+   |         -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `*const i32`, found `bool`
+   |         |
+   |         arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*const i32`
+                     found type `bool`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:49:40
+   |
+49 |         F3(1 as usize == 0 as usize && V_ip || C_ip);
+   |            ------------------------    ^^^^ expected `bool`, found `*mut i32`
+   |            |
+   |            expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*mut i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:49:48
+   |
+49 |         F3(1 as usize == 0 as usize && V_ip || C_ip);
+   |            --------------------------------    ^^^^ expected `bool`, found `*const i32`
+   |            |
+   |            expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*const i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:49:12
+   |
+49 |         F3(1 as usize == 0 as usize && V_ip || C_ip);
+   |         -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `*const i32`, found `bool`
+   |         |
+   |         arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*const i32`
+                     found type `bool`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:51:39
+   |
+51 |         F(1 as usize == 0 as usize && VP || C_cp);
+   |           ------------------------    ^^ expected `bool`, found `*mut ()`
+   |           |
+   |           expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*mut ()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:51:45
+   |
+51 |         F(1 as usize == 0 as usize && VP || C_cp);
+   |           ------------------------------    ^^^^ expected `bool`, found `*const u8`
+   |           |
+   |           expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*const u8`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:51:11
+   |
+51 |         F(1 as usize == 0 as usize && VP || C_cp);
+   |         - ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `*const ()`, found `bool`
+   |         |
+   |         arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*const ()`
+                     found type `bool`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:52:39
+   |
+52 |         F(1 as usize == 0 as usize && C_cp || VP);
+   |           ------------------------    ^^^^ expected `bool`, found `*const u8`
+   |           |
+   |           expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*const u8`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:52:47
+   |
+52 |         F(1 as usize == 0 as usize && C_cp || VP);
+   |           --------------------------------    ^^ expected `bool`, found `*mut ()`
+   |           |
+   |           expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*mut ()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:52:11
+   |
+52 |         F(1 as usize == 0 as usize && C_cp || VP);
+   |         - ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `*const ()`, found `bool`
+   |         |
+   |         arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*const ()`
+                     found type `bool`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:54:40
+   |
+54 |         F4(1 as usize == 0 as usize && IP || C_ip);
+   |            ------------------------    ^^ expected `bool`, found `*mut i32`
+   |            |
+   |            expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*mut i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:54:46
+   |
+54 |         F4(1 as usize == 0 as usize && IP || C_ip);
+   |            ------------------------------    ^^^^ expected `bool`, found `*const i32`
+   |            |
+   |            expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*const i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:54:12
+   |
+54 |         F4(1 as usize == 0 as usize && IP || C_ip);
+   |         -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `*const i32`, found `bool`
+   |         |
+   |         arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*const i32`
+                     found type `bool`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:55:40
+   |
+55 |         F4(1 as usize == 0 as usize && C_ip || IP);
+   |            ------------------------    ^^^^ expected `bool`, found `*const i32`
+   |            |
+   |            expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*const i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:55:48
+   |
+55 |         F4(1 as usize == 0 as usize && C_ip || IP);
+   |            --------------------------------    ^^ expected `bool`, found `*mut i32`
+   |            |
+   |            expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*mut i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:55:12
+   |
+55 |         F4(1 as usize == 0 as usize && C_ip || IP);
+   |         -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `*const i32`, found `bool`
+   |         |
+   |         arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*const i32`
+                     found type `bool`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:57:40
+   |
+57 |         F1(1 as usize == 0 as usize && VP || IP);
+   |            ------------------------    ^^ expected `bool`, found `*mut ()`
+   |            |
+   |            expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*mut ()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:57:46
+   |
+57 |         F1(1 as usize == 0 as usize && VP || IP);
+   |            ------------------------------    ^^ expected `bool`, found `*mut i32`
+   |            |
+   |            expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*mut i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:57:12
+   |
+57 |         F1(1 as usize == 0 as usize && VP || IP);
+   |         -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `*mut ()`, found `bool`
+   |         |
+   |         arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*mut ()`
+                     found type `bool`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:58:40
+   |
+58 |         F1(1 as usize == 0 as usize && IP || VP);
+   |            ------------------------    ^^ expected `bool`, found `*mut i32`
+   |            |
+   |            expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*mut i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:58:46
+   |
+58 |         F1(1 as usize == 0 as usize && IP || VP);
+   |            ------------------------------    ^^ expected `bool`, found `*mut ()`
+   |            |
+   |            expected because this is `bool`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*mut ()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_004/target.rs:58:12
+   |
+58 |         F1(1 as usize == 0 as usize && IP || VP);
+   |         -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `*mut ()`, found `bool`
+   |         |
+   |         arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*mut ()`
+                     found type `bool`
+
+error: aborting due to 56 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0428.
+For more information about an error, try `rustc --explain E0277`.

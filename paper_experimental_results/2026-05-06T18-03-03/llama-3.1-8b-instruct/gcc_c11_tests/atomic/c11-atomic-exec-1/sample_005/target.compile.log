@@ -1,0 +1,158 @@
+error[E0412]: cannot find type `complex64` in this scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:3:29
+  |
+3 | fn cmplx(x: f64, y: f64) -> complex64 {
+  |                             ^^^^^^^^^ not found in this scope
+
+error[E0422]: cannot find struct, variant or union type `complex64` in this scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:4:5
+  |
+4 |     complex64 { re: x, im: y }
+  |     ^^^^^^^^^ not found in this scope
+
+error[E0433]: failed to resolve: use of undeclared type `Atomic`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:8:13
+  |
+8 |     let a = Atomic::new(value);
+  |             ^^^^^^ use of undeclared type `Atomic`
+  |
+help: a struct with a similar name exists
+  |
+8 |     let a = AtomicI8::new(value);
+  |                   ++
+help: consider importing this type alias
+  |
+1 + use std::sync::atomic::Atomic;
+  |
+
+error[E0433]: failed to resolve: use of undeclared type `Atomic`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:13
+  |
+9 |     let b = Atomic::new(value);
+  |             ^^^^^^ use of undeclared type `Atomic`
+  |
+help: a struct with a similar name exists
+  |
+9 |     let b = AtomicI8::new(value);
+  |                   ++
+help: consider importing this type alias
+  |
+1 + use std::sync::atomic::Atomic;
+  |
+
+error[E0433]: failed to resolve: use of undeclared type `Atomic`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:36:14
+   |
+36 |     let s1 = Atomic::new(init);
+   |              ^^^^^^ use of undeclared type `Atomic`
+   |
+help: a struct with a similar name exists
+   |
+36 |     let s1 = AtomicI8::new(init);
+   |                    ++
+help: consider importing this type alias
+   |
+ 1 + use std::sync::atomic::Atomic;
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `Atomic`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:37:14
+   |
+37 |     let s2 = Atomic::new(init);
+   |              ^^^^^^ use of undeclared type `Atomic`
+   |
+help: a struct with a similar name exists
+   |
+37 |     let s2 = AtomicI8::new(init);
+   |                    ++
+help: consider importing this type alias
+   |
+ 1 + use std::sync::atomic::Atomic;
+   |
+
+warning: unused imports: `AtomicBool`, `AtomicI16`, `AtomicI32`, `AtomicI64`, `AtomicI8`, `AtomicIsize`, `AtomicU16`, `AtomicU32`, `AtomicU64`, `AtomicU8`, and `AtomicUsize`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:1:25
+  |
+1 | ...tomic::{AtomicBool, AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicIsize, AtomicU8, AtomicU16, AtomicU32, AtomicU64, AtomicUsize, Ordering};
+  |            ^^^^^^^^^^  ^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0277]: `T` doesn't implement `std::fmt::Display`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:11:27
+   |
+11 |         panic!("a != {}", value);
+   |                      --   ^^^^^ `T` cannot be formatted with the default formatter
+   |                      |
+   |                      required by this formatting parameter
+   |
+   = note: in format strings you may be able to use `{:?}` (or {:#?} for pretty-print) instead
+help: consider further restricting type parameter `T` with trait `Display`
+   |
+ 7 | fn test_simple_assign<T: Copy + Default + Eq + std::fmt::Display>(value: T) {
+   |                                              +++++++++++++++++++
+
+error[E0277]: `T` doesn't implement `std::fmt::Display`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:14:27
+   |
+14 |         panic!("b != {}", value);
+   |                      --   ^^^^^ `T` cannot be formatted with the default formatter
+   |                      |
+   |                      required by this formatting parameter
+   |
+   = note: in format strings you may be able to use `{:?}` (or {:#?} for pretty-print) instead
+help: consider further restricting type parameter `T` with trait `Display`
+   |
+ 7 | fn test_simple_assign<T: Copy + Default + Eq + std::fmt::Display>(value: T) {
+   |                                              +++++++++++++++++++
+
+error[E0277]: `T` doesn't implement `std::fmt::Display`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:18:27
+   |
+18 |         panic!("a != {}", value);
+   |                      --   ^^^^^ `T` cannot be formatted with the default formatter
+   |                      |
+   |                      required by this formatting parameter
+   |
+   = note: in format strings you may be able to use `{:?}` (or {:#?} for pretty-print) instead
+help: consider further restricting type parameter `T` with trait `Display`
+   |
+ 7 | fn test_simple_assign<T: Copy + Default + Eq + std::fmt::Display>(value: T) {
+   |                                              +++++++++++++++++++
+
+error[E0277]: the trait bound `{float}: Eq` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:28:24
+   |
+28 |     test_simple_assign(1.5);
+   |     ------------------ ^^^ the trait `Eq` is not implemented for `{float}`
+   |     |
+   |     required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `Eq`:
+             i128
+             i16
+             i32
+             i64
+             i8
+             isize
+             u128
+             u16
+           and 4 others
+note: required by a bound in `test_simple_assign`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:7:43
+   |
+ 7 | fn test_simple_assign<T: Copy + Default + Eq>(value: T) {
+   |                                           ^^ required by this bound in `test_simple_assign`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:39:21
+   |
+39 |         init.a[j] = j;
+   |         ---------   ^ expected `isize`, found `usize`
+   |         |
+   |         expected due to the type of this binding
+
+error: aborting due to 11 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308, E0412, E0422, E0433.
+For more information about an error, try `rustc --explain E0277`.

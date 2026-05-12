@@ -1,0 +1,24 @@
+error[E0425]: cannot find value `q` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_8/sample_001/target.rs:22:10
+   |
+22 |     p == q && p.map(|s| s.i == 1).unwrap_or(false)
+   |          ^
+   |
+help: the binding `q` is available in a different scope in the same function
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_8/sample_001/target.rs:12:13
+   |
+12 |         let q = p;
+   |             ^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_8/sample_001/target.rs:25:14
+   |
+25 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0277, E0425.
+For more information about an error, try `rustc --explain E0277`.

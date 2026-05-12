@@ -1,0 +1,346 @@
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:15:10
+   |
+15 | #[derive(Default)]
+   |          ^^^^^^^
+
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:29:10
+   |
+29 | #[derive(Default)]
+   |          ^^^^^^^
+
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:41:10
+   |
+41 | #[derive(Default)]
+   |          ^^^^^^^
+
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:53:10
+   |
+53 | #[derive(Default)]
+   |          ^^^^^^^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:18:5
+   |
+18 |     inner_struct: InnerStruct,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+18 |     inner_struct: std::mem::ManuallyDrop<InnerStruct>,
+   |                   +++++++++++++++++++++++           +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:32:5
+   |
+32 |     deep_struct: DeepStruct,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+32 |     deep_struct: std::mem::ManuallyDrop<DeepStruct>,
+   |                  +++++++++++++++++++++++          +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:44:5
+   |
+44 |     tail_struct: TailStruct,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+44 |     tail_struct: std::mem::ManuallyDrop<TailStruct>,
+   |                  +++++++++++++++++++++++          +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:56:5
+   |
+56 |     tail_struct: TailStruct2,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+56 |     tail_struct: std::mem::ManuallyDrop<TailStruct2>,
+   |                  +++++++++++++++++++++++           +
+
+error[E0277]: the trait bound `Tail: Default` is not satisfied
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:5:5
+  |
+1 | #[derive(Default)]
+  |          ------- in this derive macro expansion
+...
+5 |     tail: Tail,
+  |     ^^^^^^^^^^ the trait `Default` is not implemented for `Tail`
+  |
+help: consider annotating `Tail` with `#[derive(Default)]`
+  |
+42+ #[derive(Default)]
+43| union Tail {
+  |
+
+error[E0277]: the trait bound `InnerUnion: Default` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:11:5
+   |
+ 8 | #[derive(Default)]
+   |          ------- in this derive macro expansion
+...
+11 |     inner_union: InnerUnion,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^ the trait `Default` is not implemented for `InnerUnion`
+   |
+help: consider annotating `InnerUnion` with `#[derive(Default)]`
+   |
+16 + #[derive(Default)]
+17 | union InnerUnion {
+   |
+
+error[E0277]: the trait bound `DeepUnion: Default` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:25:5
+   |
+22 | #[derive(Default)]
+   |          ------- in this derive macro expansion
+...
+25 |     deep_union: DeepUnion,
+   |     ^^^^^^^^^^^^^^^^^^^^^ the trait `Default` is not implemented for `DeepUnion`
+   |
+help: consider annotating `DeepUnion` with `#[derive(Default)]`
+   |
+30 + #[derive(Default)]
+31 | union DeepUnion {
+   |
+
+error[E0277]: the trait bound `TailUnion: Default` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:50:5
+   |
+47 | #[derive(Default)]
+   |          ------- in this derive macro expansion
+...
+50 |     tail_union: TailUnion,
+   |     ^^^^^^^^^^^^^^^^^^^^^ the trait `Default` is not implemented for `TailUnion`
+   |
+help: consider annotating `TailUnion` with `#[derive(Default)]`
+   |
+54 + #[derive(Default)]
+55 | union TailUnion {
+   |
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:97:8
+   |
+97 |     if o.inner.inner_union.inner_struct.b != 2 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:100:8
+    |
+100 |     if o.inner.inner_union.inner_struct.deep_union.deep != 99 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:100:8
+    |
+100 |     if o.inner.inner_union.inner_struct.deep_union.deep != 99 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:103:8
+    |
+103 |     if o.inner.inner_union.inner_struct.c != 3 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:109:8
+    |
+109 |     if o.tail.tail_struct.tail_x != 7 {
+    |        ^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:112:8
+    |
+112 |     if o.tail.tail_struct.tail_union.tail_y != 8 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:112:8
+    |
+112 |     if o.tail.tail_struct.tail_union.tail_y != 8 {
+    |        ^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:66:9
+   |
+66 |     let mut o = Outer {
+   |         ----^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:125:8
+    |
+125 |     if o.inner.inner_union.inner_struct.deep_union.deep_struct.x != 0x11223344 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:125:8
+    |
+125 |     if o.inner.inner_union.inner_struct.deep_union.deep_struct.x != 0x11223344 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:131:8
+    |
+131 |     if o.inner.inner_union.inner_struct.deep_union.deep_struct.x != 5 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:131:8
+    |
+131 |     if o.inner.inner_union.inner_struct.deep_union.deep_struct.x != 5 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:134:8
+    |
+134 |     if o.inner.inner_union.inner_struct.deep_union.deep_struct.y != 6 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:134:8
+    |
+134 |     if o.inner.inner_union.inner_struct.deep_union.deep_struct.y != 6 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:140:8
+    |
+140 |     if o.tail.tail_struct.tail_union.tail_struct.tail_p != 40 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:140:8
+    |
+140 |     if o.tail.tail_struct.tail_union.tail_struct.tail_p != 40 {
+    |        ^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:143:8
+    |
+143 |     if o.tail.tail_struct.tail_union.tail_struct.tail_q != 41 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:143:8
+    |
+143 |     if o.tail.tail_struct.tail_union.tail_struct.tail_q != 41 {
+    |        ^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:148:8
+    |
+148 |     if o.tail.tail_struct.tail_union.tail_y != -9 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:148:8
+    |
+148 |     if o.tail.tail_struct.tail_union.tail_y != -9 {
+    |        ^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:159:15
+    |
+159 |     let pb = &o.inner.inner_union.inner_struct.b as *const _ as usize;
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:160:18
+    |
+160 |     let pdeep = &o.inner.inner_union.inner_struct.deep_union.deep as *const _ as usize;
+    |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:160:18
+    |
+160 |     let pdeep = &o.inner.inner_union.inner_struct.deep_union.deep as *const _ as usize;
+    |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:161:16
+    |
+161 |     let ptx = &o.tail.tail_struct.tail_x as *const _ as usize;
+    |                ^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:162:16
+    |
+162 |     let pty = &o.tail.tail_struct.tail_union.tail_y as *const _ as usize;
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:162:16
+    |
+162 |     let pty = &o.tail.tail_struct.tail_union.tail_y as *const _ as usize;
+    |                ^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: aborting due to 37 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0133, E0277, E0740.
+For more information about an error, try `rustc --explain E0133`.

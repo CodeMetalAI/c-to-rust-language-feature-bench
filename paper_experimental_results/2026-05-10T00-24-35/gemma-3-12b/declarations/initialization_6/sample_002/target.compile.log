@@ -1,0 +1,88 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/initialization_6/sample_002/target.rs:58:17
+   |
+58 |         if !chk(unsafe { *p }, 1) {
+   |                 ^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/initialization_6/sample_002/target.rs:61:17
+   |
+61 |         if !chk(unsafe { *(p.add(6)) }, 2) {
+   |                 ^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/initialization_6/sample_002/target.rs:64:17
+   |
+64 |         if !chk(unsafe { *(p.add(7)) }, 3) {
+   |                 ^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/initialization_6/sample_002/target.rs:67:17
+   |
+67 |         if !chk(unsafe { *(p.add(12)) }, 4) {
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/initialization_6/sample_002/target.rs:70:17
+   |
+70 |         if !chk(unsafe { *(p.add(13)) }, 5) {
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/initialization_6/sample_002/target.rs:73:17
+   |
+73 |         if !chk(unsafe { *(p.add(14)) }, 6) {
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/initialization_6/sample_002/target.rs:7:11
+  |
+7 |         [[[1], [0, 0]], [[0, 0], [0, 0]]],
+  |           ^^^ expected an array with a size of 2, found one with a size of 1
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/initialization_6/sample_002/target.rs:8:10
+  |
+8 |         [[[2, 3]], [[0, 0]]],
+  |          ^^^^^^^^ expected an array with a size of 3, found one with a size of 1
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/initialization_6/sample_002/target.rs:9:10
+  |
+9 |         [[[4, 5], [6, 0]]],
+  |          ^^^^^^^^^^^^^^^^ expected an array with a size of 3, found one with a size of 2
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/initialization_6/sample_002/target.rs:10:10
+   |
+10 |         [[[0, 0]], [[0, 0]]],
+   |          ^^^^^^^^ expected an array with a size of 3, found one with a size of 1
+
+error[E0277]: the size for values of type `[[[[i16; 2]; 3]; 4]]` cannot be known at compilation time
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/initialization_6/sample_002/target.rs:6:9
+  |
+6 |     let q: [[[[i16; 2]; 3]; 4]] = [
+  |         ^ doesn't have a size known at compile-time
+  |
+  = help: the trait `Sized` is not implemented for `[[[[i16; 2]; 3]; 4]]`
+  = note: all local variables must have a statically known size
+help: consider borrowing here
+  |
+6 |     let q: &[[[[i16; 2]; 3]; 4]] = [
+  |            +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/initialization_6/sample_002/target.rs:78:5
+   |
+ 5 | fn main() {
+   |          - expected `()` because of default return type
+...
+78 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 12 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

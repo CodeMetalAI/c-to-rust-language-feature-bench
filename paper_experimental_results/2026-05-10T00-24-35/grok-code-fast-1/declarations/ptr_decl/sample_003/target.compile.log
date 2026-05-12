@@ -1,0 +1,159 @@
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/ptr_decl/sample_003/target.rs:34:9
+   |
+34 |     let mut y = 21;
+   |         ----^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error[E0502]: cannot borrow `x` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/ptr_decl/sample_003/target.rs:38:24
+   |
+36 |     let ptr_to_constant = &x;
+   |                           -- immutable borrow occurs here
+37 |
+38 |     let constant_ptr = &mut x;
+   |                        ^^^^^^ mutable borrow occurs here
+...
+42 |         p_to_const: ptr_to_constant,
+   |                     --------------- immutable borrow later used here
+
+error[E0502]: cannot borrow `x` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/ptr_decl/sample_003/target.rs:39:34
+   |
+36 |     let ptr_to_constant = &x;
+   |                           -- immutable borrow occurs here
+...
+39 |     let clarified_constant_ptr = &mut x;
+   |                                  ^^^^^^ mutable borrow occurs here
+...
+42 |         p_to_const: ptr_to_constant,
+   |                     --------------- immutable borrow later used here
+
+error[E0502]: cannot borrow `x` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/ptr_decl/sample_003/target.rs:47:24
+   |
+36 |     let ptr_to_constant = &x;
+   |                           -- immutable borrow occurs here
+...
+47 |     if check_bundle(b, &mut x) != 0 {
+   |                        ^^^^^^ mutable borrow occurs here
+...
+51 |     if *b.p_to_const != 10 {
+   |        ------------- immutable borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/ptr_decl/sample_003/target.rs:55:39
+   |
+38 |     let constant_ptr = &mut x;
+   |                        ------ mutable borrow occurs here
+...
+55 |     retarget_ptr_to_const(&mut b, &y, &x, if pick(&y, 0) > 0 { 1 } else { 0 });
+   |                                       ^^ immutable borrow occurs here
+56 |     if *b.p_to_const != 21 {
+   |        ------------- mutable borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/ptr_decl/sample_003/target.rs:60:35
+   |
+38 |     let constant_ptr = &mut x;
+   |                        ------ mutable borrow occurs here
+...
+60 |     retarget_ptr_to_const(&mut b, &x, &y, if pick(&x, 1) < 0 { 1 } else { 0 });
+   |                                   ^^ immutable borrow occurs here
+61 |     if *b.p_to_const != 21 {
+   |        ------------- mutable borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/ptr_decl/sample_003/target.rs:60:51
+   |
+38 |     let constant_ptr = &mut x;
+   |                        ------ mutable borrow occurs here
+...
+60 |     retarget_ptr_to_const(&mut b, &x, &y, if pick(&x, 1) < 0 { 1 } else { 0 });
+   |                                                   ^^ immutable borrow occurs here
+61 |     if *b.p_to_const != 21 {
+   |        ------------- mutable borrow later used here
+
+error[E0503]: cannot use `x` because it was mutably borrowed
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/ptr_decl/sample_003/target.rs:66:8
+   |
+38 |     let constant_ptr = &mut x;
+   |                        ------ `x` is borrowed here
+...
+66 |     if x != 15 {
+   |        ^ use of borrowed `x`
+...
+70 |     *b.const_p_via_typedef += 7;
+   |     --------------------------- borrow later used here
+
+error[E0382]: use of moved value: `b.const_p_via_typedef`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/ptr_decl/sample_003/target.rs:70:5
+   |
+41 |     let mut b = Bundle {
+   |         ----- move occurs because `b` has type `Bundle<'_>`, which does not implement the `Copy` trait
+...
+47 |     if check_bundle(b, &mut x) != 0 {
+   |                     - value moved here
+...
+70 |     *b.const_p_via_typedef += 7;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ value used here after move
+
+error[E0503]: cannot use `x` because it was mutably borrowed
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/ptr_decl/sample_003/target.rs:71:8
+   |
+38 |     let constant_ptr = &mut x;
+   |                        ------ `x` is borrowed here
+...
+71 |     if x != 22 {
+   |        ^ use of borrowed `x`
+...
+75 |     if check_bundle(b, &mut x) != 0 {
+   |                     - borrow later used here
+
+error[E0502]: cannot borrow `x` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/ptr_decl/sample_003/target.rs:75:24
+   |
+36 |     let ptr_to_constant = &x;
+   |                           -- immutable borrow occurs here
+...
+75 |     if check_bundle(b, &mut x) != 0 {
+   |                        ^^^^^^ mutable borrow occurs here
+...
+79 |     if *b.p_to_const != 21 {
+   |        ------------- immutable borrow later used here
+
+error[E0382]: use of moved value: `b`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/ptr_decl/sample_003/target.rs:79:8
+   |
+41 |     let mut b = Bundle {
+   |         ----- move occurs because `b` has type `Bundle<'_>`, which does not implement the `Copy` trait
+...
+75 |     if check_bundle(b, &mut x) != 0 {
+   |                     - value moved here
+...
+79 |     if *b.p_to_const != 21 {
+   |        ^^^^^^^^^^^^^ value used here after move
+   |
+note: consider changing this parameter type in function `check_bundle` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/ptr_decl/sample_003/target.rs:28:21
+   |
+28 | fn check_bundle(_b: Bundle, _expected_const_p_target: &mut i32) -> i32 {
+   |    ------------     ^^^^^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `Bundle<'_>` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/ptr_decl/sample_003/target.rs:1:1
+   |
+ 1 | struct Bundle<'a> {
+   | ^^^^^^^^^^^^^^^^^ consider implementing `Clone` for this type
+...
+75 |     if check_bundle(b, &mut x) != 0 {
+   |                     - you could clone this value
+
+error: aborting due to 11 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0382, E0502, E0503.
+For more information about an error, try `rustc --explain E0382`.

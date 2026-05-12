@@ -1,0 +1,184 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:9:5
+   |
+ 9 | /     unsafe {
+10 | |         f(c_vp, 1);
+11 | |         f(c_ip, 1);
+...  |
+26 | |         f1(ip, 1);
+27 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:10:17
+   |
+10 |         f(c_vp, 1);
+   |         -       ^ expected `bool`, found integer
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:30:4
+   |
+30 | fn f<T>(p: *const T, _b: bool) {
+   |    ^                 --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:11:17
+   |
+11 |         f(c_ip, 1);
+   |         -       ^ expected `bool`, found integer
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:30:4
+   |
+30 | fn f<T>(p: *const T, _b: bool) {
+   |    ^                 --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:13:18
+   |
+13 |         f2(v_ip, 1);
+   |         --       ^ expected `bool`, found integer
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:38:4
+   |
+38 | fn f2<T>(p: *mut T, _b: bool) {
+   |    ^^               --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:14:34
+   |
+14 |         f2(std::ptr::null_mut(), 1);
+   |         --                       ^ expected `bool`, found integer
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:38:4
+   |
+38 | fn f2<T>(p: *mut T, _b: bool) {
+   |    ^^               --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:16:18
+   |
+16 |         f3(c_ip, 1);
+   |         --       ^ expected `bool`, found integer
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:42:4
+   |
+42 | fn f3<T>(p: *const T, _b: bool) {
+   |    ^^                 --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:17:18
+   |
+17 |         f3(v_ip, 1);
+   |         --       ^ expected `bool`, found integer
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:42:4
+   |
+42 | fn f3<T>(p: *const T, _b: bool) {
+   |    ^^                 --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:19:15
+   |
+19 |         f(vp, 1);
+   |         -     ^ expected `bool`, found integer
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:30:4
+   |
+30 | fn f<T>(p: *const T, _b: bool) {
+   |    ^                 --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:20:17
+   |
+20 |         f(c_cp, 1);
+   |         -       ^ expected `bool`, found integer
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:30:4
+   |
+30 | fn f<T>(p: *const T, _b: bool) {
+   |    ^                 --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:22:16
+   |
+22 |         f4(ip, 1);
+   |         --     ^ expected `bool`, found integer
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:46:4
+   |
+46 | fn f4<T>(p: *const T, _b: bool) {
+   |    ^^                 --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:23:18
+   |
+23 |         f4(c_ip, 1);
+   |         --       ^ expected `bool`, found integer
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:46:4
+   |
+46 | fn f4<T>(p: *const T, _b: bool) {
+   |    ^^                 --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:25:16
+   |
+25 |         f1(vp, 1);
+   |         --     ^ expected `bool`, found integer
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:34:4
+   |
+34 | fn f1<T>(p: *mut T, _b: bool) {
+   |    ^^               --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:26:16
+   |
+26 |         f1(ip, 1);
+   |         --     ^ expected `bool`, found integer
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_001/target.rs:34:4
+   |
+34 | fn f1<T>(p: *mut T, _b: bool) {
+   |    ^^               --------
+
+error: aborting due to 13 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

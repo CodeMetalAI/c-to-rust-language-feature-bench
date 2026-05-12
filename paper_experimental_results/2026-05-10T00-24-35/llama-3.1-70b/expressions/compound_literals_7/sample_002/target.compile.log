@@ -1,0 +1,64 @@
+error: expected one of `)`, `,`, `@`, `if`, or `|`, found `cdr`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/compound_literals_7/sample_002/target.rs:14:42
+   |
+14 |                 IntList::Cons(_, ref cdr cdr) => {
+   |                                         -^^^ expected one of `)`, `,`, `@`, `if`, or `|`
+   |                                         |
+   |                                         help: missing `,`
+
+error: expected one of `)`, `,`, `@`, `if`, or `|`, found `cdr`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/compound_literals_7/sample_002/target.rs:19:50
+   |
+19 |                         IntList::Cons(_, ref cdr cdr cdr) => {
+   |                                                 -^^^ expected one of `)`, `,`, `@`, `if`, or `|`
+   |                                                 |
+   |                                                 help: missing `,`
+
+error: expected one of `)`, `,`, `@`, `if`, or `|`, found `cdr`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/compound_literals_7/sample_002/target.rs:19:54
+   |
+19 |                         IntList::Cons(_, ref cdr cdr cdr) => {
+   |                                                     -^^^ expected one of `)`, `,`, `@`, `if`, or `|`
+   |                                                     |
+   |                                                     help: missing `,`
+
+error[E0416]: identifier `cdr` is bound more than once in the same pattern
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/compound_literals_7/sample_002/target.rs:14:42
+   |
+14 |                 IntList::Cons(_, ref cdr cdr) => {
+   |                                          ^^^ used in a pattern more than once
+
+error[E0416]: identifier `cdr` is bound more than once in the same pattern
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/compound_literals_7/sample_002/target.rs:19:50
+   |
+19 |                         IntList::Cons(_, ref cdr cdr cdr) => {
+   |                                                  ^^^ used in a pattern more than once
+
+error[E0416]: identifier `cdr` is bound more than once in the same pattern
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/compound_literals_7/sample_002/target.rs:19:54
+   |
+19 |                         IntList::Cons(_, ref cdr cdr cdr) => {
+   |                                                      ^^^ used in a pattern more than once
+
+error[E0023]: this pattern has 3 fields, but the corresponding tuple variant has 2 fields
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/compound_literals_7/sample_002/target.rs:14:31
+   |
+ 3 |     Cons(i32, Box<IntList>),
+   |          ---  ------------ tuple variant has 2 fields
+...
+14 |                 IntList::Cons(_, ref cdr cdr) => {
+   |                               ^  ^^^^^^^ ^^^ expected 2 fields, found 3
+
+error[E0023]: this pattern has 4 fields, but the corresponding tuple variant has 2 fields
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/compound_literals_7/sample_002/target.rs:19:39
+   |
+ 3 |     Cons(i32, Box<IntList>),
+   |          ---  ------------ tuple variant has 2 fields
+...
+19 |                         IntList::Cons(_, ref cdr cdr cdr) => {
+   |                                       ^  ^^^^^^^ ^^^ ^^^ expected 2 fields, found 4
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0023, E0416.
+For more information about an error, try `rustc --explain E0023`.

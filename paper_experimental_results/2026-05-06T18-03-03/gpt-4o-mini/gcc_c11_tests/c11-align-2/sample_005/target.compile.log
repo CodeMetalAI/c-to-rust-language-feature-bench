@@ -1,0 +1,92 @@
+warning: unused import: `std::os::raw::c_char`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_005/target.rs:2:5
+  |
+2 | use std::os::raw::c_char;
+  |     ^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_005/target.rs:13:14
+   |
+13 | #[repr(align(align_of_max_align_t()))]
+   |              ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_005/target.rs:16:14
+   |
+16 | #[repr(align(align_of_max_align_t()))]
+   |              ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_005/target.rs:19:14
+   |
+19 | #[repr(align(align_of_max_align_t()))]
+   |              ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_005/target.rs:22:14
+   |
+22 | #[repr(align(align_of_max_align_t()))]
+   |              ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_005/target.rs:25:14
+   |
+25 | #[repr(align(align_of_max_align_t()))]
+   |              ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_005/target.rs:28:14
+   |
+28 | #[repr(align(align_of_max_align_t()))]
+   |              ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_005/target.rs:31:14
+   |
+31 | #[repr(align(align_of_max_align_t()))]
+   |              ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0589]: invalid `repr(align)` attribute: not a power of two
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_005/target.rs:34:14
+   |
+34 | #[repr(align(0))]
+   |              ^
+
+error[E0015]: cannot call non-const method `Result::<&CStr, FromBytesWithNulError>::unwrap` in constants
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_005/target.rs:8:60
+  |
+8 | const S1: &CStr = CStr::from_bytes_with_nul(b"_Alignas\0").unwrap();
+  |                                                            ^^^^^^^^
+  |
+  = note: calls in constants are limited to constant functions, tuple structs and tuple variants
+
+error[E0015]: cannot call non-const method `Result::<&CStr, FromBytesWithNulError>::unwrap` in constants
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_005/target.rs:9:60
+  |
+9 | const S2: &CStr = CStr::from_bytes_with_nul(b"_Alignof\0").unwrap();
+  |                                                            ^^^^^^^^
+  |
+  = note: calls in constants are limited to constant functions, tuple structs and tuple variants
+
+error[E0015]: cannot call non-const method `Result::<&CStr, FromBytesWithNulError>::unwrap` in constants
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_005/target.rs:10:53
+   |
+10 | const S3: &CStr = CStr::from_bytes_with_nul(b"1\0").unwrap();
+   |                                                     ^^^^^^^^
+   |
+   = note: calls in constants are limited to constant functions, tuple structs and tuple variants
+
+error[E0015]: cannot call non-const method `Result::<&CStr, FromBytesWithNulError>::unwrap` in constants
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-align-2/sample_005/target.rs:11:53
+   |
+11 | const S4: &CStr = CStr::from_bytes_with_nul(b"1\0").unwrap();
+   |                                                     ^^^^^^^^
+   |
+   = note: calls in constants are limited to constant functions, tuple structs and tuple variants
+
+error: aborting due to 12 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0015, E0589, E0693.
+For more information about an error, try `rustc --explain E0015`.

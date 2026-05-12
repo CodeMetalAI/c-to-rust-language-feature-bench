@@ -1,0 +1,50 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_3/sample_003/target.rs:22:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+22 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_3/sample_003/target.rs:31:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+31 |     0
+   |     ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_3/sample_003/target.rs:37:23
+   |
+37 |         x[i] = base + (i * 7) + 1;
+   |                       ^^^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_3/sample_003/target.rs:37:21
+   |
+37 |         x[i] = base + (i * 7) + 1;
+   |                     ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+warning: variable `sink` is assigned to, but never used
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_3/sample_003/target.rs:65:13
+   |
+65 |     let mut sink = 0;
+   |             ^^^^
+   |
+   = note: consider using `_sink` instead
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 4 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

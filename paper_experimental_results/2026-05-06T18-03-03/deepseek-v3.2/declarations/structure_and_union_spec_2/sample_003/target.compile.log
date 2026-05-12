@@ -1,0 +1,100 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_003/target.rs:39:18
+   |
+39 |     let s1_ptr = unsafe { alloc(s1_layout) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_003/target.rs:47:18
+   |
+47 |     let s2_ptr = unsafe { alloc(s2_layout) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_003/target.rs:49:9
+   |
+49 |         unsafe { dealloc(s1_ptr, s1_layout) };
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_003/target.rs:54:5
+   |
+54 | /     unsafe {
+55 | |         // Set n to 0 (not used in the test, but keep it initialized)
+56 | |         (s1_ptr as *mut i32).write(0);
+57 | |         (s2_ptr as *mut i32).write(0);
+58 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_003/target.rs:61:26
+   |
+61 |     let s1_doubles_ptr = unsafe { s1_ptr.add(s_size) as *mut f64 };
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_003/target.rs:62:26
+   |
+62 |     let s2_doubles_ptr = unsafe { s2_ptr.add(s_size) as *mut f64 };
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_003/target.rs:64:5
+   |
+64 | /     unsafe {
+65 | |         s1_doubles_ptr.write(42.0);
+66 | |         s2_doubles_ptr.write(24.0);
+67 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_003/target.rs:70:18
+   |
+70 |     let s1_val = unsafe { s1_doubles_ptr.read() };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_003/target.rs:71:18
+   |
+71 |     let s2_val = unsafe { s2_doubles_ptr.read() };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_003/target.rs:73:9
+   |
+73 | /         unsafe {
+74 | |             dealloc(s1_ptr, s1_layout);
+75 | |             dealloc(s2_ptr, s2_layout);
+76 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_003/target.rs:81:5
+   |
+81 | /     unsafe {
+82 | |         dealloc(s1_ptr, s1_layout);
+83 | |         dealloc(s2_ptr, s2_layout);
+84 | |     }
+   | |_____^
+
+warning: unused variable: `n_align`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_003/target.rs:23:9
+   |
+23 |     let n_align = align_of::<i32>();
+   |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_n_align`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `n` is never read
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_003/target.rs:5:5
+  |
+4 | struct S {
+  |        - field in this struct
+5 |     n: i32,
+  |     ^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 11 previous errors; 2 warnings emitted

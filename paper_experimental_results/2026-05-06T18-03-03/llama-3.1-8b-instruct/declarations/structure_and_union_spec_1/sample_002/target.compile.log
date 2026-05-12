@@ -1,0 +1,73 @@
+error: struct literals are not allowed here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_002/target.rs:20:20
+   |
+20 |     if v1.union == Union::Struct1 { i: 2, j: 0 } {
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: surround the struct literal with parentheses
+   |
+20 |     if v1.union == (Union::Struct1 { i: 2, j: 0 }) {
+   |                    +                             +
+
+error: struct literals are not allowed here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_002/target.rs:24:20
+   |
+24 |     if v1.union == Union::Struct2 { k: 5, l: 0 } {
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: surround the struct literal with parentheses
+   |
+24 |     if v1.union == (Union::Struct2 { k: 5, l: 0 }) {
+   |                    +                             +
+
+error[E0369]: binary operation `==` cannot be applied to type `main::Union`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_002/target.rs:20:17
+   |
+20 |     if v1.union == Union::Struct1 { i: 2, j: 0 } {
+   |        -------- ^^ ----------------------------- main::Union
+   |        |
+   |        main::Union
+   |
+note: an implementation of `PartialEq` might be missing for `main::Union`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_002/target.rs:9:5
+   |
+ 9 |     enum Union {
+   |     ^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `main::Union` with `#[derive(PartialEq)]`
+   |
+ 9 +     #[derive(PartialEq)]
+10 |     enum Union {
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_002/target.rs:21:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+21 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0369]: binary operation `==` cannot be applied to type `main::Union`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_002/target.rs:24:17
+   |
+24 |     if v1.union == Union::Struct2 { k: 5, l: 0 } {
+   |        -------- ^^ ----------------------------- main::Union
+   |        |
+   |        main::Union
+   |
+note: an implementation of `PartialEq` might be missing for `main::Union`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_002/target.rs:9:5
+   |
+ 9 |     enum Union {
+   |     ^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `main::Union` with `#[derive(PartialEq)]`
+   |
+ 9 +     #[derive(PartialEq)]
+10 |     enum Union {
+   |
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0369.
+For more information about an error, try `rustc --explain E0308`.

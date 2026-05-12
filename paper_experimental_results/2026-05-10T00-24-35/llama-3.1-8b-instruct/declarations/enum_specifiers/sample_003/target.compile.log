@@ -1,0 +1,65 @@
+warning: unused variable: `col`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/enum_specifiers/sample_003/target.rs:39:9
+   |
+39 |     let col = Hue::Winedark;
+   |         ^^^ help: if this is intentional, prefix it with an underscore: `_col`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error[E0505]: cannot move out of `col` because it is borrowed
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/enum_specifiers/sample_003/target.rs:24:8
+   |
+21 |     let col = Hue::Claret;
+   |         --- binding `col` declared here
+22 |     let cp = &col;
+   |              ---- borrow of `col` occurs here
+23 |
+24 |     if col as i32 != 20 {
+   |        ^^^ move out of `col` occurs here
+...
+29 |     if *cp != Hue::Claret {
+   |        --- borrow later used here
+   |
+note: if `Hue` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/enum_specifiers/sample_003/target.rs:4:1
+   |
+ 4 | enum Hue {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+22 |     let cp = &col;
+   |               --- you could clone this value
+
+error[E0507]: cannot move out of `*cp` which is behind a shared reference
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/enum_specifiers/sample_003/target.rs:34:19
+   |
+34 |     if check_vals(*cp) != 12 {
+   |                   ^^^ move occurs because `*cp` has type `Hue`, which does not implement the `Copy` trait
+   |
+note: if `Hue` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/enum_specifiers/sample_003/target.rs:4:1
+   |
+ 4 | enum Hue {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+34 |     if check_vals(*cp) != 12 {
+   |                   --- you could clone this value
+
+error[E0507]: cannot move out of `*cp` which is behind a shared reference
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/enum_specifiers/sample_003/target.rs:40:19
+   |
+40 |     if check_vals(*cp) != 13 {
+   |                   ^^^ move occurs because `*cp` has type `Hue`, which does not implement the `Copy` trait
+   |
+note: if `Hue` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/enum_specifiers/sample_003/target.rs:4:1
+   |
+ 4 | enum Hue {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+40 |     if check_vals(*cp) != 13 {
+   |                   --- you could clone this value
+
+error: aborting due to 3 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0505, E0507.
+For more information about an error, try `rustc --explain E0505`.

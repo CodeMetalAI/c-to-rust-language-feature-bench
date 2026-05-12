@@ -1,0 +1,27 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/simple_asgn_3/sample_005/target.rs:9:5
+   |
+ 9 | /     unsafe {
+10 | |         *cpp = &c as *const u8;
+11 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0381]: used binding `p` isn't initialized
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/simple_asgn_3/sample_005/target.rs:6:31
+  |
+2 |     let mut p: *const u8;
+  |         ----- binding declared here but left uninitialized
+...
+6 |     let cpp: *mut *const u8 = &mut p as *mut *const u8;
+  |                               ^^^^^^ `p` used here but it isn't initialized
+  |
+help: consider assigning a value
+  |
+2 |     let mut p: *const u8 = /* value */;
+  |                          +++++++++++++
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0381`.

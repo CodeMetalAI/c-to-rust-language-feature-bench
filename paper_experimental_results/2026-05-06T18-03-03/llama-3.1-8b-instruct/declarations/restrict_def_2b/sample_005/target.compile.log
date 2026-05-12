@@ -1,0 +1,136 @@
+error[E0425]: cannot find value `d` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:77:21
+   |
+77 |     call_f_checked(&d, 100, 50, &mut d[50..], &d[50..]);
+   |                     ^ help: a static with a similar name exists: `D`
+...
+99 | static mut D: [i32; 100] = [0; 100];
+   | ------------------------------------ similarly named static `D` defined here
+
+error[E0425]: cannot find value `d` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:77:38
+   |
+77 |     call_f_checked(&d, 100, 50, &mut d[50..], &d[50..]);
+   |                                      ^ help: a static with a similar name exists: `D`
+...
+99 | static mut D: [i32; 100] = [0; 100];
+   | ------------------------------------ similarly named static `D` defined here
+
+error[E0425]: cannot find value `d` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:77:48
+   |
+77 |     call_f_checked(&d, 100, 50, &mut d[50..], &d[50..]);
+   |                                                ^ help: a static with a similar name exists: `D`
+...
+99 | static mut D: [i32; 100] = [0; 100];
+   | ------------------------------------ similarly named static `D` defined here
+
+error[E0425]: cannot find value `d` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:78:21
+   |
+78 |     call_f_checked(&d, 100, 50, &d[1..], &d);
+   |                     ^ help: a static with a similar name exists: `D`
+...
+99 | static mut D: [i32; 100] = [0; 100];
+   | ------------------------------------ similarly named static `D` defined here
+
+error[E0425]: cannot find value `d` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:78:34
+   |
+78 |     call_f_checked(&d, 100, 50, &d[1..], &d);
+   |                                  ^ help: a static with a similar name exists: `D`
+...
+99 | static mut D: [i32; 100] = [0; 100];
+   | ------------------------------------ similarly named static `D` defined here
+
+error[E0425]: cannot find value `d` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:78:43
+   |
+78 |     call_f_checked(&d, 100, 50, &d[1..], &d);
+   |                                           ^ help: a static with a similar name exists: `D`
+...
+99 | static mut D: [i32; 100] = [0; 100];
+   | ------------------------------------ similarly named static `D` defined here
+
+error[E0425]: cannot find value `d` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:84:15
+   |
+84 |     init(&mut d, 100);
+   |               ^ help: a static with a similar name exists: `D`
+...
+99 | static mut D: [i32; 100] = [0; 100];
+   | ------------------------------------ similarly named static `D` defined here
+
+error[E0425]: cannot find value `d` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:92:15
+   |
+92 |     if !same(&d, &expect, 100) {
+   |               ^ help: a static with a similar name exists: `D`
+...
+99 | static mut D: [i32; 100] = [0; 100];
+   | ------------------------------------ similarly named static `D` defined here
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:31:13
+   |
+31 |     let g = unsafe { &mut GATE };
+   |             ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: the type `[i32]` cannot be indexed by `i32`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:7:11
+  |
+7 |         p[i] = q[i];
+  |           ^ slice indices are of type `usize` or ranges of `usize`
+  |
+  = help: the trait `SliceIndex<[i32]>` is not implemented for `i32`
+  = help: the following other types implement trait `SliceIndex<T>`:
+            `usize` implements `SliceIndex<ByteStr>`
+            `usize` implements `SliceIndex<[T]>`
+  = note: required for `[i32]` to implement `Index<i32>`
+
+error[E0277]: the type `[i32]` cannot be indexed by `i32`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:7:18
+  |
+7 |         p[i] = q[i];
+  |                  ^ slice indices are of type `usize` or ranges of `usize`
+  |
+  = help: the trait `SliceIndex<[i32]>` is not implemented for `i32`
+  = help: the following other types implement trait `SliceIndex<T>`:
+            `usize` implements `SliceIndex<ByteStr>`
+            `usize` implements `SliceIndex<[T]>`
+  = note: required for `[i32]` to implement `Index<i32>`
+
+error[E0384]: cannot assign twice to immutable variable `ps`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:36:9
+   |
+32 |     let ps = (p.as_ptr() as isize - base.as_ptr() as isize) as i32;
+   |         -- first assignment to `ps`
+...
+36 |         ps += 0;
+   |         ^^^^^^^ cannot assign twice to immutable variable
+   |
+help: consider making this binding mutable
+   |
+32 |     let mut ps = (p.as_ptr() as isize - base.as_ptr() as isize) as i32;
+   |         +++
+
+error[E0384]: cannot assign twice to immutable variable `qs`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:37:9
+   |
+33 |     let qs = (q.as_ptr() as isize - base.as_ptr() as isize) as i32;
+   |         -- first assignment to `qs`
+...
+37 |         qs += 0;
+   |         ^^^^^^^ cannot assign twice to immutable variable
+   |
+help: consider making this binding mutable
+   |
+33 |     let mut qs = (q.as_ptr() as isize - base.as_ptr() as isize) as i32;
+   |         +++
+
+error: aborting due to 13 previous errors
+
+Some errors have detailed explanations: E0277, E0384, E0425.
+For more information about an error, try `rustc --explain E0277`.

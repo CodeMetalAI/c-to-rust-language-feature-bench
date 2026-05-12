@@ -1,0 +1,151 @@
+error: macro expansion ignores `expr` metavariable and any tokens following
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:28:32
+   |
+28 |     ($x:expr, $y:expr) => { $x $y };
+   |                                ^^
+...
+42 |         r!(2, 3),
+   |         -------- caused by the macro expansion here
+   |
+   = note: the usage of `r!` is likely invalid in expression context
+help: you might be missing a semicolon here
+   |
+42 |         r!(2, 3);,
+   |                 +
+
+error: unexpected end of macro invocation
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:43:14
+   |
+27 | macro_rules! r {
+   | -------------- when calling this macro
+...
+43 |         r!(4, ),
+   |              ^ missing tokens in macro arguments
+   |
+note: while trying to match meta-variable `$y:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:28:15
+   |
+28 |     ($x:expr, $y:expr) => { $x $y };
+   |               ^^^^^^^
+
+error: unexpected end of macro invocation
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:44:9
+   |
+27 | macro_rules! r {
+   | -------------- when calling this macro
+...
+44 |         r!(),
+   |         ^^^^ missing tokens in macro arguments
+   |
+note: while trying to match meta-variable `$x:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:28:6
+   |
+28 |     ($x:expr, $y:expr) => { $x $y };
+   |      ^^^^^^^
+
+error: unexpected end of macro invocation
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:45:9
+   |
+27 | macro_rules! r {
+   | -------------- when calling this macro
+...
+45 |         r!(),
+   |         ^^^^ missing tokens in macro arguments
+   |
+note: while trying to match meta-variable `$x:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:28:6
+   |
+28 |     ($x:expr, $y:expr) => { $x $y };
+   |      ^^^^^^^
+
+error: unexpected end of macro invocation
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:50:10
+   |
+31 | macro_rules! str {
+   | ---------------- when calling this macro
+...
+50 |         [str!().as_bytes()[0], str!().as_bytes()[1], str!().as_bytes()[2], str!().as_bytes()[3], str!().as_bytes()[4], str!().as_bytes()[5]],
+   |          ^^^^^^ missing tokens in macro arguments
+   |
+note: while trying to match meta-variable `$x:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:32:6
+   |
+32 |     ($x:expr) => { stringify!($x) };
+   |      ^^^^^^^
+
+error: unexpected end of macro invocation
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:50:32
+   |
+31 | macro_rules! str {
+   | ---------------- when calling this macro
+...
+50 |         [str!().as_bytes()[0], str!().as_bytes()[1], str!().as_bytes()[2], str!().as_bytes()[3], str!().as_bytes()[4], str!().as_bytes()[5]],
+   |                                ^^^^^^ missing tokens in macro arguments
+   |
+note: while trying to match meta-variable `$x:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:32:6
+   |
+32 |     ($x:expr) => { stringify!($x) };
+   |      ^^^^^^^
+
+error: unexpected end of macro invocation
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:50:54
+   |
+31 | macro_rules! str {
+   | ---------------- when calling this macro
+...
+50 |         [str!().as_bytes()[0], str!().as_bytes()[1], str!().as_bytes()[2], str!().as_bytes()[3], str!().as_bytes()[4], str!().as_bytes()[5]],
+   |                                                      ^^^^^^ missing tokens in macro arguments
+   |
+note: while trying to match meta-variable `$x:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:32:6
+   |
+32 |     ($x:expr) => { stringify!($x) };
+   |      ^^^^^^^
+
+error: unexpected end of macro invocation
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:50:76
+   |
+31 | macro_rules! str {
+   | ---------------- when calling this macro
+...
+50 |         [str!().as_bytes()[0], str!().as_bytes()[1], str!().as_bytes()[2], str!().as_bytes()[3], str!().as_bytes()[4], str!().as_bytes()[5]],
+   |                                                                            ^^^^^^ missing tokens in macro arguments
+   |
+note: while trying to match meta-variable `$x:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:32:6
+   |
+32 |     ($x:expr) => { stringify!($x) };
+   |      ^^^^^^^
+
+error: unexpected end of macro invocation
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:50:98
+   |
+31 | macro_rules! str {
+   | ---------------- when calling this macro
+...
+50 |         [str!().as_bytes()[0], str!().as_bytes()[1], str!().as_bytes()[2], str!().as_bytes()[3], str!().as_bytes()[4], str!().as_bytes()[5]],
+   |                                                                                                  ^^^^^^ missing tokens in macro arguments
+   |
+note: while trying to match meta-variable `$x:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:32:6
+   |
+32 |     ($x:expr) => { stringify!($x) };
+   |      ^^^^^^^
+
+error: unexpected end of macro invocation
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:50:120
+   |
+31 | macro_rules! str {
+   | ---------------- when calling this macro
+...
+50 |         [str!().as_bytes()[0], str!().as_bytes()[1], str!().as_bytes()[2], str!().as_bytes()[3], str!().as_bytes()[4], str!().as_bytes()[5]],
+   |                                                                                                                        ^^^^^^ missing tokens in macro arguments
+   |
+note: while trying to match meta-variable `$x:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:32:6
+   |
+32 |     ($x:expr) => { stringify!($x) };
+   |      ^^^^^^^
+
+error: aborting due to 10 previous errors

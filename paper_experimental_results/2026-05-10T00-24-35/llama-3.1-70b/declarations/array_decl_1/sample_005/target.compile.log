@@ -1,0 +1,78 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_005/target.rs:5:9
+  |
+5 |         unsafe { calls += 1; }
+  |         ^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_005/target.rs:64:12
+   |
+64 |         if unsafe { calls } != 2 {
+   |            ^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_005/target.rs:79:29
+   |
+79 |         if sum_pointed_ints(&vla2, 17) != (100 + 101 + 102 + 103 + 104 + 105 + 106 + 107 + 108 + 109 + 110 + 111 + 112 + 113 + 114 + 115 + 116) {
+   |            ---------------- ^^^^^ expected `&[&f32]`, found `&[&mut f32; 17]`
+   |            |
+   |            arguments to this function are incorrect
+   |
+   = note: expected reference `&[&f32]`
+              found reference `&[&mut f32; 17]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_005/target.rs:31:8
+   |
+31 |     fn sum_pointed_ints(pp: &[&f32], n: usize) -> i32 {
+   |        ^^^^^^^^^^^^^^^^ -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_005/target.rs:83:32
+   |
+83 |         if takes_params(&vla1, &vla2) != ((vla1[0] as i32) + (vla1[10] as i32) + (*vla2[0] as i32) + (*vla2[16] as i32)) {
+   |            ------------        ^^^^^ types differ in mutability
+   |            |
+   |            arguments to this function are incorrect
+   |
+   = note: expected reference `&[&f32; 17]`
+              found reference `&[&mut f32; 17]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_005/target.rs:35:8
+   |
+35 |     fn takes_params(a: &[f32; 11], afp2: &[&f32; 17]) -> i32 {
+   |        ^^^^^^^^^^^^                -----------------
+
+error[E0614]: type `f32` cannot be dereferenced
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_005/target.rs:36:34
+   |
+36 |         (a[0] + a[10]) as i32 + (**afp2[0] + **afp2[16]) as i32
+   |                                  ^^^^^^^^^ can't be dereferenced
+
+error[E0614]: type `f32` cannot be dereferenced
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_005/target.rs:36:46
+   |
+36 |         (a[0] + a[10]) as i32 + (**afp2[0] + **afp2[16]) as i32
+   |                                              ^^^^^^^^^^ can't be dereferenced
+
+error: lifetime may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_1/sample_005/target.rs:23:13
+   |
+17 |     fn init_globals(fa: &mut [f32; 11], afp: &mut [&mut f32; 17], backing: &mut [f32; 17]) {
+   |                                                    -                       - let's call the lifetime of this reference `'1`
+   |                                                    |
+   |                                                    let's call the lifetime of this reference `'2`
+...
+23 |             afp[i] = elem;
+   |             ^^^^^^^^^^^^^ assignment requires that `'1` must outlive `'2`
+   |
+help: consider introducing a named lifetime parameter
+   |
+17 |     fn init_globals<'a>(fa: &mut [f32; 11], afp: &mut [&'a mut f32; 17], backing: &'a mut [f32; 17]) {
+   |                    ++++                                 ++                         ++
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0308, E0614.
+For more information about an error, try `rustc --explain E0308`.

@@ -1,0 +1,49 @@
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_3a/sample_002/target.rs:22:10
+   |
+22 | #[derive(Debug, Default, Copy, Clone)]
+   |          ^^^^^
+
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_3a/sample_002/target.rs:22:17
+   |
+22 | #[derive(Debug, Default, Copy, Clone)]
+   |                 ^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_3a/sample_002/target.rs:32:5
+   |
+32 | /     unsafe {
+33 | |         u.nf.type_ = 1;
+34 | |         u.nf.doublenode = 3.14;
+35 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_3a/sample_002/target.rs:37:5
+   |
+37 | /     unsafe {
+38 | |         if u.n.alltypes!= 1 {
+39 | |             std::process::exit(1);
+...  |
+50 | |     }
+   | |_____^
+
+error[E0599]: no function or associated item named `default` found for union `U` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_3a/sample_002/target.rs:30:20
+   |
+23 | union U {
+   | ------- function or associated item `default` not found for this union
+...
+30 |     let mut u = U::default();
+   |                    ^^^^^^^ function or associated item not found in `U`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `default`, perhaps you need to implement it:
+           candidate #1: `Default`
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

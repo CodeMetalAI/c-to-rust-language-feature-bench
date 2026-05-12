@@ -1,0 +1,97 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/statements/return_1/sample_002/target.rs:30:5
+   |
+30 |     unsafe { G.u1.f2 }
+   |     ^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/statements/return_1/sample_002/target.rs:38:5
+   |
+38 | /     unsafe {
+39 | |         G.u1.f2.i = 1.0;
+40 | |         G.u2.f3.i = 1.0;
+41 | |         G.u1.f2 = f();
+...  |
+44 | |         std::process::exit(if G.u1.f2.i + G.u2.f3.i + val == 3.0 { 0 } else { 1 });
+45 | |     }
+   | |_____^
+
+error[E0204]: the trait `Copy` cannot be implemented for this type
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/statements/return_1/sample_002/target.rs:10:10
+   |
+10 | #[derive(Copy, Clone)]
+   |          ^^^^
+...
+13 |     f2: S,
+   |     ----- this field does not implement `Copy`
+
+error[E0204]: the trait `Copy` cannot be implemented for this type
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/statements/return_1/sample_002/target.rs:16:10
+   |
+16 | #[derive(Copy, Clone)]
+   |          ^^^^
+17 | struct U2 {
+18 |     f3: S,
+   |     ----- this field does not implement `Copy`
+
+error[E0277]: the trait bound `S: Clone` is not satisfied
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o/statements/return_1/sample_002/target.rs:13:5
+    |
+ 10 | #[derive(Copy, Clone)]
+    |                ----- in this derive macro expansion
+...
+ 13 |     f2: S,
+    |     ^^^^^ the trait `Clone` is not implemented for `S`
+    |
+note: required by a bound in `AssertParamIsClone`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/clone.rs:325:34
+    |
+325 | pub struct AssertParamIsClone<T: Clone + PointeeSized> {
+    |                                  ^^^^^ required by this bound in `AssertParamIsClone`
+help: consider annotating `S` with `#[derive(Clone)]`
+    |
+  1 + #[derive(Clone)]
+  2 | struct S {
+    |
+
+error[E0277]: the trait bound `S: Clone` is not satisfied
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o/statements/return_1/sample_002/target.rs:18:5
+    |
+ 16 | #[derive(Copy, Clone)]
+    |                ----- in this derive macro expansion
+ 17 | struct U2 {
+ 18 |     f3: S,
+    |     ^^^^^ the trait `Clone` is not implemented for `S`
+    |
+note: required by a bound in `AssertParamIsClone`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/clone.rs:325:34
+    |
+325 | pub struct AssertParamIsClone<T: Clone + PointeeSized> {
+    |                                  ^^^^^ required by this bound in `AssertParamIsClone`
+help: consider annotating `S` with `#[derive(Clone)]`
+    |
+  1 + #[derive(Clone)]
+  2 | struct S {
+    |
+
+error[E0507]: cannot move out of `G.u1.f2` as `G` is a static item
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/statements/return_1/sample_002/target.rs:30:14
+   |
+30 |     unsafe { G.u1.f2 }
+   |              ^^^^^^^ move occurs because `G.u1.f2` has type `S`, which does not implement the `Copy` trait
+   |
+note: if `S` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/statements/return_1/sample_002/target.rs:1:1
+   |
+ 1 | struct S {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+30 |     unsafe { G.u1.f2 }
+   |              ------- you could clone this value
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0204, E0277, E0507.
+For more information about an error, try `rustc --explain E0204`.

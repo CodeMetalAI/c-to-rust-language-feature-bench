@@ -1,0 +1,106 @@
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:97:15
+   |
+97 |     init(&mut D, 100);
+   |               ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:105:15
+    |
+105 |     if !same(&D, &expect, 100) {
+    |               ^ use of mutable static
+    |
+    = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:100:39
+    |
+100 |     safe_move(50, &mut expect[50..], &expect[..]);
+    |     ---------          ------         ^^^^^^ immutable borrow occurs here
+    |     |                  |
+    |     |                  mutable borrow occurs here
+    |     mutable borrow later used by call
+    |
+    = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:101:38
+    |
+101 |     safe_move(50, &mut expect[1..], &expect[..]);
+    |     ---------          ------        ^^^^^^ immutable borrow occurs here
+    |     |                  |
+    |     |                  mutable borrow occurs here
+    |     mutable borrow later used by call
+    |
+    = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:41:17
+   |
+41 |         let g = GATE;
+   |                 ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+warning: unused variable: `n_total`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:90:13
+   |
+90 |         let n_total = 100;
+   |             ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_n_total`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:92:29
+   |
+92 |         call_f_checked(&mut D, n, &mut D[50..], &D[..]);
+   |                             ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:92:40
+   |
+92 |         call_f_checked(&mut D, n, &mut D[50..], &D[..]);
+   |                                        ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:92:50
+   |
+92 |         call_f_checked(&mut D, n, &mut D[50..], &D[..]);
+   |                                                  ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:93:29
+   |
+93 |         call_f_checked(&mut D, n, &mut D[1..], &D[..]);
+   |                             ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:93:40
+   |
+93 |         call_f_checked(&mut D, n, &mut D[1..], &D[..]);
+   |                                        ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2b/sample_003/target.rs:93:49
+   |
+93 |         call_f_checked(&mut D, n, &mut D[1..], &D[..]);
+   |                                                 ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 11 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0133, E0502.
+For more information about an error, try `rustc --explain E0133`.

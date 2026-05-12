@@ -1,0 +1,220 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:44:30
+   |
+44 |     let original_ptr_value = unsafe { *ptr };
+   |                              ^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:50:22
+   |
+50 |             a = &mut unsafe { *a.offset(change as isize) };
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:53:22
+   |
+53 |             a = &mut unsafe { *a.offset(-change as isize) };
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:56:16
+   |
+56 |     assert_eq!(unsafe { *a }, original_ptr_value + change);
+   |                ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:60:22
+   |
+60 |             a = &mut unsafe { *a.offset(change as isize) };
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:63:22
+   |
+63 |             a = &mut unsafe { *a.offset(-change as isize) };
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:66:16
+   |
+66 |     assert_eq!(unsafe { *a }, original_ptr_value + change);
+   |                ^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:22:42
+   |
+19 | fn test_all_incdec_arith<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy>(
+   |                          - expected this type parameter
+...
+22 |     test_incdec_arith(value, true, true, 1);
+   |     ----------------- -----              ^ expected type parameter `T`, found integer
+   |     |                 |
+   |     |                 expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:28:4
+   |
+28 | fn test_incdec_arith<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy>(
+   |    ^^^^^^^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+29 |     value: T,
+   |     -------- `change` needs to match the type parameter `T` type of this parameter
+...
+32 |     change: T,
+   |     --------- this parameter needs to match the type parameter `T` type of `value`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:23:43
+   |
+19 | fn test_all_incdec_arith<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy>(
+   |                          - expected this type parameter
+...
+23 |     test_incdec_arith(value, true, false, -1);
+   |     ----------------- -----               ^^ expected type parameter `T`, found integer
+   |     |                 |
+   |     |                 expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:28:4
+   |
+28 | fn test_incdec_arith<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy>(
+   |    ^^^^^^^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+29 |     value: T,
+   |     -------- `change` needs to match the type parameter `T` type of this parameter
+...
+32 |     change: T,
+   |     --------- this parameter needs to match the type parameter `T` type of `value`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:24:43
+   |
+19 | fn test_all_incdec_arith<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy>(
+   |                          - expected this type parameter
+...
+24 |     test_incdec_arith(value, false, true, 1);
+   |     ----------------- -----               ^ expected type parameter `T`, found integer
+   |     |                 |
+   |     |                 expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:28:4
+   |
+28 | fn test_incdec_arith<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy>(
+   |    ^^^^^^^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+29 |     value: T,
+   |     -------- `change` needs to match the type parameter `T` type of this parameter
+...
+32 |     change: T,
+   |     --------- this parameter needs to match the type parameter `T` type of `value`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:25:44
+   |
+19 | fn test_all_incdec_arith<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy>(
+   |                          - expected this type parameter
+...
+25 |     test_incdec_arith(value, false, false, -1);
+   |     ----------------- -----                ^^ expected type parameter `T`, found integer
+   |     |                 |
+   |     |                 expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:28:4
+   |
+28 | fn test_incdec_arith<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy>(
+   |    ^^^^^^^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+29 |     value: T,
+   |     -------- `change` needs to match the type parameter `T` type of this parameter
+...
+32 |     change: T,
+   |     --------- this parameter needs to match the type parameter `T` type of `value`
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:36:5
+   |
+36 |     assert_eq!(a, value + change);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+28 | fn test_incdec_arith<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy + std::fmt::Debug>(
+   |                                                                                                  +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:36:5
+   |
+36 |     assert_eq!(a, value + change);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+28 | fn test_incdec_arith<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy + std::fmt::Debug>(
+   |                                                                                                  +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:40:5
+   |
+40 |     assert_eq!(a, value + change);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+28 | fn test_incdec_arith<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy + std::fmt::Debug>(
+   |                                                                                                  +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:40:5
+   |
+40 |     assert_eq!(a, value + change);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+28 | fn test_incdec_arith<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + Copy + std::fmt::Debug>(
+   |                                                                                                  +++++++++++++++++
+
+error[E0599]: no method named `offset` found for mutable reference `&mut i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:50:34
+   |
+50 |             a = &mut unsafe { *a.offset(change as isize) };
+   |                                  ^^^^^^ method not found in `&mut i32`
+
+error[E0599]: no method named `offset` found for mutable reference `&mut i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:53:34
+   |
+53 |             a = &mut unsafe { *a.offset(-change as isize) };
+   |                                  ^^^^^^ method not found in `&mut i32`
+
+error[E0599]: no method named `offset` found for mutable reference `&mut i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:60:34
+   |
+60 |             a = &mut unsafe { *a.offset(change as isize) };
+   |                                  ^^^^^^ method not found in `&mut i32`
+
+error[E0599]: no method named `offset` found for mutable reference `&mut i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:63:34
+   |
+63 |             a = &mut unsafe { *a.offset(-change as isize) };
+   |                                  ^^^^^^ method not found in `&mut i32`
+
+error: aborting due to 19 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0599.
+For more information about an error, try `rustc --explain E0277`.

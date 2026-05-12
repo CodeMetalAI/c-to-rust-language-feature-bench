@@ -1,0 +1,60 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c3/sample_003/target.rs:7:16
+   |
+ 7 |     if type_id(&a as *const [i32; 3]) != 2 {
+   |        ------- ^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `*const [i32; 3]`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+            found raw pointer `*const [i32; 3]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c3/sample_003/target.rs:49:4
+   |
+49 | fn type_id<T>(_: &T) -> u32 {
+   |    ^^^^^^^    -----
+help: consider borrowing here
+   |
+ 7 |     if type_id(&(&a as *const [i32; 3])) != 2 {
+   |                ++                     +
+
+error[E0277]: the size for values of type `str` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c3/sample_003/target.rs:29:16
+   |
+29 |     if type_id("abc") != 3 {
+   |        ------- ^^^^^ doesn't have a size known at compile-time
+   |        |
+   |        required by a bound introduced by this call
+   |
+   = help: the trait `Sized` is not implemented for `str`
+note: required by an implicit `Sized` bound in `type_id`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c3/sample_003/target.rs:49:12
+   |
+49 | fn type_id<T>(_: &T) -> u32 {
+   |            ^ required by the implicit `Sized` requirement on this type parameter in `type_id`
+help: consider relaxing the implicit `Sized` restriction
+   |
+49 | fn type_id<T: ?Sized>(_: &T) -> u32 {
+   |             ++++++++
+
+error[E0599]: no method named `hash` found for struct `TypeId` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c3/sample_003/target.rs:50:33
+    |
+ 50 |     std::any::TypeId::of::<T>().hash(&mut std::collections::hash_map::DefaultHasher::new());
+    |                                 ^^^^ method not found in `TypeId`
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/hash/mod.rs:199:8
+    |
+199 |     fn hash<H: Hasher>(&self, state: &mut H);
+    |        ---- the method is available for `TypeId` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Hash` which provides `hash` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::hash::Hash;
+    |
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0599.
+For more information about an error, try `rustc --explain E0277`.

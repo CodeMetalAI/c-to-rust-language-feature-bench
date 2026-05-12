@@ -1,0 +1,24 @@
+error[E0502]: cannot borrow `st` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/expressions/function_calls/sample_001/target.rs:29:21
+   |
+29 |             st.logv[st.logn] = id;
+   |             --------^^------
+   |             |       |
+   |             |       immutable borrow occurs here
+   |             mutable borrow occurs here
+   |             mutable borrow later used here
+   |
+help: try adding a local storing this...
+  --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/expressions/function_calls/sample_001/target.rs:29:21
+   |
+29 |             st.logv[st.logn] = id;
+   |                     ^^^^^^^
+help: ...and then using that local here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/expressions/function_calls/sample_001/target.rs:29:13
+   |
+29 |             st.logv[st.logn] = id;
+   |             ^^^^^^^^^^^^^^^^
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0502`.

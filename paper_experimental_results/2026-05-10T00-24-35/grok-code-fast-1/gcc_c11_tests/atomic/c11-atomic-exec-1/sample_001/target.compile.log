@@ -1,0 +1,279 @@
+warning: unnecessary parentheses around assigned value
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:110:12
+    |
+110 |     copy = (s2 = s1.clone());
+    |            ^               ^
+    |
+    = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+    |
+110 -     copy = (s2 = s1.clone());
+110 +     copy = s2 = s1.clone();
+    |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:57:18
+   |
+57 |         s.a[i] = i;
+   |         ------   ^ expected `i16`, found `usize`
+   |         |
+   |         expected due to the type of this binding
+
+error[E0054]: cannot cast `i64` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:17:20
+   |
+17 |           let mut a: $t = Default::default();
+   |  ____________________^
+18 | |         let b: $t = $val as $t;
+   | |___________________________^
+...
+67 |       test_simple_assign!(bool, value);
+   |       -------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+18 -         let b: $t = $val as $t;
+19 -         if a != (0 as $t) {
+20 -             abort();
+21 -         }
+22 -         if b != ($val as $t) {
+23 -             abort();
+24 -         }
+25 -         a = b;
+26 -         if a != ($val as $t) {
+27 -             abort();
+28 -         }
+29 -     }};
+30 - }
+31 - 
+32 - macro_rules! test_simple_assign_ptr {
+33 -     ($val:expr) => {{
+34 -         let mut a: *const i32 = std::ptr::null();
+35 -         let b: *const i32 = $val;
+36 -         if a != std::ptr::null() {
+37 -             abort();
+38 -         }
+39 -         if b != $val {
+40 -             abort();
+41 -         }
+42 -         a = b;
+43 -         if a != $val {
+44 -             abort();
+45 -         }
+46 -     }};
+47 - }
+48 - 
+49 - #[derive(Clone, PartialEq)]
+50 - struct S {
+51 -     a: [i16; 1024],
+52 - }
+53 - 
+54 - fn init_struct() -> S {
+55 -     let mut s = S { a: [0; 1024] };
+56 -     for i in 0..1024 {
+57 -         s.a[i] = i;
+58 -     }
+59 -     s
+60 - }
+61 - 
+62 - fn abort() {
+63 -     process::exit(1);
+64 - }
+65 - 
+66 - fn test_simple_assign_arith(value: i64) {
+67 -     test_simple_assign!(bool, value);
+18 +         let b: $t = $val as != 0);
+   |
+
+error[E0054]: cannot cast `i32` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:17:20
+   |
+17 |           let mut a: $t = Default::default();
+   |  ____________________^
+18 | |         let b: $t = $val as $t;
+19 | |         if a != (0 as $t) {
+   | |_____________________^
+...
+67 |       test_simple_assign!(bool, value);
+   |       -------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+19 -         if a != (0 as $t) {
+19 +         if a != (0 != 0 $t) {
+   |
+
+error[E0054]: cannot cast `i64` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:17:20
+   |
+17 |           let mut a: $t = Default::default();
+   |  ____________________^
+18 | |         let b: $t = $val as $t;
+19 | |         if a != (0 as $t) {
+20 | |             abort();
+21 | |         }
+22 | |         if b != ($val as $t) {
+   | |________________________^
+...
+67 |       test_simple_assign!(bool, value);
+   |       -------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+22 -         if b != ($val as $t) {
+23 -             abort();
+24 -         }
+25 -         a = b;
+26 -         if a != ($val as $t) {
+27 -             abort();
+28 -         }
+29 -     }};
+30 - }
+31 - 
+32 - macro_rules! test_simple_assign_ptr {
+33 -     ($val:expr) => {{
+34 -         let mut a: *const i32 = std::ptr::null();
+35 -         let b: *const i32 = $val;
+36 -         if a != std::ptr::null() {
+37 -             abort();
+38 -         }
+39 -         if b != $val {
+40 -             abort();
+41 -         }
+42 -         a = b;
+43 -         if a != $val {
+44 -             abort();
+45 -         }
+46 -     }};
+47 - }
+48 - 
+49 - #[derive(Clone, PartialEq)]
+50 - struct S {
+51 -     a: [i16; 1024],
+52 - }
+53 - 
+54 - fn init_struct() -> S {
+55 -     let mut s = S { a: [0; 1024] };
+56 -     for i in 0..1024 {
+57 -         s.a[i] = i;
+58 -     }
+59 -     s
+60 - }
+61 - 
+62 - fn abort() {
+63 -     process::exit(1);
+64 - }
+65 - 
+66 - fn test_simple_assign_arith(value: i64) {
+67 -     test_simple_assign!(bool, value);
+22 +         if b != ($val as != 0);
+   |
+
+error[E0054]: cannot cast `i64` as `bool`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:17:20
+   |
+17 |           let mut a: $t = Default::default();
+   |  ____________________^
+18 | |         let b: $t = $val as $t;
+19 | |         if a != (0 as $t) {
+20 | |             abort();
+...  |
+25 | |         a = b;
+26 | |         if a != ($val as $t) {
+   | |________________________^
+...
+67 |       test_simple_assign!(bool, value);
+   |       -------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: compare with zero instead
+   |
+26 -         if a != ($val as $t) {
+27 -             abort();
+28 -         }
+29 -     }};
+30 - }
+31 - 
+32 - macro_rules! test_simple_assign_ptr {
+33 -     ($val:expr) => {{
+34 -         let mut a: *const i32 = std::ptr::null();
+35 -         let b: *const i32 = $val;
+36 -         if a != std::ptr::null() {
+37 -             abort();
+38 -         }
+39 -         if b != $val {
+40 -             abort();
+41 -         }
+42 -         a = b;
+43 -         if a != $val {
+44 -             abort();
+45 -         }
+46 -     }};
+47 - }
+48 - 
+49 - #[derive(Clone, PartialEq)]
+50 - struct S {
+51 -     a: [i16; 1024],
+52 - }
+53 - 
+54 - fn init_struct() -> S {
+55 -     let mut s = S { a: [0; 1024] };
+56 -     for i in 0..1024 {
+57 -         s.a[i] = i;
+58 -     }
+59 -     s
+60 - }
+61 - 
+62 - fn abort() {
+63 -     process::exit(1);
+64 - }
+65 - 
+66 - fn test_simple_assign_arith(value: i64) {
+67 -     test_simple_assign!(bool, value);
+26 +         if a != ($val as != 0);
+   |
+
+error[E0605]: non-primitive cast: `i32` as `Complex<f32>`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:17:20
+   |
+17 |           let mut a: $t = Default::default();
+   |  ____________________^
+18 | |         let b: $t = $val as $t;
+19 | |         if a != (0 as $t) {
+   | |_____________________^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+...
+84 |       test_simple_assign!(Complex<f32>, cmplx!(value.real as f32, value.imag as f32));
+   |       ------------------------------------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0605]: non-primitive cast: `i32` as `Complex<f64>`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:17:20
+   |
+17 |           let mut a: $t = Default::default();
+   |  ____________________^
+18 | |         let b: $t = $val as $t;
+19 | |         if a != (0 as $t) {
+   | |_____________________^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+...
+85 |       test_simple_assign!(Complex<f64>, value);
+   |       ---------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:110:12
+    |
+104 |     let mut copy = S { a: [0; 1024] };
+    |                    ------------------ expected due to this value
+...
+110 |     copy = (s2 = s1.clone());
+    |            ^^^^^^^^^^^^^^^^^ expected `S`, found `()`
+
+error: aborting due to 8 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0054, E0308, E0605.
+For more information about an error, try `rustc --explain E0054`.

@@ -1,0 +1,45 @@
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/lvalue_array_fun_c2/sample_001/target.rs:57:8
+   |
+57 |     if std::any::TypeId::of::<T>() == std::any::TypeId::of::<i32>() {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |        |
+   |        the parameter type `T` must be valid for the static lifetime...
+   |        ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+56 | fn type_id<T: 'static>(_: &T) -> u32 {
+   |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/lvalue_array_fun_c2/sample_001/target.rs:59:15
+   |
+59 |     } else if std::any::TypeId::of::<T>() == std::any::TypeId::of::<u32>() {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |               |
+   |               the parameter type `T` must be valid for the static lifetime...
+   |               ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+56 | fn type_id<T: 'static>(_: &T) -> u32 {
+   |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/lvalue_array_fun_c2/sample_001/target.rs:61:15
+   |
+61 |     } else if std::any::TypeId::of::<T>() == std::any::TypeId::of::<std::sync::atomic::AtomicI32>() {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |               |
+   |               the parameter type `T` must be valid for the static lifetime...
+   |               ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+56 | fn type_id<T: 'static>(_: &T) -> u32 {
+   |             +++++++++
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0310`.

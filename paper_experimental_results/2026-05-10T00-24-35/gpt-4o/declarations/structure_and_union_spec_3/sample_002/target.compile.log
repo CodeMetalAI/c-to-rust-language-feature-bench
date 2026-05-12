@@ -1,0 +1,21 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_3/sample_002/target.rs:21:13
+   |
+21 |     let p = unsafe { alloc(layout) as *mut S };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_3/sample_002/target.rs:26:5
+   |
+26 | /     unsafe {
+27 | |         (*p).i = 7;
+28 | |         let a_ptr = (*p).a.as_ptr() as *mut i32;
+29 | |         a_ptr.add(0).write(11);
+...  |
+37 | |         dealloc(p as *mut u8, layout);
+38 | |     }
+   | |_____^
+
+error: aborting due to 2 previous errors

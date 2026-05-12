@@ -1,0 +1,64 @@
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/addr_indr_c3/sample_002/target.rs:6:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+6 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0369]: cannot add `{integer}` to `*const i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/addr_indr_c3/sample_002/target.rs:15:64
+   |
+15 |     if &a[0] as *const i32 != &a as *const [i32] as *const i32 + 0 {
+   |                               -------------------------------- ^ - {integer}
+   |                               |
+   |                               *const i32
+   |
+help: consider using `wrapping_add` or `add` for pointer + {integer}
+   |
+15 -     if &a[0] as *const i32 != &a as *const [i32] as *const i32 + 0 {
+15 +     if &a[0] as *const i32 != &a as *const [i32] as *const i32.wrapping_add(0) {
+   |
+
+error[E0369]: cannot add `{integer}` to `*const i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/addr_indr_c3/sample_002/target.rs:18:64
+   |
+18 |     if &a[1] as *const i32 != &a as *const [i32] as *const i32 + 1 {
+   |                               -------------------------------- ^ - {integer}
+   |                               |
+   |                               *const i32
+   |
+help: consider using `wrapping_add` or `add` for pointer + {integer}
+   |
+18 -     if &a[1] as *const i32 != &a as *const [i32] as *const i32 + 1 {
+18 +     if &a[1] as *const i32 != &a as *const [i32] as *const i32.wrapping_add(1) {
+   |
+
+error[E0369]: cannot add `{integer}` to `*const i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/addr_indr_c3/sample_002/target.rs:21:64
+   |
+21 |     if &a[2] as *const i32 != &a as *const [i32] as *const i32 + 2 {
+   |                               -------------------------------- ^ - {integer}
+   |                               |
+   |                               *const i32
+   |
+help: consider using `wrapping_add` or `add` for pointer + {integer}
+   |
+21 -     if &a[2] as *const i32 != &a as *const [i32] as *const i32 + 2 {
+21 +     if &a[2] as *const i32 != &a as *const [i32] as *const i32.wrapping_add(2) {
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/addr_indr_c3/sample_002/target.rs:29:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+29 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0369.
+For more information about an error, try `rustc --explain E0308`.

@@ -1,0 +1,43 @@
+error[E0425]: cannot find value `III` in this scope
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/array_subscripting/sample_005/target.rs:4:26
+  |
+4 |     let mut x = [[0; 5]; III];
+  |                          ^^^ not found in this scope
+
+error[E0425]: cannot find value `III` in this scope
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/array_subscripting/sample_005/target.rs:6:17
+  |
+6 |     for i in 0..III {
+  |                 ^^^ not found in this scope
+
+error[E0425]: cannot find value `III` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/array_subscripting/sample_005/target.rs:12:17
+   |
+12 |     for i in 0..III {
+   |                 ^^^ not found in this scope
+
+warning: unused import: `std::ptr`
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/array_subscripting/sample_005/target.rs:1:5
+  |
+1 | use std::ptr;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/array_subscripting/sample_005/target.rs:15:21
+   |
+15 |             let b = unsafe { *(*x.as_ptr().add(i)).add(j) };
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/array_subscripting/sample_005/target.rs:24:8
+   |
+24 |     if unsafe { p1.offset_from(p0) } != 5 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 5 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0425`.

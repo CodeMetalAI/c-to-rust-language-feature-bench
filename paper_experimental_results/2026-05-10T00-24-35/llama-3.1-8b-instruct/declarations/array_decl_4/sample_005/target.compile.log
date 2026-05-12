@@ -1,0 +1,142 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:21:28
+   |
+21 |             s ^= a[i][j] + i * 131 + j * 17;
+   |                            ^^^^^^^ expected `u32`, found `usize`
+
+error[E0277]: cannot add `usize` to `u32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:21:26
+   |
+21 |             s ^= a[i][j] + i * 131 + j * 17;
+   |                          ^ no implementation for `u32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `u32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&u32` implements `Add<u32>`
+             `&u32` implements `Add`
+             `u32` implements `Add<&u32>`
+             `u32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:21:38
+   |
+21 |             s ^= a[i][j] + i * 131 + j * 17;
+   |                                      ^^^^^^ expected `u32`, found `usize`
+
+error[E0277]: cannot add `usize` to `u32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:21:36
+   |
+21 |             s ^= a[i][j] + i * 131 + j * 17;
+   |                                    ^ no implementation for `u32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `u32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&u32` implements `Add<u32>`
+             `&u32` implements `Add`
+             `u32` implements `Add<&u32>`
+             `u32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:36:33
+   |
+36 |             q[i][j] = C[i][j] + D[(i + j) % m];
+   |                                 ^^^^^^^^^^^^^^ expected `u32`, found `usize`
+
+error[E0277]: cannot add `usize` to `u32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:36:31
+   |
+36 |             q[i][j] = C[i][j] + D[(i + j) % m];
+   |                               ^ no implementation for `u32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `u32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&u32` implements `Add<u32>`
+             `&u32` implements `Add`
+             `u32` implements `Add<&u32>`
+             `u32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:57:13
+   |
+57 |     fvla(n, &mut X);
+   |     ----    ^^^^^^ expected `&mut [[u32; 9]; 9]`, found `&mut Vec<Vec<usize>>`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut [[u32; 9]; 9]`
+              found mutable reference `&mut Vec<Vec<usize>>`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:27:4
+   |
+27 | fn fvla(m: usize, C: &mut [[u32; N]; N]) {
+   |    ^^^^           ---------------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:66:50
+   |
+66 |     if checksum_2d(n, &BACKING)!= checksum_2d(n, &expect) {
+   |                                   -----------    ^^^^^^^ expected `&[[u32; 9]; 9]`, found `&Vec<Vec<usize>>`
+   |                                   |
+   |                                   arguments to this function are incorrect
+   |
+   = note: expected reference `&[[u32; 9]; 9]`
+              found reference `&Vec<Vec<usize>>`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:17:4
+   |
+17 | fn checksum_2d(m: usize, a: &[[u32; N]; N]) -> u32 {
+   |    ^^^^^^^^^^^           -----------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:67:16
+   |
+43 | fn main() {
+   |          - expected `()` because of default return type
+...
+67 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:70:13
+   |
+70 |     fvla(n, &mut Y);
+   |     ----    ^^^^^^ expected `&mut [[u32; 9]; 9]`, found `&mut Vec<Vec<usize>>`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut [[u32; 9]; 9]`
+              found mutable reference `&mut Vec<Vec<usize>>`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:27:4
+   |
+27 | fn fvla(m: usize, C: &mut [[u32; N]; N]) {
+   |    ^^^^           ---------------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:79:50
+   |
+79 |     if checksum_2d(n, &BACKING)!= checksum_2d(n, &expect2) {
+   |                                   -----------    ^^^^^^^^ expected `&[[u32; 9]; 9]`, found `&Vec<Vec<usize>>`
+   |                                   |
+   |                                   arguments to this function are incorrect
+   |
+   = note: expected reference `&[[u32; 9]; 9]`
+              found reference `&Vec<Vec<usize>>`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:17:4
+   |
+17 | fn checksum_2d(m: usize, a: &[[u32; N]; N]) -> u32 {
+   |    ^^^^^^^^^^^           -----------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_005/target.rs:93:29
+   |
+93 |             BACKING[i][j] = (i + 1) * 100 + (j + 1);
+   |             -------------   ^^^^^^^^^^^^^^^^^^^^^^^ expected `u32`, found `usize`
+   |             |
+   |             expected due to the type of this binding
+
+error: aborting due to 12 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

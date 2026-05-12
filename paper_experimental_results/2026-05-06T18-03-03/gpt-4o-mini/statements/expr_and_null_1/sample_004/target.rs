@@ -1,0 +1,13 @@
+fn p(t: &mut i32) {
+    *t += 1;
+}
+
+fn main() -> i32 {
+    let mut x = 0;
+    p(&mut x);
+    if x == 1 {
+        0
+    } else {
+        1
+    }
+}

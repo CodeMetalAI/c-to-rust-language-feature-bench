@@ -1,0 +1,29 @@
+error: expected `:`, found `left`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_005/target.rs:2:9
+  |
+1 | union Bank {
+  |       ---- while parsing this union
+2 |     int left[8];
+  |         ^^^^ expected `:`
+
+error: unions cannot have zero fields
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_005/target.rs:1:1
+  |
+1 | / union Bank {
+2 | |     int left[8];
+3 | |     int right[8];
+4 | | }
+  | |_^
+
+error[E0530]: let bindings cannot shadow statics
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_005/target.rs:42:13
+   |
+ 9 | static mut c: [i32; 8] = [0; 8];
+   | -------------------------------- the static `c` is defined here
+...
+42 |     let mut c = &mut c;
+   |             ^ cannot be named the same as a static
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0530`.

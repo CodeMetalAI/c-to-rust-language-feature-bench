@@ -1,0 +1,46 @@
+error: this trait cannot be derived for unions
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/statements/return_1/sample_004/target.rs:6:10
+  |
+6 | #[derive(Debug, Clone, Copy)]
+  |          ^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/statements/return_1/sample_004/target.rs:24:19
+   |
+24 | static mut G: U = unsafe { U { u1: U1 { f1: 0, f2: S { i: 0.0 } } } };
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/statements/return_1/sample_004/target.rs:27:5
+   |
+27 |     unsafe { G.u1.f2 }
+   |     ^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/statements/return_1/sample_004/target.rs:35:5
+   |
+35 | /     unsafe {
+36 | |         G.u1.f2.i = 1.0;
+37 | |         G.u2.f3.i = 1.0;
+38 | |         G.u1.f2 = f();
+39 | |         G.u2.f3 = f();
+40 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/statements/return_1/sample_004/target.rs:42:24
+   |
+42 |     let exit_code = if unsafe { G.u1.f2.i + G.u2.f3.i + val == 3.0 } { 0 } else { 1 };
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/statements/return_1/sample_004/target.rs:24:19
+   |
+24 | static mut G: U = unsafe { U { u1: U1 { f1: 0, f2: S { i: 0.0 } } } };
+   |                   ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 5 previous errors; 1 warning emitted

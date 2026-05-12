@@ -1,0 +1,26 @@
+error[E0502]: cannot borrow `vp_val` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/cond_op_1/sample_005/target.rs:18:28
+   |
+17 |     let c_vp: &dyn Any = &vp_val;
+   |                          ------- immutable borrow occurs here
+18 |     let vp: &mut dyn Any = &mut vp_val;
+   |                            ^^^^^^^^^^^ mutable borrow occurs here
+...
+24 |     f(if true { Some(c_vp) } else { Some(c_ip) });
+   |                      ---- immutable borrow later used here
+
+error[E0502]: cannot borrow `ip_val` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/cond_op_1/sample_005/target.rs:21:28
+   |
+19 |     let c_ip: &dyn Any = &ip_val;
+   |                          ------- immutable borrow occurs here
+20 |     let v_ip: &mut dyn Any = &mut v_ip_val;
+21 |     let ip: &mut dyn Any = &mut ip_val;
+   |                            ^^^^^^^^^^^ mutable borrow occurs here
+...
+24 |     f(if true { Some(c_vp) } else { Some(c_ip) });
+   |                                          ---- immutable borrow later used here
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0502`.

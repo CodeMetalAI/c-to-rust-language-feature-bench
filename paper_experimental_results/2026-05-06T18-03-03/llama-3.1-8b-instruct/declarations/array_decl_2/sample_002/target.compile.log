@@ -1,0 +1,107 @@
+error: cannot find macro `OFFSETOF` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:66:46
+   |
+66 |         if unsafe { (ha as *const i8).offset(OFFSETOF!(HoldA, a)) as *const i32 } != ha {
+   |                                              ^^^^^^^^
+   |
+   = note: `OFFSETOF` is in scope, but it is a function, not a macro
+
+error[E0425]: cannot find value `ha` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:65:19
+   |
+65 |         let ha = (ha as *mut HoldA).as_mut_ptr();
+   |                   ^^ help: a local variable with a similar name exists: `hp`
+
+warning: unused import: `std::ptr`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:28:5
+   |
+28 | /     unsafe {
+29 | |         *p.offset(1) += 5;
+30 | |         *p.offset(0) + *p.offset(1) + *p.offset(2)
+31 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:48:8
+   |
+48 |     if unsafe { *X.offset(1) } != 25 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:61:12
+   |
+61 |         if unsafe { *hp.p.offset(0) } != 1 {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:66:12
+   |
+66 |         if unsafe { (ha as *const i8).offset(OFFSETOF!(HoldA, a)) as *const i32 } != ha {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:70:12
+   |
+70 |         if unsafe { *ha.offset(2) } != 3 {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: taking a mutable reference to a `const` item
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:5:26
+  |
+5 | static mut X: *mut i32 = BACKING.as_mut_ptr();
+  |                          ^^^^^^^
+  |
+  = note: each usage of a `const` item creates a new temporary
+  = note: the mutable reference will refer to this temporary, not the original `const` item
+note: `const` item defined here
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:4:1
+  |
+4 | const BACKING: [i32; 3] = [10, 20, 30];
+  | ^^^^^^^^^^^^^^^^^^^^^^^
+  = note: `#[warn(const_item_mutation)]` on by default
+
+error: encountered dangling pointer in final value of mutable static
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:5:1
+  |
+5 | static mut X: *mut i32 = BACKING.as_mut_ptr();
+  | ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:11:14
+   |
+11 |         s += *p.offset(i as isize);
+   |              ^^^^^^^^^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:11:15
+   |
+11 |         s += *p.offset(i as isize);
+   |               ^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0493]: destructor of `T` cannot be evaluated at compile-time
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:89:25
+   |
+89 | const fn OFFSETOF<T, U>(_: T) -> usize {
+   |                         ^ the destructor for this type cannot be evaluated in constant functions
+90 |     std::mem::size_of::<U>() as usize
+91 | }
+   | - value is dropped here
+
+error: aborting due to 11 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0133, E0425, E0493.
+For more information about an error, try `rustc --explain E0133`.

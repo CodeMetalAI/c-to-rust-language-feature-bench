@@ -1,0 +1,88 @@
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_5/sample_002/target.rs:6:31
+     |
+   6 |     let a: Vec<i32> = vec![0; n - 1];
+     |                       --------^^^^^-
+     |                       |       |
+     |                       |       expected `usize`, found `i32`
+     |                       arguments to this function are incorrect
+     |
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:3464:8
+     |
+3464 | pub fn from_elem<T: Clone>(elem: T, n: usize) -> Vec<T> {
+     |        ^^^^^^^^^
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+     |
+   6 |     let a: Vec<i32> = vec![0; (n - 1).try_into().unwrap()];
+     |                               +     +++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_5/sample_002/target.rs:7:35
+     |
+   7 |     let mut b: Vec<i32> = vec![0; n];
+     |                           --------^-
+     |                           |       |
+     |                           |       expected `usize`, found `i32`
+     |                           arguments to this function are incorrect
+     |
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:3464:8
+     |
+3464 | pub fn from_elem<T: Clone>(elem: T, n: usize) -> Vec<T> {
+     |        ^^^^^^^^^
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+     |
+   7 |     let mut b: Vec<i32> = vec![0; n.try_into().unwrap()];
+     |                                    ++++++++++++++++++++
+
+error[E0277]: the type `[i32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_5/sample_002/target.rs:11:11
+   |
+11 |         b[i] = 1000 + i;
+   |           ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `Vec<i32>` to implement `Index<i32>`
+
+error[E0277]: the type `[i32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_5/sample_002/target.rs:17:11
+   |
+17 |         a[i - 1] = b[i];
+   |           ^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `Vec<i32>` to implement `Index<i32>`
+
+error[E0277]: the type `[i32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_5/sample_002/target.rs:17:22
+   |
+17 |         a[i - 1] = b[i];
+   |                      ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `Vec<i32>` to implement `Index<i32>`
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_5/sample_002/target.rs:44:9
+   |
+44 |     let mut sink = 0;
+   |         ----^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 5 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

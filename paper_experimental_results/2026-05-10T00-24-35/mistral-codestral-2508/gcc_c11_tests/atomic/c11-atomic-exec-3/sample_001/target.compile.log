@@ -1,0 +1,362 @@
+error[E0369]: cannot add `T` to `T`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:18:24
+   |
+18 |     if result != value + change {
+   |                  ----- ^ ------ T
+   |                  |
+   |                  T
+   |
+help: consider further restricting type parameter `T` with trait `Add`
+   |
+ 3 | fn test_incdec<T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::ops::Add<Output = T>>(
+   |                                                                                +++++++++++++++++++++++++++
+
+error[E0369]: cannot add `T` to `T`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:22:19
+   |
+22 |     if a != value + change {
+   |             ----- ^ ------ T
+   |             |
+   |             T
+   |
+help: consider further restricting type parameter `T` with trait `Add`
+   |
+ 3 | fn test_incdec<T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::ops::Add<Output = T>>(
+   |                                                                                +++++++++++++++++++++++++++
+
+error[E0369]: cannot add `T` to `T`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:38:42
+   |
+38 |     test_incdec_arith(value, true, value + value);
+   |                                    ----- ^ ----- T
+   |                                    |
+   |                                    T
+   |
+help: consider further restricting type parameter `T` with trait `Add`
+   |
+35 | fn test_all_incdec_arith<T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::ops::Add<Output = T>>(
+   |                                                                                          +++++++++++++++++++++++++++
+
+error[E0369]: cannot subtract `T` from `T`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:39:42
+   |
+39 |     test_incdec_arith(value, true, value - value);
+   |                                    ----- ^ ----- T
+   |                                    |
+   |                                    T
+   |
+help: consider further restricting type parameter `T` with trait `Sub`
+   |
+35 | fn test_all_incdec_arith<T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::ops::Sub<Output = T>>(
+   |                                                                                          +++++++++++++++++++++++++++
+
+error[E0369]: cannot add `T` to `T`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:40:43
+   |
+40 |     test_incdec_arith(value, false, value + value);
+   |                                     ----- ^ ----- T
+   |                                     |
+   |                                     T
+   |
+help: consider further restricting type parameter `T` with trait `Add`
+   |
+35 | fn test_all_incdec_arith<T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::ops::Add<Output = T>>(
+   |                                                                                          +++++++++++++++++++++++++++
+
+error[E0369]: cannot subtract `T` from `T`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:41:43
+   |
+41 |     test_incdec_arith(value, false, value - value);
+   |                                     ----- ^ ----- T
+   |                                     |
+   |                                     T
+   |
+help: consider further restricting type parameter `T` with trait `Sub`
+   |
+35 | fn test_all_incdec_arith<T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::ops::Sub<Output = T>>(
+   |                                                                                          +++++++++++++++++++++++++++
+
+error[E0277]: cannot add-assign `&{integer}` to `&{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:52:5
+   |
+52 |     test_incdec(&ia[1], true, 1);
+   |     ^^^^^^^^^^^ no implementation for `&{integer} += &{integer}`
+   |
+   = help: the trait `AddAssign` is not implemented for `&{integer}`
+   = help: the following other types implement trait `AddAssign<Rhs>`:
+             `f128` implements `AddAssign<&f128>`
+             `f128` implements `AddAssign`
+             `f16` implements `AddAssign<&f16>`
+             `f16` implements `AddAssign`
+             `f32` implements `AddAssign<&f32>`
+             `f32` implements `AddAssign`
+             `f64` implements `AddAssign<&f64>`
+             `f64` implements `AddAssign`
+           and 24 others
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:3:38
+   |
+ 3 | fn test_incdec<T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign>(
+   |                                      ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0277]: cannot subtract-assign `&{integer}` from `&{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:52:5
+   |
+52 |     test_incdec(&ia[1], true, 1);
+   |     ^^^^^^^^^^^ no implementation for `&{integer} -= &{integer}`
+   |
+   = help: the trait `SubAssign` is not implemented for `&{integer}`
+   = help: the following other types implement trait `SubAssign<Rhs>`:
+             `f128` implements `SubAssign<&f128>`
+             `f128` implements `SubAssign`
+             `f16` implements `SubAssign<&f16>`
+             `f16` implements `SubAssign`
+             `f32` implements `SubAssign<&f32>`
+             `f32` implements `SubAssign`
+             `f64` implements `SubAssign<&f64>`
+             `f64` implements `SubAssign`
+           and 24 others
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:3:60
+   |
+ 3 | fn test_incdec<T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign>(
+   |                                                            ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:52:31
+   |
+52 |     test_incdec(&ia[1], true, 1);
+   |     ----------- ------        ^ expected `&{integer}`, found integer
+   |     |           |
+   |     |           expected some other arguments to be an `&{integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:3:4
+   |
+ 3 | fn test_incdec<T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign>(
+   |    ^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+ 4 |     value: T,
+   |     -------- `change` needs to match the `&{integer}` type of this parameter
+ 5 |     pre_p: bool,
+ 6 |     change: T,
+   |     --------- this parameter needs to match the `&{integer}` type of `value`
+help: consider borrowing here
+   |
+52 |     test_incdec(&ia[1], true, &1);
+   |                               +
+
+error[E0277]: cannot add-assign `&{integer}` to `&{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:53:5
+   |
+53 |     test_incdec(&ia[1], true, -1);
+   |     ^^^^^^^^^^^ no implementation for `&{integer} += &{integer}`
+   |
+   = help: the trait `AddAssign` is not implemented for `&{integer}`
+   = help: the following other types implement trait `AddAssign<Rhs>`:
+             `f128` implements `AddAssign<&f128>`
+             `f128` implements `AddAssign`
+             `f16` implements `AddAssign<&f16>`
+             `f16` implements `AddAssign`
+             `f32` implements `AddAssign<&f32>`
+             `f32` implements `AddAssign`
+             `f64` implements `AddAssign<&f64>`
+             `f64` implements `AddAssign`
+           and 24 others
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:3:38
+   |
+ 3 | fn test_incdec<T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign>(
+   |                                      ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0277]: cannot subtract-assign `&{integer}` from `&{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:53:5
+   |
+53 |     test_incdec(&ia[1], true, -1);
+   |     ^^^^^^^^^^^ no implementation for `&{integer} -= &{integer}`
+   |
+   = help: the trait `SubAssign` is not implemented for `&{integer}`
+   = help: the following other types implement trait `SubAssign<Rhs>`:
+             `f128` implements `SubAssign<&f128>`
+             `f128` implements `SubAssign`
+             `f16` implements `SubAssign<&f16>`
+             `f16` implements `SubAssign`
+             `f32` implements `SubAssign<&f32>`
+             `f32` implements `SubAssign`
+             `f64` implements `SubAssign<&f64>`
+             `f64` implements `SubAssign`
+           and 24 others
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:3:60
+   |
+ 3 | fn test_incdec<T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign>(
+   |                                                            ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:53:31
+   |
+53 |     test_incdec(&ia[1], true, -1);
+   |     ----------- ------        ^^ expected `&{integer}`, found integer
+   |     |           |
+   |     |           expected some other arguments to be an `&{integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:3:4
+   |
+ 3 | fn test_incdec<T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign>(
+   |    ^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+ 4 |     value: T,
+   |     -------- `change` needs to match the `&{integer}` type of this parameter
+ 5 |     pre_p: bool,
+ 6 |     change: T,
+   |     --------- this parameter needs to match the `&{integer}` type of `value`
+help: consider borrowing here
+   |
+53 |     test_incdec(&ia[1], true, &-1);
+   |                               +
+
+error[E0277]: cannot add-assign `&{integer}` to `&{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:54:5
+   |
+54 |     test_incdec(&ia[1], false, 1);
+   |     ^^^^^^^^^^^ no implementation for `&{integer} += &{integer}`
+   |
+   = help: the trait `AddAssign` is not implemented for `&{integer}`
+   = help: the following other types implement trait `AddAssign<Rhs>`:
+             `f128` implements `AddAssign<&f128>`
+             `f128` implements `AddAssign`
+             `f16` implements `AddAssign<&f16>`
+             `f16` implements `AddAssign`
+             `f32` implements `AddAssign<&f32>`
+             `f32` implements `AddAssign`
+             `f64` implements `AddAssign<&f64>`
+             `f64` implements `AddAssign`
+           and 24 others
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:3:38
+   |
+ 3 | fn test_incdec<T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign>(
+   |                                      ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0277]: cannot subtract-assign `&{integer}` from `&{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:54:5
+   |
+54 |     test_incdec(&ia[1], false, 1);
+   |     ^^^^^^^^^^^ no implementation for `&{integer} -= &{integer}`
+   |
+   = help: the trait `SubAssign` is not implemented for `&{integer}`
+   = help: the following other types implement trait `SubAssign<Rhs>`:
+             `f128` implements `SubAssign<&f128>`
+             `f128` implements `SubAssign`
+             `f16` implements `SubAssign<&f16>`
+             `f16` implements `SubAssign`
+             `f32` implements `SubAssign<&f32>`
+             `f32` implements `SubAssign`
+             `f64` implements `SubAssign<&f64>`
+             `f64` implements `SubAssign`
+           and 24 others
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:3:60
+   |
+ 3 | fn test_incdec<T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign>(
+   |                                                            ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:54:32
+   |
+54 |     test_incdec(&ia[1], false, 1);
+   |     ----------- ------         ^ expected `&{integer}`, found integer
+   |     |           |
+   |     |           expected some other arguments to be an `&{integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:3:4
+   |
+ 3 | fn test_incdec<T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign>(
+   |    ^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+ 4 |     value: T,
+   |     -------- `change` needs to match the `&{integer}` type of this parameter
+ 5 |     pre_p: bool,
+ 6 |     change: T,
+   |     --------- this parameter needs to match the `&{integer}` type of `value`
+help: consider borrowing here
+   |
+54 |     test_incdec(&ia[1], false, &1);
+   |                                +
+
+error[E0277]: cannot add-assign `&{integer}` to `&{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:55:5
+   |
+55 |     test_incdec(&ia[1], false, -1);
+   |     ^^^^^^^^^^^ no implementation for `&{integer} += &{integer}`
+   |
+   = help: the trait `AddAssign` is not implemented for `&{integer}`
+   = help: the following other types implement trait `AddAssign<Rhs>`:
+             `f128` implements `AddAssign<&f128>`
+             `f128` implements `AddAssign`
+             `f16` implements `AddAssign<&f16>`
+             `f16` implements `AddAssign`
+             `f32` implements `AddAssign<&f32>`
+             `f32` implements `AddAssign`
+             `f64` implements `AddAssign<&f64>`
+             `f64` implements `AddAssign`
+           and 24 others
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:3:38
+   |
+ 3 | fn test_incdec<T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign>(
+   |                                      ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0277]: cannot subtract-assign `&{integer}` from `&{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:55:5
+   |
+55 |     test_incdec(&ia[1], false, -1);
+   |     ^^^^^^^^^^^ no implementation for `&{integer} -= &{integer}`
+   |
+   = help: the trait `SubAssign` is not implemented for `&{integer}`
+   = help: the following other types implement trait `SubAssign<Rhs>`:
+             `f128` implements `SubAssign<&f128>`
+             `f128` implements `SubAssign`
+             `f16` implements `SubAssign<&f16>`
+             `f16` implements `SubAssign`
+             `f32` implements `SubAssign<&f32>`
+             `f32` implements `SubAssign`
+             `f64` implements `SubAssign<&f64>`
+             `f64` implements `SubAssign`
+           and 24 others
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:3:60
+   |
+ 3 | fn test_incdec<T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign>(
+   |                                                            ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:55:32
+   |
+55 |     test_incdec(&ia[1], false, -1);
+   |     ----------- ------         ^^ expected `&{integer}`, found integer
+   |     |           |
+   |     |           expected some other arguments to be an `&{integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:3:4
+   |
+ 3 | fn test_incdec<T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign>(
+   |    ^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+ 4 |     value: T,
+   |     -------- `change` needs to match the `&{integer}` type of this parameter
+ 5 |     pre_p: bool,
+ 6 |     change: T,
+   |     --------- this parameter needs to match the `&{integer}` type of `value`
+help: consider borrowing here
+   |
+55 |     test_incdec(&ia[1], false, &-1);
+   |                                +
+
+error: aborting due to 18 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0369.
+For more information about an error, try `rustc --explain E0277`.

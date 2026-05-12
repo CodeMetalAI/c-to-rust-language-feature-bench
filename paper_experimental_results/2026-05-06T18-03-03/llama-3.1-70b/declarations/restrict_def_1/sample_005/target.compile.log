@@ -1,0 +1,25 @@
+error[E0499]: cannot borrow `bank_a` as mutable more than once at a time
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_1/sample_005/target.rs:10:31
+   |
+ 9 |     let a = if which_a == 0 { &mut bank_a } else { &mut bank_b };
+   |                               ----------- first mutable borrow occurs here
+10 |     let b = if which_b == 0 { &mut bank_a } else { &mut bank_b };
+   |                               ^^^^^^^^^^^ second mutable borrow occurs here
+11 |
+12 |     fill(a, 8, 100);
+   |          - first borrow later used here
+
+error[E0499]: cannot borrow `bank_b` as mutable more than once at a time
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_1/sample_005/target.rs:10:52
+   |
+ 9 |     let a = if which_a == 0 { &mut bank_a } else { &mut bank_b };
+   |                                                    ----------- first mutable borrow occurs here
+10 |     let b = if which_b == 0 { &mut bank_a } else { &mut bank_b };
+   |                                                    ^^^^^^^^^^^ second mutable borrow occurs here
+11 |
+12 |     fill(a, 8, 100);
+   |          - first borrow later used here
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0499`.

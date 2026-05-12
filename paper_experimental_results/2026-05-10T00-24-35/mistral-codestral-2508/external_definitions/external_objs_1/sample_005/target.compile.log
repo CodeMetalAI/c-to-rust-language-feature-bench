@@ -1,0 +1,142 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/external_definitions/external_objs_1/sample_005/target.rs:8:29
+  |
+8 | static mut P_I1: *mut i32 = unsafe { &mut I1 };
+  |                             ^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/external_definitions/external_objs_1/sample_005/target.rs:9:29
+  |
+9 | static mut P_I2: *mut i32 = unsafe { &mut I2 };
+  |                             ^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/external_definitions/external_objs_1/sample_005/target.rs:10:29
+   |
+10 | static mut P_I4: *mut i32 = unsafe { &mut I4 };
+   |                             ^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/external_definitions/external_objs_1/sample_005/target.rs:11:29
+   |
+11 | static mut P_I5: *mut i32 = unsafe { &mut I5 };
+   |                             ^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/external_definitions/external_objs_1/sample_005/target.rs:14:5
+   |
+14 | /     unsafe {
+15 | |         if I1 != 1 {
+16 | |             std::process::exit(1);
+...  |
+62 | |     }
+   | |_____^
+
+warning: creating a mutable reference to mutable static
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/external_definitions/external_objs_1/sample_005/target.rs:8:38
+  |
+8 | static mut P_I1: *mut i32 = unsafe { &mut I1 };
+  |                                      ^^^^^^^ mutable reference to mutable static
+  |
+  = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+  = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+  = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw mut` instead to create a raw pointer
+  |
+8 | static mut P_I1: *mut i32 = unsafe { &raw mut I1 };
+  |                                       +++
+
+warning: creating a mutable reference to mutable static
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/external_definitions/external_objs_1/sample_005/target.rs:9:38
+  |
+9 | static mut P_I2: *mut i32 = unsafe { &mut I2 };
+  |                                      ^^^^^^^ mutable reference to mutable static
+  |
+  = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+  = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+  |
+9 | static mut P_I2: *mut i32 = unsafe { &raw mut I2 };
+  |                                       +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/external_definitions/external_objs_1/sample_005/target.rs:10:38
+   |
+10 | static mut P_I4: *mut i32 = unsafe { &mut I4 };
+   |                                      ^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+10 | static mut P_I4: *mut i32 = unsafe { &raw mut I4 };
+   |                                       +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/external_definitions/external_objs_1/sample_005/target.rs:11:38
+   |
+11 | static mut P_I5: *mut i32 = unsafe { &mut I5 };
+   |                                      ^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+11 | static mut P_I5: *mut i32 = unsafe { &raw mut I5 };
+   |                                       +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/external_definitions/external_objs_1/sample_005/target.rs:32:20
+   |
+32 |         if P_I1 != &mut I1 {
+   |                    ^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+32 |         if P_I1 != &raw mut I1 {
+   |                     +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/external_definitions/external_objs_1/sample_005/target.rs:35:20
+   |
+35 |         if P_I2 != &mut I2 {
+   |                    ^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+35 |         if P_I2 != &raw mut I2 {
+   |                     +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/external_definitions/external_objs_1/sample_005/target.rs:38:20
+   |
+38 |         if P_I4 != &mut I4 {
+   |                    ^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+38 |         if P_I4 != &raw mut I4 {
+   |                     +++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/external_definitions/external_objs_1/sample_005/target.rs:41:20
+   |
+41 |         if P_I5 != &mut I5 {
+   |                    ^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+41 |         if P_I5 != &raw mut I5 {
+   |                     +++
+
+error: aborting due to 5 previous errors; 8 warnings emitted

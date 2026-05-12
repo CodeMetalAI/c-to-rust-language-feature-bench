@@ -1,0 +1,162 @@
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:13:37
+   |
+13 | fn checksum_2d(m: usize, a: &[[i32; m]]) -> i32 {
+   |                -                    ^
+   |                |
+   |                this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:23:34
+   |
+23 | fn fvla(m: usize, C: &mut [[i32; m]]) {
+   |         -                        ^
+   |         |
+   |         this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:24:21
+   |
+23 | fn fvla(m: usize, C: &mut [[i32; m]]) {
+   |         - this would need to be a `const`
+24 |     let mut D = [0; m];
+   |                     ^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:47:22
+   |
+47 |     let mut X = [[0; m]; m];
+   |                      ^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+45 -     let m = N;
+45 +     const m: /* Type */ = N;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:47:26
+   |
+47 |     let mut X = [[0; m]; m];
+   |                          ^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+45 -     let m = N;
+45 +     const m: /* Type */ = N;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:48:22
+   |
+48 |     let mut Y = [[0; m]; m];
+   |                      ^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+45 -     let m = N;
+45 +     const m: /* Type */ = N;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:48:26
+   |
+48 |     let mut Y = [[0; m]; m];
+   |                          ^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+45 -     let m = N;
+45 +     const m: /* Type */ = N;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:61:27
+   |
+61 |     let mut expect = [[0; m]; m];
+   |                           ^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+45 -     let m = N;
+45 +     const m: /* Type */ = N;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:61:31
+   |
+61 |     let mut expect = [[0; m]; m];
+   |                               ^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+45 -     let m = N;
+45 +     const m: /* Type */ = N;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:74:28
+   |
+74 |     let mut expect2 = [[0; m]; m];
+   |                            ^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+45 -     let m = N;
+45 +     const m: /* Type */ = N;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:74:32
+   |
+74 |     let mut expect2 = [[0; m]; m];
+   |                                ^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+45 -     let m = N;
+45 +     const m: /* Type */ = N;
+   |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:38:5
+   |
+38 | /     unsafe {
+39 | |         let mut sink = &mut 0 as *mut i32;
+40 | |         *sink ^= s;
+41 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:86:5
+   |
+86 | /     unsafe {
+87 | |         if sink == 0 {
+88 | |             return 3;
+89 | |         }
+90 | |     }
+   | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:69:16
+   |
+44 | fn main() {
+   |          - expected `()` because of default return type
+...
+69 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_4/sample_004/target.rs:8:13
+  |
+8 |             BACKING[i * N + j] = (i + 1) as i32 * 100 + (j + 1) as i32;
+  |             ^^^^^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 15 previous errors
+
+Some errors have detailed explanations: E0133, E0308, E0435.
+For more information about an error, try `rustc --explain E0133`.

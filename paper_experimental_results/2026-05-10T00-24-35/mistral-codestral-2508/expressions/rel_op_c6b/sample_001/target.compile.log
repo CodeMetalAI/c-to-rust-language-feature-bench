@@ -1,0 +1,28 @@
+error: expected one of `,`, `:`, or `}`, found `::`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/rel_op_c6b/sample_001/target.rs:14:26
+   |
+14 |     let s = S { x: 0, i32::0 };
+   |             -         ---^^ expected one of `,`, `:`, or `}`
+   |             |         |
+   |             |         while parsing this struct field
+   |             while parsing this struct
+
+error[E0063]: missing field `y` in initializer of `S`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/rel_op_c6b/sample_001/target.rs:14:13
+   |
+14 |     let s = S { x: 0, i32::0 };
+   |             ^ missing `y`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/rel_op_c6b/sample_001/target.rs:17:14
+   |
+17 |     if ps != px {
+   |              ^^ expected `*const S`, found `*const i32`
+   |
+   = note: expected raw pointer `*const S`
+              found raw pointer `*const i32`
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0063, E0308.
+For more information about an error, try `rustc --explain E0063`.

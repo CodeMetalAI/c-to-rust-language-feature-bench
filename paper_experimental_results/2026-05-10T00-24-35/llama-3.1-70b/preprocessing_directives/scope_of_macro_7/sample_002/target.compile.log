@@ -1,0 +1,150 @@
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:6:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+6 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0061]: this function takes 1 argument but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:8:8
+   |
+ 8 |     if debug("X = %d\n", x)!= 2 {
+   |        ^^^^^             - unexpected argument #2 of type `{integer}`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:26:4
+   |
+26 | fn debug<T: std::fmt::Debug>(args: T) -> usize {
+   |    ^^^^^
+help: remove the extra argument
+   |
+ 8 -     if debug("X = %d\n", x)!= 2 {
+ 8 +     if debug("X = %d\n")!= 2 {
+   |
+
+error[E0061]: this function takes 2 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:16:8
+   |
+16 |     if report(x > y, "x is {} but y is {}", x, y)!= 1 {
+   |        ^^^^^^                               -  - unexpected argument #4 of type `{integer}`
+   |                                             |
+   |                                             unexpected argument #3 of type `{integer}`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:43:4
+   |
+43 | fn report<T: std::fmt::Debug>(test: bool, args: T) -> usize {
+   |    ^^^^^^
+help: remove the extra arguments
+   |
+16 -     if report(x > y, "x is {} but y is {}", x, y)!= 1 {
+16 +     if report(x > y, "x is {} but y is {}")!= 1 {
+   |
+
+error[E0061]: this function takes 2 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:19:8
+   |
+19 |     if report(x < y, "x is {} but y is {}", x, y)!= 3 {
+   |        ^^^^^^                               -  - unexpected argument #4 of type `{integer}`
+   |                                             |
+   |                                             unexpected argument #3 of type `{integer}`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:43:4
+   |
+43 | fn report<T: std::fmt::Debug>(test: bool, args: T) -> usize {
+   |    ^^^^^^
+help: remove the extra arguments
+   |
+19 -     if report(x < y, "x is {} but y is {}", x, y)!= 3 {
+19 +     if report(x < y, "x is {} but y is {}")!= 3 {
+   |
+
+error[E0658]: use of unstable library feature `formatting_options`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:28:38
+   |
+28 |     std::fmt::Debug::fmt(&args, &mut std::fmt::Formatter::new())
+   |                                      ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: see issue #118117 <https://github.com/rust-lang/rust/issues/118117> for more information
+   = help: add `#![feature(formatting_options)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0061]: this function takes 2 arguments but 0 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:28:38
+    |
+ 28 |     std::fmt::Debug::fmt(&args, &mut std::fmt::Formatter::new())
+    |                                      ^^^^^^^^^^^^^^^^^^^^^^^^-- two arguments of type `&mut dyn std::fmt::Write` and `FormattingOptions` are missing
+    |
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:581:18
+    |
+581 |     pub const fn new(write: &'a mut (dyn Write + 'a), options: FormattingOptions) -> Self {
+    |                  ^^^
+help: provide the arguments
+    |
+ 28 |     std::fmt::Debug::fmt(&args, &mut std::fmt::Formatter::new(/* &mut dyn std::fmt::Write */, /* FormattingOptions */))
+    |                                                               +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+error[E0599]: no method named `as_ref` found for type parameter `T` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:31:35
+   |
+26 | fn debug<T: std::fmt::Debug>(args: T) -> usize {
+   |          - method `as_ref` not found for this type parameter
+...
+31 |     if let Some((_, rest)) = args.as_ref().debug_tuple_fields() {
+   |                                   ^^^^^^ method not found in `T`
+   |
+   = help: items from traits can only be used if the type parameter is bounded by the trait
+help: the following trait defines an item `as_ref`, perhaps you need to restrict type parameter `T` with it:
+   |
+26 | fn debug<T: std::fmt::Debug + AsRef</* T */>>(args: T) -> usize {
+   |                             ++++++++++++++++
+
+error[E0658]: use of unstable library feature `formatting_options`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:48:42
+   |
+48 |         std::fmt::Debug::fmt(&args, &mut std::fmt::Formatter::new())
+   |                                          ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: see issue #118117 <https://github.com/rust-lang/rust/issues/118117> for more information
+   = help: add `#![feature(formatting_options)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0061]: this function takes 2 arguments but 0 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:48:42
+    |
+ 48 |         std::fmt::Debug::fmt(&args, &mut std::fmt::Formatter::new())
+    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^-- two arguments of type `&mut dyn std::fmt::Write` and `FormattingOptions` are missing
+    |
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:581:18
+    |
+581 |     pub const fn new(write: &'a mut (dyn Write + 'a), options: FormattingOptions) -> Self {
+    |                  ^^^
+help: provide the arguments
+    |
+ 48 |         std::fmt::Debug::fmt(&args, &mut std::fmt::Formatter::new(/* &mut dyn std::fmt::Write */, /* FormattingOptions */))
+    |                                                                   +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+error[E0599]: no method named `as_ref` found for type parameter `T` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:51:39
+   |
+43 | fn report<T: std::fmt::Debug>(test: bool, args: T) -> usize {
+   |           - method `as_ref` not found for this type parameter
+...
+51 |         if let Some((_, rest)) = args.as_ref().debug_tuple_fields() {
+   |                                       ^^^^^^ method not found in `T`
+   |
+   = help: items from traits can only be used if the type parameter is bounded by the trait
+help: the following trait defines an item `as_ref`, perhaps you need to restrict type parameter `T` with it:
+   |
+43 | fn report<T: std::fmt::Debug + AsRef</* T */>>(test: bool, args: T) -> usize {
+   |                              ++++++++++++++++
+
+error: aborting due to 10 previous errors
+
+Some errors have detailed explanations: E0061, E0308, E0599, E0658.
+For more information about an error, try `rustc --explain E0061`.

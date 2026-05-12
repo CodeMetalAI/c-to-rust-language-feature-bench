@@ -1,0 +1,73 @@
+warning: unused import: `std::mem`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_003/target.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_003/target.rs:60:14
+   |
+60 |         ha = unsafe { &mut *std::ptr::null_mut() as *mut [usize; 1] };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_003/target.rs:66:14
+   |
+66 |         ha = unsafe { &mut *(ha as *mut usize as *mut [usize; 1]) };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no function or associated item named `default` found for type parameter `T` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_003/target.rs:9:26
+  |
+5 | fn sum_slice<T>(slice: &[T]) -> T
+  |              - function or associated item `default` not found for this type parameter
+...
+9 |     slice.iter().fold(T::default(), |acc, &x| acc + x)
+  |                          ^^^^^^^ function or associated item not found in `T`
+  |
+  = help: items from traits can only be used if the type parameter is bounded by the trait
+help: the following trait defines an item `default`, perhaps you need to restrict type parameter `T` with it:
+  |
+7 |     T: Copy + std::ops::Add<Output = T> + std::ops::AddAssign + Default,
+  |                                                               +++++++++
+
+error[E0369]: cannot add `*const _` to `*const _`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_003/target.rs:62:101
+   |
+62 |         if std::mem::size_of::<[usize; 1]>() as *const _!= std::mem::size_of::<usize>() as *const _ + &ha as *const _ {
+   |                                                            ---------------------------------------- ^ --------------- *const _
+   |                                                            |
+   |                                                            *const _
+
+error[E0608]: cannot index into a value of type `*mut [usize; 1]`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_003/target.rs:68:14
+   |
+68 |         if ha[0]!= 1 {
+   |              ^^^
+   |
+help: consider using `wrapping_add` or `add` for indexing into raw pointer
+   |
+68 -         if ha[0]!= 1 {
+68 +         if ha.wrapping_add(0)!= 1 {
+   |
+
+error[E0608]: cannot index into a value of type `*mut [usize; 1]`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_003/target.rs:72:14
+   |
+72 |         if ha[1]!= 3 {
+   |              ^^^
+   |
+help: consider using `wrapping_add` or `add` for indexing into raw pointer
+   |
+72 -         if ha[1]!= 3 {
+72 +         if ha.wrapping_add(1)!= 3 {
+   |
+
+error: aborting due to 6 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0369, E0599, E0608.
+For more information about an error, try `rustc --explain E0369`.

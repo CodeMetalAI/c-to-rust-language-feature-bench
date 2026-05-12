@@ -1,0 +1,143 @@
+error[E0502]: cannot borrow `x` as mutable because it is also borrowed as immutable
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/ptr_decl/sample_004/target.rs:7:18
+  |
+5 |       let mut b = Bundle {
+  |  _________________-
+6 | |         p_to_const: &x,
+  | |                     -- immutable borrow occurs here
+7 | |         const_p: &mut x,
+  | |                  ^^^^^^ mutable borrow occurs here
+8 | |         const_p_via_typedef: &mut x,
+9 | |     };
+  | |_____- immutable borrow later used here
+
+error[E0502]: cannot borrow `x` as mutable because it is also borrowed as immutable
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/ptr_decl/sample_004/target.rs:8:30
+  |
+5 |       let mut b = Bundle {
+  |  _________________-
+6 | |         p_to_const: &x,
+  | |                     -- immutable borrow occurs here
+7 | |         const_p: &mut x,
+8 | |         const_p_via_typedef: &mut x,
+  | |                              ^^^^^^ mutable borrow occurs here
+9 | |     };
+  | |_____- immutable borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/ptr_decl/sample_004/target.rs:11:25
+   |
+ 7 |         const_p: &mut x,
+   |                  ------ mutable borrow occurs here
+...
+11 |     if check_bundle(&b, &x) != 0 {
+   |                         ^^ immutable borrow occurs here
+...
+15 |     if *b.p_to_const != 10 {
+   |        ------------- mutable borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/ptr_decl/sample_004/target.rs:19:39
+   |
+ 7 |         const_p: &mut x,
+   |                  ------ mutable borrow occurs here
+...
+19 |     retarget_ptr_to_const(&mut b, &y, &x, pick(&y, 0) > 0);
+   |                                       ^^ immutable borrow occurs here
+20 |     if *b.p_to_const != 21 {
+   |        ------------- mutable borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/ptr_decl/sample_004/target.rs:24:35
+   |
+ 7 |         const_p: &mut x,
+   |                  ------ mutable borrow occurs here
+...
+24 |     retarget_ptr_to_const(&mut b, &x, &y, pick(&x, 1) < 0);
+   |                                   ^^ immutable borrow occurs here
+25 |     if *b.p_to_const != 21 {
+   |        ------------- mutable borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/ptr_decl/sample_004/target.rs:24:48
+   |
+ 7 |         const_p: &mut x,
+   |                  ------ mutable borrow occurs here
+...
+24 |     retarget_ptr_to_const(&mut b, &x, &y, pick(&x, 1) < 0);
+   |                                                ^^ immutable borrow occurs here
+25 |     if *b.p_to_const != 21 {
+   |        ------------- mutable borrow later used here
+
+error[E0503]: cannot use `x` because it was mutably borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/ptr_decl/sample_004/target.rs:30:8
+   |
+ 7 |         const_p: &mut x,
+   |                  ------ `x` is borrowed here
+...
+30 |     if x != 15 {
+   |        ^ use of borrowed `x`
+...
+34 |     *b.const_p_via_typedef += 7;
+   |     --------------------------- borrow later used here
+
+error[E0503]: cannot use `x` because it was mutably borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/ptr_decl/sample_004/target.rs:35:8
+   |
+ 7 |         const_p: &mut x,
+   |                  ------ `x` is borrowed here
+...
+35 |     if x != 22 {
+   |        ^ use of borrowed `x`
+...
+39 |     if check_bundle(&b, &x) != 0 {
+   |                     -- borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/ptr_decl/sample_004/target.rs:39:25
+   |
+ 7 |         const_p: &mut x,
+   |                  ------ mutable borrow occurs here
+...
+39 |     if check_bundle(&b, &x) != 0 {
+   |                         ^^ immutable borrow occurs here
+...
+43 |     if *b.p_to_const != 21 {
+   |        ------------- mutable borrow later used here
+
+error: lifetime may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/ptr_decl/sample_004/target.rs:65:9
+   |
+63 | fn retarget_ptr_to_const(b: &mut Bundle, a: &i32, c: &i32, sel: bool) {
+   |                          -                  - let's call the lifetime of this reference `'1`
+   |                          |
+   |                          has type `&mut Bundle<'2>`
+64 |     if sel {
+65 |         b.p_to_const = a;
+   |         ^^^^^^^^^^^^^^^^ assignment requires that `'1` must outlive `'2`
+   |
+help: consider introducing a named lifetime parameter
+   |
+63 | fn retarget_ptr_to_const<'a>(b: &mut Bundle<'a>, a: &'a i32, c: &i32, sel: bool) {
+   |                         ++++               ++++      ++
+
+error: lifetime may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/ptr_decl/sample_004/target.rs:67:9
+   |
+63 | fn retarget_ptr_to_const(b: &mut Bundle, a: &i32, c: &i32, sel: bool) {
+   |                          -                           - let's call the lifetime of this reference `'3`
+   |                          |
+   |                          has type `&mut Bundle<'2>`
+...
+67 |         b.p_to_const = c;
+   |         ^^^^^^^^^^^^^^^^ assignment requires that `'3` must outlive `'2`
+   |
+help: consider introducing a named lifetime parameter
+   |
+63 | fn retarget_ptr_to_const<'a>(b: &mut Bundle<'a>, a: &i32, c: &'a i32, sel: bool) {
+   |                         ++++               ++++               ++
+
+error: aborting due to 11 previous errors
+
+Some errors have detailed explanations: E0502, E0503.
+For more information about an error, try `rustc --explain E0502`.

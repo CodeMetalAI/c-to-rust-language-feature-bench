@@ -1,0 +1,14 @@
+error[E0499]: cannot borrow `v[_]` as mutable more than once at a time
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/fun_decl_2/sample_001/target.rs:60:43
+   |
+60 |     let out = run(apfi[sel], &mut v[sel], &mut v[sel + 1]);
+   |               ---            -----------  ^^^^^^^^^^^^^^^ second mutable borrow occurs here
+   |               |              |
+   |               |              first mutable borrow occurs here
+   |               first borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0499`.

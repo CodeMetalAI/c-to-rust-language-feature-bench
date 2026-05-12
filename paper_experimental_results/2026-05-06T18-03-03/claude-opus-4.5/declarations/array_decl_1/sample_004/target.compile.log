@@ -1,0 +1,73 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/array_decl_1/sample_004/target.rs:20:5
+   |
+20 | /     unsafe {
+21 | |         let mut i = 0;
+22 | |         while i < 11 {
+23 | |             FA[i] = (i + 1) as f32;
+...  |
+32 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/array_decl_1/sample_004/target.rs:64:5
+   |
+64 | /     unsafe {
+65 | |         if FA[0] != 1.0f32 || FA[10] != 11.0f32 {
+66 | |             std::process::exit(1);
+...  |
+72 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/array_decl_1/sample_004/target.rs:81:9
+   |
+81 | /         unsafe {
+82 | |             let mut i = 0;
+83 | |             while i < n1 {
+84 | |                 vla1[i as usize] = FA[i as usize] * 2.0f32;
+...  |
+93 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/array_decl_1/sample_004/target.rs:113:9
+    |
+113 | /         unsafe {
+114 | |             if sum_pointed_ints(&vla2, &BACKING, 17)
+115 | |                 != (100 + 101 + 102 + 103 + 104 + 105 + 106 + 107 + 108 + 109 + 110 + 111
+116 | |                     + 112 + 113 + 114 + 115 + 116)
+...   |
+129 | |         }
+    | |_________^
+
+warning: creating a shared reference to mutable static
+   --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/array_decl_1/sample_004/target.rs:114:40
+    |
+114 |             if sum_pointed_ints(&vla2, &BACKING, 17)
+    |                                        ^^^^^^^^ shared reference to mutable static
+    |
+    = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+    = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+    = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw const` instead to create a raw pointer
+    |
+114 |             if sum_pointed_ints(&vla2, &raw const BACKING, 17)
+    |                                         +++++++++
+
+warning: creating a shared reference to mutable static
+   --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/array_decl_1/sample_004/target.rs:121:43
+    |
+121 |             if takes_params(&vla1, &vla2, &BACKING)
+    |                                           ^^^^^^^^ shared reference to mutable static
+    |
+    = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+    = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+    |
+121 |             if takes_params(&vla1, &vla2, &raw const BACKING)
+    |                                            +++++++++
+
+error: aborting due to 4 previous errors; 2 warnings emitted

@@ -1,0 +1,77 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_2b/sample_001/target.rs:63:13
+   |
+63 |     let d = unsafe { &mut D };
+   |             ^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_2b/sample_001/target.rs:72:10
+   |
+72 |     init(unsafe { &mut D });
+   |          ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_2b/sample_001/target.rs:79:22
+   |
+79 |     if!same(&expect, unsafe { &D }, 100) {
+   |                      ^^^^^^^^^^^^^
+
+error[E0061]: this function takes 2 arguments but 3 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_2b/sample_001/target.rs:79:8
+   |
+79 |     if!same(&expect, unsafe { &D }, 100) {
+   |        ^^^^                         --- unexpected argument #3 of type `{integer}`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_2b/sample_001/target.rs:58:4
+   |
+58 | fn same(x: &[i32], y: &[i32]) -> bool {
+   |    ^^^^
+help: remove the extra argument
+   |
+79 -     if!same(&expect, unsafe { &D }, 100) {
+79 +     if!same(&expect, unsafe { &D }) {
+   |
+
+error[E0502]: cannot borrow `*d` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_2b/sample_001/target.rs:64:32
+   |
+64 |     call_f_checked(d, 50, &mut d[50..], &mut d[..]);
+   |     -------------- -           ^ mutable borrow occurs here
+   |     |              |
+   |     |              immutable borrow occurs here
+   |     immutable borrow later used by call
+
+error[E0502]: cannot borrow `*d` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_2b/sample_001/target.rs:64:46
+   |
+64 |     call_f_checked(d, 50, &mut d[50..], &mut d[..]);
+   |     -------------- -                         ^ mutable borrow occurs here
+   |     |              |
+   |     |              immutable borrow occurs here
+   |     immutable borrow later used by call
+
+error[E0502]: cannot borrow `*d` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_2b/sample_001/target.rs:65:32
+   |
+65 |     call_f_checked(d, 50, &mut d[1..], &mut d[..]);
+   |     -------------- -           ^ mutable borrow occurs here
+   |     |              |
+   |     |              immutable borrow occurs here
+   |     immutable borrow later used by call
+
+error[E0502]: cannot borrow `*d` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_2b/sample_001/target.rs:65:45
+   |
+65 |     call_f_checked(d, 50, &mut d[1..], &mut d[..]);
+   |     -------------- -                        ^ mutable borrow occurs here
+   |     |              |
+   |     |              immutable borrow occurs here
+   |     immutable borrow later used by call
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0061, E0502.
+For more information about an error, try `rustc --explain E0061`.

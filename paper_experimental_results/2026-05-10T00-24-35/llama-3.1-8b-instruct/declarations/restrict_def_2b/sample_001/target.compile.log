@@ -1,0 +1,131 @@
+error: const trait bounds are not allowed in trait object types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_001/target.rs:14:39
+   |
+14 | fn safe_move(n: i32, p: &mut i32, q: &const i32) {
+   |                                       ^^^^^^^^^
+
+error: const trait bounds are not allowed in trait object types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_001/target.rs:81:13
+   |
+81 | fn same(x: &const i32, y: &const i32, n: i32) -> bool {
+   |             ^^^^^^^^^
+
+error: const trait bounds are not allowed in trait object types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_001/target.rs:81:28
+   |
+81 | fn same(x: &const i32, y: &const i32, n: i32) -> bool {
+   |                            ^^^^^^^^^
+
+error[E0404]: expected trait, found builtin type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_001/target.rs:14:45
+   |
+14 | fn safe_move(n: i32, p: &mut i32, q: &const i32) {
+   |                                             ^^^ not a trait
+
+error[E0404]: expected trait, found builtin type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_001/target.rs:81:19
+   |
+81 | fn same(x: &const i32, y: &const i32, n: i32) -> bool {
+   |                   ^^^ not a trait
+
+error[E0404]: expected trait, found builtin type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_001/target.rs:81:34
+   |
+81 | fn same(x: &const i32, y: &const i32, n: i32) -> bool {
+   |                                  ^^^ not a trait
+
+error[E0658]: const trait impls are experimental
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_001/target.rs:14:39
+   |
+14 | fn safe_move(n: i32, p: &mut i32, q: &const i32) {
+   |                                       ^^^^^
+   |
+   = note: see issue #143874 <https://github.com/rust-lang/rust/issues/143874> for more information
+   = help: add `#![feature(const_trait_impl)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: const trait impls are experimental
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_001/target.rs:81:13
+   |
+81 | fn same(x: &const i32, y: &const i32, n: i32) -> bool {
+   |             ^^^^^
+   |
+   = note: see issue #143874 <https://github.com/rust-lang/rust/issues/143874> for more information
+   = help: add `#![feature(const_trait_impl)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: const trait impls are experimental
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_001/target.rs:81:28
+   |
+81 | fn same(x: &const i32, y: &const i32, n: i32) -> bool {
+   |                            ^^^^^
+   |
+   = note: see issue #143874 <https://github.com/rust-lang/rust/issues/143874> for more information
+   = help: add `#![feature(const_trait_impl)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+warning: unused import: `std::mem`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_001/target.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_001/target.rs:19:16
+   |
+19 |     let base = unsafe { p.as_ptr() };
+   |                ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_001/target.rs:25:13
+   |
+25 |             unsafe { *p.offset(i) = *q.offset(i); }
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_001/target.rs:31:13
+   |
+31 |             unsafe { *p.offset(-(i as isize)) = *q.offset(-(i as isize)); }
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_001/target.rs:84:12
+   |
+84 |         if unsafe { *x.offset(i)!= *y.offset(i) } {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_001/target.rs:14:39
+   |
+14 | fn safe_move(n: i32, p: &mut i32, q: &const i32) {
+   |                                       ^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2021/warnings-promoted-to-error.html>
+   = note: `#[warn(bare_trait_objects)]` (part of `#[warn(rust_2021_compatibility)]`) on by default
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+14 | fn safe_move(n: i32, p: &mut i32, q: &dyn const i32) {
+   |                                       +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_001/target.rs:81:13
+   |
+81 | fn same(x: &const i32, y: &const i32, n: i32) -> bool {
+   |             ^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+81 | fn same(x: &dyn const i32, y: &const i32, n: i32) -> bool {
+   |             +++
+
+error: aborting due to 13 previous errors; 3 warnings emitted
+
+Some errors have detailed explanations: E0404, E0658.
+For more information about an error, try `rustc --explain E0404`.

@@ -1,0 +1,49 @@
+error[E0425]: cannot find value `endless_zeros` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_003/target.rs:22:62
+   |
+22 |     let endless_zeros = IntList { car: 0, cdr: Some(Box::new(endless_zeros)) };
+   |                                                              ^^^^^^^^^^^^^ not found in this scope
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_003/target.rs:21:14
+   |
+21 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0369]: binary operation `==` cannot be applied to type `&Box<IntList>`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_003/target.rs:15:35
+    |
+ 15 |         (false, Some(cdr)) if cdr == &IntList { car: 0, cdr: None } => 2,
+    |                               --- ^^ ------------------------------ &IntList
+    |                               |
+    |                               &Box<IntList>
+    |
+note: the foreign item type `Box<IntList>` doesn't implement `PartialEq<IntList>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/boxed.rs:231:1
+    |
+231 | / pub struct Box<
+232 | |     T: ?Sized,
+233 | |     #[unstable(feature = "allocator_api", issue = "32838")] A: Allocator = Global,
+234 | | >(Unique<T>, A);
+    | |_^ not implement `PartialEq<IntList>`
+
+error[E0369]: binary operation `==` cannot be applied to type `Option<Box<IntList>>`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_003/target.rs:16:39
+    |
+ 16 |         (false, Some(cdr)) if cdr.cdr == Some(&IntList { car: 0, cdr: None }) => 3,
+    |                               ------- ^^ ------------------------------------ Option<&IntList>
+    |                               |
+    |                               Option<Box<IntList>>
+    |
+note: the foreign item type `Option<Box<IntList>>` doesn't implement `PartialEq<Option<&IntList>>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/option.rs:593:1
+    |
+593 | pub enum Option<T> {
+    | ^^^^^^^^^^^^^^^^^^ not implement `PartialEq<Option<&IntList>>`
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0277, E0369, E0425.
+For more information about an error, try `rustc --explain E0277`.

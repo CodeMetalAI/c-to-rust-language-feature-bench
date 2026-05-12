@@ -1,0 +1,55 @@
+fn id(x: i32) -> i32 {
+    x
+}
+
+fn call_cb<F>(cb: F, x: i32) -> i32
+where
+    F: Fn(i32) -> i32,
+{
+    cb(x)
+}
+
+#[derive(Debug, Default)]
+struct Tag {
+    t: u8,
+    r: i8,
+}
+
+fn use_bits(s: Tag) -> i32 {
+    let a: i32 = s.t as i32;
+    let b: i32 = s.r as i32;
+    a * 100 + b
+}
+
+fn f<F>(pf: F) -> i32
+where
+    F: Fn(i32) -> i32,
+{
+    call_cb(pf, 9)
+}
+
+fn main() {
+    let mut s = Tag { t: 15, r: 31 };
+
+    if use_bits(s) != (15 * 100 + 31) {
+        std::process::exit(1);
+    }
+
+    {
+        let t: i32 = 1234;
+
+        if t != 1234 {
+            std::process::exit(2);
+        }
+
+        if call_cb(id, 7) != 7 {
+            std::process::exit(3);
+        }
+
+        if f(id) != 9 {
+            std::process::exit(4);
+        }
+    }
+
+    std::process::exit(0);
+}

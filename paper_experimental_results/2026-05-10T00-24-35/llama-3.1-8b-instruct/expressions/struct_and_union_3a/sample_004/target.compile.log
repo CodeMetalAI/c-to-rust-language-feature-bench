@@ -1,0 +1,42 @@
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/struct_and_union_3a/sample_004/target.rs:16:5
+   |
+16 |     n: N,
+   |     ^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+16 |     n: std::mem::ManuallyDrop<N>,
+   |        +++++++++++++++++++++++ +
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/struct_and_union_3a/sample_004/target.rs:21:14
+   |
+21 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0436]: functional record update syntax requires a struct
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/struct_and_union_3a/sample_004/target.rs:24:11
+   |
+24 |         ..Default::default()
+   |           ^^^^^^^^^^^^^^^^^^
+
+error[E0277]: the trait bound `U: Default` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/struct_and_union_3a/sample_004/target.rs:24:11
+   |
+24 |         ..Default::default()
+   |           ^^^^^^^^^^^^^^^^^^ unsatisfied trait bound
+   |
+help: the trait `Default` is not implemented for `U`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/struct_and_union_3a/sample_004/target.rs:15:1
+   |
+15 | union U {
+   | ^^^^^^^
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0277, E0436, E0740.
+For more information about an error, try `rustc --explain E0277`.

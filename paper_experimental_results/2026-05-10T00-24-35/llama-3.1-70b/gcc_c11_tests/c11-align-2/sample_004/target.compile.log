@@ -1,0 +1,22 @@
+error: expected identifier, found `<`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_004/target.rs:13:32
+   |
+13 | #[repr(C, align(mem::align_of::<usize>()))]
+   |                                ^ expected identifier
+
+error[E0589]: invalid `repr(align)` attribute: not a power of two
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_004/target.rs:16:17
+   |
+16 | #[repr(C, align(0))]
+   |                 ^
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/c11-align-2/sample_004/target.rs:7:14
+  |
+7 | enum E { E = mem::align_of::<usize>() }
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^ expected `isize`, found `usize`
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0308, E0589.
+For more information about an error, try `rustc --explain E0308`.

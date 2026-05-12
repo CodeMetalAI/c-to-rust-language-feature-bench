@@ -1,0 +1,751 @@
+warning: variant `E_NEG` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:84:5
+   |
+84 |     E_NEG = -1,
+   |     ^^^^^ help: convert the identifier to upper camel case: `ENeg`
+   |
+   = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: variant `E_POS` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:85:5
+   |
+85 |     E_POS = 1,
+   |     ^^^^^ help: convert the identifier to upper camel case: `EPos`
+
+error[E0369]: binary operation `==` cannot be applied to type `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:79:9
+   |
+79 |     got == want
+   |     --- ^^ ---- TypeId
+   |     |
+   |     TypeId
+   |
+note: an implementation of `PartialEq` might be missing for `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:2:1
+   |
+ 2 | enum TypeId {
+   | ^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `TypeId` with `#[derive(PartialEq)]`
+   |
+ 2 + #[derive(PartialEq)]
+ 3 | enum TypeId {
+   |
+
+error[E0369]: cannot add `{integer}` to `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:96:36
+   |
+96 |     if !expect_type(true.type_id() + 0, TypeId::Int as i32) {
+   |                     -------------- ^ - {integer}
+   |                     |
+   |                     TypeId
+   |
+note: an implementation of `Add<{integer}>` might be missing for `TypeId`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:2:1
+   |
+ 2 | enum TypeId {
+   | ^^^^^^^^^^^ must implement `Add<{integer}>`
+note: the trait `Add` must be implemented
+  --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:77:1
+   |
+77 | pub const trait Add<Rhs = Self> {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:96:41
+   |
+96 |     if !expect_type(true.type_id() + 0, TypeId::Int as i32) {
+   |         -----------                     ^^^^^^^^^^^^^^^^^^ expected `TypeId`, found `i32`
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:78:4
+   |
+78 | fn expect_type(got: TypeId, want: TypeId) -> bool {
+   |    ^^^^^^^^^^^              ------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:97:16
+   |
+94 | fn main() {
+   |          - expected `()` because of default return type
+...
+97 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0599]: no function or associated item named `type_id` found for type `char` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:101:27
+    |
+101 |     if !expect_type(char::type_id() + 0, TypeId::Int as i32) {
+    |                           ^^^^^^^ function or associated item not found in `char`
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+    |
+  2 + use std::any::Any;
+    |
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:101:42
+    |
+101 |     if !expect_type(char::type_id() + 0, TypeId::Int as i32) {
+    |         -----------                      ^^^^^^^^^^^^^^^^^^ expected `TypeId`, found `i32`
+    |         |
+    |         arguments to this function are incorrect
+    |
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:78:4
+    |
+ 78 | fn expect_type(got: TypeId, want: TypeId) -> bool {
+    |    ^^^^^^^^^^^              ------------
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:106:21
+    |
+106 |     if !expect_type(i8::type_id() + 0, TypeId::Int as i32) {
+    |                     ^^^^^^^^^^^-- argument #1 of type `&i8` is missing
+    |
+note: method defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:19:8
+    |
+ 19 |     fn type_id(&self) -> TypeId;
+    |        ^^^^^^^  ----
+help: provide the argument
+    |
+106 |     if !expect_type(i8::type_id(/* &i8 */) + 0, TypeId::Int as i32) {
+    |                                 +++++++++
+
+error[E0369]: cannot add `{integer}` to `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:106:35
+    |
+106 |     if !expect_type(i8::type_id() + 0, TypeId::Int as i32) {
+    |                     ------------- ^ - {integer}
+    |                     |
+    |                     TypeId
+    |
+note: an implementation of `Add<{integer}>` might be missing for `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:2:1
+    |
+  2 | enum TypeId {
+    | ^^^^^^^^^^^ must implement `Add<{integer}>`
+note: the trait `Add` must be implemented
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:77:1
+    |
+ 77 | pub const trait Add<Rhs = Self> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:106:40
+    |
+106 |     if !expect_type(i8::type_id() + 0, TypeId::Int as i32) {
+    |         -----------                    ^^^^^^^^^^^^^^^^^^ expected `TypeId`, found `i32`
+    |         |
+    |         arguments to this function are incorrect
+    |
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:78:4
+    |
+ 78 | fn expect_type(got: TypeId, want: TypeId) -> bool {
+    |    ^^^^^^^^^^^              ------------
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:111:21
+    |
+111 |     if !expect_type(u8::type_id() + 0, TypeId::Int as i32) {
+    |                     ^^^^^^^^^^^-- argument #1 of type `&u8` is missing
+    |
+note: method defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:19:8
+    |
+ 19 |     fn type_id(&self) -> TypeId;
+    |        ^^^^^^^  ----
+help: provide the argument
+    |
+111 |     if !expect_type(u8::type_id(/* &u8 */) + 0, TypeId::Int as i32) {
+    |                                 +++++++++
+
+error[E0369]: cannot add `{integer}` to `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:111:35
+    |
+111 |     if !expect_type(u8::type_id() + 0, TypeId::Int as i32) {
+    |                     ------------- ^ - {integer}
+    |                     |
+    |                     TypeId
+    |
+note: an implementation of `Add<{integer}>` might be missing for `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:2:1
+    |
+  2 | enum TypeId {
+    | ^^^^^^^^^^^ must implement `Add<{integer}>`
+note: the trait `Add` must be implemented
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:77:1
+    |
+ 77 | pub const trait Add<Rhs = Self> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:111:40
+    |
+111 |     if !expect_type(u8::type_id() + 0, TypeId::Int as i32) {
+    |         -----------                    ^^^^^^^^^^^^^^^^^^ expected `TypeId`, found `i32`
+    |         |
+    |         arguments to this function are incorrect
+    |
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:78:4
+    |
+ 78 | fn expect_type(got: TypeId, want: TypeId) -> bool {
+    |    ^^^^^^^^^^^              ------------
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:116:21
+    |
+116 |     if !expect_type(i16::type_id() + 0, TypeId::Int as i32) {
+    |                     ^^^^^^^^^^^^-- argument #1 of type `&i16` is missing
+    |
+note: method defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:19:8
+    |
+ 19 |     fn type_id(&self) -> TypeId;
+    |        ^^^^^^^  ----
+help: provide the argument
+    |
+116 |     if !expect_type(i16::type_id(/* &i16 */) + 0, TypeId::Int as i32) {
+    |                                  ++++++++++
+
+error[E0369]: cannot add `{integer}` to `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:116:36
+    |
+116 |     if !expect_type(i16::type_id() + 0, TypeId::Int as i32) {
+    |                     -------------- ^ - {integer}
+    |                     |
+    |                     TypeId
+    |
+note: an implementation of `Add<{integer}>` might be missing for `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:2:1
+    |
+  2 | enum TypeId {
+    | ^^^^^^^^^^^ must implement `Add<{integer}>`
+note: the trait `Add` must be implemented
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:77:1
+    |
+ 77 | pub const trait Add<Rhs = Self> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:116:41
+    |
+116 |     if !expect_type(i16::type_id() + 0, TypeId::Int as i32) {
+    |         -----------                     ^^^^^^^^^^^^^^^^^^ expected `TypeId`, found `i32`
+    |         |
+    |         arguments to this function are incorrect
+    |
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:78:4
+    |
+ 78 | fn expect_type(got: TypeId, want: TypeId) -> bool {
+    |    ^^^^^^^^^^^              ------------
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:121:21
+    |
+121 |     if !expect_type(u16::type_id() + 0, TypeId::Int as i32) {
+    |                     ^^^^^^^^^^^^-- argument #1 of type `&u16` is missing
+    |
+note: method defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:19:8
+    |
+ 19 |     fn type_id(&self) -> TypeId;
+    |        ^^^^^^^  ----
+help: provide the argument
+    |
+121 |     if !expect_type(u16::type_id(/* &u16 */) + 0, TypeId::Int as i32) {
+    |                                  ++++++++++
+
+error[E0369]: cannot add `{integer}` to `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:121:36
+    |
+121 |     if !expect_type(u16::type_id() + 0, TypeId::Int as i32) {
+    |                     -------------- ^ - {integer}
+    |                     |
+    |                     TypeId
+    |
+note: an implementation of `Add<{integer}>` might be missing for `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:2:1
+    |
+  2 | enum TypeId {
+    | ^^^^^^^^^^^ must implement `Add<{integer}>`
+note: the trait `Add` must be implemented
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:77:1
+    |
+ 77 | pub const trait Add<Rhs = Self> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:121:41
+    |
+121 |     if !expect_type(u16::type_id() + 0, TypeId::Int as i32) {
+    |         -----------                     ^^^^^^^^^^^^^^^^^^ expected `TypeId`, found `i32`
+    |         |
+    |         arguments to this function are incorrect
+    |
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:78:4
+    |
+ 78 | fn expect_type(got: TypeId, want: TypeId) -> bool {
+    |    ^^^^^^^^^^^              ------------
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:126:21
+    |
+126 |     if !expect_type(i32::type_id() + 0, TypeId::UnsignedInt as i32) {
+    |                     ^^^^^^^^^^^^-- argument #1 of type `&i32` is missing
+    |
+note: method defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:19:8
+    |
+ 19 |     fn type_id(&self) -> TypeId;
+    |        ^^^^^^^  ----
+help: provide the argument
+    |
+126 |     if !expect_type(i32::type_id(/* &i32 */) + 0, TypeId::UnsignedInt as i32) {
+    |                                  ++++++++++
+
+error[E0369]: cannot add `{integer}` to `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:126:36
+    |
+126 |     if !expect_type(i32::type_id() + 0, TypeId::UnsignedInt as i32) {
+    |                     -------------- ^ - {integer}
+    |                     |
+    |                     TypeId
+    |
+note: an implementation of `Add<{integer}>` might be missing for `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:2:1
+    |
+  2 | enum TypeId {
+    | ^^^^^^^^^^^ must implement `Add<{integer}>`
+note: the trait `Add` must be implemented
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:77:1
+    |
+ 77 | pub const trait Add<Rhs = Self> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:126:41
+    |
+126 |     if !expect_type(i32::type_id() + 0, TypeId::UnsignedInt as i32) {
+    |         -----------                     ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `TypeId`, found `i32`
+    |         |
+    |         arguments to this function are incorrect
+    |
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:78:4
+    |
+ 78 | fn expect_type(got: TypeId, want: TypeId) -> bool {
+    |    ^^^^^^^^^^^              ------------
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:131:21
+    |
+131 |     if !expect_type(i64::type_id() + 0, TypeId::UnsignedLong as i32) {
+    |                     ^^^^^^^^^^^^-- argument #1 of type `&i64` is missing
+    |
+note: method defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:19:8
+    |
+ 19 |     fn type_id(&self) -> TypeId;
+    |        ^^^^^^^  ----
+help: provide the argument
+    |
+131 |     if !expect_type(i64::type_id(/* &i64 */) + 0, TypeId::UnsignedLong as i32) {
+    |                                  ++++++++++
+
+error[E0369]: cannot add `{integer}` to `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:131:36
+    |
+131 |     if !expect_type(i64::type_id() + 0, TypeId::UnsignedLong as i32) {
+    |                     -------------- ^ - {integer}
+    |                     |
+    |                     TypeId
+    |
+note: an implementation of `Add<{integer}>` might be missing for `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:2:1
+    |
+  2 | enum TypeId {
+    | ^^^^^^^^^^^ must implement `Add<{integer}>`
+note: the trait `Add` must be implemented
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:77:1
+    |
+ 77 | pub const trait Add<Rhs = Self> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:131:41
+    |
+131 |     if !expect_type(i64::type_id() + 0, TypeId::UnsignedLong as i32) {
+    |         -----------                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `TypeId`, found `i32`
+    |         |
+    |         arguments to this function are incorrect
+    |
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:78:4
+    |
+ 78 | fn expect_type(got: TypeId, want: TypeId) -> bool {
+    |    ^^^^^^^^^^^              ------------
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:136:21
+    |
+136 |     if !expect_type(i64::type_id() + 0, TypeId::UnsignedLongLong as i32) {
+    |                     ^^^^^^^^^^^^-- argument #1 of type `&i64` is missing
+    |
+note: method defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:19:8
+    |
+ 19 |     fn type_id(&self) -> TypeId;
+    |        ^^^^^^^  ----
+help: provide the argument
+    |
+136 |     if !expect_type(i64::type_id(/* &i64 */) + 0, TypeId::UnsignedLongLong as i32) {
+    |                                  ++++++++++
+
+error[E0369]: cannot add `{integer}` to `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:136:36
+    |
+136 |     if !expect_type(i64::type_id() + 0, TypeId::UnsignedLongLong as i32) {
+    |                     -------------- ^ - {integer}
+    |                     |
+    |                     TypeId
+    |
+note: an implementation of `Add<{integer}>` might be missing for `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:2:1
+    |
+  2 | enum TypeId {
+    | ^^^^^^^^^^^ must implement `Add<{integer}>`
+note: the trait `Add` must be implemented
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:77:1
+    |
+ 77 | pub const trait Add<Rhs = Self> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:136:41
+    |
+136 |     if !expect_type(i64::type_id() + 0, TypeId::UnsignedLongLong as i32) {
+    |         -----------                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `TypeId`, found `i32`
+    |         |
+    |         arguments to this function are incorrect
+    |
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:78:4
+    |
+ 78 | fn expect_type(got: TypeId, want: TypeId) -> bool {
+    |    ^^^^^^^^^^^              ------------
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:141:21
+    |
+141 |     if !expect_type(i32::type_id() + i64::type_id(), TypeId::Long as i32) {
+    |                     ^^^^^^^^^^^^-- argument #1 of type `&i32` is missing
+    |
+note: method defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:19:8
+    |
+ 19 |     fn type_id(&self) -> TypeId;
+    |        ^^^^^^^  ----
+help: provide the argument
+    |
+141 |     if !expect_type(i32::type_id(/* &i32 */) + i64::type_id(), TypeId::Long as i32) {
+    |                                  ++++++++++
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:141:38
+    |
+141 |     if !expect_type(i32::type_id() + i64::type_id(), TypeId::Long as i32) {
+    |                                      ^^^^^^^^^^^^-- argument #1 of type `&i64` is missing
+    |
+note: method defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:19:8
+    |
+ 19 |     fn type_id(&self) -> TypeId;
+    |        ^^^^^^^  ----
+help: provide the argument
+    |
+141 |     if !expect_type(i32::type_id() + i64::type_id(/* &i64 */), TypeId::Long as i32) {
+    |                                                   ++++++++++
+
+error[E0369]: cannot add `TypeId` to `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:141:36
+    |
+141 |     if !expect_type(i32::type_id() + i64::type_id(), TypeId::Long as i32) {
+    |                     -------------- ^ -------------- TypeId
+    |                     |
+    |                     TypeId
+    |
+note: an implementation of `Add` might be missing for `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:2:1
+    |
+  2 | enum TypeId {
+    | ^^^^^^^^^^^ must implement `Add`
+note: the trait `Add` must be implemented
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:77:1
+    |
+ 77 | pub const trait Add<Rhs = Self> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:141:54
+    |
+141 |     if !expect_type(i32::type_id() + i64::type_id(), TypeId::Long as i32) {
+    |         -----------                                  ^^^^^^^^^^^^^^^^^^^ expected `TypeId`, found `i32`
+    |         |
+    |         arguments to this function are incorrect
+    |
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:78:4
+    |
+ 78 | fn expect_type(got: TypeId, want: TypeId) -> bool {
+    |    ^^^^^^^^^^^              ------------
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:146:21
+    |
+146 |     if !expect_type(i64::type_id() + i64::type_id(), TypeId::LongLong as i32) {
+    |                     ^^^^^^^^^^^^-- argument #1 of type `&i64` is missing
+    |
+note: method defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:19:8
+    |
+ 19 |     fn type_id(&self) -> TypeId;
+    |        ^^^^^^^  ----
+help: provide the argument
+    |
+146 |     if !expect_type(i64::type_id(/* &i64 */) + i64::type_id(), TypeId::LongLong as i32) {
+    |                                  ++++++++++
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:146:38
+    |
+146 |     if !expect_type(i64::type_id() + i64::type_id(), TypeId::LongLong as i32) {
+    |                                      ^^^^^^^^^^^^-- argument #1 of type `&i64` is missing
+    |
+note: method defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:19:8
+    |
+ 19 |     fn type_id(&self) -> TypeId;
+    |        ^^^^^^^  ----
+help: provide the argument
+    |
+146 |     if !expect_type(i64::type_id() + i64::type_id(/* &i64 */), TypeId::LongLong as i32) {
+    |                                                   ++++++++++
+
+error[E0369]: cannot add `TypeId` to `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:146:36
+    |
+146 |     if !expect_type(i64::type_id() + i64::type_id(), TypeId::LongLong as i32) {
+    |                     -------------- ^ -------------- TypeId
+    |                     |
+    |                     TypeId
+    |
+note: an implementation of `Add` might be missing for `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:2:1
+    |
+  2 | enum TypeId {
+    | ^^^^^^^^^^^ must implement `Add`
+note: the trait `Add` must be implemented
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:77:1
+    |
+ 77 | pub const trait Add<Rhs = Self> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:146:54
+    |
+146 |     if !expect_type(i64::type_id() + i64::type_id(), TypeId::LongLong as i32) {
+    |         -----------                                  ^^^^^^^^^^^^^^^^^^^^^^^ expected `TypeId`, found `i32`
+    |         |
+    |         arguments to this function are incorrect
+    |
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:78:4
+    |
+ 78 | fn expect_type(got: TypeId, want: TypeId) -> bool {
+    |    ^^^^^^^^^^^              ------------
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:151:21
+    |
+151 |     if !expect_type(i32::type_id() + i64::type_id(), TypeId::LongLong as i32) {
+    |                     ^^^^^^^^^^^^-- argument #1 of type `&i32` is missing
+    |
+note: method defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:19:8
+    |
+ 19 |     fn type_id(&self) -> TypeId;
+    |        ^^^^^^^  ----
+help: provide the argument
+    |
+151 |     if !expect_type(i32::type_id(/* &i32 */) + i64::type_id(), TypeId::LongLong as i32) {
+    |                                  ++++++++++
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:151:38
+    |
+151 |     if !expect_type(i32::type_id() + i64::type_id(), TypeId::LongLong as i32) {
+    |                                      ^^^^^^^^^^^^-- argument #1 of type `&i64` is missing
+    |
+note: method defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:19:8
+    |
+ 19 |     fn type_id(&self) -> TypeId;
+    |        ^^^^^^^  ----
+help: provide the argument
+    |
+151 |     if !expect_type(i32::type_id() + i64::type_id(/* &i64 */), TypeId::LongLong as i32) {
+    |                                                   ++++++++++
+
+error[E0369]: cannot add `TypeId` to `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:151:36
+    |
+151 |     if !expect_type(i32::type_id() + i64::type_id(), TypeId::LongLong as i32) {
+    |                     -------------- ^ -------------- TypeId
+    |                     |
+    |                     TypeId
+    |
+note: an implementation of `Add` might be missing for `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:2:1
+    |
+  2 | enum TypeId {
+    | ^^^^^^^^^^^ must implement `Add`
+note: the trait `Add` must be implemented
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:77:1
+    |
+ 77 | pub const trait Add<Rhs = Self> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:151:54
+    |
+151 |     if !expect_type(i32::type_id() + i64::type_id(), TypeId::LongLong as i32) {
+    |         -----------                                  ^^^^^^^^^^^^^^^^^^^^^^^ expected `TypeId`, found `i32`
+    |         |
+    |         arguments to this function are incorrect
+    |
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:78:4
+    |
+ 78 | fn expect_type(got: TypeId, want: TypeId) -> bool {
+    |    ^^^^^^^^^^^              ------------
+
+error[E0369]: cannot add `i32` to `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:156:40
+    |
+156 |     if !expect_type(E::E_NEG.type_id() + 0u32 as i32, i32::type_id() + 0) {
+    |                     ------------------ ^ ----------- i32
+    |                     |
+    |                     TypeId
+    |
+note: an implementation of `Add<i32>` might be missing for `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:2:1
+    |
+  2 | enum TypeId {
+    | ^^^^^^^^^^^ must implement `Add<i32>`
+note: the trait `Add` must be implemented
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:77:1
+    |
+ 77 | pub const trait Add<Rhs = Self> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:156:55
+    |
+156 |     if !expect_type(E::E_NEG.type_id() + 0u32 as i32, i32::type_id() + 0) {
+    |                                                       ^^^^^^^^^^^^-- argument #1 of type `&i32` is missing
+    |
+note: method defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:19:8
+    |
+ 19 |     fn type_id(&self) -> TypeId;
+    |        ^^^^^^^  ----
+help: provide the argument
+    |
+156 |     if !expect_type(E::E_NEG.type_id() + 0u32 as i32, i32::type_id(/* &i32 */) + 0) {
+    |                                                                    ++++++++++
+
+error[E0369]: cannot add `{integer}` to `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:156:70
+    |
+156 |     if !expect_type(E::E_NEG.type_id() + 0u32 as i32, i32::type_id() + 0) {
+    |                                                       -------------- ^ - {integer}
+    |                                                       |
+    |                                                       TypeId
+    |
+note: an implementation of `Add<{integer}>` might be missing for `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:2:1
+    |
+  2 | enum TypeId {
+    | ^^^^^^^^^^^ must implement `Add<{integer}>`
+note: the trait `Add` must be implemented
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:77:1
+    |
+ 77 | pub const trait Add<Rhs = Self> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0369]: cannot add `{integer}` to `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:161:40
+    |
+161 |     if !expect_type(E::E_NEG.type_id() + 0, i32::type_id() + 0) {
+    |                     ------------------ ^ - {integer}
+    |                     |
+    |                     TypeId
+    |
+note: an implementation of `Add<{integer}>` might be missing for `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:2:1
+    |
+  2 | enum TypeId {
+    | ^^^^^^^^^^^ must implement `Add<{integer}>`
+note: the trait `Add` must be implemented
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:77:1
+    |
+ 77 | pub const trait Add<Rhs = Self> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:161:45
+    |
+161 |     if !expect_type(E::E_NEG.type_id() + 0, i32::type_id() + 0) {
+    |                                             ^^^^^^^^^^^^-- argument #1 of type `&i32` is missing
+    |
+note: method defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:19:8
+    |
+ 19 |     fn type_id(&self) -> TypeId;
+    |        ^^^^^^^  ----
+help: provide the argument
+    |
+161 |     if !expect_type(E::E_NEG.type_id() + 0, i32::type_id(/* &i32 */) + 0) {
+    |                                                          ++++++++++
+
+error[E0369]: cannot add `{integer}` to `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:161:60
+    |
+161 |     if !expect_type(E::E_NEG.type_id() + 0, i32::type_id() + 0) {
+    |                                             -------------- ^ - {integer}
+    |                                             |
+    |                                             TypeId
+    |
+note: an implementation of `Add<{integer}>` might be missing for `TypeId`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_001/target.rs:2:1
+    |
+  2 | enum TypeId {
+    | ^^^^^^^^^^^ must implement `Add<{integer}>`
+note: the trait `Add` must be implemented
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:77:1
+    |
+ 77 | pub const trait Add<Rhs = Self> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 45 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0061, E0308, E0369, E0599.
+For more information about an error, try `rustc --explain E0061`.

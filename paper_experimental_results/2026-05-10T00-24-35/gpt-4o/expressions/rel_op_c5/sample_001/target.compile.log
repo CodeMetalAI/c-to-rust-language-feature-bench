@@ -1,0 +1,28 @@
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/rel_op_c5/sample_001/target.rs:12:14
+   |
+12 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/rel_op_c5/sample_001/target.rs:50:16
+   |
+50 |     let ui = (&u.i as *const i32) as *const u8;
+   |                ^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/rel_op_c5/sample_001/target.rs:51:16
+   |
+51 |     let ud = (&u.d as *const f64) as *const u8;
+   |                ^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0133, E0277.
+For more information about an error, try `rustc --explain E0133`.

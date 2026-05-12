@@ -1,0 +1,33 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/pointers_c2/sample_002/target.rs:19:5
+   |
+19 | /     unsafe {
+20 | |         if *pc != 17 {
+21 | |             std::process::exit(4);
+...  |
+29 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/pointers_c2/sample_002/target.rs:9:14
+  |
+9 |     if pc != p as *const () {
+  |              ^^^^^^^^^^^^^^ expected `*const i32`, found `*const ()`
+  |
+  = note: expected raw pointer `*const i32`
+             found raw pointer `*const ()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/pointers_c2/sample_002/target.rs:15:15
+   |
+15 |     if pcv != p as *const () {
+   |               ^^^^^^^^^^^^^^ expected `*const i32`, found `*const ()`
+   |
+   = note: expected raw pointer `*const i32`
+              found raw pointer `*const ()`
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

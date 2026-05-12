@@ -1,0 +1,89 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_001/target.rs:40:17
+   |
+40 |     f(if true { unsafe { VP } } else { C_CP as *const () });
+   |                 ^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_001/target.rs:41:44
+   |
+41 |     f(if true { C_CP as *const () } else { unsafe { VP } });
+   |                                            ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_001/target.rs:43:18
+   |
+43 |     f4(if true { unsafe { IP } } else { C_IP });
+   |                  ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_001/target.rs:44:32
+   |
+44 |     f4(if true { C_IP } else { unsafe { IP } });
+   |                                ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_001/target.rs:46:18
+   |
+46 |     f1(if true { unsafe { VP } } else { unsafe { IP as *mut () } });
+   |                  ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_001/target.rs:46:41
+   |
+46 |     f1(if true { unsafe { VP } } else { unsafe { IP as *mut () } });
+   |                                         ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_001/target.rs:47:18
+   |
+47 |     f1(if true { unsafe { IP as *mut () } } else { unsafe { VP } });
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_001/target.rs:47:52
+   |
+47 |     f1(if true { unsafe { IP as *mut () } } else { unsafe { VP } });
+   |                                                    ^^^^^^^^^^^^^
+
+error[E0277]: `*const ()` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_001/target.rs:3:14
+  |
+3 | static C_VP: *const () = ptr::null();
+  |              ^^^^^^^^^ `*const ()` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*const ()`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*const i32` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_001/target.rs:5:14
+  |
+5 | static C_IP: *const i32 = ptr::null();
+  |              ^^^^^^^^^^ `*const i32` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*const i32`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*mut i32` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_001/target.rs:6:14
+  |
+6 | static V_IP: *mut i32 = ptr::null_mut();
+  |              ^^^^^^^^ `*mut i32` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*mut i32`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*const i8` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_001/target.rs:8:14
+  |
+8 | static C_CP: *const i8 = ptr::null();
+  |              ^^^^^^^^^ `*const i8` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*const i8`
+  = note: shared static variables must have a type that implements `Sync`
+
+error: aborting due to 12 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

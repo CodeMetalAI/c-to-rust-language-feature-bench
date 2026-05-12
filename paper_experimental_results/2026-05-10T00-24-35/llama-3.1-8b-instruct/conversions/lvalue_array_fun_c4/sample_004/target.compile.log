@@ -1,0 +1,47 @@
+error[E0428]: the name `main` is defined multiple times
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_004/target.rs:111:1
+    |
+  9 | fn main() {
+    | --------- previous definition of the value `main` here
+...
+111 | fn main() {
+    | ^^^^^^^^^ `main` redefined here
+    |
+    = note: `main` must be defined only once in the value namespace of this module
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_004/target.rs:15:16
+   |
+ 9 | fn main() {
+   |          - expected `()` because of default return type
+...
+15 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_004/target.rs:71:16
+   |
+65 | fn test_suite() {
+   |                - help: try adding a return type: `-> i32`
+...
+71 |         return 7;
+   |                ^ expected `()`, found integer
+
+warning: unused variable: `x`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_004/target.rs:51:15
+   |
+51 | fn type_id<T>(x: T) -> u8
+   |               ^ help: if this is intentional, prefix it with an underscore: `_x`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `x`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_004/target.rs:58:16
+   |
+58 | fn type_id2<T>(x: T) -> u8
+   |                ^ help: if this is intentional, prefix it with an underscore: `_x`
+
+error: aborting due to 3 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0308, E0428.
+For more information about an error, try `rustc --explain E0308`.

@@ -1,0 +1,193 @@
+error[E0425]: cannot find value `Two` in this scope
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:75:34
+   |
+75 |     if make_coord(x[0][3], x[1][ Two]).row +
+   |                                  ^^^ not found in this scope
+
+error[E0425]: cannot find value `Two` in this scope
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:76:23
+   |
+76 |         make_coord(x[ Two][0], x[0][ Four]).col != 7 {
+   |                       ^^^ not found in this scope
+
+error[E0425]: cannot find value `Four` in this scope
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:76:38
+   |
+76 |         make_coord(x[ Two][0], x[0][ Four]).col != 7 {
+   |                                      ^^^^ not found in this scope
+
+warning: unused import: `std::ptr`
+ --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:1:5
+  |
+1 | use std::ptr;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0614]: type `[usize; 5]` cannot be dereferenced
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:52:21
+   |
+52 |             let b = *(*(x.as_mut_ptr().add(i)).add(j));
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ can't be dereferenced
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:66:8
+   |
+66 |     if make_coord(x[1][0], x[1][1]).row != x[1][0] {
+   |        ^^^^^^^^^^ -------  ------- expected `i32`, found `usize`
+   |                   |
+   |                   expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:9:4
+   |
+ 9 | fn make_coord(row: i32, col: i32) -> Coord {
+   |    ^^^^^^^^^^ --------  --------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+66 |     if make_coord(x[1][0].try_into().unwrap(), x[1][1]).row != x[1][0] {
+   |                          ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+66 |     if make_coord(x[1][0], x[1][1].try_into().unwrap()).row != x[1][0] {
+   |                                   ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:66:44
+   |
+66 |     if make_coord(x[1][0], x[1][1]).row != x[1][0] {
+   |        --------------------------------    ^^^^^^^ expected `i32`, found `usize`
+   |        |
+   |        expected because this is `i32`
+   |
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+66 |     if make_coord(x[1][0], x[1][1]).row != x[1][0].try_into().unwrap() {
+   |                                                   ++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:69:8
+   |
+69 |     if make_coord(x[1][0], x[1][1]).col != x[1][1] {
+   |        ^^^^^^^^^^ -------  ------- expected `i32`, found `usize`
+   |                   |
+   |                   expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:9:4
+   |
+ 9 | fn make_coord(row: i32, col: i32) -> Coord {
+   |    ^^^^^^^^^^ --------  --------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+69 |     if make_coord(x[1][0].try_into().unwrap(), x[1][1]).col != x[1][1] {
+   |                          ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+69 |     if make_coord(x[1][0], x[1][1].try_into().unwrap()).col != x[1][1] {
+   |                                   ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:69:44
+   |
+69 |     if make_coord(x[1][0], x[1][1]).col != x[1][1] {
+   |        --------------------------------    ^^^^^^^ expected `i32`, found `usize`
+   |        |
+   |        expected because this is `i32`
+   |
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+69 |     if make_coord(x[1][0], x[1][1]).col != x[1][1].try_into().unwrap() {
+   |                                                   ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:75:19
+   |
+75 |     if make_coord(x[0][3], x[1][ Two]).row +
+   |        ---------- ^^^^^^^ expected `i32`, found `usize`
+   |        |
+   |        arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:9:4
+   |
+ 9 | fn make_coord(row: i32, col: i32) -> Coord {
+   |    ^^^^^^^^^^ --------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+75 |     if make_coord(x[0][3].try_into().unwrap(), x[1][ Two]).row +
+   |                          ++++++++++++++++++++
+
+error[E0070]: invalid left-hand side of assignment
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:84:28
+   |
+84 |     assert_eq!(temp, 3 + 4 = 7);
+   |                      ----- ^
+   |                      |
+   |                      cannot assign to this expression
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:84:22
+   |
+84 |     assert_eq!(temp, 3 + 4 = 7);
+   |                      ^^^^^^^^^ expected `i32`, found `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:88:14
+   |
+88 |         row: x[1][0],
+   |              ^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:89:14
+   |
+89 |         col: x[1][1],
+   |              ^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:92:14
+   |
+92 |         row: x[2][0],
+   |              ^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:93:14
+   |
+93 |         col: x[2][1],
+   |              ^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:127:31
+    |
+127 |     let wp = Waypoint { cost: x[2][0] };
+    |                               ^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:129:23
+    |
+129 |     if wp_ptr.cost != x[2][0] {
+    |        -----------    ^^^^^^^ expected `i32`, found `usize`
+    |        |
+    |        expected because this is `i32`
+    |
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+    |
+129 |     if wp_ptr.cost != x[2][0].try_into().unwrap() {
+    |                              ++++++++++++++++++++
+
+error[E0606]: casting `&usize` as `*const i32` is invalid
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:61:9
+   |
+61 |     if (p1 as *const i32 as usize).wrapping_sub(p0 as *const i32 as usize) != 5 {
+   |         ^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&usize` as `*const i32` is invalid
+  --> benchmark_results/2026-05-11T22-01-24/deepseek-v3.2/combined_programs/pathfinder/sample_002/target.rs:61:49
+   |
+61 |     if (p1 as *const i32 as usize).wrapping_sub(p0 as *const i32 as usize) != 5 {
+   |                                                 ^^^^^^^^^^^^^^^^
+
+error: aborting due to 19 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0070, E0308, E0425, E0606, E0614.
+For more information about an error, try `rustc --explain E0070`.

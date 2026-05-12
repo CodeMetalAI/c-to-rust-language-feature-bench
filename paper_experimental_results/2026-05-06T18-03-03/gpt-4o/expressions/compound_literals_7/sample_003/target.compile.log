@@ -1,0 +1,25 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/expressions/compound_literals_7/sample_003/target.rs:18:8
+   |
+18 |     if unsafe { (*x.cdr).cdr } != &ENDLESS_ZEROS as *const IntList {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `*const IntList` cannot be shared between threads safely
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o/expressions/compound_literals_7/sample_003/target.rs:6:23
+  |
+6 | static ENDLESS_ZEROS: IntList = IntList {
+  |                       ^^^^^^^ `*const IntList` cannot be shared between threads safely
+  |
+  = help: within `IntList`, the trait `Sync` is not implemented for `*const IntList`
+note: required because it appears within the type `IntList`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o/expressions/compound_literals_7/sample_003/target.rs:1:8
+  |
+1 | struct IntList {
+  |        ^^^^^^^
+  = note: shared static variables must have a type that implements `Sync`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

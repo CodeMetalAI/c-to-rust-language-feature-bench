@@ -1,0 +1,45 @@
+error: expected one of `!`, `,`, `.`, `::`, `?`, `{`, `}`, or an operator, found `0`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_1/sample_005/target.rs:24:47
+   |
+24 |             inner: Inner { i: 0, j: introduce 0 },
+   |                    -----                     -^ expected one of 8 possible tokens
+   |                    |                         |
+   |                    |                         help: try adding a comma: `,`
+   |                    while parsing this struct
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_1/sample_005/target.rs:29:5
+   |
+29 | /     unsafe {
+30 | |         v1.union_data.inner.i = 2;
+31 | |         v1.union_data.w.k = 5;
+32 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_1/sample_005/target.rs:34:5
+   |
+34 | /     unsafe {
+35 | |         if v1.union_data.inner.i != 2 {
+36 | |             std::process::exit(1);
+...  |
+41 | |     }
+   | |_____^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_1/sample_005/target.rs:12:5
+   |
+12 |     inner: Inner,
+   |     ^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+12 |     inner: std::mem::ManuallyDrop<Inner>,
+   |            +++++++++++++++++++++++     +
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0740`.

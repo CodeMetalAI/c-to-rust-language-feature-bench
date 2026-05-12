@@ -1,0 +1,25 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:9:5
+   |
+ 9 | /     unsafe {
+10 | |         f(c_vp as *const _ as *const ());
+11 | |         f(vp as *const _ as *const ());
+12 | |         f2(v_ip);
+...  |
+21 | |         f1(ip as *mut _);
+22 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0641]: cannot cast to a pointer of an unknown kind
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:13:17
+   |
+13 |         f2(0 as *mut _);
+   |                 ^^^^^^ needs more type information
+   |
+   = note: the type information given here is insufficient to check whether the pointer cast is valid
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0641`.

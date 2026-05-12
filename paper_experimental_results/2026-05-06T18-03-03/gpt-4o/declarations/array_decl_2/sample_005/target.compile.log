@@ -1,0 +1,121 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_005/target.rs:40:5
+   |
+40 | /     unsafe {
+41 | |         Y = [1, 2, 3, 4, 5, 6, 7];
+42 | |         X = BACKING.as_ptr();
+...  |
+88 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_005/target.rs:70:16
+   |
+70 |             if unsafe { *hp.p } != 1 {
+   |                ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_005/target.rs:74:22
+   |
+74 |             let ha = unsafe { &*(Y.as_ptr() as *const HoldA) };
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_005/target.rs:80:16
+   |
+80 |             if unsafe { *ha.a.as_ptr().add(2) } != 3 {
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_005/target.rs:70:16
+   |
+40 |     unsafe {
+   |     ------ because it's nested under this `unsafe` block
+...
+70 |             if unsafe { *hp.p } != 1 {
+   |                ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_005/target.rs:74:22
+   |
+40 |     unsafe {
+   |     ------ because it's nested under this `unsafe` block
+...
+74 |             let ha = unsafe { &*(Y.as_ptr() as *const HoldA) };
+   |                      ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_005/target.rs:80:16
+   |
+40 |     unsafe {
+   |     ------ because it's nested under this `unsafe` block
+...
+80 |             if unsafe { *ha.a.as_ptr().add(2) } != 3 {
+   |                ^^^^^^ unnecessary `unsafe` block
+
+warning: type alias `Usize` is never used
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_005/target.rs:2:6
+  |
+2 | type Usize = usize;
+  |      ^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `tag` is never read
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_005/target.rs:14:5
+   |
+13 | struct HoldA {
+   |        ----- field in this struct
+14 |     tag: i32,
+   |     ^^^
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_005/target.rs:44:21
+   |
+44 |         if sum_arr7(&Y) != (1 + 2 + 3 + 4 + 5 + 6 + 7) {
+   |                     ^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw const` instead to create a raw pointer
+   |
+44 |         if sum_arr7(&raw const Y) != (1 + 2 + 3 + 4 + 5 + 6 + 7) {
+   |                      +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_005/target.rs:62:21
+   |
+62 |             let t = &Y;
+   |                     ^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+62 |             let t = &raw const Y;
+   |                      +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_005/target.rs:69:33
+   |
+69 |             let hp = HoldP { p: Y.as_ptr() };
+   |                                 ^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_2/sample_005/target.rs:74:34
+   |
+74 |             let ha = unsafe { &*(Y.as_ptr() as *const HoldA) };
+   |                                  ^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+
+error: aborting due to 4 previous errors; 9 warnings emitted

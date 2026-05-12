@@ -1,0 +1,66 @@
+error[E0428]: the name `X` is defined multiple times
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:9:5
+  |
+3 |     const X: i32 = 3;
+  |     ----------------- previous definition of the value `X` here
+...
+9 |     const X: i32 = 2;
+  |     ^^^^^^^^^^^^^^^^^ `X` redefined here
+  |
+  = note: `X` must be defined only once in the value namespace of this block
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:44:58
+   |
+44 |     let i = [q(1), r(2, 3).parse::<i32>().unwrap(), r(4, "").parse::<i32>().unwrap(), r("", 5).parse::<i32>().unwrap()];
+   |                                                     - -  ^^ expected integer, found `&str`
+   |                                                     | |
+   |                                                     | expected all arguments to be this integer type because they need to match the type of this parameter
+   |                                                     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:31:8
+   |
+31 |     fn r<T>(x: T, y: T) -> String {
+   |        ^ -  ----  ---- this parameter needs to match the integer type of `x`
+   |          |  |
+   |          |  `y` needs to match the integer type of this parameter
+   |          `x` and `y` both reference this parameter `T`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:44:93
+   |
+44 |     let i = [q(1), r(2, 3).parse::<i32>().unwrap(), r(4, "").parse::<i32>().unwrap(), r("", 5).parse::<i32>().unwrap()];
+   |                                                                                       - --  ^ expected `&str`, found integer
+   |                                                                                       | |
+   |                                                                                       | expected all arguments to be this `&str` type because they need to match the type of this parameter
+   |                                                                                       arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:31:8
+   |
+31 |     fn r<T>(x: T, y: T) -> String {
+   |        ^ -  ----  ---- this parameter needs to match the `&str` type of `x`
+   |          |  |
+   |          |  `y` needs to match the `&str` type of this parameter
+   |          `x` and `y` both reference this parameter `T`
+
+error[E0277]: `T` doesn't implement `std::fmt::Display`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:32:25
+   |
+32 |         format!("{}{}", x, y)
+   |                  --     ^ `T` cannot be formatted with the default formatter
+   |                  |
+   |                  required by this formatting parameter
+   |
+   = note: in format strings you may be able to use `{:?}` (or {:#?} for pretty-print) instead
+   = note: this error originates in the macro `$crate::__export::format_args` which comes from the expansion of the macro `format` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider restricting type parameter `T` with trait `Display`
+   |
+31 |     fn r<T: std::fmt::Display>(x: T, y: T) -> String {
+   |           +++++++++++++++++++
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0428.
+For more information about an error, try `rustc --explain E0277`.

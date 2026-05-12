@@ -1,0 +1,110 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_005/target.rs:8:5
+  |
+8 |     unsafe { HITS += _x + 1 };
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_005/target.rs:12:5
+   |
+12 |     unsafe { HITS += _x + 2 };
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_005/target.rs:30:5
+   |
+30 |     unsafe { HITS }
+   |     ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_005/target.rs:36:5
+   |
+36 |     unsafe { HITS }
+   |     ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_005/target.rs:42:5
+   |
+42 |     unsafe { HITS }
+   |     ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_005/target.rs:46:5
+   |
+46 |     unsafe { HITS = 0 };
+   |     ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_005/target.rs:52:5
+   |
+52 |     unsafe { HITS = 0 };
+   |     ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_005/target.rs:57:5
+   |
+57 |     unsafe { HITS = 0 };
+   |     ^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: `if` and `else` have incompatible types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_005/target.rs:19:9
+   |
+15 |   fn signal(s: i32, h: impl Fn(i32) -> () + 'static) -> impl Fn(i32) -> () {
+   |                        ---------------------------- found this type parameter
+16 | /     if s & 1 != 0 {
+17 | |         handler_a
+   | |         --------- expected because of this
+18 | |     } else {
+19 | |         h
+   | |         ^ expected fn item, found type parameter `impl Fn(i32) -> () + 'static`
+20 | |     }
+   | |_____- `if` and `else` have incompatible types
+   |
+   = note:     expected fn item `fn(i32) {handler_a}`
+           found type parameter `impl Fn(i32) -> () + 'static`
+help: you could change the return type to be a boxed trait object
+   |
+15 - fn signal(s: i32, h: impl Fn(i32) -> () + 'static) -> impl Fn(i32) -> () {
+15 + fn signal(s: i32, h: impl Fn(i32) -> () + 'static) -> Box<dyn Fn(i32) -> ()> {
+   |
+help: if you change the return type to expect trait objects, box the returned expressions
+   |
+17 ~         Box::new(handler_a)
+18 |     } else {
+19 ~         Box::new(h)
+   |
+
+error[E0310]: the parameter type `impl Fn(i32) -> ()` may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_005/target.rs:28:13
+   |
+28 |     let r = signal(s, h);
+   |             ^^^^^^^^^^^^
+   |             |
+   |             the parameter type `impl Fn(i32) -> ()` must be valid for the static lifetime...
+   |             ...so that the type `impl Fn(i32) -> ()` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+27 | fn call_signal_as_plain(s: i32, h: impl Fn(i32) -> () + 'static, arg: i32) -> i32 {
+   |                                                       +++++++++
+
+error[E0310]: the parameter type `impl Fn(i32) -> ()` may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_4/sample_005/target.rs:29:5
+   |
+29 |     r(arg);
+   |     ^^^^^^
+   |     |
+   |     the parameter type `impl Fn(i32) -> ()` must be valid for the static lifetime...
+   |     ...so that the type `impl Fn(i32) -> ()` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+27 | fn call_signal_as_plain(s: i32, h: impl Fn(i32) -> () + 'static, arg: i32) -> i32 {
+   |                                                       +++++++++
+
+error: aborting due to 11 previous errors
+
+Some errors have detailed explanations: E0308, E0310.
+For more information about an error, try `rustc --explain E0308`.

@@ -1,0 +1,108 @@
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:11:47
+   |
+11 | fn hash_matrix(n: usize, k: usize, a: &[[f64; k]; n]) -> u64 {
+   |                          -                    ^
+   |                          |
+   |                          this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:11:51
+   |
+11 | fn hash_matrix(n: usize, k: usize, a: &[[f64; k]; n]) -> u64 {
+   |                - this would need to be a `const`  ^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:22:49
+   |
+22 | fn addscalar(n: usize, m: usize, a: &mut [[f64; n * m + 300]; n], x: f64) {
+   |              - this would need to be a `const`  ^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:22:53
+   |
+22 | fn addscalar(n: usize, m: usize, a: &mut [[f64; n * m + 300]; n], x: f64) {
+   |                        -                            ^
+   |                        |
+   |                        this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:22:63
+   |
+22 | fn addscalar(n: usize, m: usize, a: &mut [[f64; n * m + 300]; n], x: f64) {
+   |              - this would need to be a `const`                ^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:36:23
+   |
+36 |     let mut b: [[f64; k]; n] = [[0.0; k]; n];
+   |                       ^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+34 -     let k = n * m + 300;
+34 +     const k: /* Type */ = n * m + 300;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:36:27
+   |
+36 |     let mut b: [[f64; k]; n] = [[0.0; k]; n];
+   |                           ^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+32 -     let n = 4;
+32 +     const n: /* Type */ = 4;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:36:39
+   |
+36 |     let mut b: [[f64; k]; n] = [[0.0; k]; n];
+   |                                       ^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+34 -     let k = n * m + 300;
+34 +     const k: /* Type */ = n * m + 300;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:36:43
+   |
+36 |     let mut b: [[f64; k]; n] = [[0.0; k]; n];
+   |                                           ^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+32 -     let n = 4;
+32 +     const n: /* Type */ = 4;
+   |
+
+warning: unnecessary parentheses around assigned value
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:72:13
+   |
+72 |     sink ^= (b[0][0] as u64);
+   |             ^              ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+72 -     sink ^= (b[0][0] as u64);
+72 +     sink ^= b[0][0] as u64;
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_4/sample_001/target.rs:52:20
+   |
+31 | fn main() {
+   |          - expected `()` because of default return type
+...
+52 |             return 1;
+   |                    ^ expected `()`, found integer
+
+error: aborting due to 10 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0308, E0435.
+For more information about an error, try `rustc --explain E0308`.

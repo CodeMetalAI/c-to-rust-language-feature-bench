@@ -1,0 +1,23 @@
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c5/sample_003/target.rs:1:14
+  |
+1 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+error[E0606]: casting `&i32` as `usize` is invalid
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c5/sample_003/target.rs:5:21
+  |
+5 |     let ip: usize = px as usize;
+  |                     ^^^^^^^^^^^
+  |
+help: dereference the expression
+  |
+5 |     let ip: usize = *px as usize;
+  |                     +
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0277, E0606.
+For more information about an error, try `rustc --explain E0277`.

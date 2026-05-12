@@ -1,0 +1,184 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_005/target.rs:55:17
+   |
+55 |         if ps + n > n_total || qs + n > n_total {
+   |                 ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_005/target.rs:55:15
+   |
+55 |         if ps + n > n_total || qs + n > n_total {
+   |               ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_005/target.rs:55:21
+   |
+55 |         if ps + n > n_total || qs + n > n_total {
+   |            ------   ^^^^^^^ expected `usize`, found `i32`
+   |            |
+   |            expected because this is `usize`
+   |
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+55 |         if ps + n > n_total.try_into().unwrap() || qs + n > n_total {
+   |                            ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_005/target.rs:55:37
+   |
+55 |         if ps + n > n_total || qs + n > n_total {
+   |                                     ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_005/target.rs:55:35
+   |
+55 |         if ps + n > n_total || qs + n > n_total {
+   |                                   ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_005/target.rs:55:41
+   |
+55 |         if ps + n > n_total || qs + n > n_total {
+   |                                ------   ^^^^^^^ expected `usize`, found `i32`
+   |                                |
+   |                                expected because this is `usize`
+   |
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+55 |         if ps + n > n_total || qs + n > n_total.try_into().unwrap() {
+   |                                                ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_005/target.rs:59:27
+   |
+59 |         return (ps < qs + n) && (qs < ps + n);
+   |                           ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_005/target.rs:59:25
+   |
+59 |         return (ps < qs + n) && (qs < ps + n);
+   |                         ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_005/target.rs:59:44
+   |
+59 |         return (ps < qs + n) && (qs < ps + n);
+   |                                            ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_005/target.rs:59:42
+   |
+59 |         return (ps < qs + n) && (qs < ps + n);
+   |                                          ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_005/target.rs:95:15
+   |
+95 |     init(&mut D, 100);
+   |               ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_005/target.rs:103:15
+    |
+103 |     if !same(&D, &expect, 100) {
+    |               ^ use of mutable static
+    |
+    = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_005/target.rs:98:39
+   |
+98 |     safe_move(50, &mut expect[50..], &expect[..]);
+   |     ---------          ------         ^^^^^^ immutable borrow occurs here
+   |     |                  |
+   |     |                  mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_005/target.rs:99:38
+   |
+99 |     safe_move(50, &mut expect[1..], &expect[..]);
+   |     ---------          ------        ^^^^^^ immutable borrow occurs here
+   |     |                  |
+   |     |                  mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_005/target.rs:88:25
+   |
+88 |         let base = &mut D[..];
+   |                         ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_005/target.rs:89:39
+   |
+89 |         call_f_checked(base, 50, &mut D[50..], &D[..]);
+   |                                       ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_005/target.rs:89:49
+   |
+89 |         call_f_checked(base, 50, &mut D[50..], &D[..]);
+   |                                                 ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_005/target.rs:90:39
+   |
+90 |         call_f_checked(base, 50, &mut D[1..], &D[..]);
+   |                                       ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/restrict_def_2b/sample_005/target.rs:90:48
+   |
+90 |         call_f_checked(base, 50, &mut D[1..], &D[..]);
+   |                                                ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 19 previous errors
+
+Some errors have detailed explanations: E0133, E0277, E0308, E0502.
+For more information about an error, try `rustc --explain E0133`.

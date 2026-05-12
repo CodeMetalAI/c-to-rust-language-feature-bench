@@ -1,0 +1,41 @@
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3/sample_005/target.rs:5:11
+    |
+  5 |     match std::any::type_name(&x) {
+    |           ^^^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&&T`
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/any.rs:856:14
+    |
+856 | pub const fn type_name<T: ?Sized>() -> &'static str {
+    |              ^^^^^^^^^
+help: remove the extra argument
+    |
+  5 -     match std::any::type_name(&x) {
+  5 +     match std::any::type_name() {
+    |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3/sample_005/target.rs:20:16
+   |
+20 |     if type_id(&a as *const [i32; 3])!= 2 {
+   |        ------- ^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `*const [i32; 3]`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+            found raw pointer `*const [i32; 3]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3/sample_005/target.rs:1:4
+   |
+ 1 | fn type_id<T>(x: &T) -> u32
+   |    ^^^^^^^    -----
+help: consider borrowing here
+   |
+20 |     if type_id(&(&a as *const [i32; 3]))!= 2 {
+   |                ++                     +
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0061, E0308.
+For more information about an error, try `rustc --explain E0061`.

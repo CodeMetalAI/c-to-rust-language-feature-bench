@@ -1,0 +1,98 @@
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/pointers_c3/sample_003/target.rs:5:14
+  |
+5 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/pointers_c3/sample_003/target.rs:12:28
+   |
+12 |     let n2: Option<&i32> = v0.map(|_| std::ptr::null());
+   |             ------------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Option<&i32>`, found `Option<*const _>`
+   |             |
+   |             expected due to this
+   |
+   = note: expected enum `Option<&i32>`
+              found enum `Option<*const _>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/pointers_c3/sample_003/target.rs:16:39
+   |
+16 |     let nf2: Option<fn(i32) -> i32> = vf0.map(|_| std::ptr::null());
+   |              ----------------------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Option<fn(i32) -> i32>`, found `Option<*const _>`
+   |              |
+   |              expected due to this
+   |
+   = note: expected enum `Option<fn(i32) -> i32>`
+              found enum `Option<*const _>`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/pointers_c3/sample_003/target.rs:28:28
+    |
+ 28 |     if n1.as_ref() == Some(px) {
+    |                       ---- ^^ expected `&&i32`, found `&i32`
+    |                       |
+    |                       arguments to this enum variant are incorrect
+    |
+    = note: expected reference `&&_`
+               found reference `&_`
+help: the type constructed contains `&i32` due to the type of the argument passed
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/pointers_c3/sample_003/target.rs:28:23
+    |
+ 28 |     if n1.as_ref() == Some(px) {
+    |                       ^^^^^--^
+    |                            |
+    |                            this argument influences the type of `Some`
+note: tuple variant defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/option.rs:601:5
+    |
+601 |     Some(#[stable(feature = "rust1", since = "1.0.0")] T),
+    |     ^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/pointers_c3/sample_003/target.rs:31:28
+    |
+ 31 |     if n2.as_ref() == Some(px) {
+    |                       ---- ^^ expected `&&i32`, found `&i32`
+    |                       |
+    |                       arguments to this enum variant are incorrect
+    |
+    = note: expected reference `&&_`
+               found reference `&_`
+help: the type constructed contains `&i32` due to the type of the argument passed
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/pointers_c3/sample_003/target.rs:31:23
+    |
+ 31 |     if n2.as_ref() == Some(px) {
+    |                       ^^^^^--^
+    |                            |
+    |                            this argument influences the type of `Some`
+note: tuple variant defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/option.rs:601:5
+    |
+601 |     Some(#[stable(feature = "rust1", since = "1.0.0")] T),
+    |     ^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/pointers_c3/sample_003/target.rs:57:14
+   |
+57 |     if vx == v0 {
+   |              ^^ expected `Option<*const i32>`, found `Option<*const ()>`
+   |
+   = note: expected enum `Option<*const i32>`
+              found enum `Option<*const ()>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/pointers_c3/sample_003/target.rs:60:14
+   |
+60 |     if vf == vf0 {
+   |              ^^^ expected `Option<*const fn(i32) -> i32>`, found `Option<*const ()>`
+   |
+   = note: expected enum `Option<*const fn(i32) -> i32>`
+              found enum `Option<*const ()>`
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

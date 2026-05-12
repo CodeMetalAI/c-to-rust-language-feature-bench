@@ -1,0 +1,138 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_003/target.rs:4:5
+  |
+4 |     unsafe { CALLS += 1; }
+  |     ^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_003/target.rs:17:5
+   |
+17 | /     unsafe {
+18 | |         for i in 0..11 {
+19 | |             FA[i] = (i + 1) as f32;
+...  |
+25 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_003/target.rs:33:34
+   |
+33 |     pp.iter().take(n).map(|&ptr| unsafe { *ptr } as i32).sum()
+   |                                  ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_003/target.rs:38:14
+   |
+38 |     let s2 = unsafe { *afp2[0] as i32 } + unsafe { *afp2[16] as i32 };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_003/target.rs:38:43
+   |
+38 |     let s2 = unsafe { *afp2[0] as i32 } + unsafe { *afp2[16] as i32 };
+   |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_003/target.rs:45:5
+   |
+45 | /     unsafe {
+46 | |         if FA[0] != 1.0 || FA[10] != 11.0 {
+47 | |             return 1;
+...  |
+53 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_003/target.rs:62:28
+   |
+62 |         vla1[i as usize] = unsafe { FA[i as usize] * 2.0 };
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_003/target.rs:66:28
+   |
+66 |         vla2[i as usize] = unsafe { AFP[i as usize] };
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_003/target.rs:69:5
+   |
+69 | /     unsafe {
+70 | |         if CALLS != 2 {
+71 | |             return 3;
+72 | |         }
+73 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_003/target.rs:91:45
+   |
+91 |         (vla1[0] as i32 + vla1[10] as i32 + unsafe { *vla2[0] as i32 } + unsafe { *vla2[16] as i32 }) {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_003/target.rs:91:74
+   |
+91 |         (vla1[0] as i32 + vla1[10] as i32 + unsafe { *vla2[0] as i32 } + unsafe { *vla2[16] as i32 }) {
+   |                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_003/target.rs:42:14
+   |
+42 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0599]: no method named `try_into` found for struct `Vec<f32>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_003/target.rs:90:27
+    |
+ 90 |     if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap()) !=
+    |                           ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<f32>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 90 -     if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap()) !=
+ 90 +     if takes_params(&vla1.into().unwrap(), &vla2.try_into().unwrap()) !=
+    |
+
+error[E0599]: no method named `try_into` found for struct `Vec<*const f32>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_1/sample_003/target.rs:90:54
+    |
+ 90 |     if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap()) !=
+    |                                                      ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<*const f32>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 90 -     if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap()) !=
+ 90 +     if takes_params(&vla1.try_into().unwrap(), &vla2.into().unwrap()) !=
+    |
+
+error: aborting due to 14 previous errors
+
+Some errors have detailed explanations: E0277, E0599.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,33 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/compound_literals_5/sample_003/target.rs:6:20
+  |
+6 |     let s2_slice = unsafe { std::slice::from_raw_parts_mut(s2, s1.len()) };
+  |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/compound_literals_5/sample_003/target.rs:10:20
+   |
+10 |     let s3_slice = unsafe { std::slice::from_raw_parts(s3, s1.len()) };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/compound_literals_5/sample_003/target.rs:4:9
+  |
+4 |     let mut s2_array = ["/tmp/fileXXXXXX"];
+  |         ----^^^^^^^^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error[E0596]: cannot borrow `*s2_array[_]` as mutable, as it is behind a `&` reference
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/compound_literals_5/sample_003/target.rs:5:14
+  |
+5 |     let s2 = s2_array[0].as_mut_ptr() as *mut char;
+  |              ^^^^^^^^^^^ cannot borrow as mutable
+
+error: aborting due to 3 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0596`.

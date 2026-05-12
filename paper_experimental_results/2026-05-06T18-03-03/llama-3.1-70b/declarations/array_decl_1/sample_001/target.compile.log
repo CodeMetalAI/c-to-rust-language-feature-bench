@@ -1,0 +1,197 @@
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:19:13
+   |
+19 |             fa[i] = (i + 1) as f32;
+   |             ^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:22:13
+   |
+22 |             backing[i] = (100 + i) as f32;
+   |             ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:23:13
+   |
+23 |             afp[i] = Some(&mut backing[i]);
+   |             ^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:23:32
+   |
+23 |             afp[i] = Some(&mut backing[i]);
+   |                                ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:5:9
+  |
+5 |         unsafe { CALLS += 1 };
+  |         ^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:76:8
+   |
+76 |     if unsafe { CALLS }!= 2 {
+   |        ^^^^^^^^^^^^^^^^
+
+error[E0277]: the trait bound `Option<&mut f32>: Clone` is not satisfied
+    --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:66:48
+     |
+  66 |     let mut vla2: Vec<Option<&mut f32>> = vec![None; n2 as usize];
+     |                                           -----^^^^--------------
+     |                                           |    |
+     |                                           |    the trait `Clone` is not implemented for `Option<&mut f32>`
+     |                                           required by a bound introduced by this call
+     |
+     = note: required for `Option<&mut f32>` to implement `Clone`
+note: required by a bound in `from_elem`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:3464:21
+     |
+3464 | pub fn from_elem<T: Clone>(elem: T, n: usize) -> Vec<T> {
+     |                     ^^^^^ required by this bound in `from_elem`
+help: consider borrowing here
+     |
+  66 |     let mut vla2: Vec<Option<&mut f32>> = vec![&None; n2 as usize];
+     |                                                +
+
+error[E0599]: the method `clone` exists for enum `Option<&mut f32>`, but its trait bounds were not satisfied
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:73:26
+    |
+ 73 |         vla2[i] = afp[i].clone();
+    |                          ^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/option.rs:593:1
+    |
+593 | pub enum Option<T> {
+    | ------------------ doesn't satisfy `Option<&mut f32>: Clone`
+    |
+    = note: the following trait bounds were not satisfied:
+            `&mut f32: Clone`
+            which is required by `Option<&mut f32>: Clone`
+note: the method `clone` exists on the type `&mut f32`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/clone.rs:236:5
+    |
+236 |     fn clone(&self) -> Self;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^
+help: consider using `Option::expect` to unwrap the `&mut f32` value, panicking if the value is an `Option::None`
+    |
+ 73 |         vla2[i] = afp[i].expect("REASON").clone();
+    |                         +++++++++++++++++
+
+error[E0599]: no method named `try_into` found for struct `Vec<f32>` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:97:26
+    |
+ 97 |     if takes_params(vla1.try_into().unwrap(), vla2.try_into().unwrap())!=
+    |                          ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<f32>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 97 -     if takes_params(vla1.try_into().unwrap(), vla2.try_into().unwrap())!=
+ 97 +     if takes_params(vla1.into().unwrap(), vla2.try_into().unwrap())!=
+    |
+
+error[E0599]: no method named `try_into` found for struct `Vec<Option<&mut f32>>` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:97:52
+    |
+ 97 |     if takes_params(vla1.try_into().unwrap(), vla2.try_into().unwrap())!=
+    |                                                    ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<Option<&mut f32>>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 97 -     if takes_params(vla1.try_into().unwrap(), vla2.try_into().unwrap())!=
+ 97 +     if takes_params(vla1.try_into().unwrap(), vla2.into().unwrap())!=
+    |
+
+error[E0277]: the trait bound `&mut f32: Copy` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:14:44
+   |
+14 |     let mut afp: [Option<&mut f32>; 17] = [None; 17];
+   |                                            ^^^^ the trait `Copy` is not implemented for `&mut f32`
+   |
+   = help: the trait `Copy` is implemented for `f32`
+   = note: `Copy` is implemented for `&f32`, but not for `&mut f32`
+   = note: required for `Option<&mut f32>` to implement `Copy`
+   = note: the `Copy` trait is required because this value will be copied for each element of the array
+help: create an inline `const` block
+   |
+14 |     let mut afp: [Option<&mut f32>; 17] = [const { None }; 17];
+   |                                            +++++++      +
+
+error[E0508]: cannot move out of type `[Option<&mut f32>]`, a non-copy slice
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:38:30
+   |
+38 |             if let Some(p) = pp[i] {
+   |                         -    ^^^^^ cannot move out of here
+   |                         |
+   |                         data moved here
+   |                         move occurs because `p` has type `&mut f32`, which does not implement the `Copy` trait
+   |
+help: consider borrowing here
+   |
+38 |             if let Some(p) = &pp[i] {
+   |                              +
+
+error[E0508]: cannot move out of type `[Option<&mut f32>; 17]`, a non-copy array
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:47:35
+   |
+47 |         let s2 = if let Some(p) = afp2[0] { *p as i32 } else { 0 } +
+   |                              -    ^^^^^^^ cannot move out of here
+   |                              |
+   |                              data moved here
+   |                              move occurs because `p` has type `&mut f32`, which does not implement the `Copy` trait
+   |
+help: consider borrowing here
+   |
+47 |         let s2 = if let Some(p) = &afp2[0] { *p as i32 } else { 0 } +
+   |                                   +
+
+error[E0508]: cannot move out of type `[Option<&mut f32>; 17]`, a non-copy array
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_001/target.rs:48:35
+   |
+48 |                  if let Some(p) = afp2[16] { *p as i32 } else { 0 };
+   |                              -    ^^^^^^^^ cannot move out of here
+   |                              |
+   |                              data moved here
+   |                              move occurs because `p` has type `&mut f32`, which does not implement the `Copy` trait
+   |
+help: consider borrowing here
+   |
+48 |                  if let Some(p) = &afp2[16] { *p as i32 } else { 0 };
+   |                                   +
+
+error: aborting due to 14 previous errors
+
+Some errors have detailed explanations: E0277, E0434, E0508, E0599.
+For more information about an error, try `rustc --explain E0277`.

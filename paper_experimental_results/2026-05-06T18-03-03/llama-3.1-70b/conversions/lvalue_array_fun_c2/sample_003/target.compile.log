@@ -1,0 +1,25 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/lvalue_array_fun_c2/sample_003/target.rs:13:8
+   |
+13 |     if unsafe { *(&x as *const i32) }!= 3 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/conversions/lvalue_array_fun_c2/sample_003/target.rs:57:5
+   |
+57 |     std::any::TypeId::of::<T>()
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |     |
+   |     the parameter type `T` must be valid for the static lifetime...
+   |     ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+56 | fn type_id<T: 'static>(_t: &T) -> std::any::TypeId {
+   |             +++++++++
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0310`.

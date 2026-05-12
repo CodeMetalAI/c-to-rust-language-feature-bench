@@ -1,0 +1,98 @@
+error[E0432]: unresolved import `panic_halt`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/function_specifiers_2/sample_003/target.rs:4:5
+  |
+4 | use panic_halt as _;
+  |     ^^^^^^^^^^^^^^^ no `panic_halt` in the root
+
+error: declaration of a `no_mangle` function
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/function_specifiers_2/sample_003/target.rs:8:1
+  |
+8 | #[no_mangle]
+  | ^^^^^^^^^^^^
+  |
+  = note: the linker's behavior with multiple libraries exporting duplicate symbol names is undefined and Rust cannot provide guarantees when you manually override them
+  = note: requested on the command line with `-F unsafe-code`
+
+error: declaration of a `no_mangle` function
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/function_specifiers_2/sample_003/target.rs:16:1
+   |
+16 | #[no_mangle]
+   | ^^^^^^^^^^^^
+   |
+   = note: the linker's behavior with multiple libraries exporting duplicate symbol names is undefined and Rust cannot provide guarantees when you manually override them
+
+error: declaration of a `no_mangle` function
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/function_specifiers_2/sample_003/target.rs:21:1
+   |
+21 | #[no_mangle]
+   | ^^^^^^^^^^^^
+   |
+   = note: the linker's behavior with multiple libraries exporting duplicate symbol names is undefined and Rust cannot provide guarantees when you manually override them
+
+error: unwinding panics are not supported without std
+  |
+  = help: using nightly cargo, use -Zbuild-std with panic="abort" to avoid unwinding
+  = note: since the core library is usually precompiled with panic="unwind", rebuilding your crate with panic="abort" may not be enough to fix the problem
+
+error[E0317]: `if` may be missing an `else` clause
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/function_specifiers_2/sample_003/target.rs:23:3
+   |
+22 |   fn g(i: u32) -> ! {
+   |                   - expected `!` because of this return type
+23 | /   if i > 0 {
+24 | |     stop()
+25 | |   }
+   | |___^ expected `!`, found `()`
+   |
+   = note:   expected type `!`
+           found unit type `()`
+   = note: `if` expressions without `else` evaluate to `()`
+   = help: consider adding an `else` block that evaluates to the expected type
+
+warning: unreachable statement
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/function_specifiers_2/sample_003/target.rs:31:3
+   |
+29 |   f();
+   |   --- any code following this expression is unreachable
+30 |
+31 |   g(1);
+   |   ^^^^^ unreachable statement
+   |
+   = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable `x` is assigned to, but never used
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/function_specifiers_2/sample_003/target.rs:11:13
+   |
+11 |     let mut x: u8 = 0;
+   |             ^
+   |
+   = note: consider using `_x` instead
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `x` is never read
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/function_specifiers_2/sample_003/target.rs:12:5
+   |
+12 |     x += 1;
+   |     ^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+error[E0133]: call to unsafe function `unreachable_unchecked` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/function_specifiers_2/sample_003/target.rs:33:3
+   |
+33 |   unreachable_unchecked()
+   |   ^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+warning: unused variable: `info`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/function_specifiers_2/sample_003/target.rs:37:10
+   |
+37 | fn panic(info: &core::panic::PanicInfo) -> ! {
+   |          ^^^^ help: if this is intentional, prefix it with an underscore: `_info`
+
+error: aborting due to 7 previous errors; 4 warnings emitted
+
+Some errors have detailed explanations: E0133, E0317, E0432.
+For more information about an error, try `rustc --explain E0133`.

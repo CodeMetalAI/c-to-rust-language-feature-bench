@@ -1,0 +1,45 @@
+error[E0597]: `sp_borrow` does not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/gpt-5.2-codex/declarations/tags_1b/sample_005/target.rs:33:20
+   |
+32 |         let sp_borrow = sp.borrow();
+   |             --------- binding `sp_borrow` declared here
+33 |         let left = sp_borrow.left.as_ref().unwrap();
+   |                    ^^^^^^^^^ borrowed value does not live long enough
+34 |         left.borrow().count
+   |         ------------- a temporary with access to the borrow is created here ...
+35 |     };
+   |     -- ... and the borrow might be used here, when that temporary is dropped and runs the destructor for type `Ref<'_, TNode>`
+   |     |
+   |     `sp_borrow` dropped here while still borrowed
+   |
+   = note: the temporary is part of an expression at the end of a block;
+           consider forcing this temporary to be dropped sooner, before the block's local variables are dropped
+help: for example, you could save the expression's value in a new local variable `x` and then make `x` be the expression at the end of the block
+   |
+34 |         let x = left.borrow().count; x
+   |         +++++++                    +++
+
+error[E0597]: `s_borrow` does not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/gpt-5.2-codex/declarations/tags_1b/sample_005/target.rs:42:21
+   |
+41 |         let s_borrow = s.borrow();
+   |             -------- binding `s_borrow` declared here
+42 |         let right = s_borrow.right.as_ref().unwrap();
+   |                     ^^^^^^^^ borrowed value does not live long enough
+43 |         right.borrow().count
+   |         -------------- a temporary with access to the borrow is created here ...
+44 |     };
+   |     -- ... and the borrow might be used here, when that temporary is dropped and runs the destructor for type `Ref<'_, TNode>`
+   |     |
+   |     `s_borrow` dropped here while still borrowed
+   |
+   = note: the temporary is part of an expression at the end of a block;
+           consider forcing this temporary to be dropped sooner, before the block's local variables are dropped
+help: for example, you could save the expression's value in a new local variable `x` and then make `x` be the expression at the end of the block
+   |
+43 |         let x = right.borrow().count; x
+   |         +++++++                     +++
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0597`.

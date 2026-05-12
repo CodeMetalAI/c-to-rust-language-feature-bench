@@ -1,0 +1,39 @@
+error: this trait cannot be derived for unions
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_001/target.rs:6:10
+  |
+6 | #[derive(Debug, Default, Copy, Clone)]
+  |          ^^^^^
+
+error: this trait cannot be derived for unions
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_001/target.rs:6:17
+  |
+6 | #[derive(Debug, Default, Copy, Clone)]
+  |                 ^^^^^^^
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_001/target.rs:13:5
+   |
+13 |     U { u1: (0, S { i: 0.0 }) }.u1.1
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_001/target.rs:27:8
+   |
+27 |     if g.u1.1.i + g.u2.0.i + val == 3.0 {
+   |        ^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_001/target.rs:27:19
+   |
+27 |     if g.u1.1.i + g.u2.0.i + val == 3.0 {
+   |                   ^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

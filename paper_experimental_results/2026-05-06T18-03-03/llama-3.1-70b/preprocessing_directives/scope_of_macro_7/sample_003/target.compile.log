@@ -1,0 +1,68 @@
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_003/target.rs:6:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+6 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0061]: this function takes 1 argument but 2 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_003/target.rs:8:8
+   |
+ 8 |     if debug("X = %d\n", x)!= 2 {
+   |        ^^^^^             - unexpected argument #2 of type `{integer}`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_003/target.rs:26:4
+   |
+26 | fn debug<T: std::fmt::Debug>(args: T) -> usize {
+   |    ^^^^^
+help: remove the extra argument
+   |
+ 8 -     if debug("X = %d\n", x)!= 2 {
+ 8 +     if debug("X = %d\n")!= 2 {
+   |
+
+error[E0061]: this function takes 2 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_003/target.rs:16:8
+   |
+16 |     if report(x > y, "x is {} but y is {}", x, y)!= 1 {
+   |        ^^^^^^                               -  - unexpected argument #4 of type `{integer}`
+   |                                             |
+   |                                             unexpected argument #3 of type `{integer}`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_003/target.rs:34:4
+   |
+34 | fn report<T: std::fmt::Debug>(test: bool, args: T) -> usize {
+   |    ^^^^^^
+help: remove the extra arguments
+   |
+16 -     if report(x > y, "x is {} but y is {}", x, y)!= 1 {
+16 +     if report(x > y, "x is {} but y is {}")!= 1 {
+   |
+
+error[E0061]: this function takes 2 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_003/target.rs:19:8
+   |
+19 |     if report(x < y, "x is {} but y is {}", x, y)!= 3 {
+   |        ^^^^^^                               -  - unexpected argument #4 of type `{integer}`
+   |                                             |
+   |                                             unexpected argument #3 of type `{integer}`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/preprocessing_directives/scope_of_macro_7/sample_003/target.rs:34:4
+   |
+34 | fn report<T: std::fmt::Debug>(test: bool, args: T) -> usize {
+   |    ^^^^^^
+help: remove the extra arguments
+   |
+19 -     if report(x < y, "x is {} but y is {}", x, y)!= 3 {
+19 +     if report(x < y, "x is {} but y is {}")!= 3 {
+   |
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0061, E0308.
+For more information about an error, try `rustc --explain E0061`.

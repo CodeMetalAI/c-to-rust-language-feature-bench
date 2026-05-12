@@ -1,0 +1,111 @@
+warning: unused import: `null_mut`
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_003/target.rs:2:16
+  |
+2 | use std::ptr::{null_mut, NonNull};
+  |                ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_003/target.rs:24:14
+   |
+24 |       let s1 = unsafe {
+   |  ______________^
+25 | |         let ptr = libc::malloc(size_of::<S>() + size_of::<f64>() * 8) as *mut S;
+26 | |         if ptr.is_null() {
+27 | |             std::process::exit(1);
+28 | |         }
+29 | |         NonNull::new(ptr).unwrap()
+30 | |     };
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_003/target.rs:32:14
+   |
+32 |       let s2 = unsafe {
+   |  ______________^
+33 | |         let ptr = libc::malloc(size_of::<S>() + size_of::<f64>() * 5) as *mut S;
+34 | |         if ptr.is_null() {
+35 | |             std::process::exit(1);
+36 | |         }
+37 | |         NonNull::new(ptr).unwrap()
+38 | |     };
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_003/target.rs:40:5
+   |
+40 | /     unsafe {
+41 | |         (*s1.as_ptr()).d[0] = 42.0;
+42 | |         (*s2.as_ptr()).d[0] = 24.0;
+43 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_003/target.rs:45:8
+   |
+45 |     if unsafe { (*s1.as_ptr()).d[0] != 42.0 || (*s2.as_ptr()).d[0] != 24.0 } {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_003/target.rs:49:5
+   |
+49 | /     unsafe {
+50 | |         libc::free(s1.as_ptr() as *mut libc::c_void);
+51 | |         libc::free(s2.as_ptr() as *mut libc::c_void);
+52 | |     }
+   | |_____^
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `libc`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_003/target.rs:25:19
+   |
+25 |         let ptr = libc::malloc(size_of::<S>() + size_of::<f64>() * 8) as *mut S;
+   |                   ^^^^ use of unresolved module or unlinked crate `libc`
+   |
+   = help: you might be missing a crate named `libc`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `libc`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_003/target.rs:33:19
+   |
+33 |         let ptr = libc::malloc(size_of::<S>() + size_of::<f64>() * 5) as *mut S;
+   |                   ^^^^ use of unresolved module or unlinked crate `libc`
+   |
+   = help: you might be missing a crate named `libc`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `libc`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_003/target.rs:50:9
+   |
+50 |         libc::free(s1.as_ptr() as *mut libc::c_void);
+   |         ^^^^ use of unresolved module or unlinked crate `libc`
+   |
+   = help: you might be missing a crate named `libc`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `libc`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_003/target.rs:51:9
+   |
+51 |         libc::free(s2.as_ptr() as *mut libc::c_void);
+   |         ^^^^ use of unresolved module or unlinked crate `libc`
+   |
+   = help: you might be missing a crate named `libc`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `libc`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_003/target.rs:51:40
+   |
+51 |         libc::free(s2.as_ptr() as *mut libc::c_void);
+   |                                        ^^^^ use of unresolved module or unlinked crate `libc`
+   |
+   = help: you might be missing a crate named `libc`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `libc`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_2/sample_003/target.rs:50:40
+   |
+50 |         libc::free(s1.as_ptr() as *mut libc::c_void);
+   |                                        ^^^^ use of unresolved module or unlinked crate `libc`
+   |
+   = help: you might be missing a crate named `libc`
+
+error: aborting due to 11 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0433`.

@@ -1,0 +1,52 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/conversions/lvalue_array_fun_c1/sample_003/target.rs:51:9
+   |
+51 | /         unsafe {
+52 | |             *bp = *bp;
+53 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+warning: value assigned to `i` is never read
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/conversions/lvalue_array_fun_c1/sample_003/target.rs:22:17
+   |
+22 |     if !OK_MOD!(i) {
+   |                 ^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+error[E0506]: cannot assign to `i` because it is borrowed
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/conversions/lvalue_array_fun_c1/sample_003/target.rs:4:37
+   |
+ 4 |             (std::mem::size_of_val(&($x = $x)) > 0)
+   |                                     ^^^^^^^^^ `i` is assigned to here but it was already borrowed
+...
+20 |     let p = &mut i;
+   |             ------ `i` is borrowed here
+21 |
+22 |     if !OK_MOD!(i) {
+   |         ---------- in this macro invocation
+...
+25 |     if !OK_MOD!(*p) {
+   |                 -- borrow later used here
+   |
+   = note: this error originates in the macro `OK_MOD` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0503]: cannot use `i` because it was mutably borrowed
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/conversions/lvalue_array_fun_c1/sample_003/target.rs:22:17
+   |
+20 |     let p = &mut i;
+   |             ------ `i` is borrowed here
+21 |
+22 |     if !OK_MOD!(i) {
+   |                 ^ use of borrowed `i`
+...
+25 |     if !OK_MOD!(*p) {
+   |                 -- borrow later used here
+
+error: aborting due to 3 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0503, E0506.
+For more information about an error, try `rustc --explain E0503`.

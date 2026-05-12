@@ -1,0 +1,98 @@
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/logical_OR_op_c4/sample_005/target.rs:13:9
+   |
+13 |         G = 0;
+   |         ^
+   |
+help: a local variable with a similar name exists
+   |
+13 -         G = 0;
+13 +         y = 0;
+   |
+help: you might have meant to introduce a new binding
+   |
+13 |         let G = 0;
+   |         +++
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/logical_OR_op_c4/sample_005/target.rs:15:52
+   |
+15 |     if!(unsafe { set_g_return(1, 0) } || (unsafe { G } == 1)) {
+   |                                                    ^ help: a local variable with a similar name exists: `y`
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/logical_OR_op_c4/sample_005/target.rs:20:9
+   |
+20 |         G = 0;
+   |         ^
+   |
+help: a local variable with a similar name exists
+   |
+20 -         G = 0;
+20 +         y = 0;
+   |
+help: you might have meant to introduce a new binding
+   |
+20 |         let G = 0;
+   |         +++
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/logical_OR_op_c4/sample_005/target.rs:3:5
+  |
+3 | /     unsafe {
+4 | |         G = gval;
+5 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/logical_OR_op_c4/sample_005/target.rs:12:5
+   |
+12 | /     unsafe {
+13 | |         G = 0;
+14 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/logical_OR_op_c4/sample_005/target.rs:15:9
+   |
+15 |     if!(unsafe { set_g_return(1, 0) } || (unsafe { G } == 1)) {
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/logical_OR_op_c4/sample_005/target.rs:15:43
+   |
+15 |     if!(unsafe { set_g_return(1, 0) } || (unsafe { G } == 1)) {
+   |                                           ^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/logical_OR_op_c4/sample_005/target.rs:19:5
+   |
+19 | /     unsafe {
+20 | |         G = 0;
+21 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/logical_OR_op_c4/sample_005/target.rs:22:8
+   |
+22 |     if unsafe { set_g_return(0, 1) } || { y += 1; y!= 0 } {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/logical_OR_op_c4/sample_005/target.rs:15:18
+   |
+15 |     if!(unsafe { set_g_return(1, 0) } || (unsafe { G } == 1)) {
+   |                  ^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/logical_OR_op_c4/sample_005/target.rs:22:17
+   |
+22 |     if unsafe { set_g_return(0, 1) } || { y += 1; y!= 0 } {
+   |                 ^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error: aborting due to 11 previous errors
+
+Some errors have detailed explanations: E0308, E0425.
+For more information about an error, try `rustc --explain E0308`.

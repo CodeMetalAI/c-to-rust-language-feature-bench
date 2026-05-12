@@ -1,0 +1,27 @@
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/struct_and_union_3a/sample_003/target.rs:21:14
+   |
+21 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0382]: use of partially moved value: `u`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/struct_and_union_3a/sample_003/target.rs:42:24
+   |
+36 |     if let U::N(n) = u {
+   |                 - value partially moved here
+...
+42 |     if let U::Ni(ni) = u {
+   |                        ^ value used here after partial move
+   |
+   = note: partial move occurs because value has type `N`, which does not implement the `Copy` trait
+help: borrow this binding in the pattern to avoid moving the value
+   |
+36 |     if let U::N(ref n) = u {
+   |                 +++
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0277, E0382.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,55 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c3/sample_002/target.rs:7:16
+   |
+ 7 |     if type_id(&a as *const _ as *const [i32; 3]) != 2 {
+   |        ------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `*const [i32; 3]`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+            found raw pointer `*const [i32; 3]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c3/sample_002/target.rs:48:4
+   |
+48 | fn type_id<T>(_: &T) -> usize {
+   |    ^^^^^^^    -----
+help: consider borrowing here
+   |
+ 7 |     if type_id(&(&a as *const _ as *const [i32; 3])) != 2 {
+   |                ++                                 +
+
+error[E0277]: the size for values of type `str` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c3/sample_002/target.rs:29:16
+   |
+29 |     if type_id("abc") != 3 {
+   |        ------- ^^^^^ doesn't have a size known at compile-time
+   |        |
+   |        required by a bound introduced by this call
+   |
+   = help: the trait `Sized` is not implemented for `str`
+note: required by an implicit `Sized` bound in `type_id`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c3/sample_002/target.rs:48:12
+   |
+48 | fn type_id<T>(_: &T) -> usize {
+   |            ^ required by the implicit `Sized` requirement on this type parameter in `type_id`
+help: consider relaxing the implicit `Sized` restriction
+   |
+48 | fn type_id<T: ?Sized>(_: &T) -> usize {
+   |             ++++++++
+
+error[E0282]: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c3/sample_002/target.rs:49:32
+   |
+49 |     std::any::type_name::<T>().into()
+   |                                ^^^^
+   |
+help: try using a fully qualified path to specify the expected types
+   |
+49 -     std::any::type_name::<T>().into()
+49 +     <&str as Into<T>>::into(std::any::type_name::<T>())
+   |
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0277, E0282, E0308.
+For more information about an error, try `rustc --explain E0277`.

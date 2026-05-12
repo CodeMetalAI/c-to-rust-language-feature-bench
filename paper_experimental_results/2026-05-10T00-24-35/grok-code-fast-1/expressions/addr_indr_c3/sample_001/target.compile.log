@@ -1,0 +1,23 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/addr_indr_c3/sample_001/target.rs:19:5
+   |
+19 | /     unsafe {
+20 | |         if !std::ptr::eq(&a[1] as *const _, a.as_ptr().add(1)) {
+21 | |             return 4;
+...  |
+31 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/addr_indr_c3/sample_001/target.rs:1:14
+  |
+1 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

@@ -1,0 +1,73 @@
+error[E0425]: cannot find value `g` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_c4/sample_004/target.rs:35:5
+   |
+35 |     g = gval;
+   |     ^
+   |
+help: you might have meant to introduce a new binding
+   |
+35 |     let g = gval;
+   |     +++
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_c4/sample_004/target.rs:4:16
+  |
+4 |     let x = if set_g_return(1, 1) {
+  |                ^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error[E0308]: `if` and `else` have incompatible types
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_c4/sample_004/target.rs:8:9
+  |
+4 |       let x = if set_g_return(1, 1) {
+  |  _____________-
+5 | |         g == 1
+  | |         ------ expected because of this
+6 | |     } else {
+7 | |         set_g_return(2, 1);
+8 | |         0
+  | |         ^ expected `bool`, found integer
+9 | |     };
+  | |_____- `if` and `else` have incompatible types
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_c4/sample_004/target.rs:11:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+11 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_c4/sample_004/target.rs:18:16
+   |
+18 |     let x = if set_g_return(1, 0) {
+   |                ^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error[E0308]: `if` and `else` have incompatible types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_c4/sample_004/target.rs:22:9
+   |
+18 |       let x = if set_g_return(1, 0) {
+   |  _____________-
+19 | |         set_g_return(2, 1);
+20 | |         0
+   | |         - expected because of this
+21 | |     } else {
+22 | |         g == 1
+   | |         ^^^^^^ expected integer, found `bool`
+23 | |     };
+   | |_____- `if` and `else` have incompatible types
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/cond_op_c4/sample_004/target.rs:31:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+31 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0308, E0425.
+For more information about an error, try `rustc --explain E0308`.

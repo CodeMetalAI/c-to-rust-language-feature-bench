@@ -1,0 +1,22 @@
+error[E0369]: binary operation `==` cannot be applied to type `Option<&mut Struct>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/compound_literals_8/sample_002/target.rs:18:49
+   |
+18 |     p.as_ref().map_or(false, |p| p.i == 1) && p == q
+   |                                               - ^^ - Option<&mut Struct>
+   |                                               |
+   |                                               Option<&mut Struct>
+   |
+note: an implementation of `PartialEq` might be missing for `Struct`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/compound_literals_8/sample_002/target.rs:22:1
+   |
+22 | struct Struct {
+   | ^^^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `Struct` with `#[derive(PartialEq)]`
+   |
+22 + #[derive(PartialEq)]
+23 | struct Struct {
+   |
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0369`.

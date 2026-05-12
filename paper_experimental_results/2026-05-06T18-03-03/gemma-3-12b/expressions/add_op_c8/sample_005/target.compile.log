@@ -1,0 +1,64 @@
+error[E0277]: the type `[{integer}]` cannot be indexed by `*const i32`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/add_op_c8/sample_005/target.rs:5:17
+  |
+5 |     let p2 = &a[(p0 as *const i32).offset(6) as *const i32];
+  |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+  |
+  = help: the trait `SliceIndex<[{integer}]>` is not implemented for `*const i32`
+  = help: the following other types implement trait `SliceIndex<T>`:
+            `usize` implements `SliceIndex<ByteStr>`
+            `usize` implements `SliceIndex<[T]>`
+  = note: required for `[{integer}]` to implement `Index<*const i32>`
+  = note: 1 redundant requirement hidden
+  = note: required for `[{integer}; 5]` to implement `Index<*const i32>`
+
+error[E0277]: the type `[{integer}]` cannot be indexed by `*const i32`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/add_op_c8/sample_005/target.rs:6:17
+  |
+6 |     let p4 = &a[(p2 as *const i32).offset(6) as *const i32];
+  |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+  |
+  = help: the trait `SliceIndex<[{integer}]>` is not implemented for `*const i32`
+  = help: the following other types implement trait `SliceIndex<T>`:
+            `usize` implements `SliceIndex<ByteStr>`
+            `usize` implements `SliceIndex<[T]>`
+  = note: required for `[{integer}]` to implement `Index<*const i32>`
+  = note: 1 redundant requirement hidden
+  = note: required for `[{integer}; 5]` to implement `Index<*const i32>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/add_op_c8/sample_005/target.rs:11:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+11 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0277]: the type `[{integer}]` cannot be indexed by `*const i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/add_op_c8/sample_005/target.rs:17:21
+   |
+17 |     let p_back = &a[(p4 as *const i32).offset(-6) as *const i32];
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[{integer}]>` is not implemented for `*const i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[{integer}]` to implement `Index<*const i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[{integer}; 5]` to implement `Index<*const i32>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/add_op_c8/sample_005/target.rs:34:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+34 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

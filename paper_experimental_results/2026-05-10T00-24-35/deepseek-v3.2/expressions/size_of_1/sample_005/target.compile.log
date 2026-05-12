@@ -1,0 +1,81 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/size_of_1/sample_005/target.rs:6:15
+  |
+6 |     let ptr = unsafe { libc::malloc(n) };
+  |               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/size_of_1/sample_005/target.rs:22:5
+   |
+22 | /     unsafe {
+23 | |         *dp = 3.14;
+24 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/size_of_1/sample_005/target.rs:27:17
+   |
+27 |     let value = unsafe { *dp };
+   |                 ^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/size_of_1/sample_005/target.rs:30:9
+   |
+30 | /         unsafe {
+31 | |             libc::free(dp as *mut libc::c_void);
+32 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/size_of_1/sample_005/target.rs:37:5
+   |
+37 | /     unsafe {
+38 | |         libc::free(dp as *mut libc::c_void);
+39 | |     }
+   | |_____^
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `libc`
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/size_of_1/sample_005/target.rs:6:24
+  |
+6 |     let ptr = unsafe { libc::malloc(n) };
+  |                        ^^^^ use of unresolved module or unlinked crate `libc`
+  |
+  = help: you might be missing a crate named `libc`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `libc`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/size_of_1/sample_005/target.rs:31:13
+   |
+31 |             libc::free(dp as *mut libc::c_void);
+   |             ^^^^ use of unresolved module or unlinked crate `libc`
+   |
+   = help: you might be missing a crate named `libc`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `libc`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/size_of_1/sample_005/target.rs:38:9
+   |
+38 |         libc::free(dp as *mut libc::c_void);
+   |         ^^^^ use of unresolved module or unlinked crate `libc`
+   |
+   = help: you might be missing a crate named `libc`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `libc`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/size_of_1/sample_005/target.rs:38:31
+   |
+38 |         libc::free(dp as *mut libc::c_void);
+   |                               ^^^^ use of unresolved module or unlinked crate `libc`
+   |
+   = help: you might be missing a crate named `libc`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `libc`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/size_of_1/sample_005/target.rs:31:35
+   |
+31 |             libc::free(dp as *mut libc::c_void);
+   |                                   ^^^^ use of unresolved module or unlinked crate `libc`
+   |
+   = help: you might be missing a crate named `libc`
+
+error: aborting due to 10 previous errors
+
+For more information about this error, try `rustc --explain E0433`.

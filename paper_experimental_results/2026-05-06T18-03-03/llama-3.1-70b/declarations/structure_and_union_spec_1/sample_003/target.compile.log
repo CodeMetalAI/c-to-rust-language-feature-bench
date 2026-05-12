@@ -1,0 +1,39 @@
+error: expected `:`, found `U`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_1/sample_003/target.rs:5:15
+  |
+3 |     struct V {
+  |            - while parsing this struct
+4 |         #[repr(C)]
+5 |         union U {
+  |               ^ expected `:`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_1/sample_003/target.rs:19:12
+   |
+19 |         U: unsafe { std::mem::zeroed() },
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_1/sample_003/target.rs:23:5
+   |
+23 | /     unsafe {
+24 | |         v1.i = 2;
+25 | |         v1.w.k = 5;
+26 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_1/sample_003/target.rs:28:8
+   |
+28 |     if unsafe { v1.i } != 2 {
+   |        ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_1/sample_003/target.rs:32:8
+   |
+32 |     if unsafe { v1.w.k } != 5 {
+   |        ^^^^^^^^^^^^^^^^^
+
+error: aborting due to 5 previous errors

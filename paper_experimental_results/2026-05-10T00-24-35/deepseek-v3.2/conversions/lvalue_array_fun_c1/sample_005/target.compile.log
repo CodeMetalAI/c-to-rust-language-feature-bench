@@ -1,0 +1,74 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/lvalue_array_fun_c1/sample_005/target.rs:58:9
+   |
+58 | /         unsafe {
+59 | |             // This is the only unsafe block needed for pointer arithmetic
+60 | |             // but we keep it minimal and equivalent to the original
+61 | |             *bp = *bp;
+62 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+warning: value assigned to `temp` is never read
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/lvalue_array_fun_c1/sample_005/target.rs:9:13
+   |
+ 9 |             temp = temp; // Assignment to self
+   |             ^^^^
+...
+17 |     if !OK_MOD!(i) {
+   |         ---------- in this macro invocation
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+   = note: this warning originates in the macro `OK_MOD` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: value assigned to `temp` is never read
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/lvalue_array_fun_c1/sample_005/target.rs:9:13
+   |
+ 9 |             temp = temp; // Assignment to self
+   |             ^^^^
+...
+20 |     if !OK_MOD!(*p) {
+   |         ----------- in this macro invocation
+   |
+   = help: maybe it is overwritten before being read?
+   = note: this warning originates in the macro `OK_MOD` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: value assigned to `temp` is never read
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/lvalue_array_fun_c1/sample_005/target.rs:9:13
+   |
+ 9 |             temp = temp; // Assignment to self
+   |             ^^^^
+...
+37 |     if !OK_MOD!(s3.a) {
+   |         ------------- in this macro invocation
+   |
+   = help: maybe it is overwritten before being read?
+   = note: this warning originates in the macro `OK_MOD` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/lvalue_array_fun_c1/sample_005/target.rs:36:9
+   |
+36 |     let mut s3 = S3 { a: 4 };
+   |         ----^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error[E0503]: cannot use `i` because it was mutably borrowed
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/lvalue_array_fun_c1/sample_005/target.rs:17:17
+   |
+15 |     let p = &mut i;
+   |             ------ `i` is borrowed here
+16 |
+17 |     if !OK_MOD!(i) {
+   |                 ^ use of borrowed `i`
+...
+20 |     if !OK_MOD!(*p) {
+   |                 -- borrow later used here
+
+error: aborting due to 2 previous errors; 4 warnings emitted
+
+For more information about this error, try `rustc --explain E0503`.

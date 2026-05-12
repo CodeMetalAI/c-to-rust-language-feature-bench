@@ -1,0 +1,63 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_003/target.rs:8:22
+  |
+8 |     let member_ptr = unsafe { std::ptr::addr_of!((*base).data) as *const u8 };
+  |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_003/target.rs:42:13
+   |
+42 |     let p = unsafe { &mut *(storage.raw.as_mut_ptr() as *mut Packet) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_003/target.rs:49:24
+   |
+49 |         let expected = unsafe { storage.raw.as_ptr().add(off) };
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_003/target.rs:65:13
+   |
+65 | /             unsafe {
+66 | |                 let data_ptr = p.data.as_ptr() as *mut U32;
+67 | |                 *data_ptr.add(i) = v;
+68 | |                 *data_ptr.add(i) += 0;
+69 | |             }
+   | |_____________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_003/target.rs:78:13
+   |
+78 | /             unsafe {
+79 | |                 let data_ptr = p.data.as_ptr() as *const U32;
+80 | |                 p.sum += *data_ptr.add(i);
+81 | |             }
+   | |_____________^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_003/target.rs:108:13
+    |
+108 |     let p = unsafe { &mut *(storage.raw.as_mut_ptr() as *mut Packet) };
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_003/target.rs:116:24
+    |
+116 |         let expected = unsafe { storage.raw.as_ptr().add(off) };
+    |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0609]: no field `data` on type `T`
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_003/target.rs:8:58
+  |
+6 | const fn offset_of<T, U>(_: &T, member: *const U) -> usize {
+  |                    - type parameter 'T' declared here
+7 |     let base = 0 as *const T;
+8 |     let member_ptr = unsafe { std::ptr::addr_of!((*base).data) as *const u8 };
+  |                                                          ^^^^ unknown field
+
+error: aborting due to 8 previous errors
+
+For more information about this error, try `rustc --explain E0609`.

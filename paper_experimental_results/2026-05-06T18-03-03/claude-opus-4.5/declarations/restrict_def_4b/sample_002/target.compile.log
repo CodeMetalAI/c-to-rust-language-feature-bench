@@ -1,0 +1,56 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/restrict_def_4b/sample_002/target.rs:11:5
+   |
+11 | /     unsafe {
+12 | |         if n == 0 {
+13 | |             return Some(OFF);
+...  |
+26 | |         Some(p)
+27 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/restrict_def_4b/sample_002/target.rs:31:5
+   |
+31 | /     unsafe {
+32 | |         let byte_offset = offset + index * std::mem::size_of::<f32>();
+33 | |         let bytes: [u8; 4] = [
+34 | |             POOL[byte_offset],
+...  |
+39 | |         f32::from_ne_bytes(bytes)
+40 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/restrict_def_4b/sample_002/target.rs:44:5
+   |
+44 | /     unsafe {
+45 | |         let byte_offset = offset + index * std::mem::size_of::<f32>();
+46 | |         let bytes = value.to_ne_bytes();
+47 | |         POOL[byte_offset] = bytes[0];
+...  |
+50 | |         POOL[byte_offset + 3] = bytes[3];
+51 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/restrict_def_4b/sample_002/target.rs:114:5
+    |
+114 | /     unsafe {
+115 | |         if (H & 1u64) == 0u64 {
+116 | |             std::process::exit(6);
+117 | |         }
+118 | |     }
+    | |_____^
+
+error: invalid suffix `ull` for number literal
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/restrict_def_4b/sample_002/target.rs:24:28
+   |
+24 |         H = H.wrapping_mul(0x5851f42d4c957f2dull);
+   |                            ^^^^^^^^^^^^^^^^^^^^^ invalid suffix `ull`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: aborting due to 5 previous errors

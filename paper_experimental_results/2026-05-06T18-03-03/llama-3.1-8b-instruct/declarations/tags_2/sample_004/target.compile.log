@@ -1,0 +1,30 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/tags_2/sample_004/target.rs:21:16
+   |
+13 | fn main() {
+   |          - expected `()` because of default return type
+...
+21 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0369]: binary operation `!=` cannot be applied to type `&Box<S1>`
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/tags_2/sample_004/target.rs:28:54
+    |
+ 28 |     if a.s2p.as_ref().unwrap().s1p.as_ref().unwrap() != &a {
+    |        --------------------------------------------- ^^ -- &S1
+    |        |
+    |        &Box<S1>
+    |
+note: the foreign item type `Box<S1>` doesn't implement `PartialEq<S1>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/boxed.rs:231:1
+    |
+231 | / pub struct Box<
+232 | |     T: ?Sized,
+233 | |     #[unstable(feature = "allocator_api", issue = "32838")] A: Allocator = Global,
+234 | | >(Unique<T>, A);
+    | |_^ not implement `PartialEq<S1>`
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0308, E0369.
+For more information about an error, try `rustc --explain E0308`.

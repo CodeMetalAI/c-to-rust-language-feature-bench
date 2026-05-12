@@ -1,0 +1,485 @@
+error[E0252]: the name `AtomicUsize` is defined multiple times
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:1:161
+  |
+1 | ...micU8, AtomicU16, AtomicU32, AtomicU64, AtomicUsize, AtomicUsize, Ordering};
+  |                                            -----------  ^^^^^^^^^^^--
+  |                                            |            |
+  |                                            |            `AtomicUsize` reimported here
+  |                                            |            help: remove unnecessary import
+  |                                            previous import of the type `AtomicUsize` here
+  |
+  = note: `AtomicUsize` must be defined only once in the type namespace of this module
+
+error[E0432]: unresolved import `std::sync::atomic::AtomicChar`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:1:37
+  |
+1 | use std::sync::atomic::{AtomicBool, AtomicChar, AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicIsize, AtomicU8, AtomicU16, AtomicU32, Atomic...
+  |                                     ^^^^^^^^^^
+  |                                     |
+  |                                     no `AtomicChar` in `sync::atomic`
+  |                                     help: a similar name exists in the module: `AtomicPtr`
+
+error[E0433]: failed to resolve: use of undeclared type `Atomic`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:10:13
+   |
+10 |     let a = Atomic::new(value);
+   |             ^^^^^^ use of undeclared type `Atomic`
+   |
+help: a struct with a similar name exists
+   |
+10 |     let a = AtomicI8::new(value);
+   |                   ++
+help: consider importing this type alias
+   |
+ 1 + use std::sync::atomic::Atomic;
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `Atomic`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:60:13
+   |
+60 |     let a = Atomic::new(value);
+   |             ^^^^^^ use of undeclared type `Atomic`
+   |
+help: a struct with a similar name exists
+   |
+60 |     let a = AtomicI8::new(value);
+   |                   ++
+help: consider importing this type alias
+   |
+ 1 + use std::sync::atomic::Atomic;
+   |
+
+warning: unused imports: `AtomicBool`, `AtomicI16`, `AtomicI32`, `AtomicI64`, `AtomicI8`, `AtomicIsize`, `AtomicU16`, `AtomicU32`, `AtomicU64`, `AtomicU8`, `AtomicUsize`, and `AtomicUsize`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:1:25
+  |
+1 | ...::{AtomicBool, AtomicChar, AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicIsize, AtomicU8, AtomicU16, AtomicU32, AtomicU64, AtomicUsize, AtomicUsize, O...
+  |       ^^^^^^^^^^              ^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0369]: binary operation `!=` cannot be applied to type `T`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:13:15
+   |
+13 |     if result != expected {
+   |        ------ ^^ -------- T
+   |        |
+   |        T
+   |
+help: consider further restricting type parameter `T` with trait `PartialEq`
+   |
+ 3 | fn test_incdec<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::marker::Copy + std::cmp::PartialEq>(
+   |                                                                                                    +++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:47:38
+   |
+44 | fn test_all_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::marker::Copy>(
+   |                          - expected this type parameter
+...
+47 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, true, 1);
+   |                                  -   ^ expected type parameter `T`, found integer
+   |                                  |
+   |                                  expected because this is `T`
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:47:49
+   |
+44 | fn test_all_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::marker::Copy>(
+   |                          - expected this type parameter
+...
+47 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, true, 1);
+   |                                             -   ^ expected type parameter `T`, found integer
+   |                                             |
+   |                                             expected because this is `T`
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:47:58
+   |
+44 | fn test_all_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::marker::Copy>(
+   |                          - expected this type parameter
+...
+47 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, true, 1);
+   |     ----------------- -----                              ^ expected type parameter `T`, found integer
+   |     |                 |
+   |     |                 expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:21:4
+   |
+21 | fn test_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::marker::Copy>(
+   |    ^^^^^^^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+22 |     value: T,
+   |     -------- `change` needs to match the type parameter `T` type of this parameter
+...
+26 |     change: T,
+   |     --------- this parameter needs to match the type parameter `T` type of `value`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:48:38
+   |
+44 | fn test_all_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::marker::Copy>(
+   |                          - expected this type parameter
+...
+48 |     test_incdec_arith(value, |x| x - 1, |x| x - 1, true, -1);
+   |                                  -   ^ expected type parameter `T`, found integer
+   |                                  |
+   |                                  expected because this is `T`
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:48:49
+   |
+44 | fn test_all_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::marker::Copy>(
+   |                          - expected this type parameter
+...
+48 |     test_incdec_arith(value, |x| x - 1, |x| x - 1, true, -1);
+   |                                             -   ^ expected type parameter `T`, found integer
+   |                                             |
+   |                                             expected because this is `T`
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:48:58
+   |
+44 | fn test_all_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::marker::Copy>(
+   |                          - expected this type parameter
+...
+48 |     test_incdec_arith(value, |x| x - 1, |x| x - 1, true, -1);
+   |     ----------------- -----                              ^^ expected type parameter `T`, found integer
+   |     |                 |
+   |     |                 expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:21:4
+   |
+21 | fn test_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::marker::Copy>(
+   |    ^^^^^^^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+22 |     value: T,
+   |     -------- `change` needs to match the type parameter `T` type of this parameter
+...
+26 |     change: T,
+   |     --------- this parameter needs to match the type parameter `T` type of `value`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:49:38
+   |
+44 | fn test_all_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::marker::Copy>(
+   |                          - expected this type parameter
+...
+49 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, false, 1);
+   |                                  -   ^ expected type parameter `T`, found integer
+   |                                  |
+   |                                  expected because this is `T`
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:49:49
+   |
+44 | fn test_all_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::marker::Copy>(
+   |                          - expected this type parameter
+...
+49 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, false, 1);
+   |                                             -   ^ expected type parameter `T`, found integer
+   |                                             |
+   |                                             expected because this is `T`
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:49:59
+   |
+44 | fn test_all_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::marker::Copy>(
+   |                          - expected this type parameter
+...
+49 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, false, 1);
+   |     ----------------- -----                               ^ expected type parameter `T`, found integer
+   |     |                 |
+   |     |                 expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:21:4
+   |
+21 | fn test_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::marker::Copy>(
+   |    ^^^^^^^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+22 |     value: T,
+   |     -------- `change` needs to match the type parameter `T` type of this parameter
+...
+26 |     change: T,
+   |     --------- this parameter needs to match the type parameter `T` type of `value`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:50:38
+   |
+44 | fn test_all_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::marker::Copy>(
+   |                          - expected this type parameter
+...
+50 |     test_incdec_arith(value, |x| x - 1, |x| x - 1, false, -1);
+   |                                  -   ^ expected type parameter `T`, found integer
+   |                                  |
+   |                                  expected because this is `T`
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:50:49
+   |
+44 | fn test_all_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::marker::Copy>(
+   |                          - expected this type parameter
+...
+50 |     test_incdec_arith(value, |x| x - 1, |x| x - 1, false, -1);
+   |                                             -   ^ expected type parameter `T`, found integer
+   |                                             |
+   |                                             expected because this is `T`
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:50:59
+   |
+44 | fn test_all_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::marker::Copy>(
+   |                          - expected this type parameter
+...
+50 |     test_incdec_arith(value, |x| x - 1, |x| x - 1, false, -1);
+   |     ----------------- -----                               ^^ expected type parameter `T`, found integer
+   |     |                 |
+   |     |                 expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:21:4
+   |
+21 | fn test_incdec_arith<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::marker::Copy>(
+   |    ^^^^^^^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+22 |     value: T,
+   |     -------- `change` needs to match the type parameter `T` type of this parameter
+...
+26 |     change: T,
+   |     --------- this parameter needs to match the type parameter `T` type of `value`
+
+error[E0369]: cannot add `T` to `T`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:61:37
+   |
+61 |     let expected = if pre_p { value + change } else { value };
+   |                               ----- ^ ------ T
+   |                               |
+   |                               T
+   |
+help: consider further restricting type parameter `T` with trait `Add`
+   |
+53 | fn test_incdec_ptr<T: Copy + std::marker::Copy + std::ops::Add>(
+   |                                                +++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:92:39
+   |
+92 |     test_incdec_ptr_arith(&ia[1], |x| x + 1, |x| x + 1, true, 1);
+   |                                       ^^^^^ expected `&{integer}`, found integer
+   |
+help: consider borrowing here
+   |
+92 |     test_incdec_ptr_arith(&ia[1], |x| &(x + 1), |x| x + 1, true, 1);
+   |                                       ++     +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:92:50
+   |
+92 |     test_incdec_ptr_arith(&ia[1], |x| x + 1, |x| x + 1, true, 1);
+   |                                                  ^^^^^ expected `&{integer}`, found integer
+   |
+help: consider borrowing here
+   |
+92 |     test_incdec_ptr_arith(&ia[1], |x| x + 1, |x| &(x + 1), true, 1);
+   |                                                  ++     +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:92:63
+   |
+92 |     test_incdec_ptr_arith(&ia[1], |x| x + 1, |x| x + 1, true, 1);
+   |     --------------------- ------                              ^ expected `&{integer}`, found integer
+   |     |                     |
+   |     |                     expected some other arguments to be an `&{integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:71:4
+   |
+71 | fn test_incdec_ptr_arith<T: Copy + std::marker::Copy>(
+   |    ^^^^^^^^^^^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+72 |     value: T,
+   |     -------- `change` needs to match the `&{integer}` type of this parameter
+...
+76 |     change: T,
+   |     --------- this parameter needs to match the `&{integer}` type of `value`
+help: consider borrowing here
+   |
+92 |     test_incdec_ptr_arith(&ia[1], |x| x + 1, |x| x + 1, true, &1);
+   |                                                               +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:93:39
+   |
+93 |     test_incdec_ptr_arith(&ia[1], |x| x - 1, |x| x - 1, true, -1);
+   |                                       ^^^^^ expected `&{integer}`, found integer
+   |
+help: consider borrowing here
+   |
+93 |     test_incdec_ptr_arith(&ia[1], |x| &(x - 1), |x| x - 1, true, -1);
+   |                                       ++     +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:93:50
+   |
+93 |     test_incdec_ptr_arith(&ia[1], |x| x - 1, |x| x - 1, true, -1);
+   |                                                  ^^^^^ expected `&{integer}`, found integer
+   |
+help: consider borrowing here
+   |
+93 |     test_incdec_ptr_arith(&ia[1], |x| x - 1, |x| &(x - 1), true, -1);
+   |                                                  ++     +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:93:63
+   |
+93 |     test_incdec_ptr_arith(&ia[1], |x| x - 1, |x| x - 1, true, -1);
+   |     --------------------- ------                              ^^ expected `&{integer}`, found integer
+   |     |                     |
+   |     |                     expected some other arguments to be an `&{integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:71:4
+   |
+71 | fn test_incdec_ptr_arith<T: Copy + std::marker::Copy>(
+   |    ^^^^^^^^^^^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+72 |     value: T,
+   |     -------- `change` needs to match the `&{integer}` type of this parameter
+...
+76 |     change: T,
+   |     --------- this parameter needs to match the `&{integer}` type of `value`
+help: consider borrowing here
+   |
+93 |     test_incdec_ptr_arith(&ia[1], |x| x - 1, |x| x - 1, true, &-1);
+   |                                                               +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:94:39
+   |
+94 |     test_incdec_ptr_arith(&ia[1], |x| x + 1, |x| x + 1, false, 1);
+   |                                       ^^^^^ expected `&{integer}`, found integer
+   |
+help: consider borrowing here
+   |
+94 |     test_incdec_ptr_arith(&ia[1], |x| &(x + 1), |x| x + 1, false, 1);
+   |                                       ++     +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:94:50
+   |
+94 |     test_incdec_ptr_arith(&ia[1], |x| x + 1, |x| x + 1, false, 1);
+   |                                                  ^^^^^ expected `&{integer}`, found integer
+   |
+help: consider borrowing here
+   |
+94 |     test_incdec_ptr_arith(&ia[1], |x| x + 1, |x| &(x + 1), false, 1);
+   |                                                  ++     +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:94:64
+   |
+94 |     test_incdec_ptr_arith(&ia[1], |x| x + 1, |x| x + 1, false, 1);
+   |     --------------------- ------                               ^ expected `&{integer}`, found integer
+   |     |                     |
+   |     |                     expected some other arguments to be an `&{integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:71:4
+   |
+71 | fn test_incdec_ptr_arith<T: Copy + std::marker::Copy>(
+   |    ^^^^^^^^^^^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+72 |     value: T,
+   |     -------- `change` needs to match the `&{integer}` type of this parameter
+...
+76 |     change: T,
+   |     --------- this parameter needs to match the `&{integer}` type of `value`
+help: consider borrowing here
+   |
+94 |     test_incdec_ptr_arith(&ia[1], |x| x + 1, |x| x + 1, false, &1);
+   |                                                                +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:95:39
+   |
+95 |     test_incdec_ptr_arith(&ia[1], |x| x - 1, |x| x - 1, false, -1);
+   |                                       ^^^^^ expected `&{integer}`, found integer
+   |
+help: consider borrowing here
+   |
+95 |     test_incdec_ptr_arith(&ia[1], |x| &(x - 1), |x| x - 1, false, -1);
+   |                                       ++     +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:95:50
+   |
+95 |     test_incdec_ptr_arith(&ia[1], |x| x - 1, |x| x - 1, false, -1);
+   |                                                  ^^^^^ expected `&{integer}`, found integer
+   |
+help: consider borrowing here
+   |
+95 |     test_incdec_ptr_arith(&ia[1], |x| x - 1, |x| &(x - 1), false, -1);
+   |                                                  ++     +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:95:64
+   |
+95 |     test_incdec_ptr_arith(&ia[1], |x| x - 1, |x| x - 1, false, -1);
+   |     --------------------- ------                               ^^ expected `&{integer}`, found integer
+   |     |                     |
+   |     |                     expected some other arguments to be an `&{integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:71:4
+   |
+71 | fn test_incdec_ptr_arith<T: Copy + std::marker::Copy>(
+   |    ^^^^^^^^^^^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`
+72 |     value: T,
+   |     -------- `change` needs to match the `&{integer}` type of this parameter
+...
+76 |     change: T,
+   |     --------- this parameter needs to match the `&{integer}` type of `value`
+help: consider borrowing here
+   |
+95 |     test_incdec_ptr_arith(&ia[1], |x| x - 1, |x| x - 1, false, &-1);
+   |                                                                +
+
+error: aborting due to 30 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0252, E0308, E0369, E0432, E0433.
+For more information about an error, try `rustc --explain E0252`.

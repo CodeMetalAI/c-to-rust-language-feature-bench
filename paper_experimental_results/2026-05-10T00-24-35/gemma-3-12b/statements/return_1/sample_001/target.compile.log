@@ -1,0 +1,80 @@
+error: expected type, found `{`
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/statements/return_1/sample_001/target.rs:8:9
+  |
+7 | union U {
+  |       - while parsing this union
+8 |     u1: {
+  |         ^ expected type
+
+error: struct literal body without path
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/statements/return_1/sample_001/target.rs:19:9
+   |
+19 |     u1: { f1: 0, f2: S { i: 0.0 } },
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: you might have forgotten to add the struct literal inside the block
+   |
+19 |     u1: { SomeStruct { f1: 0, f2: S { i: 0.0 } } },
+   |         ++++++++++++                             +
+
+error: struct literal body without path
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/statements/return_1/sample_001/target.rs:20:9
+   |
+20 |     u2: { f3: S { i: 0.0 }, f4: 0 },
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: you might have forgotten to add the struct literal inside the block
+   |
+20 |     u2: { SomeStruct { f3: S { i: 0.0 }, f4: 0 } },
+   |         ++++++++++++                             +
+
+error: this trait cannot be derived for unions
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/statements/return_1/sample_001/target.rs:6:23
+  |
+6 | #[derive(Copy, Clone, Debug)]
+  |                       ^^^^^
+
+error: unions cannot have zero fields
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/statements/return_1/sample_001/target.rs:7:1
+   |
+ 7 | / union U {
+ 8 | |     u1: {
+ 9 | |         f1: i32,
+10 | |         f2: S,
+...  |
+15 | |     },
+16 | | }
+   | |_^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/statements/return_1/sample_001/target.rs:32:5
+   |
+32 | /     unsafe {
+33 | |         G.u1.f2.i = 1.0;
+34 | |         G.u2.f3.i = 1.0;
+35 | |         G.u1.f2 = f();
+...  |
+38 | |         (G.u1.f2.i + G.u2.f3.i + val == 3.0) as i32
+39 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/statements/return_1/sample_001/target.rs:31:14
+   |
+31 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0784]: union expressions should have exactly one field
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/statements/return_1/sample_001/target.rs:18:19
+   |
+18 | static mut G: U = U {
+   |                   ^
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0277, E0784.
+For more information about an error, try `rustc --explain E0277`.

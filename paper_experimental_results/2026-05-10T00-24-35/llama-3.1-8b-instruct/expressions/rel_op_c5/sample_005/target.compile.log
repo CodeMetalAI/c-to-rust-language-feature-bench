@@ -1,0 +1,75 @@
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c5/sample_005/target.rs:10:38
+    |
+ 10 |     let p_end1 = arr.as_ptr().offset(3 * std::mem::size_of::<i32>()) as *const i32;
+    |                               ------ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `isize`, found `usize`
+    |                               |
+    |                               arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:401:25
+    |
+401 |     pub const unsafe fn offset(self, count: isize) -> *const T
+    |                         ^^^^^^
+help: you can convert a `usize` to an `isize` and panic if the converted value doesn't fit
+    |
+ 10 |     let p_end1 = arr.as_ptr().offset((3 * std::mem::size_of::<i32>()).try_into().unwrap()) as *const i32;
+    |                                      +                              +++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c5/sample_005/target.rs:17:34
+    |
+ 17 |     let p2 = arr.as_ptr().offset(2 * std::mem::size_of::<i32>());
+    |                           ------ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `isize`, found `usize`
+    |                           |
+    |                           arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:401:25
+    |
+401 |     pub const unsafe fn offset(self, count: isize) -> *const T
+    |                         ^^^^^^
+help: you can convert a `usize` to an `isize` and panic if the converted value doesn't fit
+    |
+ 17 |     let p2 = arr.as_ptr().offset((2 * std::mem::size_of::<i32>()).try_into().unwrap());
+    |                                  +                              +++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c5/sample_005/target.rs:25:38
+    |
+ 25 |     let q_last = arr.as_ptr().offset(2 * std::mem::size_of::<i32>());
+    |                               ------ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `isize`, found `usize`
+    |                               |
+    |                               arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:401:25
+    |
+401 |     pub const unsafe fn offset(self, count: isize) -> *const T
+    |                         ^^^^^^
+help: you can convert a `usize` to an `isize` and panic if the converted value doesn't fit
+    |
+ 25 |     let q_last = arr.as_ptr().offset((2 * std::mem::size_of::<i32>()).try_into().unwrap());
+    |                                      +                              +++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c5/sample_005/target.rs:26:28
+    |
+ 26 |     let q1 = q_last.offset(1 * std::mem::size_of::<i32>());
+    |                     ------ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `isize`, found `usize`
+    |                     |
+    |                     arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:401:25
+    |
+401 |     pub const unsafe fn offset(self, count: isize) -> *const T
+    |                         ^^^^^^
+help: you can convert a `usize` to an `isize` and panic if the converted value doesn't fit
+    |
+ 26 |     let q1 = q_last.offset((1 * std::mem::size_of::<i32>()).try_into().unwrap());
+    |                            +                              +++++++++++++++++++++
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

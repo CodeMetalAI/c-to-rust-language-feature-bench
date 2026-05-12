@@ -1,0 +1,58 @@
+warning: unused variable: `a`
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/external_definitions/fun_defs_1/sample_001/target.rs:4:14
+  |
+4 |     let f = |a: i8, b: i8| {
+  |              ^ help: if this is intentional, prefix it with an underscore: `_a`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error[E0499]: cannot borrow `arr` as mutable more than once at a time
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/external_definitions/fun_defs_1/sample_001/target.rs:10:13
+   |
+ 4 |     let f = |a: i8, b: i8| {
+   |             -------------- first mutable borrow occurs here
+ 5 |         let b = b as u8;
+ 6 |         arr[b as usize] = 1;
+   |         --- first borrow occurs due to use of `arr` in closure
+...
+10 |     let g = |a: i32, b: i32| {
+   |             ^^^^^^^^^^^^^^^^ second mutable borrow occurs here
+11 |         let b = b as u8;
+12 |         arr[b as usize] += b as i32;
+   |         --- second borrow occurs due to use of `arr` in closure
+...
+19 |     let r1 = f(a, b);
+   |              - first borrow later used here
+
+error[E0596]: cannot borrow `f` as mutable, as it is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/external_definitions/fun_defs_1/sample_001/target.rs:19:14
+   |
+ 6 |         arr[b as usize] = 1;
+   |         --- calling `f` requires mutable binding due to mutable borrow of `arr`
+...
+19 |     let r1 = f(a, b);
+   |              ^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+ 4 |     let mut f = |a: i8, b: i8| {
+   |         +++
+
+error[E0596]: cannot borrow `g` as mutable, as it is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/external_definitions/fun_defs_1/sample_001/target.rs:20:14
+   |
+12 |         arr[b as usize] += b as i32;
+   |         --- calling `g` requires mutable binding due to mutable borrow of `arr`
+...
+20 |     let r2 = g(a as i32, b as i32);
+   |              ^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+10 |     let mut g = |a: i32, b: i32| {
+   |         +++
+
+error: aborting due to 3 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0499, E0596.
+For more information about an error, try `rustc --explain E0499`.

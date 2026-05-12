@@ -1,0 +1,82 @@
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/statements/return_1/sample_005/target.rs:20:14
+   |
+20 |     unsafe { G.u1.f2 }
+   |              ^ not found in this scope
+   |
+help: you might be missing a const parameter
+   |
+19 | fn f<const G: /* Type */>() -> S {
+   |     +++++++++++++++++++++
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/statements/return_1/sample_005/target.rs:6:5
+   |
+ 6 | /     unsafe {
+ 7 | |         G.u1.f2.i = 1.0;
+ 8 | |         G.u2.f3.i = 1.0;
+ 9 | |         G.u1.f2 = f();
+10 | |         G.u2.f3 = f();
+11 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/statements/return_1/sample_005/target.rs:14:18
+   |
+14 |     let result = unsafe { G.u1.f2.i + G.u2.f3.i + val };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/statements/return_1/sample_005/target.rs:20:5
+   |
+20 |     unsafe { G.u1.f2 }
+   |     ^^^^^^^^^^^^^^^^^^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/statements/return_1/sample_005/target.rs:33:5
+   |
+33 |     f2: S,
+   |     ^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+33 |     f2: std::mem::ManuallyDrop<S>,
+   |         +++++++++++++++++++++++ +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/statements/return_1/sample_005/target.rs:37:5
+   |
+37 |     f3: S,
+   |     ^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+37 |     f3: std::mem::ManuallyDrop<S>,
+   |         +++++++++++++++++++++++ +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/statements/return_1/sample_005/target.rs:42:5
+   |
+42 |     u1: U1,
+   |     ^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+42 |     u1: std::mem::ManuallyDrop<U1>,
+   |         +++++++++++++++++++++++  +
+
+error[E0784]: union expressions should have exactly one field
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/statements/return_1/sample_005/target.rs:3:13
+  |
+3 |         u1: U1 { f1: 0, f2: S { i: 0.0 } },
+  |             ^^
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0425, E0740, E0784.
+For more information about an error, try `rustc --explain E0425`.

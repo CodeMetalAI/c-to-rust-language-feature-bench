@@ -1,0 +1,82 @@
+error: this trait cannot be derived for unions
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_1/sample_004/target.rs:1:10
+  |
+1 | #[derive(Default)]
+  |          ^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_1/sample_004/target.rs:43:5
+   |
+43 | /     unsafe {
+44 | |         let a_ptr = choose_view(&BANK_A, which_a);
+45 | |         let b_ptr = choose_view(&BANK_B, which_b);
+...  |
+79 | |         0
+80 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_1/sample_004/target.rs:39:14
+   |
+39 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0784]: union expressions should have exactly one field
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_1/sample_004/target.rs:7:27
+  |
+7 | static mut BANK_A: Bank = Bank { left: [0; 8], right: [0; 8] };
+  |                           ^^^^
+
+error[E0784]: union expressions should have exactly one field
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_1/sample_004/target.rs:8:27
+  |
+8 | static mut BANK_B: Bank = Bank { left: [0; 8], right: [0; 8] };
+  |                           ^^^^
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_1/sample_004/target.rs:13:10
+   |
+13 |         &u.right[0]
+   |          ^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_1/sample_004/target.rs:15:10
+   |
+15 |         &u.left[0]
+   |          ^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: lifetime may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_1/sample_004/target.rs:13:9
+   |
+11 | fn choose_view(u: &Bank, which: i32) -> &'static i32 {
+   |                   - let's call the lifetime of this reference `'1`
+12 |     if which == 1 {
+13 |         &u.right[0]
+   |         ^^^^^^^^^^^ returning this value requires that `'1` must outlive `'static`
+
+warning: unused variable: `a_ptr`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_1/sample_004/target.rs:44:13
+   |
+44 |         let a_ptr = choose_view(&BANK_A, which_a);
+   |             ^^^^^ help: if this is intentional, prefix it with an underscore: `_a_ptr`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `b_ptr`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_1/sample_004/target.rs:45:13
+   |
+45 |         let b_ptr = choose_view(&BANK_B, which_b);
+   |             ^^^^^ help: if this is intentional, prefix it with an underscore: `_b_ptr`
+
+error: aborting due to 8 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0133, E0277, E0784.
+For more information about an error, try `rustc --explain E0133`.

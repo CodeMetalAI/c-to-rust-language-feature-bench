@@ -1,0 +1,36 @@
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/rel_op_c6b/sample_005/target.rs:5:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+5 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0369]: cannot add `{integer}` to `*const i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/rel_op_c6b/sample_005/target.rs:21:43
+   |
+21 |     let end2 = (a.as_ptr() as *const i32) + 3;
+   |                -------------------------- ^ - {integer}
+   |                |
+   |                *const i32
+   |
+help: consider using `wrapping_add` or `add` for pointer + {integer}
+   |
+21 -     let end2 = (a.as_ptr() as *const i32) + 3;
+21 +     let end2 = (a.as_ptr() as *const i32).wrapping_add(3);
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/rel_op_c6b/sample_005/target.rs:26:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+26 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0308, E0369.
+For more information about an error, try `rustc --explain E0308`.

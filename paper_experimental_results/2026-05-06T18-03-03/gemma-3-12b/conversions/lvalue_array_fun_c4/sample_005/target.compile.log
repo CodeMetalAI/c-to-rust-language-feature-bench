@@ -1,0 +1,53 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_005/target.rs:11:30
+   |
+11 |     let q1: fn(i32) -> i32 = &f1;
+   |             --------------   ^^^ expected fn pointer, found `&fn(i32) -> i32 {f1}`
+   |             |
+   |             expected due to this
+   |
+   = note: expected fn pointer `fn(_) -> _`
+               found reference `&fn(_) -> _ {f1}`
+help: consider removing the reference
+   |
+11 -     let q1: fn(i32) -> i32 = &f1;
+11 +     let q1: fn(i32) -> i32 = f1;
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_005/target.rs:17:16
+   |
+ 9 | fn main() {
+   |          - expected `()` because of default return type
+...
+17 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_005/target.rs:49:35
+   |
+49 |     let q2: fn(i32, i32) -> i32 = &f2;
+   |             -------------------   ^^^ expected fn pointer, found `&fn(i32, i32) -> i32 {f2}`
+   |             |
+   |             expected due to this
+   |
+   = note: expected fn pointer `fn(_, _) -> _`
+               found reference `&fn(_, _) -> _ {f2}`
+help: consider removing the reference
+   |
+49 -     let q2: fn(i32, i32) -> i32 = &f2;
+49 +     let q2: fn(i32, i32) -> i32 = f2;
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c4/sample_005/target.rs:85:5
+   |
+ 9 | fn main() {
+   |          - expected `()` because of default return type
+...
+85 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

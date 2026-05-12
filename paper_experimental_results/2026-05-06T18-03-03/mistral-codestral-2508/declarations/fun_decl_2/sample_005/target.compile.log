@@ -1,0 +1,269 @@
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:50:16
+   |
+50 |     let sel = (hmix(v[0], v[5]) & 3) % 3;
+   |                ^^^^ ----  ---- expected `i32`, found `usize`
+   |                     |
+   |                     expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:1:4
+   |
+ 1 | fn hmix(a: i32, b: i32) -> i32 {
+   |    ^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+50 |     let sel = (hmix(v[0].try_into().unwrap(), v[5]) & 3) % 3;
+   |                         ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+50 |     let sel = (hmix(v[0], v[5].try_into().unwrap()) & 3) % 3;
+   |                               ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:52:33
+     |
+  52 |     let (x, y) = v.split_at_mut(sel + 1);
+     |                    ------------ ^^^^^^^ expected `usize`, found `i32`
+     |                    |
+     |                    arguments to this method are incorrect
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/slice/mod.rs:1980:18
+     |
+1980 |     pub const fn split_at_mut(&mut self, mid: usize) -> (&mut [T], &mut [T]) {
+     |                  ^^^^^^^^^^^^
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+     |
+  52 |     let (x, y) = v.split_at_mut((sel + 1).try_into().unwrap());
+     |                                 +       +++++++++++++++++++++
+
+error[E0277]: the type `[usize]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:53:20
+   |
+53 |     let x = &mut x[sel];
+   |                    ^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[usize]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[usize]` to implement `Index<i32>`
+
+error[E0277]: the type `[for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:59:24
+   |
+59 |     let out = run(apfi[sel], x, y);
+   |                        ^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32; 3]` to implement `Index<i32>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:59:33
+   |
+59 |     let out = run(apfi[sel], x, y);
+   |               ---               ^ expected `&mut i32`, found `&mut usize`
+   |               |
+   |               arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut i32`
+              found mutable reference `&mut usize`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:33:4
+   |
+33 | fn run<F>(pf: F, a: &mut i32, b: &mut i32) -> i32
+   |    ^^^                        -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:63:22
+   |
+63 |             if *x != before_y {
+   |                --    ^^^^^^^^ expected `i32`, found `usize`
+   |                |
+   |                expected because this is `i32`
+   |
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+63 |             if *x != before_y.try_into().unwrap() {
+   |                              ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:66:22
+   |
+66 |             if *y != before_x {
+   |                --    ^^^^^^^^ expected `usize`, found `i32`
+   |                |
+   |                expected because this is `usize`
+   |
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+66 |             if *y != before_x.try_into().unwrap() {
+   |                              ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:69:39
+   |
+69 |             if (out ^ 3) != (hmix(*x, *y) ^ (hmix(*x, *y) + 3)) {
+   |                              ----     ^^ expected `i32`, found `usize`
+   |                              |
+   |                              arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:1:4
+   |
+ 1 | fn hmix(a: i32, b: i32) -> i32 {
+   |    ^^^^         ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+69 |             if (out ^ 3) != (hmix(*x, (*y).try_into().unwrap()) ^ (hmix(*x, *y) + 3)) {
+   |                                       +  +++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:69:55
+   |
+69 |             if (out ^ 3) != (hmix(*x, *y) ^ (hmix(*x, *y) + 3)) {
+   |                                              ----     ^^ expected `i32`, found `usize`
+   |                                              |
+   |                                              arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:1:4
+   |
+ 1 | fn hmix(a: i32, b: i32) -> i32 {
+   |    ^^^^         ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+69 |             if (out ^ 3) != (hmix(*x, *y) ^ (hmix(*x, (*y).try_into().unwrap()) + 3)) {
+   |                                                       +  +++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:82:35
+   |
+82 |             let d = if before_x - before_y < 0 {
+   |                                   ^^^^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot subtract `usize` from `i32`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:82:33
+   |
+82 |             let d = if before_x - before_y < 0 {
+   |                                 ^ no implementation for `i32 - usize`
+   |
+   = help: the trait `Sub<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Sub<Rhs>`:
+             `&i32` implements `Sub<i32>`
+             `&i32` implements `Sub`
+             `i32` implements `Sub<&i32>`
+             `i32` implements `Sub`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:83:30
+   |
+83 |                 -(before_x - before_y)
+   |                              ^^^^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot subtract `usize` from `i32`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:83:28
+   |
+83 |                 -(before_x - before_y)
+   |                            ^ no implementation for `i32 - usize`
+   |
+   = help: the trait `Sub<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Sub<Rhs>`:
+             `&i32` implements `Sub<i32>`
+             `&i32` implements `Sub`
+             `i32` implements `Sub<&i32>`
+             `i32` implements `Sub`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:85:28
+   |
+85 |                 before_x - before_y
+   |                            ^^^^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot subtract `usize` from `i32`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:85:26
+   |
+85 |                 before_x - before_y
+   |                          ^ no implementation for `i32 - usize`
+   |
+   = help: the trait `Sub<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Sub<Rhs>`:
+             `&i32` implements `Sub<i32>`
+             `&i32` implements `Sub`
+             `i32` implements `Sub<&i32>`
+             `i32` implements `Sub`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:90:33
+   |
+90 |             if *y != before_x + before_y {
+   |                                 ^^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:90:22
+   |
+90 |             if *y != before_x + before_y {
+   |                --    ^^^^^^^^^^^^^^^^^^^ expected `usize`, found `i32`
+   |                |
+   |                expected because this is `usize`
+   |
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+90 |             if *y != (before_x + before_y).try_into().unwrap() {
+   |                      +                   +++++++++++++++++++++
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:90:31
+   |
+90 |             if *y != before_x + before_y {
+   |                               ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0277]: the type `[for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:96:13
+   |
+96 |     if apfi[sel] as usize == 0 {
+   |             ^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32; 3]` to implement `Index<i32>`
+
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:4:9
+  |
+4 |     let mut ua = ua ^ (ua >> 16);
+  |         ----^^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/fun_decl_2/sample_005/target.rs:5:9
+  |
+5 |     let mut ub = ub ^ (ub >> 15);
+  |         ----^^
+  |         |
+  |         help: remove this `mut`
+
+error: aborting due to 19 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

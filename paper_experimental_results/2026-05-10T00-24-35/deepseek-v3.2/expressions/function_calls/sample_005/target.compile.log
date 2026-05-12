@@ -1,0 +1,94 @@
+error[E0425]: cannot find value `disallowed` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/function_calls/sample_005/target.rs:34:15
+   |
+34 |     SEEN_F4 = disallowed;
+   |               ^^^^^^^^^^ not found in this scope
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/function_calls/sample_005/target.rs:8:1
+   |
+ 8 | / unsafe fn log_call(id: i32) {
+ 9 | |     if LOGN < 5 {
+10 | |         LOGV[LOGN as usize] = id;
+11 | |         LOGN += 1;
+12 | |     }
+13 | | }
+   | |_^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/function_calls/sample_005/target.rs:15:1
+   |
+15 | / unsafe fn f1() -> i32 {
+16 | |     SEEN_F1 = 1;
+17 | |     log_call(1);
+18 | |     0
+19 | | }
+   | |_^
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/function_calls/sample_005/target.rs:21:1
+   |
+21 | / unsafe fn f2() -> i32 {
+22 | |     SEEN_F2 = 1;
+23 | |     log_call(2);
+24 | |     20
+25 | | }
+   | |_^
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/function_calls/sample_005/target.rs:27:1
+   |
+27 | / unsafe fn f3() -> i32 {
+28 | |     SEEN_F3 = 1;
+29 | |     log_call(3);
+30 | |     30
+31 | | }
+   | |_^
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/function_calls/sample_005/target.rs:33:1
+   |
+33 | / unsafe fn f4() -> i32 {
+34 | |     SEEN_F4 = disallowed;
+35 | |     log_call(4);
+36 | |     40
+37 | | }
+   | |_^
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/function_calls/sample_005/target.rs:41:1
+   |
+41 | / unsafe fn target(a: i32, b: i32) -> i32 {
+42 | |     let _ = a;
+43 | |     let _ = b;
+44 | |     log_call(9);
+...  |
+50 | |     0
+51 | | }
+   | |_^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/function_calls/sample_005/target.rs:54:14
+   |
+54 |       let rc = unsafe {
+   |  ______________^
+55 | |         let pf: [Fn2T; 1] = [target];
+56 | |         pf[f1() as usize](f2(), f3() + f4())
+57 | |     };
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/function_calls/sample_005/target.rs:63:5
+   |
+63 | /     unsafe {
+64 | |         if LOGN != 5 {
+65 | |             std::process::exit(1);
+...  |
+79 | |     }
+   | |_____^
+
+error: aborting due to 9 previous errors
+
+For more information about this error, try `rustc --explain E0425`.

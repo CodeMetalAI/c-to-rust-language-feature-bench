@@ -1,0 +1,77 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/array_decl_4/sample_002/target.rs:12:13
+   |
+12 | /             unsafe {
+13 | |                 BACKING[i][j] = (i as i32 + 1) * 100 + (j as i32 + 1);
+14 | |             }
+   | |_____________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/array_decl_4/sample_002/target.rs:48:13
+   |
+48 | /             unsafe {
+49 | |                 BACKING[i][j] = c[i][j] + d[(i + j) % m];
+50 | |             }
+   | |_____________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/array_decl_4/sample_002/target.rs:56:20
+   |
+56 |     let checksum = unsafe { checksum_2d(m, &BACKING) };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/array_decl_4/sample_002/target.rs:95:12
+   |
+95 |         if unsafe { checksum_2d(m, &BACKING) } != checksum_2d(m, &expect) {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/array_decl_4/sample_002/target.rs:114:12
+    |
+114 |         if unsafe { checksum_2d(m, &BACKING) } != checksum_2d(m, &expect2) {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/array_decl_4/sample_002/target.rs:56:44
+   |
+56 |     let checksum = unsafe { checksum_2d(m, &BACKING) };
+   |                                            ^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw const` instead to create a raw pointer
+   |
+56 |     let checksum = unsafe { checksum_2d(m, &raw const BACKING) };
+   |                                             +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/array_decl_4/sample_002/target.rs:95:36
+   |
+95 |         if unsafe { checksum_2d(m, &BACKING) } != checksum_2d(m, &expect) {
+   |                                    ^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+95 |         if unsafe { checksum_2d(m, &raw const BACKING) } != checksum_2d(m, &expect) {
+   |                                     +++++++++
+
+warning: creating a shared reference to mutable static
+   --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/array_decl_4/sample_002/target.rs:114:36
+    |
+114 |         if unsafe { checksum_2d(m, &BACKING) } != checksum_2d(m, &expect2) {
+    |                                    ^^^^^^^^ shared reference to mutable static
+    |
+    = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+    = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+    |
+114 |         if unsafe { checksum_2d(m, &raw const BACKING) } != checksum_2d(m, &expect2) {
+    |                                     +++++++++
+
+error: aborting due to 5 previous errors; 3 warnings emitted

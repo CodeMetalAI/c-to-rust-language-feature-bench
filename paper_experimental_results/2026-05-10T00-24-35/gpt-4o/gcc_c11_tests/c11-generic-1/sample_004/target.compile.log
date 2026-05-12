@@ -1,0 +1,81 @@
+error: return types are denoted using `->`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/c11-generic-1/sample_004/target.rs:77:37
+   |
+77 |         _ if f as fn() == f as fn() => 0, // Type match void (*)(void)
+   |                                     ^^
+   |
+help: use `->` instead
+   |
+77 -         _ if f as fn() == f as fn() => 0, // Type match void (*)(void)
+77 +         _ if f as fn() == f as fn() -> 0, // Type match void (*)(void)
+   |
+
+error: expected identifier, found keyword `fn`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/c11-generic-1/sample_004/target.rs:77:32
+   |
+77 |         _ if f as fn() == f as fn() => 0, // Type match void (*)(void)
+   |                                ^^ expected identifier, found keyword
+   |
+help: escape `fn` to use it as an identifier
+   |
+77 |         _ if f as fn() == f as r#fn() => 0, // Type match void (*)(void)
+   |                                ++
+
+error: expected type, found `0`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/c11-generic-1/sample_004/target.rs:77:40
+   |
+77 |         _ if f as fn() == f as fn() => 0, // Type match void (*)(void)
+   |                                        ^ expected type
+
+error: return types are denoted using `->`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/c11-generic-1/sample_004/target.rs:87:73
+   |
+87 |         _ if std::process::abort as fn() == std::process::abort as fn() => 0, // Type match void (*)(void)
+   |                                                                         ^^
+   |
+help: use `->` instead
+   |
+87 -         _ if std::process::abort as fn() == std::process::abort as fn() => 0, // Type match void (*)(void)
+87 +         _ if std::process::abort as fn() == std::process::abort as fn() -> 0, // Type match void (*)(void)
+   |
+
+error: expected identifier, found keyword `fn`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/c11-generic-1/sample_004/target.rs:87:68
+   |
+87 |         _ if std::process::abort as fn() == std::process::abort as fn() => 0, // Type match void (*)(void)
+   |                                                                    ^^ expected identifier, found keyword
+   |
+help: escape `fn` to use it as an identifier
+   |
+87 |         _ if std::process::abort as fn() == std::process::abort as r#fn() => 0, // Type match void (*)(void)
+   |                                                                    ++
+
+error: expected type, found `0`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/c11-generic-1/sample_004/target.rs:87:76
+   |
+87 |         _ if std::process::abort as fn() == std::process::abort as fn() => 0, // Type match void (*)(void)
+   |                                                                            ^ expected type
+
+warning: `extern` declarations without an explicit ABI are deprecated
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/c11-generic-1/sample_004/target.rs:75:5
+   |
+75 |     extern fn f() {}
+   |     ^^^^^^ help: explicitly specify the "C" ABI: `extern "C"`
+   |
+   = note: `#[warn(missing_abi)]` on by default
+
+error[E0605]: non-primitive cast: `extern "C" fn() {f}` as `fn()`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/c11-generic-1/sample_004/target.rs:76:24
+   |
+76 |     let result = match f as fn() {
+   |                        ^^^^^^^^^ invalid cast
+
+error[E0605]: non-primitive cast: `fn() -> ! {std::process::abort}` as `fn()`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/c11-generic-1/sample_004/target.rs:86:24
+   |
+86 |     let result = match std::process::abort as fn() {
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^ invalid cast
+
+error: aborting due to 8 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0605`.

@@ -1,0 +1,65 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_002/target.rs:38:18
+   |
+38 |     let s1_ptr = unsafe { alloc(s1_layout) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_002/target.rs:48:18
+   |
+48 |     let s2_ptr = unsafe { alloc(s2_layout) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_002/target.rs:50:9
+   |
+50 |         unsafe { dealloc(s1_ptr, s1_layout) };
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_002/target.rs:60:5
+   |
+60 |     unsafe { *s1_double_start = 42.0 };
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_002/target.rs:63:5
+   |
+63 |     unsafe { *s2_double_start = 24.0 };
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_002/target.rs:66:8
+   |
+66 |     if unsafe { *s1_double_start != 42.0 || *s2_double_start != 24.0 } {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_002/target.rs:67:9
+   |
+67 | /         unsafe {
+68 | |             dealloc(s1_ptr, s1_layout);
+69 | |             dealloc(s2_ptr, s2_layout);
+70 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_002/target.rs:74:5
+   |
+74 | /     unsafe {
+75 | |         dealloc(s1_ptr, s1_layout);
+76 | |         dealloc(s2_ptr, s2_layout);
+77 | |     }
+   | |_____^
+
+warning: unused variable: `s1_doubles_ptr`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_002/target.rs:55:9
+   |
+55 |     let s1_doubles_ptr = s1_ptr as *mut f64;
+   |         ^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_s1_doubles_ptr`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 8 previous errors; 1 warning emitted

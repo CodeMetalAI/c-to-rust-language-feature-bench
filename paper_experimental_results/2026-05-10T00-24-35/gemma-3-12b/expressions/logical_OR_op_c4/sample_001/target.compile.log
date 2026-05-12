@@ -1,0 +1,55 @@
+error: free static item without body
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_OR_op_c4/sample_001/target.rs:6:1
+  |
+6 | static mut g: i32;
+  | ^^^^^^^^^^^^^^^^^-
+  |                  |
+  |                  help: provide a definition for the static: `= <expr>;`
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_OR_op_c4/sample_001/target.rs:2:5
+  |
+2 |     unsafe { g = gval; }
+  |     ^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_OR_op_c4/sample_001/target.rs:11:5
+   |
+11 |     unsafe { g = 0; }
+   |     ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_OR_op_c4/sample_001/target.rs:12:32
+   |
+12 |     if !set_g_return(1, 0) || (unsafe { g == 1 }) {
+   |                                ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_OR_op_c4/sample_001/target.rs:16:5
+   |
+16 |     unsafe { g = 0; }
+   |     ^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_OR_op_c4/sample_001/target.rs:12:8
+   |
+12 |     if !set_g_return(1, 0) || (unsafe { g == 1 }) {
+   |        ^^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_OR_op_c4/sample_001/target.rs:17:8
+   |
+17 |     if set_g_return(0, 1) || (y += 1) {
+   |        ^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/logical_OR_op_c4/sample_001/target.rs:17:30
+   |
+17 |     if set_g_return(0, 1) || (y += 1) {
+   |                              ^^^^^^^^ expected `bool`, found `()`
+
+error: aborting due to 8 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

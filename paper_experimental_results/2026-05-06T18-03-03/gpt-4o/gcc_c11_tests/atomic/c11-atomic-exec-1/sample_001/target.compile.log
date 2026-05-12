@@ -1,0 +1,87 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:55:27
+   |
+55 |     let i_ptr: *mut i32 = unsafe { &mut I };
+   |                           ^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:74:5
+   |
+74 | /     unsafe {
+75 | |         s1.as_mut_ptr().write(init);
+76 | |         copy = s1.assume_init();
+77 | |         if init.a != copy.a {
+...  |
+96 | |     }
+   | |_____^
+
+error[E0600]: cannot apply unary operator `-` to type `u8`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:49:31
+   |
+49 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u8`
+   |
+33 -                 test_simple_assign!(AtomicU8, $value as u8);
+33 +                 test_simple_assign!(AtomicU8, u8::MAX);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u16`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:49:31
+   |
+49 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u16`
+   |
+35 -                 test_simple_assign!(AtomicU16, $value as u16);
+35 +                 test_simple_assign!(AtomicU16, u16::MAX);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:49:31
+   |
+49 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u32`
+   |
+37 -                 test_simple_assign!(AtomicU32, $value as u32);
+37 +                 test_simple_assign!(AtomicU32, u32::MAX);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u64`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:49:31
+   |
+49 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u64`
+   |
+39 -                 test_simple_assign!(AtomicU64, $value as u64);
+39 +                 test_simple_assign!(AtomicU64, u64::MAX);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:49:31
+   |
+49 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `usize`
+   |
+41 -                 test_simple_assign!(AtomicUsize, $value as usize);
+41 +                 test_simple_assign!(AtomicUsize, usize::MAX);
+   |
+
+error: aborting due to 7 previous errors
+
+For more information about this error, try `rustc --explain E0600`.

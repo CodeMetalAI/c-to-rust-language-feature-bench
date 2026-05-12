@@ -1,0 +1,24 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/compound_literals_2/sample_005/target.rs:8:8
+  |
+8 |     if unsafe { *p } != init {
+  |        ^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/compound_literals_2/sample_005/target.rs:11:8
+   |
+11 |     if unsafe { *p.offset(1) } != 0 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: value assigned to `p` is never read
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/compound_literals_2/sample_005/target.rs:3:13
+  |
+3 |     let mut p = &mut x as *mut i32;
+  |             ^
+  |
+  = help: maybe it is overwritten before being read?
+  = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 2 previous errors; 1 warning emitted

@@ -1,0 +1,135 @@
+use std::mem::size_of;
+use std::process::exit;
+
+#[derive(Copy, Clone)]
+struct S1 {
+    x: i32,
+    y: i32,
+}
+
+type T1 = S1;
+type Tp1<'a> = &'a mut S1;
+
+#[derive(Copy, Clone)]
+struct S2 {
+    n: i32,
+}
+
+type T2 = S2;
+type Tp2<'a> = &'a S2;
+
+fn make_t1(x: i32, y: i32) -> T1 {
+    T1 { x, y }
+}
+
+fn takes_t1(v: T1) -> i32 {
+    v.x + v.y + 1
+}
+
+fn takes_s1(v: S1) -> i32 {
+    v.x + v.y + 2
+}
+
+fn takes_tp1(p: Tp1) -> i32 {
+    p.x += 100;
+    p.x
+}
+
+fn takes_int(v: i32) -> i32 {
+    v + 4
+}
+
+fn takes_t2(v: T2) -> i32 {
+    v.n + 5
+}
+
+fn main() {
+    let mut x = [[0i32; 5]; 3];
+    for i in 0..3 {
+        for j in 0..5 {
+            x[i][j] = (i + j) as i32;
+        }
+    }
+
+    for i in 0..3 {
+        for j in 0..5 {
+            let a = x[i][j];
+            let b = x[i][j];
+            if a != b {
+                exit(1);
+            }
+        }
+    }
+
+    let p0_index: isize = 0;
+    let p1_index: isize = 1 * 5;
+    if p1_index - p0_index != 5 {
+        exit(2);
+    }
+
+    if make_t1(x[1][0], x[1][1]).x != x[1][0] {
+        exit(3);
+    }
+    if make_t1(x[1][0], x[1][1]).y != x[1][1] {
+        exit(4);
+    }
+    if make_t1(x[0][3], x[1][2]).x + make_t1(x[2][0], x[0][4]).y != 7 {
+        exit(5);
+    }
+
+    let mut a: T1 = T1 { x: 0, y: 0 };
+    let mut b: S1 = S1 { x: 0, y: 0 };
+    a.x = x[1][0];
+    a.y = x[1][1];
+    b.x = x[2][0];
+    b.y = x[2][1];
+
+    if takes_t1(a) != 4 {
+        exit(6);
+    }
+    if takes_s1(a) != 5 {
+        exit(7);
+    }
+    if takes_t1(b) != 6 {
+        exit(8);
+    }
+    if takes_s1(b) != 7 {
+        exit(9);
+    }
+
+    {
+        let tp: Tp1 = &mut a;
+        if takes_tp1(tp) != 101 {
+            exit(10);
+        }
+    }
+    if a.x != 101 {
+        exit(11);
+    }
+    if takes_int(a.x) != 105 {
+        exit(12);
+    }
+
+    {
+        let mut q: i32 = 0;
+        q += size_of::<T1>() as i32;
+        q += size_of::<S1>() as i32;
+        if q == 0 {
+            exit(13);
+        }
+    }
+
+    {
+        let mut c: T2 = T2 { n: 0 };
+        c.n = x[2][0];
+        let r: Tp2 = &c;
+        if r.n != x[2][0] {
+            exit(14);
+        }
+        if takes_t2(c) != 7 {
+            exit(15);
+        }
+    }
+
+    println!("PASS");
+}

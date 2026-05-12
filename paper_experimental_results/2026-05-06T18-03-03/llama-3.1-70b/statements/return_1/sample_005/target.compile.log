@@ -1,0 +1,76 @@
+error: this trait cannot be derived for unions
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_005/target.rs:6:10
+  |
+6 | #[derive(Debug, Copy, Clone)]
+  |          ^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_005/target.rs:13:20
+   |
+13 |     let mut g: U = unsafe { std::mem::zeroed() };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_005/target.rs:22:20
+   |
+22 |     let mut g: U = unsafe { std::mem::zeroed() };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_005/target.rs:23:5
+   |
+23 | /     unsafe {
+24 | |         g.u1.1.i = 1.0;
+25 | |         g.u2.0.i = 1.0;
+26 | |         g.u1.1 = f();
+27 | |         g.u2.0 = f();
+28 | |     }
+   | |_____^
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_005/target.rs:14:5
+   |
+14 |     g.u1.1
+   |     ^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_005/target.rs:13:9
+   |
+13 |     let mut g: U = unsafe { std::mem::zeroed() };
+   |         ----^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_005/target.rs:30:9
+   |
+30 |     if (g.u1.1.i + g.u2.0.i + val) == 3.0 {
+   |         ^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_005/target.rs:30:20
+   |
+30 |     if (g.u1.1.i + g.u2.0.i + val) == 3.0 {
+   |                    ^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_005/target.rs:23:5
+   |
+23 |     unsafe {
+   |     ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 7 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0133`.

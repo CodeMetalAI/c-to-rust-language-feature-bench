@@ -1,0 +1,23 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/lvalue_array_fun_c1/sample_001/target.rs:31:18
+   |
+31 |         let bp = unsafe { std::mem::transmute::<&mut i32, &mut [u8; 4]>(&mut t) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0499]: cannot borrow `i` as mutable more than once at a time
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/lvalue_array_fun_c1/sample_001/target.rs:5:16
+  |
+3 |     let p = &mut i;
+  |             ------ first mutable borrow occurs here
+4 |
+5 |     if !ok_mod(&mut i) {
+  |                ^^^^^^ second mutable borrow occurs here
+...
+8 |     if !ok_mod(p) {
+  |                - first borrow later used here
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0499`.

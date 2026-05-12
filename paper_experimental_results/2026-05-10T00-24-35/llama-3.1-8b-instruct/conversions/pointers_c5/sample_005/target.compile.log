@@ -1,0 +1,24 @@
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c5/sample_005/target.rs:9:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+9 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0606]: casting `&{integer}` as `usize` is invalid
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c5/sample_005/target.rs:5:21
+  |
+5 |     let ip: usize = px as usize;
+  |                     ^^^^^^^^^^^
+  |
+help: dereference the expression
+  |
+5 |     let ip: usize = *px as usize;
+  |                     +
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0308, E0606.
+For more information about an error, try `rustc --explain E0308`.

@@ -1,0 +1,46 @@
+error[E0428]: the name `max` is defined multiple times
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_2/sample_001/target.rs:50:1
+   |
+42 | fn max(a: i32, b: i32) -> i32 {
+   | ----------------------------- previous definition of the value `max` here
+...
+50 | fn max(a: f64, b: f64) -> f64 {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `max` redefined here
+   |
+   = note: `max` must be defined only once in the value namespace of this module
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_2/sample_001/target.rs:10:8
+   |
+10 |     if max(x, y) != 2.5 {
+   |        ^^^ -  - expected `i32`, found floating-point number
+   |            |
+   |            expected `i32`, found floating-point number
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_2/sample_001/target.rs:42:4
+   |
+42 | fn max(a: i32, b: i32) -> i32 {
+   |    ^^^ ------  ------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_2/sample_001/target.rs:10:21
+   |
+10 |     if max(x, y) != 2.5 {
+   |        ---------    ^^^ expected `i32`, found floating-point number
+   |        |
+   |        expected because this is `i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_2/sample_001/target.rs:39:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+39 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0428.
+For more information about an error, try `rustc --explain E0308`.

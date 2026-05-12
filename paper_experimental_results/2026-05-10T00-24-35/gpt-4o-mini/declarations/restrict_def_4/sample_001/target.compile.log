@@ -1,0 +1,107 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4/sample_001/target.rs:49:5
+   |
+49 | /     unsafe {
+50 | |         if GATE4 != 0 {
+51 | |             let p2 = p1;
+52 | |             let q2 = q1;
+...  |
+72 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4/sample_001/target.rs:34:14
+   |
+34 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4/sample_001/target.rs:54:13
+   |
+54 |             copy_restrict(16, &mut *p2.add(8), &*q2.add(4));
+   |             ^^^^^^^^^^^^^     ---------------  ----------- expected `&[i32]`, found `&i32`
+   |                               |
+   |                               expected `&mut [i32]`, found `&mut i32`
+   |
+   = note: expected mutable reference `&mut [i32]`
+              found mutable reference `&mut i32`
+   = note: expected reference `&[i32]`
+              found reference `&i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4/sample_001/target.rs:5:4
+   |
+ 5 | fn copy_restrict(n: usize, p: &mut [i32], q: &[i32]) {
+   |    ^^^^^^^^^^^^^           -------------  ---------
+
+error[E0599]: no method named `try_into` found for slice `[i32]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4/sample_001/target.rs:56:55
+    |
+ 56 |             let expect: [i32; 16] = y_snapshot[4..20].try_into().unwrap();
+    |                                                       ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[i32]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  3 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 56 -             let expect: [i32; 16] = y_snapshot[4..20].try_into().unwrap();
+ 56 +             let expect: [i32; 16] = y_snapshot[4..20].into().unwrap();
+    |
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4/sample_001/target.rs:66:9
+   |
+66 |         copy_restrict(8, &mut *p1, &*q1.add(24));
+   |         ^^^^^^^^^^^^^    --------  ------------ expected `&[i32]`, found `&i32`
+   |                          |
+   |                          expected `&mut [i32]`, found `&mut i32`
+   |
+   = note: expected mutable reference `&mut [i32]`
+              found mutable reference `&mut i32`
+   = note: expected reference `&[i32]`
+              found reference `&i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4/sample_001/target.rs:5:4
+   |
+ 5 | fn copy_restrict(n: usize, p: &mut [i32], q: &[i32]) {
+   |    ^^^^^^^^^^^^^           -------------  ---------
+
+error[E0599]: no method named `try_into` found for slice `[i32]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4/sample_001/target.rs:68:52
+    |
+ 68 |         let expect2: [i32; 8] = y_snapshot[24..32].try_into().unwrap();
+    |                                                    ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[i32]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  3 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 68 -         let expect2: [i32; 8] = y_snapshot[24..32].try_into().unwrap();
+ 68 +         let expect2: [i32; 8] = y_snapshot[24..32].into().unwrap();
+    |
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0599.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,47 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/external_definitions/fun_defs_1/sample_004/target.rs:4:5
+  |
+4 | /     unsafe {
+5 | |         ARR[b as usize] = 1;
+6 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/external_definitions/fun_defs_1/sample_004/target.rs:11:5
+   |
+11 | /     unsafe {
+12 | |         ARR[(b as u8) as usize] += b;
+13 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/external_definitions/fun_defs_1/sample_004/target.rs:31:5
+   |
+31 | /     unsafe {
+32 | |         if ARR[ub as usize] != 0 {
+33 | |             return 3;
+34 | |         }
+35 | |     }
+   | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/external_definitions/fun_defs_1/sample_004/target.rs:17:14
+   |
+17 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+warning: unused variable: `a`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/external_definitions/fun_defs_1/sample_004/target.rs:3:6
+  |
+3 | fn f(a: u8, b: u8) -> i32 {
+  |      ^ help: if this is intentional, prefix it with an underscore: `_a`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 4 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0277`.

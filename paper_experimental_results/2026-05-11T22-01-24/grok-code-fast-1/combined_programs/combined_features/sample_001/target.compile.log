@@ -1,0 +1,43 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/grok-code-fast-1/combined_programs/combined_features/sample_001/target.rs:54:21
+   |
+54 |             let b = unsafe { *ptr.add((i * 5 + j) as usize) };
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0381]: partially assigned binding `a` isn't fully initialized
+  --> benchmark_results/2026-05-11T22-01-24/grok-code-fast-1/combined_programs/combined_features/sample_001/target.rs:85:5
+   |
+83 |     let mut a: T1;
+   |         ----- binding declared here but left uninitialized
+84 |     let mut b: S1;
+85 |     a.x = x[1][0];
+   |     ^^^^^^^^^^^^^ `a` partially assigned here but it isn't fully initialized
+   |
+   = help: partial initialization isn't supported, fully initialize the binding with a default value and mutate it, or use `std::mem::MaybeUninit`
+
+error[E0381]: partially assigned binding `b` isn't fully initialized
+  --> benchmark_results/2026-05-11T22-01-24/grok-code-fast-1/combined_programs/combined_features/sample_001/target.rs:87:5
+   |
+84 |     let mut b: S1;
+   |         ----- binding declared here but left uninitialized
+...
+87 |     b.x = x[2][0];
+   |     ^^^^^^^^^^^^^ `b` partially assigned here but it isn't fully initialized
+   |
+   = help: partial initialization isn't supported, fully initialize the binding with a default value and mutate it, or use `std::mem::MaybeUninit`
+
+error[E0381]: partially assigned binding `c` isn't fully initialized
+   --> benchmark_results/2026-05-11T22-01-24/grok-code-fast-1/combined_programs/combined_features/sample_001/target.rs:125:9
+    |
+124 |         let mut c: T2;
+    |             ----- binding declared here but left uninitialized
+125 |         c.n = x[2][0]; // = 2, seeded from array
+    |         ^^^^^^^^^^^^^ `c` partially assigned here but it isn't fully initialized
+    |
+    = help: partial initialization isn't supported, fully initialize the binding with a default value and mutate it, or use `std::mem::MaybeUninit`
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0381`.

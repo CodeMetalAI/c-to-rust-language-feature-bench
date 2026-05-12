@@ -1,0 +1,62 @@
+warning: unnecessary trailing semicolon
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_003/target.rs:5:6
+  |
+5 |     };
+  |      ^ help: remove this semicolon
+  |
+  = note: `#[warn(redundant_semicolons)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary trailing semicolon
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_003/target.rs:9:6
+  |
+9 |     };
+  |      ^ help: remove this semicolon
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_003/target.rs:26:5
+   |
+26 | /     unsafe {
+27 | |         *(s1.as_mut_ptr() as *mut f64) = 42.0;
+28 | |         *(s2.as_mut_ptr() as *mut f64) = 24.0;
+29 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_003/target.rs:31:8
+   |
+31 |     if unsafe { *(s1.as_ptr() as *const f64) } != 42.0
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_003/target.rs:32:12
+   |
+32 |         || unsafe { *(s2.as_ptr() as *const f64) } != 24.0
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_003/target.rs:19:29
+   |
+19 |     let s1: Box<[i32; 8]> = vec![0; 8].into_boxed_slice();
+   |             -------------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Box<[i32; 8]>`, found `Box<[{integer}]>`
+   |             |
+   |             expected due to this
+   |
+   = note: expected struct `Box<[i32; 8]>`
+              found struct `Box<[{integer}]>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_003/target.rs:20:29
+   |
+20 |     let s2: Box<[i32; 5]> = vec![0; 5].into_boxed_slice();
+   |             -------------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Box<[i32; 5]>`, found `Box<[{integer}]>`
+   |             |
+   |             expected due to this
+   |
+   = note: expected struct `Box<[i32; 5]>`
+              found struct `Box<[{integer}]>`
+
+error: aborting due to 5 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0308`.

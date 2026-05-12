@@ -1,0 +1,937 @@
+error: expressions must be enclosed in braces to be used as const generic arguments
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:24:33
+   |
+24 |             test_simple_assign!(1 << 63);
+   |                                 ^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: enclose the `const` expression in braces
+   |
+24 |             test_simple_assign!({ 1 << 63 });
+   |                                 +         +
+
+error: expressions must be enclosed in braces to be used as const generic arguments
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:26:33
+   |
+26 |             test_simple_assign!((2.5, 3.5));
+   |                                 ^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: enclose the `const` expression in braces
+   |
+26 |             test_simple_assign!({ (2.5, 3.5) });
+   |                                 +            +
+
+error: expressions must be enclosed in braces to be used as const generic arguments
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:27:33
+   |
+27 |             test_simple_assign!(std::ptr::null());
+   |                                 ^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: enclose the `const` expression in braces
+   |
+27 |             test_simple_assign!({ std::ptr::null() });
+   |                                 +                  +
+
+error: expressions must be enclosed in braces to be used as const generic arguments
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:28:33
+   |
+28 |             test_simple_assign!(&0);
+   |                                 ^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: enclose the `const` expression in braces
+   |
+28 |             test_simple_assign!({ &0 });
+   |                                 +    +
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:60
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:24
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:56
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:20
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:60
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:24
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:56
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:20
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:60
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:24
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:56
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:20
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:60
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:24
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:56
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:20
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:60
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:24
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:56
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:20
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:60
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:24
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:56
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:20
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:60
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:24
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:56
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:20
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:60
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:24
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:56
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:20
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:60
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:24
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:56
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:20
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:30:26
+   |
+30 |             let mut s1 = std::sync::atomic::Atomic::new(init);
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:31:26
+   |
+31 |             let mut s2 = std::sync::atomic::Atomic::new(init);
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+   = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0747]: constant provided when a type was expected
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:20:33
+   |
+20 |             test_simple_assign!(0);
+   |                                 ^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:87
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                                                                                       ^^^ function or associated item not found in `_`
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:83
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                                                                                   ^^^ function or associated item not found in `_`
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0747]: constant provided when a type was expected
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:21:33
+   |
+21 |             test_simple_assign!(1);
+   |                                 ^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:87
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                                                                                       ^^^ function or associated item not found in `_`
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:83
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                                                                                   ^^^ function or associated item not found in `_`
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0747]: constant provided when a type was expected
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:22:33
+   |
+22 |             test_simple_assign!(2);
+   |                                 ^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:87
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                                                                                       ^^^ function or associated item not found in `_`
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:83
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                                                                                   ^^^ function or associated item not found in `_`
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0747]: constant provided when a type was expected
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:23:33
+   |
+23 |             test_simple_assign!(-1);
+   |                                 ^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:87
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                                                                                       ^^^ function or associated item not found in `_`
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:83
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                                                                                   ^^^ function or associated item not found in `_`
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0747]: constant provided when a type was expected
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:24:33
+   |
+24 |             test_simple_assign!(1 << 63);
+   |                                 ^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:87
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                                                                                       ^^^ function or associated item not found in `_`
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:83
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                                                                                   ^^^ function or associated item not found in `_`
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0747]: constant provided when a type was expected
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:25:33
+   |
+25 |             test_simple_assign!(1.5f64);
+   |                                 ^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:87
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                                                                                       ^^^ function or associated item not found in `_`
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:83
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                                                                                   ^^^ function or associated item not found in `_`
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0747]: constant provided when a type was expected
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:26:33
+   |
+26 |             test_simple_assign!((2.5, 3.5));
+   |                                 ^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:87
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                                                                                       ^^^ function or associated item not found in `_`
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:83
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                                                                                   ^^^ function or associated item not found in `_`
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0747]: constant provided when a type was expected
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:27:33
+   |
+27 |             test_simple_assign!(std::ptr::null());
+   |                                 ^^^^^^^^^^^^^^^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:87
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                                                                                       ^^^ function or associated item not found in `_`
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:83
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                                                                                   ^^^ function or associated item not found in `_`
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0747]: constant provided when a type was expected
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:28:33
+   |
+28 |             test_simple_assign!(&0);
+   |                                 ^^
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:9:87
+   |
+ 9 |             let mut a: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new(0);
+   |                                                                                       ^^^ function or associated item not found in `_`
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:10:83
+   |
+10 |             let b: std::sync::atomic::Atomic<$value> = std::sync::atomic::Atomic::new($value);
+   |                                                                                   ^^^ function or associated item not found in `_`
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `try_into` found for array `[{integer}; 1024]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:29:47
+    |
+ 29 |             let init: [u16; 1024] = [0; 1024].try_into().unwrap();
+    |                                               ^^^^^^^^
+...
+ 46 |     test_simple_assign_arith!();
+    |     --------------------------- in this macro invocation
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[{integer}; 1024]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+    = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:30:53
+   |
+30 |             let mut s1 = std::sync::atomic::Atomic::new(init);
+   |                                                     ^^^ function or associated item not found in `_`
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:31:53
+   |
+31 |             let mut s2 = std::sync::atomic::Atomic::new(init);
+   |                                                     ^^^ function or associated item not found in `_`
+...
+46 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 72 previous errors
+
+Some errors have detailed explanations: E0599, E0658, E0747.
+For more information about an error, try `rustc --explain E0599`.

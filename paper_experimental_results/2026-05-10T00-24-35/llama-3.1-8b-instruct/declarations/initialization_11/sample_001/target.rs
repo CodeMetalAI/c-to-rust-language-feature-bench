@@ -1,0 +1,54 @@
+#[derive(Debug)]
+struct W {
+    a: [i32; 3],
+    b: i32,
+}
+
+fn main() {
+    let w = [
+        W { a: [1, 0, 0], b: 0 },
+        W { a: [2, 0, 0], b: 0 },
+    ];
+
+    if w.len() != 2 {
+        println!("Error: Expected 2 elements");
+        std::process::exit(1);
+    }
+
+    if w[0].a[0] != 1 {
+        println!("Error: Expected a[0] to be 1, but got {})", w[0].a[0]);
+        std::process::exit(2);
+    }
+    if w[0].a[1] != 0 {
+        println!("Error: Expected a[1] to be 0, but got {})", w[0].a[1]);
+        std::process::exit(3);
+    }
+    if w[0].a[2] != 0 {
+        println!("Error: Expected a[2] to be 0, but got {})", w[0].a[2]);
+        std::process::exit(4);
+    }
+    if w[0].b != 0 {
+        println!("Error: Expected b to be 0, but got {})", w[0].b);
+        std::process::exit(5);
+    }
+
+    if w[1].a[0] != 2 {
+        println!("Error: Expected a[0] to be 2, but got {})", w[1].a[0]);
+        std::process::exit(6);
+    }
+    if w[1].a[1] != 0 {
+        println!("Error: Expected a[1] to be 0, but got {})", w[1].a[1]);
+        std::process::exit(7);
+    }
+    if w[1].a[2] != 0 {
+        println!("Error: Expected a[2] to be 0, but got {})", w[1].a[2]);
+        std::process::exit(8);
+    }
+    if w[1].b != 0 {
+        println!("Error: Expected b to be 0, but got {})", w[1].b);
+        std::process::exit(9);
+    }
+
+    println!("All checks passed");
+    std::process::exit(0);
+}

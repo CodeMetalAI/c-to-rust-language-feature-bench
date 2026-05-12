@@ -1,0 +1,50 @@
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_001/target.rs:14:5
+   |
+14 | /     unsafe fn alloc_bytes(n: usize) -> *mut u8 {
+15 | |         if n == 0 {
+16 | |             POOL_OFF += n;
+17 | |             POOL.as_mut_ptr().offset(POOL_OFF as isize)
+...  |
+27 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_001/target.rs:30:17
+   |
+30 |         let v = unsafe { Vec::from_raw_parts(alloc_bytes(n * std::mem::size_of::<f32>()) as *mut f32, n, n) };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_001/target.rs:74:8
+   |
+74 |     if unsafe { H & 1 == 0 } {
+   |        ^^^^^^^^^^^^^^^^^^^^^
+
+error[E0596]: cannot borrow `a.v` as mutable, as `a` is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_001/target.rs:63:14
+   |
+63 |     fill_vec(&mut a.v, 1.0);
+   |              ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+49 |     let mut a = new_vector(16);
+   |         +++
+
+error[E0596]: cannot borrow `b.v` as mutable, as `b` is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_001/target.rs:64:14
+   |
+64 |     fill_vec(&mut b.v, 100.0);
+   |              ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+50 |     let mut b = new_vector(16);
+   |         +++
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0596`.

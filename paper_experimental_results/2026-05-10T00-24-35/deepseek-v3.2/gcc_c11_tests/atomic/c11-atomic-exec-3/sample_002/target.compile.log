@@ -1,0 +1,80 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:44:18
+   |
+44 |     let stored = unsafe { *a.load(std::sync::atomic::Ordering::SeqCst) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:87:5
+    |
+ 87 | /     unsafe {
+ 88 | |         // ++ptr
+ 89 | |         ptr_val = ptr_val.add(1);
+ 90 | |         if ptr_val != ptr.add(1) {
+...   |
+113 | |     }
+    | |_____^
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:16:51
+     |
+  16 |     let mut a = std::sync::atomic::AtomicPtr::new(&value);
+     |                 --------------------------------- ^^^^^^ types differ in mutability
+     |                 |
+     |                 arguments to this function are incorrect
+     |
+     = note: expected raw pointer `*mut _`
+                  found reference `&T`
+note: associated function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:1486:18
+     |
+1486 |     pub const fn new(p: *mut T) -> AtomicPtr<T> {
+     |                  ^^^
+
+error[E0277]: cannot add `bool` to `bool`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:51:5
+   |
+51 |     test_incdec(value != 0, preop, postop, pre_p, change != 0);
+   |     ^^^^^^^^^^^ no implementation for `bool + bool`
+   |
+   = help: the trait `Add` is not implemented for `bool`
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:14:8
+   |
+ 7 | fn test_incdec<T: Copy + PartialEq + std::fmt::Debug>(
+   |    ----------- required by a bound in this function
+...
+14 |     T: std::ops::Add<Output = T> + std::ops::Sub<Output = T>,
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+error[E0277]: cannot subtract `bool` from `bool`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:51:5
+   |
+51 |     test_incdec(value != 0, preop, postop, pre_p, change != 0);
+   |     ^^^^^^^^^^^ no implementation for `bool - bool`
+   |
+   = help: the trait `Sub` is not implemented for `bool`
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:14:36
+   |
+ 7 | fn test_incdec<T: Copy + PartialEq + std::fmt::Debug>(
+   |    ----------- required by a bound in this function
+...
+14 |     T: std::ops::Add<Output = T> + std::ops::Sub<Output = T>,
+   |                                    ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+
+warning: value assigned to `ptr_val` is never read
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:109:9
+    |
+109 |         ptr_val = ptr_val.sub(1);
+    |         ^^^^^^^
+    |
+    = help: maybe it is overwritten before being read?
+    = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 5 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

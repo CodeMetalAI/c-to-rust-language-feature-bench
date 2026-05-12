@@ -1,0 +1,590 @@
+error: `Trait(...)` syntax does not support c_variadic parameters
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:34:15
+   |
+34 |     F: Fn(i32,...) -> i32,
+   |               ^^^ help: remove the `...`
+
+error: defining functions with C-variadic arguments is only allowed for free functions with the "C" or "C-unwind" calling convention
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:11:15
+   |
+11 | fn v0(x: i32, _args:...) -> i32 {
+   |               ^^^^^^^^^
+
+error: defining functions with C-variadic arguments is only allowed for free functions with the "C" or "C-unwind" calling convention
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:15:15
+   |
+15 | fn v1(x: i32, _args:...) -> i32 {
+   |               ^^^^^^^^^
+
+error[E0658]: C-variadic functions are unstable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:11:1
+   |
+11 | / fn v0(x: i32, _args:...) -> i32 {
+12 | |     g_seed + x + 1000
+13 | | }
+   | |_^
+   |
+   = note: see issue #44930 <https://github.com/rust-lang/rust/issues/44930> for more information
+   = help: add `#![feature(c_variadic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: C-variadic functions are unstable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:15:1
+   |
+15 | / fn v1(x: i32, _args:...) -> i32 {
+16 | |     g_seed + x - 2000
+17 | | }
+   | |_^
+   |
+   = note: see issue #44930 <https://github.com/rust-lang/rust/issues/44930> for more information
+   = help: add `#![feature(c_variadic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:24:5
+   |
+24 |     unsafe { g_seed = pf(t) + k; }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: invalid suffix `L` for number literal
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:4:10
+  |
+4 |     (x ^ 0x13579L) as i32 + 7
+  |          ^^^^^^^^ invalid suffix `L`
+  |
+  = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:8:10
+  |
+8 |     (x * 3L) as i32 - 11
+  |          ^^ invalid suffix `L`
+  |
+  = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:23:26
+   |
+23 |     let t = (k as i64) * 97L + 1234L;
+   |                          ^^^ invalid suffix `L`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:23:32
+   |
+23 |     let t = (k as i64) * 97L + 1234L;
+   |                                ^^^^^ invalid suffix `L`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:38:30
+   |
+38 |     let r3 = pf(x, 1.25, pf, 0x1122334455667788L as i64);
+   |                              ^^^^^^^^^^^^^^^^^^^ invalid suffix `L`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:46:39
+   |
+46 |         let expected_seed = cb0((17 * 97L + 1234L) as i64) + 17;
+   |                                       ^^^ invalid suffix `L`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:46:45
+   |
+46 |         let expected_seed = cb0((17 * 97L + 1234L) as i64) + 17;
+   |                                             ^^^^^ invalid suffix `L`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:81:38
+   |
+81 |         let expected_seed = cb1((8 * 97L + 1234L) as i64) + 8;
+   |                                      ^^^ invalid suffix `L`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:81:44
+   |
+81 |         let expected_seed = cb1((8 * 97L + 1234L) as i64) + 8;
+   |                                            ^^^^^ invalid suffix `L`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:26:9
+   |
+19 | fn fpfi<F>(pf: F, k: i32) -> F
+   |         -                    - expected `F` because of return type
+   |         |
+   |         expected this type parameter
+...
+26 |         v0
+   |         ^^ expected type parameter `F`, found fn item
+   |
+   = note: expected type parameter `F`
+                     found fn item `fn(i32, ...) -> i32 {v0}`
+   = note: the caller chooses a type for `F` which can be different from `fn(i32, ...) -> i32 {v0}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:28:9
+   |
+19 | fn fpfi<F>(pf: F, k: i32) -> F
+   |         -                    - expected `F` because of return type
+   |         |
+   |         expected this type parameter
+...
+28 |         v1
+   |         ^^ expected type parameter `F`, found fn item
+   |
+   = note: expected type parameter `F`
+                     found fn item `fn(i32, ...) -> i32 {v1}`
+   = note: the caller chooses a type for `F` which can be different from `fn(i32, ...) -> i32 {v1}`
+
+error[E0057]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:36:14
+   |
+36 |     let r1 = pf(x);
+   |              ^^--- argument #2 is missing
+   |
+note: callable defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:34:8
+   |
+34 |     F: Fn(i32,...) -> i32,
+   |        ^^^^^^^^^^^^^^^^^^
+help: provide the argument
+   |
+36 |     let r1 = pf(x, /* args */);
+   |                  ++++++++++++
+
+error[E0057]: this function takes 2 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:37:14
+   |
+37 |     let r2 = pf(x, 1, 2, 3);
+   |              ^^       -  - unexpected argument #4 of type `{integer}`
+   |                       |
+   |                       unexpected argument #3 of type `{integer}`
+   |
+note: callable defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:34:8
+   |
+34 |     F: Fn(i32,...) -> i32,
+   |        ^^^^^^^^^^^^^^^^^^
+help: remove the extra arguments
+   |
+37 -     let r2 = pf(x, 1, 2, 3);
+37 +     let r2 = pf(x, 1);
+   |
+
+error[E0057]: this function takes 2 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:38:14
+   |
+38 |     let r3 = pf(x, 1.25, pf, 0x1122334455667788L as i64);
+   |              ^^          --  -------------------------- unexpected argument #4
+   |                          |
+   |                          unexpected argument #3 of type `F`
+   |
+note: callable defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:34:8
+   |
+34 |     F: Fn(i32,...) -> i32,
+   |        ^^^^^^^^^^^^^^^^^^
+help: remove the extra arguments
+   |
+38 -     let r3 = pf(x, 1.25, pf, 0x1122334455667788L as i64);
+38 +     let r3 = pf(x, 1.25);
+   |
+
+error[E0369]: binary operation `==` cannot be applied to type `fn(i64) -> i32 {cb0}`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:49:15
+   |
+49 |         if vf == v0 {
+   |            -- ^^ -- fn(i32, ...) -> i32 {v0}
+   |            |
+   |            fn(i64) -> i32 {cb0}
+   |
+help: use parentheses to call these
+   |
+49 |         if vf(/* i64 */) == v0(/* i32 */) {
+   |              +++++++++++      +++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:49:18
+   |
+49 |         if vf == v0 {
+   |                  ^^ expected fn item, found a different fn item
+   |
+   = note: expected fn item `fn(i64) -> _ {cb0}`
+              found fn item `fn(i32, ...) -> _ {v0}`
+
+error[E0061]: this function takes 1 argument but 3 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:54:16
+   |
+54 |             if vf(40, 1, 2)!= base + 1000 {
+   |                ^^     -  - unexpected argument #3 of type `{integer}`
+   |                       |
+   |                       unexpected argument #2 of type `{integer}`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:3:4
+   |
+ 3 | fn cb0(x: i64) -> i32 {
+   |    ^^^
+help: remove the extra arguments
+   |
+54 -             if vf(40, 1, 2)!= base + 1000 {
+54 +             if vf(40)!= base + 1000 {
+   |
+
+error[E0061]: this function takes 1 argument but 3 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:55:89
+   |
+55 |                 println!("Expected v0(40, 1, 2) to return {}, but got {}", base + 1000, vf(40, 1, 2));
+   |                                                                                         ^^     -  - unexpected argument #3 of type `{integer}`
+   |                                                                                                |
+   |                                                                                                unexpected argument #2 of type `{integer}`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:3:4
+   |
+ 3 | fn cb0(x: i64) -> i32 {
+   |    ^^^
+help: remove the extra arguments
+   |
+55 -                 println!("Expected v0(40, 1, 2) to return {}, but got {}", base + 1000, vf(40, 1, 2));
+55 +                 println!("Expected v0(40, 1, 2) to return {}, but got {}", base + 1000, vf(40));
+   |
+
+error[E0593]: function is expected to take 2 arguments, but it takes 1 argument
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:58:29
+   |
+ 3 | fn cb0(x: i64) -> i32 {
+   | --------------------- takes 1 argument
+...
+58 |             if call_through(vf, 40)!= ((base + 1000) ^ (base + 1000 + 5) ^ (base + 1000 + 9)) {
+   |                ------------ ^^ expected function that takes 2 arguments
+   |                |
+   |                required by a bound introduced by this call
+   |
+note: required by a bound in `call_through`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:34:8
+   |
+32 | fn call_through<F>(pf: F, x: i32) -> i32
+   |    ------------ required by a bound in this function
+33 | where
+34 |     F: Fn(i32,...) -> i32,
+   |        ^^^^^^^^^^^^^^^^^^ required by this bound in `call_through`
+
+error[E0593]: function is expected to take 2 arguments, but it takes 1 argument
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:59:152
+   |
+ 3 | fn cb0(x: i64) -> i32 {
+   | --------------------- takes 1 argument
+...
+59 |                 println!("Expected call_through(v0, 40) to return {}, but got {}", (base + 1000) ^ (base + 1000 + 5) ^ (base + 1000 + 9), call_through(vf, 40));
+   |                                                                                                                                           ------------ ^^ expected function that takes 2 arguments
+   |                                                                                                                                           |
+   |                                                                                                                                           required by a bound introduced by this call
+   |
+note: required by a bound in `call_through`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:34:8
+   |
+32 | fn call_through<F>(pf: F, x: i32) -> i32
+   |    ------------ required by a bound in this function
+33 | where
+34 |     F: Fn(i32,...) -> i32,
+   |        ^^^^^^^^^^^^^^^^^^ required by this bound in `call_through`
+
+error[E0061]: this function takes 1 argument but 3 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:67:16
+   |
+67 |             if vf(40, 1, 2)!= base - 2000 {
+   |                ^^     -  - unexpected argument #3 of type `{integer}`
+   |                       |
+   |                       unexpected argument #2 of type `{integer}`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:3:4
+   |
+ 3 | fn cb0(x: i64) -> i32 {
+   |    ^^^
+help: remove the extra arguments
+   |
+67 -             if vf(40, 1, 2)!= base - 2000 {
+67 +             if vf(40)!= base - 2000 {
+   |
+
+error[E0061]: this function takes 1 argument but 3 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:68:89
+   |
+68 |                 println!("Expected v1(40, 1, 2) to return {}, but got {}", base - 2000, vf(40, 1, 2));
+   |                                                                                         ^^     -  - unexpected argument #3 of type `{integer}`
+   |                                                                                                |
+   |                                                                                                unexpected argument #2 of type `{integer}`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:3:4
+   |
+ 3 | fn cb0(x: i64) -> i32 {
+   |    ^^^
+help: remove the extra arguments
+   |
+68 -                 println!("Expected v1(40, 1, 2) to return {}, but got {}", base - 2000, vf(40, 1, 2));
+68 +                 println!("Expected v1(40, 1, 2) to return {}, but got {}", base - 2000, vf(40));
+   |
+
+error[E0593]: function is expected to take 2 arguments, but it takes 1 argument
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:71:29
+   |
+ 3 | fn cb0(x: i64) -> i32 {
+   | --------------------- takes 1 argument
+...
+71 |             if call_through(vf, 40)!= ((base - 2000) ^ (base - 2000 + 5) ^ (base - 2000 + 9)) {
+   |                ------------ ^^ expected function that takes 2 arguments
+   |                |
+   |                required by a bound introduced by this call
+   |
+note: required by a bound in `call_through`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:34:8
+   |
+32 | fn call_through<F>(pf: F, x: i32) -> i32
+   |    ------------ required by a bound in this function
+33 | where
+34 |     F: Fn(i32,...) -> i32,
+   |        ^^^^^^^^^^^^^^^^^^ required by this bound in `call_through`
+
+error[E0593]: function is expected to take 2 arguments, but it takes 1 argument
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:72:152
+   |
+ 3 | fn cb0(x: i64) -> i32 {
+   | --------------------- takes 1 argument
+...
+72 |                 println!("Expected call_through(v1, 40) to return {}, but got {}", (base - 2000) ^ (base - 2000 + 5) ^ (base - 2000 + 9), call_through(vf, 40));
+   |                                                                                                                                           ------------ ^^ expected function that takes 2 arguments
+   |                                                                                                                                           |
+   |                                                                                                                                           required by a bound introduced by this call
+   |
+note: required by a bound in `call_through`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:34:8
+   |
+32 | fn call_through<F>(pf: F, x: i32) -> i32
+   |    ------------ required by a bound in this function
+33 | where
+34 |     F: Fn(i32,...) -> i32,
+   |        ^^^^^^^^^^^^^^^^^^ required by this bound in `call_through`
+
+error[E0369]: binary operation `==` cannot be applied to type `fn(i64) -> i32 {cb1}`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:84:15
+   |
+84 |         if vf == v0 {
+   |            -- ^^ -- fn(i32, ...) -> i32 {v0}
+   |            |
+   |            fn(i64) -> i32 {cb1}
+   |
+help: use parentheses to call these
+   |
+84 |         if vf(/* i64 */) == v0(/* i32 */) {
+   |              +++++++++++      +++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:84:18
+   |
+84 |         if vf == v0 {
+   |                  ^^ expected fn item, found a different fn item
+   |
+   = note: expected fn item `fn(i64) -> _ {cb1}`
+              found fn item `fn(i32, ...) -> _ {v0}`
+
+error[E0061]: this function takes 1 argument but 5 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:89:16
+   |
+89 |             if vf(9, 0, 0, 0, 0)!= base + 1000 {
+   |                ^^    -  -  -  - unexpected argument #5 of type `{integer}`
+   |                      |  |  |
+   |                      |  |  unexpected argument #4 of type `{integer}`
+   |                      |  unexpected argument #3 of type `{integer}`
+   |                      unexpected argument #2 of type `{integer}`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:7:4
+   |
+ 7 | fn cb1(x: i64) -> i32 {
+   |    ^^^
+help: remove the extra arguments
+   |
+89 -             if vf(9, 0, 0, 0, 0)!= base + 1000 {
+89 +             if vf(9)!= base + 1000 {
+   |
+
+error[E0061]: this function takes 1 argument but 5 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:90:94
+   |
+90 |                 println!("Expected v0(9, 0, 0, 0, 0) to return {}, but got {}", base + 1000, vf(9, 0, 0, 0, 0));
+   |                                                                                              ^^    -  -  -  - unexpected argument #5 of type `{integer}`
+   |                                                                                                    |  |  |
+   |                                                                                                    |  |  unexpected argument #4 of type `{integer}`
+   |                                                                                                    |  unexpected argument #3 of type `{integer}`
+   |                                                                                                    unexpected argument #2 of type `{integer}`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:7:4
+   |
+ 7 | fn cb1(x: i64) -> i32 {
+   |    ^^^
+help: remove the extra arguments
+   |
+90 -                 println!("Expected v0(9, 0, 0, 0, 0) to return {}, but got {}", base + 1000, vf(9, 0, 0, 0, 0));
+90 +                 println!("Expected v0(9, 0, 0, 0, 0) to return {}, but got {}", base + 1000, vf(9));
+   |
+
+error[E0593]: function is expected to take 2 arguments, but it takes 1 argument
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:93:29
+   |
+ 7 | fn cb1(x: i64) -> i32 {
+   | --------------------- takes 1 argument
+...
+93 |             if call_through(vf, 9)!= ((base + 1000) ^ (base + 1000 + 5) ^ (base + 1000 + 9)) {
+   |                ------------ ^^ expected function that takes 2 arguments
+   |                |
+   |                required by a bound introduced by this call
+   |
+note: required by a bound in `call_through`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:34:8
+   |
+32 | fn call_through<F>(pf: F, x: i32) -> i32
+   |    ------------ required by a bound in this function
+33 | where
+34 |     F: Fn(i32,...) -> i32,
+   |        ^^^^^^^^^^^^^^^^^^ required by this bound in `call_through`
+
+error[E0593]: function is expected to take 2 arguments, but it takes 1 argument
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:94:151
+   |
+ 7 | fn cb1(x: i64) -> i32 {
+   | --------------------- takes 1 argument
+...
+94 |                 println!("Expected call_through(v0, 9) to return {}, but got {}", (base + 1000) ^ (base + 1000 + 5) ^ (base + 1000 + 9), call_through(vf, 9));
+   |                                                                                                                                          ------------ ^^ expected function that takes 2 arguments
+   |                                                                                                                                          |
+   |                                                                                                                                          required by a bound introduced by this call
+   |
+note: required by a bound in `call_through`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:34:8
+   |
+32 | fn call_through<F>(pf: F, x: i32) -> i32
+   |    ------------ required by a bound in this function
+33 | where
+34 |     F: Fn(i32,...) -> i32,
+   |        ^^^^^^^^^^^^^^^^^^ required by this bound in `call_through`
+
+error[E0061]: this function takes 1 argument but 5 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:102:16
+    |
+102 |             if vf(9, 0, 0, 0, 0)!= base - 2000 {
+    |                ^^    -  -  -  - unexpected argument #5 of type `{integer}`
+    |                      |  |  |
+    |                      |  |  unexpected argument #4 of type `{integer}`
+    |                      |  unexpected argument #3 of type `{integer}`
+    |                      unexpected argument #2 of type `{integer}`
+    |
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:7:4
+    |
+  7 | fn cb1(x: i64) -> i32 {
+    |    ^^^
+help: remove the extra arguments
+    |
+102 -             if vf(9, 0, 0, 0, 0)!= base - 2000 {
+102 +             if vf(9)!= base - 2000 {
+    |
+
+error[E0061]: this function takes 1 argument but 5 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:103:94
+    |
+103 |                 println!("Expected v1(9, 0, 0, 0, 0) to return {}, but got {}", base - 2000, vf(9, 0, 0, 0, 0));
+    |                                                                                              ^^    -  -  -  - unexpected argument #5 of type `{integer}`
+    |                                                                                                    |  |  |
+    |                                                                                                    |  |  unexpected argument #4 of type `{integer}`
+    |                                                                                                    |  unexpected argument #3 of type `{integer}`
+    |                                                                                                    unexpected argument #2 of type `{integer}`
+    |
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:7:4
+    |
+  7 | fn cb1(x: i64) -> i32 {
+    |    ^^^
+help: remove the extra arguments
+    |
+103 -                 println!("Expected v1(9, 0, 0, 0, 0) to return {}, but got {}", base - 2000, vf(9, 0, 0, 0, 0));
+103 +                 println!("Expected v1(9, 0, 0, 0, 0) to return {}, but got {}", base - 2000, vf(9));
+    |
+
+error[E0593]: function is expected to take 2 arguments, but it takes 1 argument
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:106:29
+    |
+  7 | fn cb1(x: i64) -> i32 {
+    | --------------------- takes 1 argument
+...
+106 |             if call_through(vf, 9)!= ((base - 2000) ^ (base - 2000 + 5) ^ (base - 2000 + 9)) {
+    |                ------------ ^^ expected function that takes 2 arguments
+    |                |
+    |                required by a bound introduced by this call
+    |
+note: required by a bound in `call_through`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:34:8
+    |
+ 32 | fn call_through<F>(pf: F, x: i32) -> i32
+    |    ------------ required by a bound in this function
+ 33 | where
+ 34 |     F: Fn(i32,...) -> i32,
+    |        ^^^^^^^^^^^^^^^^^^ required by this bound in `call_through`
+
+error[E0593]: function is expected to take 2 arguments, but it takes 1 argument
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:107:151
+    |
+  7 | fn cb1(x: i64) -> i32 {
+    | --------------------- takes 1 argument
+...
+107 |                 println!("Expected call_through(v1, 9) to return {}, but got {}", (base - 2000) ^ (base - 2000 + 5) ^ (base - 2000 + 9), call_through(vf, 9));
+    |                                                                                                                                          ------------ ^^ expected function that takes 2 arguments
+    |                                                                                                                                          |
+    |                                                                                                                                          required by a bound introduced by this call
+    |
+note: required by a bound in `call_through`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:34:8
+    |
+ 32 | fn call_through<F>(pf: F, x: i32) -> i32
+    |    ------------ required by a bound in this function
+ 33 | where
+ 34 |     F: Fn(i32,...) -> i32,
+    |        ^^^^^^^^^^^^^^^^^^ required by this bound in `call_through`
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:12:5
+   |
+12 |     g_seed + x + 1000
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:16:5
+   |
+16 |     g_seed + x - 2000
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 42 previous errors
+
+Some errors have detailed explanations: E0057, E0061, E0133, E0308, E0369, E0593, E0658.
+For more information about an error, try `rustc --explain E0057`.

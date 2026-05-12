@@ -1,0 +1,244 @@
+error: Rust has no postfix increment operator
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:4:12
+  |
+4 |     check(n++);
+  |            ^^ not a valid postfix operator
+  |
+help: use `+= 1` instead
+  |
+4 -     check(n++);
+4 +     check({ let tmp = n; n += 1; tmp });
+  |
+
+error[E0412]: cannot find type `double` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:7:27
+  |
+7 |     check(_generic(n, |d: double| n += 1, |_| 0));
+  |                           ^^^^^^
+  |                           |
+  |                           not found in this scope
+  |                           help: perhaps you intended to use this type: `f64`
+
+error[E0412]: cannot find type `double` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:53:68
+   |
+53 |         _ if std::any::TypeId::of::<T>() == std::any::TypeId::of::<double>() => f1(&val),
+   |                                                                    ^^^^^^ not found in this scope
+   |
+help: perhaps you intended to use this type
+   |
+53 -         _ if std::any::TypeId::of::<T>() == std::any::TypeId::of::<double>() => f1(&val),
+53 +         _ if std::any::TypeId::of::<T>() == std::any::TypeId::of::<f64>() => f1(&val),
+   |
+help: you might be missing a type parameter
+   |
+50 | fn _generic<T, double>(val: T, f1: impl Fn(&T) -> i32, f2: impl Fn(&T) -> i32) -> i32 {
+   |              ++++++++
+
+warning: unnecessary parentheses around function argument
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:13:20
+   |
+13 |     check(_generic((cn as i32), |i: i32| 0, |_| n += 1));
+   |                    ^         ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+13 -     check(_generic((cn as i32), |i: i32| 0, |_| n += 1));
+13 +     check(_generic(cn as i32, |i: i32| 0, |_| n += 1));
+   |
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:7:35
+  |
+7 |     check(_generic(n, |d: double| n += 1, |_| 0));
+  |                                   ^^^^^^ expected `i32`, found `()`
+
+error[E0631]: type mismatch in closure arguments
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:11:11
+   |
+11 |     check(_generic(cn, |i: i32| 0, |_| n += 1));
+   |           ^^^^^^^^^^^^^--------^^^^^^^^^^^^^^^
+   |           |            |
+   |           |            found signature defined here
+   |           expected due to this
+   |
+   = note: expected closure signature `for<'a> fn(&'a {integer}) -> _`
+              found closure signature `fn(i32) -> _`
+note: required by a bound in `_generic`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:50:33
+   |
+50 | fn _generic<T>(val: T, f1: impl Fn(&T) -> i32, f2: impl Fn(&T) -> i32) -> i32 {
+   |                                 ^^^^^^^^^^^^^ required by this bound in `_generic`
+help: consider adjusting the signature so it borrows its argument
+   |
+11 |     check(_generic(cn, |i: &i32| 0, |_| n += 1));
+   |                            +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:11:40
+   |
+11 |     check(_generic(cn, |i: i32| 0, |_| n += 1));
+   |                                        ^^^^^^ expected `i32`, found `()`
+
+error[E0631]: type mismatch in closure arguments
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:13:11
+   |
+13 |     check(_generic((cn as i32), |i: i32| 0, |_| n += 1));
+   |           ^^^^^^^^^^^^^^^^^^^^^^--------^^^^^^^^^^^^^^^
+   |           |                     |
+   |           |                     found signature defined here
+   |           expected due to this
+   |
+   = note: expected closure signature `for<'a> fn(&'a _) -> _`
+              found closure signature `fn(_) -> _`
+note: required by a bound in `_generic`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:50:33
+   |
+50 | fn _generic<T>(val: T, f1: impl Fn(&T) -> i32, f2: impl Fn(&T) -> i32) -> i32 {
+   |                                 ^^^^^^^^^^^^^ required by this bound in `_generic`
+help: consider adjusting the signature so it borrows its argument
+   |
+13 |     check(_generic((cn as i32), |i: &i32| 0, |_| n += 1));
+   |                                     +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:13:49
+   |
+13 |     check(_generic((cn as i32), |i: i32| 0, |_| n += 1));
+   |                                                 ^^^^^^ expected `i32`, found `()`
+
+error[E0631]: type mismatch in closure arguments
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:18:11
+   |
+18 |     check(_generic(&a, |p: *const i32| 0, |_| n += 1));
+   |           ^^^^^^^^^^^^^---------------^^^^^^^^^^^^^^^
+   |           |            |
+   |           |            found signature defined here
+   |           expected due to this
+   |
+   = note: expected closure signature `for<'a> fn(&'a &[{integer}; 1]) -> _`
+              found closure signature `fn(*const i32) -> _`
+note: required by a bound in `_generic`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:50:33
+   |
+50 | fn _generic<T>(val: T, f1: impl Fn(&T) -> i32, f2: impl Fn(&T) -> i32) -> i32 {
+   |                                 ^^^^^^^^^^^^^ required by this bound in `_generic`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:18:47
+   |
+18 |     check(_generic(&a, |p: *const i32| 0, |_| n += 1));
+   |                                               ^^^^^^ expected `i32`, found `()`
+
+error[E0631]: type mismatch in closure arguments
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:20:11
+   |
+20 |     check(_generic(&ca, |p: *const i32| 0, |_| n += 1));
+   |           ^^^^^^^^^^^^^^---------------^^^^^^^^^^^^^^^
+   |           |             |
+   |           |             found signature defined here
+   |           expected due to this
+   |
+   = note: expected closure signature `for<'a> fn(&'a &[{integer}; 1]) -> _`
+              found closure signature `fn(*const i32) -> _`
+note: required by a bound in `_generic`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:50:33
+   |
+50 | fn _generic<T>(val: T, f1: impl Fn(&T) -> i32, f2: impl Fn(&T) -> i32) -> i32 {
+   |                                 ^^^^^^^^^^^^^ required by this bound in `_generic`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:20:48
+   |
+20 |     check(_generic(&ca, |p: *const i32| 0, |_| n += 1));
+   |                                                ^^^^^^ expected `i32`, found `()`
+
+error[E0631]: type mismatch in closure arguments
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:26:11
+   |
+26 |     check(_generic(f, |func: unsafe extern "C" fn()| 0, |_| n += 1));
+   |           ^^^^^^^^^^^^------------------------------^^^^^^^^^^^^^^^
+   |           |           |
+   |           |           found signature defined here
+   |           expected due to this
+   |
+   = note: expected closure signature `for<'a> fn(&'a unsafe extern "C" fn() {main::f}) -> _`
+              found closure signature `fn(unsafe extern "C" fn()) -> _`
+note: required by a bound in `_generic`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:50:33
+   |
+50 | fn _generic<T>(val: T, f1: impl Fn(&T) -> i32, f2: impl Fn(&T) -> i32) -> i32 {
+   |                                 ^^^^^^^^^^^^^ required by this bound in `_generic`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:26:61
+   |
+26 |     check(_generic(f, |func: unsafe extern "C" fn()| 0, |_| n += 1));
+   |                                                             ^^^^^^ expected `i32`, found `()`
+
+error[E0631]: type mismatch in closure arguments
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:29:11
+   |
+29 |     check(_generic(&abort, |func: unsafe extern "C" fn()| 0, |_| n += 1));
+   |           ^^^^^^^^^^^^^^^^^------------------------------^^^^^^^^^^^^^^^
+   |           |                |
+   |           |                found signature defined here
+   |           expected due to this
+   |
+   = note: expected closure signature `for<'a> fn(&'a &fn() {abort}) -> _`
+              found closure signature `fn(unsafe extern "C" fn()) -> _`
+note: required by a bound in `_generic`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:50:33
+   |
+50 | fn _generic<T>(val: T, f1: impl Fn(&T) -> i32, f2: impl Fn(&T) -> i32) -> i32 {
+   |                                 ^^^^^^^^^^^^^ required by this bound in `_generic`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:29:66
+   |
+29 |     check(_generic(&abort, |func: unsafe extern "C" fn()| 0, |_| n += 1));
+   |                                                                  ^^^^^^ expected `i32`, found `()`
+
+error[E0631]: type mismatch in closure arguments
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:33:11
+   |
+33 |     check(_generic(s, |sh: i16| 0, |i: i32| n += 1));
+   |           ^^^^^^^^^^^^---------^^^^^^^^^^^^^^^^^^^^
+   |           |           |
+   |           |           found signature defined here
+   |           expected due to this
+   |
+   = note: expected closure signature `for<'a> fn(&'a _) -> _`
+              found closure signature `fn(_) -> _`
+note: required by a bound in `_generic`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:50:33
+   |
+50 | fn _generic<T>(val: T, f1: impl Fn(&T) -> i32, f2: impl Fn(&T) -> i32) -> i32 {
+   |                                 ^^^^^^^^^^^^^ required by this bound in `_generic`
+help: consider adjusting the signature so it borrows its argument
+   |
+33 |     check(_generic(s, |sh: &i16| 0, |i: i32| n += 1));
+   |                            +
+
+error[E0631]: type mismatch in closure arguments
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:33:11
+   |
+33 |     check(_generic(s, |sh: i16| 0, |i: i32| n += 1));
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^--------^^^^^^^^
+   |           |                        |
+   |           |                        found signature defined here
+   |           expected due to this
+   |
+   = note: expected closure signature `for<'a> fn(&'a i16) -> _`
+              found closure signature `fn(i32) -> _`
+note: required by a bound in `_generic`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_002/target.rs:50:57
+   |
+50 | fn _generic<T>(val: T, f1: impl Fn(&T) -> i32, f2: impl Fn(&T) -> i32) -> i32 {
+   |                                                         ^^^^^^^^^^^^^ required by this bound in `_generic`
+
+error: aborting due to 18 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0308, E0412, E0631.
+For more information about an error, try `rustc --explain E0308`.

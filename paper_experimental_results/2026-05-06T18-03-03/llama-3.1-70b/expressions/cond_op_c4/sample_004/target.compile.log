@@ -1,0 +1,109 @@
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/cond_op_c4/sample_004/target.rs:13:9
+   |
+13 |         G = 0;
+   |         ^
+   |
+help: a local variable with a similar name exists
+   |
+13 -         G = 0;
+13 +         x = 0;
+   |
+help: you might have meant to introduce a new binding
+   |
+13 |         let G = 0;
+   |         +++
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/cond_op_c4/sample_004/target.rs:16:21
+   |
+16 |         if unsafe { G } == 1 {
+   |                     ^ help: a local variable with a similar name exists: `x`
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/cond_op_c4/sample_004/target.rs:28:17
+   |
+28 |     if unsafe { G }!= 1 {
+   |                 ^ help: a local variable with a similar name exists: `x`
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/cond_op_c4/sample_004/target.rs:33:9
+   |
+33 |         G = 0;
+   |         ^
+   |
+help: a local variable with a similar name exists
+   |
+33 -         G = 0;
+33 +         x = 0;
+   |
+help: you might have meant to introduce a new binding
+   |
+33 |         let G = 0;
+   |         +++
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/cond_op_c4/sample_004/target.rs:39:21
+   |
+39 |         if unsafe { G } == 1 {
+   |                     ^ help: a local variable with a similar name exists: `x`
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/cond_op_c4/sample_004/target.rs:48:17
+   |
+48 |     if unsafe { G }!= 1 {
+   |                 ^ help: a local variable with a similar name exists: `x`
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/cond_op_c4/sample_004/target.rs:3:5
+  |
+3 | /     unsafe {
+4 | |         G = gval;
+5 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/cond_op_c4/sample_004/target.rs:12:5
+   |
+12 | /     unsafe {
+13 | |         G = 0;
+14 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/cond_op_c4/sample_004/target.rs:16:12
+   |
+16 |         if unsafe { G } == 1 {
+   |            ^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/cond_op_c4/sample_004/target.rs:28:8
+   |
+28 |     if unsafe { G }!= 1 {
+   |        ^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/cond_op_c4/sample_004/target.rs:32:5
+   |
+32 | /     unsafe {
+33 | |         G = 0;
+34 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/cond_op_c4/sample_004/target.rs:39:12
+   |
+39 |         if unsafe { G } == 1 {
+   |            ^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/cond_op_c4/sample_004/target.rs:48:8
+   |
+48 |     if unsafe { G }!= 1 {
+   |        ^^^^^^^^^^^^
+
+error: aborting due to 13 previous errors
+
+For more information about this error, try `rustc --explain E0425`.

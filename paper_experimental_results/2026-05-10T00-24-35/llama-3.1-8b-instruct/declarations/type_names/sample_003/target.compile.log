@@ -1,0 +1,64 @@
+error: invalid reference to positional argument 0 (no arguments were given)
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_003/target.rs:14:37
+   |
+14 |             eprintln!("sizeof((int){0}) != sizeof(int)");
+   |                                     ^
+   |
+   = note: positional arguments are zero-based
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_003/target.rs:10:40
+   |
+10 |     let use_vla = |n: usize, p: &[i32; n]| p[0] * 10 + p[n - 1];
+   |                                        ^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+10 -     let use_vla = |n: usize, p: &[i32; n]| p[0] * 10 + p[n - 1];
+10 +     const n: usize, p: &[i32; n]| p[0] * 10 + p[n - 1];
+   |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_003/target.rs:21:12
+   |
+21 |         if unsafe { *p as i32 != 1 } {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: can't compare `&i32` with `{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_003/target.rs:54:18
+   |
+54 |         if fip() != 2 {
+   |                  ^^ no implementation for `&i32 == {integer}`
+   |
+   = help: the trait `PartialEq<{integer}>` is not implemented for `&i32`
+help: consider dereferencing here
+   |
+54 |         if *fip() != 2 {
+   |            +
+
+error[E0057]: this function takes 2 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_003/target.rs:75:12
+   |
+75 |         if f_var[1](10, 1, 2, 3) != 13 {
+   |            ^^^^^^^^     -  -  - unexpected argument #4 of type `{integer}`
+   |                         |  |
+   |                         |  unexpected argument #3 of type `{integer}`
+   |                         expected `()`, found integer
+   |
+note: closure defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_003/target.rs:8:17
+   |
+ 8 |     let f_var = |x: u32, _args: ()| x + 3;
+   |                 ^^^^^^^^^^^^^^^^^^^
+help: remove the extra arguments
+   |
+75 -         if f_var[1](10, 1, 2, 3) != 13 {
+75 +         if f_var[1](10, ()) != 13 {
+   |
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0057, E0277, E0435.
+For more information about an error, try `rustc --explain E0057`.

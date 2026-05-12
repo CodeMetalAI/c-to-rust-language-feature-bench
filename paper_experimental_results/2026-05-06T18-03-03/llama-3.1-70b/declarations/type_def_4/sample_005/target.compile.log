@@ -1,0 +1,59 @@
+error[E0434]: can't capture dynamic environment in a fn item
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/type_def_4/sample_005/target.rs:5:9
+  |
+5 |         hits += x + 1;
+  |         ^^^^
+  |
+  = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/type_def_4/sample_005/target.rs:9:9
+  |
+9 |         hits += x + 2;
+  |         ^^^^
+  |
+  = help: use the `|| { ... }` closure form instead
+
+warning: value assigned to `hits` is never read
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/type_def_4/sample_005/target.rs:40:5
+   |
+40 |     hits = 0;
+   |     ^^^^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `hits` is never read
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/type_def_4/sample_005/target.rs:45:5
+   |
+45 |     hits = 0;
+   |     ^^^^
+   |
+   = help: maybe it is overwritten before being read?
+
+warning: value assigned to `hits` is never read
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/type_def_4/sample_005/target.rs:50:5
+   |
+50 |     hits = 0;
+   |     ^^^^
+   |
+   = help: maybe it is overwritten before being read?
+
+error[E0506]: cannot assign to `hits` because it is borrowed
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/type_def_4/sample_005/target.rs:40:5
+   |
+22 |     let call_signal_as_plain = |s: i32, h: fn(i32), arg: i32| {
+   |                                ------------------------------ `hits` is borrowed here
+...
+25 |         hits
+   |         ---- borrow occurs due to use in closure
+...
+40 |     hits = 0;
+   |     ^^^^^^^^ `hits` is assigned to here but it was already borrowed
+41 |     if call_signal_as_plain(1, handler_b, 3)!= (3 + 1) {
+   |        -------------------- borrow later used here
+
+error: aborting due to 3 previous errors; 3 warnings emitted
+
+Some errors have detailed explanations: E0434, E0506.
+For more information about an error, try `rustc --explain E0434`.

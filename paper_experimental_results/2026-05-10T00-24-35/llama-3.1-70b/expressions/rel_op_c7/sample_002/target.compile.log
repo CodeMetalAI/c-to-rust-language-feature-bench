@@ -1,0 +1,17 @@
+error[E0369]: cannot add `{integer}` to `*const i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/rel_op_c7/sample_002/target.rs:10:33
+   |
+10 |   let p_end2 = &x as *const i32 + 1;
+   |                ---------------- ^ - {integer}
+   |                |
+   |                *const i32
+   |
+help: consider using `wrapping_add` or `add` for pointer + {integer}
+   |
+10 -   let p_end2 = &x as *const i32 + 1;
+10 +   let p_end2 = &x as *const i32.wrapping_add(1);
+   |
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0369`.

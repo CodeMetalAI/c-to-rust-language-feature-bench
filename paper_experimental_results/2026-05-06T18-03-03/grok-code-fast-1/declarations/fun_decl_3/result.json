@@ -1,0 +1,94 @@
+{
+  "test_name": "declarations/fun_decl_3",
+  "llm_name": "Grok Code Fast 1",
+  "timestamp": "2026-05-06T19:42:48.286169Z",
+  "duration_seconds": 152.31048529199325,
+  "timeout_error": false,
+  "primary_feature": "decl.fun_decl",
+  "source_compiled": true,
+  "source_compile_errors": null,
+  "source_exit_code": 0,
+  "samples": [
+    {
+      "sample_index": 1,
+      "duration_seconds": 139.5036798331421,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0308]: `if` and `else` have incompatible types\n  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_3/sample_001/target.rs:16:9\n   |\n13 |       let closure = if is_even {\n   |  ___________________-\n14 | |         Box::new(move |x: i32| seed + x + 1000)\n   | |         ---------------------------------------\n   | |         |        |\n   | |         |        the expected closure\n   | |         expected because of this\n15 | |     } else {\n16 | |         Box::new(move |x: i32| seed + x - 2000)\n   | |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Box<{closure@target.rs:14:18}>`, found `Box<{closure@target.rs:16:18}>`\n17 | |     };\n   | |_____- `if` and `else` have incompatible types\n   |\n   = note: expected struct `Box<{closure@benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_3/sample_001/target.rs:14:18: 14:31}>`\n              found struct `Box<{closure@benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_3/sample_001/target.rs:16:18: 16:31}>`\n   = note: no two closures, even if identical, have the same type\n   = help: consider boxing your closure and/or using it as a trait object\n\nerror: aborting due to 1 previous error\n\nFor more information about this error, try `rustc --explain E0308`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": true,
+      "stub_reasons": [
+        "function definitions dropped from 7 to 5 (threshold=0.75, require>=6)"
+      ],
+      "provider_error": false
+    },
+    {
+      "sample_index": 2,
+      "duration_seconds": 145.3193074169103,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0277]: `RefCell<i32>` cannot be shared between threads safely\n --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_3/sample_002/target.rs:3:16\n  |\n3 | static G_SEED: RefCell<i32> = RefCell::new(0);\n  |                ^^^^^^^^^^^^ `RefCell<i32>` cannot be shared between threads safely\n  |\n  = help: the trait `Sync` is not implemented for `RefCell<i32>`\n  = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock` instead\n  = note: shared static variables must have a type that implements `Sync`\n\nerror: aborting due to 1 previous error\n\nFor more information about this error, try `rustc --explain E0277`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 3,
+      "duration_seconds": 134.94103808305226,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error: usage of an `unsafe` block\n  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_3/sample_003/target.rs:12:5\n   |\n12 |     unsafe { G_SEED + x + 1000 }\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n   |\n   = note: requested on the command line with `-F unsafe-code`\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_3/sample_003/target.rs:16:5\n   |\n16 |     unsafe { G_SEED + x - 2000 }\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_3/sample_003/target.rs:21:5\n   |\n21 | /     unsafe {\n22 | |         G_SEED = pf(t) + k;\n23 | |     }\n   | |_____^\n\nerror: usage of an `unsafe` block\n  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_3/sample_003/target.rs:24:9\n   |\n24 |     if (unsafe { G_SEED } & 1) == 0 {\n   |         ^^^^^^^^^^^^^^^^^\n\nwarning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique\n  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_3/sample_003/target.rs:47:12\n   |\n47 |         if vf == v0 {\n   |            ^^^^^^^^\n   |\n   = note: the address of the same function can vary between different codegen units\n   = note: furthermore, different functions could have the same address after being merged together\n   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>\n   = note: `#[warn(unpredictable_function_pointer_comparisons)]` on by default\nhelp: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint\n   |\n47 -         if vf == v0 {\n47 +         if std::ptr::fn_addr_eq(vf, v0 as fn(i32) -> i32) {\n   |\n\nwarning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique\n  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_3/sample_003/target.rs:76:12\n   |\n76 |         if vf == v0 {\n   |            ^^^^^^^^\n   |\n   = note: the address of the same function can vary between different codegen units\n   = note: furthermore, different functions could have the same address after being merged together\n   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>\nhelp: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint\n   |\n76 -         if vf == v0 {\n76 +         if std::ptr::fn_addr_eq(vf, v0 as fn(i32) -> i32) {\n   |\n\nerror: aborting due to 4 previous errors; 2 warnings emitted",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 4,
+      "duration_seconds": 148.22934504202567,
+      "timeout_error": false,
+      "target_compiled": true,
+      "target_compile_errors": null,
+      "target_exit_code": 0,
+      "exit_codes_match": true,
+      "stdout_similarity": 1.0,
+      "stdout_match": true,
+      "match": true,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 5,
+      "duration_seconds": 152.09426291589625,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0308]: `if` and `else` have incompatible types\n  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_3/sample_005/target.rs:16:9\n   |\n13 |       let vf = if is_v0 {\n   |  ______________-\n14 | |         Box::new(move |x: i32| seed + x + 1000)\n   | |         ---------------------------------------\n   | |         |        |\n   | |         |        the expected closure\n   | |         expected because of this\n15 | |     } else {\n16 | |         Box::new(move |x: i32| seed + x - 2000)\n   | |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Box<{closure@target.rs:14:18}>`, found `Box<{closure@target.rs:16:18}>`\n17 | |     };\n   | |_____- `if` and `else` have incompatible types\n   |\n   = note: expected struct `Box<{closure@benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_3/sample_005/target.rs:14:18: 14:31}>`\n              found struct `Box<{closure@benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_3/sample_005/target.rs:16:18: 16:31}>`\n   = note: no two closures, even if identical, have the same type\n   = help: consider boxing your closure and/or using it as a trait object\n\nerror: aborting due to 1 previous error\n\nFor more information about this error, try `rustc --explain E0308`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": true,
+      "stub_reasons": [
+        "function definitions dropped from 7 to 5 (threshold=0.75, require>=6)"
+      ],
+      "provider_error": false
+    }
+  ],
+  "winning_sample": 4,
+  "match": true
+}

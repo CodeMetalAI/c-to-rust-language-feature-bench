@@ -1,0 +1,23 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/rel_op_c5/sample_003/target.rs:49:14
+   |
+49 |     let ui = unsafe { &u.i as *const i32 as *const u8 };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/rel_op_c5/sample_003/target.rs:50:14
+   |
+50 |     let ud = unsafe { &u.d as *const f64 as *const u8 };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/rel_op_c5/sample_003/target.rs:20:19
+   |
+20 |     let p_end1 = &arr[3] as *const i32;
+   |                   ^^^^^^ index out of bounds: the length is 3 but the index is 3
+   |
+   = note: `#[deny(unconditional_panic)]` on by default
+
+error: aborting due to 3 previous errors

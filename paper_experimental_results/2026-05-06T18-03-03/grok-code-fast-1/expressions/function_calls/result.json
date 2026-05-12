@@ -1,0 +1,92 @@
+{
+  "test_name": "expressions/function_calls",
+  "llm_name": "Grok Code Fast 1",
+  "timestamp": "2026-05-06T19:53:31.762451Z",
+  "duration_seconds": 102.47555650002323,
+  "timeout_error": false,
+  "primary_feature": "expr.postfix.call",
+  "source_compiled": true,
+  "source_compile_errors": null,
+  "source_exit_code": 0,
+  "samples": [
+    {
+      "sample_index": 1,
+      "duration_seconds": 76.25251779099926,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0525]: expected a closure that implements the `Fn` trait, but this closure only implements `FnMut`\n  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/function_calls/sample_001/target.rs:38:18\n   |\n38 |     let target = |_: i32, _: i32| -> i32 {\n   |                  ^^^^^^^^^^^^^^^^^^^^^^^ this closure implements `FnMut`, not `Fn`\n39 |         log_call(9);\n   |         -------- closure is `FnMut` because it mutates the variable `log_call` here\n...\n47 |     let pf: Vec<Box<dyn Fn(i32, i32) -> i32>> = vec![Box::new(target)];\n   |                                                      ---------------- the requirement to implement `Fn` derives from here\n   |\n   = note: required for the cast from `Box<{closure@target.rs:38:18}>` to `Box<dyn Fn(i32, i32) -> i32>`\n   = note: the full name for the type has been written to 'benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/function_calls/sample_001/target.long-type-10831549125962105307.txt'\n   = note: consider using `--verbose` to print the full type name to the console\n\nerror: aborting due to 1 previous error\n\nFor more information about this error, try `rustc --explain E0525`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": true,
+      "stub_reasons": [
+        "function definitions dropped from 7 to 1 (threshold=0.75, require>=6)"
+      ],
+      "provider_error": false
+    },
+    {
+      "sample_index": 2,
+      "duration_seconds": 102.25167933292687,
+      "timeout_error": false,
+      "target_compiled": true,
+      "target_compile_errors": null,
+      "target_exit_code": 0,
+      "exit_codes_match": true,
+      "stdout_similarity": 1.0,
+      "stdout_match": true,
+      "match": true,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 3,
+      "duration_seconds": 77.19028245913796,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0277]: `RefCell<State>` cannot be shared between threads safely\n  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/function_calls/sample_003/target.rs:11:15\n   |\n11 | static STATE: RefCell<State> = RefCell::new(State {\n   |               ^^^^^^^^^^^^^^ `RefCell<State>` cannot be shared between threads safely\n   |\n   = help: the trait `Sync` is not implemented for `RefCell<State>`\n   = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock` instead\n   = note: shared static variables must have a type that implements `Sync`\n\nerror[E0015]: cannot call non-const associated function `Vec::<i32>::with_capacity` in statics\n  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/function_calls/sample_003/target.rs:16:11\n   |\n16 |     logv: Vec::with_capacity(5),\n   |           ^^^^^^^^^^^^^^^^^^^^^\n   |\n   = note: calls in statics are limited to constant functions, tuple structs and tuple variants\n   = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`\n\nerror: aborting due to 2 previous errors\n\nSome errors have detailed explanations: E0015, E0277.\nFor more information about an error, try `rustc --explain E0015`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 4,
+      "duration_seconds": 86.79001066694036,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0499]: cannot borrow `state` as mutable more than once at a time\n  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/function_calls/sample_004/target.rs:60:46\n   |\n60 |     let rc = pf[idx as usize](&mut state, f2(&mut state), f3(&mut state) + f4(&mut state));\n   |              ---------------- ----------     ^^^^^^^^^^ second mutable borrow occurs here\n   |              |                |\n   |              |                first mutable borrow occurs here\n   |              first borrow later used by call\n\nerror[E0499]: cannot borrow `state` as mutable more than once at a time\n  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/function_calls/sample_004/target.rs:60:62\n   |\n60 |     let rc = pf[idx as usize](&mut state, f2(&mut state), f3(&mut state) + f4(&mut state));\n   |              ---------------- ----------                     ^^^^^^^^^^ second mutable borrow occurs here\n   |              |                |\n   |              |                first mutable borrow occurs here\n   |              first borrow later used by call\n\nerror[E0499]: cannot borrow `state` as mutable more than once at a time\n  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/function_calls/sample_004/target.rs:60:79\n   |\n60 |     let rc = pf[idx as usize](&mut state, f2(&mut state), f3(&mut state) + f4(&mut state));\n   |              ---------------- ---------- first mutable borrow occurs here     ^^^^^^^^^^ second mutable borrow occurs here\n   |              |\n   |              first borrow later used by call\n\nerror: aborting due to 3 previous errors\n\nFor more information about this error, try `rustc --explain E0499`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 5,
+      "duration_seconds": 82.77912116702646,
+      "timeout_error": false,
+      "target_compiled": true,
+      "target_compile_errors": null,
+      "target_exit_code": 0,
+      "exit_codes_match": true,
+      "stdout_similarity": 1.0,
+      "stdout_match": true,
+      "match": true,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    }
+  ],
+  "winning_sample": 5,
+  "match": true
+}

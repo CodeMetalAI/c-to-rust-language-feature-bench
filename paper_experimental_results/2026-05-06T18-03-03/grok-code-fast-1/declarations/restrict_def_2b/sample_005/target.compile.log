@@ -1,0 +1,116 @@
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2b/sample_005/target.rs:91:14
+   |
+91 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0499]: cannot borrow `*d` as mutable more than once at a time
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2b/sample_005/target.rs:87:5
+   |
+87 |     call_f_checked(d, 100, 50, &mut d[50..], &d[0..50]);
+   |     --------------^^^^^^^^^^^^^^^^^^-^^^^^^^^^^^^^^^^^^
+   |     |                               |
+   |     |                               first mutable borrow occurs here
+   |     second mutable borrow occurs here
+   |     first borrow later used by call
+
+error[E0499]: cannot borrow `*d` as mutable more than once at a time
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2b/sample_005/target.rs:87:37
+   |
+87 |     call_f_checked(d, 100, 50, &mut d[50..], &d[0..50]);
+   |     -------------- -                ^ second mutable borrow occurs here
+   |     |              |
+   |     |              first mutable borrow occurs here
+   |     first borrow later used by call
+   |
+help: try adding a local storing this argument...
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2b/sample_005/target.rs:87:38
+   |
+87 |     call_f_checked(d, 100, 50, &mut d[50..], &d[0..50]);
+   |                                      ^^^^^^
+help: ...and then using that local as the argument to this call
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2b/sample_005/target.rs:87:5
+   |
+87 |     call_f_checked(d, 100, 50, &mut d[50..], &d[0..50]);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0502]: cannot borrow `*d` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2b/sample_005/target.rs:87:47
+   |
+87 |     call_f_checked(d, 100, 50, &mut d[50..], &d[0..50]);
+   |     --------------                  -         ^ immutable borrow occurs here
+   |     |                               |
+   |     |                               mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0499]: cannot borrow `*d` as mutable more than once at a time
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2b/sample_005/target.rs:88:5
+   |
+88 |     call_f_checked(d, 100, 50, &mut d[1..], &d[0..50]);
+   |     --------------^^^^^^^^^^^^^^^^^^-^^^^^^^^^^^^^^^^^
+   |     |                               |
+   |     |                               first mutable borrow occurs here
+   |     second mutable borrow occurs here
+   |     first borrow later used by call
+
+error[E0499]: cannot borrow `*d` as mutable more than once at a time
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2b/sample_005/target.rs:88:37
+   |
+88 |     call_f_checked(d, 100, 50, &mut d[1..], &d[0..50]);
+   |     -------------- -                ^ second mutable borrow occurs here
+   |     |              |
+   |     |              first mutable borrow occurs here
+   |     first borrow later used by call
+   |
+help: try adding a local storing this argument...
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2b/sample_005/target.rs:88:38
+   |
+88 |     call_f_checked(d, 100, 50, &mut d[1..], &d[0..50]);
+   |                                      ^^^^^
+help: ...and then using that local as the argument to this call
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2b/sample_005/target.rs:88:5
+   |
+88 |     call_f_checked(d, 100, 50, &mut d[1..], &d[0..50]);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0502]: cannot borrow `*d` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2b/sample_005/target.rs:88:46
+   |
+88 |     call_f_checked(d, 100, 50, &mut d[1..], &d[0..50]);
+   |     --------------                  -        ^ immutable borrow occurs here
+   |     |                               |
+   |     |                               mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2b/sample_005/target.rs:96:39
+   |
+96 |     safe_move(50, &mut expect[50..], &expect[0..50]);
+   |     ---------          ------         ^^^^^^ immutable borrow occurs here
+   |     |                  |
+   |     |                  mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2b/sample_005/target.rs:97:38
+   |
+97 |     safe_move(50, &mut expect[1..], &expect[0..50]);
+   |     ---------          ------        ^^^^^^ immutable borrow occurs here
+   |     |                  |
+   |     |                  mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0277, E0499, E0502.
+For more information about an error, try `rustc --explain E0277`.

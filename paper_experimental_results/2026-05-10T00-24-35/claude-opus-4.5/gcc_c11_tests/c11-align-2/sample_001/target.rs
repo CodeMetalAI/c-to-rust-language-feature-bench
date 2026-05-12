@@ -1,0 +1,19 @@
+fn main() {
+    let s1 = "_Alignas";
+    let s2 = "_Alignof";
+    let s3 = "1";
+    let s4 = "1";
+
+    if s1 != "_Alignas" {
+        std::process::abort();
+    }
+    if s2 != "_Alignof" {
+        std::process::abort();
+    }
+    if s3 != "1" {
+        std::process::abort();
+    }
+    if s4 != "1" {
+        std::process::abort();
+    }
+}

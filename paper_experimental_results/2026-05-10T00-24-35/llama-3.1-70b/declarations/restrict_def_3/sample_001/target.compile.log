@@ -1,0 +1,35 @@
+error[E0277]: can't compare `&i32` with `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_3/sample_001/target.rs:18:36
+   |
+18 |     p.iter().zip(q).all(|(a, b)| a == b * 2)
+   |                                    ^^ no implementation for `&i32 == i32`
+   |
+   = help: the trait `PartialEq<i32>` is not implemented for `&i32`
+help: consider dereferencing here
+   |
+18 |     p.iter().zip(q).all(|(a, b)| *a == b * 2)
+   |                                  +
+
+error[E0277]: cannot add `Ref<'_, {integer}>` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_3/sample_001/target.rs:25:22
+   |
+25 |         sink ^= x[i] + opaque.borrow();
+   |                      ^ no implementation for `i32 + Ref<'_, {integer}>`
+   |
+   = help: the trait `Add<Ref<'_, {integer}>>` is not implemented for `i32`
+help: consider dereferencing here
+   |
+25 |         sink ^= x[i] + *opaque.borrow();
+   |                        +
+
+warning: unused variable: `n`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_3/sample_001/target.rs:13:42
+   |
+13 | fn check_unchanged(x: &[i32], y: &[i32], n: usize) -> bool {
+   |                                          ^ help: if this is intentional, prefix it with an underscore: `_n`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 2 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0277`.

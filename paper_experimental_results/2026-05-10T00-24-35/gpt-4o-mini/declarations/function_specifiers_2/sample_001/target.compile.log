@@ -1,0 +1,42 @@
+error: unwinding panics are not supported without std
+  |
+  = help: using nightly cargo, use -Zbuild-std with panic="abort" to avoid unwinding
+  = note: since the core library is usually precompiled with panic="unwind", rebuilding your crate with panic="abort" may not be enough to fix the problem
+
+error[E0580]: `main` function has wrong type
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/function_specifiers_2/sample_001/target.rs:27:14
+   |
+27 | fn main() -> ! {
+   |              ^ expected `()`, found `!`
+   |
+   = note: expected signature `fn() -> ()`
+              found signature `fn() -> !`
+
+error[E0317]: `if` may be missing an `else` clause
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/function_specifiers_2/sample_001/target.rs:22:5
+   |
+21 |   fn g(i: i32) -> ! {
+   |                   - expected `!` because of this return type
+22 | /     if i > 0 {
+23 | |         stop();
+24 | |     }
+   | |_____^ expected `!`, found `()`
+   |
+   = note:   expected type `!`
+           found unit type `()`
+   = note: `if` expressions without `else` evaluate to `()`
+   = help: consider adding an `else` block that evaluates to the expected type
+
+warning: variable `x` is assigned to, but never used
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/function_specifiers_2/sample_001/target.rs:11:13
+   |
+11 |     let mut x = 0;
+   |             ^
+   |
+   = note: consider using `_x` instead
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 3 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0317, E0580.
+For more information about an error, try `rustc --explain E0317`.

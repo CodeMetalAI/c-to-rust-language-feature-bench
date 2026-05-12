@@ -1,0 +1,57 @@
+error[E0369]: binary operation `!=` cannot be applied to type `&IntList`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/compound_literals_7/sample_005/target.rs:12:14
+   |
+12 |     if x.cdr != &ENDLESS_ZEROS {
+   |        ----- ^^ -------------- &IntList
+   |        |
+   |        &IntList
+   |
+note: an implementation of `PartialEq` might be missing for `IntList`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/compound_literals_7/sample_005/target.rs:1:1
+   |
+ 1 | struct IntList {
+   | ^^^^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `IntList` with `#[derive(PartialEq)]`
+   |
+ 1 + #[derive(PartialEq)]
+ 2 | struct IntList {
+   |
+
+error[E0369]: binary operation `!=` cannot be applied to type `&IntList`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/compound_literals_7/sample_005/target.rs:15:18
+   |
+15 |     if x.cdr.cdr != &ENDLESS_ZEROS {
+   |        --------- ^^ -------------- &IntList
+   |        |
+   |        &IntList
+   |
+note: an implementation of `PartialEq` might be missing for `IntList`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/compound_literals_7/sample_005/target.rs:1:1
+   |
+ 1 | struct IntList {
+   | ^^^^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `IntList` with `#[derive(PartialEq)]`
+   |
+ 1 + #[derive(PartialEq)]
+ 2 | struct IntList {
+   |
+
+error[E0507]: cannot move out of static item `ENDLESS_ZEROS`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/compound_literals_7/sample_005/target.rs:22:29
+   |
+22 |     std::process::exit(eval(ENDLESS_ZEROS));
+   |                             ^^^^^^^^^^^^^ move occurs because `ENDLESS_ZEROS` has type `IntList`, which does not implement the `Copy` trait
+   |
+note: if `IntList` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/compound_literals_7/sample_005/target.rs:1:1
+   |
+ 1 | struct IntList {
+   | ^^^^^^^^^^^^^^ consider implementing `Clone` for this type
+...
+22 |     std::process::exit(eval(ENDLESS_ZEROS));
+   |                             ------------- you could clone this value
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0369, E0507.
+For more information about an error, try `rustc --explain E0369`.

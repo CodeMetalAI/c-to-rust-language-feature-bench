@@ -1,0 +1,63 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/structure_and_union_spec_3/sample_002/target.rs:22:13
+   |
+22 |     let p = unsafe { libc::malloc(size) as *mut S };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/structure_and_union_spec_3/sample_002/target.rs:27:5
+   |
+27 | /     unsafe {
+28 | |         // Set values
+29 | |         (*p).i = 7;
+30 | |         let a_ptr = (*p).a.as_mut_ptr() as *mut i32;
+...  |
+41 | |         libc::free(p as *mut libc::c_void);
+42 | |     }
+   | |_____^
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `libc`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/structure_and_union_spec_3/sample_002/target.rs:22:22
+   |
+22 |     let p = unsafe { libc::malloc(size) as *mut S };
+   |                      ^^^^ use of unresolved module or unlinked crate `libc`
+   |
+   = help: you might be missing a crate named `libc`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `libc`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/structure_and_union_spec_3/sample_002/target.rs:36:13
+   |
+36 |             libc::free(p as *mut libc::c_void);
+   |             ^^^^ use of unresolved module or unlinked crate `libc`
+   |
+   = help: you might be missing a crate named `libc`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `libc`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/structure_and_union_spec_3/sample_002/target.rs:41:9
+   |
+41 |         libc::free(p as *mut libc::c_void);
+   |         ^^^^ use of unresolved module or unlinked crate `libc`
+   |
+   = help: you might be missing a crate named `libc`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `libc`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/structure_and_union_spec_3/sample_002/target.rs:41:30
+   |
+41 |         libc::free(p as *mut libc::c_void);
+   |                              ^^^^ use of unresolved module or unlinked crate `libc`
+   |
+   = help: you might be missing a crate named `libc`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `libc`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/structure_and_union_spec_3/sample_002/target.rs:36:34
+   |
+36 |             libc::free(p as *mut libc::c_void);
+   |                                  ^^^^ use of unresolved module or unlinked crate `libc`
+   |
+   = help: you might be missing a crate named `libc`
+
+error: aborting due to 7 previous errors
+
+For more information about this error, try `rustc --explain E0433`.

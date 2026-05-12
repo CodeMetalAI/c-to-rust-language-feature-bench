@@ -1,0 +1,49 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/type_names/sample_005/target.rs:17:8
+   |
+17 |     if unsafe { *p }!= 1 {
+   |        ^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/type_names/sample_005/target.rs:27:8
+   |
+27 |     if unsafe { (*pa)[1] }!= 2 {
+   |        ^^^^^^^^^^^^^^^^^^^
+
+error[E0057]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/type_names/sample_005/target.rs:49:8
+   |
+49 |     if af[0](4)!= 7 {
+   |        ^^^^^--- argument #2 is missing
+   |
+note: closure defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/type_names/sample_005/target.rs:8:17
+   |
+ 8 |     let f_var = |x: u32, _| x as i32 + 3;
+   |                 ^^^^^^^^^^^
+help: provide the argument
+   |
+49 |     if af[0](4, /* _ */)!= 7 {
+   |               +++++++++
+
+error[E0057]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/type_names/sample_005/target.rs:53:8
+   |
+53 |     if af[1](10)!= 13 {
+   |        ^^^^^---- argument #2 is missing
+   |
+note: closure defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/type_names/sample_005/target.rs:8:17
+   |
+ 8 |     let f_var = |x: u32, _| x as i32 + 3;
+   |                 ^^^^^^^^^^^
+help: provide the argument
+   |
+53 |     if af[1](10, /* _ */)!= 13 {
+   |                +++++++++
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0057`.

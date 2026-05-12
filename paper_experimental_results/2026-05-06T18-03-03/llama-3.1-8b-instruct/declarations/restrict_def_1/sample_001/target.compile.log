@@ -1,0 +1,48 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_001/target.rs:43:38
+   |
+43 |     let a = choose_view(&mut bank_a, which_a);
+   |             -----------              ^^^^^^^ expected `bool`, found integer
+   |             |
+   |             arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_001/target.rs:11:4
+   |
+11 | fn choose_view(u: &mut Bank, which: bool) -> &mut [i32] {
+   |    ^^^^^^^^^^^               -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_001/target.rs:44:38
+   |
+44 |     let b = choose_view(&mut bank_b, which_b);
+   |             -----------              ^^^^^^^ expected `bool`, found integer
+   |             |
+   |             arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_001/target.rs:11:4
+   |
+11 | fn choose_view(u: &mut Bank, which: bool) -> &mut [i32] {
+   |    ^^^^^^^^^^^               -----------
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_001/target.rs:13:14
+   |
+13 |         &mut u.right
+   |              ^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_001/target.rs:15:14
+   |
+15 |         &mut u.left
+   |              ^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0133, E0308.
+For more information about an error, try `rustc --explain E0133`.

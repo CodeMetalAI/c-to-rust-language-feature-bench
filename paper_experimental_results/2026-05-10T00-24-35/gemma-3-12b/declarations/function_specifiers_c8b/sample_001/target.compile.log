@@ -1,0 +1,39 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/function_specifiers_c8b/sample_001/target.rs:5:9
+   |
+ 5 | /         unsafe {
+ 6 | |             if x == 7 && *g == 9 {
+ 7 | |                 std::process::exit(0);
+ 8 | |             } else {
+...  |
+11 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/function_specifiers_c8b/sample_001/target.rs:14:5
+   |
+14 | /     unsafe {
+15 | |         g = 9;
+16 | |     }
+   | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/function_specifiers_c8b/sample_001/target.rs:1:14
+  |
+1 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+error[E0614]: type `i32` cannot be dereferenced
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/function_specifiers_c8b/sample_001/target.rs:6:26
+  |
+6 |             if x == 7 && *g == 9 {
+  |                          ^^ can't be dereferenced
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0277, E0614.
+For more information about an error, try `rustc --explain E0277`.

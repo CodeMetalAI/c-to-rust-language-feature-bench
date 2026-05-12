@@ -1,0 +1,133 @@
+error[E0599]: no method named `offset` found for mutable reference `&mut i32` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_003/target.rs:7:11
+  |
+7 |     p = p.offset(1);
+  |           ^^^^^^ method not found in `&mut i32`
+
+error[E0599]: no method named `offset` found for mutable reference `&mut i32` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_003/target.rs:8:11
+  |
+8 |     q = q.offset(1);
+  |           ^^^^^^ method not found in `&mut i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_003/target.rs:16:19
+   |
+16 |     p[i] = base + i * 5 + 1;
+   |                   ^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_003/target.rs:16:17
+   |
+16 |     p[i] = base + i * 5 + 1;
+   |                 ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0599]: no method named `offset` found for mutable reference `&mut [i32; 32]` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_003/target.rs:66:28
+   |
+66 |       copy_restrict(16, p2.offset(8), q2.offset(4));
+   |                            ^^^^^^ method not found in `&mut [i32; 32]`
+
+error[E0599]: no method named `offset` found for mutable reference `&mut [i32; 32]` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_003/target.rs:66:42
+   |
+66 |       copy_restrict(16, p2.offset(8), q2.offset(4));
+   |                                          ^^^^^^ method not found in `&mut [i32; 32]`
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_003/target.rs:75:13
+   |
+75 |         if !same(&x[8..24], &expect) {
+   |             ^^^^-------------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_003/target.rs:21:4
+   |
+21 | fn same(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^                       --------
+help: provide the argument
+   |
+75 |         if !same(&x[8..24], &expect, /* usize */) {
+   |                                    +++++++++++++
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_003/target.rs:81:11
+   |
+81 |       if !same(&y[..], &y_snapshot) {
+   |           ^^^^--------------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_003/target.rs:21:4
+   |
+21 | fn same(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^                       --------
+help: provide the argument
+   |
+81 |       if !same(&y[..], &y_snapshot, /* usize */) {
+   |                                   +++++++++++++
+
+error[E0599]: no method named `offset` found for mutable reference `&mut [i32; 32]` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_003/target.rs:87:29
+   |
+87 |     copy_restrict(8, p1, q1.offset(24));
+   |                             ^^^^^^ method not found in `&mut [i32; 32]`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_003/target.rs:87:22
+   |
+87 |     copy_restrict(8, p1, q1.offset(24));
+   |     -------------    ^^ expected `&mut i32`, found `&mut [i32; 32]`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut i32`
+              found mutable reference `&mut [i32; 32]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_003/target.rs:4:4
+   |
+ 4 | fn copy_restrict(n: usize, p: &mut i32, q: &mut i32) {
+   |    ^^^^^^^^^^^^^           -----------
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_003/target.rs:96:11
+   |
+96 |       if !same(&x[0..8], &expect2) {
+   |           ^^^^-------------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_003/target.rs:21:4
+   |
+21 | fn same(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^                       --------
+help: provide the argument
+   |
+96 |       if !same(&x[0..8], &expect2, /* usize */) {
+   |                                  +++++++++++++
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_003/target.rs:103:7
+    |
+103 |   if !same(&y[..], &y_snapshot) {
+    |       ^^^^--------------------- argument #3 of type `usize` is missing
+    |
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_003/target.rs:21:4
+    |
+ 21 | fn same(a: &[i32], b: &[i32], n: usize) -> bool {
+    |    ^^^^                       --------
+help: provide the argument
+    |
+103 |   if !same(&y[..], &y_snapshot, /* usize */) {
+    |                               +++++++++++++
+
+error: aborting due to 12 previous errors
+
+Some errors have detailed explanations: E0061, E0277, E0308, E0599.
+For more information about an error, try `rustc --explain E0061`.

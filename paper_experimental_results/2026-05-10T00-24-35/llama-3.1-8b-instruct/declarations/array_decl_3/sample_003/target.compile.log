@@ -1,0 +1,134 @@
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_003/target.rs:9:49
+  |
+9 | fn check_a(nn: i32, mm: i32, a: &mut [[i32; 6]; nn as usize], p: &mut [[i32; mm as usize]; nn as usize]) -> i32 {
+  |            -- this would need to be a `const`   ^^
+
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_003/target.rs:9:78
+  |
+9 | fn check_a(nn: i32, mm: i32, a: &mut [[i32; 6]; nn as usize], p: &mut [[i32; mm as usize]; nn as usize]) -> i32 {
+  |                     -- this would need to be a `const`                       ^^
+
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_003/target.rs:9:92
+  |
+9 | fn check_a(nn: i32, mm: i32, a: &mut [[i32; 6]; nn as usize], p: &mut [[i32; mm as usize]; nn as usize]) -> i32 {
+  |            -- this would need to be a `const`                                              ^^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_003/target.rs:29:50
+   |
+29 | fn check_c(nn: i32, mm: i32, c: &mut [[[i32; 6]; nn as usize]; nn as usize], r: &mut [[[i32; mm as usize]; 6]; nn as usize]) -> i32 {
+   |            -- this would need to be a `const`    ^^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_003/target.rs:29:64
+   |
+29 | fn check_c(nn: i32, mm: i32, c: &mut [[[i32; 6]; nn as usize]; nn as usize], r: &mut [[[i32; mm as usize]; 6]; nn as usize]) -> i32 {
+   |            -- this would need to be a `const`                  ^^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_003/target.rs:29:94
+   |
+29 | fn check_c(nn: i32, mm: i32, c: &mut [[[i32; 6]; nn as usize]; nn as usize], r: &mut [[[i32; mm as usize]; 6]; nn as usize]) -> i32 {
+   |                     -- this would need to be a `const`                                       ^^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_003/target.rs:29:112
+   |
+29 | fn check_c(nn: i32, mm: i32, c: &mut [[[i32; 6]; nn as usize]; nn as usize], r: &mut [[[i32; mm as usize]; 6]; nn as usize]) -> i32 {
+   |            -- this would need to be a `const`                                                                  ^^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_003/target.rs:56:23
+   |
+56 |     let mut a = [[[0; mm as usize]; 6]; nn as usize];
+   |                       ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+54 -     let mm = m;
+54 +     const mm: /* Type */ = m;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_003/target.rs:56:41
+   |
+56 |     let mut a = [[[0; mm as usize]; 6]; nn as usize];
+   |                                         ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+53 -     let nn = n;
+53 +     const nn: /* Type */ = n;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_003/target.rs:59:23
+   |
+59 |     let mut c = [[[0; mm as usize]; 6]; nn as usize];
+   |                       ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+54 -     let mm = m;
+54 +     const mm: /* Type */ = m;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_003/target.rs:59:41
+   |
+59 |     let mut c = [[[0; mm as usize]; 6]; nn as usize];
+   |                                         ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+53 -     let nn = n;
+53 +     const nn: /* Type */ = n;
+   |
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_003/target.rs:92:5
+   |
+92 |     n = 6;
+   |     ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_003/target.rs:93:5
+   |
+93 |     m = n + 1;
+   |     ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_003/target.rs:93:9
+   |
+93 |     m = n + 1;
+   |         ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_003/target.rs:95:5
+   |
+95 |     gate = 0;
+   |     ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_003/target.rs:98:8
+   |
+98 |     if gate != 0 {
+   |        ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 16 previous errors
+
+Some errors have detailed explanations: E0133, E0435.
+For more information about an error, try `rustc --explain E0133`.

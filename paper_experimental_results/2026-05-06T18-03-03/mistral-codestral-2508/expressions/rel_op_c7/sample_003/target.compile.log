@@ -1,0 +1,29 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/rel_op_c7/sample_003/target.rs:9:18
+  |
+9 |     let p_end1 = unsafe { p.add(1) };
+  |                  ^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/rel_op_c7/sample_003/target.rs:10:18
+   |
+10 |     let p_end2 = unsafe { (&x as *const i32).add(1) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `add` found for reference `&{integer}` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/rel_op_c7/sample_003/target.rs:9:29
+  |
+9 |     let p_end1 = unsafe { p.add(1) };
+  |                             ^^^ method not found in `&{integer}`
+  |
+  = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+  |
+1 + use std::ops::Add;
+  |
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

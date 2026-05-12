@@ -1,0 +1,32 @@
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/lvalue_array_fun_c4/sample_005/target.rs:13:8
+   |
+13 |     if p1 != q1 {
+   |        ^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+   = note: `#[warn(unpredictable_function_pointer_comparisons)]` on by default
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+13 -     if p1 != q1 {
+13 +     if !std::ptr::fn_addr_eq(p1, q1) {
+   |
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/lvalue_array_fun_c4/sample_005/target.rs:33:8
+   |
+33 |     if p2 != q2 {
+   |        ^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+33 -     if p2 != q2 {
+33 +     if !std::ptr::fn_addr_eq(p2, q2) {
+   |
+
+warning: 2 warnings emitted

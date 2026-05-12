@@ -1,0 +1,67 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_003/target.rs:11:30
+   |
+11 |     let q1: fn(i32) -> i32 = &f1;
+   |             --------------   ^^^ expected fn pointer, found `&fn(i32) -> i32 {f1}`
+   |             |
+   |             expected due to this
+   |
+   = note: expected fn pointer `fn(_) -> _`
+               found reference `&fn(_) -> _ {f1}`
+help: consider removing the reference
+   |
+11 -     let q1: fn(i32) -> i32 = &f1;
+11 +     let q1: fn(i32) -> i32 = f1;
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_003/target.rs:26:35
+   |
+26 |     let q2: fn(i32, i32) -> i32 = &f2;
+   |             -------------------   ^^^ expected fn pointer, found `&fn(i32, i32) -> i32 {f2}`
+   |             |
+   |             expected due to this
+   |
+   = note: expected fn pointer `fn(_, _) -> _`
+               found reference `&fn(_, _) -> _ {f2}`
+help: consider removing the reference
+   |
+26 -     let q2: fn(i32, i32) -> i32 = &f2;
+26 +     let q2: fn(i32, i32) -> i32 = f2;
+   |
+
+warning: unreachable pattern
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_003/target.rs:43:9
+   |
+42 |         f1 => 1,
+   |         -- matches any value
+43 |         _ => 99,
+   |         ^ no value can reach this
+   |
+   = note: `#[warn(unreachable_patterns)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `f1`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_003/target.rs:42:9
+   |
+42 |         f1 => 1,
+   |         ^^ help: if this is intentional, prefix it with an underscore: `_f1`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable pattern
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_003/target.rs:50:9
+   |
+49 |         f2 => 2,
+   |         -- matches any value
+50 |         _ => 99,
+   |         ^ no value can reach this
+
+warning: unused variable: `f2`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_003/target.rs:49:9
+   |
+49 |         f2 => 2,
+   |         ^^ help: if this is intentional, prefix it with an underscore: `_f2`
+
+error: aborting due to 2 previous errors; 4 warnings emitted
+
+For more information about this error, try `rustc --explain E0308`.

@@ -1,0 +1,39 @@
+error: defining functions with C-variadic arguments is only allowed for free functions with the "C" or "C-unwind" calling convention
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_names/sample_003/target.rs:61:22
+   |
+61 |     fn f_var(x: u32, ...) -> i32 {
+   |                      ^^^
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_names/sample_003/target.rs:40:10
+   |
+40 |         &g_arr[1]
+   |          ^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0658]: C-variadic functions are unstable
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_names/sample_003/target.rs:61:5
+   |
+61 | /     fn f_var(x: u32, ...) -> i32 {
+62 | |         (x + 3) as i32
+63 | |     }
+   | |_____^
+   |
+   = note: see issue #44930 <https://github.com/rust-lang/rust/issues/44930> for more information
+   = help: add `#![feature(c_variadic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_names/sample_003/target.rs:79:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+79 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0434, E0658.
+For more information about an error, try `rustc --explain E0308`.

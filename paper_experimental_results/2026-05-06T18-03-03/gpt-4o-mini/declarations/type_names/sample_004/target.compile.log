@@ -1,0 +1,66 @@
+error: `Trait(...)` syntax does not support c_variadic parameters
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/type_names/sample_004/target.rs:71:32
+   |
+71 |         let af: [&(dyn Fn(u32, ...) -> i32); 2] = [&f_var, &f_var];
+   |                                ^^^ help: remove the `...`
+
+error: defining functions with C-variadic arguments is only allowed for free functions with the "C" or "C-unwind" calling convention
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/type_names/sample_004/target.rs:12:18
+   |
+12 | fn f_var(x: u32, _: ...) -> i32 {
+   |                  ^^^^^^
+
+error[E0106]: missing lifetime specifier
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/type_names/sample_004/target.rs:57:25
+   |
+57 |         let pf: fn() -> &i32 = fip;
+   |                         ^ expected named lifetime parameter
+   |
+   = help: this function's return type contains a borrowed value, but there is no value for it to be borrowed from
+help: consider using the `'static` lifetime, but this is uncommon unless you're returning a borrowed value from a `const` or a `static`
+   |
+57 |         let pf: fn() -> &'static i32 = fip;
+   |                          +++++++
+help: instead, you are more likely to want to return an owned value
+   |
+57 -         let pf: fn() -> &i32 = fip;
+57 +         let pf: fn() -> i32 = fip;
+   |
+
+error[E0658]: C-variadic functions are unstable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/type_names/sample_004/target.rs:12:1
+   |
+12 | / fn f_var(x: u32, _: ...) -> i32 {
+13 | |     (x + 3) as i32
+14 | | }
+   | |_^
+   |
+   = note: see issue #44930 <https://github.com/rust-lang/rust/issues/44930> for more information
+   = help: add `#![feature(c_variadic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+warning: unnecessary parentheses around type
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/type_names/sample_004/target.rs:71:19
+   |
+71 |         let af: [&(dyn Fn(u32, ...) -> i32); 2] = [&f_var, &f_var];
+   |                   ^                       ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+71 -         let af: [&(dyn Fn(u32, ...) -> i32); 2] = [&f_var, &f_var];
+71 +         let af: [&dyn Fn(u32, ...) -> i32; 2] = [&f_var, &f_var];
+   |
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/type_names/sample_004/target.rs:20:14
+   |
+20 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error: aborting due to 5 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0106, E0277, E0658.
+For more information about an error, try `rustc --explain E0106`.

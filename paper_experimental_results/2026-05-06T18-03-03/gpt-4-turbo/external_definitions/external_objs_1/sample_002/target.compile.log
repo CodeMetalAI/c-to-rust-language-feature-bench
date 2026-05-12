@@ -1,0 +1,61 @@
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/external_definitions/external_objs_1/sample_002/target.rs:4:9
+  |
+4 |     let mut i3 = 3;
+  |         ----^^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error[E0499]: cannot borrow `i1` as mutable more than once at a time
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/external_definitions/external_objs_1/sample_002/target.rs:31:16
+   |
+ 9 |     let p_i1 = &mut i1;
+   |                ------- first mutable borrow occurs here
+...
+31 |     if p_i1 != &mut i1 {
+   |                ^^^^^^^ second mutable borrow occurs here
+...
+44 |     *p_i1 = 10;
+   |     ---------- first borrow later used here
+
+error[E0499]: cannot borrow `i2` as mutable more than once at a time
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/external_definitions/external_objs_1/sample_002/target.rs:34:16
+   |
+10 |     let p_i2 = &mut i2;
+   |                ------- first mutable borrow occurs here
+...
+34 |     if p_i2 != &mut i2 {
+   |                ^^^^^^^ second mutable borrow occurs here
+...
+45 |     *p_i2 = 20;
+   |     ---------- first borrow later used here
+
+error[E0499]: cannot borrow `i4` as mutable more than once at a time
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/external_definitions/external_objs_1/sample_002/target.rs:37:16
+   |
+11 |     let p_i4 = &mut i4;
+   |                ------- first mutable borrow occurs here
+...
+37 |     if p_i4 != &mut i4 {
+   |                ^^^^^^^ second mutable borrow occurs here
+...
+46 |     *p_i4 = 30;
+   |     ---------- first borrow later used here
+
+error[E0499]: cannot borrow `i5` as mutable more than once at a time
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/external_definitions/external_objs_1/sample_002/target.rs:40:16
+   |
+12 |     let p_i5 = &mut i5;
+   |                ------- first mutable borrow occurs here
+...
+40 |     if p_i5 != &mut i5 {
+   |                ^^^^^^^ second mutable borrow occurs here
+...
+47 |     *p_i5 = 40;
+   |     ---------- first borrow later used here
+
+error: aborting due to 4 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0499`.

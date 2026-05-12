@@ -1,0 +1,156 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_4/sample_001/target.rs:41:5
+   |
+41 | /     unsafe {
+42 | |         let q = &mut BACKING;
+43 | |         let s = c;
+...  |
+54 | |         SINK ^= checksum_2d(m, &BACKING);
+55 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_4/sample_001/target.rs:118:5
+    |
+118 | /     unsafe {
+119 | |         if SINK == 0 {
+120 | |             std::process::exit(3);
+121 | |         }
+122 | |     }
+    | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_4/sample_001/target.rs:13:29
+   |
+13 |             BACKING[i][j] = (i + 1) * 100 + (j + 1);
+   |             -------------   ^^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+   |             |
+   |             expected due to the type of this binding
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_4/sample_001/target.rs:27:28
+   |
+27 |             s ^= a[i][j] + i * 131 + j * 17;
+   |                            ^^^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_4/sample_001/target.rs:27:26
+   |
+27 |             s ^= a[i][j] + i * 131 + j * 17;
+   |                          ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_4/sample_001/target.rs:27:38
+   |
+27 |             s ^= a[i][j] + i * 131 + j * 17;
+   |                                      ^^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_4/sample_001/target.rs:27:36
+   |
+27 |             s ^= a[i][j] + i * 131 + j * 17;
+   |                                    ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_4/sample_001/target.rs:49:37
+   |
+49 |                 q[i][j] = s[i][j] + d[(i + j) % m];
+   |                                     ^^^^^^^^^^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_4/sample_001/target.rs:49:35
+   |
+49 |                 q[i][j] = s[i][j] + d[(i + j) % m];
+   |                                   ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_4/sample_001/target.rs:80:13
+   |
+80 |     fvla(m, &x);
+   |     ----    ^^ expected `&[[i32; 9]; 9]`, found `&[[usize; 9]; 9]`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&[[i32; 9]; 9]`
+              found reference `&[[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_4/sample_001/target.rs:35:4
+   |
+35 | fn fvla(m: usize, c: &[[i32; 9]; 9]) {
+   |    ^^^^           -----------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_4/sample_001/target.rs:94:55
+   |
+94 |         if checksum_2d(m, &BACKING) != checksum_2d(m, &expect) {
+   |                                        -----------    ^^^^^^^ expected `&[[i32; 9]; 9]`, found `&[[usize; 9]; 9]`
+   |                                        |
+   |                                        arguments to this function are incorrect
+   |
+   = note: expected reference `&[[i32; 9]; 9]`
+              found reference `&[[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_4/sample_001/target.rs:21:4
+   |
+21 | fn checksum_2d(m: usize, a: &[[i32; 9]; 9]) -> i32 {
+   |    ^^^^^^^^^^^           -----------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_4/sample_001/target.rs:99:13
+   |
+99 |     fvla(m, &y);
+   |     ----    ^^ expected `&[[i32; 9]; 9]`, found `&[[usize; 9]; 9]`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&[[i32; 9]; 9]`
+              found reference `&[[usize; 9]; 9]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_4/sample_001/target.rs:35:4
+   |
+35 | fn fvla(m: usize, c: &[[i32; 9]; 9]) {
+   |    ^^^^           -----------------
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_4/sample_001/target.rs:113:55
+    |
+113 |         if checksum_2d(m, &BACKING) != checksum_2d(m, &expect2) {
+    |                                        -----------    ^^^^^^^^ expected `&[[i32; 9]; 9]`, found `&[[usize; 9]; 9]`
+    |                                        |
+    |                                        arguments to this function are incorrect
+    |
+    = note: expected reference `&[[i32; 9]; 9]`
+               found reference `&[[usize; 9]; 9]`
+note: function defined here
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_4/sample_001/target.rs:21:4
+    |
+ 21 | fn checksum_2d(m: usize, a: &[[i32; 9]; 9]) -> i32 {
+    |    ^^^^^^^^^^^           -----------------
+
+error: aborting due to 13 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

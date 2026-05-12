@@ -1,0 +1,54 @@
+warning: type `range` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_1/sample_001/target.rs:6:12
+  |
+6 |     struct range {
+  |            ^^^^^ help: convert the identifier to upper camel case: `Range`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_1/sample_001/target.rs:35:9
+   |
+35 |         unsafe { g_store }
+   |         ^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_1/sample_001/target.rs:41:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+41 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_1/sample_001/target.rs:87:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+87 |     0
+   |     ^ expected `()`, found integer
+
+error[E0605]: non-primitive cast: `fn() -> i32 {f_plain}` as `fn(i32, i32, i32) -> i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_1/sample_001/target.rs:54:19
+   |
+54 |     let metricp = f_plain as KLICKSP;
+   |                   ^^^^^^^^^^^^^^^^^^ invalid cast
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_1/sample_001/target.rs:23:13
+   |
+23 |         let mut out = range {
+   |             ----^^^
+   |             |
+   |             help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 4 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0308, E0605.
+For more information about an error, try `rustc --explain E0308`.

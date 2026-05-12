@@ -1,0 +1,27 @@
+fn main() {
+    const P: &str = "x ## y";
+
+    if P.len() != 6 {
+        std::process::exit(1);
+    }
+    if P.chars().nth(0) != Some('x') {
+        std::process::exit(2);
+    }
+    if P.chars().nth(1) != Some(' ') {
+        std::process::exit(3);
+    }
+    if P.chars().nth(2) != Some('#') {
+        std::process::exit(4);
+    }
+    if P.chars().nth(3) != Some('#') {
+        std::process::exit(5);
+    }
+    if P.chars().nth(4) != Some(' ') {
+        std::process::exit(6);
+    }
+    if P.chars().nth(5) != Some('y') {
+        std::process::exit(7);
+    }
+
+    std::process::exit(0);
+}

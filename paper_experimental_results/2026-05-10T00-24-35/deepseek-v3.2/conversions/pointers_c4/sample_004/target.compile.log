@@ -1,0 +1,37 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/pointers_c4/sample_004/target.rs:20:16
+   |
+ 5 | fn main() {
+   |          - expected `()` because of default return type
+...
+20 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0369]: binary operation `!=` cannot be applied to type `Option<Box<dyn Fn(i32) -> i32>>`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/pointers_c4/sample_004/target.rs:23:11
+   |
+23 |     if v0 != v1 {
+   |        -- ^^ -- Option<Box<dyn Fn(i32) -> i32>>
+   |        |
+   |        Option<Box<dyn Fn(i32) -> i32>>
+
+error[E0369]: binary operation `!=` cannot be applied to type `Option<Box<dyn Fn(i32) -> i32>>`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/pointers_c4/sample_004/target.rs:27:11
+   |
+27 |     if v0 != v2 {
+   |        -- ^^ -- Option<Box<dyn Fn(i32) -> i32>>
+   |        |
+   |        Option<Box<dyn Fn(i32) -> i32>>
+
+error[E0369]: binary operation `!=` cannot be applied to type `Option<Box<dyn Fn(i32) -> i32>>`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/pointers_c4/sample_004/target.rs:47:11
+   |
+47 |     if v0 != Some(Box::new(fp0) as Box<dyn Fn(i32) -> i32>) {
+   |        -- ^^ ---------------------------------------------- Option<Box<dyn Fn(i32) -> i32>>
+   |        |
+   |        Option<Box<dyn Fn(i32) -> i32>>
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0369.
+For more information about an error, try `rustc --explain E0308`.

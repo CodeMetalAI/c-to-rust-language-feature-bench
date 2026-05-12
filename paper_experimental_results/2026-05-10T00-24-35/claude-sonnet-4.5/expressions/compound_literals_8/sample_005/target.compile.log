@@ -1,0 +1,28 @@
+warning: value assigned to `s0` is never read
+ --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/compound_literals_8/sample_005/target.rs:9:13
+  |
+9 |     let mut s0 = S { i: 0 };
+  |             ^^
+  |
+  = help: maybe it is overwritten before being read?
+  = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `s1` is never read
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/compound_literals_8/sample_005/target.rs:10:13
+   |
+10 |     let mut s1 = S { i: 0 };
+   |             ^^
+   |
+   = help: maybe it is overwritten before being read?
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/compound_literals_8/sample_005/target.rs:29:34
+   |
+29 |             (p_ptr == q_ptr) && ((*p_ptr).i == 1)
+   |                                  ^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error: aborting due to 1 previous error; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0133`.

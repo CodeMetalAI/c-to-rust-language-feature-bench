@@ -1,0 +1,35 @@
+warning: unused variable: `a`
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/external_definitions/fun_defs_1/sample_001/target.rs:3:6
+  |
+3 | fn f(a: u8, b: u8) -> i32 {
+  |      ^ help: if this is intentional, prefix it with an underscore: `_a`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/external_definitions/fun_defs_1/sample_001/target.rs:4:5
+  |
+4 |     ARR[b as usize] = 1;
+  |     ^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/external_definitions/fun_defs_1/sample_001/target.rs:9:5
+  |
+9 |     ARR[(b as u8) as usize] += b;
+  |     ^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/external_definitions/fun_defs_1/sample_001/target.rs:27:8
+   |
+27 |     if ARR[ub as usize] != 0 {
+   |        ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 3 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0133`.

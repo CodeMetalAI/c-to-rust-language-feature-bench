@@ -1,0 +1,23 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/simple_asgn_3/sample_004/target.rs:5:5
+  |
+5 | /     unsafe {
+6 | |         *p = 0;
+7 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: assigning to `&T` is undefined behavior, consider using an `UnsafeCell`
+ --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/simple_asgn_3/sample_004/target.rs:6:9
+  |
+3 |     let p: *mut u8 = &c as *const u8 as *mut u8;
+  |                      -------------------------- casting happened here
+...
+6 |         *p = 0;
+  |         ^^^^^^
+  |
+  = note: for more information, visit <https://doc.rust-lang.org/book/ch15-05-interior-mutability.html>
+  = note: `#[deny(invalid_reference_casting)]` on by default
+
+error: aborting due to 2 previous errors

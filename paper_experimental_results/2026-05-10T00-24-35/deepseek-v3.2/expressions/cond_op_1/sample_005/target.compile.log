@@ -1,0 +1,87 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_005/target.rs:31:5
+   |
+31 | /     unsafe {
+32 | |         f(if true { c_vp } else { c_ip as *const std::ffi::c_void });
+33 | |         f(if true { c_ip as *const std::ffi::c_void } else { c_vp });
+...  |
+48 | |         f1(if true { ip as *mut std::ffi::c_void } else { vp });
+49 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+warning: static variable `c_vp` should have an upper case name
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_005/target.rs:3:12
+  |
+3 | static mut c_vp: *const std::ffi::c_void = ptr::null();
+  |            ^^^^
+  |
+  = note: `#[warn(non_upper_case_globals)]` (part of `#[warn(nonstandard_style)]`) on by default
+help: convert the identifier to upper case
+  |
+3 - static mut c_vp: *const std::ffi::c_void = ptr::null();
+3 + static mut C_VP: *const std::ffi::c_void = ptr::null();
+  |
+
+warning: static variable `vp` should have an upper case name
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_005/target.rs:4:12
+  |
+4 | static mut vp: *mut std::ffi::c_void = ptr::null_mut();
+  |            ^^
+  |
+help: convert the identifier to upper case
+  |
+4 - static mut vp: *mut std::ffi::c_void = ptr::null_mut();
+4 + static mut VP: *mut std::ffi::c_void = ptr::null_mut();
+  |
+
+warning: static variable `c_ip` should have an upper case name
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_005/target.rs:5:12
+  |
+5 | static mut c_ip: *const i32 = ptr::null();
+  |            ^^^^
+  |
+help: convert the identifier to upper case
+  |
+5 - static mut c_ip: *const i32 = ptr::null();
+5 + static mut C_IP: *const i32 = ptr::null();
+  |
+
+warning: static variable `v_ip` should have an upper case name
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_005/target.rs:6:12
+  |
+6 | static mut v_ip: *mut i32 = ptr::null_mut();
+  |            ^^^^
+  |
+help: convert the identifier to upper case
+  |
+6 - static mut v_ip: *mut i32 = ptr::null_mut();
+6 + static mut V_IP: *mut i32 = ptr::null_mut();
+  |
+
+warning: static variable `ip` should have an upper case name
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_005/target.rs:7:12
+  |
+7 | static mut ip: *mut i32 = ptr::null_mut();
+  |            ^^
+  |
+help: convert the identifier to upper case
+  |
+7 - static mut ip: *mut i32 = ptr::null_mut();
+7 + static mut IP: *mut i32 = ptr::null_mut();
+  |
+
+warning: static variable `c_cp` should have an upper case name
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_005/target.rs:8:12
+  |
+8 | static mut c_cp: *const std::os::raw::c_char = ptr::null();
+  |            ^^^^
+  |
+help: convert the identifier to upper case
+  |
+8 - static mut c_cp: *const std::os::raw::c_char = ptr::null();
+8 + static mut C_CP: *const std::os::raw::c_char = ptr::null();
+  |
+
+error: aborting due to 1 previous error; 6 warnings emitted

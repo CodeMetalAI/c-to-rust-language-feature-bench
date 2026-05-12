@@ -1,0 +1,69 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_1/sample_002/target.rs:28:27
+   |
+28 |     fn f_plain() -> i32 { unsafe { G_STORE } }
+   |                           ^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_1/sample_002/target.rs:30:9
+   |
+30 |     let mut distance: MILES = 40;
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_1/sample_002/target.rs:31:9
+   |
+31 |     let mut metricp: KLICKSP = f_plain;
+   |         ----^^^^^^^
+   |         |
+   |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_1/sample_002/target.rs:34:9
+   |
+34 |     let mut zp: &mut Range;
+   |         ----^^
+   |         |
+   |         help: remove this `mut`
+
+error[E0382]: use of moved value: `x.lo`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_1/sample_002/target.rs:63:37
+   |
+32 |     let mut x: Range = Range { hi: 0.0, lo: 0.0 };
+   |         ----- move occurs because `x` has type `main::Range`, which does not implement the `Copy` trait
+...
+62 |         let y = takes_range(x);
+   |                             - value moved here
+63 |         if (y.hi + y.lo) != (x.hi + x.lo) {
+   |                                     ^^^^ value used here after move
+
+error[E0507]: cannot move out of `*zp` which is behind a mutable reference
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_1/sample_002/target.rs:77:20
+   |
+77 |         let copy = *zp;
+   |                    ^^^ move occurs because `*zp` has type `main::Range`, which does not implement the `Copy` trait
+   |
+note: if `main::Range` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_1/sample_002/target.rs:5:5
+   |
+ 5 |     struct Range {
+   |     ^^^^^^^^^^^^ consider implementing `Clone` for this type
+...
+77 |         let copy = *zp;
+   |                    --- you could clone this value
+help: consider removing the dereference here
+   |
+77 -         let copy = *zp;
+77 +         let copy = zp;
+   |
+
+error: aborting due to 3 previous errors; 3 warnings emitted
+
+Some errors have detailed explanations: E0382, E0507.
+For more information about an error, try `rustc --explain E0382`.

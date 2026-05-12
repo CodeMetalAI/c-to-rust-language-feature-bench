@@ -1,0 +1,54 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_005/target.rs:22:20
+   |
+22 |     let offset_d = unsafe { &(*(std::ptr::null() as *const S)).d as *const _ as usize };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_005/target.rs:30:18
+   |
+30 |     let s1_ptr = unsafe { alloc(s1_layout) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_005/target.rs:38:18
+   |
+38 |     let s2_ptr = unsafe { alloc(s2_layout) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_005/target.rs:40:9
+   |
+40 |         unsafe { dealloc(s1_ptr, s1_layout) };
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_005/target.rs:49:5
+   |
+49 | /     unsafe {
+50 | |         let s1_d_ptr = (s1 as *mut u8).add(size_of::<S>()) as *mut f64;
+51 | |         *s1_d_ptr = 42.0;
+...  |
+62 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_005/target.rs:65:5
+   |
+65 | /     unsafe {
+66 | |         dealloc(s1_ptr, s1_layout);
+67 | |         dealloc(s2_ptr, s2_layout);
+68 | |     }
+   | |_____^
+
+warning: dereferencing a null pointer
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_2/sample_005/target.rs:22:30
+   |
+22 |     let offset_d = unsafe { &(*(std::ptr::null() as *const S)).d as *const _ as usize };
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+   |
+   = note: `#[warn(deref_nullptr)]` on by default
+
+error: aborting due to 6 previous errors; 1 warning emitted

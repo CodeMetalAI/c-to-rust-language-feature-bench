@@ -1,0 +1,89 @@
+warning: type `s1` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:2:8
+  |
+2 | struct s1 {
+  |        ^^ help: convert the identifier to upper camel case (notice the capitalization): `S1`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: type `t1` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:6:6
+  |
+6 | type t1 = s1;
+  |      ^^ help: convert the identifier to upper camel case: `T1`
+
+warning: type `tp1` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:7:6
+  |
+7 | type tp1 = *mut s1;
+  |      ^^^ help: convert the identifier to upper camel case: `Tp1`
+
+warning: type `s2` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:10:8
+   |
+10 | struct s2 {
+   |        ^^ help: convert the identifier to upper camel case (notice the capitalization): `S2`
+
+warning: type `t2` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:14:6
+   |
+14 | type t2 = s2;
+   |      ^^ help: convert the identifier to upper camel case: `T2`
+
+warning: type `tp2` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:15:6
+   |
+15 | type tp2 = *mut s2;
+   |      ^^^ help: convert the identifier to upper camel case: `Tp2`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:26:5
+   |
+26 | /     unsafe {
+27 | |         (*p).x += 3;
+28 | |         (*p).x
+29 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:85:34
+   |
+85 |         if r.map_or(false, |ptr| unsafe { (*ptr).x == 30 }) {
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:46:16
+   |
+40 | fn main() {
+   |          - expected `()` because of default return type
+...
+46 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0599]: no method named `map_or` found for raw pointer `*mut s2` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:85:14
+    |
+ 85 |         if r.map_or(false, |ptr| unsafe { (*ptr).x == 30 }) {
+    |              ^^^^^^
+    |
+help: there is a method `map_addr` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mut_ptr.rs:233:5
+    |
+233 |     pub fn map_addr(self, f: impl FnOnce(usize) -> usize) -> Self {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:94:5
+   |
+40 | fn main() {
+   |          - expected `()` because of default return type
+...
+94 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 5 previous errors; 6 warnings emitted
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.

@@ -1,0 +1,19 @@
+error[E0499]: cannot borrow `rng_next` as mutable more than once at a time
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:17:24
+   |
+13 |     let mut pick_1_9 = || -> i32 {
+   |                        --------- first mutable borrow occurs here
+14 |         (rng_next() % 9) as i32 + 1
+   |          -------- first borrow occurs due to use of `rng_next` in closure
+...
+17 |     let mut pick_0_9 = || -> i32 {
+   |                        ^^^^^^^^^ second mutable borrow occurs here
+18 |         (rng_next() % 10) as i32
+   |          -------- second borrow occurs due to use of `rng_next` in closure
+...
+68 |         let a = pick_1_9();
+   |                 -------- first borrow later used here
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0499`.

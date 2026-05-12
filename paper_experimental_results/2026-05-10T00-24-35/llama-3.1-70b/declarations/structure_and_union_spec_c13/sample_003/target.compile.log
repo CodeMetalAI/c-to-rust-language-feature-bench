@@ -1,0 +1,124 @@
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:15:5
+   |
+15 |     s: S,
+   |     ^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+15 |     s: std::mem::ManuallyDrop<S>,
+   |        +++++++++++++++++++++++ +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:27:5
+   |
+27 |     p: P,
+   |     ^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+27 |     p: std::mem::ManuallyDrop<P>,
+   |        +++++++++++++++++++++++ +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:37:5
+   |
+37 |     s: T,
+   |     ^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+37 |     s: std::mem::ManuallyDrop<T>,
+   |        +++++++++++++++++++++++ +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:47:5
+   |
+47 |     p: Q,
+   |     ^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+47 |     p: std::mem::ManuallyDrop<Q>,
+   |        +++++++++++++++++++++++ +
+
+error[E0784]: union expressions should have exactly one field
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:60:52
+   |
+60 |             u: U { u_as_int: 0, s: S { b: 2, deep: Deep { deep: 99, p: P { x: 0, y: 0 } }, c: 3 }, u_as_unsigned: 0 },
+   |                                                    ^^^^
+
+error[E0784]: union expressions should have exactly one field
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:60:16
+   |
+60 |             u: U { u_as_int: 0, s: S { b: 2, deep: Deep { deep: 99, p: P { x: 0, y: 0 } }, c: 3 }, u_as_unsigned: 0 },
+   |                ^
+
+error[E0784]: union expressions should have exactly one field
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:63:59
+   |
+63 |         tail: Tail { tail_i: 0, s: T { tail_x: 7, tail_y: Y { tail_y: 8, p: Q { tail_p: 0, tail_q: 0 } } } },
+   |                                                           ^
+
+error[E0784]: union expressions should have exactly one field
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:63:15
+   |
+63 |         tail: Tail { tail_i: 0, s: T { tail_x: 7, tail_y: Y { tail_y: 8, p: Q { tail_p: 0, tail_q: 0 } } } },
+   |               ^^^^
+
+error[E0784]: union expressions should have exactly one field
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:99:52
+   |
+99 |             u: U { u_as_int: 0, s: S { b: 0, deep: Deep { deep: 0, p: P { x: 0, y: 0 } }, c: 0 }, u_as_unsigned: 0 },
+   |                                                    ^^^^
+
+error[E0784]: union expressions should have exactly one field
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:99:16
+   |
+99 |             u: U { u_as_int: 0, s: S { b: 0, deep: Deep { deep: 0, p: P { x: 0, y: 0 } }, c: 0 }, u_as_unsigned: 0 },
+   |                ^
+
+error[E0784]: union expressions should have exactly one field
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:102:59
+    |
+102 |         tail: Tail { tail_i: 0, s: T { tail_x: 0, tail_y: Y { tail_y: 0, p: Q { tail_p: 0, tail_q: 0 } } } },
+    |                                                           ^
+
+error[E0784]: union expressions should have exactly one field
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:102:15
+    |
+102 |         tail: Tail { tail_i: 0, s: T { tail_x: 0, tail_y: Y { tail_y: 0, p: Q { tail_p: 0, tail_q: 0 } } } },
+    |               ^^^^
+
+error[E0784]: union expressions should have exactly one field
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:142:52
+    |
+142 |             u: U { u_as_int: 0, s: S { b: 0, deep: Deep { deep: 0, p: P { x: 0, y: 0 } }, c: 0 }, u_as_unsigned: 0 },
+    |                                                    ^^^^
+
+error[E0784]: union expressions should have exactly one field
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:142:16
+    |
+142 |             u: U { u_as_int: 0, s: S { b: 0, deep: Deep { deep: 0, p: P { x: 0, y: 0 } }, c: 0 }, u_as_unsigned: 0 },
+    |                ^
+
+error[E0784]: union expressions should have exactly one field
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:145:59
+    |
+145 |         tail: Tail { tail_i: 0, s: T { tail_x: 0, tail_y: Y { tail_y: 0, p: Q { tail_p: 0, tail_q: 0 } } } },
+    |                                                           ^
+
+error[E0784]: union expressions should have exactly one field
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_003/target.rs:145:15
+    |
+145 |         tail: Tail { tail_i: 0, s: T { tail_x: 0, tail_y: Y { tail_y: 0, p: Q { tail_p: 0, tail_q: 0 } } } },
+    |               ^^^^
+
+error: aborting due to 16 previous errors
+
+Some errors have detailed explanations: E0740, E0784.
+For more information about an error, try `rustc --explain E0740`.

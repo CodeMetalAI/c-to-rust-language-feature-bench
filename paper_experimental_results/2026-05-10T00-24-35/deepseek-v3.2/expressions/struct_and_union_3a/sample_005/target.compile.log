@@ -1,0 +1,33 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_3a/sample_005/target.rs:27:17
+   |
+27 |     let mut u = unsafe { mem::zeroed::<U>() };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_3a/sample_005/target.rs:29:5
+   |
+29 | /     unsafe {
+30 | |         u.nf.type_ = 1;
+31 | |         u.nf.doublenode = 3.14;
+...  |
+45 | |     }
+   | |_____^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_3a/sample_005/target.rs:21:5
+   |
+21 |     n: StructAllTypes,
+   |     ^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+21 |     n: std::mem::ManuallyDrop<StructAllTypes>,
+   |        +++++++++++++++++++++++              +
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0740`.

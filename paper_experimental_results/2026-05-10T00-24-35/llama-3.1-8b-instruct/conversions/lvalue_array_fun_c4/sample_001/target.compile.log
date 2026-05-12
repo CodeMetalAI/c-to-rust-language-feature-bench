@@ -1,0 +1,98 @@
+error[E0425]: cannot find function `type_id` in module `std::any`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_001/target.rs:95:19
+   |
+95 |         std::any::type_id::<T>()
+   |                   ^^^^^^^ not found in `std::any`
+   |
+help: consider importing this function
+   |
+ 3 + use std::intrinsics::type_id;
+   |
+help: if you import `type_id`, refer to it directly
+   |
+95 -         std::any::type_id::<T>()
+95 +         type_id::<T>()
+   |
+
+error[E0599]: no method named `id` found for fn pointer `fn(i32) -> i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_001/target.rs:15:11
+   |
+15 |     if p1.id() != 1 {
+   |           ^^ method not found in `fn(i32) -> i32`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+note: `Id` defines an item `id`, perhaps you need to implement it
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_001/target.rs:88:1
+   |
+88 | trait Id<T> {
+   | ^^^^^^^^^^^
+
+error[E0599]: no method named `id` found for fn pointer `fn(i32) -> i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_001/target.rs:19:11
+   |
+19 |     if q1.id() != 1 {
+   |           ^^ method not found in `fn(i32) -> i32`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+note: `Id` defines an item `id`, perhaps you need to implement it
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_001/target.rs:88:1
+   |
+88 | trait Id<T> {
+   | ^^^^^^^^^^^
+
+error[E0599]: no method named `id` found for fn item `fn(i32) -> i32 {f1}` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_001/target.rs:39:11
+   |
+39 |     if r1.id() != 1 {
+   |           ^^ method not found in `fn(i32) -> i32 {f1}`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+note: `Id` defines an item `id`, perhaps you need to implement it
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_001/target.rs:88:1
+   |
+88 | trait Id<T> {
+   | ^^^^^^^^^^^
+
+error[E0599]: no method named `id` found for fn pointer `fn(i32, i32) -> i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_001/target.rs:51:11
+   |
+51 |     if p2.id() != 2 {
+   |           ^^ method not found in `fn(i32, i32) -> i32`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+note: `Id` defines an item `id`, perhaps you need to implement it
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_001/target.rs:88:1
+   |
+88 | trait Id<T> {
+   | ^^^^^^^^^^^
+
+error[E0599]: no method named `id` found for fn pointer `fn(i32, i32) -> i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_001/target.rs:55:11
+   |
+55 |     if q2.id() != 2 {
+   |           ^^ method not found in `fn(i32, i32) -> i32`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+note: `Id` defines an item `id`, perhaps you need to implement it
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_001/target.rs:88:1
+   |
+88 | trait Id<T> {
+   | ^^^^^^^^^^^
+
+error[E0599]: no method named `id` found for fn item `fn(i32, i32) -> i32 {f2}` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_001/target.rs:75:11
+   |
+75 |     if r2.id() != 2 {
+   |           ^^ method not found in `fn(i32, i32) -> i32 {f2}`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+note: `Id` defines an item `id`, perhaps you need to implement it
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c4/sample_001/target.rs:88:1
+   |
+88 | trait Id<T> {
+   | ^^^^^^^^^^^
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0425, E0599.
+For more information about an error, try `rustc --explain E0425`.

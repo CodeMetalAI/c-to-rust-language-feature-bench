@@ -1,0 +1,39 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-6/sample_001/target.rs:22:39
+   |
+21 | fn check_align<T>() {
+   |                - expected this type parameter
+22 |     let x = [std::mem::zeroed::<T>(), 0];
+   |                                       ^ expected type parameter `T`, found integer
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `complex`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-6/sample_001/target.rs:15:19
+   |
+15 |     check_align::<complex::ComplexF32>();
+   |                   ^^^^^^^ use of unresolved module or unlinked crate `complex`
+   |
+   = help: you might be missing a crate named `complex`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `complex`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-6/sample_001/target.rs:16:19
+   |
+16 |     check_align::<complex::ComplexF64>();
+   |                   ^^^^^^^ use of unresolved module or unlinked crate `complex`
+   |
+   = help: you might be missing a crate named `complex`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `complex`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-6/sample_001/target.rs:17:19
+   |
+17 |     check_align::<complex::ComplexF64>();
+   |                   ^^^^^^^ use of unresolved module or unlinked crate `complex`
+   |
+   = help: you might be missing a crate named `complex`
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0433.
+For more information about an error, try `rustc --explain E0308`.

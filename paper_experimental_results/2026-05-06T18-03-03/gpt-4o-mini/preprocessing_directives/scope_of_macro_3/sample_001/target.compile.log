@@ -1,0 +1,46 @@
+error: no rules expected `2`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:32:34
+   |
+19 | macro_rules! r {
+   | -------------- when calling this macro
+...
+32 |     let i: [i32; 4] = [q!(1), r!(2, 3), r!(4, ), r!(, 5)];
+   |                                  ^ no rules expected this token in macro call
+   |
+note: while trying to match meta-variable `$x:ident`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:20:6
+   |
+20 |     ($x:ident, $y:ident) => { concat_idents!($x, $y) };
+   |      ^^^^^^^^
+
+error: no rules expected `4`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:32:44
+   |
+19 | macro_rules! r {
+   | -------------- when calling this macro
+...
+32 |     let i: [i32; 4] = [q!(1), r!(2, 3), r!(4, ), r!(, 5)];
+   |                                            ^ no rules expected this token in macro call
+   |
+note: while trying to match meta-variable `$x:ident`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:20:6
+   |
+20 |     ($x:ident, $y:ident) => { concat_idents!($x, $y) };
+   |      ^^^^^^^^
+
+error: no rules expected `,`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:32:53
+   |
+19 | macro_rules! r {
+   | -------------- when calling this macro
+...
+32 |     let i: [i32; 4] = [q!(1), r!(2, 3), r!(4, ), r!(, 5)];
+   |                                                     ^ no rules expected this token in macro call
+   |
+note: while trying to match meta-variable `$x:ident`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:20:6
+   |
+20 |     ($x:ident, $y:ident) => { concat_idents!($x, $y) };
+   |      ^^^^^^^^
+
+error: aborting due to 3 previous errors

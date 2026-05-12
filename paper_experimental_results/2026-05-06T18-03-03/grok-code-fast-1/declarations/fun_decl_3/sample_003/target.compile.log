@@ -1,0 +1,60 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_3/sample_003/target.rs:12:5
+   |
+12 |     unsafe { G_SEED + x + 1000 }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_3/sample_003/target.rs:16:5
+   |
+16 |     unsafe { G_SEED + x - 2000 }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_3/sample_003/target.rs:21:5
+   |
+21 | /     unsafe {
+22 | |         G_SEED = pf(t) + k;
+23 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_3/sample_003/target.rs:24:9
+   |
+24 |     if (unsafe { G_SEED } & 1) == 0 {
+   |         ^^^^^^^^^^^^^^^^^
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_3/sample_003/target.rs:47:12
+   |
+47 |         if vf == v0 {
+   |            ^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+   = note: `#[warn(unpredictable_function_pointer_comparisons)]` on by default
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+47 -         if vf == v0 {
+47 +         if std::ptr::fn_addr_eq(vf, v0 as fn(i32) -> i32) {
+   |
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_3/sample_003/target.rs:76:12
+   |
+76 |         if vf == v0 {
+   |            ^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+76 -         if vf == v0 {
+76 +         if std::ptr::fn_addr_eq(vf, v0 as fn(i32) -> i32) {
+   |
+
+error: aborting due to 4 previous errors; 2 warnings emitted

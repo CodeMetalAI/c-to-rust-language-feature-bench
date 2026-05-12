@@ -1,0 +1,41 @@
+error[E0164]: expected tuple struct or tuple variant, found associated function `std::any::TypeId::of<i32>`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c2/sample_002/target.rs:3:9
+  |
+3 |         std::any::TypeId::of::<i32>() => 1,
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `fn` calls are not allowed in patterns
+  |
+  = help: for more information, visit https://doc.rust-lang.org/book/ch19-00-patterns.html
+
+error[E0164]: expected tuple struct or tuple variant, found associated function `std::any::TypeId::of<u32>`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c2/sample_002/target.rs:4:9
+  |
+4 |         std::any::TypeId::of::<u32>() => 2,
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `fn` calls are not allowed in patterns
+  |
+  = help: for more information, visit https://doc.rust-lang.org/book/ch19-00-patterns.html
+
+error[E0164]: expected tuple struct or tuple variant, found associated function `std::any::TypeId::of<std::sync::atomic::AtomicI32>`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c2/sample_002/target.rs:5:9
+  |
+5 |         std::any::TypeId::of::<std::sync::atomic::AtomicI32>() => 3,
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `fn` calls are not allowed in patterns
+  |
+  = help: for more information, visit https://doc.rust-lang.org/book/ch19-00-patterns.html
+
+warning: unused variable: `cx`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c2/sample_002/target.rs:16:9
+   |
+16 |     let cx: i32 = 4;
+   |         ^^ help: if this is intentional, prefix it with an underscore: `_cx`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `ax`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c2/sample_002/target.rs:17:9
+   |
+17 |     let ax: std::sync::atomic::AtomicI32 = std::sync::atomic::AtomicI32::new(5);
+   |         ^^ help: if this is intentional, prefix it with an underscore: `_ax`
+
+error: aborting due to 3 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0164`.

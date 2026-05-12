@@ -1,0 +1,74 @@
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `lazy_static`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/statements/return_1/sample_003/target.rs:16:1
+   |
+16 | lazy_static::lazy_static! {
+   | ^^^^^^^^^^^ use of unresolved module or unlinked crate `lazy_static`
+
+error[E0425]: cannot find value `G` in this scope
+ --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/statements/return_1/sample_003/target.rs:9:5
+  |
+9 |     G.borrow().clone()
+  |     ^ not found in this scope
+  |
+help: you might be missing a const parameter
+  |
+8 | fn f<const G: /* Type */>() -> S {
+  |     +++++++++++++++++++++
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/statements/return_1/sample_003/target.rs:21:5
+   |
+ 8 | fn f() -> S {
+   | ----------- similarly named function `f` defined here
+...
+21 |     G.borrow_mut().i = 1.0;
+   |     ^ help: a function with a similar name exists: `f`
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/statements/return_1/sample_003/target.rs:22:5
+   |
+ 8 | fn f() -> S {
+   | ----------- similarly named function `f` defined here
+...
+22 |     G.borrow_mut().i = 1.0;
+   |     ^ help: a function with a similar name exists: `f`
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/statements/return_1/sample_003/target.rs:23:6
+   |
+ 8 | fn f() -> S {
+   | ----------- similarly named function `f` defined here
+...
+23 |     *G.borrow_mut() = f();
+   |      ^ help: a function with a similar name exists: `f`
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/statements/return_1/sample_003/target.rs:24:6
+   |
+ 8 | fn f() -> S {
+   | ----------- similarly named function `f` defined here
+...
+24 |     *G.borrow_mut() = f();
+   |      ^ help: a function with a similar name exists: `f`
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/statements/return_1/sample_003/target.rs:26:14
+   |
+ 8 | fn f() -> S {
+   | ----------- similarly named function `f` defined here
+...
+26 |     let gi = G.borrow().i;
+   |              ^ help: a function with a similar name exists: `f`
+
+warning: unused import: `std::cell::RefCell`
+ --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/statements/return_1/sample_003/target.rs:1:5
+  |
+1 | use std::cell::RefCell;
+  |     ^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 7 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0425, E0433.
+For more information about an error, try `rustc --explain E0425`.

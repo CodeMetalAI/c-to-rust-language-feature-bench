@@ -1,0 +1,77 @@
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_5/sample_002/target.rs:6:22
+  |
+6 |         let a: [i32; n as usize] = [0; n as usize];
+  |                      ^ non-constant value
+  |
+help: consider using `const` instead of `let`
+  |
+5 -         let n = n + 1;
+5 +         const n: /* Type */ = n + 1;
+  |
+
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_5/sample_002/target.rs:6:40
+  |
+6 |         let a: [i32; n as usize] = [0; n as usize];
+  |                                        ^ non-constant value
+  |
+help: consider using `const` instead of `let`
+  |
+5 -         let n = n + 1;
+5 +         const n: /* Type */ = n + 1;
+  |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_5/sample_002/target.rs:18:13
+   |
+18 |             unsafe { SINK = 1 };
+   |             ^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_5/sample_002/target.rs:21:13
+   |
+21 |             unsafe { SINK = 2 };
+   |             ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_5/sample_002/target.rs:24:12
+   |
+24 |         if unsafe { a[0] } != 1001 {
+   |            ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_5/sample_002/target.rs:25:13
+   |
+25 |             unsafe { SINK = 3 };
+   |             ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_5/sample_002/target.rs:27:12
+   |
+27 |         if unsafe { a[(n - 2) as usize] } != 1000 + (n - 1) {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_5/sample_002/target.rs:28:13
+   |
+28 |             unsafe { SINK = 4 };
+   |             ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_5/sample_002/target.rs:32:5
+   |
+32 |     unsafe { SINK = 0 };
+   |     ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/type_def_5/sample_002/target.rs:35:8
+   |
+35 |     if unsafe { SINK } != 0 {
+   |        ^^^^^^^^^^^^^^^
+
+error: aborting due to 10 previous errors
+
+For more information about this error, try `rustc --explain E0435`.

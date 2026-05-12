@@ -1,0 +1,23 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/preprocessing_directives/scope_of_macro_3/sample_003/target.rs:12:15
+   |
+12 |     let u = F((3, 4));
+   |             - ^^^^^^ expected `i32`, found `({integer}, {integer})`
+   |             |
+   |             arguments to this function are incorrect
+   |
+   = note: expected type `i32`
+             found tuple `({integer}, {integer})`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/preprocessing_directives/scope_of_macro_3/sample_003/target.rs:15:23
+   |
+15 |     let i: [i32; 4] = [Q(1), R(2, 3), R(4, 0), R(0, 5), R(0, 0)];
+   |            --------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a size of 4, found one with a size of 5
+   |            |     |
+   |            |     help: consider specifying the actual array length: `5`
+   |            expected due to this
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

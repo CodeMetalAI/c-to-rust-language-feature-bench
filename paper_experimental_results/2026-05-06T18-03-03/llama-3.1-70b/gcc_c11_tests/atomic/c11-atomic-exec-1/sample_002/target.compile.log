@@ -1,0 +1,93 @@
+error: expected one of `!`, `+`, `::`, `;`, or `=`, found `>`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:27:61
+   |
+27 |             let mut a: std::sync::atomic::Atomic<*const i32>> = std::sync::atomic::Atomic::new(std::ptr::null());
+   |                      -                                      ^ expected one of `!`, `+`, `::`, `;`, or `=`
+   |                      |
+   |                      while parsing the type for the binding
+   |                      help: use `=` if you meant to assign
+...
+53 |     test_simple_assign_arith!();
+   |     --------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unused macro definition: `test_simple_assign`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:6:18
+  |
+6 |     macro_rules! test_simple_assign {
+  |                  ^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_macros)]` (part of `#[warn(unused)]`) on by default
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:39:18
+   |
+39 |     let mut s1 = std::sync::atomic::Atomic::new(S { a: [0; 1024] });
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:40:18
+   |
+40 |     let mut s2 = std::sync::atomic::Atomic::new(S { a: [0; 1024] });
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:39:45
+    |
+ 39 |     let mut s1 = std::sync::atomic::Atomic::new(S { a: [0; 1024] });
+    |                                             ^^^ function or associated item not found in `_`
+    |
+help: there is a method `neg` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:708:5
+    |
+708 |     fn neg(self) -> Self::Output;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:40:45
+    |
+ 40 |     let mut s2 = std::sync::atomic::Atomic::new(S { a: [0; 1024] });
+    |                                             ^^^ function or associated item not found in `_`
+    |
+help: there is a method `neg` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:708:5
+    |
+708 |     fn neg(self) -> Self::Output;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `try_into` found for struct `Vec<u16>` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:42:44
+    |
+ 42 |         a: (0..1024).collect::<Vec<u16>>().try_into().unwrap(),
+    |                                            ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<u16>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 42 -         a: (0..1024).collect::<Vec<u16>>().try_into().unwrap(),
+ 42 +         a: (0..1024).collect::<Vec<u16>>().into().unwrap(),
+    |
+
+error: aborting due to 6 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0599, E0658.
+For more information about an error, try `rustc --explain E0599`.

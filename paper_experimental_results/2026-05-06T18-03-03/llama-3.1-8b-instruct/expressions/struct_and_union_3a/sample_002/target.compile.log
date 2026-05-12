@@ -1,0 +1,44 @@
+error: expected identifier, found keyword `struct`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/struct_and_union_3a/sample_002/target.rs:3:5
+  |
+2 | union U {
+  |       - while parsing this union
+3 |     struct {
+  |     ^^^^^^ expected identifier, found keyword
+  |
+help: escape `struct` to use it as an identifier
+  |
+3 |     r#struct {
+  |     ++
+
+error: unions cannot have zero fields
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/struct_and_union_3a/sample_002/target.rs:2:1
+   |
+ 2 | / union U {
+ 3 | |     struct {
+ 4 | |         alltypes: i32,
+ 5 | |     } n;
+...  |
+13 | |     } nf;
+14 | | }
+   | |_^
+
+error[E0784]: union expressions should have exactly one field
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/struct_and_union_3a/sample_002/target.rs:18:17
+   |
+18 |     let mut u = U { n: Default::default(), ni: Default::default(), nf: Default::default() };
+   |                 ^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/struct_and_union_3a/sample_002/target.rs:26:16
+   |
+16 | fn main() {
+   |          - expected `()` because of default return type
+...
+26 |         return 1;
+   |                ^ expected `()`, found integer
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0784.
+For more information about an error, try `rustc --explain E0308`.

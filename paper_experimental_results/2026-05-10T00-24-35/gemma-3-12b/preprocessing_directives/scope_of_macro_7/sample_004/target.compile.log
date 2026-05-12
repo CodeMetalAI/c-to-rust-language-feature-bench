@@ -1,0 +1,97 @@
+error[E0061]: this function takes 1 argument but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_004/target.rs:8:8
+   |
+ 8 |     if debug("X = %d\n", x) != 2 {
+   |        ^^^^^             - unexpected argument #2 of type `{integer}`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_004/target.rs:27:4
+   |
+27 | fn debug<T: AsRef<str>>(format: T) -> i32 {
+   |    ^^^^^
+help: remove the extra argument
+   |
+ 8 -     if debug("X = %d\n", x) != 2 {
+ 8 +     if debug("X = %d\n") != 2 {
+   |
+
+error[E0277]: the trait bound `{integer}: AsRef<str>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_004/target.rs:17:45
+   |
+17 |     if report(x > y, "x is %d but y is %d", x, y) != 1 {
+   |        ------                               ^ the trait `AsRef<str>` is not implemented for `{integer}`
+   |        |
+   |        required by a bound introduced by this call
+   |
+note: required by a bound in `report`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_004/target.rs:43:29
+   |
+43 | fn report<T: AsRef<str>, U: AsRef<str>>(condition: bool, format: T, args: U) -> i32 {
+   |                             ^^^^^^^^^^ required by this bound in `report`
+
+error[E0061]: this function takes 3 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_004/target.rs:17:8
+   |
+17 |     if report(x > y, "x is %d but y is %d", x, y) != 1 {
+   |        ^^^^^^                                  - unexpected argument #4 of type `{integer}`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_004/target.rs:43:4
+   |
+43 | fn report<T: AsRef<str>, U: AsRef<str>>(condition: bool, format: T, args: U) -> i32 {
+   |    ^^^^^^
+help: remove the extra argument
+   |
+17 -     if report(x > y, "x is %d but y is %d", x, y) != 1 {
+17 +     if report(x > y, "x is %d but y is %d", x) != 1 {
+   |
+
+error[E0277]: the trait bound `{integer}: AsRef<str>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_004/target.rs:20:45
+   |
+20 |     if report(x < y, "x is %d but y is %d", x, y) != 3 {
+   |        ------                               ^ the trait `AsRef<str>` is not implemented for `{integer}`
+   |        |
+   |        required by a bound introduced by this call
+   |
+note: required by a bound in `report`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_004/target.rs:43:29
+   |
+43 | fn report<T: AsRef<str>, U: AsRef<str>>(condition: bool, format: T, args: U) -> i32 {
+   |                             ^^^^^^^^^^ required by this bound in `report`
+
+error[E0061]: this function takes 3 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_004/target.rs:20:8
+   |
+20 |     if report(x < y, "x is %d but y is %d", x, y) != 3 {
+   |        ^^^^^^                                  - unexpected argument #4 of type `{integer}`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_004/target.rs:43:4
+   |
+43 | fn report<T: AsRef<str>, U: AsRef<str>>(condition: bool, format: T, args: U) -> i32 {
+   |    ^^^^^^
+help: remove the extra argument
+   |
+20 -     if report(x < y, "x is %d but y is %d", x, y) != 3 {
+20 +     if report(x < y, "x is %d but y is %d", x) != 3 {
+   |
+
+warning: unused variable: `format`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_004/target.rs:43:58
+   |
+43 | fn report<T: AsRef<str>, U: AsRef<str>>(condition: bool, format: T, args: U) -> i32 {
+   |                                                          ^^^^^^ help: if this is intentional, prefix it with an underscore: `_format`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `args`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_004/target.rs:43:69
+   |
+43 | fn report<T: AsRef<str>, U: AsRef<str>>(condition: bool, format: T, args: U) -> i32 {
+   |                                                                     ^^^^ help: if this is intentional, prefix it with an underscore: `_args`
+
+error: aborting due to 5 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0061, E0277.
+For more information about an error, try `rustc --explain E0061`.

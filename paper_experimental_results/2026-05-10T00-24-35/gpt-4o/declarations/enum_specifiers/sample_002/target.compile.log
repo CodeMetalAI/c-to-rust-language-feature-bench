@@ -1,0 +1,56 @@
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/enum_specifiers/sample_002/target.rs:18:14
+   |
+18 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0507]: cannot move out of `*cp` which is behind a shared reference
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/enum_specifiers/sample_002/target.rs:45:19
+   |
+45 |     if check_vals(*cp) != 12 {
+   |                   ^^^ move occurs because `*cp` has type `Hue`, which does not implement the `Copy` trait
+   |
+note: if `Hue` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/enum_specifiers/sample_002/target.rs:2:1
+   |
+ 2 | enum Hue {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+45 |     if check_vals(*cp) != 12 {
+   |                   --- you could clone this value
+
+error[E0384]: cannot assign twice to immutable variable `cp`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/enum_specifiers/sample_002/target.rs:50:5
+   |
+36 |     cp = &col;
+   |     --------- first assignment to `cp`
+...
+50 |     cp = &col;
+   |     ^^^^^^^^^ cannot assign twice to immutable variable
+   |
+help: consider making this binding mutable
+   |
+20 |     let mut cp: &Hue;
+   |         +++
+
+error[E0507]: cannot move out of `*cp` which is behind a shared reference
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/enum_specifiers/sample_002/target.rs:51:19
+   |
+51 |     if check_vals(*cp) != 13 {
+   |                   ^^^ move occurs because `*cp` has type `Hue`, which does not implement the `Copy` trait
+   |
+note: if `Hue` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/enum_specifiers/sample_002/target.rs:2:1
+   |
+ 2 | enum Hue {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+51 |     if check_vals(*cp) != 13 {
+   |                   --- you could clone this value
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0277, E0384, E0507.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,56 @@
+error[E0425]: cannot find function `offset` in module `std::mem`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_2/sample_001/target.rs:17:18
+   |
+17 |     if std::mem::offset::<s, f64>() != std::mem::size_of::<s>() {
+   |                  ^^^^^^ not found in `std::mem`
+   |
+help: consider importing this function
+   |
+ 1 + use std::intrinsics::offset;
+   |
+help: if you import `offset`, refer to it directly
+   |
+17 -     if std::mem::offset::<s, f64>() != std::mem::size_of::<s>() {
+17 +     if offset::<s, f64>() != std::mem::size_of::<s>() {
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_2/sample_001/target.rs:14:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+14 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_2/sample_001/target.rs:23:12
+   |
+23 |         d: Vec::with_capacity(8),
+   |            ^^^^^^^^^^^^^^^^^^^^^ expected `[f64; 0]`, found `Vec<_>`
+   |
+   = note: expected array `[f64; 0]`
+             found struct `Vec<_>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_2/sample_001/target.rs:27:12
+   |
+27 |         d: Vec::with_capacity(5),
+   |            ^^^^^^^^^^^^^^^^^^^^^ expected `[f64; 0]`, found `Vec<_>`
+   |
+   = note: expected array `[f64; 0]`
+             found struct `Vec<_>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_2/sample_001/target.rs:44:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+44 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0425.
+For more information about an error, try `rustc --explain E0308`.

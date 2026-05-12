@@ -1,0 +1,36 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_2/sample_002/target.rs:26:5
+   |
+26 | /     unsafe {
+27 | |         // Safe because we only dereference pointers that are valid and non-null
+28 | |         (*p).x += 3;
+29 | |         (*p).x
+30 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_2/sample_002/target.rs:87:9
+   |
+87 | /         unsafe {
+88 | |             if (*r).x != 30 {
+89 | |                 return;
+90 | |             }
+91 | |         }
+   | |_________^
+
+error[E0596]: cannot borrow `c` as mutable, as it is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_def_2/sample_002/target.rs:86:22
+   |
+86 |         let r: TP2 = &mut c;
+   |                      ^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+85 |         let mut c = T2 { x: 30 };
+   |             +++
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0596`.

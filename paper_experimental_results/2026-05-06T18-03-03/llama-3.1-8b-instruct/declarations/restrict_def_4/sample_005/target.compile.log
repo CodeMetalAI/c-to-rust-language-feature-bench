@@ -1,0 +1,188 @@
+error[E0599]: no method named `offset` found for mutable reference `&mut i32` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:6:15
+  |
+6 |         p = p.offset(1);
+  |               ^^^^^^ method not found in `&mut i32`
+
+error[E0599]: no method named `offset` found for mutable reference `&mut i32` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:7:15
+  |
+7 |         q = q.offset(1);
+  |               ^^^^^^ method not found in `&mut i32`
+
+error[E0608]: cannot index into a value of type `&mut i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:15:10
+   |
+15 |         p[i] = base + i * 5 + 1;
+   |          ^^^
+
+error[E0277]: the type `[i32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:23:14
+   |
+23 |         if a[i] != b[i] {
+   |              ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[i32]` to implement `Index<i32>`
+
+error[E0277]: the type `[i32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:23:22
+   |
+23 |         if a[i] != b[i] {
+   |                      ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[i32]` to implement `Index<i32>`
+
+error[E0277]: the type `[i32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:35:16
+   |
+35 |         s += a[i];
+   |                ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[i32]` to implement `Index<i32>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:46:10
+   |
+46 |     fill(&mut x, 32, 10);
+   |     ---- ^^^^^^ expected `&mut i32`, found `&mut [i32; 32]`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut i32`
+              found mutable reference `&mut [i32; 32]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:12:4
+   |
+12 | fn fill(p: &mut i32, n: i32, base: i32) {
+   |    ^^^^ -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:47:10
+   |
+47 |     fill(&mut y, 32, 100);
+   |     ---- ^^^^^^ expected `&mut i32`, found `&mut [i32; 32]`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut i32`
+              found mutable reference `&mut [i32; 32]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:12:4
+   |
+12 | fn fill(p: &mut i32, n: i32, base: i32) {
+   |    ^^^^ -----------
+
+error[E0599]: no method named `offset` found for mutable reference `&mut [i32; 32]` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:62:29
+   |
+62 |             let mut p2 = p1.offset(8);
+   |                             ^^^^^^ method not found in `&mut [i32; 32]`
+
+error[E0599]: no method named `offset` found for mutable reference `&mut [i32; 32]` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:63:29
+   |
+63 |             let mut q2 = q1.offset(4);
+   |                             ^^^^^^ method not found in `&mut [i32; 32]`
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:74:21
+   |
+74 |                 if !same(&x[8..24], &expect[..16]) {
+   |                     ^^^^-------------------------- argument #3 of type `i32` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:20:4
+   |
+20 | fn same(a: &[i32], b: &[i32], n: i32) -> bool {
+   |    ^^^^                       ------
+help: provide the argument
+   |
+74 |                 if !same(&x[8..24], &expect[..16], /* i32 */) {
+   |                                                  +++++++++++
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:79:17
+   |
+79 |             if !same(&y[..32], &y_snapshot[..32]) {
+   |                 ^^^^----------------------------- argument #3 of type `i32` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:20:4
+   |
+20 | fn same(a: &[i32], b: &[i32], n: i32) -> bool {
+   |    ^^^^                       ------
+help: provide the argument
+   |
+79 |             if !same(&y[..32], &y_snapshot[..32], /* i32 */) {
+   |                                                 +++++++++++
+
+error[E0599]: no method named `offset` found for mutable reference `&mut [i32; 32]` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:84:33
+   |
+84 |         copy_restrict(8, p1, q1.offset(24));
+   |                                 ^^^^^^ method not found in `&mut [i32; 32]`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:84:26
+   |
+84 |         copy_restrict(8, p1, q1.offset(24));
+   |         -------------    ^^ expected `&mut i32`, found `&mut [i32; 32]`
+   |         |
+   |         arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut i32`
+              found mutable reference `&mut [i32; 32]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:3:4
+   |
+ 3 | fn copy_restrict(n: i32, p: &mut i32, q: &mut i32) {
+   |    ^^^^^^^^^^^^^         -----------
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:93:17
+   |
+93 |             if !same(&x[..8], &expect2[..8]) {
+   |                 ^^^^------------------------ argument #3 of type `i32` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:20:4
+   |
+20 | fn same(a: &[i32], b: &[i32], n: i32) -> bool {
+   |    ^^^^                       ------
+help: provide the argument
+   |
+93 |             if !same(&x[..8], &expect2[..8], /* i32 */) {
+   |                                            +++++++++++
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:99:9
+   |
+99 |     if !same(&y[..32], &y_snapshot[..32]) {
+   |         ^^^^----------------------------- argument #3 of type `i32` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_005/target.rs:20:4
+   |
+20 | fn same(a: &[i32], b: &[i32], n: i32) -> bool {
+   |    ^^^^                       ------
+help: provide the argument
+   |
+99 |     if !same(&y[..32], &y_snapshot[..32], /* i32 */) {
+   |                                         +++++++++++
+
+error: aborting due to 16 previous errors
+
+Some errors have detailed explanations: E0061, E0277, E0308, E0599, E0608.
+For more information about an error, try `rustc --explain E0061`.

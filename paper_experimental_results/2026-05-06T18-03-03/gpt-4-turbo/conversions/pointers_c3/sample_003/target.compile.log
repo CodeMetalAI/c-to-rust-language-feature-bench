@@ -1,0 +1,115 @@
+error[E0308]: arguments to this function are incorrect
+    --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/pointers_c3/sample_003/target.rs:24:8
+     |
+  24 |     if std::ptr::eq(n1, Some(px)) {
+     |        ^^^^^^^^^^^^
+     |
+note: expected `*const _`, found `Option<&i32>`
+    --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/pointers_c3/sample_003/target.rs:24:21
+     |
+  24 |     if std::ptr::eq(n1, Some(px)) {
+     |                     ^^
+     = note: expected raw pointer `*const _`
+                       found enum `Option<&i32>`
+note: expected `*const _`, found `Option<&{integer}>`
+    --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/pointers_c3/sample_003/target.rs:24:25
+     |
+  24 |     if std::ptr::eq(n1, Some(px)) {
+     |                         ^^^^^^^^
+     = note: expected raw pointer `*const _`
+                       found enum `Option<&{integer}>`
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:2442:8
+     |
+2442 | pub fn eq<T: PointeeSized>(a: *const T, b: *const T) -> bool {
+     |        ^^
+help: consider using `Option::expect` to unwrap the `Option<&i32>` value, panicking if the value is an `Option::None`
+     |
+  24 |     if std::ptr::eq(n1.expect("REASON"), Some(px)) {
+     |                       +++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+    --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/pointers_c3/sample_003/target.rs:27:8
+     |
+  27 |     if std::ptr::eq(n2, Some(px)) {
+     |        ^^^^^^^^^^^^
+     |
+note: expected `*const _`, found `Option<&i32>`
+    --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/pointers_c3/sample_003/target.rs:27:21
+     |
+  27 |     if std::ptr::eq(n2, Some(px)) {
+     |                     ^^
+     = note: expected raw pointer `*const _`
+                       found enum `Option<&i32>`
+note: expected `*const _`, found `Option<&{integer}>`
+    --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/pointers_c3/sample_003/target.rs:27:25
+     |
+  27 |     if std::ptr::eq(n2, Some(px)) {
+     |                         ^^^^^^^^
+     = note: expected raw pointer `*const _`
+                       found enum `Option<&{integer}>`
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:2442:8
+     |
+2442 | pub fn eq<T: PointeeSized>(a: *const T, b: *const T) -> bool {
+     |        ^^
+help: consider using `Option::expect` to unwrap the `Option<&i32>` value, panicking if the value is an `Option::None`
+     |
+  27 |     if std::ptr::eq(n2.expect("REASON"), Some(px)) {
+     |                       +++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+    --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/pointers_c3/sample_003/target.rs:37:8
+     |
+  37 |     if std::ptr::eq(nf1, Some(pf)) {
+     |        ^^^^^^^^^^^^
+     |
+note: expected `*const _`, found `Option<fn(i32) -> i32>`
+    --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/pointers_c3/sample_003/target.rs:37:21
+     |
+  37 |     if std::ptr::eq(nf1, Some(pf)) {
+     |                     ^^^
+     = note: expected raw pointer `*const _`
+                       found enum `Option<fn(i32) -> i32>`
+note: expected `*const _`, found `Option<fn(i32) -> i32 {f}>`
+    --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/pointers_c3/sample_003/target.rs:37:26
+     |
+  37 |     if std::ptr::eq(nf1, Some(pf)) {
+     |                          ^^^^^^^^
+     = note: expected raw pointer `*const _`
+                       found enum `Option<fn(i32) -> i32 {f}>`
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:2442:8
+     |
+2442 | pub fn eq<T: PointeeSized>(a: *const T, b: *const T) -> bool {
+     |        ^^
+
+error[E0308]: arguments to this function are incorrect
+    --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/pointers_c3/sample_003/target.rs:40:8
+     |
+  40 |     if std::ptr::eq(nf2, Some(pf)) {
+     |        ^^^^^^^^^^^^
+     |
+note: expected `*const _`, found `Option<fn(i32) -> i32>`
+    --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/pointers_c3/sample_003/target.rs:40:21
+     |
+  40 |     if std::ptr::eq(nf2, Some(pf)) {
+     |                     ^^^
+     = note: expected raw pointer `*const _`
+                       found enum `Option<fn(i32) -> i32>`
+note: expected `*const _`, found `Option<fn(i32) -> i32 {f}>`
+    --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/pointers_c3/sample_003/target.rs:40:26
+     |
+  40 |     if std::ptr::eq(nf2, Some(pf)) {
+     |                          ^^^^^^^^
+     = note: expected raw pointer `*const _`
+                       found enum `Option<fn(i32) -> i32 {f}>`
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:2442:8
+     |
+2442 | pub fn eq<T: PointeeSized>(a: *const T, b: *const T) -> bool {
+     |        ^^
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

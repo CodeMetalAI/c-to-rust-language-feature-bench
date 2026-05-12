@@ -1,0 +1,56 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_001/target.rs:50:13
+   |
+50 |     let a = unsafe { choose_view(&BANK_A, which_a) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_001/target.rs:51:13
+   |
+51 |     let b = unsafe { choose_view(&BANK_B, which_b) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_001/target.rs:53:5
+   |
+53 | /     unsafe {
+54 | |         fill(&mut BANK_A.left, 8, 100);
+55 | |         fill(&mut BANK_B.right, 8, 200);
+56 | |         fill(&mut C, 8, 300);
+...  |
+60 | |         bump(&mut C, 8, 3);
+61 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_001/target.rs:75:5
+   |
+75 | /     unsafe {
+76 | |         if BANK_A.left[0] != 101 {
+77 | |             return 4;
+...  |
+87 | |     }
+   | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_001/target.rs:46:14
+   |
+46 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_001/target.rs:71:13
+   |
+71 |     if sum(&C, 8) != (303 + 304 + 305 + 306 + 307 + 308 + 309 + 310) {
+   |             ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0133, E0277.
+For more information about an error, try `rustc --explain E0133`.

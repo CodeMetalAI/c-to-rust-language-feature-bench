@@ -1,0 +1,29 @@
+error: expected expression, found `+`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c2/sample_005/target.rs:24:17
+   |
+24 |     if type_id(&+cx)!= type_id(&1) {
+   |                 ^ expected expression
+
+error: expected expression, found `+`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c2/sample_005/target.rs:27:17
+   |
+27 |     if type_id(&+ax.load(std::sync::atomic::Ordering::SeqCst))!= type_id(&1) {
+   |                 ^ expected expression
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c2/sample_005/target.rs:57:5
+   |
+57 |     std::any::TypeId::of::<T>()
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |     |
+   |     the parameter type `T` must be valid for the static lifetime...
+   |     ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+56 | fn type_id<T:?Sized + 'static>(_x: &T) -> std::any::TypeId {
+   |                     +++++++++
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0310`.

@@ -1,0 +1,53 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_AND_op_c4/sample_002/target.rs:4:5
+  |
+4 |     unsafe { G = gval; }
+  |     ^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_AND_op_c4/sample_002/target.rs:11:5
+   |
+11 |     unsafe { G = 0; }
+   |     ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_AND_op_c4/sample_002/target.rs:12:8
+   |
+12 |     if unsafe { set_g_return(0, 0) } != 0 && { y += 1; y != 0 } {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_AND_op_c4/sample_002/target.rs:19:5
+   |
+19 |     unsafe { G = 0; }
+   |     ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_AND_op_c4/sample_002/target.rs:20:10
+   |
+20 |     if !(unsafe { set_g_return(1, 1) } != 0 && unsafe { G } == 1) {
+   |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_AND_op_c4/sample_002/target.rs:20:48
+   |
+20 |     if !(unsafe { set_g_return(1, 1) } != 0 && unsafe { G } == 1) {
+   |                                                ^^^^^^^^^^^^
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_AND_op_c4/sample_002/target.rs:12:8
+   |
+12 |     if unsafe { set_g_return(0, 0) } != 0 && { y += 1; y != 0 } {
+   |        ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_AND_op_c4/sample_002/target.rs:20:10
+   |
+20 |     if !(unsafe { set_g_return(1, 1) } != 0 && unsafe { G } == 1) {
+   |          ^^^^^^ unnecessary `unsafe` block
+
+error: aborting due to 6 previous errors; 2 warnings emitted

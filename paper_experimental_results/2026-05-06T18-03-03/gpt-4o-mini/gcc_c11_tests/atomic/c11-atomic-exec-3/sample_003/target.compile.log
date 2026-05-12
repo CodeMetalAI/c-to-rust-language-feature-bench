@@ -1,0 +1,110 @@
+warning: unused imports: `AtomicBool`, `AtomicI16`, `AtomicI32`, `AtomicI64`, `AtomicI8`, `AtomicIsize`, `AtomicU16`, `AtomicU32`, `AtomicU64`, `AtomicU8`, and `AtomicUsize`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:1:25
+  |
+1 | ...tomic::{AtomicBool, AtomicU8, AtomicI8, AtomicU16, AtomicI16, AtomicU32, AtomicI32, AtomicU64, AtomicI64, AtomicUsize, AtomicIsize, AtomicP...
+  |            ^^^^^^^^^^  ^^^^^^^^  ^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:12:16
+   |
+12 |     assert_eq!(unsafe { *a.load(Ordering::SeqCst) }, expected);
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:15:16
+   |
+15 |     assert_eq!(unsafe { *a.load(Ordering::SeqCst) }, expected_after);
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0369]: binary operation `==` cannot be applied to type `T`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:12:5
+   |
+12 |     assert_eq!(unsafe { *a.load(Ordering::SeqCst) }, expected);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |     |
+   |     T
+   |     T
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `PartialEq`
+   |
+ 6 |     T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::marker::Sized + std::fmt::Debug + std::cmp::PartialEq,
+   |                                                                                                            +++++++++++++++++++++
+
+error[E0369]: binary operation `==` cannot be applied to type `T`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:15:5
+   |
+15 |     assert_eq!(unsafe { *a.load(Ordering::SeqCst) }, expected_after);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |     |
+   |     T
+   |     T
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `PartialEq`
+   |
+ 6 |     T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::marker::Sized + std::fmt::Debug + std::cmp::PartialEq,
+   |                                                                                                            +++++++++++++++++++++
+
+error[E0599]: no method named `fetch_add` found for reference `&AtomicPtr<i32>` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:19:32
+   |
+19 |     test_incdec(value, |a| { a.fetch_add(1, Ordering::SeqCst); }, |a| {}, true, 1);
+   |                                ^^^^^^^^^
+   |
+help: there is a method `fetch_and` with a similar name
+   |
+19 -     test_incdec(value, |a| { a.fetch_add(1, Ordering::SeqCst); }, |a| {}, true, 1);
+19 +     test_incdec(value, |a| { a.fetch_and(1, Ordering::SeqCst); }, |a| {}, true, 1);
+   |
+
+error[E0599]: no method named `fetch_sub` found for reference `&AtomicPtr<i32>` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:20:32
+   |
+20 |     test_incdec(value, |a| { a.fetch_sub(1, Ordering::SeqCst); }, |a| {}, true, -1);
+   |                                ^^^^^^^^^
+   |
+help: there is a method `fetch_ptr_sub` with a similar name
+   |
+20 |     test_incdec(value, |a| { a.fetch_ptr_sub(1, Ordering::SeqCst); }, |a| {}, true, -1);
+   |                                      ++++
+
+error[E0599]: no method named `fetch_add` found for reference `&AtomicPtr<i32>` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:21:40
+   |
+21 |     test_incdec(value, |a| {}, |a| { a.fetch_add(1, Ordering::SeqCst); }, false, 1);
+   |                                        ^^^^^^^^^
+   |
+help: there is a method `fetch_and` with a similar name
+   |
+21 -     test_incdec(value, |a| {}, |a| { a.fetch_add(1, Ordering::SeqCst); }, false, 1);
+21 +     test_incdec(value, |a| {}, |a| { a.fetch_and(1, Ordering::SeqCst); }, false, 1);
+   |
+
+error[E0599]: no method named `fetch_sub` found for reference `&AtomicPtr<i32>` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:22:40
+   |
+22 |     test_incdec(value, |a| {}, |a| { a.fetch_sub(1, Ordering::SeqCst); }, false, -1);
+   |                                        ^^^^^^^^^
+   |
+help: there is a method `fetch_ptr_sub` with a similar name
+   |
+22 |     test_incdec(value, |a| {}, |a| { a.fetch_ptr_sub(1, Ordering::SeqCst); }, false, -1);
+   |                                              ++++
+
+error: this arithmetic operation will overflow
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_003/target.rs:30:23
+   |
+30 |     test_incdec_arith(1 << 60);
+   |                       ^^^^^^^ attempt to shift left by `60_i32`, which would overflow
+   |
+   = note: `#[deny(arithmetic_overflow)]` on by default
+
+error: aborting due to 9 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0369, E0599.
+For more information about an error, try `rustc --explain E0369`.

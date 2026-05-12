@@ -1,0 +1,221 @@
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:13:14
+   |
+13 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0599]: no method named `hash` found for struct `TypeId` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:10:37
+    |
+ 10 |     std::any::TypeId::of::<fn(T)>().hash() as usize
+    |                                     ^^^^ method not found in `TypeId`
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/hash/mod.rs:199:8
+    |
+199 |     fn hash<H: Hasher>(&self, state: &mut H);
+    |        ---- the method is available for `TypeId` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Hash` which provides `hash` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::hash::Hash;
+    |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:17:16
+   |
+17 |     if type_id(p1) != type_id(f1) {
+   |        ------- ^^ expected `()`, found `i32`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected fn pointer `fn(_) -> ()`
+              found fn pointer `fn(i32) -> i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:9:4
+   |
+ 9 | fn type_id<T>(_: fn(T)) -> usize {
+   |    ^^^^^^^    --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:17:31
+   |
+17 |     if type_id(p1) != type_id(f1) {
+   |                       ------- ^^ expected fn pointer, found fn item
+   |                       |
+   |                       arguments to this function are incorrect
+   |
+   = note: expected fn pointer `fn(_) -> ()`
+                 found fn item `fn(i32) -> i32 {f1}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:9:4
+   |
+ 9 | fn type_id<T>(_: fn(T)) -> usize {
+   |    ^^^^^^^    --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:20:16
+   |
+20 |     if type_id(q1) != type_id(f1) {
+   |        ------- ^^ expected `()`, found `i32`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected fn pointer `fn(_) -> ()`
+              found fn pointer `fn(i32) -> i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:9:4
+   |
+ 9 | fn type_id<T>(_: fn(T)) -> usize {
+   |    ^^^^^^^    --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:20:31
+   |
+20 |     if type_id(q1) != type_id(f1) {
+   |                       ------- ^^ expected fn pointer, found fn item
+   |                       |
+   |                       arguments to this function are incorrect
+   |
+   = note: expected fn pointer `fn(_) -> ()`
+                 found fn item `fn(i32) -> i32 {f1}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:9:4
+   |
+ 9 | fn type_id<T>(_: fn(T)) -> usize {
+   |    ^^^^^^^    --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:36:16
+   |
+36 |     if type_id(r1) != type_id(f1) {
+   |        ------- ^^ expected `()`, found `i32`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected fn pointer `fn(_) -> ()`
+              found fn pointer `fn(i32) -> i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:9:4
+   |
+ 9 | fn type_id<T>(_: fn(T)) -> usize {
+   |    ^^^^^^^    --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:36:31
+   |
+36 |     if type_id(r1) != type_id(f1) {
+   |                       ------- ^^ expected fn pointer, found fn item
+   |                       |
+   |                       arguments to this function are incorrect
+   |
+   = note: expected fn pointer `fn(_) -> ()`
+                 found fn item `fn(i32) -> i32 {f1}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:9:4
+   |
+ 9 | fn type_id<T>(_: fn(T)) -> usize {
+   |    ^^^^^^^    --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:46:16
+   |
+46 |     if type_id(p2) != type_id(f2) {
+   |        ------- ^^ incorrect number of function parameters
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected fn pointer `fn(_) -> ()`
+              found fn pointer `fn(i32, i32) -> i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:9:4
+   |
+ 9 | fn type_id<T>(_: fn(T)) -> usize {
+   |    ^^^^^^^    --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:46:31
+   |
+46 |     if type_id(p2) != type_id(f2) {
+   |                       ------- ^^ incorrect number of function parameters
+   |                       |
+   |                       arguments to this function are incorrect
+   |
+   = note: expected fn pointer `fn(_) -> ()`
+                 found fn item `fn(i32, i32) -> i32 {f2}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:9:4
+   |
+ 9 | fn type_id<T>(_: fn(T)) -> usize {
+   |    ^^^^^^^    --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:49:16
+   |
+49 |     if type_id(q2) != type_id(f2) {
+   |        ------- ^^ incorrect number of function parameters
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected fn pointer `fn(_) -> ()`
+              found fn pointer `fn(i32, i32) -> i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:9:4
+   |
+ 9 | fn type_id<T>(_: fn(T)) -> usize {
+   |    ^^^^^^^    --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:49:31
+   |
+49 |     if type_id(q2) != type_id(f2) {
+   |                       ------- ^^ incorrect number of function parameters
+   |                       |
+   |                       arguments to this function are incorrect
+   |
+   = note: expected fn pointer `fn(_) -> ()`
+                 found fn item `fn(i32, i32) -> i32 {f2}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:9:4
+   |
+ 9 | fn type_id<T>(_: fn(T)) -> usize {
+   |    ^^^^^^^    --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:64:16
+   |
+64 |     if type_id(r2) != type_id(f2) {
+   |        ------- ^^ incorrect number of function parameters
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected fn pointer `fn(_) -> ()`
+              found fn pointer `fn(i32, i32) -> i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:9:4
+   |
+ 9 | fn type_id<T>(_: fn(T)) -> usize {
+   |    ^^^^^^^    --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:64:31
+   |
+64 |     if type_id(r2) != type_id(f2) {
+   |                       ------- ^^ incorrect number of function parameters
+   |                       |
+   |                       arguments to this function are incorrect
+   |
+   = note: expected fn pointer `fn(_) -> ()`
+                 found fn item `fn(i32, i32) -> i32 {f2}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/conversions/lvalue_array_fun_c4/sample_005/target.rs:9:4
+   |
+ 9 | fn type_id<T>(_: fn(T)) -> usize {
+   |    ^^^^^^^    --------
+
+error: aborting due to 14 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0599.
+For more information about an error, try `rustc --explain E0277`.

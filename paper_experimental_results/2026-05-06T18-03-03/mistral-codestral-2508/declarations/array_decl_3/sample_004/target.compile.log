@@ -1,0 +1,110 @@
+error: expected `;` or `]`, found `,`
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_3/sample_004/target.rs:6:54
+  |
+6 | fn check_a(nn: usize, mm: usize, a: &[[[i32; 6]; 100], 100], p: &[[[i32; 6]; 100]]) -> i32 {
+  |                                                      ^ expected `;` or `]`
+  |
+  = note: you might have meant to write a slice or array type
+help: you might have meant to use `;` as the separator
+  |
+6 - fn check_a(nn: usize, mm: usize, a: &[[[i32; 6]; 100], 100], p: &[[[i32; 6]; 100]]) -> i32 {
+6 + fn check_a(nn: usize, mm: usize, a: &[[[i32; 6]; 100]; 100], p: &[[[i32; 6]; 100]]) -> i32 {
+  |
+
+error: expected `;` or `]`, found `,`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_3/sample_004/target.rs:19:61
+   |
+19 | fn check_c(nn: usize, mm: usize, c: &[[[[i32; 100]; 6]; 100], 100], r: &[[[[i32; 100]; 6]; 100]]) -> i32 {
+   |                                                             ^ expected `;` or `]`
+   |
+   = note: you might have meant to write a slice or array type
+help: you might have meant to use `;` as the separator
+   |
+19 - fn check_c(nn: usize, mm: usize, c: &[[[[i32; 100]; 6]; 100], 100], r: &[[[[i32; 100]; 6]; 100]]) -> i32 {
+19 + fn check_c(nn: usize, mm: usize, c: &[[[[i32; 100]; 6]; 100]; 100], r: &[[[[i32; 100]; 6]; 100]]) -> i32 {
+   |
+
+error: expected `;` or `]`, found `,`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_3/sample_004/target.rs:38:32
+   |
+38 |     let mut a: [[[i32; 6]; 100], 100] = [[[0; 6]; 100]; 100];
+   |                                ^ expected `;` or `]`
+   |
+   = note: you might have meant to write a slice or array type
+help: you might have meant to use `;` as the separator
+   |
+38 -     let mut a: [[[i32; 6]; 100], 100] = [[[0; 6]; 100]; 100];
+38 +     let mut a: [[[i32; 6]; 100]; 100] = [[[0; 6]; 100]; 100];
+   |
+
+error: expected `;` or `]`, found `,`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_3/sample_004/target.rs:39:39
+   |
+39 |     let mut c: [[[[i32; 100]; 6]; 100], 100] = [[[[0; 100]; 6]; 100]; 100];
+   |                                       ^ expected `;` or `]`
+   |
+   = note: you might have meant to write a slice or array type
+help: you might have meant to use `;` as the separator
+   |
+39 -     let mut c: [[[[i32; 100]; 6]; 100], 100] = [[[[0; 100]; 6]; 100]; 100];
+39 +     let mut c: [[[[i32; 100]; 6]; 100]; 100] = [[[[0; 100]; 6]; 100]; 100];
+   |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_3/sample_004/target.rs:35:14
+   |
+35 |     let nn = unsafe { N } as usize;
+   |              ^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_3/sample_004/target.rs:36:14
+   |
+36 |     let mm = unsafe { M } as usize;
+   |              ^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_3/sample_004/target.rs:61:9
+   |
+61 |         unsafe { GATE = 1 };
+   |         ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_3/sample_004/target.rs:66:9
+   |
+66 |         unsafe { GATE = 2 };
+   |         ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_3/sample_004/target.rs:71:5
+   |
+71 | /     unsafe {
+72 | |         N = 6;
+73 | |         M = N + 1;
+74 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_3/sample_004/target.rs:76:5
+   |
+76 |     unsafe { GATE = 0 };
+   |     ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_3/sample_004/target.rs:79:8
+   |
+79 |     if unsafe { GATE } != 0 {
+   |        ^^^^^^^^^^^^^^^
+
+error[E0369]: cannot add `i32` to `[i32; 6]`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_3/sample_004/target.rs:10:42
+   |
+10 |                 if a[i][j][k] != p[j][k] + i as i32 {
+   |                                  ------- ^ -------- i32
+   |                                  |
+   |                                  [i32; 6]
+
+error: aborting due to 12 previous errors
+
+For more information about this error, try `rustc --explain E0369`.

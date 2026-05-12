@@ -1,0 +1,47 @@
+warning: variant `E_NEG` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_003/target.rs:5:10
+  |
+5 | enum E { E_NEG = -1, E_POS = 1 }
+  |          ^^^^^ help: convert the identifier to upper camel case: `ENeg`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: variant `E_POS` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_003/target.rs:5:22
+  |
+5 | enum E { E_NEG = -1, E_POS = 1 }
+  |                      ^^^^^ help: convert the identifier to upper camel case: `EPos`
+
+error: invalid suffix `u` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_003/target.rs:29:39
+   |
+29 |     if!expect_type(type_id::<u32>(0 + 0u), type_id::<u32>(0)) {
+   |                                       ^^ invalid suffix `u`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `u` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_003/target.rs:49:55
+   |
+49 |     if!expect_type(type_id::<u32>((E::E_NEG as u32) + 0u), type_id::<i32>(0 + 0u)) {
+   |                                                       ^^ invalid suffix `u`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `u` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_003/target.rs:49:79
+   |
+49 |     if!expect_type(type_id::<u32>((E::E_NEG as u32) + 0u), type_id::<i32>(0 + 0u)) {
+   |                                                                               ^^ invalid suffix `u`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error[E0599]: no method named `as_u32` found for struct `TypeId` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/bool_char_int_c1/sample_003/target.rs:2:33
+  |
+2 |     std::any::TypeId::of::<T>().as_u32()
+  |                                 ^^^^^^ method not found in `TypeId`
+
+error: aborting due to 4 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0599`.

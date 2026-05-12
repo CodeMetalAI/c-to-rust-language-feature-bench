@@ -1,0 +1,168 @@
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:103:8
+    |
+103 |     if unsafe { o.anonymous1.anonymous_union1.anonymous_struct1.b } != 2 { return 3; }
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:104:8
+    |
+104 |     if unsafe { o.anonymous1.anonymous_union1.anonymous_struct1.anonymous_union2.deep } != 99 { return 4; }
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:105:8
+    |
+105 |     if unsafe { o.anonymous1.anonymous_union1.anonymous_struct1.c } != 3 { return 5; }
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:107:8
+    |
+107 |     if unsafe { o.anonymous2.anonymous_struct3.tail_x } != 7 { return 7; }
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:108:8
+    |
+108 |     if unsafe { o.anonymous2.anonymous_struct3.anonymous_union3.tail_y } != 8 { return 8; }
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:135:5
+    |
+135 | /     unsafe {
+136 | |         o.anonymous1.anonymous_union1.anonymous_struct1.anonymous_union2.deep = 0x11223344;
+137 | |
+138 | |         if o.anonymous1.anonymous_union1.anonymous_struct1.anonymous_union2.anonymous_struct2.x != 0x11223344 {
+...   |
+164 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:192:14
+    |
+192 |     let pb = unsafe { &o.anonymous1.anonymous_union1.anonymous_struct1.b as *const i32 as Uptr };
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:193:17
+    |
+193 |     let pdeep = unsafe { &o.anonymous1.anonymous_union1.anonymous_struct1.anonymous_union2.deep as *const i32 as Uptr };
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:194:15
+    |
+194 |     let ptx = unsafe { &o.anonymous2.anonymous_struct3.tail_x as *const i32 as Uptr };
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:195:15
+    |
+195 |     let pty = unsafe { &o.anonymous2.anonymous_struct3.anonymous_union3.tail_y as *const i32 as Uptr };
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: not automatically applying `DerefMut` on `ManuallyDrop` union field
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:136:9
+    |
+136 |         o.anonymous1.anonymous_union1.anonymous_struct1.anonymous_union2.deep = 0x11223344;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: writing to this reference calls the destructor for the old value
+    = help: add an explicit `*` if that is desired, or call `ptr::write` to not run the destructor
+
+error: not automatically applying `DerefMut` on `ManuallyDrop` union field
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:142:9
+    |
+142 |         o.anonymous1.anonymous_union1.anonymous_struct1.anonymous_union2.anonymous_struct2.x = 5;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: writing to this reference calls the destructor for the old value
+    = help: add an explicit `*` if that is desired, or call `ptr::write` to not run the destructor
+
+error: not automatically applying `DerefMut` on `ManuallyDrop` union field
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:142:9
+    |
+142 |         o.anonymous1.anonymous_union1.anonymous_struct1.anonymous_union2.anonymous_struct2.x = 5;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: writing to this reference calls the destructor for the old value
+    = help: add an explicit `*` if that is desired, or call `ptr::write` to not run the destructor
+
+error: not automatically applying `DerefMut` on `ManuallyDrop` union field
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:143:9
+    |
+143 |         o.anonymous1.anonymous_union1.anonymous_struct1.anonymous_union2.anonymous_struct2.y = 6;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: writing to this reference calls the destructor for the old value
+    = help: add an explicit `*` if that is desired, or call `ptr::write` to not run the destructor
+
+error: not automatically applying `DerefMut` on `ManuallyDrop` union field
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:143:9
+    |
+143 |         o.anonymous1.anonymous_union1.anonymous_struct1.anonymous_union2.anonymous_struct2.y = 6;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: writing to this reference calls the destructor for the old value
+    = help: add an explicit `*` if that is desired, or call `ptr::write` to not run the destructor
+
+error: not automatically applying `DerefMut` on `ManuallyDrop` union field
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:151:9
+    |
+151 |         o.anonymous2.anonymous_struct3.anonymous_union3.anonymous_struct4.tail_p = 40;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: writing to this reference calls the destructor for the old value
+    = help: add an explicit `*` if that is desired, or call `ptr::write` to not run the destructor
+
+error: not automatically applying `DerefMut` on `ManuallyDrop` union field
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:151:9
+    |
+151 |         o.anonymous2.anonymous_struct3.anonymous_union3.anonymous_struct4.tail_p = 40;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: writing to this reference calls the destructor for the old value
+    = help: add an explicit `*` if that is desired, or call `ptr::write` to not run the destructor
+
+error: not automatically applying `DerefMut` on `ManuallyDrop` union field
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:152:9
+    |
+152 |         o.anonymous2.anonymous_struct3.anonymous_union3.anonymous_struct4.tail_q = 41;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: writing to this reference calls the destructor for the old value
+    = help: add an explicit `*` if that is desired, or call `ptr::write` to not run the destructor
+
+error: not automatically applying `DerefMut` on `ManuallyDrop` union field
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:152:9
+    |
+152 |         o.anonymous2.anonymous_struct3.anonymous_union3.anonymous_struct4.tail_q = 41;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: writing to this reference calls the destructor for the old value
+    = help: add an explicit `*` if that is desired, or call `ptr::write` to not run the destructor
+
+error: not automatically applying `DerefMut` on `ManuallyDrop` union field
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:160:9
+    |
+160 |         o.anonymous2.anonymous_struct3.anonymous_union3.tail_y = -9;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: writing to this reference calls the destructor for the old value
+    = help: add an explicit `*` if that is desired, or call `ptr::write` to not run the destructor
+
+warning: variable does not need to be mutable
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_c13/sample_002/target.rs:170:9
+    |
+170 |     let mut o = Outer {
+    |         ----^
+    |         |
+    |         help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 20 previous errors; 1 warning emitted

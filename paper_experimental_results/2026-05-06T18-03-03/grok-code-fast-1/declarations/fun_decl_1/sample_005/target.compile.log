@@ -1,0 +1,30 @@
+error[E0277]: `RefCell<[i32; 4]>` cannot be shared between threads safely
+ --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:4:16
+  |
+4 | static GSTORE: RefCell<[i32; 4]> = RefCell::new([0; 4]);
+  |                ^^^^^^^^^^^^^^^^^ `RefCell<[i32; 4]>` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `RefCell<[i32; 4]>`
+  = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock` instead
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0599]: no method named `index` found for struct `Ref<'_, [i32; 4]>` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:13:21
+   |
+13 |     GSTORE.borrow().index(1)
+   |                     ^^^^^
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `Index` which provides `index` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::ops::Index;
+   |
+help: there is a method `index_mut` with a similar name
+   |
+13 |     GSTORE.borrow().index_mut(1)
+   |                          ++++
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0277, E0599.
+For more information about an error, try `rustc --explain E0277`.

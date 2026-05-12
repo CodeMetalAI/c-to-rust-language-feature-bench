@@ -1,0 +1,19 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/array_subscripting/sample_001/target.rs:13:21
+   |
+13 |             let b = unsafe { *(x.as_ptr().add(i * 5).add(j)) };
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/array_subscripting/sample_001/target.rs:14:21
+   |
+14 |             if a != b {
+   |                -    ^ expected `i32`, found `[i32; 5]`
+   |                |
+   |                expected because this is `i32`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

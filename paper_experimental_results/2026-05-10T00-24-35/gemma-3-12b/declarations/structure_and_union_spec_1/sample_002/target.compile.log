@@ -1,0 +1,76 @@
+error: this trait cannot be derived for unions
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_1/sample_002/target.rs:7:10
+  |
+7 | #[derive(Debug)]
+  |          ^^^^^
+
+warning: type `v` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_1/sample_002/target.rs:2:8
+  |
+2 | struct v {
+  |        ^ help: convert the identifier to upper camel case (notice the capitalization): `V`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: type `w` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_1/sample_002/target.rs:20:8
+   |
+20 | struct w {
+   |        ^ help: convert the identifier to upper camel case (notice the capitalization): `W`
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_1/sample_002/target.rs:9:5
+  |
+9 |     inner1: Inner1,
+  |     ^^^^^^^^^^^^^^
+  |
+  = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+  |
+9 |     inner1: std::mem::ManuallyDrop<Inner1>,
+  |             +++++++++++++++++++++++      +
+
+error[E0277]: `Union` doesn't implement `Debug`
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_1/sample_002/target.rs:3:5
+  |
+1 | #[derive(Debug)]
+  |          ----- in this derive macro expansion
+2 | struct v {
+3 |     union: Union,
+  |     ^^^^^^^^^^^^ the trait `Debug` is not implemented for `Union`
+  |
+  = note: add `#[derive(Debug)]` to `Union` or manually `impl Debug for Union`
+help: consider annotating `Union` with `#[derive(Debug)]`
+  |
+8 + #[derive(Debug)]
+9 | union Union {
+  |
+
+error[E0784]: union expressions should have exactly one field
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_1/sample_002/target.rs:27:16
+   |
+27 |         union: Union {
+   |                ^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_1/sample_002/target.rs:38:16
+   |
+25 | fn main() {
+   |          - expected `()` because of default return type
+...
+38 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_1/sample_002/target.rs:45:5
+   |
+25 | fn main() {
+   |          - expected `()` because of default return type
+...
+45 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 6 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0277, E0308, E0740, E0784.
+For more information about an error, try `rustc --explain E0277`.

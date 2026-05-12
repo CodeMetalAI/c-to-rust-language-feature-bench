@@ -1,0 +1,114 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/initialization_6/sample_002/target.rs:61:17
+   |
+61 |         if !chk(unsafe { *p.add(6) }, 2) {
+   |                 ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/initialization_6/sample_002/target.rs:64:17
+   |
+64 |         if !chk(unsafe { *p.add(7) }, 3) {
+   |                 ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/initialization_6/sample_002/target.rs:67:17
+   |
+67 |         if !chk(unsafe { *p.add(12) }, 4) {
+   |                 ^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/initialization_6/sample_002/target.rs:70:17
+   |
+70 |         if !chk(unsafe { *p.add(13) }, 5) {
+   |                 ^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/initialization_6/sample_002/target.rs:73:17
+   |
+73 |         if !chk(unsafe { *p.add(14) }, 6) {
+   |                 ^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/initialization_6/sample_002/target.rs:58:17
+   |
+58 |         if !chk(p, 1) {
+   |             --- ^ expected `i16`, found `&i16`
+   |             |
+   |             arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/initialization_6/sample_002/target.rs:1:4
+   |
+ 1 | fn chk(v: i16, e: i16) -> bool {
+   |    ^^^ ------
+help: consider dereferencing the borrow
+   |
+58 |         if !chk(*p, 1) {
+   |                 +
+
+error[E0599]: no method named `add` found for reference `&i16` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/initialization_6/sample_002/target.rs:61:29
+   |
+61 |         if !chk(unsafe { *p.add(6) }, 2) {
+   |                             ^^^ method not found in `&i16`
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::ops::Add;
+   |
+
+error[E0599]: no method named `add` found for reference `&i16` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/initialization_6/sample_002/target.rs:64:29
+   |
+64 |         if !chk(unsafe { *p.add(7) }, 3) {
+   |                             ^^^ method not found in `&i16`
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::ops::Add;
+   |
+
+error[E0599]: no method named `add` found for reference `&i16` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/initialization_6/sample_002/target.rs:67:29
+   |
+67 |         if !chk(unsafe { *p.add(12) }, 4) {
+   |                             ^^^ method not found in `&i16`
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::ops::Add;
+   |
+
+error[E0599]: no method named `add` found for reference `&i16` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/initialization_6/sample_002/target.rs:70:29
+   |
+70 |         if !chk(unsafe { *p.add(13) }, 5) {
+   |                             ^^^ method not found in `&i16`
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::ops::Add;
+   |
+
+error[E0599]: no method named `add` found for reference `&i16` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/initialization_6/sample_002/target.rs:73:29
+   |
+73 |         if !chk(unsafe { *p.add(14) }, 6) {
+   |                             ^^^ method not found in `&i16`
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::ops::Add;
+   |
+
+error: aborting due to 11 previous errors
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.

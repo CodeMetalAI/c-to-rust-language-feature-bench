@@ -1,0 +1,22 @@
+error[E0369]: binary operation `==` cannot be applied to type `&Box<Node>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/tags_1b/sample_003/target.rs:34:34
+   |
+34 |     if sp.left.as_ref().unwrap() == sp.right.as_ref().unwrap() {
+   |        ------------------------- ^^ -------------------------- &Box<Node>
+   |        |
+   |        &Box<Node>
+   |
+note: an implementation of `PartialEq` might be missing for `Node`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/tags_1b/sample_003/target.rs:3:1
+   |
+ 3 | struct Node {
+   | ^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `Node` with `#[derive(PartialEq)]`
+   |
+ 3 + #[derive(PartialEq)]
+ 4 | struct Node {
+   |
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0369`.

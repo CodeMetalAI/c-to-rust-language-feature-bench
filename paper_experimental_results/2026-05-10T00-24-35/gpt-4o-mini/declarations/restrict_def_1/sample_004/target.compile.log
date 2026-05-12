@@ -1,0 +1,90 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_004/target.rs:43:25
+   |
+43 |     let a: &mut [i32] = unsafe { choose_view(&BANK_A, which_a) };
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_004/target.rs:44:25
+   |
+44 |     let b: &mut [i32] = unsafe { choose_view(&BANK_B, which_b) };
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_004/target.rs:48:10
+   |
+48 |     fill(unsafe { &mut C }, 8, 300);
+   |          ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_004/target.rs:52:10
+   |
+52 |     bump(unsafe { &mut C }, 8, 3);
+   |          ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_004/target.rs:62:12
+   |
+62 |     if sum(unsafe { &C }, 8) != (303 + 304 + 305 + 306 + 307 + 308 + 309 + 310) {
+   |            ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_004/target.rs:66:8
+   |
+66 |     if unsafe { BANK_A.left[0] } != 101 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_004/target.rs:70:8
+   |
+70 |     if unsafe { BANK_B.right[7] } != 209 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_004/target.rs:74:8
+   |
+74 |     if unsafe { C[0] } != 303 || unsafe { C[7] } != 310 {
+   |        ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_004/target.rs:74:34
+   |
+74 |     if unsafe { C[0] } != 303 || unsafe { C[7] } != 310 {
+   |                                  ^^^^^^^^^^^^^^^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_004/target.rs:39:14
+   |
+39 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0596]: cannot borrow `bank.left` as mutable, as it is behind a `&` reference
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_004/target.rs:13:9
+   |
+13 |         &mut bank.left
+   |         ^^^^^^^^^^^^^^ `bank` is a `&` reference, so the data it refers to cannot be borrowed as mutable
+   |
+help: consider changing this to be a mutable reference
+   |
+11 | fn choose_view(bank: &mut Bank, which: usize) -> &mut [i32] {
+   |                       +++
+
+error[E0596]: cannot borrow `bank.right` as mutable, as it is behind a `&` reference
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_004/target.rs:15:9
+   |
+15 |         &mut bank.right
+   |         ^^^^^^^^^^^^^^^ `bank` is a `&` reference, so the data it refers to cannot be borrowed as mutable
+   |
+help: consider changing this to be a mutable reference
+   |
+11 | fn choose_view(bank: &mut Bank, which: usize) -> &mut [i32] {
+   |                       +++
+
+error: aborting due to 12 previous errors
+
+Some errors have detailed explanations: E0277, E0596.
+For more information about an error, try `rustc --explain E0277`.

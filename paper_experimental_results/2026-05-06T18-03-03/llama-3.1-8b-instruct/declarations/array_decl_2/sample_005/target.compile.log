@@ -1,0 +1,237 @@
+error: free function without a body
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:6:1
+  |
+6 | extern fn x() -> *mut i32;
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+help: provide a definition for the function
+  |
+6 - extern fn x() -> *mut i32;
+6 + extern fn x() -> *mut i32 { <body> }
+  |
+help: if you meant to declare an externally defined function, use an `extern` block
+  |
+6 | extern { fn x() -> *mut i32; }
+  |        +                     +
+
+error: free function without a body
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:7:1
+  |
+7 | extern fn y() -> &'static [i32];
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+help: provide a definition for the function
+  |
+7 - extern fn y() -> &'static [i32];
+7 + extern fn y() -> &'static [i32] { <body> }
+  |
+help: if you meant to declare an externally defined function, use an `extern` block
+  |
+7 | extern { fn y() -> &'static [i32]; }
+  |        +                           +
+
+warning: `extern` declarations without an explicit ABI are deprecated
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:6:1
+  |
+6 | extern fn x() -> *mut i32;
+  | ^^^^^^ help: explicitly specify the "C" ABI: `extern "C"`
+  |
+  = note: `#[warn(missing_abi)]` on by default
+
+warning: `extern` declarations without an explicit ABI are deprecated
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:7:1
+  |
+7 | extern fn y() -> &'static [i32];
+  | ^^^^^^ help: explicitly specify the "C" ABI: `extern "C"`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:44:5
+   |
+44 |     unsafe { p.offset(1).write_volatile(5 + *p.offset(1)); }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:49:5
+    |
+ 49 | /     unsafe {
+ 50 | |         y()[0] = 1;
+ 51 | |         y()[1] = 2;
+ 52 | |         y()[2] = 3;
+...   |
+100 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:70:12
+   |
+70 |         if unsafe { BACKING[1] } != 25 {
+   |            ^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:87:22
+   |
+87 |             let ha = unsafe { &*(y() as *const HoldA) };
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:59:20
+   |
+48 | fn main() {
+   |          - expected `()` because of default return type
+...
+59 |             return 1;
+   |                    ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:82:33
+   |
+82 |             let hp = HoldP { p: y() };
+   |                                 ^^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut i32`
+                found reference `&'static [i32]`
+
+error[E0608]: cannot index into a value of type `*mut i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:83:20
+   |
+83 |             if hp.p[0] != 1 {
+   |                    ^^^
+   |
+help: consider using `wrapping_add` or `add` for indexing into raw pointer
+   |
+83 -             if hp.p[0] != 1 {
+83 +             if hp.p.wrapping_add(0) != 1 {
+   |
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:88:78
+    |
+ 88 |             if (ha as *const u8 as *const usize) != (ha as *const u8).offset(OFFSET_OF) {
+    |                                                                       ------ ^^^^^^^^^ expected `isize`, found `usize`
+    |                                                                       |
+    |                                                                       arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:401:25
+    |
+401 |     pub const unsafe fn offset(self, count: isize) -> *const T
+    |                         ^^^^^^
+help: you can convert a `usize` to an `isize` and panic if the converted value doesn't fit
+    |
+ 88 |             if (ha as *const u8 as *const usize) != (ha as *const u8).offset(OFFSET_OF.try_into().unwrap()) {
+    |                                                                                       ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:88:53
+   |
+88 |             if (ha as *const u8 as *const usize) != (ha as *const u8).offset(OFFSET_OF) {
+   |                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `*const usize`, found `*const u8`
+   |
+   = note: expected raw pointer `*const usize`
+              found raw pointer `*const u8`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:102:5
+    |
+ 48 | fn main() {
+    |          - expected `()` because of default return type
+...
+102 |     0
+    |     ^ expected `()`, found integer
+
+error[E0606]: casting `&'static [i32]` as `*const HoldA` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:87:33
+   |
+87 |             let ha = unsafe { &*(y() as *const HoldA) };
+   |                                 ^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&HoldA` as `*const u8` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:88:17
+   |
+88 |             if (ha as *const u8 as *const usize) != (ha as *const u8).offset(OFFSET_OF) {
+   |                 ^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&HoldA` as `*const u8` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:88:53
+   |
+88 |             if (ha as *const u8 as *const usize) != (ha as *const u8).offset(OFFSET_OF) {
+   |                                                     ^^^^^^^^^^^^^^^^^
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:10:26
+   |
+10 | static mut X: *mut i32 = BACKING.as_mut_ptr();
+   |                          ^^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:27:14
+   |
+27 |         s += *p.offset(i as isize);
+   |              ^^^^^^^^^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:27:15
+   |
+27 |         s += *p.offset(i as isize);
+   |               ^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:45:5
+   |
+45 |     *p.offset(0) + *p.offset(1) + *p.offset(2)
+   |     ^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::mut_ptr::<impl *mut T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:45:6
+   |
+45 |     *p.offset(0) + *p.offset(1) + *p.offset(2)
+   |      ^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:45:20
+   |
+45 |     *p.offset(0) + *p.offset(1) + *p.offset(2)
+   |                    ^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::mut_ptr::<impl *mut T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:45:21
+   |
+45 |     *p.offset(0) + *p.offset(1) + *p.offset(2)
+   |                     ^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:45:35
+   |
+45 |     *p.offset(0) + *p.offset(1) + *p.offset(2)
+   |                                   ^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::mut_ptr::<impl *mut T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:45:36
+   |
+45 |     *p.offset(0) + *p.offset(1) + *p.offset(2)
+   |                                    ^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: aborting due to 24 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0133, E0308, E0606, E0608.
+For more information about an error, try `rustc --explain E0133`.

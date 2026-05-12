@@ -1,0 +1,47 @@
+error[E0597]: `s2_rc` does not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/gpt-5.2-codex/declarations/tags_2/sample_001/target.rs:30:9
+   |
+29 |         let s2_rc = a.borrow().s2p.as_ref().unwrap().clone();
+   |             ----- binding `s2_rc` declared here
+30 |         s2_rc.borrow().v2
+   |         ^^^^^---------
+   |         |
+   |         borrowed value does not live long enough
+   |         a temporary with access to the borrow is created here ...
+31 |     };
+   |     -- ... and the borrow might be used here, when that temporary is dropped and runs the destructor for type `Ref<'_, S2>`
+   |     |
+   |     `s2_rc` dropped here while still borrowed
+   |
+   = note: the temporary is part of an expression at the end of a block;
+           consider forcing this temporary to be dropped sooner, before the block's local variables are dropped
+help: for example, you could save the expression's value in a new local variable `x` and then make `x` be the expression at the end of the block
+   |
+30 |         let x = s2_rc.borrow().v2; x
+   |         +++++++                  +++
+
+error[E0597]: `s1_rc` does not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/gpt-5.2-codex/declarations/tags_2/sample_001/target.rs:38:9
+   |
+37 |         let s1_rc = b.borrow().s1p.as_ref().unwrap().clone();
+   |             ----- binding `s1_rc` declared here
+38 |         s1_rc.borrow().v1
+   |         ^^^^^---------
+   |         |
+   |         borrowed value does not live long enough
+   |         a temporary with access to the borrow is created here ...
+39 |     };
+   |     -- ... and the borrow might be used here, when that temporary is dropped and runs the destructor for type `Ref<'_, S1>`
+   |     |
+   |     `s1_rc` dropped here while still borrowed
+   |
+   = note: the temporary is part of an expression at the end of a block;
+           consider forcing this temporary to be dropped sooner, before the block's local variables are dropped
+help: for example, you could save the expression's value in a new local variable `x` and then make `x` be the expression at the end of the block
+   |
+38 |         let x = s1_rc.borrow().v1; x
+   |         +++++++                  +++
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0597`.

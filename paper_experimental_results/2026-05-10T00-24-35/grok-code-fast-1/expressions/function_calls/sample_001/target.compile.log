@@ -1,0 +1,29 @@
+error[E0499]: cannot borrow `state` as mutable more than once at a time
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/function_calls/sample_001/target.rs:55:37
+   |
+55 |     let rc = pf[idx](&mut state, f2(&mut state), f3(&mut state) + f4(&mut state));
+   |              ------- ----------     ^^^^^^^^^^ second mutable borrow occurs here
+   |              |       |
+   |              |       first mutable borrow occurs here
+   |              first borrow later used by call
+
+error[E0499]: cannot borrow `state` as mutable more than once at a time
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/function_calls/sample_001/target.rs:55:53
+   |
+55 |     let rc = pf[idx](&mut state, f2(&mut state), f3(&mut state) + f4(&mut state));
+   |              ------- ----------                     ^^^^^^^^^^ second mutable borrow occurs here
+   |              |       |
+   |              |       first mutable borrow occurs here
+   |              first borrow later used by call
+
+error[E0499]: cannot borrow `state` as mutable more than once at a time
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/function_calls/sample_001/target.rs:55:70
+   |
+55 |     let rc = pf[idx](&mut state, f2(&mut state), f3(&mut state) + f4(&mut state));
+   |              ------- ---------- first mutable borrow occurs here     ^^^^^^^^^^ second mutable borrow occurs here
+   |              |
+   |              first borrow later used by call
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0499`.

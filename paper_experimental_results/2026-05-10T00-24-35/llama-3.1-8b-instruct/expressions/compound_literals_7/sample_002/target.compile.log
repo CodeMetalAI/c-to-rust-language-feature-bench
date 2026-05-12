@@ -1,0 +1,62 @@
+error[E0015]: cannot call non-const associated function `Box::<Node>::new` in statics
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_002/target.rs:9:15
+  |
+9 |     cdr: Some(Box::new(ENDLESS_ZEROS)),
+  |               ^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+  = note: consider wrapping this expression in `std::sync::LazyLock::new(|| ...)`
+
+error[E0369]: binary operation `!=` cannot be applied to type `&Box<Node>`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_002/target.rs:15:26
+    |
+ 15 |         Some(ref y) if y != &ENDLESS_ZEROS => 2,
+    |                        - ^^ -------------- &Node
+    |                        |
+    |                        &Box<Node>
+    |
+note: the foreign item type `Box<Node>` doesn't implement `PartialEq<Node>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/boxed.rs:231:1
+    |
+231 | / pub struct Box<
+232 | |     T: ?Sized,
+233 | |     #[unstable(feature = "allocator_api", issue = "32838")] A: Allocator = Global,
+234 | | >(Unique<T>, A);
+    | |_^ not implement `PartialEq<Node>`
+
+error[E0369]: binary operation `!=` cannot be applied to type `&Box<Node>`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_002/target.rs:18:34
+    |
+ 18 |                 Some(ref z) if z != &ENDLESS_ZEROS => 3,
+    |                                - ^^ -------------- &Node
+    |                                |
+    |                                &Box<Node>
+    |
+note: the foreign item type `Box<Node>` doesn't implement `PartialEq<Node>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/boxed.rs:231:1
+    |
+231 | / pub struct Box<
+232 | |     T: ?Sized,
+233 | |     #[unstable(feature = "allocator_api", issue = "32838")] A: Allocator = Global,
+234 | | >(Unique<T>, A);
+    | |_^ not implement `PartialEq<Node>`
+
+error[E0507]: cannot move out of static item `ENDLESS_ZEROS`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_002/target.rs:27:25
+   |
+27 |     println!("{}", eval(ENDLESS_ZEROS));
+   |                         ^^^^^^^^^^^^^ move occurs because `ENDLESS_ZEROS` has type `Node`, which does not implement the `Copy` trait
+   |
+note: if `Node` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_7/sample_002/target.rs:2:1
+   |
+ 2 | struct Node {
+   | ^^^^^^^^^^^ consider implementing `Clone` for this type
+...
+27 |     println!("{}", eval(ENDLESS_ZEROS));
+   |                         ------------- you could clone this value
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0015, E0369, E0507.
+For more information about an error, try `rustc --explain E0015`.

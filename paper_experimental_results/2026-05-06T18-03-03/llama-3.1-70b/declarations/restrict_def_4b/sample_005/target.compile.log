@@ -1,0 +1,119 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_005/target.rs:21:9
+   |
+21 | /         unsafe {
+22 | |             H ^= (OFFSET as u64) ^ 0x9e3779b97f4a7c15;
+23 | |             H *= 0x5851f42d4c957f2d;
+24 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_005/target.rs:32:16
+   |
+32 |             v: unsafe { std::slice::from_raw_parts_mut(v.as_mut_ptr() as *mut f32, n as usize).to_vec() },
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_005/target.rs:76:9
+   |
+76 |     if (unsafe { H } & 1) == 0 {
+   |         ^^^^^^^^^^^^
+
+error[E0596]: cannot borrow `a.v` as mutable, as `a` is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_005/target.rs:67:14
+   |
+67 |     fill_vec(&mut a.v, 1.0);
+   |              ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+54 |     let mut a = new_vector(16).unwrap();
+   |         +++
+
+error[E0596]: cannot borrow `b.v` as mutable, as `b` is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_005/target.rs:68:14
+   |
+68 |     fill_vec(&mut b.v, 100.0);
+   |              ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+55 |     let mut b = new_vector(16).unwrap();
+   |         +++
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_005/target.rs:14:30
+   |
+14 |             return Some(&mut POOL[OFFSET..]);
+   |                              ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_005/target.rs:14:35
+   |
+14 |             return Some(&mut POOL[OFFSET..]);
+   |                                   ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_005/target.rs:16:12
+   |
+16 |         if OFFSET + n > POOL_SIZE {
+   |            ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_005/target.rs:19:22
+   |
+19 |         let p = &mut POOL[OFFSET..OFFSET + n];
+   |                      ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_005/target.rs:19:27
+   |
+19 |         let p = &mut POOL[OFFSET..OFFSET + n];
+   |                           ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_005/target.rs:19:35
+   |
+19 |         let p = &mut POOL[OFFSET..OFFSET + n];
+   |                                   ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_005/target.rs:20:9
+   |
+20 |         OFFSET += n;
+   |         ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0384]: cannot assign twice to immutable variable `d`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_005/target.rs:49:13
+   |
+47 |         let d = x - y;
+   |             - first assignment to `d`
+48 |         if d < 0.0 {
+49 |             d = -d;
+   |             ^^^^^^ cannot assign twice to immutable variable
+   |
+help: consider making this binding mutable
+   |
+47 |         let mut d = x - y;
+   |             +++
+
+error: aborting due to 13 previous errors
+
+Some errors have detailed explanations: E0133, E0384, E0596.
+For more information about an error, try `rustc --explain E0133`.

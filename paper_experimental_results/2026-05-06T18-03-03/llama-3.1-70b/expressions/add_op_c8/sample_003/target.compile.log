@@ -1,0 +1,29 @@
+warning: type annotations needed
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/add_op_c8/sample_003/target.rs:30:25
+   |
+30 |     if (p0 as *const _).offset(5) != p_end as *const _ {
+   |                         ^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2018!
+   = note: for more information, see issue #46906 <https://github.com/rust-lang/rust/issues/46906>
+   = note: `#[warn(tyvar_behind_raw_pointer)]` (part of `#[warn(rust_2018_compatibility)]`) on by default
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/add_op_c8/sample_003/target.rs:30:8
+   |
+30 |     if (p0 as *const _).offset(5) != p_end as *const _ {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: this operation will panic at runtime
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/add_op_c8/sample_003/target.rs:8:18
+  |
+8 |     let p_end = &a[5];
+  |                  ^^^^ index out of bounds: the length is 5 but the index is 5
+  |
+  = note: `#[deny(unconditional_panic)]` on by default
+
+error: aborting due to 2 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0133`.

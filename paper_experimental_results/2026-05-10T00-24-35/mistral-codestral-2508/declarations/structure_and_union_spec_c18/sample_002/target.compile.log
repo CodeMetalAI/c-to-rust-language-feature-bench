@@ -1,0 +1,180 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_002/target.rs:34:13
+   |
+34 |     let p = unsafe { &mut *(storage.as_mut_ptr() as *mut Packet) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_002/target.rs:8:9
+   |
+ 8 |         unsafe { &(*(0 as *const $type)).$field as *const _ as usize }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+40 |         let off = offset_of!(Packet, data);
+   |                   ------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `offset_of` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_002/target.rs:41:24
+   |
+41 |         let expected = unsafe { storage.as_ptr().add(off) };
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_002/target.rs:42:20
+   |
+42 |         let got1 = unsafe { &p.data as *const _ as *const U8 };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_002/target.rs:43:20
+   |
+43 |         let got2 = unsafe { &(*p).data as *const _ as *const U8 };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_002/target.rs:8:9
+   |
+ 8 |         unsafe { &(*(0 as *const $type)).$field as *const _ as usize }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+76 |     if mem::size_of::<Packet>() < offset_of!(Packet, data) {
+   |                                   ------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `offset_of` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_002/target.rs:85:13
+   |
+85 |     let p = unsafe { &mut *(storage.as_mut_ptr() as *mut Packet) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_002/target.rs:8:9
+   |
+ 8 |         unsafe { &(*(0 as *const $type)).$field as *const _ as usize }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+92 |         let off = offset_of!(Packet, data);
+   |                   ------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `offset_of` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_002/target.rs:93:24
+   |
+93 |         let expected = unsafe { storage.as_ptr().add(off) };
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_002/target.rs:94:20
+   |
+94 |         let got1 = unsafe { &p.data as *const _ as *const U8 };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_002/target.rs:95:20
+   |
+95 |         let got2 = unsafe { &(*p).data as *const _ as *const U8 };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: the size for values of type `[u32]` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_002/target.rs:33:44
+    |
+ 33 |     let mut storage = [0u8; mem::size_of::<Packet>() + N * mem::size_of::<U32>() + 32];
+    |                                            ^^^^^^ doesn't have a size known at compile-time
+    |
+    = help: within `Packet`, the trait `Sized` is not implemented for `[u32]`
+note: required because it appears within the type `Packet`
+   --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_002/target.rs:13:8
+    |
+ 13 | struct Packet {
+    |        ^^^^^^
+note: required by an implicit `Sized` bound in `std::mem::size_of`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:22
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |                      ^ required by the implicit `Sized` requirement on this type parameter in `size_of`
+
+error[E0277]: the size for values of type `[u32]` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_002/target.rs:76:23
+    |
+ 76 |     if mem::size_of::<Packet>() < offset_of!(Packet, data) {
+    |                       ^^^^^^ doesn't have a size known at compile-time
+    |
+    = help: within `Packet`, the trait `Sized` is not implemented for `[u32]`
+note: required because it appears within the type `Packet`
+   --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_002/target.rs:13:8
+    |
+ 13 | struct Packet {
+    |        ^^^^^^
+note: required by an implicit `Sized` bound in `std::mem::size_of`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:22
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |                      ^ required by the implicit `Sized` requirement on this type parameter in `size_of`
+
+error[E0606]: cannot cast `usize` to a pointer that is wide
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_002/target.rs:8:27
+   |
+ 8 |         unsafe { &(*(0 as *const $type)).$field as *const _ as usize }
+   |                      -    ^^^^^^^^^^^^ creating a `*const Packet` requires both an address and a length
+   |                      |
+   |                      consider casting this expression to `*const ()`, then using `core::ptr::from_raw_parts`
+...
+40 |         let off = offset_of!(Packet, data);
+   |                   ------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `offset_of` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0606]: cannot cast `usize` to a pointer that is wide
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_002/target.rs:8:27
+   |
+ 8 |         unsafe { &(*(0 as *const $type)).$field as *const _ as usize }
+   |                      -    ^^^^^^^^^^^^ creating a `*const Packet` requires both an address and a length
+   |                      |
+   |                      consider casting this expression to `*const ()`, then using `core::ptr::from_raw_parts`
+...
+76 |     if mem::size_of::<Packet>() < offset_of!(Packet, data) {
+   |                                   ------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `offset_of` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the size for values of type `[u32]` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_002/target.rs:84:44
+    |
+ 84 |     let mut storage = [0u8; mem::size_of::<Packet>()];
+    |                                            ^^^^^^ doesn't have a size known at compile-time
+    |
+    = help: within `Packet`, the trait `Sized` is not implemented for `[u32]`
+note: required because it appears within the type `Packet`
+   --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_002/target.rs:13:8
+    |
+ 13 | struct Packet {
+    |        ^^^^^^
+note: required by an implicit `Sized` bound in `std::mem::size_of`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:22
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |                      ^ required by the implicit `Sized` requirement on this type parameter in `size_of`
+
+error[E0606]: cannot cast `usize` to a pointer that is wide
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_c18/sample_002/target.rs:8:27
+   |
+ 8 |         unsafe { &(*(0 as *const $type)).$field as *const _ as usize }
+   |                      -    ^^^^^^^^^^^^ creating a `*const Packet` requires both an address and a length
+   |                      |
+   |                      consider casting this expression to `*const ()`, then using `core::ptr::from_raw_parts`
+...
+92 |         let off = offset_of!(Packet, data);
+   |                   ------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `offset_of` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 17 previous errors
+
+Some errors have detailed explanations: E0277, E0606.
+For more information about an error, try `rustc --explain E0277`.

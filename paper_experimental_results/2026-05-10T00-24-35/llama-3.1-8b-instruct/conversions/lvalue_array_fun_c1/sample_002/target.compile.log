@@ -1,0 +1,54 @@
+warning: unused macro definition: `ok_mod`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_002/target.rs:2:14
+  |
+2 | macro_rules! ok_mod {
+  |              ^^^^^^
+  |
+  = note: `#[warn(unused_macros)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_002/target.rs:63:9
+   |
+63 | /         unsafe {
+64 | |             *bp = *bp;
+65 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0423]: expected function, found macro `ok_mod`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_002/target.rs:32:9
+   |
+32 |     if !ok_mod(i) {
+   |         ^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+32 |     if !ok_mod!(i) {
+   |               +
+
+error[E0423]: expected function, found macro `ok_mod`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_002/target.rs:35:9
+   |
+35 |     if !ok_mod(*p) {
+   |         ^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+35 |     if !ok_mod!(*p) {
+   |               +
+
+error[E0423]: expected function, found macro `ok_mod`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_002/target.rs:50:9
+   |
+50 |     if !ok_mod(s3.a) {
+   |         ^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+50 |     if !ok_mod!(s3.a) {
+   |               +
+
+error: aborting due to 4 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0423`.

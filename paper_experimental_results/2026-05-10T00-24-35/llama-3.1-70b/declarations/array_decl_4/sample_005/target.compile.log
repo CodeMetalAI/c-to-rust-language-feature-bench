@@ -1,0 +1,58 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_005/target.rs:30:29
+   |
+30 |             backing[i][j] = (i + 1) * 100 + (j + 1);
+   |             -------------   ^^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+   |             |
+   |             expected due to the type of this binding
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_005/target.rs:48:24
+   |
+48 |             XY[i][j] = (i + 1) * 10 + (j + 1);
+   |             --------   ^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+   |             |
+   |             expected due to the type of this binding
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_005/target.rs:61:39
+   |
+61 |             backing[i][j] = C[i][j] + D[(i + j) % m];
+   |                                       ^^^^^^^^^^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_005/target.rs:61:37
+   |
+61 |             backing[i][j] = C[i][j] + D[(i + j) % m];
+   |                                     ^ no implementation for `i32 + usize`
+   |
+   = help: the trait `Add<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&i32` implements `Add<i32>`
+             `&i32` implements `Add`
+             `i32` implements `Add<&i32>`
+             `i32` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_005/target.rs:73:44
+   |
+73 |             expect[i][j] = backing[i][j] - d;
+   |                                            ^ expected `i32`, found `usize`
+
+error[E0277]: cannot subtract `usize` from `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_005/target.rs:73:42
+   |
+73 |             expect[i][j] = backing[i][j] - d;
+   |                                          ^ no implementation for `i32 - usize`
+   |
+   = help: the trait `Sub<usize>` is not implemented for `i32`
+   = help: the following other types implement trait `Sub<Rhs>`:
+             `&i32` implements `Sub<i32>`
+             `&i32` implements `Sub`
+             `i32` implements `Sub<&i32>`
+             `i32` implements `Sub`
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

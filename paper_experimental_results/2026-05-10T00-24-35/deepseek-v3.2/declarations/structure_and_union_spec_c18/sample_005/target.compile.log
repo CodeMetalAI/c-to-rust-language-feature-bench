@@ -1,0 +1,87 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:14:5
+   |
+14 |     unsafe { mem::offset_of!(Packet, data) }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:40:13
+   |
+40 |     let p = unsafe { &mut *(storage.raw.as_mut_ptr() as *mut _) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:47:24
+   |
+47 |         let expected = unsafe { storage.raw.as_ptr().add(off) };
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:63:13
+   |
+63 | /             unsafe {
+64 | |                 *p.data.as_mut_ptr().add(i as usize) = v;
+65 | |             }
+   | |_____________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:74:13
+   |
+74 | /             unsafe {
+75 | |                 p.sum += *p.data.as_ptr().add(i as usize);
+76 | |             }
+   | |_____________^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:103:13
+    |
+103 |     let p = unsafe { &mut *(storage.raw.as_mut_ptr() as *mut _) };
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:111:24
+    |
+111 |         let expected = unsafe { storage.raw.as_ptr().add(off) };
+    |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0282]: type annotations needed for `&mut _`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:40:9
+   |
+40 |     let p = unsafe { &mut *(storage.raw.as_mut_ptr() as *mut _) };
+   |         ^
+41 |
+42 |     p.tag = 0xA1B2C3D4;
+   |     ----- type must be known at this point
+   |
+help: consider giving `p` an explicit type, where the placeholders `_` are specified
+   |
+40 |     let p: &mut _ = unsafe { &mut *(storage.raw.as_mut_ptr() as *mut _) };
+   |          ++++++++
+
+error[E0282]: type annotations needed for `&mut _`
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:103:9
+    |
+103 |     let p = unsafe { &mut *(storage.raw.as_mut_ptr() as *mut _) };
+    |         ^
+104 |
+105 |     p.tag = 0;
+    |     ----- type must be known at this point
+    |
+help: consider giving `p` an explicit type, where the placeholders `_` are specified
+    |
+103 |     let p: &mut _ = unsafe { &mut *(storage.raw.as_mut_ptr() as *mut _) };
+    |          ++++++++
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_005/target.rs:14:5
+   |
+14 |     unsafe { mem::offset_of!(Packet, data) }
+   |     ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 9 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0282`.

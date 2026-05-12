@@ -1,0 +1,237 @@
+error[E0599]: no method named `offset` found for mutable reference `&mut i32` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:6:15
+  |
+6 |         p = p.offset(1);
+  |               ^^^^^^ method not found in `&mut i32`
+
+error[E0599]: no method named `offset` found for mutable reference `&mut i32` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:7:15
+  |
+7 |         q = q.offset(1);
+  |               ^^^^^^ method not found in `&mut i32`
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:37:9
+   |
+37 |         f(n, p, q);
+   |         ^
+   |
+note: expected `&mut i32`, found `*mut usize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:37:14
+   |
+37 |         f(n, p, q);
+   |              ^
+   = note: expected mutable reference `&mut i32`
+                    found raw pointer `*mut usize`
+note: expected `&mut i32`, found `*mut usize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:37:17
+   |
+37 |         f(n, p, q);
+   |                 ^
+   = note: expected mutable reference `&mut i32`
+                    found raw pointer `*mut usize`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:3:4
+   |
+ 3 | fn f(n: i32, p: &mut i32, q: &mut i32) {
+   |    ^         -----------  -----------
+
+error[E0277]: the type `[usize]` cannot be indexed by `std::ops::Range<i32>`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:39:32
+   |
+39 |         if!check_range_eq(&buf[0..n], &snapshot[off as usize..(off as usize + n)], n) {
+   |                                ^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[usize]>` is not implemented for `std::ops::Range<i32>`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `std::ops::Range<usize>` implements `SliceIndex<ByteStr>`
+             `std::ops::Range<usize>` implements `SliceIndex<[T]>`
+             `std::ops::Range<usize>` implements `SliceIndex<str>`
+   = note: required for `[usize]` to implement `Index<std::ops::Range<i32>>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[usize; 20]` to implement `Index<std::ops::Range<i32>>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:39:79
+   |
+39 |         if!check_range_eq(&buf[0..n], &snapshot[off as usize..(off as usize + n)], n) {
+   |                                                                               ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:39:77
+   |
+39 |         if!check_range_eq(&buf[0..n], &snapshot[off as usize..(off as usize + n)], n) {
+   |                                                                             ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:39:12
+   |
+39 |         if!check_range_eq(&buf[0..n], &snapshot[off as usize..(off as usize + n)], n) {
+   |            ^^^^^^^^^^^^^^             -------------------------------------------  - expected `usize`, found `i32`
+   |                                       |
+   |                                       expected `&[i32]`, found `&[usize]`
+   |
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:12:4
+   |
+12 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^            ---------  --------
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+39 |         if!check_range_eq(&buf[0..n], &snapshot[off as usize..(off as usize + n)], n.try_into().unwrap()) {
+   |                                                                                     ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:43:62
+   |
+43 |         if!check_range_eq(&buf[off as usize..(off as usize + n)], &snapshot[off as usize..(off as usize + n)], n) {
+   |                                                              ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:43:60
+   |
+43 |         if!check_range_eq(&buf[off as usize..(off as usize + n)], &snapshot[off as usize..(off as usize + n)], n) {
+   |                                                            ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:43:107
+   |
+43 |         if!check_range_eq(&buf[off as usize..(off as usize + n)], &snapshot[off as usize..(off as usize + n)], n) {
+   |                                                                                                           ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:43:105
+   |
+43 |         if!check_range_eq(&buf[off as usize..(off as usize + n)], &snapshot[off as usize..(off as usize + n)], n) {
+   |                                                                                                         ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:43:12
+   |
+43 |         if!check_range_eq(&buf[off as usize..(off as usize + n)], &snapshot[off as usize..(off as usize + n)], n) {
+   |            ^^^^^^^^^^^^^^ --------------------------------------  -------------------------------------------  - expected `usize`, found `i32`
+   |                           |                                       |
+   |                           |                                       expected `&[i32]`, found `&[usize]`
+   |                           expected `&[i32]`, found `&[usize]`
+   |
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:12:4
+   |
+12 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^ ---------  ---------  --------
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+43 |         if!check_range_eq(&buf[off as usize..(off as usize + n)], &snapshot[off as usize..(off as usize + n)], n.try_into().unwrap()) {
+   |                                                                                                                 ++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:63:9
+   |
+63 |         f(n, p, q);
+   |         ^
+   |
+note: expected `&mut i32`, found `*mut usize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:63:14
+   |
+63 |         f(n, p, q);
+   |              ^
+   = note: expected mutable reference `&mut i32`
+                    found raw pointer `*mut usize`
+note: expected `&mut i32`, found `*mut usize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:63:17
+   |
+63 |         f(n, p, q);
+   |                 ^
+   = note: expected mutable reference `&mut i32`
+                    found raw pointer `*mut usize`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:3:4
+   |
+ 3 | fn f(n: i32, p: &mut i32, q: &mut i32) {
+   |    ^         -----------  -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:65:62
+   |
+65 |         if!check_range_eq(&buf[off as usize..(off as usize + n)], &buf[0..n], n) {
+   |                                                              ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:65:60
+   |
+65 |         if!check_range_eq(&buf[off as usize..(off as usize + n)], &buf[0..n], n) {
+   |                                                            ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0277]: the type `[usize]` cannot be indexed by `std::ops::Range<i32>`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:65:72
+   |
+65 |         if!check_range_eq(&buf[off as usize..(off as usize + n)], &buf[0..n], n) {
+   |                                                                        ^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[usize]>` is not implemented for `std::ops::Range<i32>`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `std::ops::Range<usize>` implements `SliceIndex<ByteStr>`
+             `std::ops::Range<usize>` implements `SliceIndex<[T]>`
+             `std::ops::Range<usize>` implements `SliceIndex<str>`
+   = note: required for `[usize]` to implement `Index<std::ops::Range<i32>>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[usize; 20]` to implement `Index<std::ops::Range<i32>>`
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:65:12
+   |
+65 |         if!check_range_eq(&buf[off as usize..(off as usize + n)], &buf[0..n], n) {
+   |            ^^^^^^^^^^^^^^ --------------------------------------              - expected `usize`, found `i32`
+   |                           |
+   |                           expected `&[i32]`, found `&[usize]`
+   |
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:12:4
+   |
+12 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^ ---------             --------
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+65 |         if!check_range_eq(&buf[off as usize..(off as usize + n)], &buf[0..n], n.try_into().unwrap()) {
+   |                                                                                ++++++++++++++++++++
+
+error: aborting due to 17 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0599.
+For more information about an error, try `rustc --explain E0277`.

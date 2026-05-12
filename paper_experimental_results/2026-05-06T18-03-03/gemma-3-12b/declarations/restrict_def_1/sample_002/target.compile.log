@@ -1,0 +1,71 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_1/sample_002/target.rs:47:5
+   |
+47 | /     unsafe {
+48 | |         let which_a = 0;
+49 | |         let which_b = 1;
+...  |
+85 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0784]: union expressions should have exactly one field
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_1/sample_002/target.rs:6:27
+  |
+6 | static mut BANK_A: Bank = Bank {
+  |                           ^^^^
+
+error[E0784]: union expressions should have exactly one field
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_1/sample_002/target.rs:11:27
+   |
+11 | static mut BANK_B: Bank = Bank {
+   |                           ^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_1/sample_002/target.rs:63:20
+   |
+46 | fn main() {
+   |          - expected `()` because of default return type
+...
+63 |             return 1;
+   |                    ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_1/sample_002/target.rs:87:5
+   |
+46 | fn main() {
+   |          - expected `()` because of default return type
+...
+87 |     0
+   |     ^ expected `()`, found integer
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_1/sample_002/target.rs:20:10
+   |
+20 |         &u.right[0]
+   |          ^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_1/sample_002/target.rs:22:10
+   |
+22 |         &u.left[0]
+   |          ^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: lifetime may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_1/sample_002/target.rs:20:9
+   |
+18 | fn choose_view(u: &Bank, which: i32) -> &'static i32 {
+   |                   - let's call the lifetime of this reference `'1`
+19 |     if which == 1 {
+20 |         &u.right[0]
+   |         ^^^^^^^^^^^ returning this value requires that `'1` must outlive `'static`
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0133, E0308, E0784.
+For more information about an error, try `rustc --explain E0133`.

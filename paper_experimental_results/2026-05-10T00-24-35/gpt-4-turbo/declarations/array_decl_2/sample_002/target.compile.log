@@ -1,0 +1,91 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_2/sample_002/target.rs:27:5
+   |
+27 | /     unsafe {
+28 | |         if sum_ptr(&BACKING, 3) != (10 + 20 + 30) {
+29 | |             std::process::exit(2);
+...  |
+39 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_2/sample_002/target.rs:46:8
+   |
+46 |     if unsafe { *hp } != 1 {
+   |        ^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_2/sample_002/target.rs:50:14
+   |
+50 |     let ha = unsafe { &*(y.as_ptr() as *const HoldA) };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_2/sample_002/target.rs:52:5
+   |
+52 | /     unsafe {
+53 | |         let offset_ha_a = &(*ha).a as *const _ as usize - ha as *const _ as usize;
+54 | |         let expected_offset = std::mem::size_of::<i32>(); // size of `tag` in `HoldA`
+55 | |         if offset_ha_a != expected_offset {
+...  |
+58 | |     }
+   | |_____^
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_2/sample_002/target.rs:52:5
+   |
+52 |     unsafe {
+   |     ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_2/sample_002/target.rs:21:9
+   |
+21 |     let mut y: [i32; 7] = [1, 2, 3, 4, 5, 6, 7];
+   |         ----^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `tag` is never read
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_2/sample_002/target.rs:70:5
+   |
+69 | struct HoldA<'a> {
+   |        ----- field in this struct
+70 |     tag: i32,
+   |     ^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_2/sample_002/target.rs:28:20
+   |
+28 |         if sum_ptr(&BACKING, 3) != (10 + 20 + 30) {
+   |                    ^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw const` instead to create a raw pointer
+   |
+28 |         if sum_ptr(&raw const BACKING, 3) != (10 + 20 + 30) {
+   |                     +++++++++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/array_decl_2/sample_002/target.rs:32:35
+   |
+32 |         if mutate_through_pointer(&mut BACKING) != (10 + 25 + 30) {
+   |                                   ^^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+32 |         if mutate_through_pointer(&raw mut BACKING) != (10 + 25 + 30) {
+   |                                    +++
+
+error: aborting due to 4 previous errors; 5 warnings emitted

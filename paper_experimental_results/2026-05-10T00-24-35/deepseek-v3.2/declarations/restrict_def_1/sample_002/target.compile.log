@@ -1,0 +1,48 @@
+error: expected expression, found `]`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_1/sample_002/target.rs:32:23
+   |
+32 |     fn sum(p: &[i32; -]) -> i32 {
+   |                       ^ expected expression
+
+error[E0425]: cannot find value `p` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_1/sample_002/target.rs:35:18
+   |
+10 |     static mut C: [i32; 8] = [0; 8];
+   |     -------------------------------- similarly named static `C` defined here
+...
+35 |             s += p[i];
+   |                  ^ help: a static with a similar name exists: `C`
+
+error[E0425]: cannot find value `的五` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_1/sample_002/target.rs:41:18
+   |
+41 |     let which_b =的五;
+   |                  ^^^^ not found in this scope
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_1/sample_002/target.rs:14:13
+   |
+14 |             unsafe { &mut u.right }
+   |             ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_1/sample_002/target.rs:16:13
+   |
+16 |             unsafe { &mut u.left }
+   |             ^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_1/sample_002/target.rs:43:5
+   |
+43 | /     unsafe {
+44 | |         let a = choose_view(&mut BANK_A, which_a);
+45 | |         let b = choose_view(&mut BANK_B, which_b);
+...  |
+78 | |     }
+   | |_____^
+
+error: aborting due to 6 previous errors
+
+For more information about this error, try `rustc --explain E0425`.

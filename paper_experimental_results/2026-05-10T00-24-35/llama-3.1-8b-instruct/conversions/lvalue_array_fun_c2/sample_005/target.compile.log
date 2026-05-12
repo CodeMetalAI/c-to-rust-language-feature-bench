@@ -1,0 +1,59 @@
+error: expected expression, found `+`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2/sample_005/target.rs:37:18
+   |
+37 |     if type_id(&(+cx)) != 1 {
+   |                  ^ expected expression
+
+error: expected expression, found `+`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2/sample_005/target.rs:42:18
+   |
+42 |     if type_id(&(+ax)) != 1 {
+   |                  ^ expected expression
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2/sample_005/target.rs:12:38
+    |
+ 12 |     if std::mem::size_of::<i32>() != std::mem::size_of(&x) {
+    |                                      ^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&i32`
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+help: remove the extra argument
+    |
+ 12 -     if std::mem::size_of::<i32>() != std::mem::size_of(&x) {
+ 12 +     if std::mem::size_of::<i32>() != std::mem::size_of() {
+    |
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2/sample_005/target.rs:17:39
+    |
+ 17 |     if std::mem::align_of::<i32>() != std::mem::align_of(&x) {
+    |                                       ^^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&i32`
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+help: remove the extra argument
+    |
+ 17 -     if std::mem::align_of::<i32>() != std::mem::align_of(&x) {
+ 17 +     if std::mem::align_of::<i32>() != std::mem::align_of() {
+    |
+
+error[E0599]: no function or associated item named `any_cast` found for type parameter `T` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c2/sample_005/target.rs:76:14
+   |
+72 | fn type_id<T>(_: &T) -> i32
+   |            - function or associated item `any_cast` not found for this type parameter
+...
+76 |     match T::any_cast::<i32>() {
+   |              ^^^^^^^^ function or associated item not found in `T`
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0061, E0599.
+For more information about an error, try `rustc --explain E0061`.

@@ -1,0 +1,50 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/combined_programs/combined_features/sample_002/target.rs:31:5
+   |
+31 | /     unsafe {
+32 | |         (*p).x += 100;
+33 | |         (*p).x
+34 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/combined_programs/combined_features/sample_002/target.rs:58:21
+   |
+58 |             let b = unsafe { *(x.as_ptr().offset(i as isize * 5) as *const i32).offset(j as isize) };
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/combined_programs/combined_features/sample_002/target.rs:136:12
+    |
+136 |         if unsafe { (*r).n } != x[2][0] {
+    |            ^^^^^^^^^^^^^^^^^
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/combined_programs/combined_features/sample_002/target.rs:87:9
+   |
+87 |     let mut b: S1;
+   |         ----^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/combined_programs/combined_features/sample_002/target.rs:88:9
+   |
+88 |     let mut tp: Tp1;
+   |         ----^^
+   |         |
+   |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+   --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/combined_programs/combined_features/sample_002/target.rs:133:13
+    |
+133 |         let mut r: Tp2;
+    |             ----^
+    |             |
+    |             help: remove this `mut`
+
+error: aborting due to 3 previous errors; 3 warnings emitted

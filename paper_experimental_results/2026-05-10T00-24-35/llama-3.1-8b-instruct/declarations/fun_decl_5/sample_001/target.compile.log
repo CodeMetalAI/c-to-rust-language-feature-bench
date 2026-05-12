@@ -1,0 +1,71 @@
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_5/sample_001/target.rs:1:43
+  |
+1 | fn maximum(n: usize, m: usize, a: &[[f64; m]; n]) -> f64 {
+  |                      -                    ^
+  |                      |
+  |                      this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_5/sample_001/target.rs:1:47
+  |
+1 | fn maximum(n: usize, m: usize, a: &[[f64; m]; n]) -> f64 {
+  |            - this would need to be a `const`  ^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_5/sample_001/target.rs:25:26
+   |
+25 |     let mut mat = [[0.0; m]; n];
+   |                          ^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+23 -     let m = 6;
+23 +     const m: /* Type */ = 6;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_5/sample_001/target.rs:25:30
+   |
+25 |     let mut mat = [[0.0; m]; n];
+   |                              ^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+22 -     let n = 4;
+22 +     const n: /* Type */ = 4;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_5/sample_001/target.rs:69:56
+   |
+69 | fn call_as_6(pf: fn(n: usize, m: usize, a: &[[f64; 6]; n]) -> f64, n: usize, m: usize, a: &[[f64; 6]; n]) -> f64 {
+   |                                                        ^           - this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_5/sample_001/target.rs:69:103
+   |
+69 | fn call_as_6(pf: fn(n: usize, m: usize, a: &[[f64; 6]; n]) -> f64, n: usize, m: usize, a: &[[f64; 6]; n]) -> f64 {
+   |                                                                    - this would need to be a `const`  ^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_5/sample_001/target.rs:70:24
+   |
+69 | fn call_as_6(pf: fn(n: usize, m: usize, a: &[[f64; 6]; n]) -> f64, n: usize, m: usize, a: &[[f64; 6]; n]) -> f64 {
+   |                                                                    - this would need to be a `const`
+70 |     let p: &[[f64; 6]; n] = a;
+   |                        ^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_5/sample_001/target.rs:34:16
+   |
+21 | fn main() {
+   |          - expected `()` because of default return type
+...
+34 |         return 1;
+   |                ^ expected `()`, found integer
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0308, E0435.
+For more information about an error, try `rustc --explain E0308`.

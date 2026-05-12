@@ -1,0 +1,113 @@
+error[E0277]: the `?` operator can only be applied to values that implement `Try`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3/sample_001/target.rs:3:19
+  |
+3 |     if a.len() != TYPE_ID(&a)? {
+  |                   ^^^^^^^^^^^^ the `?` operator cannot be applied to type `u32`
+  |
+  = help: the trait `Try` is not implemented for `u32`
+
+error[E0277]: the `?` operator can only be applied to values that implement `Try`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3/sample_001/target.rs:9:8
+  |
+9 |     if TYPE_ID(&a)? != 2 {
+  |        ^^^^^^^^^^^^ the `?` operator cannot be applied to type `u32`
+  |
+  = help: the trait `Try` is not implemented for `u32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3/sample_001/target.rs:49:16
+   |
+49 |     if TYPE_ID(s.as_ptr()) != 3 {
+   |        ------- ^^^^^^^^^^ expected `&_`, found `*const u8`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+            found raw pointer `*const u8`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3/sample_001/target.rs:82:4
+   |
+82 | fn TYPE_ID<T>(x: &T) -> u32 {
+   |    ^^^^^^^    -----
+help: try removing the method call
+   |
+49 -     if TYPE_ID(s.as_ptr()) != 3 {
+49 +     if TYPE_ID(s) != 3 {
+   |
+
+error[E0608]: cannot index into a value of type `*const u8`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3/sample_001/target.rs:55:18
+   |
+55 |     if s.as_ptr()[0] as u8 != b'a' {
+   |                  ^^^
+   |
+help: consider using `wrapping_add` or `add` for indexing into raw pointer
+   |
+55 -     if s.as_ptr()[0] as u8 != b'a' {
+55 +     if s.as_ptr().wrapping_add(0) as u8 != b'a' {
+   |
+
+error[E0608]: cannot index into a value of type `*const u8`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3/sample_001/target.rs:61:18
+   |
+61 |     if s.as_ptr()[1] as u8 != b'b' {
+   |                  ^^^
+   |
+help: consider using `wrapping_add` or `add` for indexing into raw pointer
+   |
+61 -     if s.as_ptr()[1] as u8 != b'b' {
+61 +     if s.as_ptr().wrapping_add(1) as u8 != b'b' {
+   |
+
+error[E0608]: cannot index into a value of type `*const u8`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3/sample_001/target.rs:67:18
+   |
+67 |     if s.as_ptr()[2] as u8 != b'c' {
+   |                  ^^^
+   |
+help: consider using `wrapping_add` or `add` for indexing into raw pointer
+   |
+67 -     if s.as_ptr()[2] as u8 != b'c' {
+67 +     if s.as_ptr().wrapping_add(2) as u8 != b'c' {
+   |
+
+error[E0608]: cannot index into a value of type `*const u8`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3/sample_001/target.rs:73:18
+   |
+73 |     if s.as_ptr()[3] as u8 != b'\0' {
+   |                  ^^^
+   |
+help: consider using `wrapping_add` or `add` for indexing into raw pointer
+   |
+73 -     if s.as_ptr()[3] as u8 != b'\0' {
+73 +     if s.as_ptr().wrapping_add(3) as u8 != b'\0' {
+   |
+
+error[E0599]: no method named `is_array` found for reference `&T` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3/sample_001/target.rs:84:16
+   |
+84 |         _ if x.is_array() => 2,
+   |                ^^^^^^^^ method not found in `&T`
+
+error[E0599]: no method named `is_ptr` found for reference `&T` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3/sample_001/target.rs:85:16
+   |
+85 |         _ if x.is_ptr() => 1,
+   |                ^^^^^^ method not found in `&T`
+
+error[E0599]: no method named `is_string` found for reference `&T` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3/sample_001/target.rs:86:16
+   |
+86 |         _ if x.is_string() => 3,
+   |                ^^^^^^^^^ method not found in `&T`
+
+error[E0599]: no method named `is_bytes` found for reference `&T` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3/sample_001/target.rs:87:16
+   |
+87 |         _ if x.is_bytes() => 4,
+   |                ^^^^^^^^ method not found in `&T`
+
+error: aborting due to 11 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0599, E0608.
+For more information about an error, try `rustc --explain E0277`.

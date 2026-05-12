@@ -1,0 +1,64 @@
+error[E0428]: the name `test_incdec` is defined multiple times
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:49:1
+   |
+ 5 | / fn test_incdec<T: std::sync::atomic::AtomicUsize>(value: T, preop: bool, postop: bool,
+ 6 | |                                                  pre_p: bool, change: i32) {
+ 7 | |     let a = T::new(value.load(Ordering::Relaxed));
+ 8 | |     let expected = if preop && postop {
+...  |
+23 | | }
+   | |_- previous definition of the value `test_incdec` here
+...
+49 |   fn test_incdec() {
+   |   ^^^^^^^^^^^^^^^^ `test_incdec` redefined here
+   |
+   = note: `test_incdec` must be defined only once in the value namespace of this module
+
+error[E0432]: unresolved imports `std::sync::atomic::AtomicChar`, `std::sync::atomic::AtomicF32`, `std::sync::atomic::AtomicF64`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:1:37
+  |
+1 | use std::sync::atomic::{AtomicBool, AtomicChar, AtomicI8, AtomicU8, AtomicI16, AtomicU16,
+  |                                     ^^^^^^^^^^ no `AtomicChar` in `sync::atomic`
+2 |                         AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicF32, AtomicF64,
+  |                                                                     ^^^^^^^^^  ^^^^^^^^^ no `AtomicF64` in `sync::atomic`
+  |                                                                     |
+  |                                                                     no `AtomicF32` in `sync::atomic`
+  |
+help: a similar name exists in the module
+  |
+1 - use std::sync::atomic::{AtomicBool, AtomicChar, AtomicI8, AtomicU8, AtomicI16, AtomicU16,
+1 + use std::sync::atomic::{AtomicBool, AtomicPtr, AtomicI8, AtomicU8, AtomicI16, AtomicU16,
+  |
+help: a similar name exists in the module
+  |
+2 -                         AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicF32, AtomicF64,
+2 +                         AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicI32, AtomicF64,
+  |
+help: a similar name exists in the module
+  |
+2 -                         AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicF32, AtomicF64,
+2 +                         AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicF32, AtomicI64,
+  |
+
+error[E0404]: expected trait, found struct `std::sync::atomic::AtomicUsize`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:5:19
+  |
+5 | fn test_incdec<T: std::sync::atomic::AtomicUsize>(value: T, preop: bool, postop: bool,
+  |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a trait
+
+error[E0404]: expected trait, found struct `std::sync::atomic::AtomicUsize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:25:25
+   |
+25 | fn test_incdec_arith<T: std::sync::atomic::AtomicUsize>(value: T, preop: bool, postop: bool,
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a trait
+
+error[E0404]: expected trait, found struct `std::sync::atomic::AtomicUsize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:42:29
+   |
+42 | fn test_all_incdec_arith<T: std::sync::atomic::AtomicUsize>(value: T) {
+   |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a trait
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0404, E0428, E0432.
+For more information about an error, try `rustc --explain E0404`.

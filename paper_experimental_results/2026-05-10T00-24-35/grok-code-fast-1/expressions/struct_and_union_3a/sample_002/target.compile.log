@@ -1,0 +1,73 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/struct_and_union_3a/sample_002/target.rs:26:20
+   |
+26 |     let mut u: U = unsafe { std::mem::zeroed() };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/struct_and_union_3a/sample_002/target.rs:28:5
+   |
+28 |     unsafe { u.nf.type_ = 1; }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/struct_and_union_3a/sample_002/target.rs:30:5
+   |
+30 |     unsafe { u.nf.doublenode = 3.14; }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/struct_and_union_3a/sample_002/target.rs:32:8
+   |
+32 |     if unsafe { u.n.alltypes } != 1 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/struct_and_union_3a/sample_002/target.rs:35:8
+   |
+35 |     if unsafe { u.ni.type_ } != 1 {
+   |        ^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/struct_and_union_3a/sample_002/target.rs:38:8
+   |
+38 |     if unsafe { u.nf.type_ } != 1 {
+   |        ^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/struct_and_union_3a/sample_002/target.rs:41:8
+   |
+41 |     if unsafe { u.nf.doublenode } != 3.14 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/struct_and_union_3a/sample_002/target.rs:3:5
+  |
+3 |     n: Alltypes,
+  |     ^^^^^^^^^^^
+  |
+  = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+  |
+3 |     n: std::mem::ManuallyDrop<Alltypes>,
+  |        +++++++++++++++++++++++        +
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/struct_and_union_3a/sample_002/target.rs:28:5
+   |
+28 |     unsafe { u.nf.type_ = 1; }
+   |     ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/expressions/struct_and_union_3a/sample_002/target.rs:30:5
+   |
+30 |     unsafe { u.nf.doublenode = 3.14; }
+   |     ^^^^^^ unnecessary `unsafe` block
+
+error: aborting due to 8 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0740`.

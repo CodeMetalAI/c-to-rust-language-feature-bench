@@ -1,0 +1,34 @@
+warning: unused import: `offset_of`
+ --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_2/sample_001/target.rs:2:25
+  |
+2 | use std::mem::{size_of, offset_of};
+  |                         ^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_2/sample_001/target.rs:33:18
+   |
+33 |     let s1_ptr = unsafe { alloc(layout1) as *mut S };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_2/sample_001/target.rs:34:18
+   |
+34 |     let s2_ptr = unsafe { alloc(layout2) as *mut S };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/structure_and_union_spec_2/sample_001/target.rs:40:5
+   |
+40 | /     unsafe {
+41 | |         let d1_ptr = (s1_ptr as *mut u8).add(d_offset) as *mut f64;
+42 | |         let d2_ptr = (s2_ptr as *mut u8).add(d_offset) as *mut f64;
+...  |
+54 | |         dealloc(s2_ptr as *mut u8, layout2);
+55 | |     }
+   | |_____^
+
+error: aborting due to 3 previous errors; 1 warning emitted

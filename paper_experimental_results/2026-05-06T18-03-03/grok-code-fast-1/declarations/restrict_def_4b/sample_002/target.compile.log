@@ -1,0 +1,59 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_4b/sample_002/target.rs:6:5
+   |
+ 6 | /     unsafe {
+ 7 | |         if n == 0 {
+ 8 | |             return POOL.as_mut_ptr().add(OFF);
+...  |
+17 | |         p
+18 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_4b/sample_002/target.rs:36:9
+   |
+36 | /         unsafe {
+37 | |             *p.add(i as usize) = base + (i as f32);
+38 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_4b/sample_002/target.rs:47:9
+   |
+47 | /         unsafe {
+48 | |             s += *p.add(i as usize);
+49 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_4b/sample_002/target.rs:89:5
+   |
+89 | /     unsafe {
+90 | |         if (H & 1u64) == 0u64 {
+91 | |             std::process::exit(6);
+92 | |         }
+93 | |     }
+   | |_____^
+
+warning: creating a mutable reference to mutable static
+ --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_4b/sample_002/target.rs:8:20
+  |
+8 |             return POOL.as_mut_ptr().add(OFF);
+  |                    ^^^^^^^^^^^^^^^^^ mutable reference to mutable static
+  |
+  = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+  = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+  = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_4b/sample_002/target.rs:13:17
+   |
+13 |         let p = POOL.as_mut_ptr().add(OFF);
+   |                 ^^^^^^^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+
+error: aborting due to 4 previous errors; 2 warnings emitted

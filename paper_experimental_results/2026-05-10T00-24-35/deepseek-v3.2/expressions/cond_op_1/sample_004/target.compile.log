@@ -1,0 +1,124 @@
+error: unknown start of token: \u{ff1b}
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_004/target.rs:46:9
+   |
+46 |     返回 0；
+   |           ^^
+   |
+help: Unicode character '；' (Fullwidth Semicolon) looks like ';' (Semicolon), but it is not
+   |
+46 -     返回 0；
+46 +     返回 0;
+   |
+
+error: expected type, found `0`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_004/target.rs:18:36
+   |
+18 |     let mut v_ip: AtomicUsize::new(0);
+   |                 -                  ^ expected type
+   |                 |
+   |                 while parsing the type for the binding
+   |                 help: use `=` if you meant to assign
+
+error: expected expression, found keyword `const`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_004/target.rs:37:19
+   |
+37 |     f::<4>(&ip作为 *const usize作为 *const());
+   |                     ^^^^^ expected expression
+
+error: expected expression, found keyword `const`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_004/target.rs:38:21
+   |
+38 |     f::<4>(&c_ip作为 *const usize作为 *const());
+   |                       ^^^^^ expected expression
+
+error: expected expression, found keyword `const`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_004/target.rs:40:21
+   |
+40 |     f::<0>(&v_ip作为 *const AtomicUsize作为 *const());
+   |                       ^^^^^ expected expression
+
+error: expected expression, found keyword `const`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_004/target.rs:41:19
+   |
+41 |     f::<0>(&ip作为 *const usize作为 *const());
+   |                     ^^^^^ expected expression
+
+error: expected expression, found keyword `const`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_004/target.rs:43:21
+   |
+43 |     f::<0>(&c_ip作为 *const usize作为 *const());
+   |                       ^^^^^ expected expression
+
+error: expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `0`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_004/target.rs:46:8
+   |
+46 |     返回 0；
+   |          ^ expected one of 8 possible tokens
+
+error[E0433]: failed to resolve: use of undeclared type `AtomicUsize`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_004/target.rs:18:19
+   |
+18 |     let mut v_ip: AtomicUsize::new(0);
+   |                   ^^^^^^^^^^^ use of undeclared type `AtomicUsize`
+   |
+help: consider importing this struct
+   |
+ 1 + use std::sync::atomic::AtomicUsize;
+   |
+
+error[E0412]: cannot find type `AtomicUsize` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_004/target.rs:25:28
+   |
+25 |     f::<2>(&v_ip as *const AtomicUsize as *const());
+   |                            ^^^^^^^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+ 1 + use std::sync::atomic::AtomicUsize;
+   |
+
+error[E0412]: cannot find type `AtomicUsize` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_004/target.rs:29:28
+   |
+29 |     f::<3>(&v_ip as *const AtomicUsize as *const());
+   |                            ^^^^^^^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+ 1 + use std::sync::atomic::AtomicUsize;
+   |
+
+error[E0412]: cannot find type `AtomicUsize` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_004/target.rs:31:28
+   |
+31 |     f::<0>(&v_ip as *const AtomicUsize as *const());
+   |                            ^^^^^^^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+ 1 + use std::sync::atomic::AtomicUsize;
+   |
+
+error[E0412]: cannot find type `AtomicUsize` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_004/target.rs:34:28
+   |
+34 |     f::<1>(&v_ip as *const AtomicUsize as *const());
+   |                            ^^^^^^^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+ 1 + use std::sync::atomic::AtomicUsize;
+   |
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/cond_op_1/sample_004/target.rs:12:5
+   |
+12 |     F_TABLE[N].store(ptr, std::sync::atomic::Ordering::Relaxed);
+   |     ^^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 14 previous errors
+
+Some errors have detailed explanations: E0133, E0412, E0433.
+For more information about an error, try `rustc --explain E0133`.

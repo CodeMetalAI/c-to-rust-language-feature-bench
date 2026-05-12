@@ -1,0 +1,50 @@
+const TYPE_ID_A: i32 = 1;
+const TYPE_ID_AMP_A: i32 = 2;
+const TYPE_ID_ABC: i32 = 3;
+
+fn main() {
+    let a: [i32; 3] = [10, 20, 30];
+
+    if TYPE_ID_A != 1 {
+        std::process::exit(1);
+    }
+    if TYPE_ID_AMP_A != 2 {
+        std::process::exit(2);
+    }
+
+    if a[0] != 10 {
+        std::process::exit(3);
+    }
+    if a[1] != 20 {
+        std::process::exit(4);
+    }
+    if a[2] != 30 {
+        std::process::exit(5);
+    }
+
+    if std::mem::size_of::<[i32; 3]>() != 3 * std::mem::size_of::<i32>() {
+        std::process::exit(6);
+    }
+    if std::mem::align_of::<[i32; 3]>() != std::mem::align_of::<i32>() {
+        std::process::exit(7);
+    }
+
+    let s: [u8; 4] = *b"abc\0";
+    if TYPE_ID_ABC != 3 {
+        std::process::exit(8);
+    }
+    if s[0] != b'a' {
+        std::process::exit(9);
+    }
+    if s[1] != b'b' {
+        std::process::exit(10);
+    }
+    if s[2] != b'c' {
+        std::process::exit(11);
+    }
+    if s[3] != b'\0' {
+        std::process::exit(12);
+    }
+
+    std::process::exit(0);
+}

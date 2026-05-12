@@ -1,0 +1,75 @@
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:5:50
+  |
+5 | fn check_a(nn: usize, mm: usize, a: &[[[i32; 6]; mm]], p: &mut [[[i32; 6]; mm]]) -> i32 {
+  |                       --                         ^^
+  |                       |
+  |                       this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:5:76
+  |
+5 | fn check_a(nn: usize, mm: usize, a: &[[[i32; 6]; mm]], p: &mut [[[i32; 6]; mm]]) -> i32 {
+  |                       -- this would need to be a `const`                   ^^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:25:51
+   |
+25 | fn check_c(nn: usize, mm: usize, c: &[[[[i32; 6]; mm]; nn]; nn], r: &mut [[[i32; 6]; mm]; nn]) -> i32 {
+   |                       --                          ^^
+   |                       |
+   |                       this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:25:56
+   |
+25 | fn check_c(nn: usize, mm: usize, c: &[[[[i32; 6]; mm]; nn]; nn], r: &mut [[[i32; 6]; mm]; nn]) -> i32 {
+   |            -- this would need to be a `const`          ^^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:25:61
+   |
+25 | fn check_c(nn: usize, mm: usize, c: &[[[[i32; 6]; mm]; nn]; nn], r: &mut [[[i32; 6]; mm]; nn]) -> i32 {
+   |            -- this would need to be a `const`               ^^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:25:86
+   |
+25 | fn check_c(nn: usize, mm: usize, c: &[[[[i32; 6]; mm]; nn]; nn], r: &mut [[[i32; 6]; mm]; nn]) -> i32 {
+   |                       -- this would need to be a `const`                             ^^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:25:91
+   |
+25 | fn check_c(nn: usize, mm: usize, c: &[[[[i32; 6]; mm]; nn]; nn], r: &mut [[[i32; 6]; mm]; nn]) -> i32 {
+   |            -- this would need to be a `const`                                             ^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:90:9
+   |
+90 |         unsafe { GATE = 1; }
+   |         ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:95:9
+   |
+95 |         unsafe { GATE = 2; }
+   |         ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:103:5
+    |
+103 |     unsafe { GATE = 0; }
+    |     ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/array_decl_3/sample_001/target.rs:106:8
+    |
+106 |     if unsafe { GATE != 0 } {
+    |        ^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 11 previous errors
+
+For more information about this error, try `rustc --explain E0435`.

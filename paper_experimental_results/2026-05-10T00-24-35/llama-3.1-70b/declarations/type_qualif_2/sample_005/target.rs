@@ -1,0 +1,46 @@
+struct S {
+    mem: i32,
+}
+
+fn main() {
+    const CS: S = S { mem: 1 };
+    let mut ncs = CS;
+
+    let pi = &mut ncs.mem;
+    *pi += 10;
+
+    let pci = &CS.mem;
+
+    if use_int(ncs.mem) != 11 {
+        std::process::exit(1);
+    }
+
+    if *pci != 1 {
+        std::process::exit(2);
+    }
+
+    let a: [[i32; 3]; 2] = [[4, 5, 6], [7, 8, 9]];
+
+    if a[0][0] != 4 {
+        std::process::exit(3);
+    }
+    if a[0][1] != 5 {
+        std::process::exit(4);
+    }
+    if a[0][2] != 6 {
+        std::process::exit(5);
+    }
+    if a[1][0] != 7 {
+        std::process::exit(6);
+    }
+    if a[1][1] != 8 {
+        std::process::exit(7);
+    }
+    if a[1][2] != 9 {
+        std::process::exit(8);
+    }
+}
+
+fn use_int(x: i32) -> i32 {
+    x
+}

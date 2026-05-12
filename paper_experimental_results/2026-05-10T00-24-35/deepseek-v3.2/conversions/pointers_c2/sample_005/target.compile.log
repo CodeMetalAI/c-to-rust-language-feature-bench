@@ -1,0 +1,39 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/pointers_c2/sample_005/target.rs:19:5
+   |
+19 | /     unsafe {
+20 | |         if *pc != 17 {
+21 | |             std::process::exit(4);
+...  |
+29 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0606]: casting `&i32` as `*mut i32` is invalid
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/pointers_c2/sample_005/target.rs:6:24
+  |
+6 |     let pv: *mut i32 = p as *mut i32;
+  |                        ^^^^^^^^^^^^^
+
+error[E0606]: casting `&i32` as `*const ()` is invalid
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/pointers_c2/sample_005/target.rs:9:27
+  |
+9 |     if pc as *const () != p as *const () {
+  |                           ^^^^^^^^^^^^^^
+
+error[E0606]: casting `&i32` as `*const ()` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/pointers_c2/sample_005/target.rs:12:27
+   |
+12 |     if pv as *const () != p as *const () {
+   |                           ^^^^^^^^^^^^^^
+
+error[E0606]: casting `&i32` as `*const ()` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/pointers_c2/sample_005/target.rs:15:28
+   |
+15 |     if pcv as *const () != p as *const () {
+   |                            ^^^^^^^^^^^^^^
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0606`.

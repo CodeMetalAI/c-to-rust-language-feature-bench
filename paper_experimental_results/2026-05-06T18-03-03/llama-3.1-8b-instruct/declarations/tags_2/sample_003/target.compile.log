@@ -1,0 +1,20 @@
+error[E0369]: binary operation `!=` cannot be applied to type `&Box<S1>`
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/tags_2/sample_003/target.rs:26:53
+    |
+ 26 |     if a.s2p.as_ref().unwrap().s1p.as_ref().unwrap()!= &a {
+    |        ---------------------------------------------^^ -- &S1
+    |        |
+    |        &Box<S1>
+    |
+note: the foreign item type `Box<S1>` doesn't implement `PartialEq<S1>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/boxed.rs:231:1
+    |
+231 | / pub struct Box<
+232 | |     T: ?Sized,
+233 | |     #[unstable(feature = "allocator_api", issue = "32838")] A: Allocator = Global,
+234 | | >(Unique<T>, A);
+    | |_^ not implement `PartialEq<S1>`
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0369`.

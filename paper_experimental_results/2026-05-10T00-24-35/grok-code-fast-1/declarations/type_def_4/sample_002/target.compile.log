@@ -1,0 +1,25 @@
+error[E0428]: the name `signal` is defined multiple times
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/type_def_4/sample_002/target.rs:22:1
+   |
+17 | fn signal(_s: i32, _h: Fv) -> Fv {
+   | -------------------------------- previous definition of the value `signal` here
+...
+22 | fn signal(s: i32, h: fn(i32)) -> fn(i32) {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `signal` redefined here
+   |
+   = note: `signal` must be defined only once in the value namespace of this module
+
+error[E0277]: `RefCell<i32>` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/type_def_4/sample_002/target.rs:7:14
+  |
+7 | static HITS: RefCell<i32> = RefCell::new(0);
+  |              ^^^^^^^^^^^^ `RefCell<i32>` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `RefCell<i32>`
+  = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock` instead
+  = note: shared static variables must have a type that implements `Sync`
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0277, E0428.
+For more information about an error, try `rustc --explain E0277`.

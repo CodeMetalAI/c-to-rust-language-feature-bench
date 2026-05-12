@@ -1,0 +1,27 @@
+error[E0599]: no method named `offset` found for reference `&{integer}` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_c8/sample_004/target.rs:5:15
+  |
+5 |   let p2 = p0.offset(2);
+  |               ^^^^^^ method not found in `&{integer}`
+
+error[E0599]: no method named `offset` found for reference `&{integer}` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_c8/sample_004/target.rs:8:22
+  |
+8 |   let p_end = p_last.offset(1);
+  |                      ^^^^^^ method not found in `&{integer}`
+
+error[E0599]: no method named `add` found for reference `&{integer}` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/add_op_c8/sample_004/target.rs:35:9
+   |
+35 |   if p0.add(5) != p_end {
+   |         ^^^ method not found in `&{integer}`
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::ops::Add;
+   |
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

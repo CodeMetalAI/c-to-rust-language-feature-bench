@@ -1,0 +1,86 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/cond_op_c4/sample_003/target.rs:4:5
+  |
+4 | /     unsafe {
+5 | |         G = gval;
+6 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/cond_op_c4/sample_003/target.rs:13:5
+   |
+13 | /     unsafe {
+14 | |         G = 0;
+15 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/cond_op_c4/sample_003/target.rs:17:10
+   |
+17 |         (unsafe { G } == 1) as i32
+   |          ^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/cond_op_c4/sample_003/target.rs:25:8
+   |
+25 |     if unsafe { G } != 1 {
+   |        ^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/cond_op_c4/sample_003/target.rs:29:5
+   |
+29 | /     unsafe {
+30 | |         G = 0;
+31 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/cond_op_c4/sample_003/target.rs:36:10
+   |
+36 |         (unsafe { G } == 1) as i32
+   |          ^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/cond_op_c4/sample_003/target.rs:41:8
+   |
+41 |     if unsafe { G } != 1 {
+   |        ^^^^^^^^^^^^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/cond_op_c4/sample_003/target.rs:10:14
+   |
+10 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0384]: cannot assign twice to immutable variable `x`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/cond_op_c4/sample_003/target.rs:32:5
+   |
+16 | /     x = if set_g_return(1, 1) != 0 {
+17 | |         (unsafe { G } == 1) as i32
+18 | |     } else {
+19 | |         set_g_return(2, 1);
+20 | |         0
+21 | |     };
+   | |_____- first assignment to `x`
+...
+32 | /     x = if set_g_return(1, 0) != 0 {
+33 | |         set_g_return(2, 1);
+34 | |         0
+35 | |     } else {
+36 | |         (unsafe { G } == 1) as i32
+37 | |     };
+   | |_____^ cannot assign twice to immutable variable
+   |
+help: consider making this binding mutable
+   |
+11 |     let mut x;
+   |         +++
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0277, E0384.
+For more information about an error, try `rustc --explain E0277`.

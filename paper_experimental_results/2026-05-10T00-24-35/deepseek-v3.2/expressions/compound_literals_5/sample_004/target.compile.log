@@ -1,0 +1,31 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/compound_literals_5/sample_004/target.rs:6:14
+  |
+6 |     let s2 = unsafe { &mut *s2 };
+  |              ^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/compound_literals_5/sample_004/target.rs:21:23
+   |
+21 |     let s2_modified = unsafe { std::str::from_utf8_unchecked(&s2_mut) };
+   |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0282]: type annotations needed for `*mut _`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/compound_literals_5/sample_004/target.rs:5:9
+   |
+ 5 |     let s2 = s2_array[0] as *const _ as *mut _;
+   |         ^^
+...
+11 |     if s1.as_bytes()[0] != b'/' || s2.as_bytes()[0] != b'/' || s3.as_bytes()[0] != b'/' {
+   |                                       -------- type must be known at this point
+   |
+help: consider giving `s2` an explicit type, where the placeholders `_` are specified
+   |
+ 5 |     let s2: *mut _ = s2_array[0] as *const _ as *mut _;
+   |           ++++++++
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0282`.

@@ -1,0 +1,46 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/logical_OR_op_c4/sample_002/target.rs:3:5
+  |
+3 | /     unsafe {
+4 | |         G = gval;
+5 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/logical_OR_op_c4/sample_002/target.rs:12:5
+   |
+12 | /     unsafe {
+13 | |         if !(set_g_return(1, 0) != 0 || set_g_return(1, 0) == 1) {
+14 | |             std::process::exit(1);
+15 | |         }
+16 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/logical_OR_op_c4/sample_002/target.rs:18:5
+   |
+18 | /     unsafe {
+19 | |         if set_g_return(0, 1) != 0 || {
+20 | |             y += 1;
+21 | |             y != 0
+...  |
+25 | |     }
+   | |_____^
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/logical_OR_op_c4/sample_002/target.rs:12:5
+   |
+12 |     unsafe {
+   |     ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/logical_OR_op_c4/sample_002/target.rs:18:5
+   |
+18 |     unsafe {
+   |     ^^^^^^ unnecessary `unsafe` block
+
+error: aborting due to 3 previous errors; 2 warnings emitted

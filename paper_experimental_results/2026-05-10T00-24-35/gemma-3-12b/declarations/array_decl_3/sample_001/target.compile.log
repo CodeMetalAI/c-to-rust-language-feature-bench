@@ -1,0 +1,160 @@
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_001/target.rs:11:32
+   |
+11 |     let mut p: *mut [[i32; 6]; mm] = &mut a[0] as *mut [[i32; 6]; mm];
+   |                                ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+ 8 -     let mm = m;
+ 8 +     const mm: /* Type */ = m;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_001/target.rs:11:67
+   |
+11 |     let mut p: *mut [[i32; 6]; mm] = &mut a[0] as *mut [[i32; 6]; mm];
+   |                                                                   ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+ 8 -     let mm = m;
+ 8 +     const mm: /* Type */ = m;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_001/target.rs:14:33
+   |
+14 |     let mut r: *mut [[[i32; 6]; mm]; nn] = &mut c[0] as *mut [[[i32; 6]; mm]; nn];
+   |                                 ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+ 8 -     let mm = m;
+ 8 +     const mm: /* Type */ = m;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_001/target.rs:14:38
+   |
+14 |     let mut r: *mut [[[i32; 6]; mm]; nn] = &mut c[0] as *mut [[[i32; 6]; mm]; nn];
+   |                                      ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+ 7 -     let nn = n;
+ 7 +     const nn: /* Type */ = n;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_001/target.rs:14:74
+   |
+14 |     let mut r: *mut [[[i32; 6]; mm]; nn] = &mut c[0] as *mut [[[i32; 6]; mm]; nn];
+   |                                                                          ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+ 8 -     let mm = m;
+ 8 +     const mm: /* Type */ = m;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_001/target.rs:14:79
+   |
+14 |     let mut r: *mut [[[i32; 6]; mm]; nn] = &mut c[0] as *mut [[[i32; 6]; mm]; nn];
+   |                                                                               ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+ 7 -     let nn = n;
+ 7 +     const nn: /* Type */ = n;
+   |
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_001/target.rs:49:8
+   |
+49 |     if check_a(nn, mm, &a, &a) != 0 {
+   |        ^^^^^^^
+   |
+note: expected `&Vec<Vec<Vec<i32>>>`, found `&Vec<Vec<Vec<usize>>>`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_001/target.rs:49:24
+   |
+49 |     if check_a(nn, mm, &a, &a) != 0 {
+   |                        ^^
+   = note: expected reference `&Vec<Vec<Vec<i32>>>`
+              found reference `&Vec<Vec<Vec<usize>>>`
+note: expected `&Vec<Vec<Vec<i32>>>`, found `&Vec<Vec<Vec<usize>>>`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_001/target.rs:49:28
+   |
+49 |     if check_a(nn, mm, &a, &a) != 0 {
+   |                            ^^
+   = note: expected reference `&Vec<Vec<Vec<i32>>>`
+              found reference `&Vec<Vec<Vec<usize>>>`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_001/target.rs:64:4
+   |
+64 | fn check_a(nn: usize, mm: usize, a: &Vec<Vec<Vec<i32>>>, p: &Vec<Vec<Vec<i32>>>) -> i32 {
+   |    ^^^^^^^                       ----------------------  ----------------------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_001/target.rs:53:8
+   |
+53 |     if check_c(nn, mm, &c, &c) != 0 {
+   |        ^^^^^^^
+   |
+note: expected `&Vec<Vec<Vec<Vec<i32>>>>`, found `&Vec<Vec<Vec<Vec<usize>>>>`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_001/target.rs:53:24
+   |
+53 |     if check_c(nn, mm, &c, &c) != 0 {
+   |                        ^^
+   = note: expected reference `&Vec<Vec<Vec<Vec<i32>>>>`
+              found reference `&Vec<Vec<Vec<Vec<usize>>>>`
+note: expected `&Vec<Vec<Vec<Vec<i32>>>>`, found `&Vec<Vec<Vec<Vec<usize>>>>`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_001/target.rs:53:28
+   |
+53 |     if check_c(nn, mm, &c, &c) != 0 {
+   |                            ^^
+   = note: expected reference `&Vec<Vec<Vec<Vec<i32>>>>`
+              found reference `&Vec<Vec<Vec<Vec<usize>>>>`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_001/target.rs:83:4
+   |
+83 | fn check_c(nn: usize, mm: usize, c: &Vec<Vec<Vec<Vec<i32>>>>, r: &Vec<Vec<Vec<Vec<i32>>>>) -> i32 {
+   |    ^^^^^^^                       ---------------------------  ---------------------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_001/target.rs:58:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+58 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_001/target.rs:61:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+61 |     0
+   |     ^ expected `()`, found integer
+
+error[E0369]: cannot add `i32` to `Vec<i32>`
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/array_decl_3/sample_001/target.rs:71:42
+    |
+ 71 |                 if a[i][j][k] != p[j][k] + (i as i32) {
+    |                                  ------- ^ ---------- i32
+    |                                  |
+    |                                  Vec<i32>
+    |
+note: the foreign item type `Vec<i32>` doesn't implement `Add<i32>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:434:1
+    |
+434 | pub struct Vec<T, #[unstable(feature = "allocator_api", issue = "32838")] A: Allocator = Global> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not implement `Add<i32>`
+
+error: aborting due to 11 previous errors
+
+Some errors have detailed explanations: E0308, E0369, E0435.
+For more information about an error, try `rustc --explain E0308`.

@@ -1,0 +1,166 @@
+error[E0277]: `*const ()` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:8:18
+  |
+8 |     static C_VP: *const () = 0 as *const ();
+  |                  ^^^^^^^^^ `*const ()` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*const ()`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*mut ()` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:9:16
+  |
+9 |     static VP: *mut () = 0 as *mut ();
+  |                ^^^^^^^ `*mut ()` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*mut ()`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*const i32` cannot be shared between threads safely
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:10:18
+   |
+10 |     static C_IP: *const i32 = 0 as *const i32;
+   |                  ^^^^^^^^^^ `*const i32` cannot be shared between threads safely
+   |
+   = help: the trait `Sync` is not implemented for `*const i32`
+   = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*mut i32` cannot be shared between threads safely
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:11:18
+   |
+11 |     static V_IP: *mut i32 = 0 as *mut i32;
+   |                  ^^^^^^^^ `*mut i32` cannot be shared between threads safely
+   |
+   = help: the trait `Sync` is not implemented for `*mut i32`
+   = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*mut i32` cannot be shared between threads safely
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:12:16
+   |
+12 |     static IP: *mut i32 = 0 as *mut i32;
+   |                ^^^^^^^^ `*mut i32` cannot be shared between threads safely
+   |
+   = help: the trait `Sync` is not implemented for `*mut i32`
+   = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*const u8` cannot be shared between threads safely
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:13:18
+   |
+13 |     static C_CP: *const u8 = 0 as *const u8;
+   |                  ^^^^^^^^^ `*const u8` cannot be shared between threads safely
+   |
+   = help: the trait `Sync` is not implemented for `*const u8`
+   = note: shared static variables must have a type that implements `Sync`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:15:10
+   |
+15 |     f(if 1 { C_VP } else { C_IP });
+   |          ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:15:28
+   |
+15 |     f(if 1 { C_VP } else { C_IP });
+   |                            ^^^^ expected `*const ()`, found `*const i32`
+   |
+   = note: expected raw pointer `*const ()`
+              found raw pointer `*const i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:16:10
+   |
+16 |     f(if 1 { C_IP } else { C_VP });
+   |          ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:16:14
+   |
+16 |     f(if 1 { C_IP } else { C_VP });
+   |              ^^^^ expected `*const ()`, found `*const i32`
+   |
+   = note: expected raw pointer `*const ()`
+              found raw pointer `*const i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:18:11
+   |
+18 |     f2(if 1 { V_IP } else { std::ptr::null_mut() });
+   |           ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:19:11
+   |
+19 |     f2(if 1 { std::ptr::null_mut() } else { V_IP });
+   |           ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:21:11
+   |
+21 |     f3(if 1 { C_IP } else { V_IP as *const i32 });
+   |           ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:22:11
+   |
+22 |     f3(if 1 { V_IP as *const i32 } else { C_IP });
+   |           ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:24:10
+   |
+24 |     f(if 1 { VP } else { C_CP as *const () });
+   |          ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:25:10
+   |
+25 |     f(if 1 { C_CP as *const () } else { VP });
+   |          ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:27:11
+   |
+27 |     f4(if 1 { IP } else { C_IP });
+   |           ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:28:11
+   |
+28 |     f4(if 1 { C_IP } else { IP });
+   |           ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:30:11
+   |
+30 |     f1(if 1 { VP } else { IP });
+   |           ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:30:27
+   |
+30 |     f1(if 1 { VP } else { IP });
+   |                           ^^ expected `*mut ()`, found `*mut i32`
+   |
+   = note: expected raw pointer `*mut ()`
+              found raw pointer `*mut i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:31:11
+   |
+31 |     f1(if 1 { IP } else { VP });
+   |           ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/cond_op_1/sample_003/target.rs:31:15
+   |
+31 |     f1(if 1 { IP } else { VP });
+   |               ^^ expected `*mut ()`, found `*mut i32`
+   |
+   = note: expected raw pointer `*mut ()`
+              found raw pointer `*mut i32`
+
+error: aborting due to 22 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

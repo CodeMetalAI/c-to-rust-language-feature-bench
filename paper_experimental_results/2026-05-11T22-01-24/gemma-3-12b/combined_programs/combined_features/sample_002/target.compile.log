@@ -1,0 +1,258 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:30:5
+   |
+30 | /     unsafe {
+31 | |         (*p).x += 100;
+32 | |         (*p).x
+33 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:57:21
+   |
+57 |             if a != b {
+   |                -    ^ expected `usize`, found `i32`
+   |                |
+   |                expected because this is `usize`
+   |
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+57 |             if a != b.try_into().unwrap() {
+   |                      ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:58:24
+   |
+44 | fn main() {
+   |          - expected `()` because of default return type
+...
+58 |                 return 1;
+   |                        ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:65:40
+     |
+  65 |     if (p1 as *const i32).wrapping_sub(p0 as *const i32) / std::mem::size_of::<i32>() != 5 {
+     |                           ------------ ^^^^^^^^^^^^^^^^ expected `usize`, found `*const i32`
+     |                           |
+     |                           arguments to this method are incorrect
+     |
+     = note:     expected type `usize`
+             found raw pointer `*const i32`
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:1184:18
+     |
+1184 |     pub const fn wrapping_sub(self, count: usize) -> Self
+     |                  ^^^^^^^^^^^^
+
+error[E0369]: cannot divide `*const i32` by `usize`
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:65:58
+   |
+65 |     if (p1 as *const i32).wrapping_sub(p0 as *const i32) / std::mem::size_of::<i32>() != 5 {
+   |        ------------------------------------------------- ^ -------------------------- usize
+   |        |
+   |        *const i32
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:70:8
+   |
+70 |     if make_t1(x[1][0], x[1][1]).x != x[1][0] {
+   |        ^^^^^^^ -------  ------- expected `i32`, found `usize`
+   |                |
+   |                expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:17:4
+   |
+17 | fn make_t1(x: i32, y: i32) -> T1 {
+   |    ^^^^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+70 |     if make_t1(x[1][0].try_into().unwrap(), x[1][1]).x != x[1][0] {
+   |                       ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+70 |     if make_t1(x[1][0], x[1][1].try_into().unwrap()).x != x[1][0] {
+   |                                ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:70:39
+   |
+70 |     if make_t1(x[1][0], x[1][1]).x != x[1][0] {
+   |        ---------------------------    ^^^^^^^ expected `i32`, found `usize`
+   |        |
+   |        expected because this is `i32`
+   |
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+70 |     if make_t1(x[1][0], x[1][1]).x != x[1][0].try_into().unwrap() {
+   |                                              ++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:73:8
+   |
+73 |     if make_t1(x[1][0], x[1][1]).y != x[1][1] {
+   |        ^^^^^^^ -------  ------- expected `i32`, found `usize`
+   |                |
+   |                expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:17:4
+   |
+17 | fn make_t1(x: i32, y: i32) -> T1 {
+   |    ^^^^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+73 |     if make_t1(x[1][0].try_into().unwrap(), x[1][1]).y != x[1][1] {
+   |                       ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+73 |     if make_t1(x[1][0], x[1][1].try_into().unwrap()).y != x[1][1] {
+   |                                ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:73:39
+   |
+73 |     if make_t1(x[1][0], x[1][1]).y != x[1][1] {
+   |        ---------------------------    ^^^^^^^ expected `i32`, found `usize`
+   |        |
+   |        expected because this is `i32`
+   |
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+73 |     if make_t1(x[1][0], x[1][1]).y != x[1][1].try_into().unwrap() {
+   |                                              ++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:76:8
+   |
+76 |     if make_t1(x[0][3], x[1][2]).x + make_t1(x[2][0], x[0][4]).y != 7 {
+   |        ^^^^^^^ -------  ------- expected `i32`, found `usize`
+   |                |
+   |                expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:17:4
+   |
+17 | fn make_t1(x: i32, y: i32) -> T1 {
+   |    ^^^^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+76 |     if make_t1(x[0][3].try_into().unwrap(), x[1][2]).x + make_t1(x[2][0], x[0][4]).y != 7 {
+   |                       ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+76 |     if make_t1(x[0][3], x[1][2].try_into().unwrap()).x + make_t1(x[2][0], x[0][4]).y != 7 {
+   |                                ++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:76:38
+   |
+76 |     if make_t1(x[0][3], x[1][2]).x + make_t1(x[2][0], x[0][4]).y != 7 {
+   |                                      ^^^^^^^ -------  ------- expected `i32`, found `usize`
+   |                                              |
+   |                                              expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:17:4
+   |
+17 | fn make_t1(x: i32, y: i32) -> T1 {
+   |    ^^^^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+76 |     if make_t1(x[0][3], x[1][2]).x + make_t1(x[2][0].try_into().unwrap(), x[0][4]).y != 7 {
+   |                                                     ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+76 |     if make_t1(x[0][3], x[1][2]).x + make_t1(x[2][0], x[0][4].try_into().unwrap()).y != 7 {
+   |                                                              ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:84:12
+   |
+84 |         x: x[1][0],
+   |            ^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:85:12
+   |
+85 |         y: x[1][1],
+   |            ^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:88:12
+   |
+88 |         x: x[2][0],
+   |            ^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:89:12
+   |
+89 |         y: x[2][1],
+   |            ^^^^^^^ expected `i32`, found `usize`
+
+error[E0599]: no method named `clone` found for struct `S1` in the current scope
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:99:19
+   |
+12 | struct S1 {
+   | --------- method `clone` not found for this struct
+...
+99 |     if takes_t1(b.clone()) != 6 {
+   |                   ^^^^^ method not found in `S1`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `clone`, perhaps you need to implement it:
+           candidate #1: `Clone`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:125:29
+    |
+125 |         let mut c = T2 { n: x[2][0] };
+    |                             ^^^^^^^ expected `i32`, found `usize`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:127:19
+    |
+127 |         if r.n != x[2][0] {
+    |            ---    ^^^^^^^ expected `i32`, found `usize`
+    |            |
+    |            expected because this is `i32`
+    |
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+    |
+127 |         if r.n != x[2][0].try_into().unwrap() {
+    |                          ++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:136:5
+    |
+ 44 | fn main() {
+    |          - expected `()` because of default return type
+...
+136 |     0
+    |     ^ expected `()`, found integer
+
+error[E0606]: casting `&usize` as `*const i32` is invalid
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:56:23
+   |
+56 |             let b = *(&x[i][j] as *const i32 as *const i32);
+   |                       ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&usize` as `*const i32` is invalid
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:65:8
+   |
+65 |     if (p1 as *const i32).wrapping_sub(p0 as *const i32) / std::mem::size_of::<i32>() != 5 {
+   |        ^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&usize` as `*const i32` is invalid
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/combined_programs/combined_features/sample_002/target.rs:65:40
+   |
+65 |     if (p1 as *const i32).wrapping_sub(p0 as *const i32) / std::mem::size_of::<i32>() != 5 {
+   |                                        ^^^^^^^^^^^^^^^^
+
+error: aborting due to 22 previous errors
+
+Some errors have detailed explanations: E0308, E0369, E0599, E0606.
+For more information about an error, try `rustc --explain E0308`.

@@ -1,0 +1,19 @@
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/gcc_c11_tests/c11-generic-1/sample_001/target.rs:30:71
+     |
+  30 |             _ if std::mem::discriminant(&n) == std::mem::discriminant(&0.0f64) => n,
+     |                                                ---------------------- ^^^^^^^ expected `&i32`, found `&f64`
+     |                                                |
+     |                                                arguments to this function are incorrect
+     |
+     = note: expected reference `&i32`
+                found reference `&f64`
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:1185:14
+     |
+1185 | pub const fn discriminant<T>(v: &T) -> Discriminant<T> {
+     |              ^^^^^^^^^^^^
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0308`.

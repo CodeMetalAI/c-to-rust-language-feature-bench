@@ -1,0 +1,30 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/expressions/struct_and_union_2/sample_002/target.rs:26:5
+   |
+26 | /     unsafe {
+27 | |         f(&S_VAR.i);
+28 | |         f4(&S_VAR.ci);
+...  |
+64 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `Cell<i32>` cannot be shared between threads safely
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/expressions/struct_and_union_2/sample_002/target.rs:10:12
+   |
+10 | static VS: VolatileS = VolatileS {
+   |            ^^^^^^^^^ `Cell<i32>` cannot be shared between threads safely
+   |
+   = help: within `VolatileS`, the trait `Sync` is not implemented for `Cell<i32>`
+   = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock` or `std::sync::atomic::AtomicI32` instead
+note: required because it appears within the type `VolatileS`
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/expressions/struct_and_union_2/sample_002/target.rs:15:8
+   |
+15 | struct VolatileS {
+   |        ^^^^^^^^^
+   = note: shared static variables must have a type that implements `Sync`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

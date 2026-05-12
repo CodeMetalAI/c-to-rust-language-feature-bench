@@ -1,0 +1,70 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_005/target.rs:39:9
+   |
+39 | /         unsafe {
+40 | |             let p = self.pool.as_mut_ptr().add(start) as *mut f32;
+41 | |             H ^= p as Usize + 0x9e3779b97f4a7c15;
+42 | |             H = H.wrapping_mul(0x5851f42d4c957f2d);
+43 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_005/target.rs:45:14
+   |
+45 |         Some(unsafe { std::slice::from_raw_parts_mut(self.pool.as_mut_ptr().add(start) as *mut f32, n as usize / std::mem::size_of::<f32>()) })
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_005/target.rs:100:5
+    |
+100 | /     unsafe {
+101 | |         if (H & 1) == 0 {
+102 | |             return 6;
+103 | |         }
+104 | |     }
+    | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_005/target.rs:70:14
+   |
+70 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+warning: unused variable: `end`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_005/target.rs:36:13
+   |
+36 |         let end = (self.off + n) as usize;
+   |             ^^^ help: if this is intentional, prefix it with an underscore: `_end`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error[E0596]: cannot borrow `a.v` as mutable, as `a` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_005/target.rs:87:14
+   |
+87 |     fill_vec(a.v.as_mut().unwrap(), a.n, 1.0);
+   |              ^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+73 |     let mut a = new_vector(16, &mut allocator);
+   |         +++
+
+error[E0596]: cannot borrow `b.v` as mutable, as `b` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_005/target.rs:88:14
+   |
+88 |     fill_vec(b.v.as_mut().unwrap(), b.n, 100.0);
+   |              ^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+74 |     let mut b = new_vector(16, &mut allocator);
+   |         +++
+
+error: aborting due to 6 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0596.
+For more information about an error, try `rustc --explain E0277`.

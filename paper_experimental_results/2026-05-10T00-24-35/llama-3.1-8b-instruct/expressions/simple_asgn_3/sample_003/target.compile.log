@@ -1,0 +1,20 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/simple_asgn_3/sample_003/target.rs:6:5
+  |
+6 | /     unsafe {
+7 | |         *cpp = &c as *const u8;
+8 | |         *p = 0;
+9 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error[E0614]: type `u8` cannot be dereferenced
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/simple_asgn_3/sample_003/target.rs:11:8
+   |
+11 |     if *c as u8!= b'A' {
+   |        ^^ can't be dereferenced
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0614`.

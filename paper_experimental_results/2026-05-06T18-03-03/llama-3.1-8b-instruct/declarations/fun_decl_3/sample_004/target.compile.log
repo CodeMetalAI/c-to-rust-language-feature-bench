@@ -1,0 +1,306 @@
+error: `Trait(...)` syntax does not support c_variadic parameters
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:21:58
+   |
+21 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+   |                                                          ^^^ help: remove the `...`
+
+error: `Trait(...)` syntax does not support c_variadic parameters
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:31:34
+   |
+31 | fn call_through(pf: impl Fn(i32, ...) -> i32, x: i32) -> i32 {
+   |                                  ^^^ help: remove the `...`
+
+error: defining functions with C-variadic arguments is only allowed for free functions with the "C" or "C-unwind" calling convention
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:13:15
+   |
+13 | fn v0(x: i32, _args: ...) -> i32 {
+   |               ^^^^^^^^^^
+
+error: defining functions with C-variadic arguments is only allowed for free functions with the "C" or "C-unwind" calling convention
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:17:15
+   |
+17 | fn v1(x: i32, _args: ...) -> i32 {
+   |               ^^^^^^^^^^
+
+error[E0658]: C-variadic functions are unstable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:13:1
+   |
+13 | / fn v0(x: i32, _args: ...) -> i32 {
+14 | |     g_seed + x + 1000
+15 | | }
+   | |_^
+   |
+   = note: see issue #44930 <https://github.com/rust-lang/rust/issues/44930> for more information
+   = help: add `#![feature(c_variadic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: C-variadic functions are unstable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:17:1
+   |
+17 | / fn v1(x: i32, _args: ...) -> i32 {
+18 | |     g_seed + x - 2000
+19 | | }
+   | |_^
+   |
+   = note: see issue #44930 <https://github.com/rust-lang/rust/issues/44930> for more information
+   = help: add `#![feature(c_variadic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+warning: unused import: `std::thread`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:1:5
+  |
+1 | use std::thread;
+  |     ^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0057]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:32:14
+   |
+32 |     let r1 = pf(x);
+   |              ^^--- argument #2 is missing
+   |
+note: type parameter defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:31:21
+   |
+31 | fn call_through(pf: impl Fn(i32, ...) -> i32, x: i32) -> i32 {
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the argument
+   |
+32 |     let r1 = pf(x, /* args */);
+   |                  ++++++++++++
+
+error[E0057]: this function takes 2 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:33:14
+   |
+33 |     let r2 = pf(x, 1, 2, 3);
+   |              ^^       -  - unexpected argument #4 of type `{integer}`
+   |                       |
+   |                       unexpected argument #3 of type `{integer}`
+   |
+note: type parameter defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:31:21
+   |
+31 | fn call_through(pf: impl Fn(i32, ...) -> i32, x: i32) -> i32 {
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^
+help: remove the extra arguments
+   |
+33 -     let r2 = pf(x, 1, 2, 3);
+33 +     let r2 = pf(x, 1);
+   |
+
+error[E0057]: this function takes 2 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:34:14
+   |
+34 |     let r3 = pf(x, 1.25, std::mem::transmute(pf), 0x1122334455667788);
+   |              ^^          -----------------------  ------------------ unexpected argument #4 of type `{integer}`
+   |                          |
+   |                          unexpected argument #3
+   |
+note: type parameter defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:31:21
+   |
+31 | fn call_through(pf: impl Fn(i32, ...) -> i32, x: i32) -> i32 {
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^
+help: remove the extra arguments
+   |
+34 -     let r3 = pf(x, 1.25, std::mem::transmute(pf), 0x1122334455667788);
+34 +     let r3 = pf(x, 1.25);
+   |
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:45:66
+     |
+  21 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+     |                                             ------------------------ the expected opaque type
+...
+  45 |         if std::mem::discriminant(&vf) == std::mem::discriminant(&v0) {
+     |                                           ---------------------- ^^^ expected `&impl Fn(i32, {type error}) -> i32`, found `&fn(i32, ...) -> i32 {v0}`
+     |                                           |
+     |                                           arguments to this function are incorrect
+     |
+     = note: expected reference `&impl Fn(i32, {type error}) -> i32`
+                found reference `&fn(i32, ...) -> i32 {v0}`
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:1185:14
+     |
+1185 | pub const fn discriminant<T>(v: &T) -> Discriminant<T> {
+     |              ^^^^^^^^^^^^
+
+error[E0057]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:46:16
+   |
+46 |             if vf(40) != base + 1000 {
+   |                ^^---- argument #2 is missing
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:21:45
+   |
+21 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the argument
+   |
+46 |             if vf(40, /* args */) != base + 1000 {
+   |                     ++++++++++++
+
+error[E0057]: this function takes 2 arguments but 3 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:49:16
+   |
+49 |             if vf(40, 1, 2) != base + 1000 {
+   |                ^^        - unexpected argument #3 of type `{integer}`
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:21:45
+   |
+21 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^
+help: remove the extra argument
+   |
+49 -             if vf(40, 1, 2) != base + 1000 {
+49 +             if vf(40, 1) != base + 1000 {
+   |
+
+error[E0057]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:56:16
+   |
+56 |             if vf(40) != base - 2000 {
+   |                ^^---- argument #2 is missing
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:21:45
+   |
+21 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the argument
+   |
+56 |             if vf(40, /* args */) != base - 2000 {
+   |                     ++++++++++++
+
+error[E0057]: this function takes 2 arguments but 3 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:59:16
+   |
+59 |             if vf(40, 1, 2) != base - 2000 {
+   |                ^^        - unexpected argument #3 of type `{integer}`
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:21:45
+   |
+21 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^
+help: remove the extra argument
+   |
+59 -             if vf(40, 1, 2) != base - 2000 {
+59 +             if vf(40, 1) != base - 2000 {
+   |
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:74:66
+     |
+  21 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+     |                                             ------------------------ the expected opaque type
+...
+  74 |         if std::mem::discriminant(&vf) == std::mem::discriminant(&v0) {
+     |                                           ---------------------- ^^^ expected `&impl Fn(i32, {type error}) -> i32`, found `&fn(i32, ...) -> i32 {v0}`
+     |                                           |
+     |                                           arguments to this function are incorrect
+     |
+     = note: expected reference `&impl Fn(i32, {type error}) -> i32`
+                found reference `&fn(i32, ...) -> i32 {v0}`
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:1185:14
+     |
+1185 | pub const fn discriminant<T>(v: &T) -> Discriminant<T> {
+     |              ^^^^^^^^^^^^
+
+error[E0057]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:75:16
+   |
+75 |             if vf(9) != base + 1000 {
+   |                ^^--- argument #2 is missing
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:21:45
+   |
+21 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the argument
+   |
+75 |             if vf(9, /* args */) != base + 1000 {
+   |                    ++++++++++++
+
+error[E0057]: this function takes 2 arguments but 5 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:78:16
+   |
+78 |             if vf(9, 0, 0, 0, 0) != base + 1000 {
+   |                ^^       -  -  - unexpected argument #5 of type `{integer}`
+   |                         |  |
+   |                         |  unexpected argument #4 of type `{integer}`
+   |                         unexpected argument #3 of type `{integer}`
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:21:45
+   |
+21 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^
+help: remove the extra arguments
+   |
+78 -             if vf(9, 0, 0, 0, 0) != base + 1000 {
+78 +             if vf(9, 0) != base + 1000 {
+   |
+
+error[E0057]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:85:16
+   |
+85 |             if vf(9) != base - 2000 {
+   |                ^^--- argument #2 is missing
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:21:45
+   |
+21 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the argument
+   |
+85 |             if vf(9, /* args */) != base - 2000 {
+   |                    ++++++++++++
+
+error[E0057]: this function takes 2 arguments but 5 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:88:16
+   |
+88 |             if vf(9, 0, 0, 0, 0) != base - 2000 {
+   |                ^^       -  -  - unexpected argument #5 of type `{integer}`
+   |                         |  |
+   |                         |  unexpected argument #4 of type `{integer}`
+   |                         unexpected argument #3 of type `{integer}`
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:21:45
+   |
+21 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^
+help: remove the extra arguments
+   |
+88 -             if vf(9, 0, 0, 0, 0) != base - 2000 {
+88 +             if vf(9, 0) != base - 2000 {
+   |
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:14:5
+   |
+14 |     g_seed + x + 1000
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_004/target.rs:18:5
+   |
+18 |     g_seed + x - 2000
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 21 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0057, E0133, E0308, E0658.
+For more information about an error, try `rustc --explain E0057`.

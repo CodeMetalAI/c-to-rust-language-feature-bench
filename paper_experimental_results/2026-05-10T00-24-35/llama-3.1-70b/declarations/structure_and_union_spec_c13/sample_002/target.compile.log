@@ -1,0 +1,322 @@
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:15:10
+   |
+15 | #[derive(Default)]
+   |          ^^^^^^^
+
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:29:10
+   |
+29 | #[derive(Default)]
+   |          ^^^^^^^
+
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:41:10
+   |
+41 | #[derive(Default)]
+   |          ^^^^^^^
+
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:53:10
+   |
+53 | #[derive(Default)]
+   |          ^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:119:5
+    |
+119 | /     unsafe {
+120 | |         o.inner.nested.nested_struct.deep_union.deep = 0x11223344;
+121 | |     }
+    | |_____^
+    |
+    = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:123:8
+    |
+123 |     if unsafe { o.inner.nested.nested_struct.deep_union.deep_struct.x }!= 0x11223344 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:127:5
+    |
+127 | /     unsafe {
+128 | |         o.inner.nested.nested_struct.deep_union.deep_struct.x = 5;
+129 | |         o.inner.nested.nested_struct.deep_union.deep_struct.y = 6;
+130 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:132:8
+    |
+132 |     if unsafe { o.inner.nested.nested_struct.deep_union.deep_struct.x }!= 5 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:135:8
+    |
+135 |     if unsafe { o.inner.nested.nested_struct.deep_union.deep_struct.y }!= 6 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:139:5
+    |
+139 | /     unsafe {
+140 | |         o.tail.tail_struct.tail_union.tail_struct.tail_p = 40;
+141 | |         o.tail.tail_struct.tail_union.tail_struct.tail_q = 41;
+142 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:144:8
+    |
+144 |     if unsafe { o.tail.tail_struct.tail_union.tail_struct.tail_p }!= 40 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:147:8
+    |
+147 |     if unsafe { o.tail.tail_struct.tail_union.tail_struct.tail_q }!= 41 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:151:5
+    |
+151 | /     unsafe {
+152 | |         o.tail.tail_struct.tail_union.tail_y = -9;
+153 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:155:8
+    |
+155 |     if unsafe { o.tail.tail_struct.tail_union.tail_y }!= -9 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:19:5
+   |
+19 |     nested_struct: NestedStruct,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+19 |     nested_struct: std::mem::ManuallyDrop<NestedStruct>,
+   |                    +++++++++++++++++++++++            +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:32:5
+   |
+32 |     deep_struct: DeepStruct,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+32 |     deep_struct: std::mem::ManuallyDrop<DeepStruct>,
+   |                  +++++++++++++++++++++++          +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:44:5
+   |
+44 |     tail_struct: TailStruct,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+44 |     tail_struct: std::mem::ManuallyDrop<TailStruct>,
+   |                  +++++++++++++++++++++++          +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:56:5
+   |
+56 |     tail_struct: TailStruct2,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+56 |     tail_struct: std::mem::ManuallyDrop<TailStruct2>,
+   |                  +++++++++++++++++++++++           +
+
+error[E0277]: the trait bound `Tail: Default` is not satisfied
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:5:5
+  |
+1 | #[derive(Default)]
+  |          ------- in this derive macro expansion
+...
+5 |     tail: Tail,
+  |     ^^^^^^^^^^ the trait `Default` is not implemented for `Tail`
+  |
+help: consider annotating `Tail` with `#[derive(Default)]`
+  |
+42+ #[derive(Default)]
+43| union Tail {
+  |
+
+error[E0277]: the trait bound `Nested: Default` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:11:5
+   |
+ 8 | #[derive(Default)]
+   |          ------- in this derive macro expansion
+...
+11 |     nested: Nested,
+   |     ^^^^^^^^^^^^^^ the trait `Default` is not implemented for `Nested`
+   |
+help: consider annotating `Nested` with `#[derive(Default)]`
+   |
+16 + #[derive(Default)]
+17 | union Nested {
+   |
+
+error[E0277]: the trait bound `DeepUnion: Default` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:25:5
+   |
+22 | #[derive(Default)]
+   |          ------- in this derive macro expansion
+...
+25 |     deep_union: DeepUnion,
+   |     ^^^^^^^^^^^^^^^^^^^^^ the trait `Default` is not implemented for `DeepUnion`
+   |
+help: consider annotating `DeepUnion` with `#[derive(Default)]`
+   |
+30 + #[derive(Default)]
+31 | union DeepUnion {
+   |
+
+error[E0277]: the trait bound `TailUnion: Default` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:50:5
+   |
+47 | #[derive(Default)]
+   |          ------- in this derive macro expansion
+...
+50 |     tail_union: TailUnion,
+   |     ^^^^^^^^^^^^^^^^^^^^^ the trait `Default` is not implemented for `TailUnion`
+   |
+help: consider annotating `TailUnion` with `#[derive(Default)]`
+   |
+54 + #[derive(Default)]
+55 | union TailUnion {
+   |
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:93:8
+   |
+93 |     if o.inner.nested.nested_struct.b!= 2 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:96:8
+   |
+96 |     if o.inner.nested.nested_struct.deep_union.deep!= 99 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:96:8
+   |
+96 |     if o.inner.nested.nested_struct.deep_union.deep!= 99 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:99:8
+   |
+99 |     if o.inner.nested.nested_struct.c!= 3 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:105:8
+    |
+105 |     if o.tail.tail_struct.tail_x!= 7 {
+    |        ^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:108:8
+    |
+108 |     if o.tail.tail_struct.tail_union.tail_y!= 8 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:108:8
+    |
+108 |     if o.tail.tail_struct.tail_union.tail_y!= 8 {
+    |        ^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+warning: unnecessary `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:119:5
+    |
+119 |     unsafe {
+    |     ^^^^^^ unnecessary `unsafe` block
+    |
+    = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:127:5
+    |
+127 |     unsafe {
+    |     ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:139:5
+    |
+139 |     unsafe {
+    |     ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:151:5
+    |
+151 |     unsafe {
+    |     ^^^^^^ unnecessary `unsafe` block
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:166:15
+    |
+166 |     let pb = &o.inner.nested.nested_struct.b as *const _ as usize;
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:167:18
+    |
+167 |     let pdeep = &o.inner.nested.nested_struct.deep_union as *const _ as usize;
+    |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:168:16
+    |
+168 |     let ptx = &o.tail.tail_struct.tail_x as *const _ as usize;
+    |                ^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_002/target.rs:169:16
+    |
+169 |     let pty = &o.tail.tail_struct.tail_union as *const _ as usize;
+    |                ^^^^^^^^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: aborting due to 33 previous errors; 4 warnings emitted
+
+Some errors have detailed explanations: E0133, E0277, E0740.
+For more information about an error, try `rustc --explain E0133`.

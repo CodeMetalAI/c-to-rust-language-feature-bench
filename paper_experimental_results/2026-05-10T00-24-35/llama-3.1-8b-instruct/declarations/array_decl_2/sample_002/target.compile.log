@@ -1,0 +1,126 @@
+error[E0403]: the name `T` is already used for a generic parameter in this item's generic parameters
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:64:18
+   |
+63 | impl<T> OffsetOf for *const T {
+   |      - first use of `T`
+64 |     fn offset_of<T: Copy>() -> usize {
+   |                  ^ already used
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:20:18
+   |
+20 |         let ha = unsafe { &*(y as *const i32 as *const HoldA) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:21:20
+   |
+21 |         assert_eq!(unsafe { (&ha.a as *const i32).offset_of::<i32>() as usize }, std::mem::size_of::<HoldA>() as usize);
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:55:5
+   |
+55 |     unsafe { *p.offset(1) += 5 };
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:56:5
+   |
+56 |     unsafe { *p.offset(0) + *p.offset(1) + *p.offset(2) }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0276]: impl has stricter requirements than trait
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:64:21
+   |
+60 |     fn offset_of<T>() -> usize;
+   |     --------------------------- definition of `offset_of` from trait
+...
+64 |     fn offset_of<T: Copy>() -> usize {
+   |                     ^^^^ impl has extra requirement `T: Copy`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:7:39
+   |
+ 7 |     assert_eq!(mutate_through_pointer(x), 65);
+   |                ---------------------- ^ types differ in mutability
+   |                |
+   |                arguments to this function are incorrect
+   |
+   = note: expected raw pointer `*mut i32`
+                found reference `&i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:54:4
+   |
+54 | fn mutate_through_pointer(p: *mut i32) -> i32 {
+   |    ^^^^^^^^^^^^^^^^^^^^^^ -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:17:29
+   |
+17 |         let hp = HoldP { p: &y };
+   |                             ^^ expected `*const i32`, found `&[i32; 7]`
+   |
+   = note: expected raw pointer `*const i32`
+                found reference `&[i32; 7]`
+
+error[E0599]: no method named `offset_of` found for raw pointer `*const i32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:21:51
+    |
+ 21 |         assert_eq!(unsafe { (&ha.a as *const i32).offset_of::<i32>() as usize }, std::mem::size_of::<HoldA>() as usize);
+    |                             ----------------------^^^^^^^^^---------
+    |                             |                     |
+    |                             |                     this is an associated function, not a method
+    |                             help: use associated function syntax instead: `*const i32::offset_of()`
+    |
+    = note: found the following associated functions; to be used as methods, functions must have a `self` parameter
+note: the candidate is defined in the trait `OffsetOf`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:60:5
+    |
+ 60 |     fn offset_of<T>() -> usize;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: there is a method `offset` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:401:5
+    |
+401 | /     pub const unsafe fn offset(self, count: isize) -> *const T
+402 | |     where
+403 | |         T: Sized,
+    | |_________________^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:25:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+25 |     0
+   |     ^ expected `()`, found integer
+
+error[E0605]: non-primitive cast: `[i32; 7]` as `*const i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:20:30
+   |
+20 |         let ha = unsafe { &*(y as *const i32 as *const HoldA) };
+   |                              ^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:38:14
+   |
+38 |         s += *_p.offset(i as isize);
+   |              ^^^^^^^^^^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_002/target.rs:38:15
+   |
+38 |         s += *_p.offset(i as isize);
+   |               ^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: aborting due to 13 previous errors
+
+Some errors have detailed explanations: E0133, E0276, E0308, E0403, E0599, E0605.
+For more information about an error, try `rustc --explain E0133`.

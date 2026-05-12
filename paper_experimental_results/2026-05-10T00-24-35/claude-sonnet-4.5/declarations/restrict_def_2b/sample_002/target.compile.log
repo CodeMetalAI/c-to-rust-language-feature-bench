@@ -1,0 +1,76 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_2b/sample_002/target.rs:39:13
+   |
+39 |     let g = unsafe { GATE };
+   |             ^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_2b/sample_002/target.rs:98:5
+    |
+ 98 | /     unsafe {
+ 99 | |         let (left, right) = D.split_at_mut(50);
+100 | |         call_f_checked(&D, 100, 50, right, left);
+...   |
+104 | |         call_f_checked(&d_copy, 100, 50, &mut D[1..51], &D[0..50]);
+105 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_2b/sample_002/target.rs:111:5
+    |
+111 | /     unsafe {
+112 | |         init(&mut D, 100);
+113 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_2b/sample_002/target.rs:121:5
+    |
+121 | /     unsafe {
+122 | |         if !same(&D, &expect, 100) {
+123 | |             std::process::exit(1);
+124 | |         }
+125 | |     }
+    | |_____^
+
+warning: unused variable: `dest`
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_2b/sample_002/target.rs:103:14
+    |
+103 |         let (dest, src) = D.split_at_mut(1);
+    |              ^^^^ help: if this is intentional, prefix it with an underscore: `_dest`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `src`
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_2b/sample_002/target.rs:103:20
+    |
+103 |         let (dest, src) = D.split_at_mut(1);
+    |                    ^^^ help: if this is intentional, prefix it with an underscore: `_src`
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_2b/sample_002/target.rs:116:39
+    |
+116 |     safe_move(50, &mut expect[50..], &expect[0..50]);
+    |     ---------          ------         ^^^^^^ immutable borrow occurs here
+    |     |                  |
+    |     |                  mutable borrow occurs here
+    |     mutable borrow later used by call
+    |
+    = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/restrict_def_2b/sample_002/target.rs:117:40
+    |
+117 |     safe_move(50, &mut expect[1..51], &expect[0..50]);
+    |     ---------          ------          ^^^^^^ immutable borrow occurs here
+    |     |                  |
+    |     |                  mutable borrow occurs here
+    |     mutable borrow later used by call
+    |
+    = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 6 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0502`.

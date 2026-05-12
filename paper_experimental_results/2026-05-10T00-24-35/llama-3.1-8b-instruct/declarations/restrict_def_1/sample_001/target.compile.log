@@ -1,0 +1,53 @@
+error[E0061]: this function takes 2 arguments but 3 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_001/target.rs:11:5
+   |
+11 |     choose_view(&mut bank_a, which_a, &mut a);
+   |     ^^^^^^^^^^^                       ------ unexpected argument #3 of type `&mut [i32; 8]`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_001/target.rs:49:4
+   |
+49 | fn choose_view(u: &mut [i32; 8], which: usize) -> &mut [i32] {
+   |    ^^^^^^^^^^^
+help: remove the extra argument
+   |
+11 -     choose_view(&mut bank_a, which_a, &mut a);
+11 +     choose_view(&mut bank_a, which_a);
+   |
+
+error[E0061]: this function takes 2 arguments but 3 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_001/target.rs:12:5
+   |
+12 |     choose_view(&mut bank_b, which_b, &mut b);
+   |     ^^^^^^^^^^^                       ------ unexpected argument #3 of type `&mut [i32; 8]`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_001/target.rs:49:4
+   |
+49 | fn choose_view(u: &mut [i32; 8], which: usize) -> &mut [i32] {
+   |    ^^^^^^^^^^^
+help: remove the extra argument
+   |
+12 -     choose_view(&mut bank_b, which_b, &mut b);
+12 +     choose_view(&mut bank_b, which_b);
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_001/target.rs:23:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+23 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_001/target.rs:50:8
+   |
+50 |     if which {
+   |        ^^^^^ expected `bool`, found `usize`
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0061, E0308.
+For more information about an error, try `rustc --explain E0061`.

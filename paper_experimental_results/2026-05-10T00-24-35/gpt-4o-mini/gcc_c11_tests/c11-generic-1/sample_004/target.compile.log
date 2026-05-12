@@ -1,0 +1,82 @@
+warning: unused variable: `n`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:3:10
+  |
+3 | fn check(n: &mut i32, condition: bool) {
+  |          ^ help: if this is intentional, prefix it with an underscore: `_n`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `a`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:24:9
+   |
+24 |     let a: [i32; 1] = [0];
+   |         ^
+   |
+help: if this is intentional, prefix it with an underscore
+   |
+24 |     let _a: [i32; 1] = [0];
+   |         +
+help: you might have meant to pattern match on the similarly named constant `CA`
+   |
+24 -     let a: [i32; 1] = [0];
+24 +     let main::CA: [i32; 1] = [0];
+   |
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:34:9
+   |
+34 |     let mut s: i16 = 0;
+   |         ----^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error[E0503]: cannot use `n` because it was mutably borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:12:19
+   |
+12 |     check(&mut n, n != 0);
+   |     ----- ------  ^ use of borrowed `n`
+   |     |     |
+   |     |     `n` is borrowed here
+   |     borrow later used by call
+
+error[E0503]: cannot use `n` because it was mutably borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:13:19
+   |
+13 |     check(&mut n, n != 0);
+   |     ----- ------  ^ use of borrowed `n`
+   |     |     |
+   |     |     `n` is borrowed here
+   |     borrow later used by call
+
+error[E0503]: cannot use `n` because it was mutably borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:15:19
+   |
+15 |     check(&mut n, n as f64 != 0.0);
+   |     ----- ------  ^ use of borrowed `n`
+   |     |     |
+   |     |     `n` is borrowed here
+   |     borrow later used by call
+
+error[E0503]: cannot use `n` because it was mutably borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:16:19
+   |
+16 |     check(&mut n, n != 0);
+   |     ----- ------  ^ use of borrowed `n`
+   |     |     |
+   |     |     `n` is borrowed here
+   |     borrow later used by call
+
+error[E0503]: cannot use `n` because it was mutably borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:36:19
+   |
+36 |     check(&mut n, n != 0);
+   |     ----- ------  ^ use of borrowed `n`
+   |     |     |
+   |     |     `n` is borrowed here
+   |     borrow later used by call
+
+error: aborting due to 5 previous errors; 3 warnings emitted
+
+For more information about this error, try `rustc --explain E0503`.

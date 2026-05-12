@@ -1,0 +1,143 @@
+use std::sync::atomic::{AtomicI32, Ordering};
+
+macro_rules! type_id {
+    ($x:expr) => {
+        match $x {
+            &i where i: std::Any => {
+                if let Some(type_id) = get_type_id(&i) {
+                    type_id
+                } else {
+                    99
+                }
+            }
+            _ => 99
+        }
+    };
+}
+
+fn get_type_id(value: &dyn std::any::Any) -> Option<i32> {
+    match value {
+        &i => {
+            if let Some(_) = i.downcast_ref::<i32>() {
+                Some(1)
+            } else {
+                None
+            }
+        }
+        &ptr => {
+            if let Some(_) = ptr.downcast_ref::<*mut i32>() {
+                Some(2)
+            } else {
+                None
+            }
+        }
+        &const_ptr => {
+            if let Some(_) = const_ptr.downcast_ref::<*const i32>() {
+                Some(3)
+            } else {
+                None
+            }
+        }
+        &atomic => {
+            if let Some(_) = atomic.downcast_ref::<AtomicI32>() {
+                Some(4)
+            } else {
+                None
+            }
+        }
+        &atomic_ptr => {
+            if let Some(_) = atomic_ptr.downcast_ref::<*mut AtomicI32>() {
+                Some(5)
+            } else {
+                None
+            }
+        }
+        &func => {
+            if let Some(_) = func.downcast_ref::<fn(i32) -> i32>() {
+                Some(6)
+            } else {
+                None
+            }
+        }
+        &const_i => {
+            if let Some(_) = const_i.downcast_ref::<i32>() {
+                Some(7)
+            } else {
+                None
+            }
+        }
+        _ => None,
+    }
+}
+
+fn id(v: i32) -> i32 {
+    v + 1
+}
+
+fn main() {
+    const cx: i32 = 9;
+    let ax: AtomicI32 = AtomicI32::new(11);
+
+    let a: [i32; 3] = [1, 2, 3];
+
+    let pa = a.as_ptr();
+    if pa.add(0).read() != 1 {
+        std::process::exit(1);
+    }
+    if pa.add(1).read() != 2 {
+        std::process::exit(2);
+    }
+    if pa.add(2).read() != 3 {
+        std::process::exit(3);
+    }
+
+    if type_id!(a) != 99 {
+        std::process::exit(4);
+    }
+    if type_id!(&a[0]) != 2 {
+        std::process::exit(5);
+    }
+
+    if type_id!(&cx) != 3 {
+        std::process::exit(6);
+    }
+    if type_id!(cx) != 1 {
+        std::process::exit(7);
+    }
+    if cx != 9 {
+        std::process::exit(8);
+    }
+
+    if type_id!(ax) != 4 {
+        std::process::exit(9);
+    }
+    if type_id!(&ax) != 5 {
+        std::process::exit(10);
+    }
+    if type_id!(ax) != 1 {
+        std::process::exit(11);
+    }
+    if ax.load(Ordering::Relaxed) != 11 {
+        std::process::exit(12);
+    }
+
+    let fp: fn(i32) -> i32 = id;
+    if type_id!(id) != 6 {
+        std::process::exit(13);
+    }
+    if fp(4) != 5 {
+        std::process::exit(14);
+    }
+    if id(4) != 5 {
+        std::process::exit(15);
+    }
+
+    if std::mem::size_of::<[i32; 3]>() != 3 * std::mem::size_of::<i32>() {
+        std::process::exit(16);
+    }
+    if std::mem::align_of::<i32>() != std::mem::align_of::<i32>() {
+        std::process::exit(17);
+    }
+
+    std::process::exit(0);
+}

@@ -1,0 +1,23 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c5/sample_001/target.rs:26:14
+   |
+26 |     let q1 = unsafe { q_last.add(1) as *const i32 };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0606]: casting `&[i32]` as `*const i32` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c5/sample_001/target.rs:10:18
+   |
+10 |     let p_end1 = &arr[..] as *const i32;
+   |                  ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&[i32]` as `*const i32` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c5/sample_001/target.rs:11:18
+   |
+11 |     let p_end2 = &arr[..] as *const i32;
+   |                  ^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0606`.

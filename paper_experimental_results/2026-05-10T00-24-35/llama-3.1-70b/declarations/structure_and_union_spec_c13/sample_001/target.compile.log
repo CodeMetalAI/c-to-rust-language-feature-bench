@@ -1,0 +1,160 @@
+error: this trait cannot be derived for unions
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_001/target.rs:8:10
+  |
+8 | #[derive(Debug, PartialEq)]
+  |          ^^^^^
+
+error: this trait cannot be derived for unions
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_001/target.rs:8:17
+  |
+8 | #[derive(Debug, PartialEq)]
+  |                 ^^^^^^^^^
+
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_001/target.rs:28:10
+   |
+28 | #[derive(Debug, PartialEq)]
+   |          ^^^^^
+
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_001/target.rs:28:17
+   |
+28 | #[derive(Debug, PartialEq)]
+   |                 ^^^^^^^^^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_001/target.rs:11:5
+   |
+11 |     inner: Inner,
+   |     ^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+11 |     inner: std::mem::ManuallyDrop<Inner>,
+   |            +++++++++++++++++++++++     +
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_001/target.rs:33:5
+   |
+33 |     inner: TailInner,
+   |     ^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+33 |     inner: std::mem::ManuallyDrop<TailInner>,
+   |            +++++++++++++++++++++++         +
+
+error[E0277]: `Middle` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_001/target.rs:18:5
+   |
+15 | #[derive(Debug, PartialEq)]
+   |          ----- in this derive macro expansion
+...
+18 |     middle: Middle,
+   |     ^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `Middle`
+   |
+   = note: add `#[derive(Debug)]` to `Middle` or manually `impl Debug for Middle`
+help: consider annotating `Middle` with `#[derive(Debug)]`
+   |
+ 9 + #[derive(Debug)]
+10 | union Middle {
+   |
+
+error[E0369]: binary operation `==` cannot be applied to type `Middle`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_001/target.rs:18:5
+   |
+15 | #[derive(Debug, PartialEq)]
+   |                 --------- in this derive macro expansion
+...
+18 |     middle: Middle,
+   |     ^^^^^^^^^^^^^^
+   |
+note: an implementation of `PartialEq` might be missing for `Middle`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_001/target.rs:9:1
+   |
+ 9 | union Middle {
+   | ^^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `Middle` with `#[derive(PartialEq)]`
+   |
+ 9 + #[derive(PartialEq)]
+10 | union Middle {
+   |
+
+error[E0277]: `Tail` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_001/target.rs:40:5
+   |
+36 | #[derive(Debug, PartialEq)]
+   |          ----- in this derive macro expansion
+...
+40 |     tail: Tail,
+   |     ^^^^^^^^^^ the trait `Debug` is not implemented for `Tail`
+   |
+   = note: add `#[derive(Debug)]` to `Tail` or manually `impl Debug for Tail`
+help: consider annotating `Tail` with `#[derive(Debug)]`
+   |
+29 + #[derive(Debug)]
+30 | union Tail {
+   |
+
+error[E0369]: binary operation `==` cannot be applied to type `Tail`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_001/target.rs:40:5
+   |
+36 | #[derive(Debug, PartialEq)]
+   |                 --------- in this derive macro expansion
+...
+40 |     tail: Tail,
+   |     ^^^^^^^^^^
+   |
+note: an implementation of `PartialEq` might be missing for `Tail`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_001/target.rs:29:1
+   |
+29 | union Tail {
+   | ^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `Tail` with `#[derive(PartialEq)]`
+   |
+29 + #[derive(PartialEq)]
+30 | union Tail {
+   |
+
+error[E0784]: union expressions should have exactly one field
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_001/target.rs:48:21
+   |
+48 |             middle: Middle {
+   |                     ^^^^^^
+
+error[E0784]: union expressions should have exactly one field
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_001/target.rs:55:15
+   |
+55 |         tail: Tail {
+   |               ^^^^
+
+error[E0784]: union expressions should have exactly one field
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_001/target.rs:96:21
+   |
+96 |             middle: Middle {
+   |                     ^^^^^^
+
+error[E0784]: union expressions should have exactly one field
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_001/target.rs:103:15
+    |
+103 |         tail: Tail {
+    |               ^^^^
+
+error[E0784]: union expressions should have exactly one field
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_001/target.rs:148:21
+    |
+148 |             middle: Middle {
+    |                     ^^^^^^
+
+error[E0784]: union expressions should have exactly one field
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_c13/sample_001/target.rs:155:15
+    |
+155 |         tail: Tail {
+    |               ^^^^
+
+error: aborting due to 16 previous errors
+
+Some errors have detailed explanations: E0277, E0369, E0740, E0784.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,41 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_c18/sample_002/target.rs:18:13
+   |
+18 |       let p = unsafe {
+   |  _____________^
+19 | |         let ptr = storage.as_mut_ptr() as *mut Packet;
+20 | |         &mut *ptr
+21 | |     };
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_c18/sample_002/target.rs:61:13
+   |
+61 |       let p = unsafe {
+   |  _____________^
+62 | |         let ptr = storage.as_mut_ptr() as *mut Packet;
+63 | |         &mut *ptr
+64 | |     };
+   | |_____^
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_c18/sample_002/target.rs:28:24
+   |
+28 |         let expected = storage.as_ptr().offset(std::mem::size_of::<u32>() as isize * 3) as *const u8;
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_c18/sample_002/target.rs:71:24
+   |
+71 |         let expected = storage.as_ptr().offset(std::mem::size_of::<u32>() as isize * 3) as *const u8;
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

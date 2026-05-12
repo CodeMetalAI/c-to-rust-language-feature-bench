@@ -1,0 +1,37 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/type_names/sample_002/target.rs:9:5
+   |
+ 9 | /     unsafe {
+10 | |         if *g_arr.get_unchecked(0) != 1 {
+11 | |             std::process::exit(2);
+12 | |         }
+13 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/type_names/sample_002/target.rs:51:51
+   |
+51 |     let af: fn(u32, i32, i32, i32) = |x, a, b, c| (x + 3) as i32;
+   |                                                   ^^^^^^^^^^^^^^ expected `()`, found `i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/type_names/sample_002/target.rs:52:26
+   |
+52 |     if af(4, 0, 0, 0) != 7 {
+   |        --------------    ^ expected `()`, found integer
+   |        |
+   |        expected because this is `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/type_names/sample_002/target.rs:55:27
+   |
+55 |     if af(10, 1, 2, 3) != 13 {
+   |        ---------------    ^^ expected `()`, found integer
+   |        |
+   |        expected because this is `()`
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

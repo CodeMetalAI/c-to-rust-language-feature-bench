@@ -1,0 +1,57 @@
+error[E0277]: `*const c_void` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/cond_op_1/sample_005/target.rs:5:14
+  |
+5 | static C_VP: *const std::ffi::c_void = std::ptr::null();
+  |              ^^^^^^^^^^^^^^^^^^^^^^^ `*const c_void` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*const c_void`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*mut c_void` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/cond_op_1/sample_005/target.rs:6:12
+  |
+6 | static VP: *mut std::ffi::c_void = std::ptr::null_mut();
+  |            ^^^^^^^^^^^^^^^^^^^^^ `*mut c_void` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*mut c_void`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*const i32` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/cond_op_1/sample_005/target.rs:7:14
+  |
+7 | static C_IP: *const i32 = std::ptr::null();
+  |              ^^^^^^^^^^ `*const i32` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*const i32`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*mut i32` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/cond_op_1/sample_005/target.rs:8:14
+  |
+8 | static V_IP: *mut i32 = std::ptr::null_mut();
+  |              ^^^^^^^^ `*mut i32` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*mut i32`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*mut i32` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/cond_op_1/sample_005/target.rs:9:12
+  |
+9 | static IP: *mut i32 = std::ptr::null_mut();
+  |            ^^^^^^^^ `*mut i32` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*mut i32`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*const u8` cannot be shared between threads safely
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/cond_op_1/sample_005/target.rs:10:14
+   |
+10 | static C_CP: *const u8 = std::ptr::null();
+   |              ^^^^^^^^^ `*const u8` cannot be shared between threads safely
+   |
+   = help: the trait `Sync` is not implemented for `*const u8`
+   = note: shared static variables must have a type that implements `Sync`
+
+error: aborting due to 6 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

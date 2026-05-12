@@ -1,0 +1,92 @@
+{
+  "test_name": "declarations/fun_decl_1",
+  "llm_name": "Grok Code Fast 1",
+  "timestamp": "2026-05-10T03:13:27.662253Z",
+  "duration_seconds": 148.48496033297852,
+  "timeout_error": false,
+  "primary_feature": "decl.fun_decl",
+  "source_compiled": true,
+  "source_compile_errors": null,
+  "source_exit_code": 0,
+  "samples": [
+    {
+      "sample_index": 1,
+      "duration_seconds": 132.84841783391312,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0308]: arguments to this function are incorrect\n    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_001/target.rs:59:12\n     |\n  22 |     let alt0 = |g: &mut [i32; 4]| {\n     |                ------------------ the found closure\n...\n  59 |         if std::ptr::eq(pfi, alt0) {\n     |            ^^^^^^^^^^^^\n     |\nnote: expected `*const _`, found fn pointer\n    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_001/target.rs:59:25\n     |\n  59 |         if std::ptr::eq(pfi, alt0) {\n     |                         ^^^\n     = note: expected raw pointer `*const _`\n                 found fn pointer `for<'a> fn(&'a mut [i32; 4]) -> i32`\nnote: expected `*const _`, found closure\n    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_001/target.rs:59:30\n     |\n  59 |         if std::ptr::eq(pfi, alt0) {\n     |                              ^^^^\n     = note: expected raw pointer `*const _`\n                    found closure `{closure@benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_001/target.rs:22:16: 22:34}`\nnote: function defined here\n    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:2442:8\n     |\n2442 | pub fn eq<T: PointeeSized>(a: *const T, b: *const T) -> bool {\n     |        ^^\n\nerror: aborting due to 1 previous error\n\nFor more information about this error, try `rustc --explain E0308`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": true,
+      "stub_reasons": [
+        "function definitions dropped from 7 to 2 (threshold=0.75, require>=6)"
+      ],
+      "provider_error": false
+    },
+    {
+      "sample_index": 2,
+      "duration_seconds": 140.48100120807067,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0658]: use of unstable library feature `rustc_private`: this crate is being loaded from the sysroot, an unstable location; did you mean to load this crate from crates.io via `Cargo.toml` instead?\n --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_002/target.rs:1:1\n  |\n1 | extern crate lazy_static;\n  | ^^^^^^^^^^^^^^^^^^^^^^^^^\n  |\n  = note: see issue #27812 <https://github.com/rust-lang/rust/issues/27812> for more information\n  = help: add `#![feature(rustc_private)]` to the crate attributes to enable\n  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date\n\nerror[E0658]: use of unstable library feature `rustc_private`: this crate is being loaded from the sysroot, an unstable location; did you mean to load this crate from crates.io via `Cargo.toml` instead?\n --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_002/target.rs:3:5\n  |\n3 | use lazy_static::lazy_static;\n  |     ^^^^^^^^^^^^^^^^^^^^^^^^\n  |\n  = note: see issue #27812 <https://github.com/rust-lang/rust/issues/27812> for more information\n  = help: add `#![feature(rustc_private)]` to the crate attributes to enable\n  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date\n\nerror[E0658]: use of unstable library feature `rustc_private`: this crate is being loaded from the sysroot, an unstable location; did you mean to load this crate from crates.io via `Cargo.toml` instead?\n --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_002/target.rs:6:1\n  |\n6 | / lazy_static! {\n7 | |     static ref GSTORE: RefCell<[i32; 4]> = RefCell::new([0; 4]);\n8 | | }\n  | |_^\n  |\n  = note: see issue #27812 <https://github.com/rust-lang/rust/issues/27812> for more information\n  = help: add `#![feature(rustc_private)]` to the crate attributes to enable\n  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date\n  = note: this error originates in the macro `__lazy_static_internal` which comes from the expansion of the macro `lazy_static` (in Nightly builds, run with -Z macro-backtrace for more info)\n\nerror[E0658]: use of unstable library feature `rustc_private`: this crate is being loaded from the sysroot, an unstable location; did you mean to load this crate from crates.io via `Cargo.toml` instead?\n --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_002/target.rs:6:1\n  |\n6 | / lazy_static! {\n7 | |     static ref GSTORE: RefCell<[i32; 4]> = RefCell::new([0; 4]);\n8 | | }\n  | |_^\n  |\n  = note: see issue #27812 <https://github.com/rust-lang/rust/issues/27812> for more information\n  = help: add `#![feature(rustc_private)]` to the crate attributes to enable\n  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date\n  = note: this error originates in the macro `__lazy_static_create` which comes from the expansion of the macro `lazy_static` (in Nightly builds, run with -Z macro-backtrace for more info)\n\nerror[E0658]: use of unstable library feature `rustc_private`: this crate is being loaded from the sysroot, an unstable location; did you mean to load this crate from crates.io via `Cargo.toml` instead?\n --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_002/target.rs:6:1\n  |\n6 | / lazy_static! {\n7 | |     static ref GSTORE: RefCell<[i32; 4]> = RefCell::new([0; 4]);\n8 | | }\n  | |_^\n  |\n  = note: see issue #27812 <https://github.com/rust-lang/rust/issues/27812> for more information\n  = help: add `#![feature(rustc_private)]` to the crate attributes to enable\n  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date\n  = note: this error originates in the macro `__lazy_static_create` which comes from the expansion of the macro `lazy_static` (in Nightly builds, run with -Z macro-backtrace for more info)\n\nerror[E0658]: use of unstable library feature `rustc_private`: this crate is being loaded from the sysroot, an unstable location; did you mean to load this crate from crates.io via `Cargo.toml` instead?\n --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_002/target.rs:6:1\n  |\n6 | / lazy_static! {\n7 | |     static ref GSTORE: RefCell<[i32; 4]> = RefCell::new([0; 4]);\n8 | | }\n  | |_^\n  |\n  = note: see issue #27812 <https://github.com/rust-lang/rust/issues/27812> for more information\n  = help: add `#![feature(rustc_private)]` to the crate attributes to enable\n  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date\n  = note: this error originates in the macro `__lazy_static_internal` which comes from the expansion of the macro `lazy_static` (in Nightly builds, run with -Z macro-backtrace for more info)\n\nerror[E0658]: use of unstable library feature `rustc_private`: this crate is being loaded from the sysroot, an unstable location; did you mean to load this crate from crates.io via `Cargo.toml` instead?\n --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_002/target.rs:6:1\n  |\n6 | / lazy_static! {\n7 | |     static ref GSTORE: RefCell<[i32; 4]> = RefCell::new([0; 4]);\n8 | | }\n  | |_^\n  |\n  = note: see issue #27812 <https://github.com/rust-lang/rust/issues/27812> for more information\n  = help: add `#![feature(rustc_private)]` to the crate attributes to enable\n  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date\n  = note: this error originates in the macro `__lazy_static_internal` which comes from the expansion of the macro `lazy_static` (in Nightly builds, run with -Z macro-backtrace for more info)\n\nerror[E0277]: `RefCell<[i32; 4]>` cannot be shared between threads safely\n --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_002/target.rs:6:1\n  |\n6 | / lazy_static! {\n7 | |     static ref GSTORE: RefCell<[i32; 4]> = RefCell::new([0; 4]);\n8 | | }\n  | |_^ `RefCell<[i32; 4]>` cannot be shared between threads safely\n  |\n  = help: the trait `Sync` is not implemented for `RefCell<[i32; 4]>`\n  = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock` instead\nnote: required by a bound in `Lazy`\n --> /rust/deps/lazy_static-1.5.0/src/inline_lazy.rs:19:1\n  = note: this error originates in the macro `__lazy_static_create` which comes from the expansion of the macro `lazy_static` (in Nightly builds, run with -Z macro-backtrace for more info)\n\nerror[E0658]: use of unstable library feature `rustc_private`: this crate is being loaded from the sysroot, an unstable location; did you mean to load this crate from crates.io via `Cargo.toml` instead?\n --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_002/target.rs:6:1\n  |\n6 | / lazy_static! {\n7 | |     static ref GSTORE: RefCell<[i32; 4]> = RefCell::new([0; 4]);\n8 | | }\n  | |_^\n  |\n  = note: see issue #27812 <https://github.com/rust-lang/rust/issues/27812> for more information\n  = help: add `#![feature(rustc_private)]` to the crate attributes to enable\n  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date\n  = note: this error originates in the macro `__lazy_static_create` which comes from the expansion of the macro `lazy_static` (in Nightly builds, run with -Z macro-backtrace for more info)\n\nerror: aborting due to 9 previous errors\n\nSome errors have detailed explanations: E0277, E0658.\nFor more information about an error, try `rustc --explain E0277`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 3,
+      "duration_seconds": 146.510760624893,
+      "timeout_error": false,
+      "target_compiled": true,
+      "target_compile_errors": null,
+      "target_exit_code": 0,
+      "exit_codes_match": true,
+      "stdout_similarity": 1.0,
+      "stdout_match": true,
+      "match": true,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 4,
+      "duration_seconds": 148.27404049993493,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0277]: `RefCell<[i32; 4]>` cannot be shared between threads safely\n --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_004/target.rs:3:16\n  |\n3 | static GSTORE: RefCell<[i32; 4]> = RefCell::new([0, 0, 0, 0]);\n  |                ^^^^^^^^^^^^^^^^^ `RefCell<[i32; 4]>` cannot be shared between threads safely\n  |\n  = help: the trait `Sync` is not implemented for `RefCell<[i32; 4]>`\n  = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock` instead\n  = note: shared static variables must have a type that implements `Sync`\n\nerror[E0277]: `main` has invalid return type `i32`\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_004/target.rs:37:14\n   |\n37 | fn main() -> i32 {\n   |              ^^^ `main` can only return types that implement `Termination`\n   |\n   = help: consider using `()`, or a `Result`\n\nerror: aborting due to 2 previous errors\n\nFor more information about this error, try `rustc --explain E0277`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    },
+    {
+      "sample_index": 5,
+      "duration_seconds": 142.0632398328744,
+      "timeout_error": false,
+      "target_compiled": false,
+      "target_compile_errors": "error[E0432]: unresolved import `lazy_static`\n --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:2:5\n  |\n2 | use lazy_static::lazy_static;\n  |     ^^^^^^^^^^^ use of unresolved module or unlinked crate `lazy_static`\n  |\nhelp: you might be missing a crate named `lazy_static`, add it to your project and import it in your code\n  |\n1 + extern crate lazy_static;\n  |\n\nerror[E0425]: cannot find value `GSTORE` in this scope\n --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:9:5\n  |\n9 |     GSTORE.borrow_mut()[0] = 111;\n  |     ^^^^^^ not found in this scope\n\nerror[E0425]: cannot find value `GSTORE` in this scope\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:10:5\n   |\n10 |     GSTORE.borrow()[0] + 1\n   |     ^^^^^^ not found in this scope\n\nerror[E0425]: cannot find value `GSTORE` in this scope\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:14:5\n   |\n14 |     GSTORE.borrow_mut()[1] = 222;\n   |     ^^^^^^ not found in this scope\n\nerror[E0425]: cannot find value `GSTORE` in this scope\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:15:28\n   |\n15 |     std::cell::RefMut::map(GSTORE.borrow_mut(), |g| &mut g[1])\n   |                            ^^^^^^ not found in this scope\n\nerror[E0425]: cannot find value `GSTORE` in this scope\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:19:5\n   |\n19 |     GSTORE.borrow_mut()[2] = 333;\n   |     ^^^^^^ not found in this scope\n\nerror[E0425]: cannot find value `GSTORE` in this scope\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:20:5\n   |\n20 |     GSTORE.borrow()[2] - 1\n   |     ^^^^^^ not found in this scope\n\nerror[E0425]: cannot find value `GSTORE` in this scope\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:24:5\n   |\n24 |     GSTORE.borrow_mut()[3] = 444;\n   |     ^^^^^^ not found in this scope\n\nerror[E0425]: cannot find value `GSTORE` in this scope\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:25:5\n   |\n25 |     GSTORE.borrow()[3] + 2\n   |     ^^^^^^ not found in this scope\n\nerror[E0425]: cannot find value `GSTORE` in this scope\n  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:54:15\n   |\n54 |     if choose(GSTORE.borrow()[0]) == 0 {\n   |               ^^^^^^ not found in this scope\n\nwarning: unused import: `std::cell::RefCell`\n --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:1:5\n  |\n1 | use std::cell::RefCell;\n  |     ^^^^^^^^^^^^^^^^^^\n  |\n  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default\n\nerror[E0308]: arguments to this function are incorrect\n    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:66:12\n     |\n  66 |         if std::ptr::eq(pfi, alt0) {\n     |            ^^^^^^^^^^^^\n     |\nnote: expected `*const _`, found fn pointer\n    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:66:25\n     |\n  66 |         if std::ptr::eq(pfi, alt0) {\n     |                         ^^^\n     = note: expected raw pointer `*const _`\n                 found fn pointer `fn() -> i32`\nnote: expected `*const _`, found fn item\n    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_1/sample_005/target.rs:66:30\n     |\n  66 |         if std::ptr::eq(pfi, alt0) {\n     |                              ^^^^\n     = note: expected raw pointer `*const _`\n                    found fn item `fn() -> i32 {alt0}`\nnote: function defined here\n    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:2442:8\n     |\n2442 | pub fn eq<T: PointeeSized>(a: *const T, b: *const T) -> bool {\n     |        ^^\n\nerror: aborting due to 11 previous errors; 1 warning emitted\n\nSome errors have detailed explanations: E0308, E0425, E0432.\nFor more information about an error, try `rustc --explain E0308`.",
+      "target_exit_code": null,
+      "exit_codes_match": false,
+      "stdout_similarity": null,
+      "stdout_match": false,
+      "match": false,
+      "stub_detected": false,
+      "stub_reasons": null,
+      "provider_error": false
+    }
+  ],
+  "winning_sample": 3,
+  "match": true
+}

@@ -1,0 +1,33 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/tags_1/sample_002/target.rs:34:20
+   |
+ 8 | fn main() {
+   |          - expected `()` because of default return type
+...
+34 |             return 1;
+   |                    ^ expected `()`, found integer
+
+error[E0599]: no method named `eq` found for enum `Option<&Tnode>` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/tags_1/sample_002/target.rs:48:45
+   |
+48 |     if sp.left.as_ref().map(|x| x.as_ref()).eq(&sp.right.as_ref().map(|x| x.as_ref())) {
+   |                                             ^^ `Option<&Tnode>` is not an iterator
+   |
+help: call `.into_iter()` first
+   |
+48 |     if sp.left.as_ref().map(|x| x.as_ref()).into_iter().eq(&sp.right.as_ref().map(|x| x.as_ref())) {
+   |                                             ++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/tags_1/sample_002/target.rs:52:5
+   |
+ 8 | fn main() {
+   |          - expected `()` because of default return type
+...
+52 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.

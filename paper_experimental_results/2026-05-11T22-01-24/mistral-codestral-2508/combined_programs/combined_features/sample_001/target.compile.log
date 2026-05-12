@@ -1,0 +1,56 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/combined_programs/combined_features/sample_001/target.rs:31:5
+   |
+31 | /     unsafe {
+32 | |         (*p).x += 100;
+33 | |         (*p).x
+34 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/combined_programs/combined_features/sample_001/target.rs:58:21
+   |
+58 |             let b = unsafe { *(x[i].as_ptr().add(j)) };
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/combined_programs/combined_features/sample_001/target.rs:67:8
+   |
+67 |     if unsafe { p1.offset_from(p0) } != 5 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/combined_programs/combined_features/sample_001/target.rs:134:12
+    |
+134 |         if unsafe { (*r).n } != x[2][0] {
+    |            ^^^^^^^^^^^^^^^^^
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/combined_programs/combined_features/sample_001/target.rs:87:9
+   |
+87 |     let mut b: S1;
+   |         ----^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/combined_programs/combined_features/sample_001/target.rs:88:9
+   |
+88 |     let mut tp: Tp1;
+   |         ----^^
+   |         |
+   |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+   --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/combined_programs/combined_features/sample_001/target.rs:131:13
+    |
+131 |         let mut r: Tp2;
+    |             ----^
+    |             |
+    |             help: remove this `mut`
+
+error: aborting due to 4 previous errors; 3 warnings emitted

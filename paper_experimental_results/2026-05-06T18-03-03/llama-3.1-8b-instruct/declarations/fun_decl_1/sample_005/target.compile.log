@@ -1,0 +1,111 @@
+error[E0425]: cannot find value `GSSTORE` in this scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_005/target.rs:5:5
+  |
+2 | static mut GSTORE: [i32; 4] = [0; 4];
+  | ------------------------------------- similarly named static `GSTORE` defined here
+...
+5 |     GSSTORE[0] = 111;
+  |     ^^^^^^^ help: a static with a similar name exists: `GSTORE`
+
+error[E0425]: cannot find value `GSSTORE` in this scope
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_005/target.rs:6:5
+  |
+2 | static mut GSTORE: [i32; 4] = [0; 4];
+  | ------------------------------------- similarly named static `GSTORE` defined here
+...
+6 |     GSSTORE[0] + 1
+  |     ^^^^^^^ help: a static with a similar name exists: `GSTORE`
+
+error[E0425]: cannot find value `GSSTORE` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_005/target.rs:10:5
+   |
+ 2 | static mut GSTORE: [i32; 4] = [0; 4];
+   | ------------------------------------- similarly named static `GSTORE` defined here
+...
+10 |     GSSTORE[1] = 222;
+   |     ^^^^^^^ help: a static with a similar name exists: `GSTORE`
+
+error[E0425]: cannot find value `GSSTORE` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_005/target.rs:11:6
+   |
+ 2 | static mut GSTORE: [i32; 4] = [0; 4];
+   | ------------------------------------- similarly named static `GSTORE` defined here
+...
+11 |     &GSSTORE[1]
+   |      ^^^^^^^ help: a static with a similar name exists: `GSTORE`
+
+error[E0425]: cannot find value `GSSTORE` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_005/target.rs:15:5
+   |
+ 2 | static mut GSTORE: [i32; 4] = [0; 4];
+   | ------------------------------------- similarly named static `GSTORE` defined here
+...
+15 |     GSSTORE[2] = 333;
+   |     ^^^^^^^ help: a static with a similar name exists: `GSTORE`
+
+error[E0425]: cannot find value `GSSTORE` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_005/target.rs:16:5
+   |
+ 2 | static mut GSTORE: [i32; 4] = [0; 4];
+   | ------------------------------------- similarly named static `GSTORE` defined here
+...
+16 |     GSSTORE[2] - 1
+   |     ^^^^^^^ help: a static with a similar name exists: `GSTORE`
+
+error[E0425]: cannot find value `GSSTORE` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_005/target.rs:20:5
+   |
+ 2 | static mut GSTORE: [i32; 4] = [0; 4];
+   | ------------------------------------- similarly named static `GSTORE` defined here
+...
+20 |     GSSTORE[3] = 444;
+   |     ^^^^^^^ help: a static with a similar name exists: `GSTORE`
+
+error[E0425]: cannot find value `GSSTORE` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_005/target.rs:21:5
+   |
+ 2 | static mut GSTORE: [i32; 4] = [0; 4];
+   | ------------------------------------- similarly named static `GSTORE` defined here
+...
+21 |     GSSTORE[3] + 2
+   |     ^^^^^^^ help: a static with a similar name exists: `GSTORE`
+
+error[E0425]: cannot find value `GSSTORE` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_005/target.rs:49:15
+   |
+ 2 | static mut GSTORE: [i32; 4] = [0; 4];
+   | ------------------------------------- similarly named static `GSTORE` defined here
+...
+49 |     if choose(GSSTORE[0]) == 0 {
+   |               ^^^^^^^ help: a static with a similar name exists: `GSTORE`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_005/target.rs:44:17
+   |
+44 |     let v_fip = unsafe { *fip() };
+   |                 ^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_005/target.rs:41:16
+   |
+36 | fn main() {
+   |          - expected `()` because of default return type
+...
+41 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_005/target.rs:75:5
+   |
+36 | fn main() {
+   |          - expected `()` because of default return type
+...
+75 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 12 previous errors
+
+Some errors have detailed explanations: E0308, E0425.
+For more information about an error, try `rustc --explain E0308`.

@@ -1,0 +1,82 @@
+error[E0609]: no field `x` on type `Outer`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_002/target.rs:72:10
+   |
+72 |     if o.x!= 0x11223344 {
+   |          ^ unknown field
+   |
+help: a field with a similar name exists
+   |
+72 -     if o.x!= 0x11223344 {
+72 +     if o.a!= 0x11223344 {
+   |
+
+error[E0609]: no field `x` on type `Outer`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_002/target.rs:76:7
+   |
+76 |     o.x = 5;
+   |       ^ unknown field
+   |
+help: a field with a similar name exists
+   |
+76 -     o.x = 5;
+76 +     o.a = 5;
+   |
+
+error[E0609]: no field `y` on type `Outer`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_002/target.rs:77:7
+   |
+77 |     o.y = 6;
+   |       ^ unknown field
+   |
+help: a field with a similar name exists
+   |
+77 -     o.y = 6;
+77 +     o.a = 6;
+   |
+
+error[E0609]: no field `x` on type `Outer`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_002/target.rs:78:10
+   |
+78 |     if o.x!= 5 {
+   |          ^ unknown field
+   |
+help: a field with a similar name exists
+   |
+78 -     if o.x!= 5 {
+78 +     if o.a!= 5 {
+   |
+
+error[E0609]: no field `y` on type `Outer`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_002/target.rs:81:10
+   |
+81 |     if o.y!= 6 {
+   |          ^ unknown field
+   |
+help: a field with a similar name exists
+   |
+81 -     if o.y!= 6 {
+81 +     if o.a!= 6 {
+   |
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_002/target.rs:15:9
+   |
+15 |     let mut o = Outer {
+   |         ----^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `r` is never read
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_002/target.rs:136:13
+    |
+136 |     let mut r = 0;
+    |             ^
+    |
+    = help: maybe it is overwritten before being read?
+    = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 5 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0609`.

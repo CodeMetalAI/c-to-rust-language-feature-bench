@@ -1,0 +1,55 @@
+error[E0428]: the name `S2` is defined multiple times
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/tags_2/sample_005/target.rs:8:1
+  |
+1 | struct S2;
+  | ---------- previous definition of the type `S2` here
+...
+8 | struct S2 {
+  | ^^^^^^^^^ `S2` redefined here
+  |
+  = note: `S2` must be defined only once in the type namespace of this module
+
+error[E0560]: struct `S2` has no field named `v2`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/tags_2/sample_005/target.rs:19:9
+   |
+19 |         v2: 20,
+   |         ^^ `S2` does not have this field
+   |
+   = note: all struct fields are already assigned
+
+error[E0560]: struct `S2` has no field named `s1p`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/tags_2/sample_005/target.rs:20:9
+   |
+20 |         s1p: None,
+   |         ^^^ `S2` does not have this field
+   |
+   = note: all struct fields are already assigned
+
+error[E0609]: no field `s1p` on type `S2`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/tags_2/sample_005/target.rs:24:7
+   |
+24 |     b.s1p = Some(Box::new(a));
+   |       ^^^ unknown field
+
+error[E0609]: no field `v2` on type `&Box<S2>`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/tags_2/sample_005/target.rs:26:32
+   |
+26 |     if a.s2p.as_ref().unwrap().v2 != 20 {
+   |                                ^^ unknown field
+
+error[E0609]: no field `s1p` on type `S2`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/tags_2/sample_005/target.rs:30:10
+   |
+30 |     if b.s1p.as_ref().unwrap().v1 != 10 {
+   |          ^^^ unknown field
+
+error[E0609]: no field `s1p` on type `&Box<S2>`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/tags_2/sample_005/target.rs:34:32
+   |
+34 |     if a.s2p.as_ref().unwrap().s1p.as_ref().unwrap().as_ref() as *const S1 != &a as *const S1 {
+   |                                ^^^ unknown field
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0428, E0560, E0609.
+For more information about an error, try `rustc --explain E0428`.

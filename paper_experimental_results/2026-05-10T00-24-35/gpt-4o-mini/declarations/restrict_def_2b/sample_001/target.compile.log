@@ -1,0 +1,65 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_2b/sample_001/target.rs:34:13
+   |
+34 |     let g = unsafe { GATE };
+   |             ^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_2b/sample_001/target.rs:82:5
+   |
+82 | /     unsafe {
+83 | |         call_f_checked(&D_ARRAY, D, 50, &mut D_ARRAY[50..], &D_ARRAY);
+84 | |         call_f_checked(&D_ARRAY, D, 50, &mut D_ARRAY[1..], &D_ARRAY);
+85 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_2b/sample_001/target.rs:91:5
+    |
+ 91 | /     unsafe {
+ 92 | |         init(&mut D_ARRAY, D);
+ 93 | |         init(&mut expect, D);
+...   |
+103 | |     }
+    | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_2b/sample_001/target.rs:88:14
+   |
+88 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_2b/sample_001/target.rs:68:16
+   |
+68 |         x[i] = (i * 13) + 5;
+   |         ----   ^^^^^^^^^^^^ expected `i32`, found `usize`
+   |         |
+   |         expected due to the type of this binding
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_2b/sample_001/target.rs:95:42
+   |
+95 |         safe_move(50, &mut expect[50..], &expect);
+   |         ---------          ------        ^^^^^^^ immutable borrow occurs here
+   |         |                  |
+   |         |                  mutable borrow occurs here
+   |         mutable borrow later used by call
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_2b/sample_001/target.rs:96:41
+   |
+96 |         safe_move(50, &mut expect[1..], &expect);
+   |         ---------          ------       ^^^^^^^ immutable borrow occurs here
+   |         |                  |
+   |         |                  mutable borrow occurs here
+   |         mutable borrow later used by call
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0502.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,160 @@
+warning: type `u8` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:4:6
+  |
+4 | type u8 = std::ffi::c_uchar;
+  |      ^^ help: convert the identifier to upper camel case (notice the capitalization): `U8`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: type `u32` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:5:6
+  |
+5 | type u32 = std::ffi::c_uint;
+  |      ^^^ help: convert the identifier to upper camel case (notice the capitalization): `U32`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:16:5
+   |
+16 |     unsafe { (member as *const u8).offset_from(obj as *const _ as *const u8) as usize }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:42:5
+   |
+42 | /     unsafe {
+43 | |         (*p_ptr).tag = 0xA1B2C3D4;
+44 | |         (*p_ptr).n = N as u32;
+45 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:47:25
+   |
+47 |     let off = offset_of(unsafe { &*p_ptr }, &unsafe { &*p_ptr }.data);
+   |                         ^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:47:46
+   |
+47 |     let off = offset_of(unsafe { &*p_ptr }, &unsafe { &*p_ptr }.data);
+   |                                              ^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:48:20
+   |
+48 |     let expected = unsafe { storage.raw.as_ptr().add(off) };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:50:16
+   |
+50 |     let got1 = unsafe { &(*p_ptr).data } as *const _ as *const u8;
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:51:16
+   |
+51 |     let got2 = unsafe { &(*p_ptr).data } as *const _ as *const u8;
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:60:5
+   |
+60 | /     unsafe {
+61 | |         let mut i = 0;
+62 | |         while i < (*p_ptr).n {
+63 | |             let v = (i.wrapping_add(1)).wrapping_mul(3).wrapping_add(1);
+...  |
+72 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:74:5
+   |
+74 | /     unsafe {
+75 | |         (*p_ptr).sum = 0;
+76 | |         let mut i = 0;
+77 | |         while i < (*p_ptr).n {
+...  |
+83 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:85:8
+   |
+85 |     if unsafe { (*p_ptr).sum } != compute_sum(N as u32) {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:109:5
+    |
+109 | /     unsafe {
+110 | |         (*p_ptr).tag = 0;
+111 | |         (*p_ptr).n = 0;
+112 | |         (*p_ptr).sum = 0;
+113 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:115:25
+    |
+115 |     let off = offset_of(unsafe { &*p_ptr }, &unsafe { &*p_ptr }.data);
+    |                         ^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:115:46
+    |
+115 |     let off = offset_of(unsafe { &*p_ptr }, &unsafe { &*p_ptr }.data);
+    |                                              ^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:116:20
+    |
+116 |     let expected = unsafe { storage.raw.as_ptr().add(off) };
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:118:16
+    |
+118 |     let got1 = unsafe { &(*p_ptr).data } as *const _ as *const u8;
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:119:16
+    |
+119 |     let got2 = unsafe { &(*p_ptr).data } as *const _ as *const u8;
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0689]: can't call method `wrapping_add` on ambiguous numeric type `{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:23:15
+   |
+23 |         s = s.wrapping_add((i.wrapping_add(1)).wrapping_mul(3).wrapping_add(1));
+   |               ^^^^^^^^^^^^
+   |
+help: you must specify a type for this binding, like `i32`
+   |
+20 |     let mut s: i32 = 0;
+   |              +++++
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:40:17
+   |
+40 |     let p_ptr = storage.raw.as_mut_ptr() as *mut Packet;
+   |                 ^^^^^^^^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:107:17
+    |
+107 |     let p_ptr = storage.raw.as_mut_ptr() as *mut Packet;
+    |                 ^^^^^^^^^^^ access to union field
+    |
+    = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: aborting due to 19 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0133, E0689.
+For more information about an error, try `rustc --explain E0133`.

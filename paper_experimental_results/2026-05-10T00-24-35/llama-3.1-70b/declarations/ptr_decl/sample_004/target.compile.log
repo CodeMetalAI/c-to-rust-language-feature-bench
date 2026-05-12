@@ -1,0 +1,73 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_004/target.rs:14:13
+   |
+14 |     let v = unsafe { *ptr };
+   |             ^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_004/target.rs:65:28
+   |
+65 |     let ptr_to_const_val = unsafe { *b.ptr_to_const };
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_004/target.rs:71:28
+   |
+71 |     let ptr_to_const_val = unsafe { *b.ptr_to_const };
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_004/target.rs:77:28
+   |
+77 |     let ptr_to_const_val = unsafe { *b.ptr_to_const };
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_004/target.rs:82:5
+   |
+82 |     unsafe { *b.const_ptr += 5 };
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_004/target.rs:87:5
+   |
+87 |     unsafe { *b.const_ptr_via_typedef += 7 };
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_004/target.rs:96:28
+   |
+96 |     let ptr_to_const_val = unsafe { *b.ptr_to_const };
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `clone` found for struct `Bundle` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_004/target.rs:61:23
+   |
+ 6 | struct Bundle {
+   | ------------- method `clone` not found for this struct
+...
+61 |     if check_bundle(b.clone(), &mut x as *mut i32)!= 0 {
+   |                       ^^^^^ method not found in `Bundle`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `clone`, perhaps you need to implement it:
+           candidate #1: `Clone`
+
+error[E0599]: no method named `clone` found for struct `Bundle` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/ptr_decl/sample_004/target.rs:92:23
+   |
+ 6 | struct Bundle {
+   | ------------- method `clone` not found for this struct
+...
+92 |     if check_bundle(b.clone(), &mut x as *mut i32)!= 0 {
+   |                       ^^^^^ method not found in `Bundle`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `clone`, perhaps you need to implement it:
+           candidate #1: `Clone`
+
+error: aborting due to 9 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

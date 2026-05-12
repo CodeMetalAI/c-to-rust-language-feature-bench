@@ -1,0 +1,26 @@
+struct S {
+    i: i32,
+}
+
+fn f() -> bool {
+    let mut p: Option<&S> = None;
+    let mut q: Option<&S> = None;
+    let mut j: i32 = 0;
+
+    loop {
+        q = p;
+        p = Some(&S { i: j });
+        j += 1;
+        if j < 2 {
+            continue;
+        } else {
+            break;
+        }
+    }
+
+    p.as_ref().map_or(false, |p| q.map_or(false, |q| p as *const _ == q as *const _ && q.i == 1))
+}
+
+fn main() {
+    std::process::exit(if f() { 0 } else { 1 });
+}

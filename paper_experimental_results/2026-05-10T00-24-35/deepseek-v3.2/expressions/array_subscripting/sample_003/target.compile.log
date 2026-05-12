@@ -1,0 +1,25 @@
+error[E0606]: casting `&usize` as `usize` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/array_subscripting/sample_003/target.rs:22:9
+   |
+22 |     if (p1 as usize - p0 as usize) / std::mem::size_of::<i32>() != 5 {
+   |         ^^^^^^^^^^^
+   |
+help: dereference the expression
+   |
+22 |     if (*p1 as usize - p0 as usize) / std::mem::size_of::<i32>() != 5 {
+   |         +
+
+error[E0606]: casting `&usize` as `usize` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/array_subscripting/sample_003/target.rs:22:23
+   |
+22 |     if (p1 as usize - p0 as usize) / std::mem::size_of::<i32>() != 5 {
+   |                       ^^^^^^^^^^^
+   |
+help: dereference the expression
+   |
+22 |     if (p1 as usize - *p0 as usize) / std::mem::size_of::<i32>() != 5 {
+   |                       +
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0606`.

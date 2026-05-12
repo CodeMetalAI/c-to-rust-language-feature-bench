@@ -1,0 +1,42 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_3/sample_001/target.rs:13:9
+   |
+13 |         unsafe { G_SEED + 1000 }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_3/sample_001/target.rs:17:9
+   |
+17 |         unsafe { G_SEED - 2000 }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_3/sample_001/target.rs:22:9
+   |
+22 | /         unsafe {
+23 | |             G_SEED = pf(t) + k;
+24 | |             if (G_SEED & 1) == 0 {
+25 | |                 v0
+...  |
+29 | |         }
+   | |_________^
+
+error[E0384]: cannot assign twice to immutable variable `vf`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/fun_decl_3/sample_001/target.rs:62:5
+   |
+41 |     vf = fpfi(cb0, 17);
+   |     ------------------ first assignment to `vf`
+...
+62 |     vf = fpfi(cb1, 8);
+   |     ^^^^^^^^^^^^^^^^^ cannot assign twice to immutable variable
+   |
+help: consider making this binding mutable
+   |
+39 |     let mut vf: fn(i32) -> i32;
+   |         +++
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0384`.

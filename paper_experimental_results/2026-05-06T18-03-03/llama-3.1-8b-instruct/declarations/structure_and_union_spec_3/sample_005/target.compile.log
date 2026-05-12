@@ -1,0 +1,62 @@
+error: structs are not allowed in struct definitions
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_005/target.rs:2:5
+  |
+1 | struct S {
+  |        - while parsing this struct
+2 |     struct Inner {
+  |     ^^^^^^^^^^^^
+  |
+  = help: consider creating a new `struct` definition instead of nesting
+
+error: expected one of `,`, `:`, or `}`, found `{`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_005/target.rs:10:15
+   |
+ 9 |     let p = Box::new(S {
+   |                      - while parsing this struct
+10 |         Inner { i: 7 },
+   |         ----- ^ expected one of `,`, `:`, or `}`
+   |         |
+   |         while parsing this struct field
+   |
+help: try naming a field
+   |
+10 |         Inner: Inner { i: 7 },
+   |         ++++++
+
+error: expected one of `,`, `:`, or `}`, found `{`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_005/target.rs:23:15
+   |
+22 |     let p = Box::new(S {
+   |                      - while parsing this struct
+23 |         Inner { i: 7 },
+   |         ----- ^ expected one of `,`, `:`, or `}`
+   |         |
+   |         while parsing this struct field
+   |
+help: try naming a field
+   |
+23 |         Inner: Inner { i: 7 },
+   |         ++++++
+
+error[E0423]: expected function, found macro `std::mem::offset_of`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_005/target.rs:14:8
+   |
+14 |     if std::mem::offset_of::<S, Inner>() != 0 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a function
+
+error[E0412]: cannot find type `Inner` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_005/target.rs:14:33
+   |
+14 |     if std::mem::offset_of::<S, Inner>() != 0 {
+   |                                 ^^^^^ not found in this scope
+
+error[E0423]: expected function, found macro `std::mem::offset_of`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_005/target.rs:18:8
+   |
+18 |     if std::mem::offset_of::<S, [i32; 4]>() != std::mem::size_of::<S>() {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a function
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0412, E0423.
+For more information about an error, try `rustc --explain E0412`.

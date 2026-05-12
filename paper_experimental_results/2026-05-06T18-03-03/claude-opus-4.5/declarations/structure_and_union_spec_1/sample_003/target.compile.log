@@ -1,0 +1,84 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/structure_and_union_spec_1/sample_003/target.rs:32:5
+   |
+32 | /     unsafe {
+33 | |         v1.union_field.anon.i = 2;
+34 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/structure_and_union_spec_1/sample_003/target.rs:63:17
+   |
+63 |     let i_val = unsafe { v1.union_field.anon.i };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/structure_and_union_spec_1/sample_003/target.rs:64:17
+   |
+64 |     let k_val = unsafe { v1.union_field.w.k };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/structure_and_union_spec_1/sample_003/target.rs:74:17
+   |
+74 |     let i_val = unsafe { v1.union_field.anon.i };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/structure_and_union_spec_1/sample_003/target.rs:79:17
+   |
+79 |     let k_val = unsafe { v1.union_field.w.k };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused variable: `k_val`
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/structure_and_union_spec_1/sample_003/target.rs:64:9
+   |
+64 |     let k_val = unsafe { v1.union_field.w.k };
+   |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_k_val`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/structure_and_union_spec_1/sample_003/target.rs:32:5
+   |
+32 |     unsafe {
+   |     ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `m` is never read
+ --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/structure_and_union_spec_1/sample_003/target.rs:4:9
+  |
+2 |     struct V {
+  |            - field in this struct
+3 |         union_field: UnionField,
+4 |         m: i32,
+  |         ^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `j` is never read
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/structure_and_union_spec_1/sample_003/target.rs:15:9
+   |
+13 |     struct AnonStruct {
+   |            ---------- field in this struct
+14 |         i: i32,
+15 |         j: i32,
+   |         ^
+   |
+   = note: `AnonStruct` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: field `l` is never read
+  --> benchmark_results/2026-05-06T18-03-03/claude-opus-4.5/declarations/structure_and_union_spec_1/sample_003/target.rs:21:9
+   |
+19 |     struct WStruct {
+   |            ------- field in this struct
+20 |         k: i64,
+21 |         l: i64,
+   |         ^
+   |
+   = note: `WStruct` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+error: aborting due to 5 previous errors; 5 warnings emitted

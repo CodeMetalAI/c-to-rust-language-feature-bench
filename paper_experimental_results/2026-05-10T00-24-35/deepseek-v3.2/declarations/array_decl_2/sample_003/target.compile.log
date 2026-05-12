@@ -1,0 +1,162 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:24:9
+   |
+24 | /         unsafe {
+25 | |             s += *p.add(i);
+26 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:43:5
+   |
+43 | /     unsafe {
+44 | |         *p.add(1) += 5;
+45 | |         *p.add(0) + *p.add(1) + *p.add(2)
+46 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:50:5
+    |
+ 50 | /     unsafe {
+ 51 | |         X = BACKING.as_ptr();
+ 52 | |         
+ 53 | |         Y[0] = 1;
+...   |
+112 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:79:16
+   |
+79 |             if unsafe { *t.add(6) } != 7 {
+   |                ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:89:16
+   |
+89 |             if unsafe { *hp.p } != 1 {
+   |                ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:97:25
+   |
+97 |             let a_ptr = unsafe { &(*ha).a } as *const [i32; 0] as *const u8;
+   |                         ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:100:25
+    |
+100 |             if a_ptr != unsafe { ha_ptr.add(offset_of_a) } {
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:104:16
+    |
+104 |             if unsafe { *(*ha).a.as_ptr().add(2) } != 3 {
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:79:16
+   |
+50 |     unsafe {
+   |     ------ because it's nested under this `unsafe` block
+...
+79 |             if unsafe { *t.add(6) } != 7 {
+   |                ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:89:16
+   |
+50 |     unsafe {
+   |     ------ because it's nested under this `unsafe` block
+...
+89 |             if unsafe { *hp.p } != 1 {
+   |                ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:97:25
+   |
+50 |     unsafe {
+   |     ------ because it's nested under this `unsafe` block
+...
+97 |             let a_ptr = unsafe { &(*ha).a } as *const [i32; 0] as *const u8;
+   |                         ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:100:25
+    |
+ 50 |     unsafe {
+    |     ------ because it's nested under this `unsafe` block
+...
+100 |             if a_ptr != unsafe { ha_ptr.add(offset_of_a) } {
+    |                         ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:104:16
+    |
+ 50 |     unsafe {
+    |     ------ because it's nested under this `unsafe` block
+...
+104 |             if unsafe { *(*ha).a.as_ptr().add(2) } != 3 {
+    |                ^^^^^^ unnecessary `unsafe` block
+
+warning: type alias `Usize` is never used
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:3:6
+  |
+3 | type Usize = usize;
+  |      ^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:51:13
+   |
+51 |         X = BACKING.as_ptr();
+   |             ^^^^^^^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:69:35
+   |
+69 |         if mutate_through_pointer(BACKING.as_mut_ptr()) != (10 + 25 + 30) {
+   |                                   ^^^^^^^^^^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:78:21
+   |
+78 |             let t = Y.as_ptr();
+   |                     ^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:88:20
+   |
+88 |             hp.p = Y.as_ptr();
+   |                    ^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:93:22
+   |
+93 |             let ha = Y.as_ptr() as *const HoldA;
+   |                      ^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+
+error: aborting due to 8 previous errors; 11 warnings emitted

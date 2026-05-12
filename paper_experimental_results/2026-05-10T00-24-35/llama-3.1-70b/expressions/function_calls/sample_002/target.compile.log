@@ -1,0 +1,118 @@
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_002/target.rs:10:12
+   |
+10 |         if logn < 5 {
+   |            ^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_002/target.rs:11:13
+   |
+11 |             logv[logn] = id;
+   |             ^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_002/target.rs:11:18
+   |
+11 |             logv[logn] = id;
+   |                  ^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_002/target.rs:12:13
+   |
+12 |             logn += 1;
+   |             ^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_002/target.rs:17:9
+   |
+17 |         seen_f1 = true;
+   |         ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_002/target.rs:23:9
+   |
+23 |         seen_f2 = true;
+   |         ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_002/target.rs:29:9
+   |
+29 |         seen_f3 = true;
+   |         ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_002/target.rs:35:9
+   |
+35 |         seen_f4 = true;
+   |         ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_002/target.rs:43:13
+   |
+43 |         if!(seen_f1 && seen_f2 && seen_f3 && seen_f4) {
+   |             ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_002/target.rs:43:24
+   |
+43 |         if!(seen_f1 && seen_f2 && seen_f3 && seen_f4) {
+   |                        ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_002/target.rs:43:35
+   |
+43 |         if!(seen_f1 && seen_f2 && seen_f3 && seen_f4) {
+   |                                   ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_002/target.rs:43:46
+   |
+43 |         if!(seen_f1 && seen_f2 && seen_f3 && seen_f4) {
+   |                                              ^^^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/function_calls/sample_002/target.rs:54:28
+     |
+  54 |         std::process::exit(rc);
+     |         ------------------ ^^ expected `i32`, found `usize`
+     |         |
+     |         arguments to this function are incorrect
+     |
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/std/src/process.rs:2432:8
+     |
+2432 | pub fn exit(code: i32) -> ! {
+     |        ^^^^
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+     |
+  54 |         std::process::exit(rc.try_into().unwrap());
+     |                              ++++++++++++++++++++
+
+error: aborting due to 13 previous errors
+
+Some errors have detailed explanations: E0308, E0434.
+For more information about an error, try `rustc --explain E0308`.

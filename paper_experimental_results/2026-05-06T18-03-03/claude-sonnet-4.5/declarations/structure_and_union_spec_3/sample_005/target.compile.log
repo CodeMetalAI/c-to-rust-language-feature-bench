@@ -1,0 +1,29 @@
+warning: unused import: `std::ptr`
+ --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_3/sample_005/target.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_3/sample_005/target.rs:24:15
+   |
+24 |     let ptr = unsafe { alloc(layout) as *mut S };
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/structure_and_union_spec_3/sample_005/target.rs:30:5
+   |
+30 | /     unsafe {
+31 | |         (*ptr).i = 7;
+32 | |         
+33 | |         let array_ptr = (ptr as *mut u8).add(base_size) as *mut i32;
+...  |
+42 | |         dealloc(ptr as *mut u8, layout);
+43 | |     }
+   | |_____^
+
+error: aborting due to 2 previous errors; 1 warning emitted

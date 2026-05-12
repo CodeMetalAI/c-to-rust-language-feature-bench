@@ -1,0 +1,51 @@
+warning: type `u8` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_004/target.rs:1:6
+  |
+1 | type u8 = u8;
+  |      ^^ help: convert the identifier to upper camel case (notice the capitalization): `U8`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: type `u32` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_004/target.rs:2:6
+  |
+2 | type u32 = u32;
+  |      ^^^ help: convert the identifier to upper camel case (notice the capitalization): `U32`
+
+error[E0391]: cycle detected when expanding type alias `u8`
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_004/target.rs:1:11
+  |
+1 | type u8 = u8;
+  |           ^^
+  |
+  = note: ...which immediately requires expanding type alias `u8` again
+  = note: type aliases cannot be recursive
+  = help: consider using a struct, enum, or union instead to break the cycle
+  = help: see <https://doc.rust-lang.org/reference/types.html#recursive-types> for more information
+note: cycle used when checking that `u8` is well-formed
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_004/target.rs:1:1
+  |
+1 | type u8 = u8;
+  | ^^^^^^^
+  = note: see https://rustc-dev-guide.rust-lang.org/overview.html#queries and https://rustc-dev-guide.rust-lang.org/query.html for more information
+
+error[E0391]: cycle detected when expanding type alias `u32`
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_004/target.rs:2:12
+  |
+2 | type u32 = u32;
+  |            ^^^
+  |
+  = note: ...which immediately requires expanding type alias `u32` again
+  = note: type aliases cannot be recursive
+  = help: consider using a struct, enum, or union instead to break the cycle
+  = help: see <https://doc.rust-lang.org/reference/types.html#recursive-types> for more information
+note: cycle used when checking that `u32` is well-formed
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_004/target.rs:2:1
+  |
+2 | type u32 = u32;
+  | ^^^^^^^^
+  = note: see https://rustc-dev-guide.rust-lang.org/overview.html#queries and https://rustc-dev-guide.rust-lang.org/query.html for more information
+
+error: aborting due to 2 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0391`.

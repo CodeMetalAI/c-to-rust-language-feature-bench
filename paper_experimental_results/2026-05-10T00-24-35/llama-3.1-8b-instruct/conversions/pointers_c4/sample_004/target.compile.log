@@ -1,0 +1,61 @@
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c4/sample_004/target.rs:12:49
+    |
+ 12 |     let fp2: Option<&dyn Fn(i32) -> i32> = Some(f);
+    |                                            ---- ^ expected `&dyn Fn(i32) -> i32`, found fn item
+    |                                            |
+    |                                            arguments to this enum variant are incorrect
+    |
+    = note: expected reference `&dyn Fn(i32) -> i32`
+                 found fn item `fn(i32) -> i32 {f}`
+help: the type constructed contains `fn(i32) -> i32 {f}` due to the type of the argument passed
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c4/sample_004/target.rs:12:44
+    |
+ 12 |     let fp2: Option<&dyn Fn(i32) -> i32> = Some(f);
+    |                                            ^^^^^-^
+    |                                                 |
+    |                                                 this argument influences the type of `Some`
+note: tuple variant defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/option.rs:601:5
+    |
+601 |     Some(#[stable(feature = "rust1", since = "1.0.0")] T),
+    |     ^^^^
+help: consider borrowing here
+    |
+ 12 |     let fp2: Option<&dyn Fn(i32) -> i32> = Some(&f);
+    |                                                 +
+
+error[E0369]: binary operation `!=` cannot be applied to type `Option<&dyn Fn(i32) -> i32>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c4/sample_004/target.rs:28:12
+   |
+28 |     if fp0 != fp1 {
+   |        --- ^^ --- Option<&dyn Fn(i32) -> i32>
+   |        |
+   |        Option<&dyn Fn(i32) -> i32>
+
+error[E0369]: binary operation `!=` cannot be applied to type `Option<&dyn Fn(i32) -> i32>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c4/sample_004/target.rs:31:12
+   |
+31 |     if fp1 != fp2 {
+   |        --- ^^ --- Option<&dyn Fn(i32) -> i32>
+   |        |
+   |        Option<&dyn Fn(i32) -> i32>
+
+error[E0369]: binary operation `!=` cannot be applied to type `Option<&dyn Fn(i32) -> i32>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c4/sample_004/target.rs:34:12
+   |
+34 |     if fp0 != None {
+   |        --- ^^ ---- Option<&dyn Fn(i32) -> i32>
+   |        |
+   |        Option<&dyn Fn(i32) -> i32>
+
+error[E0605]: non-primitive cast: `Option<&dyn Fn(i32) -> i32>` as `*const i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c4/sample_004/target.rs:38:14
+   |
+38 |     if p0 != fp0 as *const i32 {
+   |              ^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0369, E0605.
+For more information about an error, try `rustc --explain E0308`.

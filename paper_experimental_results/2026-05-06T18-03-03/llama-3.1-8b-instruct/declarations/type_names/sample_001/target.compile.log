@@ -1,0 +1,56 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_names/sample_001/target.rs:22:12
+   |
+22 |         if unsafe { *p as i32 } != 1 {
+   |            ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_names/sample_001/target.rs:36:12
+   |
+36 |         if unsafe { (*pa).get(1).unwrap() } != 2 {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: can't compare `&i32` with `{integer}`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_names/sample_001/target.rs:36:45
+   |
+36 |         if unsafe { (*pa).get(1).unwrap() } != 2 {
+   |                                             ^^ no implementation for `&i32 == {integer}`
+   |
+   = help: the trait `PartialEq<{integer}>` is not implemented for `&i32`
+help: consider dereferencing here
+   |
+36 |         if *unsafe { (*pa).get(1).unwrap() } != 2 {
+   |            +
+
+error[E0599]: no method named `unwrap` found for reference `&i32` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_names/sample_001/target.rs:51:18
+   |
+51 |         if fip().unwrap() != 2 {
+   |                  ^^^^^^ method not found in `&i32`
+
+error[E0057]: this function takes 2 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_names/sample_001/target.rs:69:12
+   |
+69 |         if af[1](10, 1, 2, 3) != 13 {
+   |            ^^^^^     -  -  - unexpected argument #4 of type `{integer}`
+   |                      |  |
+   |                      |  unexpected argument #3 of type `{integer}`
+   |                      expected `()`, found integer
+   |
+note: closure defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/type_names/sample_001/target.rs:8:17
+   |
+ 8 |     let f_var = |x: u32, _args: ()| -> i32 { x as i32 + 3 };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: remove the extra arguments
+   |
+69 -         if af[1](10, 1, 2, 3) != 13 {
+69 +         if af[1](10, ()) != 13 {
+   |
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0057, E0277, E0599.
+For more information about an error, try `rustc --explain E0057`.

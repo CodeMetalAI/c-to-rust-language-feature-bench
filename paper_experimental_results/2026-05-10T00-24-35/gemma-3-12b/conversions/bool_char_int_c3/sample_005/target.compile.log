@@ -1,0 +1,58 @@
+error: `<` is interpreted as a start of generic arguments for `i32`, not a comparison
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c3/sample_005/target.rs:24:18
+   |
+24 |     if pc as i32 < 0 {
+   |                  ^ --- interpreted as generic arguments
+   |                  |
+   |                  not interpreted as comparison
+   |
+help: try comparing the cast value
+   |
+24 |     if (pc as i32) < 0 {
+   |        +         +
+
+warning: unused variable: `iuc`
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c3/sample_005/target.rs:8:9
+  |
+8 |     let iuc = uc as i32;
+  |         ^^^ help: if this is intentional, prefix it with an underscore: `_iuc`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `x`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c3/sample_005/target.rs:43:15
+   |
+43 | fn type_id<T>(x: T) -> i32 {
+   |               ^ help: if this is intentional, prefix it with an underscore: `_x`
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c3/sample_005/target.rs:44:8
+   |
+44 |     if std::any::TypeId::of::<T>() == std::any::TypeId::of::<i8>() {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |        |
+   |        the parameter type `T` must be valid for the static lifetime...
+   |        ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+43 | fn type_id<T: 'static>(x: T) -> i32 {
+   |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/bool_char_int_c3/sample_005/target.rs:46:15
+   |
+46 |     } else if std::any::TypeId::of::<T>() == std::any::TypeId::of::<u8>() {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |               |
+   |               the parameter type `T` must be valid for the static lifetime...
+   |               ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+43 | fn type_id<T: 'static>(x: T) -> i32 {
+   |             +++++++++
+
+error: aborting due to 3 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0310`.

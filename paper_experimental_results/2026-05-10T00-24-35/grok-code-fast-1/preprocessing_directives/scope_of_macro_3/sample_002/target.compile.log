@@ -1,0 +1,23 @@
+error[E0369]: cannot add `{integer}` to `({integer}, {integer})`
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:6:20
+  |
+6 |     let u = (3, 4) + 3;
+  |             ------ ^ - {integer}
+  |             |
+  |             ({integer}, {integer})
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:27:28
+   |
+27 |     let c: [[u8; 6]; 2] = [b"hello\x00", [b'\x00', b'\x00', b'\x00', b'\x00', b'\x00', b'\x00']];
+   |                            ^^^^^^^^^^^^ expected `[u8; 6]`, found `&[u8; 6]`
+   |
+help: consider dereferencing the borrow
+   |
+27 |     let c: [[u8; 6]; 2] = [*b"hello\x00", [b'\x00', b'\x00', b'\x00', b'\x00', b'\x00', b'\x00']];
+   |                            +
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0308, E0369.
+For more information about an error, try `rustc --explain E0308`.

@@ -1,0 +1,51 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:27:9
+   |
+23 |                     arr[a - 1][b][c] = 100 * a + 10 * b + c;
+   |                     --- here the type of `arr` is inferred to be `[[[usize; 10]; 10]; 9]`
+...
+27 |         arr
+   |         ^^^ expected `[[[i32; 10]; 10]; 9]`, found `[[[usize; 10]; 10]; 9]`
+   |
+   = note: expected array `[[[i32; 10]; 10]; 9]`
+              found array `[[[usize; 10]; 10]; 9]`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:36:9
+   |
+33 |                 arr[b - 1][c] = 10 * b + c;
+   |                 --- here the type of `arr` is inferred to be `[[usize; 10]; 9]`
+...
+36 |         arr
+   |         ^^^ expected `[[i32; 10]; 9]`, found `[[usize; 10]; 9]`
+   |
+   = note: expected array `[[i32; 10]; 9]`
+              found array `[[usize; 10]; 9]`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:45:9
+   |
+42 |                 arr[a - 1][c] = 10 * a + c;
+   |                 --- here the type of `arr` is inferred to be `[[usize; 10]; 9]`
+...
+45 |         arr
+   |         ^^^ expected `[[i32; 10]; 9]`, found `[[usize; 10]; 9]`
+   |
+   = note: expected array `[[i32; 10]; 9]`
+              found array `[[usize; 10]; 9]`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/preprocessing_directives/scope_of_macro_5/sample_002/target.rs:54:9
+   |
+51 |                 arr[a - 1][b] = 10 * a + b;
+   |                 --- here the type of `arr` is inferred to be `[[usize; 10]; 9]`
+...
+54 |         arr
+   |         ^^^ expected `[[i32; 10]; 9]`, found `[[usize; 10]; 9]`
+   |
+   = note: expected array `[[i32; 10]; 9]`
+              found array `[[usize; 10]; 9]`
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

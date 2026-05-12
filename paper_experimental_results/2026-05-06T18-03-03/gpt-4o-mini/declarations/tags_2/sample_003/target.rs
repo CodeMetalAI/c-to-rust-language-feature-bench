@@ -1,0 +1,36 @@
+struct S2 {
+    v2: i32,
+    s1p: Option<Box<S1>>,
+}
+
+struct S1 {
+    v1: i32,
+    s2p: Option<Box<S2>>,
+}
+
+fn main() -> i32 {
+    let mut a = S1 { v1: 10, s2p: None };
+    let mut b = S2 { v2: 20, s1p: None };
+
+    a.s2p = Some(Box::new(b));
+    if let Some(ref s2) = a.s2p {
+        b.s1p = Some(Box::new(a));
+        if s2.v2 != 20 {
+            return 1;
+        }
+    }
+
+    if let Some(ref s1) = b.s1p {
+        if s1.v1 != 10 {
+            return 2;
+        }
+    }
+
+    if let Some(ref s2) = a.s2p {
+        if s2.s1p.as_ref().map_or(false, |s1| s1.as_ref() as *const _ != &a as *const _) {
+            return 3;
+        }
+    }
+
+    return 0;
+}

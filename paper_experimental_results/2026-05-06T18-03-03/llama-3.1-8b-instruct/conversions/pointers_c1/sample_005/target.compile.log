@@ -1,0 +1,104 @@
+warning: trait objects without an explicit `dyn` are deprecated
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/pointers_c1/sample_005/target.rs:10:20
+   |
+10 |     let v1: *const std::any::Any = pi as *const _;
+   |                    ^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2021/warnings-promoted-to-error.html>
+   = note: `#[warn(bare_trait_objects)]` (part of `#[warn(rust_2021_compatibility)]`) on by default
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+10 |     let v1: *const dyn std::any::Any = pi as *const _;
+   |                    +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/pointers_c1/sample_005/target.rs:11:20
+   |
+11 |     let v2: *const std::any::Any = pd as *const _;
+   |                    ^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+11 |     let v2: *const dyn std::any::Any = pd as *const _;
+   |                    +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/pointers_c1/sample_005/target.rs:12:20
+   |
+12 |     let v3: *const std::any::Any = ps as *const _;
+   |                    ^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+12 |     let v3: *const dyn std::any::Any = ps as *const _;
+   |                    +++
+
+error[E0609]: no field `a` on type `*const S`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/pointers_c1/sample_005/target.rs:34:12
+   |
+34 |     if ps2.a != 7 {
+   |            ^ unknown field
+   |
+help: `ps2` is a raw pointer; try dereferencing it
+   |
+34 |     if (*ps2).a != 7 {
+   |        ++   +
+
+error[E0609]: no field `b` on type `*const S`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/pointers_c1/sample_005/target.rs:37:12
+   |
+37 |     if ps2.b != 9.5 {
+   |            ^ unknown field
+   |
+help: `ps2` is a raw pointer; try dereferencing it
+   |
+37 |     if (*ps2).b != 9.5 {
+   |        ++   +
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/pointers_c1/sample_005/target.rs:41:21
+   |
+41 |     let v1b: *const std::any::Any = pi2 as *const _;
+   |                     ^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+41 |     let v1b: *const dyn std::any::Any = pi2 as *const _;
+   |                     +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/pointers_c1/sample_005/target.rs:42:21
+   |
+42 |     let v2b: *const std::any::Any = pd2 as *const _;
+   |                     ^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+42 |     let v2b: *const dyn std::any::Any = pd2 as *const _;
+   |                     +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/pointers_c1/sample_005/target.rs:43:21
+   |
+43 |     let v3b: *const std::any::Any = ps2 as *const _;
+   |                     ^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+43 |     let v3b: *const dyn std::any::Any = ps2 as *const _;
+   |                     +++
+
+error: aborting due to 2 previous errors; 6 warnings emitted
+
+For more information about this error, try `rustc --explain E0609`.

@@ -1,0 +1,115 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c4/sample_003/target.rs:10:31
+   |
+10 |     let fp0: fn(i32) -> i32 = unsafe { std::mem::transmute(0usize) };
+   |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c4/sample_003/target.rs:11:31
+   |
+11 |     let fp1: fn(i32) -> i32 = unsafe { std::mem::transmute(0usize) };
+   |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c4/sample_003/target.rs:12:31
+   |
+12 |     let fp2: fn(i32) -> i32 = unsafe { std::mem::transmute(v0) };
+   |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c4/sample_003/target.rs:34:18
+   |
+34 |     if !fp0.eq(&(unsafe { std::mem::transmute(0usize) })) {
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `f` is never used
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c4/sample_003/target.rs:1:4
+  |
+1 | fn f(x: i32) -> i32 {
+  |    ^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: the type `fn(i32) -> i32` does not permit zero-initialization
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c4/sample_003/target.rs:10:40
+   |
+10 |     let fp0: fn(i32) -> i32 = unsafe { std::mem::transmute(0usize) };
+   |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                        |
+   |                                        this code causes undefined behavior when executed
+   |                                        help: use `MaybeUninit<T>` instead, and only call `assume_init` after initialization is done
+   |
+   = note: function pointers must be non-null
+   = note: `#[warn(invalid_value)]` on by default
+
+warning: the type `fn(i32) -> i32` does not permit zero-initialization
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c4/sample_003/target.rs:11:40
+   |
+11 |     let fp1: fn(i32) -> i32 = unsafe { std::mem::transmute(0usize) };
+   |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                        |
+   |                                        this code causes undefined behavior when executed
+   |                                        help: use `MaybeUninit<T>` instead, and only call `assume_init` after initialization is done
+   |
+   = note: function pointers must be non-null
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c4/sample_003/target.rs:28:9
+   |
+28 |     if !fp0.eq(&fp1) {
+   |         ^^^^^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+   = note: `#[warn(unpredictable_function_pointer_comparisons)]` on by default
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+28 -     if !fp0.eq(&fp1) {
+28 +     if !std::ptr::fn_addr_eq(fp0, fp1) {
+   |
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c4/sample_003/target.rs:31:9
+   |
+31 |     if !fp1.eq(&fp2) {
+   |         ^^^^^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+31 -     if !fp1.eq(&fp2) {
+31 +     if !std::ptr::fn_addr_eq(fp1, fp2) {
+   |
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c4/sample_003/target.rs:34:9
+   |
+34 |     if !fp0.eq(&(unsafe { std::mem::transmute(0usize) })) {
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+34 -     if !fp0.eq(&(unsafe { std::mem::transmute(0usize) })) {
+34 +     if !std::ptr::fn_addr_eq(fp0, (unsafe { std::mem::transmute(0usize) })) {
+   |
+
+warning: the type `fn(i32) -> i32` does not permit zero-initialization
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c4/sample_003/target.rs:34:27
+   |
+34 |     if !fp0.eq(&(unsafe { std::mem::transmute(0usize) })) {
+   |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                           |
+   |                           this code causes undefined behavior when executed
+   |                           help: use `MaybeUninit<T>` instead, and only call `assume_init` after initialization is done
+   |
+   = note: function pointers must be non-null
+
+error: aborting due to 4 previous errors; 7 warnings emitted

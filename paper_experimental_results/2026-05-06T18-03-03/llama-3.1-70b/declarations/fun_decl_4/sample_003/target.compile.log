@@ -1,0 +1,47 @@
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_4/sample_003/target.rs:40:22
+   |
+40 |         let before = hash_matrix(n, &b);
+   |                      ^^^^^^^^^^^    -- argument #2 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_4/sample_003/target.rs:5:4
+   |
+ 5 | fn hash_matrix(n: usize, k: usize, a: &[[f64; 308]]) -> u64 {
+   |    ^^^^^^^^^^^           --------
+help: provide the argument
+   |
+40 |         let before = hash_matrix(n, /* usize */, &b);
+   |                                     ++++++++++++
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_4/sample_003/target.rs:42:21
+   |
+42 |         let after = hash_matrix(n, &b);
+   |                     ^^^^^^^^^^^    -- argument #2 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_4/sample_003/target.rs:5:4
+   |
+ 5 | fn hash_matrix(n: usize, k: usize, a: &[[f64; 308]]) -> u64 {
+   |    ^^^^^^^^^^^           --------
+help: provide the argument
+   |
+42 |         let after = hash_matrix(n, /* usize */, &b);
+   |                                    ++++++++++++
+
+error[E0606]: casting `&u8` as `u64` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_4/sample_003/target.rs:63:83
+   |
+63 |     sink ^= b[0][0].to_le_bytes().into_iter().fold(0u64, |acc, byte| (acc << 8) | byte as u64);
+   |                                                                                   ^^^^^^^^^^^
+   |
+help: dereference the expression
+   |
+63 |     sink ^= b[0][0].to_le_bytes().into_iter().fold(0u64, |acc, byte| (acc << 8) | *byte as u64);
+   |                                                                                   +
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0061, E0606.
+For more information about an error, try `rustc --explain E0061`.

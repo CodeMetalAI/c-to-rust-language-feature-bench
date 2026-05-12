@@ -1,0 +1,77 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_002/target.rs:12:5
+   |
+12 | /     unsafe {
+13 | |         if n == 0 {
+14 | |             return None;
+...  |
+28 | |         Some(unsafe { std::slice::from_raw_parts_mut(p.as_mut_ptr() as *mut f32, n) })
+29 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_002/target.rs:28:14
+   |
+28 |         Some(unsafe { std::slice::from_raw_parts_mut(p.as_mut_ptr() as *mut f32, n) })
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_002/target.rs:83:5
+   |
+83 | /     unsafe {
+84 | |         if (H & 1) == 0 {
+85 | |             std::process::exit(6);
+86 | |         }
+87 | |     }
+   | |_____^
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_002/target.rs:28:14
+   |
+12 |     unsafe {
+   |     ------ because it's nested under this `unsafe` block
+...
+28 |         Some(unsafe { std::slice::from_raw_parts_mut(p.as_mut_ptr() as *mut f32, n) })
+   |              ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error[E0382]: use of moved value
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_002/target.rs:69:17
+   |
+65 |     if std::ptr::eq(a.v.unwrap().as_ptr(), b.v.unwrap().as_ptr()) {
+   |                     --- -------- `a.v` moved due to this method call
+   |                     |
+   |                     help: consider calling `.as_ref()` or `.as_mut()` to borrow the type's contents
+...
+69 |     if let Some(a_v) = a.v {
+   |                 ^^^ value used here after move
+   |
+   = note: move occurs because `a.v` has type `Option<&mut [f32]>`, which does not implement the `Copy` trait
+help: you could `clone` the value and consume it, if the `&mut [f32]: Clone` trait bound could be satisfied
+   |
+65 |     if std::ptr::eq(a.v.clone().unwrap().as_ptr(), b.v.unwrap().as_ptr()) {
+   |                        ++++++++
+
+error[E0382]: use of moved value
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_002/target.rs:76:17
+   |
+65 |     if std::ptr::eq(a.v.unwrap().as_ptr(), b.v.unwrap().as_ptr()) {
+   |                                            --- -------- `b.v` moved due to this method call
+   |                                            |
+   |                                            help: consider calling `.as_ref()` or `.as_mut()` to borrow the type's contents
+...
+76 |     if let Some(b_v) = b.v {
+   |                 ^^^ value used here after move
+   |
+   = note: move occurs because `b.v` has type `Option<&mut [f32]>`, which does not implement the `Copy` trait
+help: you could `clone` the value and consume it, if the `&mut [f32]: Clone` trait bound could be satisfied
+   |
+65 |     if std::ptr::eq(a.v.unwrap().as_ptr(), b.v.clone().unwrap().as_ptr()) {
+   |                                               ++++++++
+
+error: aborting due to 5 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0382`.

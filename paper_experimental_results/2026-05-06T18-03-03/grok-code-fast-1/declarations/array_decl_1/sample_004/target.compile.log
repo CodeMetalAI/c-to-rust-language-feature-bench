@@ -1,0 +1,28 @@
+error[E0502]: cannot borrow `backing` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/array_decl_1/sample_004/target.rs:29:13
+   |
+29 |             backing[i] = (100 + i) as f32;
+   |             ^^^^^^^ mutable borrow occurs here
+30 |             afp[i] = &backing[i];
+   |             ---       ------- immutable borrow occurs here
+   |             |
+   |             immutable borrow later used here
+
+error[E0597]: `backing` does not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/array_decl_1/sample_004/target.rs:30:23
+   |
+26 |         let mut backing = BACKING.lock().unwrap();
+   |             ----------- binding `backing` declared here
+27 |         let mut afp = AFP.lock().unwrap();
+   |                       ---------- argument requires that `backing` is borrowed for `'static`
+...
+30 |             afp[i] = &backing[i];
+   |                       ^^^^^^^ borrowed value does not live long enough
+31 |         }
+32 |     }
+   |     - `backing` dropped here while still borrowed
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0502, E0597.
+For more information about an error, try `rustc --explain E0502`.

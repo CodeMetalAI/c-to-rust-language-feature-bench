@@ -1,0 +1,41 @@
+error[E0277]: `RefCell<Bank>` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/restrict_def_1/sample_001/target.rs:7:16
+  |
+7 | static BANK_A: RefCell<Bank> = RefCell::new(Bank { data: [0; 8] });
+  |                ^^^^^^^^^^^^^ `RefCell<Bank>` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `RefCell<Bank>`
+  = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock` instead
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `RefCell<Bank>` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/restrict_def_1/sample_001/target.rs:8:16
+  |
+8 | static BANK_B: RefCell<Bank> = RefCell::new(Bank { data: [0; 8] });
+  |                ^^^^^^^^^^^^^ `RefCell<Bank>` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `RefCell<Bank>`
+  = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock` instead
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `RefCell<[i32; 8]>` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/restrict_def_1/sample_001/target.rs:9:11
+  |
+9 | static C: RefCell<[i32; 8]> = RefCell::new([0; 8]);
+  |           ^^^^^^^^^^^^^^^^^ `RefCell<[i32; 8]>` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `RefCell<[i32; 8]>`
+  = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock` instead
+  = note: shared static variables must have a type that implements `Sync`
+
+warning: unused variable: `which`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/restrict_def_1/sample_001/target.rs:11:38
+   |
+11 | fn choose_view(bank: &RefCell<Bank>, which: i32) -> RefMut<[i32]> {
+   |                                      ^^^^^ help: if this is intentional, prefix it with an underscore: `_which`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 3 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0277`.

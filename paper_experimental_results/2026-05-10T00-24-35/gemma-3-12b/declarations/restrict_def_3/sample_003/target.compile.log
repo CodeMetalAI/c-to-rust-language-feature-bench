@@ -1,0 +1,57 @@
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_3/sample_003/target.rs:26:9
+   |
+26 |     if !check_p_is_double_q(&a, &b_snapshot, 64) {
+   |         ^^^^^^^^^^^^^^^^^^^ --  ----------- expected `&[i32]`, found `&[usize; 64]`
+   |                             |
+   |                             expected `&[i32]`, found `&[usize; 64]`
+   |
+   = note: expected reference `&[i32]`
+              found reference `&[usize; 64]`
+   = note: expected reference `&[i32]`
+              found reference `&[usize; 64]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_3/sample_003/target.rs:42:4
+   |
+42 | fn check_p_is_double_q(p: &[i32], q: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^^^^^^ ---------  ---------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_3/sample_003/target.rs:27:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+27 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_3/sample_003/target.rs:30:9
+   |
+30 |     if !check_unchanged(&b, &b_snapshot, 64) {
+   |         ^^^^^^^^^^^^^^^ --  ----------- expected `&[i32]`, found `&[usize; 64]`
+   |                         |
+   |                         expected `&[i32]`, found `&[usize; 64]`
+   |
+   = note: expected reference `&[i32]`
+              found reference `&[usize; 64]`
+   = note: expected reference `&[i32]`
+              found reference `&[usize; 64]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_3/sample_003/target.rs:51:4
+   |
+51 | fn check_unchanged(x: &[i32], y: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^^ ---------  ---------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/restrict_def_3/sample_003/target.rs:39:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+39 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

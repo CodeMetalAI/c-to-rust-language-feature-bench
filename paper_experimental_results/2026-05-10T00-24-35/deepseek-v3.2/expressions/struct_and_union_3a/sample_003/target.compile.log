@@ -1,0 +1,42 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_3a/sample_003/target.rs:34:5
+   |
+34 | /     unsafe {
+35 | |         u.nf.type_ = 1;
+36 | |         u.nf.doublenode = 3.14;
+37 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_3a/sample_003/target.rs:39:19
+   |
+39 |       let success = unsafe {
+   |  ___________________^
+40 | |         if u.all.alltypes != 1 {
+41 | |             false
+42 | |         } else if u.ni.type_ != 1 {
+...  |
+51 | |     };
+   | |_____^
+
+error: not automatically applying `DerefMut` on `ManuallyDrop` union field
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_3a/sample_003/target.rs:35:9
+   |
+35 |         u.nf.type_ = 1;
+   |         ^^^^
+   |
+   = help: writing to this reference calls the destructor for the old value
+   = help: add an explicit `*` if that is desired, or call `ptr::write` to not run the destructor
+
+error: not automatically applying `DerefMut` on `ManuallyDrop` union field
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_3a/sample_003/target.rs:36:9
+   |
+36 |         u.nf.doublenode = 3.14;
+   |         ^^^^
+   |
+   = help: writing to this reference calls the destructor for the old value
+   = help: add an explicit `*` if that is desired, or call `ptr::write` to not run the destructor
+
+error: aborting due to 4 previous errors

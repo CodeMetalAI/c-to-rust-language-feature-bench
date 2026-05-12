@@ -1,0 +1,588 @@
+error[E0425]: cannot find value `c_vp` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:8:12
+  |
+8 |     f(1 && c_vp as *const _ as *const _);
+  |            ^^^^ not found in this scope
+
+error[E0425]: cannot find value `c_ip` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:9:12
+  |
+9 |     f(1 && c_ip as *const _ as *const _);
+  |            ^^^^ not found in this scope
+
+error[E0425]: cannot find value `v_ip` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:11:13
+   |
+11 |     f2(1 && v_ip as *const _ as *const _);
+   |             ^^^^ not found in this scope
+
+error[E0425]: cannot find value `c_ip` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:14:13
+   |
+14 |     f3(1 && c_ip as *const _ as *const _);
+   |             ^^^^ not found in this scope
+
+error[E0425]: cannot find value `v_ip` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:15:13
+   |
+15 |     f3(1 && v_ip as *const _ as *const _);
+   |             ^^^^ not found in this scope
+
+error[E0425]: cannot find value `vp` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:17:12
+   |
+17 |     f(1 && vp as *const _ as *const _);
+   |            ^^ not found in this scope
+
+error[E0425]: cannot find value `c_cp` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:18:12
+   |
+18 |     f(1 && c_cp as *const _ as *const _);
+   |            ^^^^ not found in this scope
+
+error[E0425]: cannot find value `ip` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:20:13
+   |
+20 |     f4(1 && ip as *const _ as *const _);
+   |             ^^ not found in this scope
+
+error[E0425]: cannot find value `c_ip` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:21:13
+   |
+21 |     f4(1 && c_ip as *const _ as *const _);
+   |             ^^^^ not found in this scope
+
+error[E0425]: cannot find value `vp` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:23:13
+   |
+23 |     f1(1 && vp as *const _ as *const _);
+   |             ^^ not found in this scope
+
+error[E0425]: cannot find value `ip` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:24:13
+   |
+24 |     f1(1 && ip as *const _ as *const _);
+   |             ^^ not found in this scope
+
+error: implementation of an `unsafe` trait
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:30:5
+   |
+30 | /     unsafe impl<T: Copy> std::ops::Deref for VolatileWrapper<T> {
+31 | |         type Target = T;
+32 | |         fn deref(&self) -> &Self::Target {
+33 | |             &self.0
+34 | |         }
+35 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0199]: implementing the trait `Deref` is not unsafe
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:30:5
+   |
+30 |     unsafe impl<T: Copy> std::ops::Deref for VolatileWrapper<T> {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: remove `unsafe` from this trait implementation
+   |
+30 -     unsafe impl<T: Copy> std::ops::Deref for VolatileWrapper<T> {
+30 +     impl<T: Copy> std::ops::Deref for VolatileWrapper<T> {
+   |
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:8:7
+  |
+8 |     f(1 && c_vp as *const _ as *const _);
+  |       ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:8:7
+  |
+8 |     f(1 && c_vp as *const _ as *const _);
+  |     - ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `bool`
+  |     |
+  |     arguments to this function are incorrect
+  |
+  = note: expected reference `&_`
+                  found type `bool`
+note: function defined here
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:1:4
+  |
+1 | fn f<T: Copy>(p: &T) {}
+  |    ^          -----
+help: consider borrowing here
+  |
+8 |     f(&(1 && c_vp as *const _ as *const _));
+  |       ++                                 +
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:9:7
+  |
+9 |     f(1 && c_ip as *const _ as *const _);
+  |       ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:9:7
+  |
+9 |     f(1 && c_ip as *const _ as *const _);
+  |     - ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `bool`
+  |     |
+  |     arguments to this function are incorrect
+  |
+  = note: expected reference `&_`
+                  found type `bool`
+note: function defined here
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:1:4
+  |
+1 | fn f<T: Copy>(p: &T) {}
+  |    ^          -----
+help: consider borrowing here
+  |
+9 |     f(&(1 && c_ip as *const _ as *const _));
+  |       ++                                 +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:11:8
+   |
+11 |     f2(1 && v_ip as *const _ as *const _);
+   |        ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:11:8
+   |
+11 |     f2(1 && v_ip as *const _ as *const _);
+   |     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `bool`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `bool`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:3:4
+   |
+ 3 | fn f2<T: Copy>(p: &T) {}
+   |    ^^          -----
+help: consider borrowing here
+   |
+11 |     f2(&(1 && v_ip as *const _ as *const _));
+   |        ++                                 +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:12:8
+   |
+12 |     f2(1 && 0 as *const _ as *const _);
+   |        ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:12:13
+   |
+12 |     f2(1 && 0 as *const _ as *const _);
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^ expected `bool`, found `*const _`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*const _`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:12:8
+   |
+12 |     f2(1 && 0 as *const _ as *const _);
+   |     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `bool`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `bool`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:3:4
+   |
+ 3 | fn f2<T: Copy>(p: &T) {}
+   |    ^^          -----
+help: consider borrowing here
+   |
+12 |     f2(&(1 && 0 as *const _ as *const _));
+   |        ++                              +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:14:8
+   |
+14 |     f3(1 && c_ip as *const _ as *const _);
+   |        ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:14:8
+   |
+14 |     f3(1 && c_ip as *const _ as *const _);
+   |     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `bool`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `bool`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:4:4
+   |
+ 4 | fn f3<T: Copy>(p: &T) {}
+   |    ^^          -----
+help: consider borrowing here
+   |
+14 |     f3(&(1 && c_ip as *const _ as *const _));
+   |        ++                                 +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:15:8
+   |
+15 |     f3(1 && v_ip as *const _ as *const _);
+   |        ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:15:8
+   |
+15 |     f3(1 && v_ip as *const _ as *const _);
+   |     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `bool`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `bool`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:4:4
+   |
+ 4 | fn f3<T: Copy>(p: &T) {}
+   |    ^^          -----
+help: consider borrowing here
+   |
+15 |     f3(&(1 && v_ip as *const _ as *const _));
+   |        ++                                 +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:17:7
+   |
+17 |     f(1 && vp as *const _ as *const _);
+   |       ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:17:7
+   |
+17 |     f(1 && vp as *const _ as *const _);
+   |     - ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `bool`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `bool`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:1:4
+   |
+ 1 | fn f<T: Copy>(p: &T) {}
+   |    ^          -----
+help: consider borrowing here
+   |
+17 |     f(&(1 && vp as *const _ as *const _));
+   |       ++                               +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:18:7
+   |
+18 |     f(1 && c_cp as *const _ as *const _);
+   |       ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:18:7
+   |
+18 |     f(1 && c_cp as *const _ as *const _);
+   |     - ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `bool`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `bool`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:1:4
+   |
+ 1 | fn f<T: Copy>(p: &T) {}
+   |    ^          -----
+help: consider borrowing here
+   |
+18 |     f(&(1 && c_cp as *const _ as *const _));
+   |       ++                                 +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:20:8
+   |
+20 |     f4(1 && ip as *const _ as *const _);
+   |        ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:20:8
+   |
+20 |     f4(1 && ip as *const _ as *const _);
+   |     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `bool`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `bool`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:5:4
+   |
+ 5 | fn f4<T: Copy>(p: &T) {}
+   |    ^^          -----
+help: consider borrowing here
+   |
+20 |     f4(&(1 && ip as *const _ as *const _));
+   |        ++                               +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:21:8
+   |
+21 |     f4(1 && c_ip as *const _ as *const _);
+   |        ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:21:8
+   |
+21 |     f4(1 && c_ip as *const _ as *const _);
+   |     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `bool`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `bool`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:5:4
+   |
+ 5 | fn f4<T: Copy>(p: &T) {}
+   |    ^^          -----
+help: consider borrowing here
+   |
+21 |     f4(&(1 && c_ip as *const _ as *const _));
+   |        ++                                 +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:23:8
+   |
+23 |     f1(1 && vp as *const _ as *const _);
+   |        ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:23:8
+   |
+23 |     f1(1 && vp as *const _ as *const _);
+   |     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `bool`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `bool`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:2:4
+   |
+ 2 | fn f1<T>(p: &T) {}
+   |    ^^    -----
+help: consider borrowing here
+   |
+23 |     f1(&(1 && vp as *const _ as *const _));
+   |        ++                               +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:24:8
+   |
+24 |     f1(1 && ip as *const _ as *const _);
+   |        ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:24:8
+   |
+24 |     f1(1 && ip as *const _ as *const _);
+   |     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `bool`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `bool`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:2:4
+   |
+ 2 | fn f1<T>(p: &T) {}
+   |    ^^    -----
+help: consider borrowing here
+   |
+24 |     f1(&(1 && ip as *const _ as *const _));
+   |        ++                               +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:40:8
+   |
+40 |     f2(1 && v_ip as *const _ as *const _);
+   |        ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:40:13
+   |
+40 |     f2(1 && v_ip as *const _ as *const _);
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `bool`, found `*const _`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*const _`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:40:8
+   |
+40 |     f2(1 && v_ip as *const _ as *const _);
+   |     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `bool`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `bool`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:3:4
+   |
+ 3 | fn f2<T: Copy>(p: &T) {}
+   |    ^^          -----
+help: consider borrowing here
+   |
+40 |     f2(&(1 && v_ip as *const _ as *const _));
+   |        ++                                 +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:41:8
+   |
+41 |     f2(1 && 0 as *const _ as *const _);
+   |        ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:41:13
+   |
+41 |     f2(1 && 0 as *const _ as *const _);
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^ expected `bool`, found `*const _`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*const _`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:41:8
+   |
+41 |     f2(1 && 0 as *const _ as *const _);
+   |     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `bool`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `bool`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:3:4
+   |
+ 3 | fn f2<T: Copy>(p: &T) {}
+   |    ^^          -----
+help: consider borrowing here
+   |
+41 |     f2(&(1 && 0 as *const _ as *const _));
+   |        ++                              +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:43:8
+   |
+43 |     f3(1 && c_ip as *const _ as *const _);
+   |        ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:43:13
+   |
+43 |     f3(1 && c_ip as *const _ as *const _);
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `bool`, found `*const _`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*const _`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:43:8
+   |
+43 |     f3(1 && c_ip as *const _ as *const _);
+   |     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `bool`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `bool`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:4:4
+   |
+ 4 | fn f3<T: Copy>(p: &T) {}
+   |    ^^          -----
+help: consider borrowing here
+   |
+43 |     f3(&(1 && c_ip as *const _ as *const _));
+   |        ++                                 +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:44:8
+   |
+44 |     f3(1 && v_ip as *const _ as *const _);
+   |        ^ expected `bool`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:44:13
+   |
+44 |     f3(1 && v_ip as *const _ as *const _);
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `bool`, found `*const _`
+   |
+   = note:     expected type `bool`
+           found raw pointer `*const _`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:44:8
+   |
+44 |     f3(1 && v_ip as *const _ as *const _);
+   |     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&_`, found `bool`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `bool`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:4:4
+   |
+ 4 | fn f3<T: Copy>(p: &T) {}
+   |    ^^          -----
+help: consider borrowing here
+   |
+44 |     f3(&(1 && v_ip as *const _ as *const _));
+   |        ++                                 +
+
+warning: unused variable: `p`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:1:15
+  |
+1 | fn f<T: Copy>(p: &T) {}
+  |               ^ help: if this is intentional, prefix it with an underscore: `_p`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `p`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:2:10
+  |
+2 | fn f1<T>(p: &T) {}
+  |          ^ help: if this is intentional, prefix it with an underscore: `_p`
+
+warning: unused variable: `p`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:3:16
+  |
+3 | fn f2<T: Copy>(p: &T) {}
+  |                ^ help: if this is intentional, prefix it with an underscore: `_p`
+
+warning: unused variable: `p`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:4:16
+  |
+4 | fn f3<T: Copy>(p: &T) {}
+  |                ^ help: if this is intentional, prefix it with an underscore: `_p`
+
+warning: unused variable: `p`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/cond_op_1/sample_005/target.rs:5:16
+  |
+5 | fn f4<T: Copy>(p: &T) {}
+  |                ^ help: if this is intentional, prefix it with an underscore: `_p`
+
+error: aborting due to 50 previous errors; 5 warnings emitted
+
+Some errors have detailed explanations: E0199, E0308, E0425.
+For more information about an error, try `rustc --explain E0199`.

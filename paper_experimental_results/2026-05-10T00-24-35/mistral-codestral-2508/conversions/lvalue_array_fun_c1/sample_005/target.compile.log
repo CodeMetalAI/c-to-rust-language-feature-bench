@@ -1,0 +1,23 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c1/sample_005/target.rs:31:18
+   |
+31 |         let bp = unsafe { std::slice::from_raw_parts_mut(&mut t as *mut i32 as *mut u8, 4) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0499]: cannot borrow `i` as mutable more than once at a time
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/conversions/lvalue_array_fun_c1/sample_005/target.rs:5:16
+  |
+3 |     let p = &mut i;
+  |             ------ first mutable borrow occurs here
+4 |
+5 |     if !ok_mod(&mut i) {
+  |                ^^^^^^ second mutable borrow occurs here
+...
+8 |     if !ok_mod(p) {
+  |                - first borrow later used here
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0499`.

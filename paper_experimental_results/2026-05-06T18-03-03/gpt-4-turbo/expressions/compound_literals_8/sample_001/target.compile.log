@@ -1,0 +1,17 @@
+error[E0597]: `new_s` does not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/compound_literals_8/sample_001/target.rs:14:18
+   |
+11 |         let new_s = S { i: j };
+   |             ----- binding `new_s` declared here
+12 |         j += 1;
+13 |         q = p;
+   |             - borrow later used here
+14 |         p = Some(&new_s);
+   |                  ^^^^^^ borrowed value does not live long enough
+...
+18 |     }
+   |     - `new_s` dropped here while still borrowed
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0597`.

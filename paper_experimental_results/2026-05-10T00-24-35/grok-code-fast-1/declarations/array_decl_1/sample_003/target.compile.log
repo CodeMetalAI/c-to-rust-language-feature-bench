@@ -1,0 +1,33 @@
+error[E0506]: cannot assign to `backing[_]` because it is borrowed
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/array_decl_1/sample_003/target.rs:20:9
+   |
+15 | fn init_globals(fa: &mut [f32; 11], backing: &mut [f32; 17], afp: &mut [Option<&f32>; 17]) {
+   |                                                                                - let's call the lifetime of this reference `'2`
+...
+20 |         backing[i] = (100 + i) as f32;
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `backing[_]` is assigned to here but it was already borrowed
+21 |         afp[i] = Some(&backing[i]);
+   |         --------------------------
+   |         |             |
+   |         |             `backing[_]` is borrowed here
+   |         assignment requires that `backing[_]` is borrowed for `'2`
+
+error: lifetime may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/array_decl_1/sample_003/target.rs:21:9
+   |
+15 | fn init_globals(fa: &mut [f32; 11], backing: &mut [f32; 17], afp: &mut [Option<&f32>; 17]) {
+   |                                              -                                 - let's call the lifetime of this reference `'2`
+   |                                              |
+   |                                              let's call the lifetime of this reference `'1`
+...
+21 |         afp[i] = Some(&backing[i]);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^ assignment requires that `'1` must outlive `'2`
+   |
+help: consider introducing a named lifetime parameter
+   |
+15 | fn init_globals<'a>(fa: &mut [f32; 11], backing: &'a mut [f32; 17], afp: &mut [Option<&'a f32>; 17]) {
+   |                ++++                               ++                                   ++
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0506`.

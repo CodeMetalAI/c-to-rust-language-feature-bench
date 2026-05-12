@@ -1,0 +1,44 @@
+warning: unused import: `std::ptr`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_002/target.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_002/target.rs:23:15
+   |
+23 |     let ptr = unsafe { alloc(layout) } as *mut i32;
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_002/target.rs:29:5
+   |
+29 | /     unsafe {
+30 | |         *ptr = 7; // p->i = 7
+31 | |         *ptr.add(1) = 11; // p->a[0] = 11
+32 | |         *ptr.add(4) = 22; // p->a[3] = 22
+...  |
+38 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_002/target.rs:41:5
+   |
+41 | /     unsafe {
+42 | |         dealloc(ptr as *mut u8, layout);
+43 | |     }
+   | |_____^
+
+warning: struct `S` is never constructed
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_3/sample_002/target.rs:5:8
+  |
+5 | struct S {
+  |        ^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 3 previous errors; 2 warnings emitted

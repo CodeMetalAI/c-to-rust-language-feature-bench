@@ -1,0 +1,48 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_4b/sample_005/target.rs:19:5
+   |
+19 | /     unsafe {
+20 | |         if OFF + actual_size > POOL_SIZE {
+21 | |             return vec![];
+...  |
+31 | |         std::slice::from_raw_parts_mut(p.as_mut_ptr() as *mut f32, n).to_vec()
+32 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_4b/sample_005/target.rs:83:5
+   |
+83 | /     unsafe {
+84 | |         if H & 1 == 0 {
+85 | |             std::process::exit(6);
+86 | |         }
+87 | |     }
+   | |_____^
+
+error[E0596]: cannot borrow `a.v` as mutable, as `a` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_4b/sample_005/target.rs:72:14
+   |
+72 |     fill_vec(&mut a.v, 1.0);
+   |              ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+58 |     let mut a = new_vector(16);
+   |         +++
+
+error[E0596]: cannot borrow `b.v` as mutable, as `b` is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_4b/sample_005/target.rs:73:14
+   |
+73 |     fill_vec(&mut b.v, 100.0);
+   |              ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+59 |     let mut b = new_vector(16);
+   |         +++
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0596`.

@@ -1,0 +1,45 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:27:29
+   |
+27 |         let hp = HoldP { p: &y };
+   |                             ^^ expected `*const i32`, found `&[i32; 7]`
+   |
+   = note: expected raw pointer `*const i32`
+                found reference `&[i32; 7]`
+
+error[E0608]: cannot index into a value of type `*const i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:28:24
+   |
+28 |         assert_eq!(hp.p[0], 1);
+   |                        ^^^
+   |
+help: consider using `wrapping_add` or `add` for indexing into raw pointer
+   |
+28 -         assert_eq!(hp.p[0], 1);
+28 +         assert_eq!(hp.p.wrapping_add(0), 1);
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:32:19
+   |
+32 |                   (&ha.a[0] as *const _ as usize));
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `*const usize`, found `usize`
+   |
+   = note: expected raw pointer `*const usize`
+                     found type `usize`
+
+error[E0605]: non-primitive cast: `[i32; 7]` as `*const [i32]`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_2/sample_005/target.rs:30:29
+   |
+30 |         let ha: &HoldA = &*(y as *const [i32] as *const HoldA);
+   |                             ^^^^^^^^^^^^^^^^^ invalid cast
+   |
+help: consider borrowing the value
+   |
+30 |         let ha: &HoldA = &*(&y as *const [i32] as *const HoldA);
+   |                             +
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0605, E0608.
+For more information about an error, try `rustc --explain E0308`.

@@ -1,0 +1,48 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2b/sample_004/target.rs:30:13
+   |
+30 |     let g = unsafe { GATE };
+   |             ^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2b/sample_004/target.rs:71:5
+   |
+71 | /     unsafe {
+72 | |         call_f_checked(&D, 100, 50, &mut D[50..], &D);
+73 | |         call_f_checked(&D, 100, 50, &mut D[1..], &D);
+74 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2b/sample_004/target.rs:80:5
+   |
+80 | /     unsafe {
+81 | |         init(&mut D, 100);
+82 | |         init(&mut expect, 100);
+...  |
+92 | |     }
+   | |_____^
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2b/sample_004/target.rs:84:42
+   |
+84 |         safe_move(50, &mut expect[50..], &expect);
+   |         ---------          ------        ^^^^^^^ immutable borrow occurs here
+   |         |                  |
+   |         |                  mutable borrow occurs here
+   |         mutable borrow later used by call
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_2b/sample_004/target.rs:85:41
+   |
+85 |         safe_move(50, &mut expect[1..], &expect);
+   |         ---------          ------       ^^^^^^^ immutable borrow occurs here
+   |         |                  |
+   |         |                  mutable borrow occurs here
+   |         mutable borrow later used by call
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0502`.

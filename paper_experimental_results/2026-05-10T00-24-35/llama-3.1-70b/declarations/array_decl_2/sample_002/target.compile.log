@@ -1,0 +1,133 @@
+error: expected expression, found `+`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_002/target.rs:91:19
+   |
+91 |     unsafe { *p } + unsafe { *p.offset(1) } + unsafe { *p.offset(2) }
+   |                   ^ expected expression
+   |
+help: parentheses are required to parse this as an expression
+   |
+91 |     (unsafe { *p }) + unsafe { *p.offset(1) } + unsafe { *p.offset(2) }
+   |     +             +
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_002/target.rs:6:5
+   |
+ 6 | /     unsafe {
+ 7 | |         Y[0] = 1;
+ 8 | |         Y[1] = 2;
+ 9 | |         Y[2] = 3;
+...  |
+13 | |         Y[6] = 7;
+14 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_002/target.rs:28:8
+   |
+28 |     if unsafe { *x.offset(1) } != 25 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_002/target.rs:34:12
+   |
+34 |         if unsafe { *t.offset(6) } != 7 {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_002/target.rs:49:12
+   |
+49 |         if unsafe { *hp.p } != 1 {
+   |            ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_002/target.rs:61:12
+   |
+61 |         if unsafe { (*ha).a[2] } != 3 {
+   |            ^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_002/target.rs:66:8
+   |
+66 |     if unsafe { Y[0] } != 1 {
+   |        ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_002/target.rs:74:14
+   |
+74 |         s += unsafe { *p.offset(i as isize) };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_002/target.rs:88:5
+   |
+88 | /     unsafe {
+89 | |         *p.offset(1) += 5;
+90 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_002/target.rs:91:5
+   |
+91 |     unsafe { *p } + unsafe { *p.offset(1) } + unsafe { *p.offset(2) }
+   |     ^^^^^^^^^^^^^
+
+warning: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_002/target.rs:34:24
+   |
+34 |         if unsafe { *t.offset(6) } != 7 {
+   |                        ^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2018!
+   = note: for more information, see issue #46906 <https://github.com/rust-lang/rust/issues/46906>
+   = note: `#[warn(tyvar_behind_raw_pointer)]` (part of `#[warn(rust_2018_compatibility)]`) on by default
+
+error[E0277]: the size for values of type `[i32]` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_002/target.rs:56:40
+    |
+ 56 |                 + (std::mem::size_of::<HoldA>() - std::mem::size_of::<i32>())
+    |                                        ^^^^^ doesn't have a size known at compile-time
+    |
+    = help: within `HoldA`, the trait `Sized` is not implemented for `[i32]`
+note: required because it appears within the type `HoldA`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_002/target.rs:43:16
+    |
+ 43 |         struct HoldA {
+    |                ^^^^^
+note: required by an implicit `Sized` bound in `std::mem::size_of`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:22
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |                      ^ required by the implicit `Sized` requirement on this type parameter in `size_of`
+
+error[E0369]: cannot add `usize` to `*mut u8`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_002/target.rs:56:17
+   |
+55 |             != std::ptr::addr_of!(*ha) as *mut u8
+   |                ---------------------------------- *mut u8
+56 |                 + (std::mem::size_of::<HoldA>() - std::mem::size_of::<i32>())
+   |                 ^ ----------------------------------------------------------- usize
+   |
+help: consider using `wrapping_add` or `add` for pointer + {integer}
+   |
+55 -             != std::ptr::addr_of!(*ha) as *mut u8
+56 -                 + (std::mem::size_of::<HoldA>() - std::mem::size_of::<i32>())
+55 +             != std::ptr::addr_of!(*ha) as *mut u8.wrapping_add((std::mem::size_of::<HoldA>() - std::mem::size_of::<i32>()))
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_002/target.rs:91:14
+   |
+91 |     unsafe { *p } + unsafe { *p.offset(1) } + unsafe { *p.offset(2) }
+   |              ^^ expected `()`, found `i32`
+   |
+help: you might have meant to return this value
+   |
+91 |     unsafe { return *p; } + unsafe { *p.offset(1) } + unsafe { *p.offset(2) }
+   |              ++++++   +
+
+error: aborting due to 13 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308, E0369.
+For more information about an error, try `rustc --explain E0277`.

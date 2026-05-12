@@ -1,0 +1,56 @@
+error: expected type, found keyword `enum`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_002/target.rs:4:20
+  |
+3 | struct V {
+  |        - while parsing this struct
+4 |     union_members: enum UnionMember {
+  |                    ^^^^ expected type
+
+error: struct literals are not allowed here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_002/target.rs:36:28
+   |
+36 |     if v1.union_members == UnionMember::inner1 { i: 2, j: 0 } {
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: surround the struct literal with parentheses
+   |
+36 |     if v1.union_members == (UnionMember::inner1 { i: 2, j: 0 }) {
+   |                            +                                  +
+
+error: struct literals are not allowed here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_002/target.rs:40:28
+   |
+40 |     if v1.union_members == UnionMember::inner2 { k: 5, l: 0 } {
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: surround the struct literal with parentheses
+   |
+40 |     if v1.union_members == (UnionMember::inner2 { k: 5, l: 0 }) {
+   |                            +                                  +
+
+warning: variant `inner1` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_002/target.rs:27:5
+   |
+27 |     inner1 { i: i32, j: i32 },
+   |     ^^^^^^ help: convert the identifier to upper camel case (notice the capitalization): `Inner1`
+   |
+   = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: variant `inner2` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_002/target.rs:28:5
+   |
+28 |     inner2 { k: i64, l: i64 },
+   |     ^^^^^^ help: convert the identifier to upper camel case (notice the capitalization): `Inner2`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_1/sample_002/target.rs:37:16
+   |
+31 | fn main() {
+   |          - expected `()` because of default return type
+...
+37 |         return 1;
+   |                ^ expected `()`, found integer
+
+error: aborting due to 4 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0308`.

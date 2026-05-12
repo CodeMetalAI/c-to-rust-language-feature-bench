@@ -1,0 +1,16 @@
+fn f1() -> i32 {
+    1
+}
+
+fn f2(t: i32) -> i32 {
+    t + 1
+}
+
+fn main() {
+    let t = 10;
+    let val = {
+        let _ = t;
+        f2(f1())
+    };
+    std::process::exit(if val == 2 { 0 } else { 1 });
+}

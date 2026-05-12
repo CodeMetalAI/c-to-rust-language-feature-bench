@@ -1,0 +1,98 @@
+error: defining functions with C-variadic arguments is only allowed for free functions with the "C" or "C-unwind" calling convention
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_names/sample_003/target.rs:14:18
+   |
+14 | fn f_var(x: u32, _: ...) -> i32 {
+   |                  ^^^^^^
+
+error[E0106]: missing lifetime specifier
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_names/sample_003/target.rs:59:25
+   |
+59 |         let pf: fn() -> &i32 = fip;
+   |                         ^ expected named lifetime parameter
+   |
+   = help: this function's return type contains a borrowed value, but there is no value for it to be borrowed from
+help: consider using the `'static` lifetime, but this is uncommon unless you're returning a borrowed value from a `const` or a `static`
+   |
+59 |         let pf: fn() -> &'static i32 = fip;
+   |                          +++++++
+help: instead, you are more likely to want to return an owned value
+   |
+59 -         let pf: fn() -> &i32 = fip;
+59 +         let pf: fn() -> i32 = fip;
+   |
+
+error[E0658]: C-variadic functions are unstable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_names/sample_003/target.rs:14:1
+   |
+14 | / fn f_var(x: u32, _: ...) -> i32 {
+15 | |     (x + 3) as i32
+16 | | }
+   | |_^
+   |
+   = note: see issue #44930 <https://github.com/rust-lang/rust/issues/44930> for more information
+   = help: add `#![feature(c_variadic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_names/sample_003/target.rs:31:12
+   |
+31 |         if unsafe { *p } != 1 {
+   |            ^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0045]: C-variadic functions with the "Rust" calling convention are not supported
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_names/sample_003/target.rs:73:18
+   |
+73 |         let af: [fn(u32, ...) -> i32; 2] = [f_var, f_var];
+   |                  ^^^^^^^^^^^^^^^^^^^ C-variadic function must have a compatible calling convention
+
+error[E0515]: cannot return reference to temporary value
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_names/sample_003/target.rs:7:5
+  |
+7 |     &g_arr()[1]
+  |     ^-------^^^
+  |     ||
+  |     |temporary value created here
+  |     returns a reference to data owned by the current function
+
+error[E0716]: temporary value dropped while borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_names/sample_003/target.rs:37:20
+   |
+37 |         let q = &[&g_arr()[0], &g_arr()[1], &g_arr()[2]][2];
+   |                    ^^^^^^^                                 - temporary value is freed at the end of this statement
+   |                    |
+   |                    creates a temporary value which is freed while still in use
+38 |         if **q != 3 {
+   |            --- borrow later used here
+   |
+   = note: consider using a `let` binding to create a longer lived value
+
+error[E0716]: temporary value dropped while borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_names/sample_003/target.rs:37:33
+   |
+37 |         let q = &[&g_arr()[0], &g_arr()[1], &g_arr()[2]][2];
+   |                                 ^^^^^^^                    - temporary value is freed at the end of this statement
+   |                                 |
+   |                                 creates a temporary value which is freed while still in use
+38 |         if **q != 3 {
+   |            --- borrow later used here
+   |
+   = note: consider using a `let` binding to create a longer lived value
+
+error[E0716]: temporary value dropped while borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_names/sample_003/target.rs:37:46
+   |
+37 |         let q = &[&g_arr()[0], &g_arr()[1], &g_arr()[2]][2];
+   |                                              ^^^^^^^       - temporary value is freed at the end of this statement
+   |                                              |
+   |                                              creates a temporary value which is freed while still in use
+38 |         if **q != 3 {
+   |            --- borrow later used here
+   |
+   = note: consider using a `let` binding to create a longer lived value
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0045, E0106, E0515, E0658, E0716.
+For more information about an error, try `rustc --explain E0045`.

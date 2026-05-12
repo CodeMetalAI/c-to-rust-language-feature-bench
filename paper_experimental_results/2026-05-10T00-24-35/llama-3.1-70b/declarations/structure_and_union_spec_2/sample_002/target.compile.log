@@ -1,0 +1,86 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_002/target.rs:23:5
+   |
+23 | /     unsafe {
+24 | |         *(s1_ptr as *mut [f64; 8]).get_unchecked_mut(0) = 42.0;
+25 | |         *(s2_ptr as *mut [f64; 5]).get_unchecked_mut(0) = 24.0;
+26 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_002/target.rs:28:16
+   |
+28 |     assert_eq!(unsafe { *(s1_ptr as *mut f64) }, 42.0);
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_002/target.rs:29:16
+   |
+29 |     assert_eq!(unsafe { *(s2_ptr as *mut f64) }, 24.0);
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: the size for values of type `[f64]` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_002/target.rs:13:33
+    |
+ 13 |     assert!(std::mem::size_of::<S>() >= std::mem::size_of::<SS>());
+    |                                 ^ doesn't have a size known at compile-time
+    |
+    = help: within `S`, the trait `Sized` is not implemented for `[f64]`
+note: required because it appears within the type `S`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_002/target.rs:3:12
+    |
+  3 |     struct S {
+    |            ^
+note: required by an implicit `Sized` bound in `std::mem::size_of`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:22
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |                      ^ required by the implicit `Sized` requirement on this type parameter in `size_of`
+
+error[E0277]: the size for values of type `[f64]` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_002/target.rs:15:16
+   |
+15 |     assert_eq!(std::mem::offset_of!(S, d), std::mem::size_of::<S>());
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `[f64]`
+   = note: this error originates in the macro `std::mem::offset_of` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `get_unchecked_mut` found for raw pointer `*mut [f64; 8]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_002/target.rs:24:36
+    |
+ 24 |         *(s1_ptr as *mut [f64; 8]).get_unchecked_mut(0) = 42.0;
+    |                                    ^^^^^^^^^^^^^^^^^ method not found in `*mut [f64; 8]`
+    |
+note: the method `get_unchecked_mut` exists on the type `&mut [f64]`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/slice/mod.rs:682:5
+    |
+682 | /     pub const unsafe fn get_unchecked_mut<I>(&mut self, index: I) -> &mut I::Output
+683 | |     where
+684 | |         I: [const] SliceIndex<Self>,
+    | |____________________________________^
+    = note: you might want to use the unsafe method `<*mut T>::as_mut` to get an optional reference to the value behind the pointer
+    = note: read the documentation for `<*mut T>::as_mut` and ensure you satisfy its safety preconditions before calling it to avoid undefined behavior: https://doc.rust-lang.org/std/primitive.pointer.html#method.as_mut
+
+error[E0599]: no method named `get_unchecked_mut` found for raw pointer `*mut [f64; 5]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_002/target.rs:25:36
+    |
+ 25 |         *(s2_ptr as *mut [f64; 5]).get_unchecked_mut(0) = 24.0;
+    |                                    ^^^^^^^^^^^^^^^^^ method not found in `*mut [f64; 5]`
+    |
+note: the method `get_unchecked_mut` exists on the type `&mut [f64]`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/slice/mod.rs:682:5
+    |
+682 | /     pub const unsafe fn get_unchecked_mut<I>(&mut self, index: I) -> &mut I::Output
+683 | |     where
+684 | |         I: [const] SliceIndex<Self>,
+    | |____________________________________^
+    = note: you might want to use the unsafe method `<*mut T>::as_mut` to get an optional reference to the value behind the pointer
+    = note: read the documentation for `<*mut T>::as_mut` and ensure you satisfy its safety preconditions before calling it to avoid undefined behavior: https://doc.rust-lang.org/std/primitive.pointer.html#method.as_mut
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0277, E0599.
+For more information about an error, try `rustc --explain E0277`.

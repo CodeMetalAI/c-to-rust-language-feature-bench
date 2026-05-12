@@ -1,0 +1,72 @@
+error: expected identifier, found keyword `mut`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/pointers_c2/sample_002/target.rs:7:21
+  |
+7 |     let pcv: &const mut i32 = p as *const _ as *mut _; // simulate const volatile
+  |                     ^^^ expected identifier, found keyword
+
+error: expected one of `(`, `::`, `;`, `<`, or `=`, found `i32`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/pointers_c2/sample_002/target.rs:7:25
+  |
+7 |     let pcv: &const mut i32 = p as *const _ as *mut _; // simulate const volatile
+  |            -            ^^^ expected one of `(`, `::`, `;`, `<`, or `=`
+  |            |
+  |            while parsing the type for `pcv`
+
+error: const trait bounds are not allowed in trait object types
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/pointers_c2/sample_002/target.rs:5:14
+  |
+5 |     let pc: &const i32 = p;
+  |              ^^^^^^^^^
+
+error[E0404]: expected trait, found builtin type `i32`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/pointers_c2/sample_002/target.rs:5:20
+  |
+5 |     let pc: &const i32 = p;
+  |                    ^^^ not a trait
+
+error[E0658]: const trait impls are experimental
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/pointers_c2/sample_002/target.rs:5:14
+  |
+5 |     let pc: &const i32 = p;
+  |              ^^^^^
+  |
+  = note: see issue #143874 <https://github.com/rust-lang/rust/issues/143874> for more information
+  = help: add `#![feature(const_trait_impl)]` to the crate attributes to enable
+  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: const trait impls are experimental
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/pointers_c2/sample_002/target.rs:7:15
+  |
+7 |     let pcv: &const mut i32 = p as *const _ as *mut _; // simulate const volatile
+  |               ^^^^^
+  |
+  = note: see issue #143874 <https://github.com/rust-lang/rust/issues/143874> for more information
+  = help: add `#![feature(const_trait_impl)]` to the crate attributes to enable
+  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/pointers_c2/sample_002/target.rs:1:14
+  |
+1 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+warning: trait objects without an explicit `dyn` are deprecated
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/pointers_c2/sample_002/target.rs:5:14
+  |
+5 |     let pc: &const i32 = p;
+  |              ^^^^^^^^^
+  |
+  = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+  = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2021/warnings-promoted-to-error.html>
+  = note: `#[warn(bare_trait_objects)]` (part of `#[warn(rust_2021_compatibility)]`) on by default
+help: if this is a dyn-compatible trait, use `dyn`
+  |
+5 |     let pc: &dyn const i32 = p;
+  |              +++
+
+error: aborting due to 7 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0404, E0658.
+For more information about an error, try `rustc --explain E0277`.

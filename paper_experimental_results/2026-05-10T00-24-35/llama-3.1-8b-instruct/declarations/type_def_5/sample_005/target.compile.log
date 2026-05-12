@@ -1,0 +1,56 @@
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_5/sample_005/target.rs:4:22
+  |
+3 | fn copyt(n: i32) {
+  |          - this would need to be a `const`
+4 |     let mut b: [i32; n as usize + 1] = [0; n as usize + 1];
+  |                      ^
+
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_5/sample_005/target.rs:4:44
+  |
+3 | fn copyt(n: i32) {
+  |          - this would need to be a `const`
+4 |     let mut b: [i32; n as usize + 1] = [0; n as usize + 1];
+  |                                            ^
+
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_5/sample_005/target.rs:5:23
+  |
+3 | fn copyt(n: i32) {
+  |          - this would need to be a `const`
+4 |     let mut b: [i32; n as usize + 1] = [0; n as usize + 1];
+5 |     let mut a: [i32; (n + 1) as usize] = [0; (n + 1) as usize];
+  |                       ^
+
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_5/sample_005/target.rs:5:47
+  |
+3 | fn copyt(n: i32) {
+  |          - this would need to be a `const`
+4 |     let mut b: [i32; n as usize + 1] = [0; n as usize + 1];
+5 |     let mut a: [i32; (n + 1) as usize] = [0; (n + 1) as usize];
+  |                                               ^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_5/sample_005/target.rs:31:5
+   |
+31 | /     unsafe {
+32 | |         SINK = 0;
+33 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_5/sample_005/target.rs:35:8
+   |
+35 |     if SINK != 0 {
+   |        ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0133, E0435.
+For more information about an error, try `rustc --explain E0133`.

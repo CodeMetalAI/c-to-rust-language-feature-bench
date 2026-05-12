@@ -1,0 +1,412 @@
+error: `Trait(...)` syntax does not support c_variadic parameters
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:19:58
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+   |                                                          ^^^ help: remove the `...`
+
+error: `Trait(...)` syntax does not support c_variadic parameters
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:25:34
+   |
+25 | fn call_through(pf: impl Fn(i32, ...) -> i32, x: i32) -> i32 {
+   |                                  ^^^ help: remove the `...`
+
+error[E0433]: failed to resolve: could not find `local` in `thread`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:10:31
+   |
+10 |     let g_seed = std::thread::local!().wrap(g_seed);
+   |                               ^^^^^ could not find `local` in `thread`
+
+error[E0433]: failed to resolve: could not find `local` in `thread`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:15:31
+   |
+15 |     let g_seed = std::thread::local!().wrap(g_seed);
+   |                               ^^^^^ could not find `local` in `thread`
+
+error[E0433]: failed to resolve: could not find `local` in `thread`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:21:31
+   |
+21 |     let g_seed = std::thread::local!().wrap(g_seed);
+   |                               ^^^^^ could not find `local` in `thread`
+
+error[E0425]: cannot find value `g_seed` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:10:45
+   |
+10 |     let g_seed = std::thread::local!().wrap(g_seed);
+   |                                             ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `g_seed` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:15:45
+   |
+15 |     let g_seed = std::thread::local!().wrap(g_seed);
+   |                                             ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `g_seed` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:21:45
+   |
+21 |     let g_seed = std::thread::local!().wrap(g_seed);
+   |                                             ^^^^^^ not found in this scope
+
+error[E0603]: module `local` is private
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:33:35
+    |
+ 33 |     let mut g_seed = std::thread::local::LocalKey::<i32>::new(0);
+    |                                   ^^^^^ private module
+    |
+note: the module `local` is defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/std/src/thread/mod.rs:199:1
+    |
+199 | mod local;
+    | ^^^^^^^^^
+help: consider importing this struct instead
+    |
+ 33 -     let mut g_seed = std::thread::local::LocalKey::<i32>::new(0);
+ 33 +     let mut g_seed = std::thread::LocalKey::<i32>::new(0);
+    |
+
+error: invalid suffix `L` for number literal
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:2:10
+  |
+2 |     (x ^ 0x13579L) as i32 + 7
+  |          ^^^^^^^^ invalid suffix `L`
+  |
+  = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:6:10
+  |
+6 |     (x * 3L) as i32 - 11
+  |          ^^ invalid suffix `L`
+  |
+  = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:20:24
+   |
+20 |     let t = k as i64 * 97L + 1234L;
+   |                        ^^^ invalid suffix `L`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:20:30
+   |
+20 |     let t = k as i64 * 97L + 1234L;
+   |                              ^^^^^ invalid suffix `L`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `LL` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:28:60
+   |
+28 |     let r3 = pf(x, 1.25, std::mem::size_of::<()>() as u64, 0x1122334455667788LL);
+   |                                                            ^^^^^^^^^^^^^^^^^^^^ invalid suffix `LL`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:38:39
+   |
+38 |         let expected_seed = cb0((17 * 97L + 1234L) as i64) + 17;
+   |                                       ^^^ invalid suffix `L`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:38:45
+   |
+38 |         let expected_seed = cb0((17 * 97L + 1234L) as i64) + 17;
+   |                                             ^^^^^ invalid suffix `L`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:71:38
+   |
+71 |         let expected_seed = cb1((8 * 97L + 1234L) as i64) + 8;
+   |                                      ^^^ invalid suffix `L`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `L` for number literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:71:44
+   |
+71 |         let expected_seed = cb1((8 * 97L + 1234L) as i64) + 8;
+   |                                            ^^^^^ invalid suffix `L`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error[E0658]: use of unstable library feature `thread_local_internals`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:33:22
+   |
+33 |     let mut g_seed = std::thread::local::LocalKey::<i32>::new(0);
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: add `#![feature(thread_local_internals)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0057]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:26:14
+   |
+26 |     let r1 = pf(x);
+   |              ^^--- argument #2 is missing
+   |
+note: type parameter defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:25:21
+   |
+25 | fn call_through(pf: impl Fn(i32, ...) -> i32, x: i32) -> i32 {
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the argument
+   |
+26 |     let r1 = pf(x, /* args */);
+   |                  ++++++++++++
+
+error[E0057]: this function takes 2 arguments but 3 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:27:14
+   |
+27 |     let r2 = pf(x, 1, 2);
+   |              ^^       - unexpected argument #3 of type `{integer}`
+   |
+note: type parameter defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:25:21
+   |
+25 | fn call_through(pf: impl Fn(i32, ...) -> i32, x: i32) -> i32 {
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^
+help: remove the extra argument
+   |
+27 -     let r2 = pf(x, 1, 2);
+27 +     let r2 = pf(x, 1);
+   |
+
+error[E0057]: this function takes 2 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:28:14
+   |
+28 |     let r3 = pf(x, 1.25, std::mem::size_of::<()>() as u64, 0x1122334455667788LL);
+   |              ^^          --------------------------------  -------------------- unexpected argument #4
+   |                          |
+   |                          unexpected argument #3 of type `u64`
+   |
+note: type parameter defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:25:21
+   |
+25 | fn call_through(pf: impl Fn(i32, ...) -> i32, x: i32) -> i32 {
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^
+help: remove the extra arguments
+   |
+28 -     let r3 = pf(x, 1.25, std::mem::size_of::<()>() as u64, 0x1122334455667788LL);
+28 +     let r3 = pf(x, 1.25);
+   |
+
+error[E0658]: use of unstable library feature `thread_local_internals`: recently added to create a key
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:33:22
+   |
+33 |     let mut g_seed = std::thread::local::LocalKey::<i32>::new(0);
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: add `#![feature(thread_local_internals)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:33:63
+    |
+ 33 |     let mut g_seed = std::thread::local::LocalKey::<i32>::new(0);
+    |                      ---------------------------------------- ^ expected fn pointer, found `usize`
+    |                      |
+    |                      arguments to this function are incorrect
+    |
+    = note: expected fn pointer `for<'a> fn(Option<&'a mut Option<i32>>) -> *const i32`
+                     found type `usize`
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/std/src/thread/local.rs:247:25
+    |
+247 |     pub const unsafe fn new(inner: fn(Option<&mut Option<T>>) -> *const T) -> LocalKey<T> {
+    |                         ^^^
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:41:25
+     |
+  19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+     |                                             ------------------------ the found opaque type
+...
+  41 |         if std::ptr::eq(vf, &v0) {
+     |            ------------ ^^ expected `*const fn(i32) -> i32 {v0}`, found opaque type
+     |            |
+     |            arguments to this function are incorrect
+     |
+     = note: expected raw pointer `*const fn(i32) -> i32 {v0}`
+                found opaque type `impl Fn(i32, {type error}) -> i32`
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:2442:8
+     |
+2442 | pub fn eq<T: PointeeSized>(a: *const T, b: *const T) -> bool {
+     |        ^^
+
+error[E0057]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:42:16
+   |
+42 |             if vf(40) != base + 1000 {
+   |                ^^---- argument #2 is missing
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:19:45
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the argument
+   |
+42 |             if vf(40, /* args */) != base + 1000 {
+   |                     ++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:43:24
+   |
+32 | fn main() {
+   |          - expected `()` because of default return type
+...
+43 |                 return 1;
+   |                        ^ expected `()`, found integer
+
+error[E0057]: this function takes 2 arguments but 3 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:45:16
+   |
+45 |             if vf(40, 1, 2) != base + 1000 {
+   |                ^^        - unexpected argument #3 of type `{integer}`
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:19:45
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^
+help: remove the extra argument
+   |
+45 -             if vf(40, 1, 2) != base + 1000 {
+45 +             if vf(40, 1) != base + 1000 {
+   |
+
+error[E0057]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:54:16
+   |
+54 |             if vf(40) != base - 2000 {
+   |                ^^---- argument #2 is missing
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:19:45
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the argument
+   |
+54 |             if vf(40, /* args */) != base - 2000 {
+   |                     ++++++++++++
+
+error[E0057]: this function takes 2 arguments but 3 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:57:16
+   |
+57 |             if vf(40, 1, 2) != base - 2000 {
+   |                ^^        - unexpected argument #3 of type `{integer}`
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:19:45
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^
+help: remove the extra argument
+   |
+57 -             if vf(40, 1, 2) != base - 2000 {
+57 +             if vf(40, 1) != base - 2000 {
+   |
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:74:25
+     |
+  19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+     |                                             ------------------------ the found opaque type
+...
+  74 |         if std::ptr::eq(vf, &v0) {
+     |            ------------ ^^ expected `*const fn(i32) -> i32 {v0}`, found opaque type
+     |            |
+     |            arguments to this function are incorrect
+     |
+     = note: expected raw pointer `*const fn(i32) -> i32 {v0}`
+                found opaque type `impl Fn(i32, {type error}) -> i32`
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:2442:8
+     |
+2442 | pub fn eq<T: PointeeSized>(a: *const T, b: *const T) -> bool {
+     |        ^^
+
+error[E0057]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:75:16
+   |
+75 |             if vf(9) != base + 1000 {
+   |                ^^--- argument #2 is missing
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:19:45
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the argument
+   |
+75 |             if vf(9, /* args */) != base + 1000 {
+   |                    ++++++++++++
+
+error[E0057]: this function takes 2 arguments but 5 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:78:16
+   |
+78 |             if vf(9, 0, 0, 0, 0) != base + 1000 {
+   |                ^^       -  -  - unexpected argument #5 of type `{integer}`
+   |                         |  |
+   |                         |  unexpected argument #4 of type `{integer}`
+   |                         unexpected argument #3 of type `{integer}`
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:19:45
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^
+help: remove the extra arguments
+   |
+78 -             if vf(9, 0, 0, 0, 0) != base + 1000 {
+78 +             if vf(9, 0) != base + 1000 {
+   |
+
+error[E0057]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:87:16
+   |
+87 |             if vf(9) != base - 2000 {
+   |                ^^--- argument #2 is missing
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:19:45
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^
+help: provide the argument
+   |
+87 |             if vf(9, /* args */) != base - 2000 {
+   |                    ++++++++++++
+
+error[E0057]: this function takes 2 arguments but 5 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:90:16
+   |
+90 |             if vf(9, 0, 0, 0, 0) != base - 2000 {
+   |                ^^       -  -  - unexpected argument #5 of type `{integer}`
+   |                         |  |
+   |                         |  unexpected argument #4 of type `{integer}`
+   |                         unexpected argument #3 of type `{integer}`
+   |
+note: opaque type defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_3/sample_002/target.rs:19:45
+   |
+19 | fn fpfi(pf: impl Fn(i64) -> i32, k: i32) -> impl Fn(i32, ...) -> i32 {
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^
+help: remove the extra arguments
+   |
+90 -             if vf(9, 0, 0, 0, 0) != base - 2000 {
+90 +             if vf(9, 0) != base - 2000 {
+   |
+
+error: aborting due to 35 previous errors
+
+Some errors have detailed explanations: E0057, E0308, E0425, E0433, E0603, E0658.
+For more information about an error, try `rustc --explain E0057`.

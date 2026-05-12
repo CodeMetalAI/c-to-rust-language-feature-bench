@@ -1,0 +1,28 @@
+error[E0505]: cannot move out of `p` because it is borrowed
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/pointers_c2/sample_004/target.rs:7:14
+   |
+ 5 |     let p = &mut x;
+   |         - binding `p` declared here
+ 6 |     let pc = p as &i32;
+   |              - borrow of `*p` occurs here
+ 7 |     let pv = p;
+   |              ^ move out of `p` occurs here
+...
+10 |     if *pc != 17 {
+   |        --- borrow later used here
+
+error[E0382]: borrow of moved value: `p`
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/pointers_c2/sample_004/target.rs:8:15
+  |
+5 |     let p = &mut x;
+  |         - move occurs because `p` has type `&mut i32`, which does not implement the `Copy` trait
+6 |     let pc = p as &i32;
+7 |     let pv = p;
+  |              - value moved here
+8 |     let pcv = p as &i32;
+  |               ^ value borrowed here after move
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0382, E0505.
+For more information about an error, try `rustc --explain E0382`.

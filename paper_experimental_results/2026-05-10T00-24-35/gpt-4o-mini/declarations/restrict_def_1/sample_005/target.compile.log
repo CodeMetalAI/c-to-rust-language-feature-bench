@@ -1,0 +1,50 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_005/target.rs:53:5
+   |
+53 | /     unsafe {
+54 | |         a = choose_view(&BANK_A, which_a).to_vec().into_boxed_slice().as_mut();
+55 | |         b = choose_view(&BANK_B, which_b).to_vec().into_boxed_slice().as_mut();
+...  |
+88 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_005/target.rs:46:14
+   |
+46 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0716]: temporary value dropped while borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_005/target.rs:54:13
+   |
+54 |         a = choose_view(&BANK_A, which_a).to_vec().into_boxed_slice().as_mut();
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^         - temporary value is freed at the end of this statement
+   |             |
+   |             creates a temporary value which is freed while still in use
+...
+57 |         fill(a, 8, 100);
+   |              - borrow later used here
+   |
+   = note: consider using a `let` binding to create a longer lived value
+
+error[E0716]: temporary value dropped while borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_1/sample_005/target.rs:55:13
+   |
+55 |         b = choose_view(&BANK_B, which_b).to_vec().into_boxed_slice().as_mut();
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^         - temporary value is freed at the end of this statement
+   |             |
+   |             creates a temporary value which is freed while still in use
+...
+58 |         fill(b, 8, 200);
+   |              - borrow later used here
+   |
+   = note: consider using a `let` binding to create a longer lived value
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0277, E0716.
+For more information about an error, try `rustc --explain E0277`.

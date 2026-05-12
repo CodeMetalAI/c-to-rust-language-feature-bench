@@ -1,0 +1,52 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/struct_and_union_3a/sample_002/target.rs:28:5
+   |
+28 | /     unsafe {
+29 | |         if (*u.n).alltypes != 1 {
+30 | |             std::process::exit(1);
+...  |
+41 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/struct_and_union_3a/sample_002/target.rs:3:5
+  |
+3 |     n: N,
+  |     ^^^^
+  |
+  = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+  |
+3 |     n: std::mem::ManuallyDrop<N>,
+  |        +++++++++++++++++++++++ +
+
+error[E0614]: type `N` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/struct_and_union_3a/sample_002/target.rs:29:12
+   |
+29 |         if (*u.n).alltypes != 1 {
+   |            ^^^^^^ can't be dereferenced
+
+error[E0614]: type `Ni` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/struct_and_union_3a/sample_002/target.rs:32:12
+   |
+32 |         if (*u.ni).type_ != 1 {
+   |            ^^^^^^^ can't be dereferenced
+
+error[E0614]: type `Nf` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/struct_and_union_3a/sample_002/target.rs:35:12
+   |
+35 |         if (*u.nf).type_ != 1 {
+   |            ^^^^^^^ can't be dereferenced
+
+error[E0614]: type `Nf` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/struct_and_union_3a/sample_002/target.rs:38:12
+   |
+38 |         if (*u.nf).doublenode != 3.14 {
+   |            ^^^^^^^ can't be dereferenced
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0614, E0740.
+For more information about an error, try `rustc --explain E0614`.

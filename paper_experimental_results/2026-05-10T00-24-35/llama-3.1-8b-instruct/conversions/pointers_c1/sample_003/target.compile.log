@@ -1,0 +1,43 @@
+error[E0609]: no field `a` on type `*const S`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c1/sample_003/target.rs:38:12
+   |
+38 |     if ps2.a != 7 {
+   |            ^ unknown field
+   |
+help: `ps2` is a raw pointer; try dereferencing it
+   |
+38 |     if (*ps2).a != 7 {
+   |        ++   +
+
+error[E0609]: no field `b` on type `*const S`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c1/sample_003/target.rs:42:12
+   |
+42 |     if ps2.b != 9.5 {
+   |            ^ unknown field
+   |
+help: `ps2` is a raw pointer; try dereferencing it
+   |
+42 |     if (*ps2).b != 9.5 {
+   |        ++   +
+
+error[E0606]: casting `f64` as `*const f64` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c1/sample_003/target.rs:27:15
+   |
+27 |     let pd2 = *v2 as *const f64;
+   |               ^^^^^^^^^^^^^^^^^
+
+error[E0605]: non-primitive cast: `S` as `*const S`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c1/sample_003/target.rs:28:15
+   |
+28 |     let ps2 = *v3 as *const S;
+   |               ^^^^^^^^^^^^^^^ invalid cast
+   |
+help: consider borrowing the value
+   |
+28 |     let ps2 = &*v3 as *const S;
+   |               +
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0605, E0606, E0609.
+For more information about an error, try `rustc --explain E0605`.

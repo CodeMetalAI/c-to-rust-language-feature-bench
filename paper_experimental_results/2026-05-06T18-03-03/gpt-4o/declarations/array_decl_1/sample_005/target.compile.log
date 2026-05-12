@@ -1,0 +1,132 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_1/sample_005/target.rs:7:5
+  |
+7 | /     unsafe {
+8 | |         CALLS += 1;
+9 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_1/sample_005/target.rs:24:9
+   |
+24 | /         unsafe {
+25 | |             FA[i] = (i + 1) as f32;
+26 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_1/sample_005/target.rs:29:9
+   |
+29 | /         unsafe {
+30 | |             BACKING[i] = (100 + i) as f32;
+31 | |             AFP[i] = &BACKING[i];
+32 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_1/sample_005/target.rs:47:9
+   |
+47 | /         unsafe {
+48 | |             s += *pp[i] as i32;
+49 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_1/sample_005/target.rs:56:14
+   |
+56 |     let s2 = unsafe { *afp2[0] as i32 + *afp2[16] as i32 };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_1/sample_005/target.rs:63:5
+   |
+63 | /     unsafe {
+64 | |         if FA[0] != 1.0 || FA[10] != 11.0 {
+65 | |             std::process::exit(1);
+...  |
+71 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_1/sample_005/target.rs:80:9
+   |
+80 | /         unsafe {
+81 | |             vla1[i] = FA[i] * 2.0;
+82 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_1/sample_005/target.rs:86:9
+   |
+86 | /         unsafe {
+87 | |             vla2[i] = AFP[i];
+88 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_1/sample_005/target.rs:91:5
+   |
+91 | /     unsafe {
+92 | |         if CALLS != 2 {
+93 | |             std::process::exit(3);
+94 | |         }
+95 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_1/sample_005/target.rs:118:15
+    |
+118 |             + unsafe { *vla2[0] as i32 + *vla2[16] as i32 })
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `try_into` found for struct `Vec<f32>` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_1/sample_005/target.rs:116:27
+    |
+116 |     if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap())
+    |                           ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<f32>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  2 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+116 -     if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap())
+116 +     if takes_params(&vla1.into().unwrap(), &vla2.try_into().unwrap())
+    |
+
+error[E0599]: no method named `try_into` found for struct `Vec<*const f32>` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/array_decl_1/sample_005/target.rs:116:54
+    |
+116 |     if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap())
+    |                                                      ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<*const f32>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  2 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+116 -     if takes_params(&vla1.try_into().unwrap(), &vla2.try_into().unwrap())
+116 +     if takes_params(&vla1.try_into().unwrap(), &vla2.into().unwrap())
+    |
+
+error: aborting due to 12 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

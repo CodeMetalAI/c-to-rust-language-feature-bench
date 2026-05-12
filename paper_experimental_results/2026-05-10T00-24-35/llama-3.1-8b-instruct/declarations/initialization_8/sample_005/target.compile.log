@@ -1,0 +1,92 @@
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_8/sample_005/target.rs:4:21
+     |
+   4 |   t.copy_from_slice("abc");
+     |     --------------- ^^^^^ expected `&[{integer}]`, found `&str`
+     |     |
+     |     arguments to this method are incorrect
+     |
+     = note: expected reference `&[{integer}]`
+                found reference `&'static str`
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/slice/mod.rs:3855:18
+     |
+3855 |     pub const fn copy_from_slice(&mut self, src: &[T])
+     |                  ^^^^^^^^^^^^^^^
+
+error[E0277]: the type `str` cannot be indexed by `{integer}`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_8/sample_005/target.rs:14:13
+    |
+ 14 |   s.get_mut(0).map(|c| *c = 'x');
+    |     ------- ^ string indices are ranges of `usize`
+    |     |
+    |     required by a bound introduced by this call
+    |
+    = help: the trait `SliceIndex<str>` is not implemented for `{integer}`
+    = note: you can use `.chars().nth()` or `.bytes().nth()`
+            for more information, see chapter 8 in The Book: <https://doc.rust-lang.org/book/ch08-02-strings.html#indexing-into-strings>
+    = help: the following other types implement trait `SliceIndex<T>`:
+              `usize` implements `SliceIndex<ByteStr>`
+              `usize` implements `SliceIndex<[T]>`
+note: required by a bound in `core::str::<impl str>::get_mut`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/str/mod.rs:639:29
+    |
+639 |     pub const fn get_mut<I: [const] SliceIndex<str>>(&mut self, i: I) -> Option<&mut I::Output> {
+    |                             ^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `core::str::<impl str>::get_mut`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_8/sample_005/target.rs:15:10
+   |
+15 |   t[2] = 'y';
+   |   ----   ^^^ expected integer, found `char`
+   |   |
+   |   expected due to the type of this binding
+
+error[E0277]: the type `str` cannot be indexed by `{integer}`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_8/sample_005/target.rs:17:12
+    |
+ 17 |   if s.get(0).map(|c| *c)!= Some('x') {
+    |        --- ^ string indices are ranges of `usize`
+    |        |
+    |        required by a bound introduced by this call
+    |
+    = help: the trait `SliceIndex<str>` is not implemented for `{integer}`
+    = note: you can use `.chars().nth()` or `.bytes().nth()`
+            for more information, see chapter 8 in The Book: <https://doc.rust-lang.org/book/ch08-02-strings.html#indexing-into-strings>
+    = help: the following other types implement trait `SliceIndex<T>`:
+              `usize` implements `SliceIndex<ByteStr>`
+              `usize` implements `SliceIndex<[T]>`
+note: required by a bound in `core::str::<impl str>::get`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/str/mod.rs:606:25
+    |
+606 |     pub const fn get<I: [const] SliceIndex<str>>(&self, i: I) -> Option<&I::Output> {
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `core::str::<impl str>::get`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_8/sample_005/target.rs:21:13
+   |
+21 |   if t[2]!= 'y' {
+   |             ^^^ expected integer, found `char`
+
+error[E0277]: can't compare `{integer}` with `char`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_8/sample_005/target.rs:21:10
+   |
+21 |   if t[2]!= 'y' {
+   |          ^^ no implementation for `{integer} == char`
+   |
+   = help: the trait `PartialEq<char>` is not implemented for `{integer}`
+   = help: the following other types implement trait `PartialEq<Rhs>`:
+             f128
+             f16
+             f32
+             f64
+             i128
+             i16
+             i32
+             i64
+           and 8 others
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

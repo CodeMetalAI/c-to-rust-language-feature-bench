@@ -1,0 +1,54 @@
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/lvalue_array_fun_c2/sample_002/target.rs:1:14
+  |
+1 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/lvalue_array_fun_c2/sample_002/target.rs:57:8
+   |
+57 |     if std::any::TypeId::of::<T>() == std::any::TypeId::of::<i32>() {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |        |
+   |        the parameter type `T` must be valid for the static lifetime...
+   |        ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+56 | fn type_id<T: 'static>(_: &T) -> i32 {
+   |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/lvalue_array_fun_c2/sample_002/target.rs:59:15
+   |
+59 |     } else if std::any::TypeId::of::<T>() == std::any::TypeId::of::<u32>() {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |               |
+   |               the parameter type `T` must be valid for the static lifetime...
+   |               ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+56 | fn type_id<T: 'static>(_: &T) -> i32 {
+   |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/conversions/lvalue_array_fun_c2/sample_002/target.rs:61:15
+   |
+61 |     } else if std::any::TypeId::of::<T>() == std::any::TypeId::of::<std::sync::atomic::AtomicI32>() {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |               |
+   |               the parameter type `T` must be valid for the static lifetime...
+   |               ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+56 | fn type_id<T: 'static>(_: &T) -> i32 {
+   |             +++++++++
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0277, E0310.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,49 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/struct_and_union_2/sample_002/target.rs:33:5
+   |
+33 | /     unsafe {
+34 | |         f2(&VS.i);
+35 | |         g(&VS.ci);
+36 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/struct_and_union_2/sample_002/target.rs:50:5
+   |
+50 | /     unsafe {
+51 | |         if VS.i != 5 {
+52 | |             std::process::exit(5);
+...  |
+62 | |     }
+   | |_____^
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/struct_and_union_2/sample_002/target.rs:34:12
+   |
+34 |         f2(&VS.i);
+   |            ^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw const` instead to create a raw pointer
+   |
+34 |         f2(&raw const VS.i);
+   |             +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/struct_and_union_2/sample_002/target.rs:35:11
+   |
+35 |         g(&VS.ci);
+   |           ^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+35 |         g(&raw const VS.ci);
+   |            +++++++++
+
+error: aborting due to 2 previous errors; 2 warnings emitted

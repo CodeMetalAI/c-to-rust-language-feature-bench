@@ -1,0 +1,72 @@
+error: expected one of `,`, `.`, `>`, `?`, or an operator, found `;`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_1/sample_003/target.rs:10:47
+   |
+10 |     let char_is_signed = (c as i32) as i32 < 0;
+   |                                               ^ expected one of `,`, `.`, `>`, `?`, or an operator
+   |
+help: use a comma to separate type parameters
+   |
+10 -     let char_is_signed = (c as i32) as i32 < 0;
+11 - 
+12 -     if char_is_signed {
+10 +     let char_is_signed = (c as i32) as i32 < 0, if char_is_signed {
+   |
+
+error: invalid const generic expression
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_1/sample_003/target.rs:12:5
+   |
+12 | /     if char_is_signed {
+13 | |         if eq != true {
+14 | |             std::process::exit(1);
+...  |
+20 | |     }
+   | |_____^
+   |
+help: expressions must be enclosed in braces to be used as const generic arguments
+   |
+12 ~     { if char_is_signed {
+13 |         if eq != true {
+...
+19 |         }
+20 ~     } }
+   |
+
+error: `<` is interpreted as a start of generic arguments for `i32`, not a comparison
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_1/sample_003/target.rs:10:44
+   |
+10 |       let char_is_signed = (c as i32) as i32 < 0;
+   |  ____________________________________________^_-
+   | |                                            |
+   | |                                            not interpreted as comparison
+11 | |
+12 | |     if char_is_signed {
+13 | |         if eq != true {
+...  |
+22 | |     std::process::exit(0);
+   | |_______- interpreted as generic arguments
+   |
+help: try comparing the cast value
+   |
+10 |     let char_is_signed = ((c as i32) as i32) < 0;
+   |                          +                 +
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_1/sample_003/target.rs:8:19
+  |
+6 |     let mut c: i8 = 0;
+  |                -- expected due to this type
+7 |
+8 |     let eq = (c = f()) == -1;
+  |                   ^^^ expected `i8`, found `i32`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/simple_asgn_1/sample_003/target.rs:8:27
+  |
+8 |     let eq = (c = f()) == -1;
+  |              ---------    ^^ expected `()`, found integer
+  |              |
+  |              expected because this is `()`
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

@@ -1,0 +1,53 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/llama-3.1-70b/combined_programs/pathfinder/sample_001/target.rs:13:22
+   |
+13 |             let b = *unsafe { x.get_unchecked(i).get_unchecked(j) };
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-11T22-01-24/llama-3.1-70b/combined_programs/pathfinder/sample_001/target.rs:39:9
+   |
+39 |     let mut goal = Coord::new(x[2][0], x[2][1]);
+   |         ----^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-11T22-01-24/llama-3.1-70b/combined_programs/pathfinder/sample_001/target.rs:40:9
+   |
+40 |     let mut cursor = &mut start;
+   |         ----^^^^^^
+   |         |
+   |         help: remove this `mut`
+
+error[E0503]: cannot use `start` because it was mutably borrowed
+  --> benchmark_results/2026-05-11T22-01-24/llama-3.1-70b/combined_programs/pathfinder/sample_001/target.rs:42:18
+   |
+40 |     let mut cursor = &mut start;
+   |                      ---------- `start` is borrowed here
+41 |
+42 |     if coord_sum(start) != 4 {
+   |                  ^^^^^ use of borrowed `start`
+...
+55 |     if shift_row(cursor) != 101 {
+   |                  ------ borrow later used here
+
+error[E0503]: cannot use `start` because it was mutably borrowed
+  --> benchmark_results/2026-05-11T22-01-24/llama-3.1-70b/combined_programs/pathfinder/sample_001/target.rs:45:20
+   |
+40 |     let mut cursor = &mut start;
+   |                      ---------- `start` is borrowed here
+...
+45 |     if coord_sum_s(start) != 5 {
+   |                    ^^^^^ use of borrowed `start`
+...
+55 |     if shift_row(cursor) != 101 {
+   |                  ------ borrow later used here
+
+error: aborting due to 3 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0503`.

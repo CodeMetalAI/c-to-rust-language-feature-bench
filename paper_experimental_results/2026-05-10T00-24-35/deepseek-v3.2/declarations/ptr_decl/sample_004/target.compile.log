@@ -1,0 +1,87 @@
+warning: unused import: `std::ptr`
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/ptr_decl/sample_004/target.rs:1:5
+  |
+1 | use std::ptr;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/ptr_decl/sample_004/target.rs:13:13
+   |
+13 |     let v = unsafe { *p };
+   |             ^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/ptr_decl/sample_004/target.rs:62:8
+   |
+62 |     if unsafe { *b.p_to_const } != 10 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/ptr_decl/sample_004/target.rs:68:8
+   |
+68 |     if unsafe { *b.p_to_const } != 21 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/ptr_decl/sample_004/target.rs:73:8
+   |
+73 |     if unsafe { *b.p_to_const } != 21 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/ptr_decl/sample_004/target.rs:77:5
+   |
+77 | /     unsafe {
+78 | |         *b.const_p += 5;
+79 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/ptr_decl/sample_004/target.rs:84:5
+   |
+84 | /     unsafe {
+85 | |         *b.const_p_via_typedef += 7;
+86 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/ptr_decl/sample_004/target.rs:95:8
+   |
+95 |     if unsafe { *b.p_to_const } != 21 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/ptr_decl/sample_004/target.rs:67:43
+   |
+67 |     retarget_ptr_to_const(&mut b, &y, &x, pick(&y, 0) > 0);
+   |     ---------------------                 ^^^^^^^^^^^^^^^ expected `i32`, found `bool`
+   |     |
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/ptr_decl/sample_004/target.rs:21:4
+   |
+21 | fn retarget_ptr_to_const(b: &mut Bundle, a: *const i32, c: *const i32, sel: i32) {
+   |    ^^^^^^^^^^^^^^^^^^^^^                                               --------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/ptr_decl/sample_004/target.rs:72:43
+   |
+72 |     retarget_ptr_to_const(&mut b, &x, &y, pick(&x, 1) < 0);
+   |     ---------------------                 ^^^^^^^^^^^^^^^ expected `i32`, found `bool`
+   |     |
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/ptr_decl/sample_004/target.rs:21:4
+   |
+21 | fn retarget_ptr_to_const(b: &mut Bundle, a: *const i32, c: *const i32, sel: i32) {
+   |    ^^^^^^^^^^^^^^^^^^^^^                                               --------
+
+error: aborting due to 9 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0308`.

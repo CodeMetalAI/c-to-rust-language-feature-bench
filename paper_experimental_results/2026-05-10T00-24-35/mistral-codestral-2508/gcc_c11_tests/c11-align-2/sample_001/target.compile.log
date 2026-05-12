@@ -1,0 +1,21 @@
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/c11-align-2/sample_001/target.rs:3:23
+  |
+3 |     let _c: [u8; 1] = [0; std::mem::align_of::<usize>()];
+  |             -------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a size of 1, found one with a size of 8
+  |             |    |
+  |             |    help: consider specifying the actual array length: `8`
+  |             expected due to this
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/c11-align-2/sample_001/target.rs:4:24
+  |
+4 |     let _s: [u16; 1] = [0; std::mem::align_of::<usize>()];
+  |             --------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a size of 1, found one with a size of 8
+  |             |     |
+  |             |     help: consider specifying the actual array length: `8`
+  |             expected due to this
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

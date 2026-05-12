@@ -1,0 +1,40 @@
+error[E0412]: cannot find type `int` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_3/sample_001/target.rs:3:8
+  |
+3 |     i: int,
+  |        ^^^
+  |        |
+  |        not found in this scope
+  |        help: perhaps you intended to use this type: `i32`
+
+error[E0412]: cannot find type `int` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_3/sample_001/target.rs:4:9
+  |
+4 |     a: [int; 4],
+  |         ^^^
+  |         |
+  |         not found in this scope
+  |         help: perhaps you intended to use this type: `i32`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_3/sample_001/target.rs:9:16
+  |
+7 | fn main() {
+  |          - expected `()` because of default return type
+8 |     if std::mem::offset_of!(s, i) != 0 {
+9 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/structure_and_union_spec_3/sample_001/target.rs:48:5
+   |
+ 7 | fn main() {
+   |          - expected `()` because of default return type
+...
+48 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0412.
+For more information about an error, try `rustc --explain E0308`.

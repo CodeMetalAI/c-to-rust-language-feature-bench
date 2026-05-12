@@ -1,0 +1,41 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_001/target.rs:21:5
+   |
+21 | /     unsafe {
+22 | |         let ptr = std::alloc::alloc(layout) as *mut S;
+23 | |         if ptr.is_null() {
+24 | |             std::process::exit(3);
+25 | |         }
+26 | |         p = Box::from_raw(ptr);
+27 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_001/target.rs:30:5
+   |
+30 |     p.a[0] = 11;
+   |     ^^^^^^ index out of bounds: the length is 0 but the index is 0
+   |
+   = note: `#[deny(unconditional_panic)]` on by default
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_001/target.rs:31:5
+   |
+31 |     p.a[3] = 22;
+   |     ^^^^^^ index out of bounds: the length is 0 but the index is 3
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_001/target.rs:33:20
+   |
+33 |     if p.i != 7 || p.a[0] != 11 || p.a[3] != 22 {
+   |                    ^^^^^^ index out of bounds: the length is 0 but the index is 0
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_001/target.rs:33:36
+   |
+33 |     if p.i != 7 || p.a[0] != 11 || p.a[3] != 22 {
+   |                                    ^^^^^^ index out of bounds: the length is 0 but the index is 3
+
+error: aborting due to 5 previous errors

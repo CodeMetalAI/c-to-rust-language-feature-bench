@@ -1,0 +1,100 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_004/target.rs:39:13
+   |
+39 |     let p = unsafe { &mut *(storage.raw.as_mut_ptr() as *mut Packet) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_004/target.rs:44:20
+   |
+44 |     let expected = unsafe { storage.raw.as_ptr().add(packet_data_offset) };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_004/target.rs:45:16
+   |
+45 |     let got1 = unsafe { &p.data as *const _ as *const U8 };
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_004/target.rs:46:16
+   |
+46 |     let got2 = unsafe { &(*p).data as *const _ as *const U8 };
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_004/target.rs:57:9
+   |
+57 | /         unsafe {
+58 | |             *(storage.raw.as_mut_ptr().add(packet_data_offset + i * std::mem::size_of::<U32>()) as *mut U32) = v;
+59 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_004/target.rs:64:9
+   |
+64 | /         unsafe {
+65 | |             p.sum += *(storage.raw.as_ptr().add(packet_data_offset + i * std::mem::size_of::<U32>()) as *const U32);
+66 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_004/target.rs:90:13
+   |
+90 |     let p = unsafe { &mut *(storage.raw.as_mut_ptr() as *mut Packet) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_004/target.rs:96:20
+   |
+96 |     let expected = unsafe { storage.raw.as_ptr().add(packet_data_offset) };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_004/target.rs:97:16
+   |
+97 |     let got1 = unsafe { &p.data as *const _ as *const U8 };
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_004/target.rs:98:16
+   |
+98 |     let got2 = unsafe { &(*p).data as *const _ as *const U8 };
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: `main` has invalid return type `i32`
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_004/target.rs:110:14
+    |
+110 | fn main() -> i32 {
+    |              ^^^ `main` can only return types that implement `Termination`
+    |
+    = help: consider using `()`, or a `Result`
+
+error[E0282]: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_004/target.rs:37:30
+   |
+37 |     let packet_data_offset = offsetof(packet_size);
+   |                              ^^^^^^^^ cannot infer type of the type parameter `T` declared on the function `offsetof`
+   |
+help: consider specifying the generic argument
+   |
+37 |     let packet_data_offset = offsetof::<T>(packet_size);
+   |                                      +++++
+
+error[E0282]: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_c18/sample_004/target.rs:88:30
+   |
+88 |     let packet_data_offset = offsetof(std::mem::size_of::<Packet>());
+   |                              ^^^^^^^^ cannot infer type of the type parameter `T` declared on the function `offsetof`
+   |
+help: consider specifying the generic argument
+   |
+88 |     let packet_data_offset = offsetof::<T>(std::mem::size_of::<Packet>());
+   |                                      +++++
+
+error: aborting due to 13 previous errors
+
+Some errors have detailed explanations: E0277, E0282.
+For more information about an error, try `rustc --explain E0277`.

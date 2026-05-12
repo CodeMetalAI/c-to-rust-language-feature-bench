@@ -1,0 +1,32 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_001/target.rs:17:5
+   |
+17 | /     unsafe {
+18 | |         (*p).inner.i = 7;
+19 | |         (*p).a.as_mut_ptr().offset(0).write(11);
+20 | |         (*p).a.as_mut_ptr().offset(3).write(22);
+...  |
+24 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0133]: call to unsafe function `std::alloc::alloc` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_001/target.rs:13:13
+   |
+13 |     let p = std::alloc::alloc(std::alloc::Layout::from_size_align(16, 8).unwrap()) as *mut S;
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: call to unsafe function `std::alloc::dealloc` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_001/target.rs:25:5
+   |
+25 |     std::alloc::dealloc(p as _, std::alloc::Layout::from_size_align(16, 8).unwrap());
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

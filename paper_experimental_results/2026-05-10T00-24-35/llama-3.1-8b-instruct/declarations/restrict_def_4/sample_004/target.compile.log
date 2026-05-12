@@ -1,0 +1,89 @@
+error: expected identifier, found keyword `match`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_004/target.rs:14:42
+   |
+14 |     awindows::Windows::Windows::Windows::match a.iter().zip(b.iter()).all(|(&x, &y)| x == y)
+   |                                          ^^^^^ expected identifier, found keyword
+
+error: expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `a`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_004/target.rs:14:48
+   |
+14 |     awindows::Windows::Windows::Windows::match a.iter().zip(b.iter()).all(|(&x, &y)| x == y)
+   |                                                ^ expected one of 8 possible tokens
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_004/target.rs:9:23
+  |
+9 |         p[i] = base + i * 5 + 1;
+  |                       ^^^^^ expected `i32`, found `usize`
+
+error[E0277]: cannot add `usize` to `i32`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_004/target.rs:9:21
+  |
+9 |         p[i] = base + i * 5 + 1;
+  |                     ^ no implementation for `i32 + usize`
+  |
+  = help: the trait `Add<usize>` is not implemented for `i32`
+  = help: the following other types implement trait `Add<Rhs>`:
+            `&i32` implements `Add<i32>`
+            `&i32` implements `Add`
+            `i32` implements `Add<&i32>`
+            `i32` implements `Add`
+
+warning: unused variable: `n`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_004/target.rs:17:19
+   |
+17 | fn sum(a: &[i32], n: usize) -> i32 {
+   |                   ^ help: if this is intentional, prefix it with an underscore: `_n`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `p1`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_004/target.rs:33:13
+   |
+33 |     let mut p1 = &mut x;
+   |             ^^ help: if this is intentional, prefix it with an underscore: `_p1`
+
+warning: unused variable: `q1`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_004/target.rs:34:13
+   |
+34 |     let mut q1 = &mut y;
+   |             ^^ help: if this is intentional, prefix it with an underscore: `_q1`
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_004/target.rs:33:9
+   |
+33 |     let mut p1 = &mut x;
+   |         ----^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_004/target.rs:34:9
+   |
+34 |     let mut q1 = &mut y;
+   |         ----^^
+   |         |
+   |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_004/target.rs:37:13
+   |
+37 |         let mut p2 = &mut x[8..];
+   |             ----^^
+   |             |
+   |             help: remove this `mut`
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_004/target.rs:38:13
+   |
+38 |         let mut q2 = &mut y[4..];
+   |             ----^^
+   |             |
+   |             help: remove this `mut`
+
+error: aborting due to 4 previous errors; 7 warnings emitted
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

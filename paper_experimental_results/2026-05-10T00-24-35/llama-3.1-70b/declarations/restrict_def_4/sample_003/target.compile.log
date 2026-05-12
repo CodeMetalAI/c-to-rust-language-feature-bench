@@ -1,0 +1,48 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_003/target.rs:48:24
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+48 |                 return 1;
+   |                        ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_003/target.rs:52:17
+   |
+52 |         if!same(y, &y_snapshot, 32) {
+   |            ---- ^ expected `&[i32]`, found `[i32; 32]`
+   |            |
+   |            arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_003/target.rs:19:8
+   |
+19 |     fn same(a: &[i32], b: &[i32], n: usize) -> bool {
+   |        ^^^^ ---------
+help: consider borrowing here
+   |
+52 |         if!same(&y, &y_snapshot, 32) {
+   |                 +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_003/target.rs:67:13
+   |
+67 |     if!same(y, &y_snapshot, 32) {
+   |        ---- ^ expected `&[i32]`, found `[i32; 32]`
+   |        |
+   |        arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_003/target.rs:19:8
+   |
+19 |     fn same(a: &[i32], b: &[i32], n: usize) -> bool {
+   |        ^^^^ ---------
+help: consider borrowing here
+   |
+67 |     if!same(&y, &y_snapshot, 32) {
+   |             +
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

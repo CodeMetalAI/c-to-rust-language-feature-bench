@@ -1,0 +1,80 @@
+error: expected one of: `*`, `+`, or `?`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:22:48
+   |
+22 |     ($($args:expr),*) => { pp_narg_!($($args), pp_rseq_n!()) };
+   |                                                ^^^^^^^^^
+
+error: no rules expected `!`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:22:57
+   |
+17 | macro_rules! pp_narg_ {
+   | --------------------- when calling this macro
+...
+22 |     ($($args:expr),*) => { pp_narg_!($($args), pp_rseq_n!()) };
+   |                                             -           ^ no rules expected this token in macro call
+   |                                             |
+   |                                             help: missing comma here
+...
+45 |     if debug!("Flag") != 1 {
+   |        -------------- in this macro invocation
+   |
+   = note: while trying to match `,`
+   = note: this error originates in the macro `pp_narg` which comes from the expansion of the macro `debug` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: no rules expected `expr` metavariable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:22:40
+   |
+17 | macro_rules! pp_narg_ {
+   | --------------------- when calling this macro
+...
+22 |     ($($args:expr),*) => { pp_narg_!($($args), pp_rseq_n!()) };
+   |                                        ^^^^^ no rules expected this token in macro call
+...
+48 |     if debug!("X = {}", x) != 2 {
+   |        ------------------- in this macro invocation
+   |
+   = note: while trying to match `,`
+   = note: this error originates in the macro `pp_narg` which comes from the expansion of the macro `debug` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: no rules expected `first`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:52:29
+   |
+29 | macro_rules! showlist {
+   | --------------------- when calling this macro
+...
+52 |     if !streq(showlist!(The first, second, and third items.), "The first, second, and third items.") {
+   |                             ^^^^^ no rules expected this token in macro call
+   |
+   = note: while trying to match `,`
+
+error: no rules expected `expr` metavariable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:22:40
+   |
+17 | macro_rules! pp_narg_ {
+   | --------------------- when calling this macro
+...
+22 |     ($($args:expr),*) => { pp_narg_!($($args), pp_rseq_n!()) };
+   |                                        ^^^^^ no rules expected this token in macro call
+...
+56 |     if report!(x > y, "x is {} but y is {}", x, y) != 1 {
+   |        ------------------------------------------- in this macro invocation
+   |
+   = note: while trying to match `,`
+   = note: this error originates in the macro `pp_narg` which comes from the expansion of the macro `report` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: no rules expected `expr` metavariable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/preprocessing_directives/scope_of_macro_7/sample_002/target.rs:22:40
+   |
+17 | macro_rules! pp_narg_ {
+   | --------------------- when calling this macro
+...
+22 |     ($($args:expr),*) => { pp_narg_!($($args), pp_rseq_n!()) };
+   |                                        ^^^^^ no rules expected this token in macro call
+...
+59 |     if report!(x < y, "x is {} but y is {}", x, y) != 3 {
+   |        ------------------------------------------- in this macro invocation
+   |
+   = note: while trying to match `,`
+   = note: this error originates in the macro `pp_narg` which comes from the expansion of the macro `report` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 6 previous errors

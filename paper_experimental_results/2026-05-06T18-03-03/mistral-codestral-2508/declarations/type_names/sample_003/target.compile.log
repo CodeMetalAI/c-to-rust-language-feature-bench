@@ -1,0 +1,28 @@
+error: defining functions with C-variadic arguments is only allowed for free functions with the "C" or "C-unwind" calling convention
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/type_names/sample_003/target.rs:9:18
+  |
+9 | fn f_var(x: u32, _: ...) -> i32 {
+  |                  ^^^^^^
+
+error[E0658]: C-variadic functions are unstable
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/type_names/sample_003/target.rs:9:1
+   |
+ 9 | / fn f_var(x: u32, _: ...) -> i32 {
+10 | |     x as i32 + 3
+11 | | }
+   | |_^
+   |
+   = note: see issue #44930 <https://github.com/rust-lang/rust/issues/44930> for more information
+   = help: add `#![feature(c_variadic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0045]: C-variadic functions with the "Rust" calling convention are not supported
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/type_names/sample_003/target.rs:70:18
+   |
+70 |         let af: [fn(u32, ...) -> i32; 2] = [f_var, f_var];
+   |                  ^^^^^^^^^^^^^^^^^^^ C-variadic function must have a compatible calling convention
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0045, E0658.
+For more information about an error, try `rustc --explain E0045`.

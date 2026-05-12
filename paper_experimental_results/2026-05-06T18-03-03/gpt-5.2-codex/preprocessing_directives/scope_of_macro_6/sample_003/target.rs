@@ -1,0 +1,14 @@
+use std::process::exit;
+
+fn main() {
+    let x: i32 = 0;
+    let y: i32 = 3;
+
+    if x != 0 {
+        exit(1);
+    }
+    if y != 3 {
+        exit(2);
+    }
+    // implicit exit code 0
+}

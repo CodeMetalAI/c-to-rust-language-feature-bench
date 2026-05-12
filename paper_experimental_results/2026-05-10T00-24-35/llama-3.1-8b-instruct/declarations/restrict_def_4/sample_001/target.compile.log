@@ -1,0 +1,136 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:6:17
+  |
+6 |     let p_val = unsafe { *p };
+  |                 ^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:7:17
+  |
+7 |     let q_val = unsafe { *q };
+  |                 ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:8:5
+  |
+8 |     unsafe { *p = q_val };
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:9:5
+  |
+9 |     unsafe { *q = p_val };
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+error[E0369]: cannot multiply `&mut i32` by `{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:18:19
+   |
+18 |     *i = base + i * 5 + 1;
+   |                 - ^ - {integer}
+   |                 |
+   |                 &mut i32
+   |
+help: `*` can be used on `i32` if you dereference the left-hand side
+   |
+18 |     *i = base + *i * 5 + 1;
+   |                 +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:57:31
+   |
+57 |         let expect: [i32; 16] = [y_snapshot[4], y_snapshot[5], y_snapshot[6], y_snapshot[7],
+   |  ___________________---------___^
+   | |                   |
+   | |                   expected due to this
+58 | |                                y_snapshot[8], y_snapshot[9], y_snapshot[10], y_snapshot[11],
+59 | |                                y_snapshot[12], y_snapshot[13], y_snapshot[14], y_snapshot[15],
+60 | |                                y_snapshot[16], y_snapshot[17], y_snapshot[18], y_snapshot[19],
+61 | |                                y_snapshot[20]];
+   | |______________________________________________^ expected an array with a size of 16, found one with a size of 17
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:63:11
+   |
+63 |       if !same(&x[8..24], &expect) {
+   |           ^^^^-------------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:22:4
+   |
+22 | fn same(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^                       --------
+help: provide the argument
+   |
+63 |       if !same(&x[8..24], &expect, /* usize */) {
+   |                                  +++++++++++++
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:67:11
+   |
+67 |       if !same(&y[..], &y_snapshot) {
+   |           ^^^^--------------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:22:4
+   |
+22 | fn same(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^                       --------
+help: provide the argument
+   |
+67 |       if !same(&y[..], &y_snapshot, /* usize */) {
+   |                                   +++++++++++++
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:80:9
+   |
+80 |     if !same(&x[..8], &expect2) {
+   |         ^^^^------------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:22:4
+   |
+22 | fn same(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^                       --------
+help: provide the argument
+   |
+80 |     if !same(&x[..8], &expect2, /* usize */) {
+   |                               +++++++++++++
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:85:7
+   |
+85 |   if !same(&y[..], &y_snapshot) {
+   |       ^^^^--------------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:22:4
+   |
+22 | fn same(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^                       --------
+help: provide the argument
+   |
+85 |   if !same(&y[..], &y_snapshot, /* usize */) {
+   |                               +++++++++++++
+
+error[E0133]: call to unsafe function `std::ptr::mut_ptr::<impl *mut T>::add` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:10:9
+   |
+10 |     p = p.add(1);
+   |         ^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::mut_ptr::<impl *mut T>::add` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_4/sample_001/target.rs:11:9
+   |
+11 |     q = q.add(1);
+   |         ^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: aborting due to 12 previous errors
+
+Some errors have detailed explanations: E0061, E0133, E0308, E0369.
+For more information about an error, try `rustc --explain E0061`.

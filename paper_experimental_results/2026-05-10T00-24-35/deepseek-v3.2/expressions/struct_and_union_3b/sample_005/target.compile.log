@@ -1,0 +1,48 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_3b/sample_005/target.rs:20:5
+   |
+20 | /     unsafe {
+21 | |         if u.s1.m < 0 {
+22 | |             u.s2.m = -u.s2.m;
+...  |
+25 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_3b/sample_005/target.rs:32:5
+   |
+32 | /     unsafe {
+33 | |         (*u_ptr).s1 = T1 { m: -7 };
+34 | |         (*u_ptr).s2 = T2 { m: 7 };
+35 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_3b/sample_005/target.rs:37:17
+   |
+37 |     let mut u = unsafe { u.assume_init() };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_3b/sample_005/target.rs:43:16
+   |
+43 |     let s2_m = unsafe { u.s2.m };
+   |                ^^^^^^^^^^^^^^^^^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/expressions/struct_and_union_3b/sample_005/target.rs:15:5
+   |
+15 |     s1: T1,
+   |     ^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+15 |     s1: std::mem::ManuallyDrop<T1>,
+   |         +++++++++++++++++++++++  +
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0740`.

@@ -1,0 +1,42 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:47:16
+   |
+47 |     if type_id(&cx + 0) != 1 {
+   |        ------- ^^^^^^^ expected `&_`, found `i32`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+                   found type `i32`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:2:4
+   |
+ 2 | fn type_id<T>(_: &T) -> i32 {
+   |    ^^^^^^^    -----
+help: consider borrowing here
+   |
+47 |     if type_id(&(&cx + 0)) != 1 {
+   |                ++       +
+
+warning: unreachable pattern
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:7:9
+  |
+6 |         "&i32" => 2,
+  |         ------ matches all the relevant values
+7 |         "&i32" => 3,
+  |         ^^^^^^ no value can reach this
+  |
+  = note: `#[warn(unreachable_patterns)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable pattern
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c2_a/sample_004/target.rs:11:9
+   |
+ 5 |         "i32" => 1,
+   |         ----- matches all the relevant values
+...
+11 |         "i32" => 7,
+   |         ^^^^^ no value can reach this
+
+error: aborting due to 1 previous error; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0308`.

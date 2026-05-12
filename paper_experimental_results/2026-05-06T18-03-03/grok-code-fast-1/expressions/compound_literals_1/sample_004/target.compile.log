@@ -1,0 +1,16 @@
+error[E0277]: can't compare `&{integer}` with `{integer}`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/compound_literals_1/sample_004/target.rs:26:22
+   |
+26 |     if &[1, 2, 3][1] != 2 {
+   |                      ^^ no implementation for `&{integer} == {integer}`
+   |
+   = help: the trait `PartialEq<{integer}>` is not implemented for `&{integer}`
+help: consider removing the borrow
+   |
+26 -     if &[1, 2, 3][1] != 2 {
+26 +     if [1, 2, 3][1] != 2 {
+   |
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0277`.

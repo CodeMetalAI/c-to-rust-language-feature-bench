@@ -1,0 +1,91 @@
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_4/sample_004/target.rs:45:22
+   |
+45 |         let before = hash_matrix(n, &b);
+   |                      ^^^^^^^^^^^    -- argument #2 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_4/sample_004/target.rs:10:4
+   |
+10 | fn hash_matrix(n: usize, k: usize, a: &[[f64; 308]]) -> u64 {
+   |    ^^^^^^^^^^^           --------
+help: provide the argument
+   |
+45 |         let before = hash_matrix(n, /* usize */, &b);
+   |                                     ++++++++++++
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_4/sample_004/target.rs:47:21
+   |
+47 |         let after = hash_matrix(n, &b);
+   |                     ^^^^^^^^^^^    -- argument #2 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_4/sample_004/target.rs:10:4
+   |
+10 | fn hash_matrix(n: usize, k: usize, a: &[[f64; 308]]) -> u64 {
+   |    ^^^^^^^^^^^           --------
+help: provide the argument
+   |
+47 |         let after = hash_matrix(n, /* usize */, &b);
+   |                                    ++++++++++++
+
+error[E0384]: cannot assign to immutable argument `x`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_4/sample_004/target.rs:2:5
+  |
+2 |     x ^= x >> 33;
+  |     ^^^^^^^^^^^^ cannot assign to immutable argument
+  |
+help: consider making this binding mutable
+  |
+1 | fn mix_u64(mut x: u64) -> u64 {
+  |            +++
+
+error[E0384]: cannot assign to immutable argument `x`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_4/sample_004/target.rs:3:5
+  |
+3 |     x = x.wrapping_mul(0xff51afd7ed558ccd);
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot assign to immutable argument
+  |
+help: consider making this binding mutable
+  |
+1 | fn mix_u64(mut x: u64) -> u64 {
+  |            +++
+
+error[E0384]: cannot assign to immutable argument `x`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_4/sample_004/target.rs:4:5
+  |
+4 |     x ^= x >> 33;
+  |     ^^^^^^^^^^^^ cannot assign to immutable argument
+  |
+help: consider making this binding mutable
+  |
+1 | fn mix_u64(mut x: u64) -> u64 {
+  |            +++
+
+error[E0384]: cannot assign to immutable argument `x`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_4/sample_004/target.rs:5:5
+  |
+5 |     x = x.wrapping_mul(0xc4ceb9fe1a85ec53);
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot assign to immutable argument
+  |
+help: consider making this binding mutable
+  |
+1 | fn mix_u64(mut x: u64) -> u64 {
+  |            +++
+
+error[E0384]: cannot assign to immutable argument `x`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_4/sample_004/target.rs:6:5
+  |
+6 |     x ^= x >> 33;
+  |     ^^^^^^^^^^^^ cannot assign to immutable argument
+  |
+help: consider making this binding mutable
+  |
+1 | fn mix_u64(mut x: u64) -> u64 {
+  |            +++
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0061, E0384.
+For more information about an error, try `rustc --explain E0061`.

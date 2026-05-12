@@ -1,0 +1,111 @@
+error[E0502]: cannot borrow `x` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/ptr_decl/sample_003/target.rs:46:18
+   |
+44 |       let mut b = Bundle {
+   |  _________________-
+45 | |         p_to_const: &x,
+   | |                     -- immutable borrow occurs here
+46 | |         const_p: &mut x,
+   | |                  ^^^^^^ mutable borrow occurs here
+47 | |         const_p_via_typedef: &mut x,
+48 | |     };
+   | |_____- immutable borrow later used here
+
+error[E0502]: cannot borrow `x` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/ptr_decl/sample_003/target.rs:47:30
+   |
+44 |       let mut b = Bundle {
+   |  _________________-
+45 | |         p_to_const: &x,
+   | |                     -- immutable borrow occurs here
+46 | |         const_p: &mut x,
+47 | |         const_p_via_typedef: &mut x,
+   | |                              ^^^^^^ mutable borrow occurs here
+48 | |     };
+   | |_____- immutable borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/ptr_decl/sample_003/target.rs:50:25
+   |
+46 |         const_p: &mut x,
+   |                  ------ mutable borrow occurs here
+...
+50 |     if check_bundle(&b, &x) != 0 {
+   |                         ^^ immutable borrow occurs here
+...
+54 |     if *b.p_to_const != 10 {
+   |        ------------- mutable borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/ptr_decl/sample_003/target.rs:58:39
+   |
+46 |         const_p: &mut x,
+   |                  ------ mutable borrow occurs here
+...
+58 |     retarget_ptr_to_const(&mut b, &y, &x, pick(&y, 0) > 0);
+   |                                       ^^ immutable borrow occurs here
+59 |     if *b.p_to_const != 21 {
+   |        ------------- mutable borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/ptr_decl/sample_003/target.rs:63:35
+   |
+46 |         const_p: &mut x,
+   |                  ------ mutable borrow occurs here
+...
+63 |     retarget_ptr_to_const(&mut b, &x, &y, pick(&x, 1) < 0);
+   |                                   ^^ immutable borrow occurs here
+64 |     if *b.p_to_const != 21 {
+   |        ------------- mutable borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/ptr_decl/sample_003/target.rs:63:48
+   |
+46 |         const_p: &mut x,
+   |                  ------ mutable borrow occurs here
+...
+63 |     retarget_ptr_to_const(&mut b, &x, &y, pick(&x, 1) < 0);
+   |                                                ^^ immutable borrow occurs here
+64 |     if *b.p_to_const != 21 {
+   |        ------------- mutable borrow later used here
+
+error[E0503]: cannot use `x` because it was mutably borrowed
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/ptr_decl/sample_003/target.rs:69:8
+   |
+46 |         const_p: &mut x,
+   |                  ------ `x` is borrowed here
+...
+69 |     if x != 15 {
+   |        ^ use of borrowed `x`
+...
+73 |     *b.const_p_via_typedef += 7;
+   |     --------------------------- borrow later used here
+
+error[E0503]: cannot use `x` because it was mutably borrowed
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/ptr_decl/sample_003/target.rs:74:8
+   |
+46 |         const_p: &mut x,
+   |                  ------ `x` is borrowed here
+...
+74 |     if x != 22 {
+   |        ^ use of borrowed `x`
+...
+78 |     if check_bundle(&b, &x) != 0 {
+   |                     -- borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/ptr_decl/sample_003/target.rs:78:25
+   |
+46 |         const_p: &mut x,
+   |                  ------ mutable borrow occurs here
+...
+78 |     if check_bundle(&b, &x) != 0 {
+   |                         ^^ immutable borrow occurs here
+...
+82 |     if *b.p_to_const != 21 {
+   |        ------------- mutable borrow later used here
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0502, E0503.
+For more information about an error, try `rustc --explain E0502`.

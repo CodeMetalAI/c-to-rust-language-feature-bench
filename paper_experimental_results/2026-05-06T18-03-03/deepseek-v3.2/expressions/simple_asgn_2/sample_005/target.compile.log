@@ -1,0 +1,46 @@
+error[E0604]: only `u8` can be cast as `char`, not `i32`
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/simple_asgn_2/sample_005/target.rs:8:14
+  |
+8 |     l = (c = i as char) as i64;
+  |              ^^^^^^^^^ invalid cast
+  |
+help: consider using `char::from_u32` instead (via a `u32`)
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/simple_asgn_2/sample_005/target.rs:8:14
+  |
+8 |     l = (c = i as char) as i64;
+  |              ^^^^^^^^^
+
+error[E0605]: non-primitive cast: `()` as `i64`
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/simple_asgn_2/sample_005/target.rs:8:9
+  |
+8 |     l = (c = i as char) as i64;
+  |         ^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0604]: only `u8` can be cast as `char`, not `i32`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/simple_asgn_2/sample_005/target.rs:10:13
+   |
+10 |     if c != i as char {
+   |             ^^^^^^^^^ invalid cast
+   |
+help: consider using `char::from_u32` instead (via a `u32`)
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/simple_asgn_2/sample_005/target.rs:10:13
+   |
+10 |     if c != i as char {
+   |             ^^^^^^^^^
+
+error[E0604]: only `u8` can be cast as `char`, not `i32`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/simple_asgn_2/sample_005/target.rs:16:13
+   |
+16 |     if l != (i as char) as i64 {
+   |             ^^^^^^^^^^^ invalid cast
+   |
+help: consider using `char::from_u32` instead (via a `u32`)
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/simple_asgn_2/sample_005/target.rs:16:13
+   |
+16 |     if l != (i as char) as i64 {
+   |             ^^^^^^^^^^^
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0604, E0605.
+For more information about an error, try `rustc --explain E0604`.

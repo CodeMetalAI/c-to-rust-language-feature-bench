@@ -1,0 +1,33 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_2/sample_003/target.rs:28:16
+   |
+28 |     let ptr1 = unsafe { alloc(layout1) as *mut S };
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_2/sample_003/target.rs:37:16
+   |
+37 |     let ptr2 = unsafe { alloc(layout2) as *mut S };
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_2/sample_003/target.rs:39:9
+   |
+39 |         unsafe { dealloc(ptr1 as *mut u8, layout1) };
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/structure_and_union_spec_2/sample_003/target.rs:42:5
+   |
+42 | /     unsafe {
+43 | |         (*ptr1).d.as_mut_ptr().write(42.0);
+44 | |         (*ptr2).d.as_mut_ptr().write(24.0);
+45 | |         if *(*ptr1).d.as_ptr() != 42.0 || *(*ptr2).d.as_ptr() != 24.0 {
+...  |
+51 | |         dealloc(ptr2 as *mut u8, layout2);
+52 | |     }
+   | |_____^
+
+error: aborting due to 4 previous errors

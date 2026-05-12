@@ -1,0 +1,97 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/c11-align-2/sample_004/target.rs:56:5
+   |
+56 | /     unsafe {
+57 | |         assert_eq!(align_of_val(&C), 8);
+58 | |         assert_eq!(align_of_val(&S), 8);
+59 | |         assert_eq!(align_of_val(&I), 4);
+...  |
+67 | |         assert_eq!(align_of_val(&Y), 16);
+68 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/c11-align-2/sample_004/target.rs:5:8
+  |
+5 | #[repr(align(8))]
+  |        ^^^^^^^^
+6 | static mut C: char = '0';
+  | ------------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/c11-align-2/sample_004/target.rs:8:8
+  |
+8 | #[repr(align(8))]
+  |        ^^^^^^^^
+9 | static mut S: i16 = 0;
+  | ---------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/c11-align-2/sample_004/target.rs:11:8
+   |
+11 | #[repr(align(4))]
+   |        ^^^^^^^^
+12 | static mut I: i32 = 0;
+   | ---------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/c11-align-2/sample_004/target.rs:14:8
+   |
+14 | #[repr(align(8))]
+   |        ^^^^^^^^
+15 | static mut L: i64 = 0;
+   | ---------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/c11-align-2/sample_004/target.rs:17:8
+   |
+17 | #[repr(align(8))]
+   |        ^^^^^^^^
+18 | static mut LL: i64 = 0;
+   | ----------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/c11-align-2/sample_004/target.rs:20:8
+   |
+20 | #[repr(align(8))]
+   |        ^^^^^^^^
+21 | static mut F: f32 = 0.0;
+   | ------------------------ not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/c11-align-2/sample_004/target.rs:23:8
+   |
+23 | #[repr(align(8))]
+   |        ^^^^^^^^
+24 | static mut D: f64 = 0.0;
+   | ------------------------ not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/c11-align-2/sample_004/target.rs:28:8
+   |
+28 | #[repr(align(16))]
+   |        ^^^^^^^^^
+29 | static mut CLD: (f64, f64) = (0.0, 0.0);
+   | ---------------------------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/c11-align-2/sample_004/target.rs:31:8
+   |
+31 | #[repr(align(4))] // The highest alignment specified (char, int)
+   |        ^^^^^^^^
+32 | static mut CA: [char; 10] = ['\0'; 10];
+   | --------------------------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/c11-align-2/sample_004/target.rs:39:8
+   |
+39 | #[repr(align(16))]
+   |        ^^^^^^^^^
+40 | static mut Y: i32 = 0;
+   | ---------------------- not a struct, enum, or union
+
+error: aborting due to 11 previous errors
+
+For more information about this error, try `rustc --explain E0517`.

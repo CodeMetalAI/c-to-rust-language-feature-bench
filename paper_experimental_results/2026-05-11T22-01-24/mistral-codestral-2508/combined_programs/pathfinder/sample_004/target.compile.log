@@ -1,0 +1,28 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/combined_programs/pathfinder/sample_004/target.rs:50:21
+   |
+50 |             let b = unsafe { *(*(x.as_ptr().offset(i as isize) as *const [i32; 5]).as_ptr().offset(j as isize)) };
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0658]: use of unstable library feature `array_ptr_get`
+  --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/combined_programs/pathfinder/sample_004/target.rs:50:84
+   |
+50 |             let b = unsafe { *(*(x.as_ptr().offset(i as isize) as *const [i32; 5]).as_ptr().offset(j as isize)) };
+   |                                                                                    ^^^^^^
+   |
+   = note: see issue #119834 <https://github.com/rust-lang/rust/issues/119834> for more information
+   = help: add `#![feature(array_ptr_get)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-11T22-01-24/mistral-codestral-2508/combined_programs/pathfinder/sample_004/target.rs:50:30
+   |
+50 |             let b = unsafe { *(*(x.as_ptr().offset(i as isize) as *const [i32; 5]).as_ptr().offset(j as isize)) };
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ can't be dereferenced
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0614, E0658.
+For more information about an error, try `rustc --explain E0614`.

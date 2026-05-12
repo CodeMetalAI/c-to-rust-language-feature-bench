@@ -1,0 +1,43 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3_b/sample_004/target.rs:16:16
+   |
+16 |     if type_id(&a as *const [i32]) != 2 {
+   |        ------- ^^^^^^^^^^^^^^^^^^ expected `&_`, found `*const [i32]`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+            found raw pointer `*const [i32]`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3_b/sample_004/target.rs:5:4
+   |
+ 5 | fn type_id<T>(x: &T) -> u32 {
+   |    ^^^^^^^    -----
+help: consider borrowing here
+   |
+16 |     if type_id(&(&a as *const [i32])) != 2 {
+   |                ++                  +
+
+error[E0277]: the size for values of type `str` cannot be known at compilation time
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3_b/sample_004/target.rs:38:16
+   |
+38 |     if type_id(s) != 3 {
+   |        ------- ^ doesn't have a size known at compile-time
+   |        |
+   |        required by a bound introduced by this call
+   |
+   = help: the trait `Sized` is not implemented for `str`
+note: required by an implicit `Sized` bound in `type_id`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3_b/sample_004/target.rs:5:12
+   |
+ 5 | fn type_id<T>(x: &T) -> u32 {
+   |            ^ required by the implicit `Sized` requirement on this type parameter in `type_id`
+help: consider relaxing the implicit `Sized` restriction
+   |
+ 5 | fn type_id<T: ?Sized>(x: &T) -> u32 {
+   |             ++++++++
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

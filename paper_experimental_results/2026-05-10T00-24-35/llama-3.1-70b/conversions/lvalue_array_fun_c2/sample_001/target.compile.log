@@ -1,0 +1,19 @@
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c2/sample_001/target.rs:7:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+7 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0599]: no method named `as_u64` found for struct `TypeId` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c2/sample_001/target.rs:63:33
+   |
+63 |     std::any::TypeId::of::<T>().as_u64().try_into().unwrap()
+   |                                 ^^^^^^ method not found in `TypeId`
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.

@@ -1,0 +1,121 @@
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/initialization_6/sample_005/target.rs:32:9
+   |
+32 |     if !chk(p, &q[0][0][0]) { return println!("{}", 14); }
+   |         ^^^ -  ----------- expected `i16`, found `&i16`
+   |             |
+   |             expected `i16`, found `&i16`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/initialization_6/sample_005/target.rs:1:4
+   |
+ 1 | fn chk(v: i16, e: i16) -> bool {
+   |    ^^^ ------  ------
+help: consider dereferencing the borrow
+   |
+32 |     if !chk(*p, &q[0][0][0]) { return println!("{}", 14); }
+   |             +
+help: consider removing the borrow
+   |
+32 -     if !chk(p, &q[0][0][0]) { return println!("{}", 14); }
+32 +     if !chk(p, q[0][0][0]) { return println!("{}", 14); }
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/initialization_6/sample_005/target.rs:33:13
+   |
+33 |     if !chk(&q[1][0][0], 2) { return println!("{}", 15); }
+   |         --- ^^^^^^^^^^^ expected `i16`, found `&i16`
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/initialization_6/sample_005/target.rs:1:4
+   |
+ 1 | fn chk(v: i16, e: i16) -> bool {
+   |    ^^^ ------
+help: consider removing the borrow
+   |
+33 -     if !chk(&q[1][0][0], 2) { return println!("{}", 15); }
+33 +     if !chk(q[1][0][0], 2) { return println!("{}", 15); }
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/initialization_6/sample_005/target.rs:34:13
+   |
+34 |     if !chk(&q[1][0][1], 3) { return println!("{}", 16); }
+   |         --- ^^^^^^^^^^^ expected `i16`, found `&i16`
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/initialization_6/sample_005/target.rs:1:4
+   |
+ 1 | fn chk(v: i16, e: i16) -> bool {
+   |    ^^^ ------
+help: consider removing the borrow
+   |
+34 -     if !chk(&q[1][0][1], 3) { return println!("{}", 16); }
+34 +     if !chk(q[1][0][1], 3) { return println!("{}", 16); }
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/initialization_6/sample_005/target.rs:35:13
+   |
+35 |     if !chk(&q[2][0][0], 4) { return println!("{}", 17); }
+   |         --- ^^^^^^^^^^^ expected `i16`, found `&i16`
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/initialization_6/sample_005/target.rs:1:4
+   |
+ 1 | fn chk(v: i16, e: i16) -> bool {
+   |    ^^^ ------
+help: consider removing the borrow
+   |
+35 -     if !chk(&q[2][0][0], 4) { return println!("{}", 17); }
+35 +     if !chk(q[2][0][0], 4) { return println!("{}", 17); }
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/initialization_6/sample_005/target.rs:36:13
+   |
+36 |     if !chk(&q[2][0][1], 5) { return println!("{}", 18); }
+   |         --- ^^^^^^^^^^^ expected `i16`, found `&i16`
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/initialization_6/sample_005/target.rs:1:4
+   |
+ 1 | fn chk(v: i16, e: i16) -> bool {
+   |    ^^^ ------
+help: consider removing the borrow
+   |
+36 -     if !chk(&q[2][0][1], 5) { return println!("{}", 18); }
+36 +     if !chk(q[2][0][1], 5) { return println!("{}", 18); }
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/initialization_6/sample_005/target.rs:37:13
+   |
+37 |     if !chk(&q[2][1][0], 6) { return println!("{}", 19); }
+   |         --- ^^^^^^^^^^^ expected `i16`, found `&i16`
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/initialization_6/sample_005/target.rs:1:4
+   |
+ 1 | fn chk(v: i16, e: i16) -> bool {
+   |    ^^^ ------
+help: consider removing the borrow
+   |
+37 -     if !chk(&q[2][1][0], 6) { return println!("{}", 19); }
+37 +     if !chk(q[2][1][0], 6) { return println!("{}", 19); }
+   |
+
+error: aborting due to 6 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

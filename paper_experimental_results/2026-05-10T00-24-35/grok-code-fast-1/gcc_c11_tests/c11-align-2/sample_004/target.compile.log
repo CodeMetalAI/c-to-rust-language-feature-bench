@@ -1,0 +1,85 @@
+error[E0428]: the name `S` is defined multiple times
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_004/target.rs:37:1
+   |
+ 6 | static S: i16 = 0;
+   | ------------------ previous definition of the value `S` here
+...
+37 | struct S;
+   | ^^^^^^^^^ `S` redefined here
+   |
+   = note: `S` must be defined only once in the value namespace of this module
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_004/target.rs:5:8
+  |
+5 | #[repr(align(2))]
+  |        ^^^^^^^^
+6 | static S: i16 = 0;
+  | ------------------ not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_004/target.rs:8:8
+  |
+8 | #[repr(align(4))]
+  |        ^^^^^^^^
+9 | static I: i32 = 0;
+  | ------------------ not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_004/target.rs:11:8
+   |
+11 | #[repr(align(8))]
+   |        ^^^^^^^^
+12 | static L: i64 = 0;
+   | ------------------ not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_004/target.rs:14:8
+   |
+14 | #[repr(align(8))]
+   |        ^^^^^^^^
+15 | static LL: i64 = 0;
+   | ------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_004/target.rs:17:8
+   |
+17 | #[repr(align(4))]
+   |        ^^^^^^^^
+18 | static F: f32 = 0.0;
+   | -------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_004/target.rs:20:8
+   |
+20 | #[repr(align(8))]
+   |        ^^^^^^^^
+21 | static D: f64 = 0.0;
+   | -------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_004/target.rs:23:8
+   |
+23 | #[repr(align(8))]
+   |        ^^^^^^^^
+24 | static CLD: (f64, f64) = (0.0, 0.0);
+   | ------------------------------------ not a struct, enum, or union
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_004/target.rs:32:9
+   |
+32 |     E = mem::align_of::<()>(),
+   |         ^^^^^^^^^^^^^^^^^^^^^ expected `u32`, found `usize`
+
+warning: unused variable: `auto_ll`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_004/target.rs:40:9
+   |
+40 |     let auto_ll: i64 = 0;
+   |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_auto_ll`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 9 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0308, E0428, E0517.
+For more information about an error, try `rustc --explain E0308`.

@@ -1,0 +1,89 @@
+error[E0423]: expected function, found macro `std::ptr::addr_of_mut`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_001/target.rs:51:14
+   |
+51 |         _ if std::ptr::addr_of_mut(x) as *mut _ == std::ptr::addr_of_mut(&x[0]) as *mut _ && std::any::TypeId::of::<[i32; 3]>() == std::any::TypeId::of::<&[i32; 3]>() => 2,
+   |              ^^^^^^^^^^^^^^^^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+51 |         _ if std::ptr::addr_of_mut!(x) as *mut _ == std::ptr::addr_of_mut(&x[0]) as *mut _ && std::any::TypeId::of::<[i32; 3]>() == std::any::TypeId::of::<&[i32; 3]>() => 2,
+   |                                   +
+
+error[E0423]: expected function, found macro `std::ptr::addr_of_mut`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_001/target.rs:51:52
+   |
+51 |         _ if std::ptr::addr_of_mut(x) as *mut _ == std::ptr::addr_of_mut(&x[0]) as *mut _ && std::any::TypeId::of::<[i32; 3]>() == std::any::TypeId::of::<&[i32; 3]>() => 2,
+   |                                                    ^^^^^^^^^^^^^^^^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+51 |         _ if std::ptr::addr_of_mut(x) as *mut _ == std::ptr::addr_of_mut!(&x[0]) as *mut _ && std::any::TypeId::of::<[i32; 3]>() == std::any::TypeId::of::<&[i32; 3]>() => 2,
+   |                                                                         +
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_001/target.rs:5:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+5 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_001/target.rs:7:16
+   |
+ 7 |     if TYPE_ID(&a[0] as *const i32) != 1 {
+   |        ------- ^^^^^^^^^^^^^^^^^^^ expected `&_`, found `*const i32`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&_`
+            found raw pointer `*const i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_001/target.rs:49:4
+   |
+49 | fn TYPE_ID<T>(x: &T) -> i32 {
+   |    ^^^^^^^    -----
+help: consider borrowing here
+   |
+ 7 |     if TYPE_ID(&(&a[0] as *const i32)) != 1 {
+   |                ++                   +
+
+error[E0277]: the size for values of type `str` cannot be known at compilation time
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_001/target.rs:29:16
+   |
+29 |     if TYPE_ID(s as &str) != 3 {
+   |        ------- ^^^^^^^^^ doesn't have a size known at compile-time
+   |        |
+   |        required by a bound introduced by this call
+   |
+   = help: the trait `Sized` is not implemented for `str`
+note: required by an implicit `Sized` bound in `TYPE_ID`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_001/target.rs:49:12
+   |
+49 | fn TYPE_ID<T>(x: &T) -> i32 {
+   |            ^ required by the implicit `Sized` requirement on this type parameter in `TYPE_ID`
+help: consider relaxing the implicit `Sized` restriction
+   |
+49 | fn TYPE_ID<T: ?Sized>(x: &T) -> i32 {
+   |             ++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_001/target.rs:45:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+45 |     0
+   |     ^ expected `()`, found integer
+
+error[E0608]: cannot index into a value of type `&T`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_001/target.rs:51:76
+   |
+51 |         _ if std::ptr::addr_of_mut(x) as *mut _ == std::ptr::addr_of_mut(&x[0]) as *mut _ && std::any::TypeId::of::<[i32; 3]>() == std::any::TypeId::of::<&[i32; 3]>() => 2,
+   |                                                                            ^^^
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0423, E0608.
+For more information about an error, try `rustc --explain E0277`.

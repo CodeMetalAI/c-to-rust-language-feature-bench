@@ -1,0 +1,164 @@
+error[E0425]: cannot find value `i` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_2/sample_003/target.rs:49:23
+   |
+49 |     let mut v = [40 + i * 3; 6];
+   |                       ^ not found in this scope
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_2/sample_003/target.rs:54:16
+   |
+54 |     let sel = (hmix(v[0], v[5]) & 3) as usize;
+   |                ^^^^ ----  ---- expected `i32`, found `usize`
+   |                     |
+   |                     expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_2/sample_003/target.rs:1:4
+   |
+ 1 | fn hmix(a: i32, b: i32) -> i32 {
+   |    ^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+54 |     let sel = (hmix(v[0].try_into().unwrap(), v[5]) & 3) as usize;
+   |                         ++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+54 |     let sel = (hmix(v[0], v[5].try_into().unwrap()) & 3) as usize;
+   |                               ++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_2/sample_003/target.rs:65:15
+   |
+65 |     let out = run(apfi[sel], x, y);
+   |               ^^^            -  - expected `&mut i32`, found `&mut usize`
+   |                              |
+   |                              expected `&mut i32`, found `&mut usize`
+   |
+   = note: expected mutable reference `&mut i32`
+              found mutable reference `&mut usize`
+   = note: expected mutable reference `&mut i32`
+              found mutable reference `&mut usize`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_2/sample_003/target.rs:36:4
+   |
+36 | fn run(pf: fn(&mut i32, &mut i32) -> i32, a: &mut i32, b: &mut i32) -> i32 {
+   |    ^^^                                    -----------  -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_2/sample_003/target.rs:69:20
+   |
+42 | fn main() {
+   |          - expected `()` because of default return type
+...
+69 |             return 1;
+   |                    ^ expected `()`, found integer
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_2/sample_003/target.rs:74:26
+   |
+74 |         if (out ^ 3) != (hmix(*x, *y) ^ (hmix(*x, *y) + 3)) {
+   |                          ^^^^ --  -- expected `i32`, found `usize`
+   |                               |
+   |                               expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_2/sample_003/target.rs:1:4
+   |
+ 1 | fn hmix(a: i32, b: i32) -> i32 {
+   |    ^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+74 |         if (out ^ 3) != (hmix((*x).try_into().unwrap(), *y) ^ (hmix(*x, *y) + 3)) {
+   |                               +  +++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+74 |         if (out ^ 3) != (hmix(*x, (*y).try_into().unwrap()) ^ (hmix(*x, *y) + 3)) {
+   |                                   +  +++++++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_2/sample_003/target.rs:74:42
+   |
+74 |         if (out ^ 3) != (hmix(*x, *y) ^ (hmix(*x, *y) + 3)) {
+   |                                          ^^^^ --  -- expected `i32`, found `usize`
+   |                                               |
+   |                                               expected `i32`, found `usize`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_2/sample_003/target.rs:1:4
+   |
+ 1 | fn hmix(a: i32, b: i32) -> i32 {
+   |    ^^^^ ------  ------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+74 |         if (out ^ 3) != (hmix(*x, *y) ^ (hmix((*x).try_into().unwrap(), *y) + 3)) {
+   |                                               +  +++++++++++++++++++++
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+74 |         if (out ^ 3) != (hmix(*x, *y) ^ (hmix(*x, (*y).try_into().unwrap()) + 3)) {
+   |                                                   +  +++++++++++++++++++++
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_2/sample_003/target.rs:87:17
+   |
+87 |             d = -d;
+   |                 ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_2/sample_003/target.rs:97:21
+   |
+97 |     if apfi[sel] == std::ptr::null_mut() {
+   |        ---------    ^^^^^^^^^^^^^^^^^^^^ expected fn pointer, found `*mut _`
+   |        |
+   |        expected because this is `for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32`
+   |
+   = note: expected fn pointer `for<'a, 'b> fn(&'a mut i32, &'b mut i32) -> i32`
+             found raw pointer `*mut _`
+
+error[E0384]: cannot assign twice to immutable variable `ua`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_2/sample_003/target.rs:4:5
+  |
+2 |     let ua = a as u32;
+  |         -- first assignment to `ua`
+3 |     let ub = b as u32;
+4 |     ua ^= ua >> 16;
+  |     ^^^^^^^^^^^^^^ cannot assign twice to immutable variable
+  |
+help: consider making this binding mutable
+  |
+2 |     let mut ua = a as u32;
+  |         +++
+
+error[E0384]: cannot assign twice to immutable variable `ub`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_2/sample_003/target.rs:5:5
+  |
+3 |     let ub = b as u32;
+  |         -- first assignment to `ub`
+4 |     ua ^= ua >> 16;
+5 |     ub ^= ub >> 15;
+  |     ^^^^^^^^^^^^^^ cannot assign twice to immutable variable
+  |
+help: consider making this binding mutable
+  |
+3 |     let mut ub = b as u32;
+  |         +++
+
+error[E0384]: cannot assign twice to immutable variable `d`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/fun_decl_2/sample_003/target.rs:29:9
+   |
+27 |     let d = a - b;
+   |         - first assignment to `d`
+28 |     if d < 0 {
+29 |         d = -d;
+   |         ^^^^^^ cannot assign twice to immutable variable
+   |
+help: consider making this binding mutable
+   |
+27 |     let mut d = a - b;
+   |         +++
+
+error: aborting due to 11 previous errors
+
+Some errors have detailed explanations: E0308, E0384, E0425, E0600.
+For more information about an error, try `rustc --explain E0308`.

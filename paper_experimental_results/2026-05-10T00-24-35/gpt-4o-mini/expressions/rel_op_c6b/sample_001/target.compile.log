@@ -1,0 +1,28 @@
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/rel_op_c6b/sample_001/target.rs:6:14
+  |
+6 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::add` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/rel_op_c6b/sample_001/target.rs:22:16
+   |
+22 |     let end2 = a.as_ptr().add(3);
+   |                ^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/rel_op_c6b/sample_001/target.rs:21:17
+   |
+21 |     let end1 = &a[3] as *const i32;
+   |                 ^^^^ index out of bounds: the length is 3 but the index is 3
+   |
+   = note: `#[deny(unconditional_panic)]` on by default
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0133, E0277.
+For more information about an error, try `rustc --explain E0133`.

@@ -1,0 +1,110 @@
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:101:19
+    |
+101 |         let ptr = unsafe { &I as *const i32 };
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: requested on the command line with `-F unsafe-code`
+
+error[E0600]: cannot apply unary operator `-` to type `u8`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:93:31
+   |
+93 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u8`
+   |
+70 -         test_simple_assign!(u8, $value as u8);
+70 +         test_simple_assign!(u8, u8::MAX);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u16`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:93:31
+   |
+93 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u16`
+   |
+72 -         test_simple_assign!(u16, $value as u16);
+72 +         test_simple_assign!(u16, u16::MAX);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u32`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:93:31
+   |
+93 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u32`
+   |
+74 -         test_simple_assign!(u32, $value as u32);
+74 +         test_simple_assign!(u32, u32::MAX);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u64`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:93:31
+   |
+93 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u64`
+   |
+76 -         test_simple_assign!(u64, $value as u64);
+76 +         test_simple_assign!(u64, u64::MAX);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:93:31
+   |
+93 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `usize`
+   |
+78 -         test_simple_assign!(usize, $value as usize);
+78 +         test_simple_assign!(usize, usize::MAX);
+   |
+
+error[E0277]: can't compare `{float}` with `{integer}`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:50:30
+   |
+50 |             let val = $value != 0;
+   |                              ^^ no implementation for `{float} == {integer}`
+...
+95 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = help: the trait `PartialEq<{integer}>` is not implemented for `{float}`
+   = help: the following other types implement trait `PartialEq<Rhs>`:
+             f128
+             f16
+             f32
+             f64
+             i128
+             i16
+             i32
+             i64
+           and 8 others
+   = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_001/target.rs:50:33
+   |
+50 |             let val = $value != 0;
+   |                                 ^ expected floating-point number, found integer
+...
+95 |     test_simple_assign_arith!(1.5);
+   |     ------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0600.
+For more information about an error, try `rustc --explain E0277`.

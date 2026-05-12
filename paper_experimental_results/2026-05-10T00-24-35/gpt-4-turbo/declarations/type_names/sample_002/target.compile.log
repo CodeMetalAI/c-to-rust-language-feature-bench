@@ -1,0 +1,63 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_names/sample_002/target.rs:30:12
+   |
+30 |         if unsafe { *p } != 1 {
+   |            ^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_names/sample_002/target.rs:37:12
+   |
+37 |         if unsafe { *q } != 3 {
+   |            ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_names/sample_002/target.rs:44:12
+   |
+44 |         if unsafe { (*pa)[1] } != 2 {
+   |            ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_names/sample_002/target.rs:59:12
+   |
+59 |         if unsafe { *pf() } != 2 {
+   |            ^^^^^^^^^^^^^^^^
+
+error[E0515]: cannot return reference to temporary value
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_names/sample_002/target.rs:2:5
+  |
+2 |     &mut [1, 2, 3]
+  |     ^^^^^---------
+  |     |    |
+  |     |    temporary value created here
+  |     returns a reference to data owned by the current function
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::add` is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_names/sample_002/target.rs:6:5
+  |
+6 |     g_arr().as_ptr().add(1)
+  |     ^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+  |
+  = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::add` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_names/sample_002/target.rs:36:36
+   |
+36 |         let q = [g_arr().as_ptr(), g_arr().as_ptr().add(1), g_arr().as_ptr().add(2)][2];
+   |                                    ^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::add` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_names/sample_002/target.rs:36:61
+   |
+36 |         let q = [g_arr().as_ptr(), g_arr().as_ptr().add(1), g_arr().as_ptr().add(2)][2];
+   |                                                             ^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0133, E0515.
+For more information about an error, try `rustc --explain E0133`.

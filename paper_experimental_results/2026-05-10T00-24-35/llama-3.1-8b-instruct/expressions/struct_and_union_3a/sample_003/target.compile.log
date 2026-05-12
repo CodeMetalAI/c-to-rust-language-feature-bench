@@ -1,0 +1,40 @@
+error: expected `,`, or `}`, found `{`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/struct_and_union_3a/sample_003/target.rs:3:15
+  |
+2 | struct U {
+  |        - while parsing this struct
+3 |     n: struct_ {
+  |               ^
+
+warning: type `struct_` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/struct_and_union_3a/sample_003/target.rs:16:8
+   |
+16 | struct struct_ {
+   |        ^^^^^^^ help: convert the identifier to upper camel case: `Struct`
+   |
+   = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: type `struct_2` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/struct_and_union_3a/sample_003/target.rs:20:8
+   |
+20 | struct struct_2 {
+   |        ^^^^^^^^ help: convert the identifier to upper camel case: `Struct2`
+
+warning: type `struct_3` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/struct_and_union_3a/sample_003/target.rs:25:8
+   |
+25 | struct struct_3 {
+   |        ^^^^^^^^ help: convert the identifier to upper camel case: `Struct3`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/struct_and_union_3a/sample_003/target.rs:50:16
+   |
+30 | fn main() {
+   |          - expected `()` because of default return type
+...
+50 |         return 1;
+   |                ^ expected `()`, found integer
+
+error: aborting due to 2 previous errors; 3 warnings emitted
+
+For more information about this error, try `rustc --explain E0308`.

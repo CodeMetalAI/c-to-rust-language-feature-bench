@@ -1,0 +1,51 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2b/sample_005/target.rs:39:13
+   |
+39 |     let g = unsafe { std::ptr::read_volatile(&GATE) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0502]: cannot borrow `*d` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2b/sample_005/target.rs:95:20
+   |
+94 |     let (left, right) = d.split_at_mut(50);
+   |                         - mutable borrow occurs here
+95 |     call_f_checked(d, 100, 50, right, left);
+   |                    ^                  ---- mutable borrow later used here
+   |                    |
+   |                    immutable borrow occurs here
+
+error[E0502]: cannot borrow `*d` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2b/sample_005/target.rs:98:20
+   |
+97 |     let (first, rest) = d.split_at_mut(1);
+   |                         - mutable borrow occurs here
+98 |     call_f_checked(d, 100, 50, &mut rest[0..50], &first[0..50]);
+   |                    ^ immutable borrow occurs here ----- mutable borrow later used here
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+   --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2b/sample_005/target.rs:108:39
+    |
+108 |     safe_move(50, &mut expect[50..], &expect[0..50]);
+    |     ---------          ------         ^^^^^^ immutable borrow occurs here
+    |     |                  |
+    |     |                  mutable borrow occurs here
+    |     mutable borrow later used by call
+    |
+    = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+   --> benchmark_results/2026-05-06T18-03-03/claude-sonnet-4.5/declarations/restrict_def_2b/sample_005/target.rs:109:40
+    |
+109 |     safe_move(50, &mut expect[1..51], &expect[0..50]);
+    |     ---------          ------          ^^^^^^ immutable borrow occurs here
+    |     |                  |
+    |     |                  mutable borrow occurs here
+    |     mutable borrow later used by call
+    |
+    = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0502`.

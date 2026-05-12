@@ -1,0 +1,116 @@
+error[E0423]: expected value, found builtin type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:21:55
+   |
+21 |     if std::mem::size_of(&a) != 3 * std::mem::size_of(i32) {
+   |                                                       ^^^ not a value
+
+error[E0423]: expected value, found builtin type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:24:53
+   |
+24 |     if std::mem::align_of(&a) != std::mem::align_of(i32) {
+   |                                                     ^^^ not a value
+
+warning: unused macro definition: `TYPE_ID`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:49:14
+   |
+49 | macro_rules! TYPE_ID {
+   |              ^^^^^^^
+   |
+   = note: `#[warn(unused_macros)]` (part of `#[warn(unused)]`) on by default
+
+error[E0425]: cannot find function, tuple struct or tuple variant `TYPE_ID` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:4:8
+  |
+4 |     if TYPE_ID(&a) != 2 {
+  |        ^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function, tuple struct or tuple variant `TYPE_ID` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:7:8
+  |
+7 |     if TYPE_ID(&a[0] as *const i32) != 1 {
+  |        ^^^^^^^ not found in this scope
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:21:8
+    |
+ 21 |     if std::mem::size_of(&a) != 3 * std::mem::size_of(i32) {
+    |        ^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&[{integer}; 3]`
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+help: remove the extra argument
+    |
+ 21 -     if std::mem::size_of(&a) != 3 * std::mem::size_of(i32) {
+ 21 +     if std::mem::size_of() != 3 * std::mem::size_of(i32) {
+    |
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:21:37
+    |
+ 21 |     if std::mem::size_of(&a) != 3 * std::mem::size_of(i32) {
+    |                                     ^^^^^^^^^^^^^^^^^ --- unexpected argument
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+help: remove the extra argument
+    |
+ 21 -     if std::mem::size_of(&a) != 3 * std::mem::size_of(i32) {
+ 21 +     if std::mem::size_of(&a) != 3 * std::mem::size_of() {
+    |
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:24:8
+    |
+ 24 |     if std::mem::align_of(&a) != std::mem::align_of(i32) {
+    |        ^^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&[{integer}; 3]`
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+help: remove the extra argument
+    |
+ 24 -     if std::mem::align_of(&a) != std::mem::align_of(i32) {
+ 24 +     if std::mem::align_of() != std::mem::align_of(i32) {
+    |
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:24:34
+    |
+ 24 |     if std::mem::align_of(&a) != std::mem::align_of(i32) {
+    |                                  ^^^^^^^^^^^^^^^^^^ --- unexpected argument
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:489:14
+    |
+489 | pub const fn align_of<T>() -> usize {
+    |              ^^^^^^^^
+help: remove the extra argument
+    |
+ 24 -     if std::mem::align_of(&a) != std::mem::align_of(i32) {
+ 24 +     if std::mem::align_of(&a) != std::mem::align_of() {
+    |
+
+error[E0425]: cannot find function, tuple struct or tuple variant `TYPE_ID` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:29:8
+   |
+29 |     if TYPE_ID(s as *const u8) != 3 {
+   |        ^^^^^^^ not found in this scope
+
+error[E0606]: casting `&[u8]` as `*const u8` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c3/sample_005/target.rs:29:16
+   |
+29 |     if TYPE_ID(s as *const u8) != 3 {
+   |                ^^^^^^^^^^^^^^
+
+error: aborting due to 10 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0061, E0423, E0425, E0606.
+For more information about an error, try `rustc --explain E0061`.

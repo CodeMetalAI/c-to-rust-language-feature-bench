@@ -1,0 +1,172 @@
+warning: unused variable: `f1`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/function_calls/sample_004/target.rs:16:9
+   |
+16 |     let f1 = || {
+   |         ^^ help: if this is intentional, prefix it with an underscore: `_f1`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error[E0499]: cannot borrow `log_call` as mutable more than once at a time
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/function_calls/sample_004/target.rs:26:14
+   |
+21 |     let f2 = || {
+   |              -- first mutable borrow occurs here
+22 |         seen_f2 = true;
+23 |         log_call(2);
+   |         -------- first borrow occurs due to use of `log_call` in closure
+...
+26 |     let f3 = || {
+   |              ^^ second mutable borrow occurs here
+27 |         seen_f3 = true;
+28 |         log_call(3);
+   |         -------- second borrow occurs due to use of `log_call` in closure
+...
+47 |     let rc = target(f2(), f3() + f4());
+   |                     -- first borrow later used here
+
+error[E0499]: cannot borrow `log_call` as mutable more than once at a time
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/function_calls/sample_004/target.rs:31:14
+   |
+21 |     let f2 = || {
+   |              -- first mutable borrow occurs here
+22 |         seen_f2 = true;
+23 |         log_call(2);
+   |         -------- first borrow occurs due to use of `log_call` in closure
+...
+31 |     let f4 = || {
+   |              ^^ second mutable borrow occurs here
+32 |         seen_f4 = true;
+33 |         log_call(4);
+   |         -------- second borrow occurs due to use of `log_call` in closure
+...
+47 |     let rc = target(f2(), f3() + f4());
+   |                     -- first borrow later used here
+
+error[E0499]: cannot borrow `log_call` as mutable more than once at a time
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/function_calls/sample_004/target.rs:37:18
+   |
+21 |     let f2 = || {
+   |              -- first mutable borrow occurs here
+22 |         seen_f2 = true;
+23 |         log_call(2);
+   |         -------- first borrow occurs due to use of `log_call` in closure
+...
+37 |     let target = |_: i32, _: i32| {
+   |                  ^^^^^^^^^^^^^^^^ second mutable borrow occurs here
+38 |         log_call(9);
+   |         -------- second borrow occurs due to use of `log_call` in closure
+...
+47 |     let rc = target(f2(), f3() + f4());
+   |                     -- first borrow later used here
+
+error[E0502]: cannot borrow `seen_f2` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/function_calls/sample_004/target.rs:37:18
+   |
+21 |     let f2 = || {
+   |              -- mutable borrow occurs here
+22 |         seen_f2 = true;
+   |         ------- first borrow occurs due to use of `seen_f2` in closure
+...
+37 |     let target = |_: i32, _: i32| {
+   |                  ^^^^^^^^^^^^^^^^ immutable borrow occurs here
+...
+40 |         if !(seen_f1 && seen_f2 && seen_f3 && seen_f4) {
+   |                         ------- second borrow occurs due to use of `seen_f2` in closure
+...
+47 |     let rc = target(f2(), f3() + f4());
+   |                     -- mutable borrow later used here
+
+error[E0502]: cannot borrow `seen_f3` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/function_calls/sample_004/target.rs:37:18
+   |
+26 |     let f3 = || {
+   |              -- mutable borrow occurs here
+27 |         seen_f3 = true;
+   |         ------- first borrow occurs due to use of `seen_f3` in closure
+...
+37 |     let target = |_: i32, _: i32| {
+   |                  ^^^^^^^^^^^^^^^^ immutable borrow occurs here
+...
+40 |         if !(seen_f1 && seen_f2 && seen_f3 && seen_f4) {
+   |                                    ------- second borrow occurs due to use of `seen_f3` in closure
+...
+47 |     let rc = target(f2(), f3() + f4());
+   |                           -- mutable borrow later used here
+
+error[E0502]: cannot borrow `seen_f4` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/function_calls/sample_004/target.rs:37:18
+   |
+31 |     let f4 = || {
+   |              -- mutable borrow occurs here
+32 |         seen_f4 = true;
+   |         ------- first borrow occurs due to use of `seen_f4` in closure
+...
+37 |     let target = |_: i32, _: i32| {
+   |                  ^^^^^^^^^^^^^^^^ immutable borrow occurs here
+...
+40 |         if !(seen_f1 && seen_f2 && seen_f3 && seen_f4) {
+   |                                               ------- second borrow occurs due to use of `seen_f4` in closure
+...
+47 |     let rc = target(f2(), f3() + f4());
+   |                                  -- mutable borrow later used here
+
+error[E0596]: cannot borrow `target` as mutable, as it is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/function_calls/sample_004/target.rs:47:14
+   |
+38 |         log_call(9);
+   |         -------- calling `target` requires mutable binding due to mutable borrow of `log_call`
+...
+47 |     let rc = target(f2(), f3() + f4());
+   |              ^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+37 |     let mut target = |_: i32, _: i32| {
+   |         +++
+
+error[E0596]: cannot borrow `f2` as mutable, as it is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/function_calls/sample_004/target.rs:47:21
+   |
+22 |         seen_f2 = true;
+   |         ------- calling `f2` requires mutable binding due to mutable borrow of `seen_f2`
+...
+47 |     let rc = target(f2(), f3() + f4());
+   |                     ^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+21 |     let mut f2 = || {
+   |         +++
+
+error[E0596]: cannot borrow `f3` as mutable, as it is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/function_calls/sample_004/target.rs:47:27
+   |
+27 |         seen_f3 = true;
+   |         ------- calling `f3` requires mutable binding due to mutable borrow of `seen_f3`
+...
+47 |     let rc = target(f2(), f3() + f4());
+   |                           ^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+26 |     let mut f3 = || {
+   |         +++
+
+error[E0596]: cannot borrow `f4` as mutable, as it is not declared as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/function_calls/sample_004/target.rs:47:34
+   |
+32 |         seen_f4 = true;
+   |         ------- calling `f4` requires mutable binding due to mutable borrow of `seen_f4`
+...
+47 |     let rc = target(f2(), f3() + f4());
+   |                                  ^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+31 |     let mut f4 = || {
+   |         +++
+
+error: aborting due to 10 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0499, E0502, E0596.
+For more information about an error, try `rustc --explain E0499`.

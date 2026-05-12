@@ -1,0 +1,54 @@
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_AND_op_c4/sample_003/target.rs:6:37
+  |
+6 |     if set_g_return(0, 0) && (y += 1; true) {
+  |                                     ^
+  |                                     |
+  |                                     expected one of `)`, `,`, `.`, `?`, or an operator
+  |                                     help: missing `,`
+
+error[E0425]: cannot find value `g` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_AND_op_c4/sample_003/target.rs:22:5
+   |
+22 |     g = gval;
+   |     ^
+   |
+help: you might have meant to introduce a new binding
+   |
+22 |     let g = gval;
+   |     +++
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_AND_op_c4/sample_003/target.rs:6:8
+  |
+6 |     if set_g_return(0, 0) && (y += 1; true) {
+  |        ^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_AND_op_c4/sample_003/target.rs:6:30
+  |
+6 |     if set_g_return(0, 0) && (y += 1; true) {
+  |                              ^^^^^^^^^^^^^^ expected `bool`, found `((), bool)`
+  |
+  = note: expected type `bool`
+            found tuple `((), bool)`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_AND_op_c4/sample_003/target.rs:7:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+7 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_AND_op_c4/sample_003/target.rs:14:9
+   |
+14 |     if!(set_g_return(1, 1) && (g == 1)) {
+   |         ^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0308, E0425.
+For more information about an error, try `rustc --explain E0308`.

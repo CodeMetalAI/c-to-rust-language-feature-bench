@@ -1,0 +1,100 @@
+error[E0061]: this function takes 2 arguments but 1 argument was supplied
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:5:8
+   |
+ 5 |     if debug("Flag") != 1 {
+   |        ^^^^^-------- argument #2 of type `&[_]` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:27:4
+   |
+27 | fn debug<S: std::fmt::Display>(format: S, args: &[impl std::fmt::Display]) -> i32 {
+   |    ^^^^^                                  -------------------------------
+help: provide the argument
+   |
+ 5 |     if debug("Flag", /* args */) != 1 {
+   |                    ++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:8:26
+   |
+ 8 |     if debug("X = %d\n", x) != 2 {
+   |        -----             ^ expected `&[_]`, found integer
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&[_]`
+                   found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:27:4
+   |
+27 | fn debug<S: std::fmt::Display>(format: S, args: &[impl std::fmt::Display]) -> i32 {
+   |    ^^^^^                                  -------------------------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:12:25
+   |
+12 |     if !streq(&showlist("The first, second, and third items."),
+   |                -------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&[_]`, found `&str`
+   |                |
+   |                arguments to this function are incorrect
+   |
+   = note: expected reference `&[_]`
+              found reference `&'static str`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:41:4
+   |
+41 | fn showlist<S: std::fmt::Display>(args: &[S]) -> String {
+   |    ^^^^^^^^                       ----------
+
+error[E0061]: this function takes 3 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:17:8
+   |
+17 |     if report(x > y, "x is %d but y is %d", x, y) != 1 {
+   |        ^^^^^^                                  - unexpected argument #4 of type `{integer}`
+   |
+note: expected `&[_]`, found integer
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:17:45
+   |
+17 |     if report(x > y, "x is %d but y is %d", x, y) != 1 {
+   |                                             ^
+   = note: expected reference `&[_]`
+                   found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:56:4
+   |
+56 | fn report<S: std::fmt::Display>(condition: bool, format: S, args: &[impl std::fmt::Display]) -> i32 {
+   |    ^^^^^^                                                   -------------------------------
+help: remove the extra argument
+   |
+17 -     if report(x > y, "x is %d but y is %d", x, y) != 1 {
+17 +     if report(x > y, "x is %d but y is %d", /* args */) != 1 {
+   |
+
+error[E0061]: this function takes 3 arguments but 4 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:20:8
+   |
+20 |     if report(x < y, "x is %d but y is %d", x, y) != 3 {
+   |        ^^^^^^                                  - unexpected argument #4 of type `{integer}`
+   |
+note: expected `&[_]`, found integer
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:20:45
+   |
+20 |     if report(x < y, "x is %d but y is %d", x, y) != 3 {
+   |                                             ^
+   = note: expected reference `&[_]`
+                   found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/preprocessing_directives/scope_of_macro_7/sample_001/target.rs:56:4
+   |
+56 | fn report<S: std::fmt::Display>(condition: bool, format: S, args: &[impl std::fmt::Display]) -> i32 {
+   |    ^^^^^^                                                   -------------------------------
+help: remove the extra argument
+   |
+20 -     if report(x < y, "x is %d but y is %d", x, y) != 3 {
+20 +     if report(x < y, "x is %d but y is %d", /* args */) != 3 {
+   |
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0061, E0308.
+For more information about an error, try `rustc --explain E0061`.

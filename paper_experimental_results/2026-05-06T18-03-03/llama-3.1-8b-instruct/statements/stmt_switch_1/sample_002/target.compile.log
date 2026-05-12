@@ -1,0 +1,27 @@
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/statements/stmt_switch_1/sample_002/target.rs:8:20
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+8 |             return (i == 17) as i32;
+  |                    ^^^^^^^^^^^^^^^^ expected `()`, found `i32`
+
+warning: unreachable statement
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/statements/stmt_switch_1/sample_002/target.rs:11:5
+   |
+ 5 | /     match expr {
+ 6 | |         0 => {
+ 7 | |             i = 17;
+ 8 | |             return (i == 17) as i32;
+ 9 | |         }
+10 | |     }
+   | |_____- any code following this `match` expression is unreachable, as all arms diverge
+11 |       return 1;
+   |       ^^^^^^^^^ unreachable statement
+   |
+   = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 1 previous error; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0308`.

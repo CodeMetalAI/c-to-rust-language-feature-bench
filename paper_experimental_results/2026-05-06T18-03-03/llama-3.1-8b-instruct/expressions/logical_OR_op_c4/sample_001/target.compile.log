@@ -1,0 +1,65 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_OR_op_c4/sample_001/target.rs:4:5
+  |
+4 | /     unsafe {
+5 | |         g = gval;
+6 | |         return ret;
+7 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_OR_op_c4/sample_001/target.rs:13:5
+   |
+13 | /     unsafe {
+14 | |         g = 0;
+15 | |         if !(set_g_return(1, 0) || (g == 1)) {
+16 | |             return 1;
+17 | |         }
+18 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_OR_op_c4/sample_001/target.rs:20:5
+   |
+20 | /     unsafe {
+21 | |         g = 0;
+22 | |         if set_g_return(0, 1) || (y += 1) != 0 {
+23 | |             return 2;
+24 | |         }
+25 | |     }
+   | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_OR_op_c4/sample_001/target.rs:15:14
+   |
+15 |         if !(set_g_return(1, 0) || (g == 1)) {
+   |              ^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_OR_op_c4/sample_001/target.rs:16:20
+   |
+10 | fn main() {
+   |          - expected `()` because of default return type
+...
+16 |             return 1;
+   |                    ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_OR_op_c4/sample_001/target.rs:22:12
+   |
+22 |         if set_g_return(0, 1) || (y += 1) != 0 {
+   |            ^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_OR_op_c4/sample_001/target.rs:22:46
+   |
+22 |         if set_g_return(0, 1) || (y += 1) != 0 {
+   |                                  --------    ^ expected `()`, found integer
+   |                                  |
+   |                                  expected because this is `()`
+
+error: aborting due to 7 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

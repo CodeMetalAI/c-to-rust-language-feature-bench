@@ -1,0 +1,31 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_OR_op_c4/sample_001/target.rs:4:5
+  |
+4 |     unsafe { G = gval; }
+  |     ^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_OR_op_c4/sample_001/target.rs:11:5
+   |
+11 |     unsafe { G = 0; }
+   |     ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_OR_op_c4/sample_001/target.rs:16:5
+   |
+16 |     unsafe { G = 0; }
+   |     ^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/logical_OR_op_c4/sample_001/target.rs:17:47
+   |
+17 |     if (set_g_return(0, 1)!= 0) || (y += 1)!= 0 {
+   |                                    --------   ^ expected `()`, found integer
+   |                                    |
+   |                                    expected because this is `()`
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

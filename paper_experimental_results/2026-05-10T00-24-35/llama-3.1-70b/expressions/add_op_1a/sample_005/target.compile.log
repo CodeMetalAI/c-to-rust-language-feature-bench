@@ -1,0 +1,36 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/add_op_1a/sample_005/target.rs:6:5
+  |
+6 | /     unsafe {
+7 | |         (*p)[2] = 99;
+8 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error[E0133]: call to unsafe function `std::ptr::mut_ptr::<impl *mut T>::offset` is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/add_op_1a/sample_005/target.rs:5:9
+  |
+5 |     p = (p as *mut [i32; 3]).offset(1);
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+  |
+  = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0384]: cannot assign twice to immutable variable `p`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/add_op_1a/sample_005/target.rs:5:5
+  |
+3 |     let p: *mut [i32; 3] = a.as_mut_ptr();
+  |         - first assignment to `p`
+4 |
+5 |     p = (p as *mut [i32; 3]).offset(1);
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot assign twice to immutable variable
+  |
+help: consider making this binding mutable
+  |
+3 |     let mut p: *mut [i32; 3] = a.as_mut_ptr();
+  |         +++
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0133, E0384.
+For more information about an error, try `rustc --explain E0133`.

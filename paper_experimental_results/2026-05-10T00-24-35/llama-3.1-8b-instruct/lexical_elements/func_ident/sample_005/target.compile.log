@@ -1,0 +1,23 @@
+error: Rust has no ternary operator
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/lexical_elements/func_ident/sample_005/target.rs:2:5
+  |
+2 |     a.chars().zip(b.chars()).all(|(x, y)| x == y) && a.is_empty() ? true : false
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+help: use an `if-else` expression instead
+  |
+2 -     a.chars().zip(b.chars()).all(|(x, y)| x == y) && a.is_empty() ? true : false
+2 +     if a.chars().zip(b.chars()).all(|(x, y)| x == y) && a.is_empty() { true } else { false }
+  |
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/lexical_elements/func_ident/sample_005/target.rs:25:14
+   |
+25 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

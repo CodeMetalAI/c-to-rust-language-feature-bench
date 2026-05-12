@@ -1,0 +1,35 @@
+error: leading `+` is not supported
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_004/target.rs:7:26
+  |
+7 |     unsafe { gstore[0] } + 1
+  |                          ^ unexpected `+`
+  |
+help: parentheses are required to parse this as an expression
+  |
+7 |     (unsafe { gstore[0] }) + 1
+  |     +                    +
+
+error: expected identifier, found keyword `fn`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_004/target.rs:17:8
+   |
+17 | static fn alt0() -> i32 {
+   |        ^^ expected identifier, found keyword
+
+error: expected one of `:`, `;`, or `=`, found `alt0`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_004/target.rs:17:11
+   |
+17 | static fn alt0() -> i32 {
+   |           ^^^^ expected one of `:`, `;`, or `=`
+
+error: missing type for `static` item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/fun_decl_1/sample_004/target.rs:17:10
+   |
+17 | static fn alt0() -> i32 {
+   |          ^
+   |
+help: provide a type for the item
+   |
+17 | static fn: <type> alt0() -> i32 {
+   |          ++++++++
+
+error: aborting due to 4 previous errors

@@ -1,0 +1,232 @@
+warning: type `usize` should have an upper camel case name
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:1:6
+  |
+1 | type usize = u64;
+  |      ^^^^^ help: convert the identifier to upper camel case (notice the capitalization): `Usize`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:14:5
+   |
+14 | /     unsafe {
+15 | |         if n == 0 {
+16 | |             return Some(POOL.as_mut_ptr().add(OFF));
+...  |
+29 | |         Some(p)
+30 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:37:24
+   |
+37 |         v: v.map(|ptr| unsafe { Box::from_raw(std::slice::from_raw_parts_mut(ptr as *mut f32, n as usize)) }),
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:86:5
+   |
+86 | /     unsafe {
+87 | |         if (H & 1) == 0 {
+88 | |             return 6;
+89 | |         }
+90 | |     }
+   | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:60:14
+   |
+60 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:16:47
+    |
+ 16 |             return Some(POOL.as_mut_ptr().add(OFF));
+    |                                           --- ^^^ expected `usize`, found `u64`
+    |                                           |
+    |                                           arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mut_ptr.rs:975:25
+    |
+975 |     pub const unsafe fn add(self, count: usize) -> Self
+    |                         ^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+    |
+ 16 |             return Some(POOL.as_mut_ptr().add(OFF.try_into().unwrap()));
+    |                                                  ++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:23:39
+    |
+ 23 |         let p = POOL.as_mut_ptr().add(OFF);
+    |                                   --- ^^^ expected `usize`, found `u64`
+    |                                   |
+    |                                   arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mut_ptr.rs:975:25
+    |
+975 |     pub const unsafe fn add(self, count: usize) -> Self
+    |                         ^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+    |
+ 23 |         let p = POOL.as_mut_ptr().add(OFF.try_into().unwrap());
+    |                                          ++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:37:95
+    |
+ 37 |         v: v.map(|ptr| unsafe { Box::from_raw(std::slice::from_raw_parts_mut(ptr as *mut f32, n as usize)) }),
+    |                                               ------------------------------                  ^^^^^^^^^^ expected `usize`, found `u64`
+    |                                               |
+    |                                               arguments to this function are incorrect
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/slice/raw.rs:179:21
+    |
+179 | pub const unsafe fn from_raw_parts_mut<'a, T>(data: *mut T, len: usize) -> &'a mut [T] {
+    |                     ^^^^^^^^^^^^^^^^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+    |
+ 37 |         v: v.map(|ptr| unsafe { Box::from_raw(std::slice::from_raw_parts_mut(ptr as *mut f32, (n as usize).try_into().unwrap())) }),
+    |                                                                                               +          +++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:37:12
+   |
+37 |         v: v.map(|ptr| unsafe { Box::from_raw(std::slice::from_raw_parts_mut(ptr as *mut f32, n as usize)) }),
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Option<Box<[f32; 16]>>`, found `Option<Box<[f32]>>`
+   |
+   = note: expected enum `Option<Box<[f32; 16]>>`
+              found enum `Option<Box<[f32]>>`
+
+error[E0277]: the type `[f32]` cannot be indexed by `u64`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:43:11
+   |
+43 |         p[i as usize] = base + i as f32;
+   |           ^^^^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[f32]>` is not implemented for `u64`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[f32]` to implement `Index<u64>`
+
+error[E0277]: the type `[f32]` cannot be indexed by `u64`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:50:16
+   |
+50 |         s += p[i as usize];
+   |                ^^^^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[f32]>` is not implemented for `u64`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[f32]` to implement `Index<u64>`
+
+error[E0599]: no method named `as_ptr` found for enum `Option<T>` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:71:12
+    |
+ 71 |     if a.v.as_ptr() == b.v.as_ptr() {
+    |            ^^^^^^ method not found in `Option<Box<[f32; 16]>>`
+    |
+note: the method `as_ptr` exists on the type `Box<[f32; 16]>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/slice/mod.rs:724:5
+    |
+724 |     pub const fn as_ptr(&self) -> *const T {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: consider using `Option::expect` to unwrap the `Box<[f32; 16]>` value, panicking if the value is an `Option::None`
+    |
+ 71 |     if a.v.expect("REASON").as_ptr() == b.v.as_ptr() {
+    |           +++++++++++++++++
+
+error[E0599]: no method named `as_ptr` found for enum `Option<T>` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:71:28
+    |
+ 71 |     if a.v.as_ptr() == b.v.as_ptr() {
+    |                            ^^^^^^ method not found in `Option<Box<[f32; 16]>>`
+    |
+note: the method `as_ptr` exists on the type `Box<[f32; 16]>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/slice/mod.rs:724:5
+    |
+724 |     pub const fn as_ptr(&self) -> *const T {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: consider using `Option::expect` to unwrap the `Box<[f32; 16]>` value, panicking if the value is an `Option::None`
+    |
+ 71 |     if a.v.as_ptr() == b.v.expect("REASON").as_ptr() {
+    |                           +++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:75:14
+   |
+75 |     fill_vec(a.v.as_mut().unwrap(), a.n, 1.0);
+   |     -------- ^^^^^^^^^^^^^^^^^^^^^ expected `&mut [f32]`, found `&mut Box<[f32; 16]>`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut [f32]`
+              found mutable reference `&mut Box<[f32; 16]>`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:41:4
+   |
+41 | fn fill_vec(p: &mut [f32], n: i32, base: f32) {
+   |    ^^^^^^^^ -------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:76:14
+   |
+76 |     fill_vec(b.v.as_mut().unwrap(), b.n, 100.0);
+   |     -------- ^^^^^^^^^^^^^^^^^^^^^ expected `&mut [f32]`, found `&mut Box<[f32; 16]>`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected mutable reference `&mut [f32]`
+              found mutable reference `&mut Box<[f32; 16]>`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:41:4
+   |
+41 | fn fill_vec(p: &mut [f32], n: i32, base: f32) {
+   |    ^^^^^^^^ -------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:78:30
+   |
+78 |     if !close_enough(sum_vec(a.v.as_ref().unwrap(), a.n), 1.0 * 16.0 + (15.0 * 16.0) / 2.0) {
+   |                      ------- ^^^^^^^^^^^^^^^^^^^^^ expected `&[f32]`, found `&Box<[f32; 16]>`
+   |                      |
+   |                      arguments to this function are incorrect
+   |
+   = note: expected reference `&[f32]`
+              found reference `&Box<[f32; 16]>`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:47:4
+   |
+47 | fn sum_vec(p: &[f32], n: i32) -> f32 {
+   |    ^^^^^^^ ---------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:82:30
+   |
+82 |     if !close_enough(sum_vec(b.v.as_ref().unwrap(), b.n), 100.0 * 16.0 + (15.0 * 16.0) / 2.0) {
+   |                      ------- ^^^^^^^^^^^^^^^^^^^^^ expected `&[f32]`, found `&Box<[f32; 16]>`
+   |                      |
+   |                      arguments to this function are incorrect
+   |
+   = note: expected reference `&[f32]`
+              found reference `&Box<[f32; 16]>`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/restrict_def_4b/sample_001/target.rs:47:4
+   |
+47 | fn sum_vec(p: &[f32], n: i32) -> f32 {
+   |    ^^^^^^^ ---------
+
+error: aborting due to 16 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308, E0599.
+For more information about an error, try `rustc --explain E0277`.

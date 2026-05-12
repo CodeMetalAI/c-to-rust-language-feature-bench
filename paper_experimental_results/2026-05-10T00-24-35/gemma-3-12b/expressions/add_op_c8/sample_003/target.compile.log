@@ -1,0 +1,60 @@
+error[E0106]: missing lifetime specifier
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/add_op_c8/sample_003/target.rs:36:42
+   |
+36 | fn p_from_end(a: &[i32], p_end: &i32) -> &i32 {
+   |                  ------         ----     ^ expected named lifetime parameter
+   |
+   = help: this function's return type contains a borrowed value, but the signature does not say whether it is borrowed from `a` or `p_end`
+help: consider introducing a named lifetime parameter
+   |
+36 | fn p_from_end<'a>(a: &'a [i32], p_end: &'a i32) -> &'a i32 {
+   |              ++++     ++                ++          ++
+
+error[E0106]: missing lifetime specifier
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/add_op_c8/sample_003/target.rs:42:38
+   |
+42 | fn p0_plus_5(a: &[i32], p0: &i32) -> &i32 {
+   |                 ------      ----     ^ expected named lifetime parameter
+   |
+   = help: this function's return type contains a borrowed value, but the signature does not say whether it is borrowed from `a` or `p0`
+help: consider introducing a named lifetime parameter
+   |
+42 | fn p0_plus_5<'a>(a: &'a [i32], p0: &'a i32) -> &'a i32 {
+   |             ++++     ++             ++          ++
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/add_op_c8/sample_003/target.rs:39:5
+   |
+39 |     unsafe { &*ptr_to_i32_ref_minus_one }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/add_op_c8/sample_003/target.rs:45:5
+   |
+45 |     unsafe { &*ptr_to_i32_ref_plus_5 }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/add_op_c8/sample_003/target.rs:11:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+11 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/expressions/add_op_c8/sample_003/target.rs:33:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+33 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0106, E0308.
+For more information about an error, try `rustc --explain E0106`.

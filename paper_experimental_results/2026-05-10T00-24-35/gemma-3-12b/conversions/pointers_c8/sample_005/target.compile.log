@@ -1,0 +1,72 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c8/sample_005/target.rs:16:37
+   |
+16 |     let p_double2: fn(f64) -> f64 = unsafe { *(v1 as *const fn(i32) -> i32) as fn(f64) -> f64 };
+   |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c8/sample_005/target.rs:17:34
+   |
+17 |     let p_int2: fn(i32) -> i32 = unsafe { *(v2 as *const fn(f64) -> f64) as fn(i32) -> i32 };
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c8/sample_005/target.rs:29:34
+   |
+29 |     let p_int3: fn(i32) -> i32 = unsafe { *(v1b as *const fn(f64) -> f64) as fn(i32) -> i32 };
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c8/sample_005/target.rs:30:37
+   |
+30 |     let p_double3: fn(f64) -> f64 = unsafe { *(v2b as *const fn(i32) -> i32) as fn(f64) -> f64 };
+   |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c8/sample_005/target.rs:23:16
+   |
+ 9 | fn main() {
+   |          - expected `()` because of default return type
+...
+23 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c8/sample_005/target.rs:39:5
+   |
+ 9 | fn main() {
+   |          - expected `()` because of default return type
+...
+39 |     0
+   |     ^ expected `()`, found integer
+
+error[E0605]: non-primitive cast: `fn(i32) -> i32` as `fn(f64) -> f64`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c8/sample_005/target.rs:16:46
+   |
+16 |     let p_double2: fn(f64) -> f64 = unsafe { *(v1 as *const fn(i32) -> i32) as fn(f64) -> f64 };
+   |                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ invalid cast
+
+error[E0605]: non-primitive cast: `fn(f64) -> f64` as `fn(i32) -> i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c8/sample_005/target.rs:17:43
+   |
+17 |     let p_int2: fn(i32) -> i32 = unsafe { *(v2 as *const fn(f64) -> f64) as fn(i32) -> i32 };
+   |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ invalid cast
+
+error[E0605]: non-primitive cast: `fn(f64) -> f64` as `fn(i32) -> i32`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c8/sample_005/target.rs:29:43
+   |
+29 |     let p_int3: fn(i32) -> i32 = unsafe { *(v1b as *const fn(f64) -> f64) as fn(i32) -> i32 };
+   |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ invalid cast
+
+error[E0605]: non-primitive cast: `fn(i32) -> i32` as `fn(f64) -> f64`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/pointers_c8/sample_005/target.rs:30:46
+   |
+30 |     let p_double3: fn(f64) -> f64 = unsafe { *(v2b as *const fn(i32) -> i32) as fn(f64) -> f64 };
+   |                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ invalid cast
+
+error: aborting due to 10 previous errors
+
+Some errors have detailed explanations: E0308, E0605.
+For more information about an error, try `rustc --explain E0308`.

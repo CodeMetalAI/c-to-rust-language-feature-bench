@@ -1,0 +1,45 @@
+error[E0658]: use of unstable library feature `slice_ptr_get`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/array_subscripting/sample_002/target.rs:13:87
+   |
+13 |             let b = *(((x.as_ptr() as *const i32).offset(i as isize) as *const [i32]).as_ptr().offset(j as isize));
+   |                                                                                       ^^^^^^
+   |
+   = note: see issue #74265 <https://github.com/rust-lang/rust/issues/74265> for more information
+   = help: add `#![feature(slice_ptr_get)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/array_subscripting/sample_002/target.rs:14:20
+   |
+14 |             if a!= b {
+   |                -   ^ expected `usize`, found `i32`
+   |                |
+   |                expected because this is `usize`
+   |
+help: you can convert an `i32` to a `usize` and panic if the converted value doesn't fit
+   |
+14 |             if a!= b.try_into().unwrap() {
+   |                     ++++++++++++++++++++
+
+error[E0607]: cannot cast thin pointer `*const i32` to wide pointer `*const [i32]`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/array_subscripting/sample_002/target.rs:13:23
+   |
+13 |             let b = *(((x.as_ptr() as *const i32).offset(i as isize) as *const [i32]).as_ptr().offset(j as isize));
+   |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&usize` as `*const i32` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/array_subscripting/sample_002/target.rs:20:14
+   |
+20 |     let p0 = &x[0][0] as *const i32;
+   |              ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&usize` as `*const i32` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/array_subscripting/sample_002/target.rs:21:14
+   |
+21 |     let p1 = &x[1][0] as *const i32;
+   |              ^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0606, E0607, E0658.
+For more information about an error, try `rustc --explain E0308`.

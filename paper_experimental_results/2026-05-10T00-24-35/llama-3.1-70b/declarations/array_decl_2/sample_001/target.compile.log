@@ -1,0 +1,57 @@
+error: comparison operators cannot be chained
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_001/target.rs:58:19
+   |
+58 |     if backing[1] != 25 != 25 {
+   |                   ^^    ^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_001/target.rs:16:14
+   |
+16 |         s += unsafe { *p.offset(i as isize) };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_001/target.rs:31:5
+   |
+31 | /     unsafe {
+32 | |         *p.offset(1) += 5;
+33 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_001/target.rs:36:16
+   |
+36 |         sum += unsafe { *p.offset(i as isize) };
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_001/target.rs:64:12
+   |
+64 |         if unsafe { *t.offset(6) } != 7 {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_001/target.rs:73:12
+   |
+73 |         if unsafe { *hp.p } != 1 {
+   |            ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_001/target.rs:82:12
+   |
+82 |         if unsafe { (*ha).a[2] } != 3 {
+   |            ^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_2/sample_001/target.rs:58:28
+   |
+58 |     if backing[1] != 25 != 25 {
+   |        ----------------    ^^ expected `bool`, found integer
+   |        |
+   |        expected because this is `bool`
+
+error: aborting due to 8 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

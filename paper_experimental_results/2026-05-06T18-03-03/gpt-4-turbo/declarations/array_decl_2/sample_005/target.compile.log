@@ -1,0 +1,41 @@
+error: cannot find macro `offset_of` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_2/sample_005/target.rs:40:67
+   |
+40 |     if &ha.a[0] as *const _ as usize != ha as *const _ as usize + offset_of!(HoldA, a) {
+   |                                                                   ^^^^^^^^^ consider moving the definition of `offset_of` before this call
+   |
+note: a macro with the same name exists, but it appears later
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_2/sample_005/target.rs:80:14
+   |
+80 | macro_rules! offset_of {
+   |              ^^^^^^^^^
+help: consider importing this macro
+   |
+ 1 + use std::mem::offset_of;
+   |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_2/sample_005/target.rs:39:14
+   |
+39 |     let ha = unsafe { &*(y.as_ptr() as *const HoldA) };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+warning: unused macro definition: `offset_of`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_2/sample_005/target.rs:80:14
+   |
+80 | macro_rules! offset_of {
+   |              ^^^^^^^^^
+   |
+   = note: `#[warn(unused_macros)]` (part of `#[warn(unused)]`) on by default
+
+error[E0607]: cannot cast thin pointer `*const i32` to wide pointer `*const HoldA`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/array_decl_2/sample_005/target.rs:39:25
+   |
+39 |     let ha = unsafe { &*(y.as_ptr() as *const HoldA) };
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 3 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0607`.

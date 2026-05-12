@@ -1,0 +1,24 @@
+warning: unnecessary parentheses around index expression
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/type_def_5/sample_002/target.rs:17:10
+   |
+17 |     if a[((n - 2) as usize)] != 1000 + (n - 1) {
+   |          ^                ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+17 -     if a[((n - 2) as usize)] != 1000 + (n - 1) {
+17 +     if a[(n - 2) as usize] != 1000 + (n - 1) {
+   |
+
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/type_def_5/sample_002/target.rs:3:9
+  |
+3 |     let mut b: Vec<i32> = (0..n).map(|i| 1000 + i).collect();
+  |         ----^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: 2 warnings emitted

@@ -1,0 +1,44 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/addr_indr_c3/sample_003/target.rs:25:8
+   |
+25 |     if unsafe { *(a.as_ptr().add(1)) } != 20 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/addr_indr_c3/sample_003/target.rs:1:14
+  |
+1 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::add` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/addr_indr_c3/sample_003/target.rs:15:29
+   |
+15 |     if &a[0] as *const _ != a.as_ptr().add(0) {
+   |                             ^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::add` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/addr_indr_c3/sample_003/target.rs:18:29
+   |
+18 |     if &a[1] as *const _ != a.as_ptr().add(1) {
+   |                             ^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::add` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/addr_indr_c3/sample_003/target.rs:21:29
+   |
+21 |     if &a[2] as *const _ != a.as_ptr().add(2) {
+   |                             ^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0133, E0277.
+For more information about an error, try `rustc --explain E0133`.

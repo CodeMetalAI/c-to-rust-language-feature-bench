@@ -1,0 +1,37 @@
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-10T00-24-35/gpt-5.2-codex/conversions/pointers_c3/sample_002/target.rs:14:35
+   |
+14 |             (Func(a), Func(b)) => a == b,
+   |                                   ^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+   = note: `#[warn(unpredictable_function_pointer_comparisons)]` on by default
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+14 -             (Func(a), Func(b)) => a == b,
+14 +             (Func(a), Func(b)) => std::ptr::fn_addr_eq(*a, *b),
+   |
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-10T00-24-35/gpt-5.2-codex/conversions/pointers_c3/sample_002/target.rs:74:8
+   |
+74 |     if nf1 == Some(pf) {
+   |        ^^^^^^^^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-10T00-24-35/gpt-5.2-codex/conversions/pointers_c3/sample_002/target.rs:77:8
+   |
+77 |     if nf2 == Some(pf) {
+   |        ^^^^^^^^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+
+warning: 3 warnings emitted

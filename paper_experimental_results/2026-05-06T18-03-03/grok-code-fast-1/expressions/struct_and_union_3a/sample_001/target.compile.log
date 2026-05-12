@@ -1,0 +1,95 @@
+error[E0599]: no method named `try_into` found for slice `[u8]` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/struct_and_union_3a/sample_001/target.rs:12:51
+    |
+ 12 |     let alltypes = i32::from_le_bytes(bytes[0..4].try_into().unwrap());
+    |                                                   ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[u8]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 12 -     let alltypes = i32::from_le_bytes(bytes[0..4].try_into().unwrap());
+ 12 +     let alltypes = i32::from_le_bytes(bytes[0..4].into().unwrap());
+    |
+
+error[E0599]: no method named `try_into` found for slice `[u8]` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/struct_and_union_3a/sample_001/target.rs:18:50
+    |
+ 18 |     let ni_type = i32::from_le_bytes(bytes[0..4].try_into().unwrap());
+    |                                                  ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[u8]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 18 -     let ni_type = i32::from_le_bytes(bytes[0..4].try_into().unwrap());
+ 18 +     let ni_type = i32::from_le_bytes(bytes[0..4].into().unwrap());
+    |
+
+error[E0599]: no method named `try_into` found for slice `[u8]` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/struct_and_union_3a/sample_001/target.rs:24:50
+    |
+ 24 |     let nf_type = i32::from_le_bytes(bytes[0..4].try_into().unwrap());
+    |                                                  ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[u8]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 24 -     let nf_type = i32::from_le_bytes(bytes[0..4].try_into().unwrap());
+ 24 +     let nf_type = i32::from_le_bytes(bytes[0..4].into().unwrap());
+    |
+
+error[E0599]: no method named `try_into` found for slice `[u8]` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/struct_and_union_3a/sample_001/target.rs:30:54
+    |
+ 30 |     let doublenode = f64::from_le_bytes(bytes[4..12].try_into().unwrap());
+    |                                                      ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[u8]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 30 -     let doublenode = f64::from_le_bytes(bytes[4..12].try_into().unwrap());
+ 30 +     let doublenode = f64::from_le_bytes(bytes[4..12].into().unwrap());
+    |
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

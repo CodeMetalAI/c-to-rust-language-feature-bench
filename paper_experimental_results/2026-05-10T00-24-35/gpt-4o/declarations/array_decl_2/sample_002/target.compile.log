@@ -1,0 +1,24 @@
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_2/sample_002/target.rs:23:14
+   |
+23 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0502]: cannot borrow `backing` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/array_decl_2/sample_002/target.rs:40:16
+   |
+26 |     let x: &mut [i32; 3] = &mut backing;
+   |                            ------------ mutable borrow occurs here
+...
+40 |     if sum_ptr(&backing, 3) != (10 + 20 + 30) {
+   |                ^^^^^^^^ immutable borrow occurs here
+...
+44 |     if mutate_through_pointer(x) != (10 + 25 + 30) {
+   |                               - mutable borrow later used here
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0277, E0502.
+For more information about an error, try `rustc --explain E0277`.

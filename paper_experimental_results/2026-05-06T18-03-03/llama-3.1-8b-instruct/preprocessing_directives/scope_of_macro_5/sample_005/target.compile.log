@@ -1,0 +1,31 @@
+error[E0432]: unresolved import `rand`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:1:5
+  |
+1 | use rand::Rng;
+  |     ^^^^ use of unresolved module or unlinked crate `rand`
+  |
+help: you might be missing a crate named `rand`, add it to your project and import it in your code
+  |
+1 + extern crate rand;
+  |
+
+error[E0070]: invalid left-hand side of assignment
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:10:15
+   |
+10 |     RNG_STATE = x;
+   |     --------- ^
+   |     |
+   |     cannot assign to this expression
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `rand`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_5/sample_005/target.rs:39:19
+   |
+39 |     let mut rng = rand::thread_rng();
+   |                   ^^^^ use of unresolved module or unlinked crate `rand`
+   |
+   = help: you might be missing a crate named `rand`
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0070, E0432, E0433.
+For more information about an error, try `rustc --explain E0070`.

@@ -1,0 +1,67 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/restrict_def_2b/sample_002/target.rs:28:13
+   |
+28 |     let g = unsafe { GATE };
+   |             ^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/restrict_def_2b/sample_002/target.rs:29:14
+   |
+29 |     let ps = unsafe { p.offset_from(base) as usize };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/restrict_def_2b/sample_002/target.rs:30:14
+   |
+30 |     let qs = unsafe { q.offset_from(base) as usize };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0502]: cannot borrow `*d` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/restrict_def_2b/sample_002/target.rs:69:59
+   |
+69 |     call_f_checked(d.as_ptr(), 100, 50, &mut d[50..100], &d[0..50]);
+   |     --------------                           -            ^ immutable borrow occurs here
+   |     |                                        |
+   |     |                                        mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `*d` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/restrict_def_2b/sample_002/target.rs:70:57
+   |
+70 |     call_f_checked(d.as_ptr(), 100, 50, &mut d[1..51], &d[0..50]);
+   |     --------------                           -          ^ immutable borrow occurs here
+   |     |                                        |
+   |     |                                        mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/restrict_def_2b/sample_002/target.rs:80:42
+   |
+80 |     safe_move(50, &mut expect[50..100], &expect[0..50]);
+   |     ---------          ------            ^^^^^^ immutable borrow occurs here
+   |     |                  |
+   |     |                  mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/restrict_def_2b/sample_002/target.rs:81:40
+   |
+81 |     safe_move(50, &mut expect[1..51], &expect[0..50]);
+   |     ---------          ------          ^^^^^^ immutable borrow occurs here
+   |     |                  |
+   |     |                  mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 7 previous errors
+
+For more information about this error, try `rustc --explain E0502`.

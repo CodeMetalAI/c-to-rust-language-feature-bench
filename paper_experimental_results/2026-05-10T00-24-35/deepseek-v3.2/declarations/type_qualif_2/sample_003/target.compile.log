@@ -1,0 +1,27 @@
+warning: value assigned to `ncs` is never read
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_qualif_2/sample_003/target.rs:13:13
+   |
+13 |     let mut ncs = S { mem: 0 };
+   |             ^^^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+error[E0507]: cannot move out of static item `CS`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_qualif_2/sample_003/target.rs:14:11
+   |
+14 |     ncs = CS;
+   |           ^^ move occurs because `CS` has type `S`, which does not implement the `Copy` trait
+   |
+note: if `S` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_qualif_2/sample_003/target.rs:1:1
+   |
+ 1 | struct S {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+14 |     ncs = CS;
+   |           -- you could clone this value
+
+error: aborting due to 1 previous error; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0507`.

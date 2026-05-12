@@ -1,0 +1,20 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_005/target.rs:28:13
+   |
+28 |     let p = unsafe { Box::from_raw(p) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_005/target.rs:24:37
+   |
+24 |     if std::ptr::addr_of!((*p).a)!= (p as *const _ as usize + std::mem::size_of::<S>()) as *const i32 {
+   |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `*const [i32; 0]`, found `*const i32`
+   |
+   = note: expected raw pointer `*const [i32; 0]`
+              found raw pointer `*const i32`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

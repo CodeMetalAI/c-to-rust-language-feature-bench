@@ -1,0 +1,53 @@
+error[E0412]: cannot find type `f32i32` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-6/sample_005/target.rs:12:19
+   |
+12 |     check_align::<f32i32>();
+   |                   ^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `f64i32` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-6/sample_005/target.rs:13:19
+   |
+13 |     check_align::<f64i32>();
+   |                   ^^^^^^ not found in this scope
+
+error[E0599]: no function or associated item named `default` found for type parameter `T` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-6/sample_005/target.rs:25:41
+   |
+19 | fn check_align<T>() {
+   |                - function or associated item `default` not found for this type parameter
+...
+25 |     let wrapper = Wrapper { c: 0, v: T::default() };
+   |                                         ^^^^^^^ function or associated item not found in `T`
+   |
+   = help: items from traits can only be used if the type parameter is bounded by the trait
+help: the following trait defines an item `default`, perhaps you need to restrict type parameter `T` with it:
+   |
+19 | fn check_align<T: Default>() {
+   |                 +++++++++
+
+error[E0107]: missing generics for struct `Wrapper`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-6/sample_005/target.rs:27:40
+   |
+27 |     if alignment > std::mem::size_of::<Wrapper>().align_offset() + 1 {
+   |                                        ^^^^^^^ expected 1 generic argument
+   |
+note: struct defined here, with 1 generic parameter: `T`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-6/sample_005/target.rs:20:12
+   |
+20 |     struct Wrapper<T> {
+   |            ^^^^^^^ -
+help: add missing generic argument
+   |
+27 |     if alignment > std::mem::size_of::<Wrapper<T>>().align_offset() + 1 {
+   |                                               +++
+
+error[E0599]: no method named `align_offset` found for type `usize` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-6/sample_005/target.rs:27:51
+   |
+27 |     if alignment > std::mem::size_of::<Wrapper>().align_offset() + 1 {
+   |                                                   ^^^^^^^^^^^^ method not found in `usize`
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0107, E0412, E0599.
+For more information about an error, try `rustc --explain E0107`.

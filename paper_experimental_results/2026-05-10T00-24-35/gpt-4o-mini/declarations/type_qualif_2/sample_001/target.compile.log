@@ -1,0 +1,24 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_qualif_2/sample_001/target.rs:19:5
+   |
+19 | /     unsafe {
+20 | |         NCS = CS; // Copy const struct to mutable struct
+21 | |         pi = &mut NCS.mem;
+22 | |         *pi += 10;
+...  |
+52 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/type_qualif_2/sample_001/target.rs:15:14
+   |
+15 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

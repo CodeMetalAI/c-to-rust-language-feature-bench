@@ -1,0 +1,95 @@
+error[E0599]: `Arguments<'_>` is not an iterator
+   --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/preprocessing_directives/scope_of_macro_7/sample_005/target.rs:3:33
+    |
+  3 |         format_args!($($arg),*).count()
+    |                                 ^^^^^ `Arguments<'_>` is not an iterator
+...
+ 31 |     if debug!("Flag") != 1 {
+    |        -------------- in this macro invocation
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:617:1
+    |
+617 | pub struct Arguments<'a> {
+    | ------------------------ doesn't satisfy `Arguments<'_>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `Arguments<'_>: Iterator`
+            which is required by `&mut Arguments<'_>: Iterator`
+    = note: this error originates in the macro `debug` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: `Arguments<'_>` is not an iterator
+   --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/preprocessing_directives/scope_of_macro_7/sample_005/target.rs:3:33
+    |
+  3 |         format_args!($($arg),*).count()
+    |                                 ^^^^^ `Arguments<'_>` is not an iterator
+...
+ 34 |     if debug!("X = {}\n", x) != 2 {
+    |        --------------------- in this macro invocation
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:617:1
+    |
+617 | pub struct Arguments<'a> {
+    | ------------------------ doesn't satisfy `Arguments<'_>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `Arguments<'_>: Iterator`
+            which is required by `&mut Arguments<'_>: Iterator`
+    = note: this error originates in the macro `debug` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: `Option<&str>` doesn't implement `std::fmt::Display`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/preprocessing_directives/scope_of_macro_7/sample_005/target.rs:9:23
+   |
+ 9 |         format!("{}", format_args!($($arg),*).as_str())
+   |                  --   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `Option<&str>` cannot be formatted with the default formatter
+   |                  |
+   |                  required by this formatting parameter
+...
+38 |     if !streq(&showlist!("The first, second, and third items."), "The first, second, and third items.") {
+   |                ------------------------------------------------ in this macro invocation
+   |
+   = help: the trait `std::fmt::Display` is not implemented for `Option<&str>`
+   = note: in format strings you may be able to use `{:?}` (or {:#?} for pretty-print) instead
+   = note: this error originates in the macro `$crate::__export::format_args` which comes from the expansion of the macro `showlist` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: `Arguments<'_>` is not an iterator
+   --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/preprocessing_directives/scope_of_macro_7/sample_005/target.rs:18:37
+    |
+ 18 |             format_args!($($arg),*).count()
+    |                                     ^^^^^ `Arguments<'_>` is not an iterator
+...
+ 42 |     if report!(x > y, "x is {} but y is {}", x, y) != 1 {
+    |        ------------------------------------------- in this macro invocation
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:617:1
+    |
+617 | pub struct Arguments<'a> {
+    | ------------------------ doesn't satisfy `Arguments<'_>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `Arguments<'_>: Iterator`
+            which is required by `&mut Arguments<'_>: Iterator`
+    = note: this error originates in the macro `report` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: `Arguments<'_>` is not an iterator
+   --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/preprocessing_directives/scope_of_macro_7/sample_005/target.rs:18:37
+    |
+ 18 |             format_args!($($arg),*).count()
+    |                                     ^^^^^ `Arguments<'_>` is not an iterator
+...
+ 45 |     if report!(x < y, "x is {} but y is {}", x, y) != 3 {
+    |        ------------------------------------------- in this macro invocation
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:617:1
+    |
+617 | pub struct Arguments<'a> {
+    | ------------------------ doesn't satisfy `Arguments<'_>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `Arguments<'_>: Iterator`
+            which is required by `&mut Arguments<'_>: Iterator`
+    = note: this error originates in the macro `report` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0277, E0599.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,162 @@
+warning: variant `E_NEG` should have an upper camel case name
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_003/target.rs:34:5
+   |
+34 |     E_NEG = -1,
+   |     ^^^^^ help: convert the identifier to upper camel case: `ENeg`
+   |
+   = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: variant `E_POS` should have an upper camel case name
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_003/target.rs:35:5
+   |
+35 |     E_POS = 1,
+   |     ^^^^^ help: convert the identifier to upper camel case: `EPos`
+
+error: invalid suffix `u` for number literal
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_003/target.rs:67:32
+   |
+67 |     if!expect_type(type_id(0 + 0u), TypeId::UnsignedInt) {
+   |                                ^^ invalid suffix `u`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `u` for number literal
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_003/target.rs:70:32
+   |
+70 |     if!expect_type(type_id(0 + 0u), TypeId::UnsignedLong) {
+   |                                ^^ invalid suffix `u`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `u` for number literal
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_003/target.rs:73:32
+   |
+73 |     if!expect_type(type_id(0 + 0u), TypeId::UnsignedLongLong) {
+   |                                ^^ invalid suffix `u`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `u` for number literal
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_003/target.rs:87:39
+   |
+87 |     if!expect_type(type_id(E::E_NEG + 0u), type_id(0 + 0u)) {
+   |                                       ^^ invalid suffix `u`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error: invalid suffix `u` for number literal
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_003/target.rs:87:56
+   |
+87 |     if!expect_type(type_id(E::E_NEG + 0u), type_id(0 + 0u)) {
+   |                                                        ^^ invalid suffix `u`
+   |
+   = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+error[E0369]: binary operation `==` cannot be applied to type `TypeId`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_003/target.rs:43:9
+   |
+43 |     got == want
+   |     --- ^^ ---- TypeId
+   |     |
+   |     TypeId
+   |
+note: an implementation of `PartialEq` might be missing for `TypeId`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_003/target.rs:2:1
+   |
+ 2 | enum TypeId {
+   | ^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `TypeId` with `#[derive(PartialEq)]`
+   |
+ 2 + #[derive(PartialEq)]
+ 3 | enum TypeId {
+   |
+
+error[E0277]: the trait bound `E: Copy` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_003/target.rs:87:28
+   |
+87 |     if!expect_type(type_id(E::E_NEG + 0u), type_id(0 + 0u)) {
+   |                    ------- ^^^^^^^^^^^^^ the trait `Copy` is not implemented for `E`
+   |                    |
+   |                    required by a bound introduced by this call
+   |
+note: required by a bound in `type_id`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_003/target.rs:21:8
+   |
+19 | fn type_id<T>(_: T) -> TypeId
+   |    ------- required by a bound in this function
+20 | where
+21 |     T: Copy + Eq + std::ops::Add<Output = T>,
+   |        ^^^^ required by this bound in `type_id`
+help: consider annotating `E` with `#[derive(Copy)]`
+   |
+33 + #[derive(Copy)]
+34 | enum E {
+   |
+
+error[E0277]: the trait bound `E: Eq` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_003/target.rs:87:28
+   |
+87 |     if!expect_type(type_id(E::E_NEG + 0u), type_id(0 + 0u)) {
+   |                    ------- ^^^^^^^^^^^^^ the trait `Eq` is not implemented for `E`
+   |                    |
+   |                    required by a bound introduced by this call
+   |
+note: required by a bound in `type_id`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_003/target.rs:21:15
+   |
+19 | fn type_id<T>(_: T) -> TypeId
+   |    ------- required by a bound in this function
+20 | where
+21 |     T: Copy + Eq + std::ops::Add<Output = T>,
+   |               ^^ required by this bound in `type_id`
+help: consider annotating `E` with `#[derive(Eq)]`
+   |
+33 + #[derive(Eq)]
+34 | enum E {
+   |
+
+error[E0277]: cannot add `E` to `E`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_003/target.rs:87:28
+   |
+87 |     if!expect_type(type_id(E::E_NEG + 0u), type_id(0 + 0u)) {
+   |                    ------- ^^^^^^^^^^^^^ no implementation for `E + E`
+   |                    |
+   |                    required by a bound introduced by this call
+   |
+help: the trait `Add` is not implemented for `E`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_003/target.rs:33:1
+   |
+33 | enum E {
+   | ^^^^^^
+note: required by a bound in `type_id`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_003/target.rs:21:20
+   |
+19 | fn type_id<T>(_: T) -> TypeId
+   |    ------- required by a bound in this function
+20 | where
+21 |     T: Copy + Eq + std::ops::Add<Output = T>,
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `type_id`
+
+error[E0369]: cannot add `{integer}` to `E`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_003/target.rs:90:37
+   |
+90 |     if!expect_type(type_id(E::E_NEG + 0), type_id(0 + 0)) {
+   |                            -------- ^ - {integer}
+   |                            |
+   |                            E
+   |
+note: an implementation of `Add<{integer}>` might be missing for `E`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_003/target.rs:33:1
+   |
+33 | enum E {
+   | ^^^^^^ must implement `Add<{integer}>`
+note: the trait `Add` must be implemented
+  --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:77:1
+   |
+77 | pub const trait Add<Rhs = Self> {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 10 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0277, E0369.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,137 @@
+error[E0434]: can't capture dynamic environment in a fn item
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:101:25
+    |
+101 |         call_f_checked(&d, 100, 50, &mut d[50..], &d);
+    |                         ^
+    |
+    = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:101:42
+    |
+101 |         call_f_checked(&d, 100, 50, &mut d[50..], &d);
+    |                                          ^
+    |
+    = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:101:52
+    |
+101 |         call_f_checked(&d, 100, 50, &mut d[50..], &d);
+    |                                                    ^
+    |
+    = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:102:25
+    |
+102 |         call_f_checked(&d, 100, 50, &mut d[1..], &d);
+    |                         ^
+    |
+    = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:102:42
+    |
+102 |         call_f_checked(&d, 100, 50, &mut d[1..], &d);
+    |                                          ^
+    |
+    = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:102:51
+    |
+102 |         call_f_checked(&d, 100, 50, &mut d[1..], &d);
+    |                                                   ^
+    |
+    = help: use the `|| { ... }` closure form instead
+
+error[E0606]: casting `*const [i32]` as `usize` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:62:18
+   |
+62 |         let ps = p as *const [i32] as usize - base as *const [i32] as usize;
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: cast through a thin pointer first
+
+error[E0606]: casting `*const [i32]` as `usize` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:62:47
+   |
+62 |         let ps = p as *const [i32] as usize - base as *const [i32] as usize;
+   |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: cast through a thin pointer first
+
+error[E0606]: casting `*const [i32]` as `usize` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:63:18
+   |
+63 |         let qs = q as *const [i32] as usize - base as *const [i32] as usize;
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: cast through a thin pointer first
+
+error[E0606]: casting `*const [i32]` as `usize` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:63:47
+   |
+63 |         let qs = q as *const [i32] as usize - base as *const [i32] as usize;
+   |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: cast through a thin pointer first
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:27:9
+   |
+27 |     let mut expect_slice_50 = &mut expect[50..];
+   |         ----^^^^^^^^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:28:9
+   |
+28 |     let mut expect_slice_1 = &mut expect[1..];
+   |         ----^^^^^^^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+
+error[E0499]: cannot borrow `expect` as mutable more than once at a time
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:28:35
+   |
+27 |     let mut expect_slice_50 = &mut expect[50..];
+   |                                    ------ first mutable borrow occurs here
+28 |     let mut expect_slice_1 = &mut expect[1..];
+   |                                   ^^^^^^ second mutable borrow occurs here
+29 |
+30 |     safe_move(50, expect_slice_50, &expect);
+   |                   --------------- first borrow later used here
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:30:36
+   |
+27 |     let mut expect_slice_50 = &mut expect[50..];
+   |                                    ------ mutable borrow occurs here
+...
+30 |     safe_move(50, expect_slice_50, &expect);
+   |     ---------                      ^^^^^^^ immutable borrow occurs here
+   |     |
+   |     mutable borrow later used by call
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_2b/sample_003/target.rs:31:35
+   |
+28 |     let mut expect_slice_1 = &mut expect[1..];
+   |                                   ------ mutable borrow occurs here
+...
+31 |     safe_move(50, expect_slice_1, &expect);
+   |     ---------                     ^^^^^^^ immutable borrow occurs here
+   |     |
+   |     mutable borrow later used by call
+
+error: aborting due to 13 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0434, E0499, E0502, E0606.
+For more information about an error, try `rustc --explain E0434`.

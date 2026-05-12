@@ -1,0 +1,93 @@
+warning: field `0` is never read
+ --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/fun_decl_3/sample_002/target.rs:8:9
+  |
+8 |     Int(i32),
+  |     --- ^^^
+  |     |
+  |     field in this variant
+  |
+  = note: `Arg` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+  |
+8 -     Int(i32),
+8 +     Int(()),
+  |
+
+warning: field `0` is never read
+ --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/fun_decl_3/sample_002/target.rs:9:11
+  |
+9 |     Float(f64),
+  |     ----- ^^^
+  |     |
+  |     field in this variant
+  |
+  = note: `Arg` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+  |
+9 -     Float(f64),
+9 +     Float(()),
+  |
+
+warning: field `0` is never read
+  --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/fun_decl_3/sample_002/target.rs:10:9
+   |
+10 |     Ptr(usize),
+   |     --- ^^^^^
+   |     |
+   |     field in this variant
+   |
+   = note: `Arg` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+   |
+10 -     Ptr(usize),
+10 +     Ptr(()),
+   |
+
+warning: field `0` is never read
+  --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/fun_decl_3/sample_002/target.rs:11:14
+   |
+11 |     LongLong(i64),
+   |     -------- ^^^
+   |     |
+   |     field in this variant
+   |
+   = note: `Arg` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+   |
+11 -     LongLong(i64),
+11 +     LongLong(()),
+   |
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+  --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/fun_decl_3/sample_002/target.rs:69:12
+   |
+69 |         if vf == v0 {
+   |            ^^^^^^^^
+   |
+   = note: the address of the same function can vary between different codegen units
+   = note: furthermore, different functions could have the same address after being merged together
+   = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+   = note: `#[warn(unpredictable_function_pointer_comparisons)]` on by default
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+   |
+69 -         if vf == v0 {
+69 +         if std::ptr::fn_addr_eq(vf, v0 as for<'a> fn(i32, &'a [Arg]) -> i32) {
+   |
+
+warning: function pointer comparisons do not produce meaningful results since their addresses are not guaranteed to be unique
+   --> benchmark_results/2026-05-06T18-03-03/gpt-5.2-codex/declarations/fun_decl_3/sample_002/target.rs:106:12
+    |
+106 |         if vf == v0 {
+    |            ^^^^^^^^
+    |
+    = note: the address of the same function can vary between different codegen units
+    = note: furthermore, different functions could have the same address after being merged together
+    = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>
+help: refactor your code, or use `std::ptr::fn_addr_eq` to suppress the lint
+    |
+106 -         if vf == v0 {
+106 +         if std::ptr::fn_addr_eq(vf, v0 as for<'a> fn(i32, &'a [Arg]) -> i32) {
+    |
+
+warning: 6 warnings emitted

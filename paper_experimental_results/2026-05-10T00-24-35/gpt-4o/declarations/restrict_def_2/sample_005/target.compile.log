@@ -1,0 +1,115 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_2/sample_005/target.rs:22:5
+   |
+22 | /     unsafe {
+23 | |         let off = G_OFF as usize;
+24 | |         let n = 8;
+...  |
+44 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_2/sample_005/target.rs:46:5
+   |
+46 | /     unsafe {
+47 | |         let off = G_OFF as usize;
+48 | |         let n = 8;
+...  |
+56 | |     }
+   | |_____^
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_2/sample_005/target.rs:27:9
+   |
+27 |         f(n, p, q);
+   |         ^    -  - expected `&[i32]`, found `&mut [usize]`
+   |              |
+   |              expected `&mut [i32]`, found `&mut [usize]`
+   |
+   = note: expected mutable reference `&mut [i32]`
+              found mutable reference `&mut [usize]`
+   = note:      expected reference `&[i32]`
+           found mutable reference `&mut [usize]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_2/sample_005/target.rs:3:4
+   |
+ 3 | fn f(n: usize, p: &mut [i32], q: &[i32]) {
+   |    ^           -------------  ---------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_2/sample_005/target.rs:29:13
+   |
+29 |         if !check_range_eq(&buf[0..n], &snapshot[off..off + n], n) {
+   |             ^^^^^^^^^^^^^^ ----------  ----------------------- expected `&[i32]`, found `&[usize]`
+   |                            |
+   |                            expected `&[i32]`, found `&[usize]`
+   |
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_2/sample_005/target.rs:9:4
+   |
+ 9 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^ ---------  ---------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_2/sample_005/target.rs:33:13
+   |
+33 |         if !check_range_eq(&buf[off..off + n], &snapshot[off..off + n], n) {
+   |             ^^^^^^^^^^^^^^ ------------------  ----------------------- expected `&[i32]`, found `&[usize]`
+   |                            |
+   |                            expected `&[i32]`, found `&[usize]`
+   |
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_2/sample_005/target.rs:9:4
+   |
+ 9 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^ ---------  ---------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_2/sample_005/target.rs:51:9
+   |
+51 |         f(n, p, q);
+   |         ^    -  - expected `&[i32]`, found `&mut [usize]`
+   |              |
+   |              expected `&mut [i32]`, found `&mut [usize]`
+   |
+   = note: expected mutable reference `&mut [i32]`
+              found mutable reference `&mut [usize]`
+   = note:      expected reference `&[i32]`
+           found mutable reference `&mut [usize]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_2/sample_005/target.rs:3:4
+   |
+ 3 | fn f(n: usize, p: &mut [i32], q: &[i32]) {
+   |    ^           -------------  ---------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_2/sample_005/target.rs:53:13
+   |
+53 |         if !check_range_eq(&buf[off..off + n], &buf[0..n], n) {
+   |             ^^^^^^^^^^^^^^ ------------------  ---------- expected `&[i32]`, found `&[usize]`
+   |                            |
+   |                            expected `&[i32]`, found `&[usize]`
+   |
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_2/sample_005/target.rs:9:4
+   |
+ 9 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^ ---------  ---------
+
+error: aborting due to 7 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

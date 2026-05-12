@@ -1,0 +1,54 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c4/sample_002/target.rs:11:31
+   |
+11 |     let fp0: fn(i32) -> i32 = std::ptr::null();
+   |              --------------   ^^^^^^^^^^^^^^^^ expected fn pointer, found `*const _`
+   |              |
+   |              expected due to this
+   |
+   = note: expected fn pointer `fn(i32) -> i32`
+             found raw pointer `*const _`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c4/sample_002/target.rs:12:31
+   |
+12 |     let fp1: fn(i32) -> i32 = std::ptr::null();
+   |              --------------   ^^^^^^^^^^^^^^^^ expected fn pointer, found `*const _`
+   |              |
+   |              expected due to this
+   |
+   = note: expected fn pointer `fn(i32) -> i32`
+             found raw pointer `*const _`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c4/sample_002/target.rs:13:31
+   |
+13 |     let fp2: fn(i32) -> i32 = std::mem::forget(v0);
+   |              --------------   ^^^^^^^^^^^^^^^^^^^^ expected fn pointer, found `()`
+   |              |
+   |              expected due to this
+   |
+   = note: expected fn pointer `fn(i32) -> i32`
+               found unit type `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c4/sample_002/target.rs:35:15
+   |
+35 |     if fp0 != std::ptr::null() {
+   |        ---    ^^^^^^^^^^^^^^^^ expected fn pointer, found `*const _`
+   |        |
+   |        expected because this is `fn(i32) -> i32`
+   |
+   = note: expected fn pointer `fn(i32) -> i32`
+             found raw pointer `*const _`
+
+error[E0606]: casting `&fn(i32) -> i32` as `*const i32` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/pointers_c4/sample_002/target.rs:39:14
+   |
+39 |     if p0 != &fp0 as *const _ {
+   |              ^^^^^^^^^^^^^^^^
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0606.
+For more information about an error, try `rustc --explain E0308`.

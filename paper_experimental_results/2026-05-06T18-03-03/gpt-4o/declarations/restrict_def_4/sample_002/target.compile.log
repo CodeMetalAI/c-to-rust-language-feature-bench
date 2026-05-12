@@ -1,0 +1,28 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/restrict_def_4/sample_002/target.rs:48:5
+   |
+48 | /     unsafe {
+49 | |         if GATE4 != 0 {
+50 | |             let p2 = &mut p1[8..];
+51 | |             let q2 = &q1[4..];
+...  |
+67 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/restrict_def_4/sample_002/target.rs:59:23
+   |
+45 |     let p1 = &mut x;
+   |              ------ mutable borrow occurs here
+...
+59 |             if !same(&x[8..], &expect, 16) {
+   |                       ^ immutable borrow occurs here
+...
+69 |     copy_restrict(8, &mut p1[0..], &q1[24..]);
+   |                           -- mutable borrow later used here
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0502`.

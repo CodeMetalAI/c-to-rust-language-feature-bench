@@ -1,0 +1,45 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/initialization_4/sample_003/target.rs:27:21
+   |
+27 |         if p + 1 != &z[0][1] {
+   |            -----    ^^^^^^^^ expected `i32`, found `&i32`
+   |            |
+   |            expected because this is `i32`
+   |
+help: consider removing the borrow
+   |
+27 -         if p + 1 != &z[0][1] {
+27 +         if p + 1 != z[0][1] {
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/initialization_4/sample_003/target.rs:30:21
+   |
+30 |         if p + 4 != &z[1][1] {
+   |            -----    ^^^^^^^^ expected `i32`, found `&i32`
+   |            |
+   |            expected because this is `i32`
+   |
+help: consider removing the borrow
+   |
+30 -         if p + 4 != &z[1][1] {
+30 +         if p + 4 != z[1][1] {
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/initialization_4/sample_003/target.rs:33:21
+   |
+33 |         if p + 7 != &z[2][1] {
+   |            -----    ^^^^^^^^ expected `i32`, found `&i32`
+   |            |
+   |            expected because this is `i32`
+   |
+help: consider removing the borrow
+   |
+33 -         if p + 7 != &z[2][1] {
+33 +         if p + 7 != z[2][1] {
+   |
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

@@ -1,0 +1,41 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_c18/sample_002/target.rs:24:26
+   |
+24 |     let p: &mut Packet = unsafe { std::mem::transmute(storage.as_mut_ptr()) };
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_c18/sample_002/target.rs:63:26
+   |
+63 |     let p: &mut Packet = unsafe { std::mem::transmute(storage.as_mut_ptr()) };
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_c18/sample_002/target.rs:30:21
+   |
+30 |     let got1 = &mut p.data[0] as *mut u32 as *mut u8;
+   |                     ^^^^^^^^^ index out of bounds: the length is 0 but the index is 0
+   |
+   = note: `#[deny(unconditional_panic)]` on by default
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_c18/sample_002/target.rs:31:21
+   |
+31 |     let got2 = &mut p.data[0] as *mut u32 as *mut u8;
+   |                     ^^^^^^^^^ index out of bounds: the length is 0 but the index is 0
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_c18/sample_002/target.rs:70:21
+   |
+70 |     let got1 = &mut p.data[0] as *mut u32 as *mut u8;
+   |                     ^^^^^^^^^ index out of bounds: the length is 0 but the index is 0
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/declarations/structure_and_union_spec_c18/sample_002/target.rs:71:21
+   |
+71 |     let got2 = &mut p.data[0] as *mut u32 as *mut u8;
+   |                     ^^^^^^^^^ index out of bounds: the length is 0 but the index is 0
+
+error: aborting due to 6 previous errors

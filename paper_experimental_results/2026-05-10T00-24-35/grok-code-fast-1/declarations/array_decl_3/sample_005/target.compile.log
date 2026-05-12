@@ -1,0 +1,17 @@
+error: lifetime may not live long enough
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/array_decl_3/sample_005/target.rs:10:9
+   |
+ 1 | fn check_a(nn: usize, mm: usize, a: &Vec<Vec<Vec<i32>>>, p: &mut &[Vec<Vec<i32>>]) -> i32 {
+   |                                     -                            - let's call the lifetime of this reference `'2`
+   |                                     |
+   |                                     let's call the lifetime of this reference `'1`
+...
+10 |         *p = &a[(i + 1)..];
+   |         ^^^^^^^^^^^^^^^^^^ assignment requires that `'1` must outlive `'2`
+   |
+help: consider introducing a named lifetime parameter
+   |
+ 1 | fn check_a<'a>(nn: usize, mm: usize, a: &'a Vec<Vec<Vec<i32>>>, p: &mut &'a [Vec<Vec<i32>>]) -> i32 {
+   |           ++++                           ++                              ++
+
+error: aborting due to 1 previous error

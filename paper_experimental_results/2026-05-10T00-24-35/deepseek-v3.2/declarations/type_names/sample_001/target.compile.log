@@ -1,0 +1,46 @@
+error[E0106]: missing lifetime specifier
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_names/sample_001/target.rs:4:17
+  |
+4 |     fn fip() -> &i32 {
+  |                 ^ expected named lifetime parameter
+  |
+  = help: this function's return type contains a borrowed value, but there is no value for it to be borrowed from
+help: consider using the `'static` lifetime, but this is uncommon unless you're returning a borrowed value from a `const` or a `static`
+  |
+4 |     fn fip() -> &'static i32 {
+  |                  +++++++
+help: instead, you are more likely to want to return an owned value
+  |
+4 -     fn fip() -> &i32 {
+4 +     fn fip() -> i32 {
+  |
+
+error[E0434]: can't capture dynamic environment in a fn item
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_names/sample_001/target.rs:5:10
+  |
+5 |         &g_arr[1]
+  |          ^^^^^
+  |
+  = help: use the `|| { ... }` closure form instead
+
+error[E0106]: missing lifetime specifier
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_names/sample_001/target.rs:64:25
+   |
+64 |         let pf: fn() -> &i32 = fip;
+   |                         ^ expected named lifetime parameter
+   |
+   = help: this function's return type contains a borrowed value, but there is no value for it to be borrowed from
+help: consider using the `'static` lifetime, but this is uncommon unless you're returning a borrowed value from a `const` or a `static`
+   |
+64 |         let pf: fn() -> &'static i32 = fip;
+   |                          +++++++
+help: instead, you are more likely to want to return an owned value
+   |
+64 -         let pf: fn() -> &i32 = fip;
+64 +         let pf: fn() -> i32 = fip;
+   |
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0106, E0434.
+For more information about an error, try `rustc --explain E0106`.

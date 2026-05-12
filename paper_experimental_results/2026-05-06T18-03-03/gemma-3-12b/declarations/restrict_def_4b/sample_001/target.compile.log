@@ -1,0 +1,111 @@
+error[E0412]: cannot find type `int` in this scope
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:5:8
+  |
+5 |     n: int,
+  |        ^^^
+  |        |
+  |        not found in this scope
+  |        help: perhaps you intended to use this type: `i32`
+
+error[E0412]: cannot find type `int` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:33:18
+   |
+33 | fn new_vector(n: int) -> vector {
+   |                  ^^^
+   |                  |
+   |                  not found in this scope
+   |                  help: perhaps you intended to use this type: `i32`
+
+error[E0412]: cannot find type `int` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:41:29
+   |
+41 | fn fill_vec(p: *mut f32, n: int, base: f32) {
+   |                             ^^^
+   |                             |
+   |                             not found in this scope
+   |                             help: perhaps you intended to use this type: `i32`
+
+error[E0412]: cannot find type `int` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:51:30
+   |
+51 | fn sum_vec(p: *const f32, n: int) -> f32 {
+   |                              ^^^
+   |                              |
+   |                              not found in this scope
+   |                              help: perhaps you intended to use this type: `i32`
+
+warning: type `vector` should have an upper camel case name
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:4:8
+  |
+4 | struct vector {
+  |        ^^^^^^ help: convert the identifier to upper camel case (notice the capitalization): `Vector`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:25:5
+   |
+25 | /     unsafe {
+26 | |         h ^= (p as *const u8 as usize) + 0x9e3779b97f4a7c15;
+27 | |         h = h.wrapping_mul(0x5851f42d4c957f2d);
+28 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:44:9
+   |
+44 | /         unsafe {
+45 | |             *p.add(i) = base + i as f32;
+46 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:55:9
+   |
+55 | /         unsafe {
+56 | |             s += *p.add(i);
+57 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:69:5
+    |
+ 69 | /     unsafe {
+ 70 | |         let a = new_vector(16);
+ 71 | |         let b = new_vector(16);
+...   |
+100 | |         0
+101 | |     }
+    | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:68:14
+   |
+68 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:26:14
+   |
+26 |         h ^= (p as *const u8 as usize) + 0x9e3779b97f4a7c15;
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `u64`, found `usize`
+
+error[E0277]: no implementation for `u64 ^= usize`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/restrict_def_4b/sample_001/target.rs:26:11
+   |
+26 |         h ^= (p as *const u8 as usize) + 0x9e3779b97f4a7c15;
+   |           ^^ no implementation for `u64 ^= usize`
+   |
+   = help: the trait `BitXorAssign<usize>` is not implemented for `u64`
+   = help: the following other types implement trait `BitXorAssign<Rhs>`:
+             `u64` implements `BitXorAssign<&u64>`
+             `u64` implements `BitXorAssign`
+
+error: aborting due to 11 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308, E0412.
+For more information about an error, try `rustc --explain E0277`.

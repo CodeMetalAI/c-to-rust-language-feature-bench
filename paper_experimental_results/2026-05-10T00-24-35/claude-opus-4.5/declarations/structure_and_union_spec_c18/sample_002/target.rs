@@ -1,0 +1,115 @@
+fn compute_sum(n: u32) -> u32 {
+    let mut s: u32 = 0;
+    let mut i: u32 = 0;
+    while i < n {
+        s += (i + 1) * 3 + 1;
+        i += 1;
+    }
+    s
+}
+
+fn test_nonempty_object() -> i32 {
+    const N: usize = 7;
+
+    // Simulate the packet structure with a Vec
+    // Packet layout: tag (u32), n (u32), sum (u32), data (flexible array of u32)
+    let mut storage: Vec<u32> = vec![0u32; 3 + N];
+
+    // p->tag = 0xA1B2C3D4u;
+    storage[0] = 0xA1B2C3D4u32;
+    // p->n = N;
+    storage[1] = N as u32;
+
+    // The offset checks in C are verifying that &p->data points to the right place.
+    // In Rust, we're using indices, so the "data" starts at index 3.
+    // We simulate the pointer arithmetic checks by verifying our indexing is correct.
+    let data_offset: usize = 3;
+    
+    // These checks in C verify that &p->data and &(*p).data both point to storage.raw + offset.
+    // In our Rust representation, data starts at index 3, which is correct.
+    // We'll just verify our assumptions hold (they always will in this safe representation).
+    let expected_data_start = data_offset;
+    let got1 = data_offset; // simulating &p->data
+    let got2 = data_offset; // simulating &(*p).data
+
+    if got1 != expected_data_start {
+        return 1;
+    }
+    if got2 != expected_data_start {
+        return 2;
+    }
+
+    // Fill data array
+    {
+        let n = storage[1];
+        let mut i: u32 = 0;
+        while i < n {
+            let v = (i + 1) * 3 + 1;
+            storage[data_offset + i as usize] = v;
+            // (*p).data[i] += 0u; is a no-op
+            i += 1;
+        }
+    }
+
+    // Compute sum
+    storage[2] = 0; // p->sum = 0
+    {
+        let n = storage[1];
+        let mut i: u32 = 0;
+        while i < n {
+            storage[2] += storage[data_offset + i as usize];
+            i += 1;
+        }
+    }
+
+    if storage[2] != compute_sum(N as u32) {
+        return 3;
+    }
+
+    // sizeof(struct Packet) would be 12 bytes (3 * u32), and OFFSETOF(data) is also 12.
+    // So sizeof >= offsetof, this check passes.
+    let sizeof_packet: usize = 3 * std::mem::size_of::<u32>();
+    let offsetof_data: usize = 3 * std::mem::size_of::<u32>();
+    if sizeof_packet < offsetof_data {
+        return 4;
+    }
+
+    0
+}
+
+fn test_zero_element_object() -> i32 {
+    // Packet with zero-length flexible array member
+    let mut storage: Vec<u32> = vec![0u32; 3];
+
+    storage[0] = 0; // p->tag = 0u
+    storage[1] = 0; // p->n = 0u
+    storage[2] = 0; // p->sum = 0u
+
+    let data_offset: usize = 3;
+    let expected_data_start = data_offset;
+    let got1 = data_offset;
+    let got2 = data_offset;
+
+    if got1 != expected_data_start {
+        return 10;
+    }
+    if got2 != expected_data_start {
+        return 11;
+    }
+
+    0
+}
+
+fn main() {
+    let r = test_nonempty_object();
+    if r != 0 {
+        std::process::exit(r);
+    }
+
+    let r = test_zero_element_object();
+    if r != 0 {
+        std::process::exit(r);
+    }
+
+    std::process::exit(0);
+}

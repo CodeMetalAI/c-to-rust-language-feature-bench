@@ -1,0 +1,97 @@
+error[E0599]: no function or associated item named `default` found for type parameter `T` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-generic-1/sample_002/target.rs:2:16
+  |
+1 | fn check<T>(n: T) -> ! {
+  |          - function or associated item `default` not found for this type parameter
+2 |     if n != T::default() {
+  |                ^^^^^^^ function or associated item not found in `T`
+  |
+  = help: items from traits can only be used if the type parameter is bounded by the trait
+help: the following trait defines an item `default`, perhaps you need to restrict type parameter `T` with it:
+  |
+1 | fn check<T: Default>(n: T) -> ! {
+  |           +++++++++
+
+error[E0317]: `if` may be missing an `else` clause
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-generic-1/sample_002/target.rs:2:5
+  |
+1 |   fn check<T>(n: T) -> ! {
+  |                        - expected `!` because of this return type
+2 | /     if n != T::default() {
+3 | |         std::process::abort();
+4 | |     }
+  | |_____^ expected `!`, found `()`
+  |
+  = note:   expected type `!`
+          found unit type `()`
+  = note: `if` expressions without `else` evaluate to `()`
+  = help: consider adding an `else` block that evaluates to the expected type
+
+error[E0425]: cannot find function `_generic` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-generic-1/sample_002/target.rs:10:11
+   |
+10 |     check(_generic(n, 0));
+   |           ^^^^^^^^ not found in this scope
+
+warning: unreachable statement
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-generic-1/sample_002/target.rs:11:5
+   |
+10 |     check(_generic(n, 0));
+   |     --------------------- any code following this expression is unreachable
+11 |     check(n);
+   |     ^^^^^^^^^ unreachable statement
+   |
+   = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+error[E0425]: cannot find function `_generic` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-generic-1/sample_002/target.rs:13:11
+   |
+13 |     check(_generic(n, 0));
+   |           ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `_generic` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-generic-1/sample_002/target.rs:17:11
+   |
+17 |     check(_generic(cn, 0));
+   |           ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `_generic` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-generic-1/sample_002/target.rs:19:11
+   |
+19 |     check(_generic(cn, 0));
+   |           ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `_generic` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-generic-1/sample_002/target.rs:24:11
+   |
+24 |     check(_generic(&mut a, 0));
+   |           ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `_generic` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-generic-1/sample_002/target.rs:26:11
+   |
+26 |     check(_generic(&mut ca, 0));
+   |           ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `_generic` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-generic-1/sample_002/target.rs:30:11
+   |
+30 |     check(_generic(f, 0));
+   |           ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `_generic` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-generic-1/sample_002/target.rs:33:11
+   |
+33 |     check(_generic(&mut std::process::abort as _, 0));
+   |           ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `_generic` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/gcc_c11_tests/c11-generic-1/sample_002/target.rs:37:11
+   |
+37 |     check(_generic(s, 0));
+   |           ^^^^^^^^ not found in this scope
+
+error: aborting due to 11 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0317, E0425, E0599.
+For more information about an error, try `rustc --explain E0317`.

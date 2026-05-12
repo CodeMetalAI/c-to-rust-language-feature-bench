@@ -1,0 +1,124 @@
+error: expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `pf`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:66:9
+   |
+66 |     fn2 pf = |a: i32, b: i32| -> i32 {
+   |         ^^ expected one of 8 possible tokens
+   |
+help: there is a keyword `fn` with a similar name
+   |
+66 -     fn2 pf = |a: i32, b: i32| -> i32 {
+66 +     fn pf = |a: i32, b: i32| -> i32 {
+   |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:21:5
+   |
+21 | /     unsafe {
+22 | |         SEEN_F1 = 1;
+23 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:29:5
+   |
+29 | /     unsafe {
+30 | |         SEEN_F2 = 1;
+31 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:37:5
+   |
+37 | /     unsafe {
+38 | |         SEEN_F3 = 1;
+39 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:45:5
+   |
+45 | /     unsafe {
+46 | |         SEEN_F4 = 1;
+47 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:56:10
+   |
+56 |     if !(unsafe { SEEN_F1 == 1 } && unsafe { SEEN_F2 == 1 } && unsafe { SEEN_F3 == 1 } && unsafe { SEEN_F4 == 1 }) {
+   |          ^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:56:37
+   |
+56 |     if !(unsafe { SEEN_F1 == 1 } && unsafe { SEEN_F2 == 1 } && unsafe { SEEN_F3 == 1 } && unsafe { SEEN_F4 == 1 }) {
+   |                                     ^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:56:64
+   |
+56 |     if !(unsafe { SEEN_F1 == 1 } && unsafe { SEEN_F2 == 1 } && unsafe { SEEN_F3 == 1 } && unsafe { SEEN_F4 == 1 }) {
+   |                                                                ^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:56:91
+   |
+56 |     if !(unsafe { SEEN_F1 == 1 } && unsafe { SEEN_F2 == 1 } && unsafe { SEEN_F3 == 1 } && unsafe { SEEN_F4 == 1 }) {
+   |                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: the trait bound `LogEntry: Copy` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:10:43
+   |
+10 | static mut LOGV: [Option<LogEntry>; 5] = [None; 5];
+   |                                           ^^^^ the trait `Copy` is not implemented for `LogEntry`
+   |
+   = note: required for `Option<LogEntry>` to implement `Copy`
+   = note: the `Copy` trait is required because this value will be copied for each element of the array
+help: consider annotating `LogEntry` with `#[derive(Copy)]`
+   |
+ 2 + #[derive(Copy)]
+ 3 | struct LogEntry {
+   |
+help: create an inline `const` block
+   |
+10 | static mut LOGV: [Option<LogEntry>; 5] = [const { None }; 5];
+   |                                           +++++++      +
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:14:8
+   |
+14 |     if LOGN < 5 {
+   |        ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:15:9
+   |
+15 |         LOGV[LOGN] = Some(LogEntry { id });
+   |         ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:15:14
+   |
+15 |         LOGV[LOGN] = Some(LogEntry { id });
+   |              ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/function_calls/sample_002/target.rs:16:9
+   |
+16 |         LOGN += 1;
+   |         ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 14 previous errors
+
+Some errors have detailed explanations: E0133, E0277.
+For more information about an error, try `rustc --explain E0133`.

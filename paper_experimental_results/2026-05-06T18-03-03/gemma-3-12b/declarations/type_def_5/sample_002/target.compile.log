@@ -1,0 +1,63 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/type_def_5/sample_002/target.rs:13:9
+   |
+13 | /         unsafe {
+14 | |             let mut i = 1;
+15 | |             while i < n {
+16 | |                 a[i - 1] = b[i];
+...  |
+33 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/type_def_5/sample_002/target.rs:36:5
+   |
+36 | /     unsafe {
+37 | |         SINK = 0;
+38 | |         copyt(7);
+39 | |         if SINK != 0 {
+...  |
+42 | |     }
+   | |_____^
+
+error[E0277]: the type `[i32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/type_def_5/sample_002/target.rs:16:19
+   |
+16 |                 a[i - 1] = b[i];
+   |                   ^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `Vec<i32>` to implement `Index<i32>`
+
+error[E0277]: the type `[i32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/type_def_5/sample_002/target.rs:16:30
+   |
+16 |                 a[i - 1] = b[i];
+   |                              ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `Vec<i32>` to implement `Index<i32>`
+
+error[E0277]: the type `[i32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/type_def_5/sample_002/target.rs:30:18
+   |
+30 |             if a[n - 2] != 1000 + (n - 1) {
+   |                  ^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `Vec<i32>` to implement `Index<i32>`
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

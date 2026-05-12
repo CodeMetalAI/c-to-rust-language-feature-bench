@@ -1,0 +1,63 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_005/target.rs:31:18
+   |
+31 |           let bp = unsafe { std::slice::from_raw_parts_mut(
+   |  __________________^
+32 | |             (t as *const i32 as *mut u8).cast_mut(),
+33 | |             std::mem::size_of_val(&t)
+34 | |         )};
+   | |__________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_005/target.rs:6:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+6 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_005/target.rs:14:13
+    |
+ 14 |     let _ = std::mem::size_of(&a);
+    |             ^^^^^^^^^^^^^^^^^ -- unexpected argument of type `&[{integer}; 2]`
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:334:14
+    |
+334 | pub const fn size_of<T>() -> usize {
+    |              ^^^^^^^
+help: remove the extra argument
+    |
+ 14 -     let _ = std::mem::size_of(&a);
+ 14 +     let _ = std::mem::size_of();
+    |
+
+error[E0599]: no method named `cast_mut` found for raw pointer `*mut u8` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_005/target.rs:32:42
+   |
+32 |             (t as *const i32 as *mut u8).cast_mut(),
+   |                                          ^^^^^^^^
+   |
+help: there is a method `as_mut` with a similar name
+   |
+32 -             (t as *const i32 as *mut u8).cast_mut(),
+32 +             (t as *const i32 as *mut u8).as_mut(),
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/conversions/lvalue_array_fun_c1/sample_005/target.rs:42:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+42 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0061, E0308, E0599.
+For more information about an error, try `rustc --explain E0061`.

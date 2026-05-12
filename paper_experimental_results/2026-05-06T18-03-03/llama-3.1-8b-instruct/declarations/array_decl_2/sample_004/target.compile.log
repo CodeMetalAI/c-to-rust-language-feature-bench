@@ -1,0 +1,33 @@
+error: cannot find macro `OFFSETOF` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_004/target.rs:72:82
+   |
+72 |         if (ha as *const _ as *const u8) != (ha as *const _ as *const u8).offset(OFFSETOF!(HoldA, a)) {
+   |                                                                                  ^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_004/target.rs:71:18
+   |
+71 |         let ha = unsafe { &*(y.as_ptr() as *const HoldA) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_004/target.rs:16:14
+   |
+16 |         s += *p.offset(i as isize);
+   |              ^^^^^^^^^^^^^^^^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/array_decl_2/sample_004/target.rs:16:15
+   |
+16 |         s += *p.offset(i as isize);
+   |               ^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

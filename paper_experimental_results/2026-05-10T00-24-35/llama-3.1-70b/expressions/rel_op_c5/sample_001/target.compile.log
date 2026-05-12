@@ -1,0 +1,19 @@
+error[E0107]: missing generics for struct `Discriminant`
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/rel_op_c5/sample_001/target.rs:38:51
+     |
+  38 |     let mut u = std::mem::MaybeUninit::<std::mem::Discriminant>::uninit();
+     |                                                   ^^^^^^^^^^^^ expected 1 generic argument
+     |
+note: struct defined here, with 1 generic parameter: `T`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:1053:12
+     |
+1053 | pub struct Discriminant<T>(<T as DiscriminantKind>::Discriminant);
+     |            ^^^^^^^^^^^^ -
+help: add missing generic argument
+     |
+  38 |     let mut u = std::mem::MaybeUninit::<std::mem::Discriminant<T>>::uninit();
+     |                                                               +++
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0107`.

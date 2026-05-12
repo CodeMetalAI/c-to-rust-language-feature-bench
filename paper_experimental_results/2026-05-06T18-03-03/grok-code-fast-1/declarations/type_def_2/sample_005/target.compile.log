@@ -1,0 +1,37 @@
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/type_def_2/sample_005/target.rs:37:9
+   |
+37 |     let mut b: S1 = S1 { x: 20 };
+   |         ----^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error[E0503]: cannot use `a` because it was mutably borrowed
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/type_def_2/sample_005/target.rs:40:17
+   |
+38 |     let p: &mut T1 = &mut a;
+   |                      ------ `a` is borrowed here
+39 |
+40 |     if takes_t1(a) != 11 {
+   |                 ^ use of borrowed `a`
+...
+56 |     if takes_tp1(p) != 13 {
+   |                  - borrow later used here
+
+error[E0503]: cannot use `a` because it was mutably borrowed
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/type_def_2/sample_005/target.rs:44:17
+   |
+38 |     let p: &mut T1 = &mut a;
+   |                      ------ `a` is borrowed here
+...
+44 |     if takes_s1(a) != 12 {
+   |                 ^ use of borrowed `a`
+...
+56 |     if takes_tp1(p) != 13 {
+   |                  - borrow later used here
+
+error: aborting due to 2 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0503`.

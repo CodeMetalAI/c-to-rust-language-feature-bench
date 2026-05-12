@@ -1,0 +1,42 @@
+error[E0106]: missing lifetime specifier
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/ptr_decl/sample_004/target.rs:87:17
+   |
+87 |     p_to_const: &i32,
+   |                 ^ expected named lifetime parameter
+   |
+help: consider introducing a named lifetime parameter
+   |
+86 ~ struct Bundle<'a> {
+87 ~     p_to_const: &'a i32,
+   |
+
+error[E0106]: missing lifetime specifier
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/ptr_decl/sample_004/target.rs:88:14
+   |
+88 |     const_p: &mut i32,
+   |              ^ expected named lifetime parameter
+   |
+help: consider introducing a named lifetime parameter
+   |
+86 ~ struct Bundle<'a> {
+87 |     p_to_const: &i32,
+88 ~     const_p: &'a mut i32,
+   |
+
+error[E0106]: missing lifetime specifier
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/ptr_decl/sample_004/target.rs:89:26
+   |
+89 |     const_p_via_typedef: &i32,
+   |                          ^ expected named lifetime parameter
+   |
+help: consider introducing a named lifetime parameter
+   |
+86 ~ struct Bundle<'a> {
+87 |     p_to_const: &i32,
+88 |     const_p: &mut i32,
+89 ~     const_p_via_typedef: &'a i32,
+   |
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0106`.

@@ -1,0 +1,92 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_004/target.rs:13:9
+   |
+11 | fn choose_view(u: &Bank, which: bool) -> &i32 {
+   |                                          ---- expected `&i32` because of return type
+12 |     if which {
+13 |         &u.right
+   |         ^^^^^^^^ expected `&i32`, found `&[i32; 8]`
+   |
+   = note: expected reference `&i32`
+              found reference `&[i32; 8]`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_004/target.rs:15:9
+   |
+11 | fn choose_view(u: &Bank, which: bool) -> &i32 {
+   |                                          ---- expected `&i32` because of return type
+...
+15 |         &u.left
+   |         ^^^^^^^ expected `&i32`, found `&[i32; 8]`
+   |
+   = note: expected reference `&i32`
+              found reference `&[i32; 8]`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_004/target.rs:43:38
+   |
+43 |     let a = choose_view(&mut bank_a, which_a);
+   |             -----------              ^^^^^^^ expected `bool`, found integer
+   |             |
+   |             arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_004/target.rs:11:4
+   |
+11 | fn choose_view(u: &Bank, which: bool) -> &i32 {
+   |    ^^^^^^^^^^^           -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_004/target.rs:44:38
+   |
+44 |     let b = choose_view(&mut bank_b, which_b);
+   |             -----------              ^^^^^^^ expected `bool`, found integer
+   |             |
+   |             arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_004/target.rs:11:4
+   |
+11 | fn choose_view(u: &Bank, which: bool) -> &i32 {
+   |    ^^^^^^^^^^^           -----------
+
+error[E0608]: cannot index into a value of type `&i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_004/target.rs:46:16
+   |
+46 |     fill(&mut a[..], 8, 100);
+   |                ^^^^
+
+error[E0608]: cannot index into a value of type `&i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_004/target.rs:47:16
+   |
+47 |     fill(&mut b[..], 8, 200);
+   |                ^^^^
+
+error[E0608]: cannot index into a value of type `&i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_004/target.rs:50:16
+   |
+50 |     bump(&mut a[..], 8, 1);
+   |                ^^^^
+
+error[E0608]: cannot index into a value of type `&i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_004/target.rs:51:16
+   |
+51 |     bump(&mut b[..], 8, 2);
+   |                ^^^^
+
+error[E0608]: cannot index into a value of type `&i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_004/target.rs:54:14
+   |
+54 |     if sum(&a[..], 8) != (101 + 102 + 103 + 104 + 105 + 106 + 107 + 108) {
+   |              ^^^^
+
+error[E0608]: cannot index into a value of type `&i32`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_1/sample_004/target.rs:58:14
+   |
+58 |     if sum(&b[..], 8) != (202 + 203 + 204 + 205 + 206 + 207 + 208 + 209) {
+   |              ^^^^
+
+error: aborting due to 10 previous errors
+
+Some errors have detailed explanations: E0308, E0608.
+For more information about an error, try `rustc --explain E0308`.

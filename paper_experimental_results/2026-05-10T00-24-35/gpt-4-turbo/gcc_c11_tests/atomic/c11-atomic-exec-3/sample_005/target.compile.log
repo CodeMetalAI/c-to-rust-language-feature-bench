@@ -1,0 +1,1803 @@
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:32:17
+   |
+32 |     let mut a = std::sync::atomic::Atomic::new(value);
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0277]: the size for values of type `Self` cannot be known at compilation time
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:66:37
+    |
+ 66 |             where F: FnMut(Self) -> Option<Self>;
+    |                                     ^^^^^^^^^^^^ doesn't have a size known at compile-time
+    |
+note: required by an implicit `Sized` bound in `Option`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/option.rs:593:17
+    |
+593 | pub enum Option<T> {
+    |                 ^ required by the implicit `Sized` requirement on this type parameter in `Option`
+help: consider further restricting `Self`
+    |
+ 66 |             where F: FnMut(Self) -> Option<Self>, Self: Sized;
+    |                                                 +++++++++++++
+
+error[E0277]: the trait bound `{integer}: AtomicArithmetic` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:6:27
+   |
+ 6 |     test_all_incdec_arith(0);
+   |     --------------------- ^ the trait `AtomicArithmetic` is not implemented for `{integer}`
+   |     |
+   |     required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `AtomicArithmetic`:
+             AtomicBool
+             AtomicI16
+             AtomicI32
+             AtomicI64
+             AtomicI8
+             AtomicU16
+             AtomicU32
+             AtomicU64
+             AtomicU8
+note: required by a bound in `test_all_incdec_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:19:29
+   |
+19 | fn test_all_incdec_arith<T: atomic::AtomicArithmetic + Copy>(value: T) {
+   |                             ^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_all_incdec_arith`
+
+error[E0277]: the trait bound `{integer}: AtomicArithmetic` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:7:27
+   |
+ 7 |     test_all_incdec_arith(1);
+   |     --------------------- ^ the trait `AtomicArithmetic` is not implemented for `{integer}`
+   |     |
+   |     required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `AtomicArithmetic`:
+             AtomicBool
+             AtomicI16
+             AtomicI32
+             AtomicI64
+             AtomicI8
+             AtomicU16
+             AtomicU32
+             AtomicU64
+             AtomicU8
+note: required by a bound in `test_all_incdec_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:19:29
+   |
+19 | fn test_all_incdec_arith<T: atomic::AtomicArithmetic + Copy>(value: T) {
+   |                             ^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_all_incdec_arith`
+
+error[E0277]: the trait bound `{integer}: AtomicArithmetic` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:8:27
+   |
+ 8 |     test_all_incdec_arith(2);
+   |     --------------------- ^ the trait `AtomicArithmetic` is not implemented for `{integer}`
+   |     |
+   |     required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `AtomicArithmetic`:
+             AtomicBool
+             AtomicI16
+             AtomicI32
+             AtomicI64
+             AtomicI8
+             AtomicU16
+             AtomicU32
+             AtomicU64
+             AtomicU8
+note: required by a bound in `test_all_incdec_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:19:29
+   |
+19 | fn test_all_incdec_arith<T: atomic::AtomicArithmetic + Copy>(value: T) {
+   |                             ^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_all_incdec_arith`
+
+error[E0277]: the trait bound `{integer}: AtomicArithmetic` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:9:27
+   |
+ 9 |     test_all_incdec_arith(-1);
+   |     --------------------- ^^ the trait `AtomicArithmetic` is not implemented for `{integer}`
+   |     |
+   |     required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `AtomicArithmetic`:
+             AtomicBool
+             AtomicI16
+             AtomicI32
+             AtomicI64
+             AtomicI8
+             AtomicU16
+             AtomicU32
+             AtomicU64
+             AtomicU8
+note: required by a bound in `test_all_incdec_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:19:29
+   |
+19 | fn test_all_incdec_arith<T: atomic::AtomicArithmetic + Copy>(value: T) {
+   |                             ^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_all_incdec_arith`
+
+error[E0277]: the trait bound `u64: AtomicArithmetic` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:10:27
+   |
+10 |     test_all_incdec_arith(1u64 << 60);
+   |     --------------------- ^^^^^^^^^^ the trait `AtomicArithmetic` is not implemented for `u64`
+   |     |
+   |     required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `AtomicArithmetic`:
+             AtomicBool
+             AtomicI16
+             AtomicI32
+             AtomicI64
+             AtomicI8
+             AtomicU16
+             AtomicU32
+             AtomicU64
+             AtomicU8
+note: required by a bound in `test_all_incdec_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:19:29
+   |
+19 | fn test_all_incdec_arith<T: atomic::AtomicArithmetic + Copy>(value: T) {
+   |                             ^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_all_incdec_arith`
+
+error[E0277]: the trait bound `{float}: AtomicArithmetic` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:11:27
+   |
+11 |     test_all_incdec_arith(1.5);
+   |     --------------------- ^^^ the trait `AtomicArithmetic` is not implemented for `{float}`
+   |     |
+   |     required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `AtomicArithmetic`:
+             AtomicBool
+             AtomicI16
+             AtomicI32
+             AtomicI64
+             AtomicI8
+             AtomicU16
+             AtomicU32
+             AtomicU64
+             AtomicU8
+note: required by a bound in `test_all_incdec_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:19:29
+   |
+19 | fn test_all_incdec_arith<T: atomic::AtomicArithmetic + Copy>(value: T) {
+   |                             ^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `test_all_incdec_arith`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:20:30
+   |
+19 | fn test_all_incdec_arith<T: atomic::AtomicArithmetic + Copy>(value: T) {
+   |                          - expected this type parameter
+20 |     test_incdec_arith(value, 1, true);
+   |     ----------------- -----  ^ expected type parameter `T`, found integer
+   |     |                 |
+   |     |                 expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:26:4
+   |
+26 | fn test_incdec_arith<T>(value: T, change: T, pre_op: bool) 
+   |    ^^^^^^^^^^^^^^^^^ -  --------  --------- this parameter needs to match the type parameter `T` type of `value`
+   |                      |  |
+   |                      |  `change` needs to match the type parameter `T` type of this parameter
+   |                      `value` and `change` both reference this parameter `T`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:21:30
+   |
+19 | fn test_all_incdec_arith<T: atomic::AtomicArithmetic + Copy>(value: T) {
+   |                          - expected this type parameter
+20 |     test_incdec_arith(value, 1, true);
+21 |     test_incdec_arith(value, -1, true);
+   |     ----------------- -----  ^^ expected type parameter `T`, found integer
+   |     |                 |
+   |     |                 expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:26:4
+   |
+26 | fn test_incdec_arith<T>(value: T, change: T, pre_op: bool) 
+   |    ^^^^^^^^^^^^^^^^^ -  --------  --------- this parameter needs to match the type parameter `T` type of `value`
+   |                      |  |
+   |                      |  `change` needs to match the type parameter `T` type of this parameter
+   |                      `value` and `change` both reference this parameter `T`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:22:30
+   |
+19 | fn test_all_incdec_arith<T: atomic::AtomicArithmetic + Copy>(value: T) {
+   |                          - expected this type parameter
+...
+22 |     test_incdec_arith(value, 1, false);
+   |     ----------------- -----  ^ expected type parameter `T`, found integer
+   |     |                 |
+   |     |                 expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:26:4
+   |
+26 | fn test_incdec_arith<T>(value: T, change: T, pre_op: bool) 
+   |    ^^^^^^^^^^^^^^^^^ -  --------  --------- this parameter needs to match the type parameter `T` type of `value`
+   |                      |  |
+   |                      |  `change` needs to match the type parameter `T` type of this parameter
+   |                      `value` and `change` both reference this parameter `T`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:23:30
+   |
+19 | fn test_all_incdec_arith<T: atomic::AtomicArithmetic + Copy>(value: T) {
+   |                          - expected this type parameter
+...
+23 |     test_incdec_arith(value, -1, false);
+   |     ----------------- -----  ^^ expected type parameter `T`, found integer
+   |     |                 |
+   |     |                 expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:26:4
+   |
+26 | fn test_incdec_arith<T>(value: T, change: T, pre_op: bool) 
+   |    ^^^^^^^^^^^^^^^^^ -  --------  --------- this parameter needs to match the type parameter `T` type of `value`
+   |                      |  |
+   |                      |  `change` needs to match the type parameter `T` type of this parameter
+   |                      `value` and `change` both reference this parameter `T`
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:32:44
+    |
+ 32 |     let mut a = std::sync::atomic::Atomic::new(value);
+    |                                            ^^^ function or associated item not found in `_`
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: there is a method `neg` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:708:5
+    |
+708 |     fn neg(self) -> Self::Output;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: trait `AtomicArithmetic` which provides `new` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use atomic::AtomicArithmetic;
+    |
+
+error[E0369]: cannot add `T` to `T`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:40:42
+   |
+40 |     assert_eq!(result, if pre_op { value + change } else { value });
+   |                                    ----- ^ ------ T
+   |                                    |
+   |                                    T
+   |
+help: consider further restricting type parameter `T` with trait `Add`
+   |
+31 | fn test_incdec_atomic<T: atomic::AtomicArithmetic + Copy + std::ops::Add>(value: T, change: T, pre_op: bool) {
+   |                                                          +++++++++++++++
+
+error[E0369]: cannot add `T` to `T`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:41:67
+   |
+41 |     assert_eq!(a.load(std::sync::atomic::Ordering::SeqCst), value + change);
+   |                                                             ----- ^ ------ T
+   |                                                             |
+   |                                                             T
+   |
+help: consider further restricting type parameter `T` with trait `Add`
+   |
+31 | fn test_incdec_atomic<T: atomic::AtomicArithmetic + Copy + std::ops::Add>(value: T, change: T, pre_op: bool) {
+   |                                                          +++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:54:5
+   |
+54 |     assert_eq!(result, if pre_op { original + change } else { original });
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+44 | fn test_incdec_primitive<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + std::fmt::Debug>(a: &mut T, change: T, pre_op: bool) {
+   |                                                                                                      +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:54:5
+   |
+54 |     assert_eq!(result, if pre_op { original + change } else { original });
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+44 | fn test_incdec_primitive<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + std::fmt::Debug>(a: &mut T, change: T, pre_op: bool) {
+   |                                                                                                      +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:55:5
+   |
+55 |     assert_eq!(*a, original + change);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+44 | fn test_incdec_primitive<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + std::fmt::Debug>(a: &mut T, change: T, pre_op: bool) {
+   |                                                                                                      +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:55:5
+   |
+55 |     assert_eq!(*a, original + change);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+44 | fn test_incdec_primitive<T: Copy + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + PartialEq + std::fmt::Debug>(a: &mut T, change: T, pre_op: bool) {
+   |                                                                                                      +++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:80:21
+   |
+79 |                 fn load(&self, order: Ordering) -> Self {
+   |                                                    ---- expected `AtomicBool` because of return type
+80 |                     <$atomic_type>::load(&self, order)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicBool`, found `bool`
+...
+93 |     impl_atomic_arithmetic!(bool, AtomicBool);
+   |     ----------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `bool` into `AtomicBool`
+   |
+80 |                     <$atomic_type>::load(&self, order).into()
+   |                                                       +++++++
+
+error[E0277]: expected a `FnMut(bool)` closure, found `F`
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:84:81
+     |
+  84 |                     <$atomic_type>::fetch_update(&self, set_order, fetch_order, f)
+     |                     ----------------------------                                ^ expected an `FnMut(bool)` closure, found `F`
+     |                     |
+     |                     required by a bound introduced by this call
+...
+  93 |     impl_atomic_arithmetic!(bool, AtomicBool);
+     |     ----------------------------------------- in this macro invocation
+     |
+     = note: expected a closure with signature `fn(bool)`
+                found a closure with signature `fn(AtomicBool)`
+note: required by a bound in `AtomicBool::fetch_update`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:1333:12
+     |
+1326 |     pub fn fetch_update<F>(
+     |            ------------ required by a bound in this associated function
+...
+1333 |         F: FnMut(bool) -> Option<bool>,
+     |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `AtomicBool::fetch_update`
+     = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:84:21
+   |
+82 |                 fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<Self, Self>
+   |                                                                                                ------------------ expected `Result<AtomicBool, AtomicBool>` because of return type
+83 |                 where F: FnMut(Self) -> Option<Self> {
+84 |                     <$atomic_type>::fetch_update(&self, set_order, fetch_order, f)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Result<AtomicBool, AtomicBool>`, found `Result<bool, bool>`
+...
+93 |     impl_atomic_arithmetic!(bool, AtomicBool);
+   |     ----------------------------------------- in this macro invocation
+   |
+   = note: expected enum `Result<AtomicBool, AtomicBool>`
+              found enum `Result<bool, bool>`
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:87:41
+    |
+ 87 |                     <$atomic_type>::new(val)
+    |                     ------------------- ^^^ expected `bool`, found `AtomicBool`
+    |                     |
+    |                     arguments to this function are incorrect
+...
+ 93 |     impl_atomic_arithmetic!(bool, AtomicBool);
+    |     ----------------------------------------- in this macro invocation
+    |
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:528:18
+    |
+528 |     pub const fn new(v: bool) -> AtomicBool {
+    |                  ^^^
+    = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:74:54
+     |
+  74 |                     <$atomic_type>::fetch_add(&self, val, order)
+     |                     -------------------------        ^^^ expected `i8`, found `AtomicI8`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+  94 |     impl_atomic_arithmetic!(i8, AtomicI8);
+     |     ------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3656:1
+     |
+3656 | / atomic_int! {
+3657 | |     cfg(target_has_atomic = "8"),
+3658 | |     cfg(target_has_atomic_equal_alignment = "8"),
+3659 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3672 | |     i8 AtomicI8
+3673 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:74:21
+   |
+73 |                 fn fetch_add(&self, val: Self, order: Ordering) -> Self {
+   |                                                                    ---- expected `AtomicI8` because of return type
+74 |                     <$atomic_type>::fetch_add(&self, val, order)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicI8`, found `i8`
+...
+94 |     impl_atomic_arithmetic!(i8, AtomicI8);
+   |     ------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `i8` into `AtomicI8`
+   |
+74 |                     <$atomic_type>::fetch_add(&self, val, order).into()
+   |                                                                 +++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:77:54
+     |
+  77 |                     <$atomic_type>::fetch_sub(&self, val, order)
+     |                     -------------------------        ^^^ expected `i8`, found `AtomicI8`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+  94 |     impl_atomic_arithmetic!(i8, AtomicI8);
+     |     ------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3656:1
+     |
+3656 | / atomic_int! {
+3657 | |     cfg(target_has_atomic = "8"),
+3658 | |     cfg(target_has_atomic_equal_alignment = "8"),
+3659 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3672 | |     i8 AtomicI8
+3673 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:77:21
+   |
+76 |                 fn fetch_sub(&self, val: Self, order: Ordering) -> Self {
+   |                                                                    ---- expected `AtomicI8` because of return type
+77 |                     <$atomic_type>::fetch_sub(&self, val, order)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicI8`, found `i8`
+...
+94 |     impl_atomic_arithmetic!(i8, AtomicI8);
+   |     ------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `i8` into `AtomicI8`
+   |
+77 |                     <$atomic_type>::fetch_sub(&self, val, order).into()
+   |                                                                 +++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:80:21
+   |
+79 |                 fn load(&self, order: Ordering) -> Self {
+   |                                                    ---- expected `AtomicI8` because of return type
+80 |                     <$atomic_type>::load(&self, order)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicI8`, found `i8`
+...
+94 |     impl_atomic_arithmetic!(i8, AtomicI8);
+   |     ------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `i8` into `AtomicI8`
+   |
+80 |                     <$atomic_type>::load(&self, order).into()
+   |                                                       +++++++
+
+error[E0277]: expected a `FnMut(i8)` closure, found `F`
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:84:81
+     |
+  84 |                     <$atomic_type>::fetch_update(&self, set_order, fetch_order, f)
+     |                     ----------------------------                                ^ expected an `FnMut(i8)` closure, found `F`
+     |                     |
+     |                     required by a bound introduced by this call
+...
+  94 |     impl_atomic_arithmetic!(i8, AtomicI8);
+     |     ------------------------------------- in this macro invocation
+     |
+     = note: expected a closure with signature `fn(i8)`
+                found a closure with signature `fn(AtomicI8)`
+note: required by a bound in `AtomicI8::fetch_update`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3656:1
+     |
+3656 | / atomic_int! {
+3657 | |     cfg(target_has_atomic = "8"),
+3658 | |     cfg(target_has_atomic_equal_alignment = "8"),
+3659 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3672 | |     i8 AtomicI8
+3673 | | }
+     | | ^
+     | | |
+     | |_required by a bound in this associated function
+     |   required by this bound in `AtomicI8::fetch_update`
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:84:21
+   |
+82 |                 fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<Self, Self>
+   |                                                                                                ------------------ expected `Result<AtomicI8, AtomicI8>` because of return type
+83 |                 where F: FnMut(Self) -> Option<Self> {
+84 |                     <$atomic_type>::fetch_update(&self, set_order, fetch_order, f)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Result<AtomicI8, AtomicI8>`, found `Result<i8, i8>`
+...
+94 |     impl_atomic_arithmetic!(i8, AtomicI8);
+   |     ------------------------------------- in this macro invocation
+   |
+   = note: expected enum `Result<AtomicI8, AtomicI8>`
+              found enum `Result<i8, i8>`
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:87:41
+     |
+  87 |                     <$atomic_type>::new(val)
+     |                     ------------------- ^^^ expected `i8`, found `AtomicI8`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+  94 |     impl_atomic_arithmetic!(i8, AtomicI8);
+     |     ------------------------------------- in this macro invocation
+     |
+note: associated function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3656:1
+     |
+3656 | / atomic_int! {
+3657 | |     cfg(target_has_atomic = "8"),
+3658 | |     cfg(target_has_atomic_equal_alignment = "8"),
+3659 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3672 | |     i8 AtomicI8
+3673 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:74:54
+     |
+  74 |                     <$atomic_type>::fetch_add(&self, val, order)
+     |                     -------------------------        ^^^ expected `u8`, found `AtomicU8`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+  95 |     impl_atomic_arithmetic!(u8, AtomicU8);
+     |     ------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3675:1
+     |
+3675 | / atomic_int! {
+3676 | |     cfg(target_has_atomic = "8"),
+3677 | |     cfg(target_has_atomic_equal_alignment = "8"),
+3678 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3691 | |     u8 AtomicU8
+3692 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:74:21
+   |
+73 |                 fn fetch_add(&self, val: Self, order: Ordering) -> Self {
+   |                                                                    ---- expected `AtomicU8` because of return type
+74 |                     <$atomic_type>::fetch_add(&self, val, order)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicU8`, found `u8`
+...
+95 |     impl_atomic_arithmetic!(u8, AtomicU8);
+   |     ------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `u8` into `AtomicU8`
+   |
+74 |                     <$atomic_type>::fetch_add(&self, val, order).into()
+   |                                                                 +++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:77:54
+     |
+  77 |                     <$atomic_type>::fetch_sub(&self, val, order)
+     |                     -------------------------        ^^^ expected `u8`, found `AtomicU8`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+  95 |     impl_atomic_arithmetic!(u8, AtomicU8);
+     |     ------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3675:1
+     |
+3675 | / atomic_int! {
+3676 | |     cfg(target_has_atomic = "8"),
+3677 | |     cfg(target_has_atomic_equal_alignment = "8"),
+3678 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3691 | |     u8 AtomicU8
+3692 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:77:21
+   |
+76 |                 fn fetch_sub(&self, val: Self, order: Ordering) -> Self {
+   |                                                                    ---- expected `AtomicU8` because of return type
+77 |                     <$atomic_type>::fetch_sub(&self, val, order)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicU8`, found `u8`
+...
+95 |     impl_atomic_arithmetic!(u8, AtomicU8);
+   |     ------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `u8` into `AtomicU8`
+   |
+77 |                     <$atomic_type>::fetch_sub(&self, val, order).into()
+   |                                                                 +++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:80:21
+   |
+79 |                 fn load(&self, order: Ordering) -> Self {
+   |                                                    ---- expected `AtomicU8` because of return type
+80 |                     <$atomic_type>::load(&self, order)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicU8`, found `u8`
+...
+95 |     impl_atomic_arithmetic!(u8, AtomicU8);
+   |     ------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `u8` into `AtomicU8`
+   |
+80 |                     <$atomic_type>::load(&self, order).into()
+   |                                                       +++++++
+
+error[E0277]: expected a `FnMut(u8)` closure, found `F`
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:84:81
+     |
+  84 |                     <$atomic_type>::fetch_update(&self, set_order, fetch_order, f)
+     |                     ----------------------------                                ^ expected an `FnMut(u8)` closure, found `F`
+     |                     |
+     |                     required by a bound introduced by this call
+...
+  95 |     impl_atomic_arithmetic!(u8, AtomicU8);
+     |     ------------------------------------- in this macro invocation
+     |
+     = note: expected a closure with signature `fn(u8)`
+                found a closure with signature `fn(AtomicU8)`
+note: required by a bound in `AtomicU8::fetch_update`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3675:1
+     |
+3675 | / atomic_int! {
+3676 | |     cfg(target_has_atomic = "8"),
+3677 | |     cfg(target_has_atomic_equal_alignment = "8"),
+3678 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3691 | |     u8 AtomicU8
+3692 | | }
+     | | ^
+     | | |
+     | |_required by a bound in this associated function
+     |   required by this bound in `AtomicU8::fetch_update`
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:84:21
+   |
+82 |                 fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<Self, Self>
+   |                                                                                                ------------------ expected `Result<AtomicU8, AtomicU8>` because of return type
+83 |                 where F: FnMut(Self) -> Option<Self> {
+84 |                     <$atomic_type>::fetch_update(&self, set_order, fetch_order, f)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Result<AtomicU8, AtomicU8>`, found `Result<u8, u8>`
+...
+95 |     impl_atomic_arithmetic!(u8, AtomicU8);
+   |     ------------------------------------- in this macro invocation
+   |
+   = note: expected enum `Result<AtomicU8, AtomicU8>`
+              found enum `Result<u8, u8>`
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:87:41
+     |
+  87 |                     <$atomic_type>::new(val)
+     |                     ------------------- ^^^ expected `u8`, found `AtomicU8`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+  95 |     impl_atomic_arithmetic!(u8, AtomicU8);
+     |     ------------------------------------- in this macro invocation
+     |
+note: associated function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3675:1
+     |
+3675 | / atomic_int! {
+3676 | |     cfg(target_has_atomic = "8"),
+3677 | |     cfg(target_has_atomic_equal_alignment = "8"),
+3678 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3691 | |     u8 AtomicU8
+3692 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:74:54
+     |
+  74 |                     <$atomic_type>::fetch_add(&self, val, order)
+     |                     -------------------------        ^^^ expected `i16`, found `AtomicI16`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+  96 |     impl_atomic_arithmetic!(i16, AtomicI16);
+     |     --------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3694:1
+     |
+3694 | / atomic_int! {
+3695 | |     cfg(target_has_atomic = "16"),
+3696 | |     cfg(target_has_atomic_equal_alignment = "16"),
+3697 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3710 | |     i16 AtomicI16
+3711 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:74:21
+   |
+73 |                 fn fetch_add(&self, val: Self, order: Ordering) -> Self {
+   |                                                                    ---- expected `AtomicI16` because of return type
+74 |                     <$atomic_type>::fetch_add(&self, val, order)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicI16`, found `i16`
+...
+96 |     impl_atomic_arithmetic!(i16, AtomicI16);
+   |     --------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `i16` into `AtomicI16`
+   |
+74 |                     <$atomic_type>::fetch_add(&self, val, order).into()
+   |                                                                 +++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:77:54
+     |
+  77 |                     <$atomic_type>::fetch_sub(&self, val, order)
+     |                     -------------------------        ^^^ expected `i16`, found `AtomicI16`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+  96 |     impl_atomic_arithmetic!(i16, AtomicI16);
+     |     --------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3694:1
+     |
+3694 | / atomic_int! {
+3695 | |     cfg(target_has_atomic = "16"),
+3696 | |     cfg(target_has_atomic_equal_alignment = "16"),
+3697 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3710 | |     i16 AtomicI16
+3711 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:77:21
+   |
+76 |                 fn fetch_sub(&self, val: Self, order: Ordering) -> Self {
+   |                                                                    ---- expected `AtomicI16` because of return type
+77 |                     <$atomic_type>::fetch_sub(&self, val, order)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicI16`, found `i16`
+...
+96 |     impl_atomic_arithmetic!(i16, AtomicI16);
+   |     --------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `i16` into `AtomicI16`
+   |
+77 |                     <$atomic_type>::fetch_sub(&self, val, order).into()
+   |                                                                 +++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:80:21
+   |
+79 |                 fn load(&self, order: Ordering) -> Self {
+   |                                                    ---- expected `AtomicI16` because of return type
+80 |                     <$atomic_type>::load(&self, order)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicI16`, found `i16`
+...
+96 |     impl_atomic_arithmetic!(i16, AtomicI16);
+   |     --------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `i16` into `AtomicI16`
+   |
+80 |                     <$atomic_type>::load(&self, order).into()
+   |                                                       +++++++
+
+error[E0277]: expected a `FnMut(i16)` closure, found `F`
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:84:81
+     |
+  84 |                     <$atomic_type>::fetch_update(&self, set_order, fetch_order, f)
+     |                     ----------------------------                                ^ expected an `FnMut(i16)` closure, found `F`
+     |                     |
+     |                     required by a bound introduced by this call
+...
+  96 |     impl_atomic_arithmetic!(i16, AtomicI16);
+     |     --------------------------------------- in this macro invocation
+     |
+     = note: expected a closure with signature `fn(i16)`
+                found a closure with signature `fn(AtomicI16)`
+note: required by a bound in `AtomicI16::fetch_update`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3694:1
+     |
+3694 | / atomic_int! {
+3695 | |     cfg(target_has_atomic = "16"),
+3696 | |     cfg(target_has_atomic_equal_alignment = "16"),
+3697 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3710 | |     i16 AtomicI16
+3711 | | }
+     | | ^
+     | | |
+     | |_required by a bound in this associated function
+     |   required by this bound in `AtomicI16::fetch_update`
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:84:21
+   |
+82 |                 fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<Self, Self>
+   |                                                                                                ------------------ expected `Result<AtomicI16, AtomicI16>` because of return type
+83 |                 where F: FnMut(Self) -> Option<Self> {
+84 |                     <$atomic_type>::fetch_update(&self, set_order, fetch_order, f)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Result<AtomicI16, AtomicI16>`, found `Result<i16, i16>`
+...
+96 |     impl_atomic_arithmetic!(i16, AtomicI16);
+   |     --------------------------------------- in this macro invocation
+   |
+   = note: expected enum `Result<AtomicI16, AtomicI16>`
+              found enum `Result<i16, i16>`
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:87:41
+     |
+  87 |                     <$atomic_type>::new(val)
+     |                     ------------------- ^^^ expected `i16`, found `AtomicI16`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+  96 |     impl_atomic_arithmetic!(i16, AtomicI16);
+     |     --------------------------------------- in this macro invocation
+     |
+note: associated function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3694:1
+     |
+3694 | / atomic_int! {
+3695 | |     cfg(target_has_atomic = "16"),
+3696 | |     cfg(target_has_atomic_equal_alignment = "16"),
+3697 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3710 | |     i16 AtomicI16
+3711 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:74:54
+     |
+  74 |                     <$atomic_type>::fetch_add(&self, val, order)
+     |                     -------------------------        ^^^ expected `u16`, found `AtomicU16`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+  97 |     impl_atomic_arithmetic!(u16, AtomicU16);
+     |     --------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3713:1
+     |
+3713 | / atomic_int! {
+3714 | |     cfg(target_has_atomic = "16"),
+3715 | |     cfg(target_has_atomic_equal_alignment = "16"),
+3716 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3729 | |     u16 AtomicU16
+3730 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:74:21
+   |
+73 |                 fn fetch_add(&self, val: Self, order: Ordering) -> Self {
+   |                                                                    ---- expected `AtomicU16` because of return type
+74 |                     <$atomic_type>::fetch_add(&self, val, order)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicU16`, found `u16`
+...
+97 |     impl_atomic_arithmetic!(u16, AtomicU16);
+   |     --------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `u16` into `AtomicU16`
+   |
+74 |                     <$atomic_type>::fetch_add(&self, val, order).into()
+   |                                                                 +++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:77:54
+     |
+  77 |                     <$atomic_type>::fetch_sub(&self, val, order)
+     |                     -------------------------        ^^^ expected `u16`, found `AtomicU16`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+  97 |     impl_atomic_arithmetic!(u16, AtomicU16);
+     |     --------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3713:1
+     |
+3713 | / atomic_int! {
+3714 | |     cfg(target_has_atomic = "16"),
+3715 | |     cfg(target_has_atomic_equal_alignment = "16"),
+3716 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3729 | |     u16 AtomicU16
+3730 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:77:21
+   |
+76 |                 fn fetch_sub(&self, val: Self, order: Ordering) -> Self {
+   |                                                                    ---- expected `AtomicU16` because of return type
+77 |                     <$atomic_type>::fetch_sub(&self, val, order)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicU16`, found `u16`
+...
+97 |     impl_atomic_arithmetic!(u16, AtomicU16);
+   |     --------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `u16` into `AtomicU16`
+   |
+77 |                     <$atomic_type>::fetch_sub(&self, val, order).into()
+   |                                                                 +++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:80:21
+   |
+79 |                 fn load(&self, order: Ordering) -> Self {
+   |                                                    ---- expected `AtomicU16` because of return type
+80 |                     <$atomic_type>::load(&self, order)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicU16`, found `u16`
+...
+97 |     impl_atomic_arithmetic!(u16, AtomicU16);
+   |     --------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `u16` into `AtomicU16`
+   |
+80 |                     <$atomic_type>::load(&self, order).into()
+   |                                                       +++++++
+
+error[E0277]: expected a `FnMut(u16)` closure, found `F`
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:84:81
+     |
+  84 |                     <$atomic_type>::fetch_update(&self, set_order, fetch_order, f)
+     |                     ----------------------------                                ^ expected an `FnMut(u16)` closure, found `F`
+     |                     |
+     |                     required by a bound introduced by this call
+...
+  97 |     impl_atomic_arithmetic!(u16, AtomicU16);
+     |     --------------------------------------- in this macro invocation
+     |
+     = note: expected a closure with signature `fn(u16)`
+                found a closure with signature `fn(AtomicU16)`
+note: required by a bound in `AtomicU16::fetch_update`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3713:1
+     |
+3713 | / atomic_int! {
+3714 | |     cfg(target_has_atomic = "16"),
+3715 | |     cfg(target_has_atomic_equal_alignment = "16"),
+3716 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3729 | |     u16 AtomicU16
+3730 | | }
+     | | ^
+     | | |
+     | |_required by a bound in this associated function
+     |   required by this bound in `AtomicU16::fetch_update`
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:84:21
+   |
+82 |                 fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<Self, Self>
+   |                                                                                                ------------------ expected `Result<AtomicU16, AtomicU16>` because of return type
+83 |                 where F: FnMut(Self) -> Option<Self> {
+84 |                     <$atomic_type>::fetch_update(&self, set_order, fetch_order, f)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Result<AtomicU16, AtomicU16>`, found `Result<u16, u16>`
+...
+97 |     impl_atomic_arithmetic!(u16, AtomicU16);
+   |     --------------------------------------- in this macro invocation
+   |
+   = note: expected enum `Result<AtomicU16, AtomicU16>`
+              found enum `Result<u16, u16>`
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:87:41
+     |
+  87 |                     <$atomic_type>::new(val)
+     |                     ------------------- ^^^ expected `u16`, found `AtomicU16`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+  97 |     impl_atomic_arithmetic!(u16, AtomicU16);
+     |     --------------------------------------- in this macro invocation
+     |
+note: associated function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3713:1
+     |
+3713 | / atomic_int! {
+3714 | |     cfg(target_has_atomic = "16"),
+3715 | |     cfg(target_has_atomic_equal_alignment = "16"),
+3716 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3729 | |     u16 AtomicU16
+3730 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:74:54
+     |
+  74 |                     <$atomic_type>::fetch_add(&self, val, order)
+     |                     -------------------------        ^^^ expected `i32`, found `AtomicI32`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+  98 |     impl_atomic_arithmetic!(i32, AtomicI32);
+     |     --------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3732:1
+     |
+3732 | / atomic_int! {
+3733 | |     cfg(target_has_atomic = "32"),
+3734 | |     cfg(target_has_atomic_equal_alignment = "32"),
+3735 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3748 | |     i32 AtomicI32
+3749 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:74:21
+   |
+73 |                 fn fetch_add(&self, val: Self, order: Ordering) -> Self {
+   |                                                                    ---- expected `AtomicI32` because of return type
+74 |                     <$atomic_type>::fetch_add(&self, val, order)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicI32`, found `i32`
+...
+98 |     impl_atomic_arithmetic!(i32, AtomicI32);
+   |     --------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `i32` into `AtomicI32`
+   |
+74 |                     <$atomic_type>::fetch_add(&self, val, order).into()
+   |                                                                 +++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:77:54
+     |
+  77 |                     <$atomic_type>::fetch_sub(&self, val, order)
+     |                     -------------------------        ^^^ expected `i32`, found `AtomicI32`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+  98 |     impl_atomic_arithmetic!(i32, AtomicI32);
+     |     --------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3732:1
+     |
+3732 | / atomic_int! {
+3733 | |     cfg(target_has_atomic = "32"),
+3734 | |     cfg(target_has_atomic_equal_alignment = "32"),
+3735 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3748 | |     i32 AtomicI32
+3749 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:77:21
+   |
+76 |                 fn fetch_sub(&self, val: Self, order: Ordering) -> Self {
+   |                                                                    ---- expected `AtomicI32` because of return type
+77 |                     <$atomic_type>::fetch_sub(&self, val, order)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicI32`, found `i32`
+...
+98 |     impl_atomic_arithmetic!(i32, AtomicI32);
+   |     --------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `i32` into `AtomicI32`
+   |
+77 |                     <$atomic_type>::fetch_sub(&self, val, order).into()
+   |                                                                 +++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:80:21
+   |
+79 |                 fn load(&self, order: Ordering) -> Self {
+   |                                                    ---- expected `AtomicI32` because of return type
+80 |                     <$atomic_type>::load(&self, order)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicI32`, found `i32`
+...
+98 |     impl_atomic_arithmetic!(i32, AtomicI32);
+   |     --------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `i32` into `AtomicI32`
+   |
+80 |                     <$atomic_type>::load(&self, order).into()
+   |                                                       +++++++
+
+error[E0277]: expected a `FnMut(i32)` closure, found `F`
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:84:81
+     |
+  84 |                     <$atomic_type>::fetch_update(&self, set_order, fetch_order, f)
+     |                     ----------------------------                                ^ expected an `FnMut(i32)` closure, found `F`
+     |                     |
+     |                     required by a bound introduced by this call
+...
+  98 |     impl_atomic_arithmetic!(i32, AtomicI32);
+     |     --------------------------------------- in this macro invocation
+     |
+     = note: expected a closure with signature `fn(i32)`
+                found a closure with signature `fn(AtomicI32)`
+note: required by a bound in `AtomicI32::fetch_update`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3732:1
+     |
+3732 | / atomic_int! {
+3733 | |     cfg(target_has_atomic = "32"),
+3734 | |     cfg(target_has_atomic_equal_alignment = "32"),
+3735 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3748 | |     i32 AtomicI32
+3749 | | }
+     | | ^
+     | | |
+     | |_required by a bound in this associated function
+     |   required by this bound in `AtomicI32::fetch_update`
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:84:21
+   |
+82 |                 fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<Self, Self>
+   |                                                                                                ------------------ expected `Result<AtomicI32, AtomicI32>` because of return type
+83 |                 where F: FnMut(Self) -> Option<Self> {
+84 |                     <$atomic_type>::fetch_update(&self, set_order, fetch_order, f)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Result<AtomicI32, AtomicI32>`, found `Result<i32, i32>`
+...
+98 |     impl_atomic_arithmetic!(i32, AtomicI32);
+   |     --------------------------------------- in this macro invocation
+   |
+   = note: expected enum `Result<AtomicI32, AtomicI32>`
+              found enum `Result<i32, i32>`
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:87:41
+     |
+  87 |                     <$atomic_type>::new(val)
+     |                     ------------------- ^^^ expected `i32`, found `AtomicI32`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+  98 |     impl_atomic_arithmetic!(i32, AtomicI32);
+     |     --------------------------------------- in this macro invocation
+     |
+note: associated function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3732:1
+     |
+3732 | / atomic_int! {
+3733 | |     cfg(target_has_atomic = "32"),
+3734 | |     cfg(target_has_atomic_equal_alignment = "32"),
+3735 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3748 | |     i32 AtomicI32
+3749 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:74:54
+     |
+  74 |                     <$atomic_type>::fetch_add(&self, val, order)
+     |                     -------------------------        ^^^ expected `u32`, found `AtomicU32`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+  99 |     impl_atomic_arithmetic!(u32, AtomicU32);
+     |     --------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3751:1
+     |
+3751 | / atomic_int! {
+3752 | |     cfg(target_has_atomic = "32"),
+3753 | |     cfg(target_has_atomic_equal_alignment = "32"),
+3754 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3767 | |     u32 AtomicU32
+3768 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:74:21
+   |
+73 |                 fn fetch_add(&self, val: Self, order: Ordering) -> Self {
+   |                                                                    ---- expected `AtomicU32` because of return type
+74 |                     <$atomic_type>::fetch_add(&self, val, order)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicU32`, found `u32`
+...
+99 |     impl_atomic_arithmetic!(u32, AtomicU32);
+   |     --------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `u32` into `AtomicU32`
+   |
+74 |                     <$atomic_type>::fetch_add(&self, val, order).into()
+   |                                                                 +++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:77:54
+     |
+  77 |                     <$atomic_type>::fetch_sub(&self, val, order)
+     |                     -------------------------        ^^^ expected `u32`, found `AtomicU32`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+  99 |     impl_atomic_arithmetic!(u32, AtomicU32);
+     |     --------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3751:1
+     |
+3751 | / atomic_int! {
+3752 | |     cfg(target_has_atomic = "32"),
+3753 | |     cfg(target_has_atomic_equal_alignment = "32"),
+3754 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3767 | |     u32 AtomicU32
+3768 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:77:21
+   |
+76 |                 fn fetch_sub(&self, val: Self, order: Ordering) -> Self {
+   |                                                                    ---- expected `AtomicU32` because of return type
+77 |                     <$atomic_type>::fetch_sub(&self, val, order)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicU32`, found `u32`
+...
+99 |     impl_atomic_arithmetic!(u32, AtomicU32);
+   |     --------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `u32` into `AtomicU32`
+   |
+77 |                     <$atomic_type>::fetch_sub(&self, val, order).into()
+   |                                                                 +++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:80:21
+   |
+79 |                 fn load(&self, order: Ordering) -> Self {
+   |                                                    ---- expected `AtomicU32` because of return type
+80 |                     <$atomic_type>::load(&self, order)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicU32`, found `u32`
+...
+99 |     impl_atomic_arithmetic!(u32, AtomicU32);
+   |     --------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `u32` into `AtomicU32`
+   |
+80 |                     <$atomic_type>::load(&self, order).into()
+   |                                                       +++++++
+
+error[E0277]: expected a `FnMut(u32)` closure, found `F`
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:84:81
+     |
+  84 |                     <$atomic_type>::fetch_update(&self, set_order, fetch_order, f)
+     |                     ----------------------------                                ^ expected an `FnMut(u32)` closure, found `F`
+     |                     |
+     |                     required by a bound introduced by this call
+...
+  99 |     impl_atomic_arithmetic!(u32, AtomicU32);
+     |     --------------------------------------- in this macro invocation
+     |
+     = note: expected a closure with signature `fn(u32)`
+                found a closure with signature `fn(AtomicU32)`
+note: required by a bound in `AtomicU32::fetch_update`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3751:1
+     |
+3751 | / atomic_int! {
+3752 | |     cfg(target_has_atomic = "32"),
+3753 | |     cfg(target_has_atomic_equal_alignment = "32"),
+3754 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3767 | |     u32 AtomicU32
+3768 | | }
+     | | ^
+     | | |
+     | |_required by a bound in this associated function
+     |   required by this bound in `AtomicU32::fetch_update`
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:84:21
+   |
+82 |                 fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<Self, Self>
+   |                                                                                                ------------------ expected `Result<AtomicU32, AtomicU32>` because of return type
+83 |                 where F: FnMut(Self) -> Option<Self> {
+84 |                     <$atomic_type>::fetch_update(&self, set_order, fetch_order, f)
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Result<AtomicU32, AtomicU32>`, found `Result<u32, u32>`
+...
+99 |     impl_atomic_arithmetic!(u32, AtomicU32);
+   |     --------------------------------------- in this macro invocation
+   |
+   = note: expected enum `Result<AtomicU32, AtomicU32>`
+              found enum `Result<u32, u32>`
+   = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:87:41
+     |
+  87 |                     <$atomic_type>::new(val)
+     |                     ------------------- ^^^ expected `u32`, found `AtomicU32`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+  99 |     impl_atomic_arithmetic!(u32, AtomicU32);
+     |     --------------------------------------- in this macro invocation
+     |
+note: associated function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3751:1
+     |
+3751 | / atomic_int! {
+3752 | |     cfg(target_has_atomic = "32"),
+3753 | |     cfg(target_has_atomic_equal_alignment = "32"),
+3754 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3767 | |     u32 AtomicU32
+3768 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:74:54
+     |
+  74 |                     <$atomic_type>::fetch_add(&self, val, order)
+     |                     -------------------------        ^^^ expected `i64`, found `AtomicI64`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+ 100 |     impl_atomic_arithmetic!(i64, AtomicI64);
+     |     --------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3770:1
+     |
+3770 | / atomic_int! {
+3771 | |     cfg(target_has_atomic = "64"),
+3772 | |     cfg(target_has_atomic_equal_alignment = "64"),
+3773 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3786 | |     i64 AtomicI64
+3787 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:74:21
+    |
+ 73 |                 fn fetch_add(&self, val: Self, order: Ordering) -> Self {
+    |                                                                    ---- expected `AtomicI64` because of return type
+ 74 |                     <$atomic_type>::fetch_add(&self, val, order)
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicI64`, found `i64`
+...
+100 |     impl_atomic_arithmetic!(i64, AtomicI64);
+    |     --------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `i64` into `AtomicI64`
+    |
+ 74 |                     <$atomic_type>::fetch_add(&self, val, order).into()
+    |                                                                 +++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:77:54
+     |
+  77 |                     <$atomic_type>::fetch_sub(&self, val, order)
+     |                     -------------------------        ^^^ expected `i64`, found `AtomicI64`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+ 100 |     impl_atomic_arithmetic!(i64, AtomicI64);
+     |     --------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3770:1
+     |
+3770 | / atomic_int! {
+3771 | |     cfg(target_has_atomic = "64"),
+3772 | |     cfg(target_has_atomic_equal_alignment = "64"),
+3773 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3786 | |     i64 AtomicI64
+3787 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:77:21
+    |
+ 76 |                 fn fetch_sub(&self, val: Self, order: Ordering) -> Self {
+    |                                                                    ---- expected `AtomicI64` because of return type
+ 77 |                     <$atomic_type>::fetch_sub(&self, val, order)
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicI64`, found `i64`
+...
+100 |     impl_atomic_arithmetic!(i64, AtomicI64);
+    |     --------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `i64` into `AtomicI64`
+    |
+ 77 |                     <$atomic_type>::fetch_sub(&self, val, order).into()
+    |                                                                 +++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:80:21
+    |
+ 79 |                 fn load(&self, order: Ordering) -> Self {
+    |                                                    ---- expected `AtomicI64` because of return type
+ 80 |                     <$atomic_type>::load(&self, order)
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicI64`, found `i64`
+...
+100 |     impl_atomic_arithmetic!(i64, AtomicI64);
+    |     --------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `i64` into `AtomicI64`
+    |
+ 80 |                     <$atomic_type>::load(&self, order).into()
+    |                                                       +++++++
+
+error[E0277]: expected a `FnMut(i64)` closure, found `F`
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:84:81
+     |
+  84 |                     <$atomic_type>::fetch_update(&self, set_order, fetch_order, f)
+     |                     ----------------------------                                ^ expected an `FnMut(i64)` closure, found `F`
+     |                     |
+     |                     required by a bound introduced by this call
+...
+ 100 |     impl_atomic_arithmetic!(i64, AtomicI64);
+     |     --------------------------------------- in this macro invocation
+     |
+     = note: expected a closure with signature `fn(i64)`
+                found a closure with signature `fn(AtomicI64)`
+note: required by a bound in `AtomicI64::fetch_update`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3770:1
+     |
+3770 | / atomic_int! {
+3771 | |     cfg(target_has_atomic = "64"),
+3772 | |     cfg(target_has_atomic_equal_alignment = "64"),
+3773 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3786 | |     i64 AtomicI64
+3787 | | }
+     | | ^
+     | | |
+     | |_required by a bound in this associated function
+     |   required by this bound in `AtomicI64::fetch_update`
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:84:21
+    |
+ 82 |                 fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<Self, Self>
+    |                                                                                                ------------------ expected `Result<AtomicI64, AtomicI64>` because of return type
+ 83 |                 where F: FnMut(Self) -> Option<Self> {
+ 84 |                     <$atomic_type>::fetch_update(&self, set_order, fetch_order, f)
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Result<AtomicI64, AtomicI64>`, found `Result<i64, i64>`
+...
+100 |     impl_atomic_arithmetic!(i64, AtomicI64);
+    |     --------------------------------------- in this macro invocation
+    |
+    = note: expected enum `Result<AtomicI64, AtomicI64>`
+               found enum `Result<i64, i64>`
+    = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:87:41
+     |
+  87 |                     <$atomic_type>::new(val)
+     |                     ------------------- ^^^ expected `i64`, found `AtomicI64`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+ 100 |     impl_atomic_arithmetic!(i64, AtomicI64);
+     |     --------------------------------------- in this macro invocation
+     |
+note: associated function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3770:1
+     |
+3770 | / atomic_int! {
+3771 | |     cfg(target_has_atomic = "64"),
+3772 | |     cfg(target_has_atomic_equal_alignment = "64"),
+3773 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3786 | |     i64 AtomicI64
+3787 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:74:54
+     |
+  74 |                     <$atomic_type>::fetch_add(&self, val, order)
+     |                     -------------------------        ^^^ expected `u64`, found `AtomicU64`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+ 101 |     impl_atomic_arithmetic!(u64, AtomicU64);
+     |     --------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3789:1
+     |
+3789 | / atomic_int! {
+3790 | |     cfg(target_has_atomic = "64"),
+3791 | |     cfg(target_has_atomic_equal_alignment = "64"),
+3792 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3805 | |     u64 AtomicU64
+3806 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:74:21
+    |
+ 73 |                 fn fetch_add(&self, val: Self, order: Ordering) -> Self {
+    |                                                                    ---- expected `AtomicU64` because of return type
+ 74 |                     <$atomic_type>::fetch_add(&self, val, order)
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicU64`, found `u64`
+...
+101 |     impl_atomic_arithmetic!(u64, AtomicU64);
+    |     --------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `u64` into `AtomicU64`
+    |
+ 74 |                     <$atomic_type>::fetch_add(&self, val, order).into()
+    |                                                                 +++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:77:54
+     |
+  77 |                     <$atomic_type>::fetch_sub(&self, val, order)
+     |                     -------------------------        ^^^ expected `u64`, found `AtomicU64`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+ 101 |     impl_atomic_arithmetic!(u64, AtomicU64);
+     |     --------------------------------------- in this macro invocation
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3789:1
+     |
+3789 | / atomic_int! {
+3790 | |     cfg(target_has_atomic = "64"),
+3791 | |     cfg(target_has_atomic_equal_alignment = "64"),
+3792 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3805 | |     u64 AtomicU64
+3806 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:77:21
+    |
+ 76 |                 fn fetch_sub(&self, val: Self, order: Ordering) -> Self {
+    |                                                                    ---- expected `AtomicU64` because of return type
+ 77 |                     <$atomic_type>::fetch_sub(&self, val, order)
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicU64`, found `u64`
+...
+101 |     impl_atomic_arithmetic!(u64, AtomicU64);
+    |     --------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `u64` into `AtomicU64`
+    |
+ 77 |                     <$atomic_type>::fetch_sub(&self, val, order).into()
+    |                                                                 +++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:80:21
+    |
+ 79 |                 fn load(&self, order: Ordering) -> Self {
+    |                                                    ---- expected `AtomicU64` because of return type
+ 80 |                     <$atomic_type>::load(&self, order)
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `AtomicU64`, found `u64`
+...
+101 |     impl_atomic_arithmetic!(u64, AtomicU64);
+    |     --------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: call `Into::into` on this expression to convert `u64` into `AtomicU64`
+    |
+ 80 |                     <$atomic_type>::load(&self, order).into()
+    |                                                       +++++++
+
+error[E0277]: expected a `FnMut(u64)` closure, found `F`
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:84:81
+     |
+  84 |                     <$atomic_type>::fetch_update(&self, set_order, fetch_order, f)
+     |                     ----------------------------                                ^ expected an `FnMut(u64)` closure, found `F`
+     |                     |
+     |                     required by a bound introduced by this call
+...
+ 101 |     impl_atomic_arithmetic!(u64, AtomicU64);
+     |     --------------------------------------- in this macro invocation
+     |
+     = note: expected a closure with signature `fn(u64)`
+                found a closure with signature `fn(AtomicU64)`
+note: required by a bound in `AtomicU64::fetch_update`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3789:1
+     |
+3789 | / atomic_int! {
+3790 | |     cfg(target_has_atomic = "64"),
+3791 | |     cfg(target_has_atomic_equal_alignment = "64"),
+3792 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3805 | |     u64 AtomicU64
+3806 | | }
+     | | ^
+     | | |
+     | |_required by a bound in this associated function
+     |   required by this bound in `AtomicU64::fetch_update`
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:84:21
+    |
+ 82 |                 fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<Self, Self>
+    |                                                                                                ------------------ expected `Result<AtomicU64, AtomicU64>` because of return type
+ 83 |                 where F: FnMut(Self) -> Option<Self> {
+ 84 |                     <$atomic_type>::fetch_update(&self, set_order, fetch_order, f)
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Result<AtomicU64, AtomicU64>`, found `Result<u64, u64>`
+...
+101 |     impl_atomic_arithmetic!(u64, AtomicU64);
+    |     --------------------------------------- in this macro invocation
+    |
+    = note: expected enum `Result<AtomicU64, AtomicU64>`
+               found enum `Result<u64, u64>`
+    = note: this error originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:87:41
+     |
+  87 |                     <$atomic_type>::new(val)
+     |                     ------------------- ^^^ expected `u64`, found `AtomicU64`
+     |                     |
+     |                     arguments to this function are incorrect
+...
+ 101 |     impl_atomic_arithmetic!(u64, AtomicU64);
+     |     --------------------------------------- in this macro invocation
+     |
+note: associated function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:3789:1
+     |
+3789 | / atomic_int! {
+3790 | |     cfg(target_has_atomic = "64"),
+3791 | |     cfg(target_has_atomic_equal_alignment = "64"),
+3792 | |     stable(feature = "integer_atomics_stable", since = "1.34.0"),
+...    |
+3805 | |     u64 AtomicU64
+3806 | | }
+     | |_^
+     = note: this error originates in the macro `impl_atomic_arithmetic` which comes from the expansion of the macro `atomic_int` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: function cannot return without recursing
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:73:17
+   |
+73 |                 fn fetch_add(&self, val: Self, order: Ordering) -> Self {
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot return without recursing
+74 |                     <$atomic_type>::fetch_add(&self, val, order)
+   |                     -------------------------------------------- recursive call site
+...
+93 |     impl_atomic_arithmetic!(bool, AtomicBool);
+   |     ----------------------------------------- in this macro invocation
+   |
+   = help: a `loop` may express intention better if this is on purpose
+   = note: `#[warn(unconditional_recursion)]` on by default
+   = note: this warning originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: function cannot return without recursing
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:76:17
+   |
+76 |                 fn fetch_sub(&self, val: Self, order: Ordering) -> Self {
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot return without recursing
+77 |                     <$atomic_type>::fetch_sub(&self, val, order)
+   |                     -------------------------------------------- recursive call site
+...
+93 |     impl_atomic_arithmetic!(bool, AtomicBool);
+   |     ----------------------------------------- in this macro invocation
+   |
+   = help: a `loop` may express intention better if this is on purpose
+   = note: this warning originates in the macro `impl_atomic_arithmetic` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 87 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0277, E0308, E0369, E0599, E0658.
+For more information about an error, try `rustc --explain E0277`.

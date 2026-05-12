@@ -1,0 +1,163 @@
+error[E0277]: the trait bound `Tail: Default` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_005/target.rs:35:14
+   |
+35 |            ..Default::default()
+   |              ^^^^^^^^^^^^^^^^^^ the trait `Default` is not implemented for `Tail`
+   |
+help: consider annotating `Tail` with `#[derive(Default)]`
+   |
+15 + #[derive(Default)]
+16 | struct Tail {
+   |
+
+error[E0277]: the trait bound `Inner: Default` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_005/target.rs:70:16
+   |
+70 |         inner: Default::default(),
+   |                ^^^^^^^^^^^^^^^^^^ the trait `Default` is not implemented for `Inner`
+   |
+help: consider annotating `Inner` with `#[derive(Default)]`
+   |
+ 7 + #[derive(Default)]
+ 8 | struct Inner {
+   |
+
+error[E0277]: the trait bound `Tail: Default` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_005/target.rs:71:15
+   |
+71 |         tail: Default::default(),
+   |               ^^^^^^^^^^^^^^^^^^ the trait `Default` is not implemented for `Tail`
+   |
+help: consider annotating `Tail` with `#[derive(Default)]`
+   |
+15 + #[derive(Default)]
+16 | struct Tail {
+   |
+
+error[E0609]: no field `deep` on type `Outer`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_005/target.rs:74:7
+   |
+74 |     o.deep = 0x11223344;
+   |       ^^^^ unknown field
+   |
+help: one of the expressions' fields has a field of the same name
+   |
+74 |     o.inner.deep = 0x11223344;
+   |       ++++++
+
+error[E0609]: no field `x` on type `Inner`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_005/target.rs:76:16
+   |
+76 |     if o.inner.x!= 0x11223344 {
+   |                ^ unknown field
+   |
+help: a field with a similar name exists
+   |
+76 -     if o.inner.x!= 0x11223344 {
+76 +     if o.inner.a!= 0x11223344 {
+   |
+
+error[E0609]: no field `x` on type `Inner`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_005/target.rs:80:13
+   |
+80 |     o.inner.x = 5;
+   |             ^ unknown field
+   |
+help: a field with a similar name exists
+   |
+80 -     o.inner.x = 5;
+80 +     o.inner.a = 5;
+   |
+
+error[E0609]: no field `y` on type `Inner`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_005/target.rs:81:13
+   |
+81 |     o.inner.y = 6;
+   |             ^ unknown field
+   |
+help: a field with a similar name exists
+   |
+81 -     o.inner.y = 6;
+81 +     o.inner.a = 6;
+   |
+
+error[E0609]: no field `x` on type `Inner`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_005/target.rs:82:16
+   |
+82 |     if o.inner.x!= 5 {
+   |                ^ unknown field
+   |
+help: a field with a similar name exists
+   |
+82 -     if o.inner.x!= 5 {
+82 +     if o.inner.a!= 5 {
+   |
+
+error[E0609]: no field `y` on type `Inner`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_005/target.rs:85:16
+   |
+85 |     if o.inner.y!= 6 {
+   |                ^ unknown field
+   |
+help: a field with a similar name exists
+   |
+85 -     if o.inner.y!= 6 {
+85 +     if o.inner.a!= 6 {
+   |
+
+error[E0277]: the trait bound `Inner: Default` is not satisfied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_005/target.rs:109:16
+    |
+109 |         inner: Default::default(),
+    |                ^^^^^^^^^^^^^^^^^^ the trait `Default` is not implemented for `Inner`
+    |
+help: consider annotating `Inner` with `#[derive(Default)]`
+    |
+  7 + #[derive(Default)]
+  8 | struct Inner {
+    |
+
+error[E0277]: the trait bound `Tail: Default` is not satisfied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_005/target.rs:110:15
+    |
+110 |         tail: Default::default(),
+    |               ^^^^^^^^^^^^^^^^^^ the trait `Default` is not implemented for `Tail`
+    |
+help: consider annotating `Tail` with `#[derive(Default)]`
+    |
+ 15 + #[derive(Default)]
+ 16 | struct Tail {
+    |
+
+error[E0384]: cannot assign twice to immutable variable `r`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_005/target.rs:139:5
+    |
+133 |     let r = check_designated_init();
+    |         - first assignment to `r`
+...
+139 |     r = check_union_aliasing_via_flattened_names();
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot assign twice to immutable variable
+    |
+help: consider making this binding mutable
+    |
+133 |     let mut r = check_designated_init();
+    |         +++
+
+error[E0384]: cannot assign twice to immutable variable `r`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_c13/sample_005/target.rs:145:5
+    |
+133 |     let r = check_designated_init();
+    |         - first assignment to `r`
+...
+145 |     r = check_addressability();
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot assign twice to immutable variable
+    |
+help: consider making this binding mutable
+    |
+133 |     let mut r = check_designated_init();
+    |         +++
+
+error: aborting due to 13 previous errors
+
+Some errors have detailed explanations: E0277, E0384, E0609.
+For more information about an error, try `rustc --explain E0277`.

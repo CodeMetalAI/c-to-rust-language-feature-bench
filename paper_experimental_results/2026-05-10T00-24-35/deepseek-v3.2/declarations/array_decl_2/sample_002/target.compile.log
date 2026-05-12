@@ -1,0 +1,136 @@
+error: unknown start of token: \u{ff0c}
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:44:36
+   |
+44 |         let mut y: [i32; 7] = [1, 2， 3, 4, 5, 6];
+   |                                    ^^
+   |
+help: Unicode character '，' (Fullwidth Comma) looks like ',' (Comma), but it is not
+   |
+44 -         let mut y: [i32; 7] = [1, 2， 3, 4, 5, 6];
+44 +         let mut y: [i32; 7] = [1, 2, 3, 4, 5, 6];
+   |
+
+error: struct fields are separated by `,`
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:7:16
+  |
+6 | struct HoldP {
+  |        ----- while parsing this struct
+7 |     p: *mut i32;
+  |                ^ help: replace `;` with `,`
+
+error: expected item, found `;`
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:8:2
+  |
+8 | };
+  |  ^
+  |
+  = help: braced struct declarations are not followed by a semicolon
+help: remove this semicolon
+  |
+8 - };
+8 + }
+  |
+
+error: struct fields are separated by `,`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:11:13
+   |
+10 | struct HoldA {
+   |        ----- while parsing this struct
+11 |     tag: i32;
+   |             ^ help: replace `;` with `,`
+
+error: struct fields are separated by `,`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:12:16
+   |
+10 | struct HoldA {
+   |        ----- while parsing this struct
+11 |     tag: i32;
+12 |     a: [i32; 7];
+   |                ^ help: replace `;` with `,`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:18:9
+   |
+18 | /         unsafe {
+19 | |             s += *p.offset(i as isize);
+20 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:34:5
+   |
+34 | /     unsafe {
+35 | |         *p.offset(1) += 5;
+36 | |         *p.offset(0 as isize) += 50;
+37 | |         *p.offset(2)
+38 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:42:5
+   |
+42 | /     unsafe {
+43 | |         // Initialize y array
+44 | |         let mut y: [i32; 7] = [1, 2， 3, 4, 5, 6];
+...  |
+93 | |         Ok(())
+94 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:74:9
+   |
+74 | /         unsafe {
+75 | |             if (*ha).a[0] != 1 {
+76 | |                 return Err("ha->a[0] incorrect".into());
+...  |
+86 | |         }
+   | |_________^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:44:31
+   |
+44 |         let mut y: [i32; 7] = [1, 2， 3, 4, 5, 6];
+   |                    --------   ^^^^^^^^^^^^^^^^^^^ expected an array with a size of 7, found one with a size of 6
+   |                    |     |
+   |                    |     help: consider specifying the actual array length: `6`
+   |                    expected due to this
+
+error[E0608]: cannot index into a value of type `*mut i32`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:69:16
+   |
+69 |         if hp.p[0] != 1 {
+   |                ^^^
+   |
+help: consider using `wrapping_add` or `add` for indexing into raw pointer
+   |
+69 -         if hp.p[0] != 1 {
+69 +         if hp.p.wrapping_add(0) != 1 {
+   |
+
+error[E0606]: casting `&mut i32` as `*mut HoldA` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:73:30
+   |
+73 |         let ha: *mut HoldA = &mut y[0] as *mut HoldA;
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0609]: no field `member` on type `T`
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:100:24
+    |
+100 |     mem::offset_of!(T, member)
+    |                        ^^^^^^
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_002/target.rs:4:31
+  |
+4 | static mut X: *mut i32 = &mut BACKING[0] as *mut i32;
+  |                               ^^^^^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 14 previous errors
+
+Some errors have detailed explanations: E0133, E0308, E0606, E0608, E0609.
+For more information about an error, try `rustc --explain E0133`.

@@ -1,0 +1,177 @@
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_003/target.rs:10:38
+   |
+10 |     static mut p_i4: *mut i32 = &mut i4;
+   |                                      ^^ non-constant value
+   |
+help: consider using `let` instead of `static`
+   |
+10 -     static mut p_i4: *mut i32 = &mut i4;
+10 +     let p_i4: *mut i32 = &mut i4;
+   |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_003/target.rs:16:5
+   |
+16 | /     unsafe {
+17 | |         if *i2 != 2 {
+18 | |             return 2;
+...  |
+23 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_003/target.rs:27:5
+   |
+27 | /     unsafe {
+28 | |         if *i5 != 0 {
+29 | |             return 5;
+30 | |         }
+31 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_003/target.rs:36:5
+   |
+36 | /     unsafe {
+37 | |         if *p_i2 != &i2 {
+38 | |             return 7;
+...  |
+46 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_003/target.rs:49:5
+   |
+49 | /     unsafe {
+50 | |         *i2 = 20;
+51 | |         *i4 = 30;
+52 | |         *i5 = 40;
+53 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_003/target.rs:55:8
+   |
+55 |     if unsafe { *p_i1 } != 10 {
+   |        ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_003/target.rs:58:5
+   |
+58 | /     unsafe {
+59 | |         if *p_i2 != 20 {
+60 | |             return 11;
+...  |
+68 | |     }
+   | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_003/target.rs:14:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+14 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_003/target.rs:17:12
+   |
+17 |         if *i2 != 2 {
+   |            ^^^ can't be dereferenced
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_003/target.rs:20:12
+   |
+20 |         if *i3 != 3 {
+   |            ^^^ can't be dereferenced
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_003/target.rs:28:12
+   |
+28 |         if *i5 != 0 {
+   |            ^^^ can't be dereferenced
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_003/target.rs:37:21
+   |
+37 |         if *p_i2 != &i2 {
+   |            -----    ^^^ expected `i32`, found `&i32`
+   |            |
+   |            expected because this is `i32`
+   |
+help: consider removing the borrow
+   |
+37 -         if *p_i2 != &i2 {
+37 +         if *p_i2 != i2 {
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_003/target.rs:40:21
+   |
+40 |         if *p_i4 != &i4 {
+   |            -----    ^^^ expected `i32`, found `&{integer}`
+   |            |
+   |            expected because this is `i32`
+   |
+help: consider removing the borrow
+   |
+40 -         if *p_i4 != &i4 {
+40 +         if *p_i4 != i4 {
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_003/target.rs:43:21
+   |
+43 |         if *p_i5 != &i5 {
+   |            -----    ^^^ expected `i32`, found `&i32`
+   |            |
+   |            expected because this is `i32`
+   |
+help: consider removing the borrow
+   |
+43 -         if *p_i5 != &i5 {
+43 +         if *p_i5 != i5 {
+   |
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_003/target.rs:50:9
+   |
+50 |         *i2 = 20;
+   |         ^^^ can't be dereferenced
+
+error[E0614]: type `{integer}` cannot be dereferenced
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_003/target.rs:51:9
+   |
+51 |         *i4 = 30;
+   |         ^^^ can't be dereferenced
+
+error[E0614]: type `i32` cannot be dereferenced
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_003/target.rs:52:9
+   |
+52 |         *i5 = 40;
+   |         ^^^ can't be dereferenced
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_003/target.rs:9:36
+  |
+9 |     static mut p_i2: *const i32 = &i2;
+  |                                    ^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/external_definitions/external_objs_1/sample_003/target.rs:11:38
+   |
+11 |     static mut p_i5: *mut i32 = &mut i5;
+   |                                      ^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 19 previous errors
+
+Some errors have detailed explanations: E0133, E0308, E0435, E0614.
+For more information about an error, try `rustc --explain E0133`.

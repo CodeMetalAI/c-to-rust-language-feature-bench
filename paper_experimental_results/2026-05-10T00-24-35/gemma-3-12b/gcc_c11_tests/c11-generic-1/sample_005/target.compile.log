@@ -1,0 +1,155 @@
+error: expected a pattern, found an expression
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_005/target.rs:46:38
+   |
+46 |         ptr @ std::ptr::NonNull::new(0 as *mut i32) => 0,
+   |                                      ^^^^^^^^^^^^^ not a pattern
+   |
+   = note: arbitrary expressions are not allowed in patterns: <https://doc.rust-lang.org/book/ch19-00-patterns.html>
+help: consider moving the expression to a match arm guard
+   |
+46 -         ptr @ std::ptr::NonNull::new(0 as *mut i32) => 0,
+46 +         ptr @ std::ptr::NonNull::new(val) if val == 0 as *mut i32 => 0,
+   |
+help: consider extracting the expression into a `const`
+   |
+45 +     const VAL: /* Type */ = 0 as *mut i32;
+46 ~     check(match &a {
+47 ~         ptr @ std::ptr::NonNull::new(VAL) => 0,
+   |
+
+error: expected a pattern, found an expression
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_005/target.rs:56:38
+   |
+56 |         ptr @ std::ptr::NonNull::new(0 as *const i32) => 0,
+   |                                      ^^^^^^^^^^^^^^^ not a pattern
+   |
+   = note: arbitrary expressions are not allowed in patterns: <https://doc.rust-lang.org/book/ch19-00-patterns.html>
+help: consider moving the expression to a match arm guard
+   |
+56 -         ptr @ std::ptr::NonNull::new(0 as *const i32) => 0,
+56 +         ptr @ std::ptr::NonNull::new(val) if val == 0 as *const i32 => 0,
+   |
+help: consider extracting the expression into a `const`
+   |
+55 +     const VAL: /* Type */ = 0 as *const i32;
+56 ~     check(match &ca {
+57 ~         ptr @ std::ptr::NonNull::new(VAL) => 0,
+   |
+
+error: `match` arm with no body
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_005/target.rs:32:9
+   |
+32 |         n
+   |         ^
+   |
+help: add a body after the pattern
+   |
+32 |         n => { todo!() }
+   |           ++++++++++++++
+
+error: `match` arm with no body
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_005/target.rs:39:9
+   |
+39 |         n
+   |         ^
+   |
+help: add a body after the pattern
+   |
+39 |         n => { todo!() }
+   |           ++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_005/target.rs:22:13
+   |
+19 | /     match n {
+20 | |         n_val if n_val as f64 > 0.0 => {
+21 | |             n += 1;
+22 | |             n as i32
+   | |             ^^^^^^^^ expected `()`, found `i32`
+23 | |         }
+24 | |         _ => 0,
+25 | |     }
+   | |_____- expected this to be `()`
+
+error[E0308]: `match` arms have incompatible types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_005/target.rs:31:14
+   |
+29 |       check(match cn {
+   |  ___________-
+30 | |         cn_val if cn_val == 0 => 0,
+   | |                                  - this is found to be of type `i32`
+31 | |         _ => n += 1,
+   | |              ^^^^^^ expected `i32`, found `()`
+32 | |         n
+33 | |     });
+   | |_____- `match` arms have incompatible types
+
+error[E0308]: `match` arms have incompatible types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_005/target.rs:38:14
+   |
+36 |       check(match (n as i64) as i32 {
+   |  ___________-
+37 | |         cn_val if cn_val == 0 => 0,
+   | |                                  - this is found to be of type `i32`
+38 | |         _ => n += 1,
+   | |              ^^^^^^ expected `i32`, found `()`
+39 | |         n
+40 | |     });
+   | |_____- `match` arms have incompatible types
+
+error[E0164]: expected tuple struct or tuple variant, found associated function `std::ptr::NonNull::new`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_005/target.rs:46:15
+   |
+46 |         ptr @ std::ptr::NonNull::new(0 as *mut i32) => 0,
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `fn` calls are not allowed in patterns
+   |
+   = help: for more information, visit https://doc.rust-lang.org/book/ch19-00-patterns.html
+
+error[E0164]: expected tuple struct or tuple variant, found associated function `std::ptr::NonNull::new`
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_005/target.rs:56:15
+   |
+56 |         ptr @ std::ptr::NonNull::new(0 as *const i32) => 0,
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `fn` calls are not allowed in patterns
+   |
+   = help: for more information, visit https://doc.rust-lang.org/book/ch19-00-patterns.html
+
+error[E0308]: `match` arms have incompatible types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_005/target.rs:69:14
+   |
+67 |       check(match &f {
+   |  ___________-
+68 | |         fn_ptr @ _ => 0,
+   | |                       - this is found to be of type `i32`
+69 | |         _ => n += 1,
+   | |              ^^^^^^ expected `i32`, found `()`
+70 | |     });
+   | |_____- `match` arms have incompatible types
+
+error[E0308]: `match` arms have incompatible types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_005/target.rs:76:14
+   |
+74 |       check(match &abort {
+   |  ___________-
+75 | |         fn_ptr @ _ => 0,
+   | |                       - this is found to be of type `i32`
+76 | |         _ => n += 1,
+   | |              ^^^^^^ expected `i32`, found `()`
+77 | |     });
+   | |_____- `match` arms have incompatible types
+
+error[E0308]: `match` arms have incompatible types
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/gcc_c11_tests/c11-generic-1/sample_005/target.rs:84:14
+   |
+82 |       check(match s {
+   |  ___________-
+83 | |         _ if s == 0 => 0,
+   | |                        - this is found to be of type `i32`
+84 | |         _ => n += 1,
+   | |              ^^^^^^ expected `i32`, found `()`
+85 | |     });
+   | |_____- `match` arms have incompatible types
+
+error: aborting due to 12 previous errors
+
+Some errors have detailed explanations: E0164, E0308.
+For more information about an error, try `rustc --explain E0164`.

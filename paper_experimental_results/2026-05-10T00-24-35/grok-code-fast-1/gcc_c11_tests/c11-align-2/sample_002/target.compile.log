@@ -1,0 +1,35 @@
+error[E0260]: the name `std` is defined multiple times
+  |
+  = note: `std` must be defined only once in the type namespace of this module
+
+error[E0428]: the name `S` is defined multiple times
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_002/target.rs:66:1
+   |
+39 | static S: AlignedI16 = AlignedI16(0);
+   | ------------------------------------- previous definition of the value `S` here
+...
+66 | struct S;
+   | ^^^^^^^^^ `S` redefined here
+   |
+   = note: `S` must be defined only once in the value namespace of this module
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_002/target.rs:50:8
+   |
+50 | #[repr(align(16))]
+   |        ^^^^^^^^^
+51 | static X: i32 = 0;
+   | ------------------ not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/c11-align-2/sample_002/target.rs:56:8
+   |
+56 | #[repr(align(16))] // alignas(E)
+   |        ^^^^^^^^^
+57 | static Y: i32 = 0;
+   | ------------------ not a struct, enum, or union
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0260, E0428, E0517.
+For more information about an error, try `rustc --explain E0260`.

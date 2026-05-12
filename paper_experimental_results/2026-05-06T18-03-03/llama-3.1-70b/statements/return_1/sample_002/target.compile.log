@@ -1,0 +1,33 @@
+error: this trait cannot be derived for unions
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_002/target.rs:6:10
+  |
+6 | #[derive(Debug, Default, Copy, Clone)]
+  |          ^^^^^
+
+error: this trait cannot be derived for unions
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_002/target.rs:6:17
+  |
+6 | #[derive(Debug, Default, Copy, Clone)]
+  |                 ^^^^^^^
+
+error[E0599]: no function or associated item named `u1` found for union `U` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_002/target.rs:13:8
+   |
+ 7 | union U {
+   | ------- function or associated item `u1` not found for this union
+...
+13 |     U::u1.1
+   |        ^^ function or associated item not found in `U`
+
+error[E0599]: no function or associated item named `u1` found for union `U` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/statements/return_1/sample_002/target.rs:21:20
+   |
+ 7 | union U {
+   | ------- function or associated item `u1` not found for this union
+...
+21 |     let mut g = U::u1((0, S { i: 0.0 }));
+   |                    ^^ function or associated item not found in `U`
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

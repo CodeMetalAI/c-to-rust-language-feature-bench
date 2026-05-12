@@ -1,0 +1,36 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/add_op_c9/sample_001/target.rs:6:20
+  |
+6 |     let one_past = unsafe { &a[4] }; // Safe access to one past the end of the array
+  |                    ^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/add_op_c9/sample_001/target.rs:1:14
+  |
+1 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/add_op_c9/sample_001/target.rs:9:16
+  |
+9 |     if d_pq != -2 {
+  |                ^^ cannot apply unary operator `-`
+  |
+  = note: unsigned values cannot be negated
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/add_op_c9/sample_001/target.rs:24:16
+   |
+24 |     let rhs2 = -(p as *const _ as usize - one_past as *const _ as usize) / std::mem::size_of::<i32>();
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0277, E0600.
+For more information about an error, try `rustc --explain E0277`.

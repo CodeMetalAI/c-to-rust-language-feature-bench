@@ -1,0 +1,110 @@
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_005/target.rs:37:14
+   |
+37 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error: lifetime may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_005/target.rs:21:9
+   |
+19 | fn retarget_ptr_to_const(b: &mut Bundle, a: &Rc<RefCell<i32>>, c: &Rc<RefCell<i32>>, sel: i32) {
+   |                          -                  - let's call the lifetime of this reference `'1`
+   |                          |
+   |                          has type `&mut Bundle<'2>`
+20 |     if sel != 0 {
+21 |         b.p_to_const = a;
+   |         ^^^^^^^^^^^^^^^^ assignment requires that `'1` must outlive `'2`
+   |
+help: consider introducing a named lifetime parameter
+   |
+19 | fn retarget_ptr_to_const<'a>(b: &mut Bundle<'a>, a: &'a Rc<RefCell<i32>>, c: &Rc<RefCell<i32>>, sel: i32) {
+   |                         ++++               ++++      ++
+
+error: lifetime may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_005/target.rs:23:9
+   |
+19 | fn retarget_ptr_to_const(b: &mut Bundle, a: &Rc<RefCell<i32>>, c: &Rc<RefCell<i32>>, sel: i32) {
+   |                          - has type `&mut Bundle<'2>`             - let's call the lifetime of this reference `'3`
+...
+23 |         b.p_to_const = c;
+   |         ^^^^^^^^^^^^^^^^ assignment requires that `'3` must outlive `'2`
+   |
+help: consider introducing a named lifetime parameter
+   |
+19 | fn retarget_ptr_to_const<'a>(b: &mut Bundle<'a>, a: &Rc<RefCell<i32>>, c: &'a Rc<RefCell<i32>>, sel: i32) {
+   |                         ++++               ++++                            ++
+
+error[E0382]: borrow of moved value: `b`
+    --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_005/target.rs:74:6
+     |
+  45 |     let mut b = Bundle {
+     |         ----- move occurs because `b` has type `Bundle<'_>`, which does not implement the `Copy` trait
+...
+  51 |     if check_bundle(b, &x) != 0 {
+     |                     - value moved here
+...
+  74 |     *b.const_p_via_typedef.borrow_mut() += 7;
+     |      ^^^^^^^^^^^^^^^^^^^^^ value borrowed here after move
+     |
+note: consider changing this parameter type in function `check_bundle` to borrow instead if owning the value isn't necessary
+    --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_005/target.rs:27:20
+     |
+  27 | fn check_bundle(b: Bundle, expected_const_p_target: &Rc<RefCell<i32>>) -> i32 {
+     |    ------------    ^^^^^^ this parameter takes ownership of the value
+     |    |
+     |    in this function
+note: if `Bundle<'_>` implemented `Clone`, you could clone the value
+    --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_005/target.rs:4:1
+     |
+   4 | struct Bundle<'a> {
+     | ^^^^^^^^^^^^^^^^^ consider implementing `Clone` for this type
+...
+  51 |     if check_bundle(b, &x) != 0 {
+     |                     - you could clone this value
+     = note: borrow occurs due to deref coercion to `RefCell<i32>`
+note: deref defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/rc.rs:2252:5
+     |
+2252 |     type Target = T;
+     |     ^^^^^^^^^^^
+
+error[E0382]: borrow of moved value: `b`
+    --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_005/target.rs:83:9
+     |
+  45 |     let mut b = Bundle {
+     |         ----- move occurs because `b` has type `Bundle<'_>`, which does not implement the `Copy` trait
+...
+  79 |     if check_bundle(b, &x) != 0 {
+     |                     - value moved here
+...
+  83 |     if *b.p_to_const.borrow() != 21 {
+     |         ^^^^^^^^^^^^ value borrowed here after move
+     |
+note: consider changing this parameter type in function `check_bundle` to borrow instead if owning the value isn't necessary
+    --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_005/target.rs:27:20
+     |
+  27 | fn check_bundle(b: Bundle, expected_const_p_target: &Rc<RefCell<i32>>) -> i32 {
+     |    ------------    ^^^^^^ this parameter takes ownership of the value
+     |    |
+     |    in this function
+note: if `Bundle<'_>` implemented `Clone`, you could clone the value
+    --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_005/target.rs:4:1
+     |
+   4 | struct Bundle<'a> {
+     | ^^^^^^^^^^^^^^^^^ consider implementing `Clone` for this type
+...
+  79 |     if check_bundle(b, &x) != 0 {
+     |                     - you could clone this value
+     = note: borrow occurs due to deref coercion to `RefCell<i32>`
+note: deref defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/rc.rs:2252:5
+     |
+2252 |     type Target = T;
+     |     ^^^^^^^^^^^
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0277, E0382.
+For more information about an error, try `rustc --explain E0277`.

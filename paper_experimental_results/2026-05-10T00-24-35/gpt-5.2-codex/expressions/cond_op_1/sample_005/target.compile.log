@@ -1,0 +1,57 @@
+error[E0277]: `*const ()` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/gpt-5.2-codex/expressions/cond_op_1/sample_005/target.rs:3:14
+  |
+3 | static C_VP: *const () = ptr::null();
+  |              ^^^^^^^^^ `*const ()` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*const ()`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*mut ()` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/gpt-5.2-codex/expressions/cond_op_1/sample_005/target.rs:4:12
+  |
+4 | static VP: *mut () = ptr::null_mut();
+  |            ^^^^^^^ `*mut ()` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*mut ()`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*const i32` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/gpt-5.2-codex/expressions/cond_op_1/sample_005/target.rs:5:14
+  |
+5 | static C_IP: *const i32 = ptr::null();
+  |              ^^^^^^^^^^ `*const i32` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*const i32`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*mut i32` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/gpt-5.2-codex/expressions/cond_op_1/sample_005/target.rs:6:14
+  |
+6 | static V_IP: *mut i32 = ptr::null_mut();
+  |              ^^^^^^^^ `*mut i32` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*mut i32`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*mut i32` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/gpt-5.2-codex/expressions/cond_op_1/sample_005/target.rs:7:12
+  |
+7 | static IP: *mut i32 = ptr::null_mut();
+  |            ^^^^^^^^ `*mut i32` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*mut i32`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0277]: `*const i8` cannot be shared between threads safely
+ --> benchmark_results/2026-05-10T00-24-35/gpt-5.2-codex/expressions/cond_op_1/sample_005/target.rs:8:14
+  |
+8 | static C_CP: *const i8 = ptr::null();
+  |              ^^^^^^^^^ `*const i8` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `*const i8`
+  = note: shared static variables must have a type that implements `Sync`
+
+error: aborting due to 6 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

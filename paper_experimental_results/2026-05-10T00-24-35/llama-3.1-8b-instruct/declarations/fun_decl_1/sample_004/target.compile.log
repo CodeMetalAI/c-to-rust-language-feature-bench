@@ -1,0 +1,98 @@
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_004/target.rs:5:5
+  |
+5 |     gstore[0] = 111;
+  |     ^^^^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_004/target.rs:6:5
+  |
+6 |     gstore[0] + 1
+  |     ^^^^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_004/target.rs:10:5
+   |
+10 |     gstore[1] = 222;
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_004/target.rs:11:6
+   |
+11 |     &gstore[1]
+   |      ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_004/target.rs:15:5
+   |
+15 |     gstore[2] = 333;
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_004/target.rs:16:5
+   |
+16 |     gstore[2] - 1
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_004/target.rs:20:5
+   |
+20 |     gstore[3] = 444;
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_004/target.rs:21:5
+   |
+21 |     gstore[3] + 2
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_004/target.rs:44:17
+   |
+44 |     let v_fip = *fip();
+   |                 ^^^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_004/target.rs:49:15
+   |
+49 |     if choose(gstore[0]) == 0 {
+   |               ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0384]: cannot assign twice to immutable variable `pfi`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/fun_decl_1/sample_004/target.rs:50:9
+   |
+37 |     let pfi: fn() -> i32 = alt0;
+   |         --- first assignment to `pfi`
+...
+50 |         pfi = alt1
+   |         ^^^^^^^^^^ cannot assign twice to immutable variable
+   |
+help: consider making this binding mutable
+   |
+37 |     let mut pfi: fn() -> i32 = alt0;
+   |         +++
+
+error: aborting due to 11 previous errors
+
+Some errors have detailed explanations: E0133, E0384.
+For more information about an error, try `rustc --explain E0133`.

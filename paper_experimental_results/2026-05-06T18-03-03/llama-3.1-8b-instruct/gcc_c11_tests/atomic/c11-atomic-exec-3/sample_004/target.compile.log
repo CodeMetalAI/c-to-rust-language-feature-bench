@@ -1,0 +1,129 @@
+error[E0428]: the name `test_incdec` is defined multiple times
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:53:1
+   |
+ 5 | / fn test_incdec<T: std::sync::atomic::AtomicUsize + std::sync::atomic::AtomicIsize>(
+ 6 | |     value: T,
+ 7 | |     preop: fn(T) -> T,
+ 8 | |     postop: fn(T) -> T,
+...  |
+19 | | }
+   | |_- previous definition of the value `test_incdec` here
+...
+53 |   fn test_incdec() {
+   |   ^^^^^^^^^^^^^^^^ `test_incdec` redefined here
+   |
+   = note: `test_incdec` must be defined only once in the value namespace of this module
+
+error[E0432]: unresolved imports `std::sync::atomic::AtomicChar`, `std::sync::atomic::AtomicF32`, `std::sync::atomic::AtomicF64`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:1:37
+  |
+1 | use std::sync::atomic::{AtomicBool, AtomicChar, AtomicI8, AtomicU8, AtomicI16, AtomicU16,
+  |                                     ^^^^^^^^^^ no `AtomicChar` in `sync::atomic`
+2 |                         AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicF32, AtomicF64,
+  |                                                                     ^^^^^^^^^  ^^^^^^^^^ no `AtomicF64` in `sync::atomic`
+  |                                                                     |
+  |                                                                     no `AtomicF32` in `sync::atomic`
+  |
+help: a similar name exists in the module
+  |
+1 - use std::sync::atomic::{AtomicBool, AtomicChar, AtomicI8, AtomicU8, AtomicI16, AtomicU16,
+1 + use std::sync::atomic::{AtomicBool, AtomicPtr, AtomicI8, AtomicU8, AtomicI16, AtomicU16,
+  |
+help: a similar name exists in the module
+  |
+2 -                         AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicF32, AtomicF64,
+2 +                         AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicI32, AtomicF64,
+  |
+help: a similar name exists in the module
+  |
+2 -                         AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicF32, AtomicF64,
+2 +                         AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicF32, AtomicI64,
+  |
+
+error[E0404]: expected trait, found struct `std::sync::atomic::AtomicUsize`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:5:19
+  |
+5 | fn test_incdec<T: std::sync::atomic::AtomicUsize + std::sync::atomic::AtomicIsize>(
+  |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a trait
+
+error[E0404]: expected trait, found struct `std::sync::atomic::AtomicIsize`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:5:52
+  |
+5 | fn test_incdec<T: std::sync::atomic::AtomicUsize + std::sync::atomic::AtomicIsize>(
+  |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a trait
+
+error[E0433]: failed to resolve: use of undeclared type `Atomic`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:12:13
+   |
+12 |     let a = Atomic::new(value);
+   |             ^^^^^^ use of undeclared type `Atomic`
+   |
+help: a struct with a similar name exists
+   |
+12 |     let a = AtomicI8::new(value);
+   |                   ++
+help: consider importing this type alias
+   |
+ 1 + use std::sync::atomic::Atomic;
+   |
+
+error[E0404]: expected trait, found struct `std::sync::atomic::AtomicUsize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:21:25
+   |
+21 | fn test_incdec_arith<T: std::sync::atomic::AtomicUsize + std::sync::atomic::AtomicIsize>(
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a trait
+
+error[E0404]: expected trait, found struct `std::sync::atomic::AtomicIsize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:21:58
+   |
+21 | fn test_incdec_arith<T: std::sync::atomic::AtomicUsize + std::sync::atomic::AtomicIsize>(
+   |                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a trait
+
+error[E0404]: expected trait, found struct `std::sync::atomic::AtomicUsize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:44:29
+   |
+44 | fn test_all_incdec_arith<T: std::sync::atomic::AtomicUsize + std::sync::atomic::AtomicIsize>(
+   |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a trait
+
+error[E0404]: expected trait, found struct `std::sync::atomic::AtomicIsize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:44:62
+   |
+44 | fn test_all_incdec_arith<T: std::sync::atomic::AtomicUsize + std::sync::atomic::AtomicIsize>(
+   |                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a trait
+
+warning: unused imports: `AtomicBool`, `AtomicI128`, `AtomicI16`, `AtomicI32`, `AtomicI64`, `AtomicI8`, `AtomicU128`, `AtomicU16`, `AtomicU32`, `AtomicU64`, and `AtomicU8`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:1:25
+  |
+1 | use std::sync::atomic::{AtomicBool, AtomicChar, AtomicI8, AtomicU8, AtomicI16, AtomicU16,
+  |                         ^^^^^^^^^^              ^^^^^^^^  ^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^
+2 |                         AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicF32, AtomicF64,
+  |                         ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^
+3 |                         AtomicI128, AtomicU128};
+  |                         ^^^^^^^^^^  ^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0658]: use of unstable library feature `integer_atomics`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:3:25
+  |
+3 |                         AtomicI128, AtomicU128};
+  |                         ^^^^^^^^^^
+  |
+  = note: see issue #99069 <https://github.com/rust-lang/rust/issues/99069> for more information
+  = help: add `#![feature(integer_atomics)]` to the crate attributes to enable
+  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: use of unstable library feature `integer_atomics`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_004/target.rs:3:37
+  |
+3 |                         AtomicI128, AtomicU128};
+  |                                     ^^^^^^^^^^
+  |
+  = note: see issue #99069 <https://github.com/rust-lang/rust/issues/99069> for more information
+  = help: add `#![feature(integer_atomics)]` to the crate attributes to enable
+  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error: aborting due to 11 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0404, E0428, E0432, E0433, E0658.
+For more information about an error, try `rustc --explain E0404`.

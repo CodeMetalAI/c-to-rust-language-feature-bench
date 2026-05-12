@@ -1,0 +1,518 @@
+error[E0428]: the name `test_incdec` is defined multiple times
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:76:1
+   |
+ 4 | fn test_incdec<T: Copy>(value: T, change: T, preop: bool, postop: bool) {
+   | ----------------------------------------------------------------------- previous definition of the value `test_incdec` here
+...
+76 | fn test_incdec() {
+   | ^^^^^^^^^^^^^^^^ `test_incdec` redefined here
+   |
+   = note: `test_incdec` must be defined only once in the value namespace of this module
+
+warning: unused imports: `AtomicI16`, `AtomicI32`, `AtomicI64`, `AtomicI8`, `AtomicIsize`, `AtomicU16`, `AtomicU32`, `AtomicU64`, `AtomicU8`, and `AtomicUsize`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:1:25
+  |
+1 | use std::sync::atomic::{AtomicI8, AtomicU8, AtomicI16, AtomicU16, AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicIsize, AtomicUsize};
+  |                         ^^^^^^^^  ^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:5:47
+     |
+   5 |     let a = std::sync::atomic::AtomicPtr::new(&value);
+     |             --------------------------------- ^^^^^^ types differ in mutability
+     |             |
+     |             arguments to this function are incorrect
+     |
+     = note: expected raw pointer `*mut _`
+                  found reference `&T`
+note: associated function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:1486:18
+     |
+1486 |     pub const fn new(p: *mut T) -> AtomicPtr<T> {
+     |                  ^^^
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:9:17
+  |
+9 |                 (x as *const T).offset(change as isize)
+  |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Option<*mut _>`, found `*const T`
+  |
+  = note:     expected enum `Option<*mut _>`
+          found raw pointer `*const T`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:11:22
+    |
+ 11 |                 Some((x as *const T).offset(1))
+    |                 ---- ^^^^^^^^^^^^^^^^^^^^^^^^^ types differ in mutability
+    |                 |
+    |                 arguments to this enum variant are incorrect
+    |
+    = note: expected raw pointer `*mut _`
+               found raw pointer `*const T`
+help: the type constructed contains `*const T` due to the type of the argument passed
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:11:17
+    |
+ 11 |                 Some((x as *const T).offset(1))
+    |                 ^^^^^-------------------------^
+    |                      |
+    |                      this argument influences the type of `Some`
+note: tuple variant defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/option.rs:601:5
+    |
+601 |     Some(#[stable(feature = "rust1", since = "1.0.0")] T),
+    |     ^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:17:22
+    |
+ 17 |                 Some((x as *const T).offset(change as isize))
+    |                 ---- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ types differ in mutability
+    |                 |
+    |                 arguments to this enum variant are incorrect
+    |
+    = note: expected raw pointer `*mut _`
+               found raw pointer `*const T`
+help: the type constructed contains `*const T` due to the type of the argument passed
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:17:17
+    |
+ 17 |                 Some((x as *const T).offset(change as isize))
+    |                 ^^^^^---------------------------------------^
+    |                      |
+    |                      this argument influences the type of `Some`
+note: tuple variant defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/option.rs:601:5
+    |
+601 |     Some(#[stable(feature = "rust1", since = "1.0.0")] T),
+    |     ^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:19:17
+   |
+19 |                 (x as *const T).offset(1)
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Option<*mut _>`, found `*const T`
+   |
+   = note:     expected enum `Option<*mut _>`
+           found raw pointer `*const T`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:41:13
+   |
+41 |             (value as *const T).offset(change as isize)
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut _`
+              found raw pointer `*const T`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:43:13
+   |
+43 |             (value as *const T).offset(1)
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut _`
+              found raw pointer `*const T`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:47:13
+   |
+47 |             (value as *const T).offset(change as isize)
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut _`
+              found raw pointer `*const T`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:49:13
+   |
+49 |             value as *const T
+   |             ^^^^^^^^^^^^^^^^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut _`
+              found raw pointer `*const T`
+
+error[E0605]: non-primitive cast: `T` as `isize`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:9:40
+  |
+9 |                 (x as *const T).offset(change as isize)
+  |                                        ^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `isize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:17:45
+   |
+17 |                 Some((x as *const T).offset(change as isize))
+   |                                             ^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `*const T`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:25:13
+   |
+25 |             (value as *const T).offset(change as isize)
+   |             ^^^^^^^^^^^^^^^^^^^ invalid cast
+   |
+help: consider borrowing the value
+   |
+25 |             (&value as *const T).offset(change as isize)
+   |              +
+
+error[E0605]: non-primitive cast: `T` as `isize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:25:40
+   |
+25 |             (value as *const T).offset(change as isize)
+   |                                        ^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `*const T`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:27:13
+   |
+27 |             (value as *const T).offset(1)
+   |             ^^^^^^^^^^^^^^^^^^^ invalid cast
+   |
+help: consider borrowing the value
+   |
+27 |             (&value as *const T).offset(1)
+   |              +
+
+error[E0605]: non-primitive cast: `T` as `*const T`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:31:13
+   |
+31 |             (value as *const T).offset(change as isize)
+   |             ^^^^^^^^^^^^^^^^^^^ invalid cast
+   |
+help: consider borrowing the value
+   |
+31 |             (&value as *const T).offset(change as isize)
+   |              +
+
+error[E0605]: non-primitive cast: `T` as `isize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:31:40
+   |
+31 |             (value as *const T).offset(change as isize)
+   |                                        ^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `*const T`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:33:13
+   |
+33 |             value as *const T
+   |             ^^^^^^^^^^^^^^^^^ invalid cast
+   |
+help: consider borrowing the value
+   |
+33 |             &value as *const T
+   |             +
+
+error[E0605]: non-primitive cast: `T` as `*const T`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:41:13
+   |
+41 |             (value as *const T).offset(change as isize)
+   |             ^^^^^^^^^^^^^^^^^^^ invalid cast
+   |
+help: consider borrowing the value
+   |
+41 |             (&value as *const T).offset(change as isize)
+   |              +
+
+error[E0605]: non-primitive cast: `T` as `isize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:41:40
+   |
+41 |             (value as *const T).offset(change as isize)
+   |                                        ^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `*const T`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:43:13
+   |
+43 |             (value as *const T).offset(1)
+   |             ^^^^^^^^^^^^^^^^^^^ invalid cast
+   |
+help: consider borrowing the value
+   |
+43 |             (&value as *const T).offset(1)
+   |              +
+
+error[E0605]: non-primitive cast: `T` as `*const T`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:47:13
+   |
+47 |             (value as *const T).offset(change as isize)
+   |             ^^^^^^^^^^^^^^^^^^^ invalid cast
+   |
+help: consider borrowing the value
+   |
+47 |             (&value as *const T).offset(change as isize)
+   |              +
+
+error[E0605]: non-primitive cast: `T` as `isize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:47:40
+   |
+47 |             (value as *const T).offset(change as isize)
+   |                                        ^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `*const T`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:49:13
+   |
+49 |             value as *const T
+   |             ^^^^^^^^^^^^^^^^^ invalid cast
+   |
+help: consider borrowing the value
+   |
+49 |             &value as *const T
+   |             +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:57:24
+   |
+56 | fn test_all_incdec_arith<T: Copy>(value: T) {
+   |                          - expected this type parameter
+57 |     test_incdec(value, 1, true, false);
+   |     ----------- -----  ^ expected type parameter `T`, found integer
+   |     |           |
+   |     |           expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:4:4
+   |
+ 4 | fn test_incdec<T: Copy>(value: T, change: T, preop: bool, postop: bool) {
+   |    ^^^^^^^^^^^ -        --------  --------- this parameter needs to match the type parameter `T` type of `value`
+   |                |        |
+   |                |        `change` needs to match the type parameter `T` type of this parameter
+   |                `value` and `change` both reference this parameter `T`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:58:24
+   |
+56 | fn test_all_incdec_arith<T: Copy>(value: T) {
+   |                          - expected this type parameter
+57 |     test_incdec(value, 1, true, false);
+58 |     test_incdec(value, -1, true, false);
+   |     ----------- -----  ^^ expected type parameter `T`, found integer
+   |     |           |
+   |     |           expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:4:4
+   |
+ 4 | fn test_incdec<T: Copy>(value: T, change: T, preop: bool, postop: bool) {
+   |    ^^^^^^^^^^^ -        --------  --------- this parameter needs to match the type parameter `T` type of `value`
+   |                |        |
+   |                |        `change` needs to match the type parameter `T` type of this parameter
+   |                `value` and `change` both reference this parameter `T`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:59:24
+   |
+56 | fn test_all_incdec_arith<T: Copy>(value: T) {
+   |                          - expected this type parameter
+...
+59 |     test_incdec(value, 1, false, true);
+   |     ----------- -----  ^ expected type parameter `T`, found integer
+   |     |           |
+   |     |           expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:4:4
+   |
+ 4 | fn test_incdec<T: Copy>(value: T, change: T, preop: bool, postop: bool) {
+   |    ^^^^^^^^^^^ -        --------  --------- this parameter needs to match the type parameter `T` type of `value`
+   |                |        |
+   |                |        `change` needs to match the type parameter `T` type of this parameter
+   |                `value` and `change` both reference this parameter `T`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:60:24
+   |
+56 | fn test_all_incdec_arith<T: Copy>(value: T) {
+   |                          - expected this type parameter
+...
+60 |     test_incdec(value, -1, false, true);
+   |     ----------- -----  ^^ expected type parameter `T`, found integer
+   |     |           |
+   |     |           expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:4:4
+   |
+ 4 | fn test_incdec<T: Copy>(value: T, change: T, preop: bool, postop: bool) {
+   |    ^^^^^^^^^^^ -        --------  --------- this parameter needs to match the type parameter `T` type of `value`
+   |                |        |
+   |                |        `change` needs to match the type parameter `T` type of this parameter
+   |                `value` and `change` both reference this parameter `T`
+
+error[E0605]: non-primitive cast: `T` as `i8`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:64:33
+   |
+64 |     test_all_incdec_arith::<i8>(value as i8);
+   |                                 ^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `u8`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:65:33
+   |
+65 |     test_all_incdec_arith::<u8>(value as u8);
+   |                                 ^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `i16`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:66:34
+   |
+66 |     test_all_incdec_arith::<i16>(value as i16);
+   |                                  ^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `u16`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:67:34
+   |
+67 |     test_all_incdec_arith::<u16>(value as u16);
+   |                                  ^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:68:34
+   |
+68 |     test_all_incdec_arith::<i32>(value as i32);
+   |                                  ^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `u32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:69:34
+   |
+69 |     test_all_incdec_arith::<u32>(value as u32);
+   |                                  ^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `i64`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:70:34
+   |
+70 |     test_all_incdec_arith::<i64>(value as i64);
+   |                                  ^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `u64`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:71:34
+   |
+71 |     test_all_incdec_arith::<u64>(value as u64);
+   |                                  ^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `isize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:72:36
+   |
+72 |     test_all_incdec_arith::<isize>(value as isize);
+   |                                    ^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:73:36
+   |
+73 |     test_all_incdec_arith::<usize>(value as usize);
+   |                                    ^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:84:25
+   |
+84 |     test_incdec(&ia[1], 1, true, false);
+   |     ----------- ------  ^ expected `&{integer}`, found integer
+   |     |           |
+   |     |           expected some other arguments to be an `&{integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:4:4
+   |
+ 4 | fn test_incdec<T: Copy>(value: T, change: T, preop: bool, postop: bool) {
+   |    ^^^^^^^^^^^ -        --------  --------- this parameter needs to match the `&{integer}` type of `value`
+   |                |        |
+   |                |        `change` needs to match the `&{integer}` type of this parameter
+   |                `value` and `change` both reference this parameter `T`
+help: consider borrowing here
+   |
+84 |     test_incdec(&ia[1], &1, true, false);
+   |                         +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:85:25
+   |
+85 |     test_incdec(&ia[1], -1, true, false);
+   |     ----------- ------  ^^ expected `&{integer}`, found integer
+   |     |           |
+   |     |           expected some other arguments to be an `&{integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:4:4
+   |
+ 4 | fn test_incdec<T: Copy>(value: T, change: T, preop: bool, postop: bool) {
+   |    ^^^^^^^^^^^ -        --------  --------- this parameter needs to match the `&{integer}` type of `value`
+   |                |        |
+   |                |        `change` needs to match the `&{integer}` type of this parameter
+   |                `value` and `change` both reference this parameter `T`
+help: consider borrowing here
+   |
+85 |     test_incdec(&ia[1], &-1, true, false);
+   |                         +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:86:25
+   |
+86 |     test_incdec(&ia[1], 1, false, true);
+   |     ----------- ------  ^ expected `&{integer}`, found integer
+   |     |           |
+   |     |           expected some other arguments to be an `&{integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:4:4
+   |
+ 4 | fn test_incdec<T: Copy>(value: T, change: T, preop: bool, postop: bool) {
+   |    ^^^^^^^^^^^ -        --------  --------- this parameter needs to match the `&{integer}` type of `value`
+   |                |        |
+   |                |        `change` needs to match the `&{integer}` type of this parameter
+   |                `value` and `change` both reference this parameter `T`
+help: consider borrowing here
+   |
+86 |     test_incdec(&ia[1], &1, false, true);
+   |                         +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:87:25
+   |
+87 |     test_incdec(&ia[1], -1, false, true);
+   |     ----------- ------  ^^ expected `&{integer}`, found integer
+   |     |           |
+   |     |           expected some other arguments to be an `&{integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:4:4
+   |
+ 4 | fn test_incdec<T: Copy>(value: T, change: T, preop: bool, postop: bool) {
+   |    ^^^^^^^^^^^ -        --------  --------- this parameter needs to match the `&{integer}` type of `value`
+   |                |        |
+   |                |        `change` needs to match the `&{integer}` type of this parameter
+   |                `value` and `change` both reference this parameter `T`
+help: consider borrowing here
+   |
+87 |     test_incdec(&ia[1], &-1, false, true);
+   |                         +
+
+error[E0061]: this function takes 4 arguments but 0 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:91:5
+   |
+91 |     test_incdec();
+   |     ^^^^^^^^^^^-- multiple arguments are missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:4:4
+   |
+ 4 | fn test_incdec<T: Copy>(value: T, change: T, preop: bool, postop: bool) {
+   |    ^^^^^^^^^^^          --------  ---------  -----------  ------------
+help: provide the arguments
+   |
+91 |     test_incdec(/* value */, /* change */, /* bool */, /* bool */);
+   |                 +++++++++++++++++++++++++++++++++++++++++++++++++
+
+error: aborting due to 43 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0061, E0308, E0428, E0605.
+For more information about an error, try `rustc --explain E0061`.

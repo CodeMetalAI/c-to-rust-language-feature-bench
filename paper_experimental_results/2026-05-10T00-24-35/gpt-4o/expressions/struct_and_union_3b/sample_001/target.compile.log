@@ -1,0 +1,24 @@
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/struct_and_union_3b/sample_001/target.rs:28:14
+   |
+28 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0503]: cannot use `*u` because it was mutably borrowed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/struct_and_union_3b/sample_001/target.rs:18:38
+   |
+16 |         U12::S1(s1) => {
+   |                 -- `u.0` is borrowed here
+17 |             if s1.m < 0 {
+18 |                 if let U12::S2(s2) = u {
+   |                                      ^ use of borrowed `u.0`
+...
+22 |             s1.m
+   |             ---- borrow later used here
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0277, E0503.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,55 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/grok-code-fast-1/combined_programs/combined_features/sample_005/target.rs:54:21
+   |
+54 |               let b = unsafe {
+   |  _____________________^
+55 | |                 let ptr = x.as_ptr() as *const i32;
+56 | |                 *ptr.offset((i * 5 + j) as isize)
+57 | |             };
+   | |_____________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/grok-code-fast-1/combined_programs/combined_features/sample_005/target.rs:64:14
+   |
+64 |     let p0 = unsafe { x.as_ptr() as *const i32 };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/grok-code-fast-1/combined_programs/combined_features/sample_005/target.rs:65:14
+   |
+65 |     let p1 = unsafe { x.as_ptr().offset(5) as *const i32 };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/grok-code-fast-1/combined_programs/combined_features/sample_005/target.rs:66:16
+   |
+66 |     let diff = unsafe { (p1 as usize - p0 as usize) / std::mem::size_of::<i32>() };
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/grok-code-fast-1/combined_programs/combined_features/sample_005/target.rs:64:14
+   |
+64 |     let p0 = unsafe { x.as_ptr() as *const i32 };
+   |              ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/grok-code-fast-1/combined_programs/combined_features/sample_005/target.rs:66:16
+   |
+66 |     let diff = unsafe { (p1 as usize - p0 as usize) / std::mem::size_of::<i32>() };
+   |                ^^^^^^ unnecessary `unsafe` block
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-11T22-01-24/grok-code-fast-1/combined_programs/combined_features/sample_005/target.rs:88:9
+   |
+88 |     let mut tp: &mut T1;
+   |         ----^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 4 previous errors; 3 warnings emitted

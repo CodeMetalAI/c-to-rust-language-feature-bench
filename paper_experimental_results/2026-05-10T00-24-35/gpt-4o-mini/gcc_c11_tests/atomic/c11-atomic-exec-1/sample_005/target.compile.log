@@ -1,0 +1,110 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:48:16
+   |
+48 |     let copy = unsafe { s1.load(std::sync::atomic::Ordering::SeqCst) };
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: the trait bound `(f32, f32): From<u8>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:32:30
+   |
+32 |     test_simple_assign_arith((2.5f32, 3.5f32)); // Complex-like tuple
+   |     ------------------------ ^^^^^^^^^^^^^^^^ the trait `From<u8>` is not implemented for `(f32, f32)`
+   |     |
+   |     required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `From<T>`:
+             `(T, T)` implements `From<[T; 2]>`
+             `(T, T, T)` implements `From<[T; 3]>`
+             `(T, T, T, T)` implements `From<[T; 4]>`
+             `(T, T, T, T, T)` implements `From<[T; 5]>`
+             `(T, T, T, T, T, T)` implements `From<[T; 6]>`
+             `(T, T, T, T, T, T, T)` implements `From<[T; 7]>`
+             `(T, T, T, T, T, T, T, T)` implements `From<[T; 8]>`
+             `(T, T, T, T, T, T, T, T, T)` implements `From<[T; 9]>`
+           and 4 others
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:5:55
+   |
+ 5 |     fn test_simple_assign_arith<T: PartialEq + Copy + From<u8>>(value: T) {
+   |                                                       ^^^^^^^^ required by this bound in `test_simple_assign_arith`
+
+error[E0277]: the trait bound `*const i32: From<u8>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:35:30
+   |
+35 |     test_simple_assign_arith(std::ptr::null::<i32>());
+   |     ------------------------ ^^^^^^^^^^^^^^^^^^^^^^^ the trait `From<u8>` is not implemented for `*const i32`
+   |     |
+   |     required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `From<T>`:
+             `i32` implements `From<bool>`
+             `i32` implements `From<i16>`
+             `i32` implements `From<i8>`
+             `i32` implements `From<u16>`
+             `i32` implements `From<u8>`
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:5:55
+   |
+ 5 |     fn test_simple_assign_arith<T: PartialEq + Copy + From<u8>>(value: T) {
+   |                                                       ^^^^^^^^ required by this bound in `test_simple_assign_arith`
+
+error[E0277]: the trait bound `&i32: From<u8>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:36:30
+   |
+36 |     test_simple_assign_arith(&i);
+   |     ------------------------ ^^ the trait `From<u8>` is not implemented for `&i32`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:5:55
+   |
+ 5 |     fn test_simple_assign_arith<T: PartialEq + Copy + From<u8>>(value: T) {
+   |                                                       ^^^^^^^^ required by this bound in `test_simple_assign_arith`
+help: consider removing the leading `&`-reference
+   |
+36 -     test_simple_assign_arith(&i);
+36 +     test_simple_assign_arith(i);
+   |
+
+error[E0277]: the trait bound `usize: From<T>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:17:19
+   |
+17 |         a.store(b.into(), std::sync::atomic::Ordering::SeqCst);
+   |                   ^^^^ the trait `From<T>` is not implemented for `usize`
+   |
+   = note: required for `T` to implement `Into<usize>`
+help: consider introducing a `where` clause, but there might be an alternative better way to express this requirement
+   |
+ 5 |     fn test_simple_assign_arith<T: PartialEq + Copy + From<u8>>(value: T) where usize: From<T> {
+   |                                                                           ++++++++++++++++++++
+
+error[E0277]: the trait bound `usize: From<T>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:18:61
+   |
+18 |         if a.load(std::sync::atomic::Ordering::SeqCst) != b.into() {
+   |                                                             ^^^^ the trait `From<T>` is not implemented for `usize`
+   |
+   = note: required for `T` to implement `Into<usize>`
+help: consider introducing a `where` clause, but there might be an alternative better way to express this requirement
+   |
+ 5 |     fn test_simple_assign_arith<T: PartialEq + Copy + From<u8>>(value: T) where usize: From<T> {
+   |                                                                           ++++++++++++++++++++
+
+error[E0277]: the trait bound `usize: From<T>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:22:61
+   |
+22 |         if a.load(std::sync::atomic::Ordering::SeqCst) != b.into() {
+   |                                                             ^^^^ the trait `From<T>` is not implemented for `usize`
+   |
+   = note: required for `T` to implement `Into<usize>`
+help: consider introducing a `where` clause, but there might be an alternative better way to express this requirement
+   |
+ 5 |     fn test_simple_assign_arith<T: PartialEq + Copy + From<u8>>(value: T) where usize: From<T> {
+   |                                                                           ++++++++++++++++++++
+
+error: aborting due to 7 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

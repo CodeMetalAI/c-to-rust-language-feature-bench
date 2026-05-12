@@ -1,0 +1,66 @@
+error[E0277]: the trait bound `[i16; 1024]: Default` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:43:9
+   |
+41 |     #[derive(Copy, Clone, PartialEq, Default)]
+   |                                      ------- in this derive macro expansion
+42 |     struct S {
+43 |         a: [i16; 1024],
+   |         ^^^^^^^^^^^^^^ the trait `Default` is not implemented for `[i16; 1024]`
+   |
+   = help: the following other types implement trait `Default`:
+             &[T]
+             &mut [T]
+             [T; 0]
+             [T; 10]
+             [T; 11]
+             [T; 12]
+             [T; 13]
+             [T; 14]
+           and 27 others
+
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:5:9
+  |
+5 |     let mut b: T = value;
+  |         ----^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `copy` is never read
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:47:13
+   |
+47 |     let mut copy = S { a: [0; 1024] };
+   |             ^^^^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `s1` is never read
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:48:13
+   |
+48 |     let mut s1 = S { a: [0; 1024] };
+   |             ^^
+   |
+   = help: maybe it is overwritten before being read?
+
+warning: value assigned to `s2` is never read
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:49:13
+   |
+49 |     let mut s2 = S { a: [0; 1024] };
+   |             ^^
+   |
+   = help: maybe it is overwritten before being read?
+
+error: this arithmetic operation will overflow
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:32:30
+   |
+32 |     test_simple_assign_arith(1 << 63);
+   |                              ^^^^^^^ attempt to shift left by `63_i32`, which would overflow
+   |
+   = note: `#[deny(arithmetic_overflow)]` on by default
+
+error: aborting due to 2 previous errors; 4 warnings emitted
+
+For more information about this error, try `rustc --explain E0277`.

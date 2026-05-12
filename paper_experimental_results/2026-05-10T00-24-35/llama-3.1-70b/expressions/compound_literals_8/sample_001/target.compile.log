@@ -1,0 +1,32 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/compound_literals_8/sample_001/target.rs:21:19
+   |
+21 |     let q_value = unsafe { (*q).i };
+   |                   ^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/compound_literals_8/sample_001/target.rs:22:19
+   |
+22 |     let p_value = unsafe { (*p).i };
+   |                   ^^^^^^^^^^^^^^^^^
+
+warning: value assigned to `q` is never read
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/compound_literals_8/sample_001/target.rs:7:13
+  |
+7 |     let mut q: *mut S = std::ptr::null_mut();
+  |             ^
+  |
+  = help: maybe it is overwritten before being read?
+  = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `p_value`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/compound_literals_8/sample_001/target.rs:22:9
+   |
+22 |     let p_value = unsafe { (*p).i };
+   |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_p_value`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 2 previous errors; 2 warnings emitted

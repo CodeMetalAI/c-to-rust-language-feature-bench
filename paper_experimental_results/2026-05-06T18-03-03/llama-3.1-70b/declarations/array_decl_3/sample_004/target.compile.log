@@ -1,0 +1,115 @@
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_3/sample_004/target.rs:1:50
+  |
+1 | fn check_a(nn: usize, mm: usize, a: &[[[i32; 6]; mm]; nn], p: &[[[i32; 6]; mm]]) -> i32 {
+  |                       --                         ^^
+  |                       |
+  |                       this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_3/sample_004/target.rs:1:55
+  |
+1 | fn check_a(nn: usize, mm: usize, a: &[[[i32; 6]; mm]; nn], p: &[[[i32; 6]; mm]]) -> i32 {
+  |            -- this would need to be a `const`         ^^
+
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_3/sample_004/target.rs:1:76
+  |
+1 | fn check_a(nn: usize, mm: usize, a: &[[[i32; 6]; mm]; nn], p: &[[[i32; 6]; mm]]) -> i32 {
+  |                       -- this would need to be a `const`                   ^^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_3/sample_004/target.rs:14:51
+   |
+14 | fn check_c(nn: usize, mm: usize, c: &[[[[i32; 6]; mm]; nn]; nn], r: &[[[i32; 6]; mm]; nn]) -> i32 {
+   |                       --                          ^^
+   |                       |
+   |                       this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_3/sample_004/target.rs:14:56
+   |
+14 | fn check_c(nn: usize, mm: usize, c: &[[[[i32; 6]; mm]; nn]; nn], r: &[[[i32; 6]; mm]; nn]) -> i32 {
+   |            -- this would need to be a `const`          ^^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_3/sample_004/target.rs:14:61
+   |
+14 | fn check_c(nn: usize, mm: usize, c: &[[[[i32; 6]; mm]; nn]; nn], r: &[[[i32; 6]; mm]; nn]) -> i32 {
+   |            -- this would need to be a `const`               ^^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_3/sample_004/target.rs:14:82
+   |
+14 | fn check_c(nn: usize, mm: usize, c: &[[[[i32; 6]; mm]; nn]; nn], r: &[[[i32; 6]; mm]; nn]) -> i32 {
+   |                       -- this would need to be a `const`                         ^^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_3/sample_004/target.rs:14:87
+   |
+14 | fn check_c(nn: usize, mm: usize, c: &[[[[i32; 6]; mm]; nn]; nn], r: &[[[i32; 6]; mm]; nn]) -> i32 {
+   |            -- this would need to be a `const`                                         ^^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_3/sample_004/target.rs:33:27
+   |
+33 |     let mut a = [[[0; 6]; mm]; nn];
+   |                           ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+31 -     let mm = nn + 1;
+31 +     const mm: /* Type */ = nn + 1;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_3/sample_004/target.rs:33:32
+   |
+33 |     let mut a = [[[0; 6]; mm]; nn];
+   |                                ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+30 -     let nn = 6;
+30 +     const nn: /* Type */ = 6;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_3/sample_004/target.rs:34:28
+   |
+34 |     let mut c = [[[[0; 6]; mm]; nn]; nn];
+   |                            ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+31 -     let mm = nn + 1;
+31 +     const mm: /* Type */ = nn + 1;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_3/sample_004/target.rs:34:33
+   |
+34 |     let mut c = [[[[0; 6]; mm]; nn]; nn];
+   |                                 ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+30 -     let nn = 6;
+30 +     const nn: /* Type */ = 6;
+   |
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_3/sample_004/target.rs:34:38
+   |
+34 |     let mut c = [[[[0; 6]; mm]; nn]; nn];
+   |                                      ^^ non-constant value
+   |
+help: consider using `const` instead of `let`
+   |
+30 -     let nn = 6;
+30 +     const nn: /* Type */ = 6;
+   |
+
+error: aborting due to 13 previous errors
+
+For more information about this error, try `rustc --explain E0435`.

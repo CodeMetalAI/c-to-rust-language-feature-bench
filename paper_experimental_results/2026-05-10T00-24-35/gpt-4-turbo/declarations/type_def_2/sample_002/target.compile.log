@@ -1,0 +1,85 @@
+error[E0382]: use of moved value: `a`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_2/sample_002/target.rs:35:25
+   |
+31 |     let mut a = S1 { x: 10 };
+   |         ----- move occurs because `a` has type `S1`, which does not implement the `Copy` trait
+...
+34 |     assert_eq!(takes_t1(a), 11);
+   |                         - value moved here
+35 |     assert_eq!(takes_s1(a), 12);
+   |                         ^ value used here after move
+   |
+note: consider changing this parameter type in function `takes_t1` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_2/sample_002/target.rs:9:16
+   |
+ 9 | fn takes_t1(v: S1) -> i32 {
+   |    --------    ^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `S1` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_2/sample_002/target.rs:1:1
+   |
+ 1 | struct S1 {
+   | ^^^^^^^^^ consider implementing `Clone` for this type
+...
+34 |     assert_eq!(takes_t1(a), 11);
+   |                         - you could clone this value
+
+error[E0382]: use of moved value: `b`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_2/sample_002/target.rs:37:25
+   |
+32 |     let b = S1 { x: 20 };
+   |         - move occurs because `b` has type `S1`, which does not implement the `Copy` trait
+...
+36 |     assert_eq!(takes_t1(b), 21);
+   |                         - value moved here
+37 |     assert_eq!(takes_s1(b), 22);
+   |                         ^ value used here after move
+   |
+note: consider changing this parameter type in function `takes_t1` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_2/sample_002/target.rs:9:16
+   |
+ 9 | fn takes_t1(v: S1) -> i32 {
+   |    --------    ^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `S1` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_2/sample_002/target.rs:1:1
+   |
+ 1 | struct S1 {
+   | ^^^^^^^^^ consider implementing `Clone` for this type
+...
+36 |     assert_eq!(takes_t1(b), 21);
+   |                         - you could clone this value
+
+error[E0382]: use of moved value: `a`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_2/sample_002/target.rs:40:8
+   |
+31 |     let mut a = S1 { x: 10 };
+   |         ----- move occurs because `a` has type `S1`, which does not implement the `Copy` trait
+...
+35 |     assert_eq!(takes_s1(a), 12);
+   |                         - value moved here
+...
+40 |     if a.x != 13 {
+   |        ^^^ value used here after move
+   |
+note: consider changing this parameter type in function `takes_s1` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_2/sample_002/target.rs:13:16
+   |
+13 | fn takes_s1(v: S1) -> i32 {
+   |    --------    ^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `S1` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/type_def_2/sample_002/target.rs:1:1
+   |
+ 1 | struct S1 {
+   | ^^^^^^^^^ consider implementing `Clone` for this type
+...
+35 |     assert_eq!(takes_s1(a), 12);
+   |                         - you could clone this value
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0382`.

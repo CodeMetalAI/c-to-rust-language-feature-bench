@@ -1,0 +1,80 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_1/sample_001/target.rs:36:5
+   |
+36 | /     unsafe {
+37 | |         let r_f = f();
+38 | |         if r_f != 112 {
+39 | |             std::process::exit(1);
+...  |
+77 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_1/sample_001/target.rs:2:5
+  |
+2 |     GSTORE[0] = 111;
+  |     ^^^^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_1/sample_001/target.rs:3:5
+  |
+3 |     GSTORE[0] + 1
+  |     ^^^^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_1/sample_001/target.rs:7:5
+  |
+7 |     GSTORE[1] = 222;
+  |     ^^^^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_1/sample_001/target.rs:8:6
+  |
+8 |     &GSTORE[1]
+  |      ^^^^^^ use of mutable static
+  |
+  = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_1/sample_001/target.rs:12:5
+   |
+12 |     GSTORE[2] = 333;
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_1/sample_001/target.rs:13:5
+   |
+13 |     GSTORE[2] - 1
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_1/sample_001/target.rs:17:5
+   |
+17 |     GSTORE[3] = 444;
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/fun_decl_1/sample_001/target.rs:18:5
+   |
+18 |     GSTORE[3] + 2
+   |     ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 9 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

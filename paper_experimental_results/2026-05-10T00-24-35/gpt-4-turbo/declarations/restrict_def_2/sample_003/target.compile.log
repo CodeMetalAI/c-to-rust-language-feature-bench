@@ -1,0 +1,93 @@
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2/sample_003/target.rs:26:9
+   |
+26 |         f(n, &mut buf[0..n], &buf[off..off+n]);
+   |         ^    --------------  ---------------- expected `&[i32]`, found `&[usize]`
+   |              |
+   |              expected `&mut [i32]`, found `&mut [usize]`
+   |
+   = note: expected mutable reference `&mut [i32]`
+              found mutable reference `&mut [usize]`
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2/sample_003/target.rs:1:4
+   |
+ 1 | fn f(n: usize, p: &mut [i32], q: &[i32]) {
+   |    ^           -------------  ---------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2/sample_003/target.rs:28:13
+   |
+28 |         if !check_range_eq(&buf[0..n], &snapshot[off..off+n], n) {
+   |             ^^^^^^^^^^^^^^ ----------  --------------------- expected `&[i32]`, found `&[usize]`
+   |                            |
+   |                            expected `&[i32]`, found `&[usize]`
+   |
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2/sample_003/target.rs:7:4
+   |
+ 7 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^ ---------  ---------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2/sample_003/target.rs:32:13
+   |
+32 |         if !check_range_eq(&buf[off..off+n], &snapshot[off..off+n], n) {
+   |             ^^^^^^^^^^^^^^ ----------------  --------------------- expected `&[i32]`, found `&[usize]`
+   |                            |
+   |                            expected `&[i32]`, found `&[usize]`
+   |
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2/sample_003/target.rs:7:4
+   |
+ 7 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^ ---------  ---------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2/sample_003/target.rs:47:9
+   |
+47 |         f(n, &mut buf[off..off+n], &buf[0..n]);
+   |         ^    --------------------  ---------- expected `&[i32]`, found `&[usize]`
+   |              |
+   |              expected `&mut [i32]`, found `&mut [usize]`
+   |
+   = note: expected mutable reference `&mut [i32]`
+              found mutable reference `&mut [usize]`
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2/sample_003/target.rs:1:4
+   |
+ 1 | fn f(n: usize, p: &mut [i32], q: &[i32]) {
+   |    ^           -------------  ---------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2/sample_003/target.rs:49:13
+   |
+49 |         if !check_range_eq(&buf[off..off+n], &buf[0..n], n) {
+   |             ^^^^^^^^^^^^^^ ----------------  ---------- expected `&[i32]`, found `&[usize]`
+   |                            |
+   |                            expected `&[i32]`, found `&[usize]`
+   |
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+   = note: expected reference `&[i32]`
+              found reference `&[usize]`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_2/sample_003/target.rs:7:4
+   |
+ 7 | fn check_range_eq(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^^^^^^^^^^^ ---------  ---------
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

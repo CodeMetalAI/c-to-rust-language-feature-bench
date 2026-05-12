@@ -1,0 +1,131 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_001/target.rs:13:26
+   |
+13 | static mut X: *mut i32 = unsafe { &mut BACKING[0] };
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_001/target.rs:19:9
+   |
+19 | /         unsafe {
+20 | |             s += *p.offset(i as isize);
+21 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_001/target.rs:38:5
+   |
+38 | /     unsafe {
+39 | |         *p.offset(1) += 5;
+40 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_001/target.rs:41:5
+   |
+41 |     unsafe { *p.offset(0) + *p.offset(1) + *p.offset(2) }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_001/target.rs:45:5
+   |
+45 | /     unsafe {
+46 | |         Y[0] = 1;
+47 | |         Y[1] = 2;
+48 | |         Y[2] = 3;
+...  |
+52 | |         Y[6] = 7;
+53 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_001/target.rs:55:17
+   |
+55 |     if sum_arr7(unsafe { &Y }) != (1 + 2 + 3 + 4 + 5 + 6 + 7) {
+   |                 ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_001/target.rs:67:8
+   |
+67 |     if unsafe { BACKING[1] } != 25 {
+   |        ^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_001/target.rs:72:17
+   |
+72 |         let t = unsafe { &Y };
+   |                 ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_001/target.rs:79:33
+   |
+79 |         let mut hp = HoldP { p: unsafe { &mut Y[0] } };
+   |                                 ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_001/target.rs:80:12
+   |
+80 |         if unsafe { *hp.p } != 1 {
+   |            ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_001/target.rs:84:18
+   |
+84 |         let ha = unsafe { &*(Y.as_ptr() as *const HoldA) };
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_001/target.rs:86:12
+   |
+86 |         if unsafe { (ha.a.as_ptr() as *const u8).offset(0) } != unsafe { (ha as *const HoldA as *const u8).offset(std::mem::size_of::<i32>() as isize) } {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_001/target.rs:86:65
+   |
+86 |         if unsafe { (ha.a.as_ptr() as *const u8).offset(0) } != unsafe { (ha as *const HoldA as *const u8).offset(std::mem::size_of::<i32>() as isize) } {
+   |                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_001/target.rs:90:12
+   |
+90 |         if unsafe { *ha.a.as_ptr().offset(2) } != 3 {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_001/target.rs:95:8
+   |
+95 |     if unsafe { Y[0] } != 1 {
+   |        ^^^^^^^^^^^^^^^
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_001/target.rs:59:16
+   |
+59 |     if sum_ptr(X, 3) != (10 + 20 + 30) {
+   |                ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_001/target.rs:63:31
+   |
+63 |     if mutate_through_pointer(X) != (10 + 25 + 30) {
+   |                               ^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/array_decl_2/sample_001/target.rs:79:13
+   |
+79 |         let mut hp = HoldP { p: unsafe { &mut Y[0] } };
+   |             ----^^
+   |             |
+   |             help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 17 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0133`.

@@ -1,0 +1,63 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/restrict_def_4b/sample_001/target.rs:16:5
+   |
+16 | /     unsafe {
+17 | |         if n == 0 {
+18 | |             return Some(&mut POOL[OFF as usize..]);
+...  |
+31 | |         Some(p)
+32 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/restrict_def_4b/sample_001/target.rs:39:21
+   |
+39 |         let slice = unsafe { std::slice::from_raw_parts_mut(ptr, n as usize) };
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/restrict_def_4b/sample_001/target.rs:88:5
+   |
+88 | /     unsafe {
+89 | |         if (H & 1) == 0 {
+90 | |             return 6;
+91 | |         }
+92 | |     }
+   | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/restrict_def_4b/sample_001/target.rs:63:14
+   |
+63 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0596]: cannot borrow `a.v` as mutable, as `a` is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/restrict_def_4b/sample_001/target.rs:77:14
+   |
+77 |     fill_vec(&mut a.v, a.n, 1.0);
+   |              ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+64 |     let mut a = match new_vector(16) {
+   |         +++
+
+error[E0596]: cannot borrow `b.v` as mutable, as `b` is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/restrict_def_4b/sample_001/target.rs:78:14
+   |
+78 |     fill_vec(&mut b.v, b.n, 100.0);
+   |              ^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+68 |     let mut b = match new_vector(16) {
+   |         +++
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0277, E0596.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,92 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/struct_and_union_2/sample_001/target.rs:16:5
+   |
+16 | /     unsafe {
+17 | |         f(&mut S.i);
+18 | |         f4(&S.ci);
+...  |
+54 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+warning: unused variable: `p`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/struct_and_union_2/sample_001/target.rs:10:6
+   |
+10 | fn f(p: &mut i32) {}
+   |      ^ help: if this is intentional, prefix it with an underscore: `_p`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `p`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/struct_and_union_2/sample_001/target.rs:11:7
+   |
+11 | fn f4(p: &i32) {}
+   |       ^ help: if this is intentional, prefix it with an underscore: `_p`
+
+warning: unused variable: `p`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/struct_and_union_2/sample_001/target.rs:12:7
+   |
+12 | fn f2(p: &mut i32) {}
+   |       ^ help: if this is intentional, prefix it with an underscore: `_p`
+
+warning: unused variable: `p`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/struct_and_union_2/sample_001/target.rs:13:6
+   |
+13 | fn g(p: &i32) {}
+   |      ^ help: if this is intentional, prefix it with an underscore: `_p`
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/struct_and_union_2/sample_001/target.rs:17:11
+   |
+17 |         f(&mut S.i);
+   |           ^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw mut` instead to create a raw pointer
+   |
+17 |         f(&raw mut S.i);
+   |            +++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/struct_and_union_2/sample_001/target.rs:18:12
+   |
+18 |         f4(&S.ci);
+   |            ^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+18 |         f4(&raw const S.ci);
+   |             +++++++++
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/struct_and_union_2/sample_001/target.rs:23:12
+   |
+23 |         f2(&mut VS.i);
+   |            ^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+help: use `&raw mut` instead to create a raw pointer
+   |
+23 |         f2(&raw mut VS.i);
+   |             +++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/struct_and_union_2/sample_001/target.rs:24:11
+   |
+24 |         g(&VS.ci);
+   |           ^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+24 |         g(&raw const VS.ci);
+   |            +++++++++
+
+error: aborting due to 1 previous error; 8 warnings emitted

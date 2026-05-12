@@ -1,0 +1,64 @@
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_OR_op_c4/sample_003/target.rs:6:10
+  |
+6 |     if !(set_g_return(1, 0) || g == 1) {
+  |          ^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_OR_op_c4/sample_003/target.rs:7:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+7 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_OR_op_c4/sample_003/target.rs:11:8
+   |
+11 |     if set_g_return(0, 1) || y += 1 != 0 {
+   |        ^^^^^^^^^^^^^^^^^^ expected `bool`, found `i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_OR_op_c4/sample_003/target.rs:11:30
+   |
+11 |     if set_g_return(0, 1) || y += 1 != 0 {
+   |                              ^ expected `bool`, found `i32`
+
+error[E0368]: binary assignment operation `+=` cannot be applied to type `bool`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_OR_op_c4/sample_003/target.rs:11:8
+   |
+11 |     if set_g_return(0, 1) || y += 1 != 0 {
+   |        -----------------------^^^^^^^^^^
+   |        |
+   |        cannot use `+=` on type `bool`
+
+error[E0067]: invalid left-hand side of assignment
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_OR_op_c4/sample_003/target.rs:11:32
+   |
+11 |     if set_g_return(0, 1) || y += 1 != 0 {
+   |        ----------------------- ^^
+   |        |
+   |        cannot assign to this expression
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_OR_op_c4/sample_003/target.rs:18:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+18 |     0
+   |     ^ expected `()`, found integer
+
+warning: unused variable: `ret`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/logical_OR_op_c4/sample_003/target.rs:21:28
+   |
+21 | fn set_g_return(gval: i32, ret: i32) -> i32 {
+   |                            ^^^ help: if this is intentional, prefix it with an underscore: `_ret`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 7 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0067, E0308, E0368.
+For more information about an error, try `rustc --explain E0067`.

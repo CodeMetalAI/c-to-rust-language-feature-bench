@@ -1,0 +1,35 @@
+warning: unused import: `std::mem`
+ --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_3a/sample_005/target.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_3a/sample_005/target.rs:35:5
+   |
+35 | /     unsafe {
+36 | |         u.nf.type_ = 1;
+37 | |         u.nf.doublenode = 3.14;
+...  |
+51 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/struct_and_union_3a/sample_005/target.rs:22:5
+   |
+22 |     n: N,
+   |     ^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+22 |     n: std::mem::ManuallyDrop<N>,
+   |        +++++++++++++++++++++++ +
+
+error: aborting due to 2 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0740`.

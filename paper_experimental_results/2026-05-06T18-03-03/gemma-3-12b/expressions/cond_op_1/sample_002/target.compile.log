@@ -1,0 +1,22 @@
+error: expected `mut` or `const` keyword in raw pointer type
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/cond_op_1/sample_002/target.rs:5:15
+  |
+5 |     let v_ip: *volatile i32 = std::ptr::null();
+  |               ^
+  |
+help: add `mut` or `const` here
+  |
+5 |     let v_ip: *mut volatile i32 = std::ptr::null();
+  |                +++
+5 |     let v_ip: *const volatile i32 = std::ptr::null();
+  |                +++++
+
+error: expected one of `!`, `(`, `::`, `;`, `<`, or `=`, found `i32`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/cond_op_1/sample_002/target.rs:5:25
+  |
+5 |     let v_ip: *volatile i32 = std::ptr::null();
+  |             -           ^^^ expected one of `!`, `(`, `::`, `;`, `<`, or `=`
+  |             |
+  |             while parsing the type for `v_ip`
+
+error: aborting due to 2 previous errors

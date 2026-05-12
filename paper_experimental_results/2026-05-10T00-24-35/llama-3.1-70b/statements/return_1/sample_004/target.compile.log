@@ -1,0 +1,76 @@
+error: this trait cannot be derived for unions
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/statements/return_1/sample_004/target.rs:6:10
+  |
+6 | #[derive(Debug, Default)]
+  |          ^^^^^
+
+error: this trait cannot be derived for unions
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/statements/return_1/sample_004/target.rs:6:17
+  |
+6 | #[derive(Debug, Default)]
+  |                 ^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/statements/return_1/sample_004/target.rs:33:5
+   |
+33 |     unsafe { G.u1.f2 }
+   |     ^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/statements/return_1/sample_004/target.rs:41:5
+   |
+41 | /     unsafe {
+42 | |         G.u1.f2.i = 1.0;
+43 | |         G.u2.f3.i = 1.0;
+44 | |         G.u1.f2 = f();
+...  |
+51 | |         });
+52 | |     }
+   | |_____^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/statements/return_1/sample_004/target.rs:8:5
+  |
+8 |     u1: U1,
+  |     ^^^^^^
+  |
+  = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+  |
+8 |     u1: std::mem::ManuallyDrop<U1>,
+  |         +++++++++++++++++++++++  +
+
+error[E0599]: no function or associated item named `default` found for union `U` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/statements/return_1/sample_004/target.rs:24:22
+   |
+ 7 | union U {
+   | ------- function or associated item `default` not found for this union
+...
+24 | static mut G: U = U::default();
+   |                      ^^^^^^^ function or associated item not found in `U`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `default`, perhaps you need to implement it:
+           candidate #1: `Default`
+
+error[E0507]: cannot move out of `G.u1.f2` as `G` is a static item
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/statements/return_1/sample_004/target.rs:33:14
+   |
+33 |     unsafe { G.u1.f2 }
+   |              ^^^^^^^ move occurs because `G.u1.f2` has type `S`, which does not implement the `Copy` trait
+   |
+note: if `S` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/statements/return_1/sample_004/target.rs:2:1
+   |
+ 2 | struct S {
+   | ^^^^^^^^ consider implementing `Clone` for this type
+...
+33 |     unsafe { G.u1.f2 }
+   |              ------- you could clone this value
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0507, E0599, E0740.
+For more information about an error, try `rustc --explain E0507`.

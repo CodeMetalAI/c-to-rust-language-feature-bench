@@ -1,0 +1,62 @@
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/bool_char_int_c2/sample_001/target.rs:11:14
+   |
+11 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/bool_char_int_c2/sample_001/target.rs:2:5
+  |
+1 | fn type_id<T>(_: T) -> u8 {
+  |                        -- expected `u8` because of return type
+2 |     std::any::TypeId::of::<T>() == std::any::TypeId::of::<i32>()
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `u8`, found `bool`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/bool_char_int_c2/sample_001/target.rs:12:8
+   |
+12 |     if !type_id(1i8 + 0) {
+   |        ^^^^^^^^^^^^^^^^^ expected `bool`, found `u8`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/bool_char_int_c2/sample_001/target.rs:15:8
+   |
+15 |     if !type_id(1u8 + 0) {
+   |        ^^^^^^^^^^^^^^^^^ expected `bool`, found `u8`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/bool_char_int_c2/sample_001/target.rs:18:8
+   |
+18 |     if !type_id(1i16 + 0) {
+   |        ^^^^^^^^^^^^^^^^^^ expected `bool`, found `u8`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/bool_char_int_c2/sample_001/target.rs:21:8
+   |
+21 |     if !type_id(1u16 + 0) {
+   |        ^^^^^^^^^^^^^^^^^^ expected `bool`, found `u8`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/bool_char_int_c2/sample_001/target.rs:30:8
+   |
+30 |     if !type_id(bf.u1 + 0) {
+   |        ^^^^^^^^^^^^^^^^^^^ expected `bool`, found `u8`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/bool_char_int_c2/sample_001/target.rs:33:8
+   |
+33 |     if !type_id(bf.i1 + 0) {
+   |        ^^^^^^^^^^^^^^^^^^^ expected `bool`, found `u8`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/conversions/bool_char_int_c2/sample_001/target.rs:36:8
+   |
+36 |     if !type_id(bf.b1 as i32 + 0) {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `bool`, found `u8`
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

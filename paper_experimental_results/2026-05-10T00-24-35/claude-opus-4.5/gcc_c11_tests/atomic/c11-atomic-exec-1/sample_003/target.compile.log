@@ -1,0 +1,70 @@
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:11:17
+    |
+ 11 |         A.store(0, Ordering::SeqCst);
+    |           ----- ^ expected `bool`, found integer
+    |           |
+    |           arguments to this method are incorrect
+...
+ 51 |     test_simple_assign_atomic!(AtomicBool, bool, value != 0);
+    |     -------------------------------------------------------- in this macro invocation
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:752:12
+    |
+752 |     pub fn store(&self, val: bool, order: Ordering) {
+    |            ^^^^^
+    = note: this error originates in the macro `test_simple_assign_atomic` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:15:40
+   |
+15 |         if A.load(Ordering::SeqCst) != 0 {
+   |            ------------------------    ^ expected `bool`, found integer
+   |            |
+   |            expected because this is `bool`
+...
+51 |     test_simple_assign_atomic!(AtomicBool, bool, value != 0);
+   |     -------------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign_atomic` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:7:54
+    |
+  7 |         static A: $atomic_type = <$atomic_type>::new(0);
+    |                                  ------------------- ^ expected `bool`, found integer
+    |                                  |
+    |                                  arguments to this function are incorrect
+...
+ 51 |     test_simple_assign_atomic!(AtomicBool, bool, value != 0);
+    |     -------------------------------------------------------- in this macro invocation
+    |
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:528:18
+    |
+528 |     pub const fn new(v: bool) -> AtomicBool {
+    |                  ^^^
+    = note: this error originates in the macro `test_simple_assign_atomic` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_003/target.rs:8:54
+    |
+  8 |         static B: $atomic_type = <$atomic_type>::new(0);
+    |                                  ------------------- ^ expected `bool`, found integer
+    |                                  |
+    |                                  arguments to this function are incorrect
+...
+ 51 |     test_simple_assign_atomic!(AtomicBool, bool, value != 0);
+    |     -------------------------------------------------------- in this macro invocation
+    |
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:528:18
+    |
+528 |     pub const fn new(v: bool) -> AtomicBool {
+    |                  ^^^
+    = note: this error originates in the macro `test_simple_assign_atomic` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

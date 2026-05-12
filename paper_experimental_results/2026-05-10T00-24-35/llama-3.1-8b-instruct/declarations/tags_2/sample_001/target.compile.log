@@ -1,0 +1,52 @@
+error[E0369]: binary operation `==` cannot be applied to type `Box<S1>`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/tags_2/sample_001/target.rs:20:5
+    |
+ 20 |     assert_eq!(a.s2p.unwrap().s1p.unwrap(), &a);
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     |
+    |     Box<S1>
+    |     &S1
+    |
+note: the foreign item type `Box<S1>` doesn't implement `PartialEq<&S1>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/boxed.rs:231:1
+    |
+231 | / pub struct Box<
+232 | |     T: ?Sized,
+233 | |     #[unstable(feature = "allocator_api", issue = "32838")] A: Allocator = Global,
+234 | | >(Unique<T>, A);
+    | |_^ not implement `PartialEq<&S1>`
+    = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: `S1` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/tags_2/sample_001/target.rs:20:5
+   |
+20 |     assert_eq!(a.s2p.unwrap().s1p.unwrap(), &a);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ unsatisfied trait bound
+   |
+help: the trait `Debug` is not implemented for `S1`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/tags_2/sample_001/target.rs:1:1
+   |
+ 1 | struct S1 {
+   | ^^^^^^^^^
+   = note: add `#[derive(Debug)]` to `S1` or manually `impl Debug for S1`
+   = help: the trait `Debug` is implemented for `Box<T, A>`
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: `S1` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/tags_2/sample_001/target.rs:20:5
+   |
+20 |     assert_eq!(a.s2p.unwrap().s1p.unwrap(), &a);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ unsatisfied trait bound
+   |
+help: the trait `Debug` is not implemented for `S1`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/tags_2/sample_001/target.rs:1:1
+   |
+ 1 | struct S1 {
+   | ^^^^^^^^^
+   = note: add `#[derive(Debug)]` to `S1` or manually `impl Debug for S1`
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0277, E0369.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,198 @@
+error[E0412]: cannot find type `VolatileAtomicUsize` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:1:13
+  |
+1 | const GATE: VolatileAtomicUsize = VolatileAtomicUsize::new(1);
+  |             ^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0433]: failed to resolve: use of undeclared type `AtomicOrdering`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:36:23
+   |
+36 |     let g = GATE.load(AtomicOrdering::Relaxed);
+   |                       ^^^^^^^^^^^^^^ use of undeclared type `AtomicOrdering`
+   |
+help: consider importing this enum
+   |
+ 1 + use std::intrinsics::AtomicOrdering;
+   |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:7:9
+   |
+ 7 | /         unsafe {
+ 8 | |             *p = *q;
+ 9 | |             p = p.offset(1);
+10 | |             q = q.offset(1);
+11 | |         }
+   | |_________^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:26:9
+   |
+26 | /         unsafe {
+27 | |             *p = *q;
+28 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:69:9
+   |
+69 | /         unsafe {
+70 | |             *x = i * 13 + 5;
+71 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:80:12
+   |
+80 |         if unsafe { *x }!= unsafe { *y } {
+   |            ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:80:28
+   |
+80 |         if unsafe { *x }!= unsafe { *y } {
+   |                            ^^^^^^^^^^^^^
+
+error[E0433]: failed to resolve: use of undeclared type `VolatileAtomicUsize`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:1:35
+  |
+1 | const GATE: VolatileAtomicUsize = VolatileAtomicUsize::new(1);
+  |                                   ^^^^^^^^^^^^^^^^^^^ use of undeclared type `VolatileAtomicUsize`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:20:23
+   |
+20 |         (p, q) if p < q => (p as *mut i32, q as *const i32),
+   |                       ^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut i32`
+              found raw pointer `*const i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:21:23
+   |
+21 |         (p, q) if p > q => (q as *mut i32, p as *const i32),
+   |                       ^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut i32`
+              found raw pointer `*const i32`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:70:18
+   |
+70 |             *x = i * 13 + 5;
+   |             --   ^^^^^^^^^^ expected `i32`, found `usize`
+   |             |
+   |             expected due to the type of this binding
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:91:5
+   |
+91 |     call_f_checked(&d[0], 100, 50, &d[50], &d[50]);
+   |     ^^^^^^^^^^^^^^
+   |
+note: types differ in mutability
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:91:36
+   |
+91 |     call_f_checked(&d[0], 100, 50, &d[50], &d[50]);
+   |                                    ^^^^^^
+   = note: expected raw pointer `*mut i32`
+                found reference `&i32`
+note: types differ in mutability
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:91:44
+   |
+91 |     call_f_checked(&d[0], 100, 50, &d[50], &d[50]);
+   |                                            ^^^^^^
+   = note: expected raw pointer `*mut i32`
+                found reference `&i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:58:4
+   |
+58 | fn call_f_checked(base: *const i32, n_total: usize, n: usize, p: *mut i32, q: *mut i32) {
+   |    ^^^^^^^^^^^^^^                                             -----------  -----------
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:92:5
+   |
+92 |     call_f_checked(&d[0], 100, 50, &d[1], &d[0]);
+   |     ^^^^^^^^^^^^^^
+   |
+note: types differ in mutability
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:92:36
+   |
+92 |     call_f_checked(&d[0], 100, 50, &d[1], &d[0]);
+   |                                    ^^^^^
+   = note: expected raw pointer `*mut i32`
+                found reference `&i32`
+note: types differ in mutability
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:92:43
+   |
+92 |     call_f_checked(&d[0], 100, 50, &d[1], &d[0]);
+   |                                           ^^^^^
+   = note: expected raw pointer `*mut i32`
+                found reference `&i32`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:58:4
+   |
+58 | fn call_f_checked(base: *const i32, n_total: usize, n: usize, p: *mut i32, q: *mut i32) {
+   |    ^^^^^^^^^^^^^^                                             -----------  -----------
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:83:13
+   |
+83 |         x = x.offset(1);
+   |             ^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:84:13
+   |
+84 |         y = y.offset(1);
+   |             ^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error[E0384]: cannot assign to immutable argument `x`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:83:9
+   |
+83 |         x = x.offset(1);
+   |         ^^^^^^^^^^^^^^^ cannot assign to immutable argument
+   |
+help: consider making this binding mutable
+   |
+77 | fn same(mut x: *const i32, y: *const i32, n: usize) -> bool {
+   |         +++
+
+error[E0384]: cannot assign to immutable argument `y`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:84:9
+   |
+84 |         y = y.offset(1);
+   |         ^^^^^^^^^^^^^^^ cannot assign to immutable argument
+   |
+help: consider making this binding mutable
+   |
+77 | fn same(x: *const i32, mut y: *const i32, n: usize) -> bool {
+   |                        +++
+
+warning: taking a mutable reference to a `const` item
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:98:10
+    |
+ 98 |     init(&mut d[0], 100);
+    |          ^^^^^^^^^
+    |
+    = note: each usage of a `const` item creates a new temporary
+    = note: the mutable reference will refer to this temporary, not the original `const` item
+note: `const` item defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_005/target.rs:111:1
+    |
+111 | const d: [i32; 100] = [0; 100];
+    | ^^^^^^^^^^^^^^^^^^^
+    = note: `#[warn(const_item_mutation)]` on by default
+
+error: aborting due to 17 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0133, E0308, E0384, E0412, E0433.
+For more information about an error, try `rustc --explain E0133`.

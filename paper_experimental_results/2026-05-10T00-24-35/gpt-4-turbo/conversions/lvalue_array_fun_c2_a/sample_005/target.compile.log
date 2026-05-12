@@ -1,0 +1,15 @@
+error[E0502]: cannot borrow `a` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/conversions/lvalue_array_fun_c2_a/sample_005/target.rs:20:16
+   |
+ 9 |     let pa = &mut a[..];
+   |                   - mutable borrow occurs here
+...
+20 |     if type_id(&a) != "array" {
+   |                ^^ immutable borrow occurs here
+...
+23 |     if type_id(&pa[0]) != "mutable reference" {
+   |                 ----- mutable borrow later used here
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0502`.

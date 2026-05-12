@@ -1,0 +1,65 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_3/sample_004/target.rs:20:23
+   |
+20 |         let raw_ptr = unsafe { alloc(layout) };
+   |                       ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_3/sample_004/target.rs:27:9
+   |
+27 | /         unsafe {
+28 | |             // Initialize `i`
+29 | |             ptr::write(&mut (*s_ptr).i, 0);
+...  |
+33 | |             (*s_ptr).a = a_ptr;
+34 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_3/sample_004/target.rs:36:14
+   |
+36 |         Some(unsafe { Box::from_raw(s_ptr) })
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_3/sample_004/target.rs:47:9
+   |
+47 | /         unsafe {
+48 | |             dealloc(self as *mut S as *mut u8, layout);
+49 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_3/sample_004/target.rs:72:5
+   |
+72 | /     unsafe {
+73 | |         ptr::write(p.a, 11);
+74 | |         ptr::write(p.a.add(3), 22);
+75 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_3/sample_004/target.rs:77:20
+   |
+77 |     if p.i != 7 || unsafe { ptr::read(p.a) } != 11 || unsafe { ptr::read(p.a.add(3)) } != 22 {
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_3/sample_004/target.rs:77:55
+   |
+77 |     if p.i != 7 || unsafe { ptr::read(p.a) } != 11 || unsafe { ptr::read(p.a.add(3)) } != 22 {
+   |                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/structure_and_union_spec_3/sample_004/target.rs:53:14
+   |
+53 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error: aborting due to 8 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

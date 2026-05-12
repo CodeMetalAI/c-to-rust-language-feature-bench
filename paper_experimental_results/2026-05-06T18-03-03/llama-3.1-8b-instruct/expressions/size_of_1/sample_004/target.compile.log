@@ -1,0 +1,50 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/size_of_1/sample_004/target.rs:11:5
+   |
+11 | /     unsafe {
+12 | |         *dp = 3.14;
+13 | |         if *dp != 3.14 {
+14 | |             Box::from_raw(dp);
+...  |
+17 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/size_of_1/sample_004/target.rs:19:5
+   |
+19 | /     unsafe {
+20 | |         Box::from_raw(dp);
+21 | |     }
+   | |_____^
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/size_of_1/sample_004/target.rs:8:16
+  |
+5 | fn main() {
+  |          - expected `()` because of default return type
+...
+8 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/size_of_1/sample_004/target.rs:22:5
+   |
+ 5 | fn main() {
+   |          - expected `()` because of default return type
+...
+22 |     0
+   |     ^ expected `()`, found integer
+
+warning: unused variable: `n`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/size_of_1/sample_004/target.rs:1:10
+  |
+1 | fn alloc(n: usize) -> *mut f64 {
+  |          ^ help: if this is intentional, prefix it with an underscore: `_n`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 4 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0308`.

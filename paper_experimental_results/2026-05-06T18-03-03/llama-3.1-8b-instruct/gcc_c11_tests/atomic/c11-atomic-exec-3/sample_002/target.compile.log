@@ -1,0 +1,736 @@
+error[E0428]: the name `test_incdec` is defined multiple times
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:50:1
+   |
+ 3 | fn test_incdec<T: std::fmt::Debug + Copy + ... postop: impl FnOnce(T) -> T, pre_p: bool, change: T) {
+   | -------------------------------------------...----------------------------------------------------- previous definition of the value `test_incdec` here
+...
+50 | fn test_incdec() {
+   | ^^^^^^^^^^^^^^^^ `test_incdec` redefined here
+   |
+   = note: `test_incdec` must be defined only once in the value namespace of this module
+
+error[E0432]: unresolved import `std::sync::atomic::AtomicChar`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:1:37
+  |
+1 | use std::sync::atomic::{AtomicBool, AtomicChar, AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicIsize, AtomicU8, AtomicU16, AtomicU32, Atomic...
+  |                                     ^^^^^^^^^^
+  |                                     |
+  |                                     no `AtomicChar` in `sync::atomic`
+  |                                     help: a similar name exists in the module: `AtomicPtr`
+
+error[E0433]: failed to resolve: use of undeclared type `Atomic`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:4:13
+  |
+4 |     let a = Atomic::new(value);
+  |             ^^^^^^ use of undeclared type `Atomic`
+  |
+help: a struct with a similar name exists
+  |
+4 |     let a = AtomicI8::new(value);
+  |                   ++
+help: consider importing this type alias
+  |
+1 + use std::sync::atomic::Atomic;
+  |
+
+error[E0433]: failed to resolve: use of undeclared type `Atomic`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:31:13
+   |
+31 |     let a = Atomic::new(value);
+   |             ^^^^^^ use of undeclared type `Atomic`
+   |
+help: a struct with a similar name exists
+   |
+31 |     let a = AtomicI8::new(value);
+   |                   ++
+help: consider importing this type alias
+   |
+ 1 + use std::sync::atomic::Atomic;
+   |
+
+warning: unused imports: `AtomicBool`, `AtomicI16`, `AtomicI32`, `AtomicI64`, `AtomicI8`, `AtomicIsize`, `AtomicU16`, `AtomicU32`, `AtomicU64`, `AtomicU8`, and `AtomicUsize`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:1:25
+  |
+1 | ...::{AtomicBool, AtomicChar, AtomicI8, AtomicI16, AtomicI32, AtomicI64, AtomicIsize, AtomicU8, AtomicU16, AtomicU32, AtomicU64, AtomicUsize, O...
+  |       ^^^^^^^^^^              ^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0308]: `if` and `else` have incompatible types
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:5:55
+  |
+3 | fn test_incdec<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std::ops::A...
+  |                - found this type parameter
+4 |     let a = Atomic::new(value);
+5 |     let expected = if pre_p { value + change } else { value };
+  |                               --------------          ^^^^^ expected associated type, found type parameter `T`
+  |                               |
+  |                               expected because of this
+  |
+  = note: expected associated type `<T as Add>::Output`
+              found type parameter `T`
+help: consider further restricting this bound
+  |
+3 | fn test_incdec<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std::ops::Add<Output = T> + std::ops::Sub + std::ops::Mul + std::ops::Div + std::cmp::PartialEq + std::cmp::Eq + std::marker::Copy>(value: T, preop: impl FnOnce(T) -> T, postop: impl FnOnce(T) -> T, pre_p: bool, change: T) {
+  |                                                                                                                                                 ++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:17:28
+   |
+15 | fn test_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std:...
+   |                      - expected this type parameter
+16 |     test_incdec(value, preop, postop, pre_p, change);
+17 |     test_incdec(value, |x| x + change, postop, pre_p, change);
+   |                            ^^^^^^^^^^ expected type parameter `T`, found associated type
+   |
+   = note: expected type parameter `T`
+             found associated type `<T as Add>::Output`
+help: consider further restricting this bound
+   |
+15 | fn test_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std::ops::Add<Output = T> + std::ops::Sub + std::ops::Mul + std::ops::Div + std::cmp::PartialEq + std::cmp::Eq + std::marker::Copy>(value: T, preop: impl FnOnce(T) -> T, postop: impl FnOnce(T) -> T, pre_p: bool, change: T) {
+   |                                                                                                                                                       ++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:18:35
+   |
+15 | fn test_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std:...
+   |                      - expected this type parameter
+...
+18 |     test_incdec(value, preop, |x| x + change, pre_p, change);
+   |                                   ^^^^^^^^^^ expected type parameter `T`, found associated type
+   |
+   = note: expected type parameter `T`
+             found associated type `<T as Add>::Output`
+help: consider further restricting this bound
+   |
+15 | fn test_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std::ops::Add<Output = T> + std::ops::Sub + std::ops::Mul + std::ops::Div + std::cmp::PartialEq + std::cmp::Eq + std::marker::Copy>(value: T, preop: impl FnOnce(T) -> T, postop: impl FnOnce(T) -> T, pre_p: bool, change: T) {
+   |                                                                                                                                                       ++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:19:28
+   |
+15 | fn test_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std:...
+   |                      - expected this type parameter
+...
+19 |     test_incdec(value, |x| x - change, postop, pre_p, change);
+   |                            ^^^^^^^^^^ expected type parameter `T`, found associated type
+   |
+   = note: expected type parameter `T`
+             found associated type `<T as Sub>::Output`
+help: consider further restricting this bound
+   |
+15 | fn test_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std::ops::Add + std::ops::Sub<Output = T> + std::ops::Mul + std::ops::Div + std::cmp::PartialEq + std::cmp::Eq + std::marker::Copy>(value: T, preop: impl FnOnce(T) -> T, postop: impl FnOnce(T) -> T, pre_p: bool, change: T) {
+   |                                                                                                                                                                       ++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:20:35
+   |
+15 | fn test_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std:...
+   |                      - expected this type parameter
+...
+20 |     test_incdec(value, preop, |x| x - change, pre_p, change);
+   |                                   ^^^^^^^^^^ expected type parameter `T`, found associated type
+   |
+   = note: expected type parameter `T`
+             found associated type `<T as Sub>::Output`
+help: consider further restricting this bound
+   |
+15 | fn test_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std::ops::Add + std::ops::Sub<Output = T> + std::ops::Mul + std::ops::Div + std::cmp::PartialEq + std::cmp::Eq + std::marker::Copy>(value: T, preop: impl FnOnce(T) -> T, postop: impl FnOnce(T) -> T, pre_p: bool, change: T) {
+   |                                                                                                                                                                       ++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:24:38
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + ...
+   |                          - expected this type parameter
+24 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, true, 1);
+   |                                  -   ^ expected type parameter `T`, found integer
+   |                                  |
+   |                                  expected because this is `T`
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:24:34
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + ...
+   |                          - expected this type parameter
+24 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, true, 1);
+   |                                  ^^^^^ expected type parameter `T`, found associated type
+   |
+   = note: expected type parameter `T`
+             found associated type `<T as Add>::Output`
+help: consider further restricting this bound
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std::ops::Add<Output = T> + std::ops::Sub + std::ops::Mul + std::ops::Div + std::cmp::PartialEq + std::cmp::Eq + std::marker::Copy>(value: T) {
+   |                                                                                                                                                           ++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:24:49
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + ...
+   |                          - expected this type parameter
+24 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, true, 1);
+   |                                             -   ^ expected type parameter `T`, found integer
+   |                                             |
+   |                                             expected because this is `T`
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:24:45
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + ...
+   |                          - expected this type parameter
+24 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, true, 1);
+   |                                             ^^^^^ expected type parameter `T`, found associated type
+   |
+   = note: expected type parameter `T`
+             found associated type `<T as Add>::Output`
+help: consider further restricting this bound
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std::ops::Add<Output = T> + std::ops::Sub + std::ops::Mul + std::ops::Div + std::cmp::PartialEq + std::cmp::Eq + std::marker::Copy>(value: T) {
+   |                                                                                                                                                           ++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:24:58
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + ...
+   |                          - expected this type parameter
+24 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, true, 1);
+   |     ----------------- -----                              ^ expected type parameter `T`, found integer
+   |     |                 |
+   |     |                 expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:15:4
+   |
+15 | fn test_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std::ops::Add + std::ops::Sub + std::ops::Mul + std::ops::Div + std::cmp::PartialEq + std::cmp::Eq + std::marker::Copy>(value: T, preop: impl FnOnce(T) -> T, postop: impl FnOnce(T) -> T, pre_p: bool, change: T) {
+   |    ^^^^^^^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`                                                                                                                                                                                    -------- `change` needs to match the type parameter `T` type of this parameter  --------- this parameter needs to match the type parameter `T` type of `value`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:25:38
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + ...
+   |                          - expected this type parameter
+24 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, true, 1);
+25 |     test_incdec_arith(value, |x| x - 1, |x| x - 1, true, -1);
+   |                                  -   ^ expected type parameter `T`, found integer
+   |                                  |
+   |                                  expected because this is `T`
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:25:34
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + ...
+   |                          - expected this type parameter
+24 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, true, 1);
+25 |     test_incdec_arith(value, |x| x - 1, |x| x - 1, true, -1);
+   |                                  ^^^^^ expected type parameter `T`, found associated type
+   |
+   = note: expected type parameter `T`
+             found associated type `<T as Sub>::Output`
+help: consider further restricting this bound
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std::ops::Add + std::ops::Sub<Output = T> + std::ops::Mul + std::ops::Div + std::cmp::PartialEq + std::cmp::Eq + std::marker::Copy>(value: T) {
+   |                                                                                                                                                                           ++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:25:49
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + ...
+   |                          - expected this type parameter
+24 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, true, 1);
+25 |     test_incdec_arith(value, |x| x - 1, |x| x - 1, true, -1);
+   |                                             -   ^ expected type parameter `T`, found integer
+   |                                             |
+   |                                             expected because this is `T`
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:25:45
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + ...
+   |                          - expected this type parameter
+24 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, true, 1);
+25 |     test_incdec_arith(value, |x| x - 1, |x| x - 1, true, -1);
+   |                                             ^^^^^ expected type parameter `T`, found associated type
+   |
+   = note: expected type parameter `T`
+             found associated type `<T as Sub>::Output`
+help: consider further restricting this bound
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std::ops::Add + std::ops::Sub<Output = T> + std::ops::Mul + std::ops::Div + std::cmp::PartialEq + std::cmp::Eq + std::marker::Copy>(value: T) {
+   |                                                                                                                                                                           ++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:25:58
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + ...
+   |                          - expected this type parameter
+24 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, true, 1);
+25 |     test_incdec_arith(value, |x| x - 1, |x| x - 1, true, -1);
+   |     ----------------- -----                              ^^ expected type parameter `T`, found integer
+   |     |                 |
+   |     |                 expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:15:4
+   |
+15 | fn test_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std::ops::Add + std::ops::Sub + std::ops::Mul + std::ops::Div + std::cmp::PartialEq + std::cmp::Eq + std::marker::Copy>(value: T, preop: impl FnOnce(T) -> T, postop: impl FnOnce(T) -> T, pre_p: bool, change: T) {
+   |    ^^^^^^^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`                                                                                                                                                                                    -------- `change` needs to match the type parameter `T` type of this parameter  --------- this parameter needs to match the type parameter `T` type of `value`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:26:38
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + ...
+   |                          - expected this type parameter
+...
+26 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, false, 1);
+   |                                  -   ^ expected type parameter `T`, found integer
+   |                                  |
+   |                                  expected because this is `T`
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:26:34
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + ...
+   |                          - expected this type parameter
+...
+26 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, false, 1);
+   |                                  ^^^^^ expected type parameter `T`, found associated type
+   |
+   = note: expected type parameter `T`
+             found associated type `<T as Add>::Output`
+help: consider further restricting this bound
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std::ops::Add<Output = T> + std::ops::Sub + std::ops::Mul + std::ops::Div + std::cmp::PartialEq + std::cmp::Eq + std::marker::Copy>(value: T) {
+   |                                                                                                                                                           ++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:26:49
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + ...
+   |                          - expected this type parameter
+...
+26 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, false, 1);
+   |                                             -   ^ expected type parameter `T`, found integer
+   |                                             |
+   |                                             expected because this is `T`
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:26:45
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + ...
+   |                          - expected this type parameter
+...
+26 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, false, 1);
+   |                                             ^^^^^ expected type parameter `T`, found associated type
+   |
+   = note: expected type parameter `T`
+             found associated type `<T as Add>::Output`
+help: consider further restricting this bound
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std::ops::Add<Output = T> + std::ops::Sub + std::ops::Mul + std::ops::Div + std::cmp::PartialEq + std::cmp::Eq + std::marker::Copy>(value: T) {
+   |                                                                                                                                                           ++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:26:59
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + ...
+   |                          - expected this type parameter
+...
+26 |     test_incdec_arith(value, |x| x + 1, |x| x + 1, false, 1);
+   |     ----------------- -----                               ^ expected type parameter `T`, found integer
+   |     |                 |
+   |     |                 expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:15:4
+   |
+15 | fn test_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std::ops::Add + std::ops::Sub + std::ops::Mul + std::ops::Div + std::cmp::PartialEq + std::cmp::Eq + std::marker::Copy>(value: T, preop: impl FnOnce(T) -> T, postop: impl FnOnce(T) -> T, pre_p: bool, change: T) {
+   |    ^^^^^^^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`                                                                                                                                                                                    -------- `change` needs to match the type parameter `T` type of this parameter  --------- this parameter needs to match the type parameter `T` type of `value`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:27:38
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + ...
+   |                          - expected this type parameter
+...
+27 |     test_incdec_arith(value, |x| x - 1, |x| x - 1, false, -1);
+   |                                  -   ^ expected type parameter `T`, found integer
+   |                                  |
+   |                                  expected because this is `T`
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:27:34
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + ...
+   |                          - expected this type parameter
+...
+27 |     test_incdec_arith(value, |x| x - 1, |x| x - 1, false, -1);
+   |                                  ^^^^^ expected type parameter `T`, found associated type
+   |
+   = note: expected type parameter `T`
+             found associated type `<T as Sub>::Output`
+help: consider further restricting this bound
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std::ops::Add + std::ops::Sub<Output = T> + std::ops::Mul + std::ops::Div + std::cmp::PartialEq + std::cmp::Eq + std::marker::Copy>(value: T) {
+   |                                                                                                                                                                           ++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:27:49
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + ...
+   |                          - expected this type parameter
+...
+27 |     test_incdec_arith(value, |x| x - 1, |x| x - 1, false, -1);
+   |                                             -   ^ expected type parameter `T`, found integer
+   |                                             |
+   |                                             expected because this is `T`
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:27:45
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + ...
+   |                          - expected this type parameter
+...
+27 |     test_incdec_arith(value, |x| x - 1, |x| x - 1, false, -1);
+   |                                             ^^^^^ expected type parameter `T`, found associated type
+   |
+   = note: expected type parameter `T`
+             found associated type `<T as Sub>::Output`
+help: consider further restricting this bound
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std::ops::Add + std::ops::Sub<Output = T> + std::ops::Mul + std::ops::Div + std::cmp::PartialEq + std::cmp::Eq + std::marker::Copy>(value: T) {
+   |                                                                                                                                                                           ++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:27:59
+   |
+23 | fn test_all_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + ...
+   |                          - expected this type parameter
+...
+27 |     test_incdec_arith(value, |x| x - 1, |x| x - 1, false, -1);
+   |     ----------------- -----                               ^^ expected type parameter `T`, found integer
+   |     |                 |
+   |     |                 expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:15:4
+   |
+15 | fn test_incdec_arith<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std::ops::Add + std::ops::Sub + std::ops::Mul + std::ops::Div + std::cmp::PartialEq + std::cmp::Eq + std::marker::Copy>(value: T, preop: impl FnOnce(T) -> T, postop: impl FnOnce(T) -> T, pre_p: bool, change: T) {
+   |    ^^^^^^^^^^^^^^^^^ - `value` and `change` both reference this parameter `T`                                                                                                                                                                                    -------- `change` needs to match the type parameter `T` type of this parameter  --------- this parameter needs to match the type parameter `T` type of `value`
+
+error[E0369]: cannot add `T` to `T`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:32:37
+   |
+32 |     let expected = if pre_p { value + change } else { value };
+   |                               ----- ^ ------ T
+   |                               |
+   |                               T
+   |
+help: consider further restricting type parameter `T` with trait `Add`
+   |
+30 | fn test_incdec_ptr<T: std::fmt::Debug + Copy + std::marker::Copy + std::ops::Add>(value: T, preop: impl FnOnce(T) -> T, postop: impl FnOnce(T) -> T, pre_p: bool, change: T) {
+   |                                                                  +++++++++++++++
+
+error[E0369]: cannot add `T` to `T`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:44:34
+   |
+44 |     test_incdec_ptr(value, |x| x + change, postop, pre_p, change);
+   |                                - ^ ------ T
+   |                                |
+   |                                T
+   |
+help: consider further restricting type parameter `T` with trait `Add`
+   |
+42 | fn test_incdec_ptr_arith<T: std::fmt::Debug + Copy + std::marker::Copy + std::ops::Add<Output = T>>(value: T, preop: impl FnOnce(T) -> T, postop: impl FnOnce(T) -> T, pre_p: bool, change: T) {
+   |                                                                        +++++++++++++++++++++++++++
+
+error[E0369]: cannot add `T` to `T`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:45:41
+   |
+45 |     test_incdec_ptr(value, preop, |x| x + change, pre_p, change);
+   |                                       - ^ ------ T
+   |                                       |
+   |                                       T
+   |
+help: consider further restricting type parameter `T` with trait `Add`
+   |
+42 | fn test_incdec_ptr_arith<T: std::fmt::Debug + Copy + std::marker::Copy + std::ops::Add<Output = T>>(value: T, preop: impl FnOnce(T) -> T, postop: impl FnOnce(T) -> T, pre_p: bool, change: T) {
+   |                                                                        +++++++++++++++++++++++++++
+
+error[E0369]: cannot subtract `T` from `T`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:46:34
+   |
+46 |     test_incdec_ptr(value, |x| x - change, postop, pre_p, change);
+   |                                - ^ ------ T
+   |                                |
+   |                                T
+   |
+help: consider further restricting type parameter `T` with trait `Sub`
+   |
+42 | fn test_incdec_ptr_arith<T: std::fmt::Debug + Copy + std::marker::Copy + std::ops::Sub<Output = T>>(value: T, preop: impl FnOnce(T) -> T, postop: impl FnOnce(T) -> T, pre_p: bool, change: T) {
+   |                                                                        +++++++++++++++++++++++++++
+
+error[E0369]: cannot subtract `T` from `T`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:47:41
+   |
+47 |     test_incdec_ptr(value, preop, |x| x - change, pre_p, change);
+   |                                       - ^ ------ T
+   |                                       |
+   |                                       T
+   |
+help: consider further restricting type parameter `T` with trait `Sub`
+   |
+42 | fn test_incdec_ptr_arith<T: std::fmt::Debug + Copy + std::marker::Copy + std::ops::Sub<Output = T>>(value: T, preop: impl FnOnce(T) -> T, postop: impl FnOnce(T) -> T, pre_p: bool, change: T) {
+   |                                                                        +++++++++++++++++++++++++++
+
+error[E0277]: the trait bound `{float}: Eq` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:56:27
+   |
+56 |     test_all_incdec_arith(1.5);
+   |     --------------------- ^^^ the trait `Eq` is not implemented for `{float}`
+   |     |
+   |     required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `Eq`:
+             i128
+             i16
+             i32
+             i64
+             i8
+             isize
+             u128
+             u16
+           and 4 others
+note: required by a bound in `test_all_incdec_arith`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:23:228
+   |
+23 | ...std::ops::Div + std::cmp::PartialEq + std::cmp::Eq + std::marker::Copy>(value: T) {
+   |                                          ^^^^^^^^^^^^ required by this bound in `test_all_incdec_arith`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:58:39
+   |
+58 |     test_incdec_ptr_arith(&ia[1], |x| x + 1, |x| x + 1, true, 1);
+   |                                       ^^^^^ expected `&{integer}`, found integer
+   |
+help: consider borrowing here
+   |
+58 |     test_incdec_ptr_arith(&ia[1], |x| &(x + 1), |x| x + 1, true, 1);
+   |                                       ++     +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:58:50
+   |
+58 |     test_incdec_ptr_arith(&ia[1], |x| x + 1, |x| x + 1, true, 1);
+   |                                                  ^^^^^ expected `&{integer}`, found integer
+   |
+help: consider borrowing here
+   |
+58 |     test_incdec_ptr_arith(&ia[1], |x| x + 1, |x| &(x + 1), true, 1);
+   |                                                  ++     +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:58:63
+   |
+58 |     test_incdec_ptr_arith(&ia[1], |x| x + 1, |x| x + 1, true, 1);
+   |     --------------------- ------                              ^ expected `&{integer}`, found integer
+   |     |                     |
+   |     |                     expected some other arguments to be an `&{integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:42:4
+   |
+42 | fn test_incdec_ptr_arith<T: std::fmt::Debug + Copy + std::marker::Copy>(value: T, preop: impl FnOnce(T) -> T, postop: impl FnOnce(T) -> T, pre_p: bool, change: T) {
+   |    ^^^^^^^^^^^^^^^^^^^^^ -                                              -------- `change` needs to match the `&{integer}` type of this parameter        --------- this parameter needs to match the `&{integer}` type of `value`
+   |                          |
+   |                          `value` and `change` both reference this parameter `T`
+help: consider borrowing here
+   |
+58 |     test_incdec_ptr_arith(&ia[1], |x| x + 1, |x| x + 1, true, &1);
+   |                                                               +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:59:39
+   |
+59 |     test_incdec_ptr_arith(&ia[1], |x| x - 1, |x| x - 1, true, -1);
+   |                                       ^^^^^ expected `&{integer}`, found integer
+   |
+help: consider borrowing here
+   |
+59 |     test_incdec_ptr_arith(&ia[1], |x| &(x - 1), |x| x - 1, true, -1);
+   |                                       ++     +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:59:50
+   |
+59 |     test_incdec_ptr_arith(&ia[1], |x| x - 1, |x| x - 1, true, -1);
+   |                                                  ^^^^^ expected `&{integer}`, found integer
+   |
+help: consider borrowing here
+   |
+59 |     test_incdec_ptr_arith(&ia[1], |x| x - 1, |x| &(x - 1), true, -1);
+   |                                                  ++     +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:59:63
+   |
+59 |     test_incdec_ptr_arith(&ia[1], |x| x - 1, |x| x - 1, true, -1);
+   |     --------------------- ------                              ^^ expected `&{integer}`, found integer
+   |     |                     |
+   |     |                     expected some other arguments to be an `&{integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:42:4
+   |
+42 | fn test_incdec_ptr_arith<T: std::fmt::Debug + Copy + std::marker::Copy>(value: T, preop: impl FnOnce(T) -> T, postop: impl FnOnce(T) -> T, pre_p: bool, change: T) {
+   |    ^^^^^^^^^^^^^^^^^^^^^ -                                              -------- `change` needs to match the `&{integer}` type of this parameter        --------- this parameter needs to match the `&{integer}` type of `value`
+   |                          |
+   |                          `value` and `change` both reference this parameter `T`
+help: consider borrowing here
+   |
+59 |     test_incdec_ptr_arith(&ia[1], |x| x - 1, |x| x - 1, true, &-1);
+   |                                                               +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:60:39
+   |
+60 |     test_incdec_ptr_arith(&ia[1], |x| x + 1, |x| x + 1, false, 1);
+   |                                       ^^^^^ expected `&{integer}`, found integer
+   |
+help: consider borrowing here
+   |
+60 |     test_incdec_ptr_arith(&ia[1], |x| &(x + 1), |x| x + 1, false, 1);
+   |                                       ++     +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:60:50
+   |
+60 |     test_incdec_ptr_arith(&ia[1], |x| x + 1, |x| x + 1, false, 1);
+   |                                                  ^^^^^ expected `&{integer}`, found integer
+   |
+help: consider borrowing here
+   |
+60 |     test_incdec_ptr_arith(&ia[1], |x| x + 1, |x| &(x + 1), false, 1);
+   |                                                  ++     +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:60:64
+   |
+60 |     test_incdec_ptr_arith(&ia[1], |x| x + 1, |x| x + 1, false, 1);
+   |     --------------------- ------                               ^ expected `&{integer}`, found integer
+   |     |                     |
+   |     |                     expected some other arguments to be an `&{integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:42:4
+   |
+42 | fn test_incdec_ptr_arith<T: std::fmt::Debug + Copy + std::marker::Copy>(value: T, preop: impl FnOnce(T) -> T, postop: impl FnOnce(T) -> T, pre_p: bool, change: T) {
+   |    ^^^^^^^^^^^^^^^^^^^^^ -                                              -------- `change` needs to match the `&{integer}` type of this parameter        --------- this parameter needs to match the `&{integer}` type of `value`
+   |                          |
+   |                          `value` and `change` both reference this parameter `T`
+help: consider borrowing here
+   |
+60 |     test_incdec_ptr_arith(&ia[1], |x| x + 1, |x| x + 1, false, &1);
+   |                                                                +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:61:39
+   |
+61 |     test_incdec_ptr_arith(&ia[1], |x| x - 1, |x| x - 1, false, -1);
+   |                                       ^^^^^ expected `&{integer}`, found integer
+   |
+help: consider borrowing here
+   |
+61 |     test_incdec_ptr_arith(&ia[1], |x| &(x - 1), |x| x - 1, false, -1);
+   |                                       ++     +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:61:50
+   |
+61 |     test_incdec_ptr_arith(&ia[1], |x| x - 1, |x| x - 1, false, -1);
+   |                                                  ^^^^^ expected `&{integer}`, found integer
+   |
+help: consider borrowing here
+   |
+61 |     test_incdec_ptr_arith(&ia[1], |x| x - 1, |x| &(x - 1), false, -1);
+   |                                                  ++     +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:61:64
+   |
+61 |     test_incdec_ptr_arith(&ia[1], |x| x - 1, |x| x - 1, false, -1);
+   |     --------------------- ------                               ^^ expected `&{integer}`, found integer
+   |     |                     |
+   |     |                     expected some other arguments to be an `&{integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:42:4
+   |
+42 | fn test_incdec_ptr_arith<T: std::fmt::Debug + Copy + std::marker::Copy>(value: T, preop: impl FnOnce(T) -> T, postop: impl FnOnce(T) -> T, pre_p: bool, change: T) {
+   |    ^^^^^^^^^^^^^^^^^^^^^ -                                              -------- `change` needs to match the `&{integer}` type of this parameter        --------- this parameter needs to match the `&{integer}` type of `value`
+   |                          |
+   |                          `value` and `change` both reference this parameter `T`
+help: consider borrowing here
+   |
+61 |     test_incdec_ptr_arith(&ia[1], |x| x - 1, |x| x - 1, false, &-1);
+   |                                                                +
+
+error[E0061]: this function takes 5 arguments but 0 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:65:5
+   |
+65 |     test_incdec();
+   |     ^^^^^^^^^^^-- multiple arguments are missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:3:4
+   |
+ 3 | fn test_incdec<T: std::fmt::Debug + Copy + std::ops::AddAssign + std::ops::SubAssign + std::ops::MulAssign + std::ops::DivAssign + std::ops::Add + std::ops::Sub + std::ops::Mul + std::ops::Div + std::cmp::PartialEq + std::cmp::Eq + std::marker::Copy>(value: T, preop: impl FnOnce(T) -> T, postop: impl FnOnce(T) -> T, pre_p: bool, change: T) {
+   |    ^^^^^^^^^^^                                                                                                                                                                                                                                             --------  --------------------------  ---------------------------  -----------  ---------
+help: provide the arguments
+   |
+65 |     test_incdec(/* value */, /* preop */, /* postop */, /* bool */, /* change */);
+   |                 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+error: aborting due to 48 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0061, E0277, E0308, E0369, E0428, E0432, E0433.
+For more information about an error, try `rustc --explain E0061`.

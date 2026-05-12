@@ -1,0 +1,183 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:5:9
+  |
+5 |         unsafe { CALLS += 1 };
+  |         ^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:19:13
+   |
+19 |             unsafe { FA[i] = (i as f32) + 1.0 };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:22:13
+   |
+22 |             unsafe { BACKING[i] = (100.0 + i as f32) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unnecessary parentheses around assigned value
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:22:35
+   |
+22 |             unsafe { BACKING[i] = (100.0 + i as f32) };
+   |                                   ^                ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+22 -             unsafe { BACKING[i] = (100.0 + i as f32) };
+22 +             unsafe { BACKING[i] = 100.0 + i as f32 };
+   |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:23:13
+   |
+23 |             unsafe { AFP[i] = &mut BACKING[i] };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:38:18
+   |
+38 |             s += unsafe { **pp[i] } as i32;
+   |                  ^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:45:18
+   |
+45 |         let s2 = unsafe { **afp2[0] } as i32 + unsafe { **afp2[16] } as i32;
+   |                  ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:45:48
+   |
+45 |         let s2 = unsafe { **afp2[0] } as i32 + unsafe { **afp2[16] } as i32;
+   |                                                ^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:51:8
+   |
+51 |     if unsafe { FA[0] }!= 1.0 || unsafe { FA[10] }!= 11.0 {
+   |        ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:51:34
+   |
+51 |     if unsafe { FA[0] }!= 1.0 || unsafe { FA[10] }!= 11.0 {
+   |                                  ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:55:8
+   |
+55 |     if unsafe { **AFP[0] } as i32!= 100 || unsafe { **AFP[16] } as i32!= 116 {
+   |        ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:55:44
+   |
+55 |     if unsafe { **AFP[0] } as i32!= 100 || unsafe { **AFP[16] } as i32!= 116 {
+   |                                            ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:66:28
+   |
+66 |         vla1[i as usize] = unsafe { FA[i as usize] } * 2.0;
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:70:28
+   |
+70 |         vla2[i as usize] = unsafe { AFP[i as usize] };
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:73:8
+   |
+73 |     if unsafe { CALLS }!= 2 {
+   |        ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:91:78
+   |
+91 |     if takes_params(&vla1, &vla2)!= ((vla1[0] as i32) + (vla1[10] as i32) + (unsafe { **vla2[0] } as i32) + (unsafe { **vla2[16] } as i32)) {
+   |                                                                              ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:91:110
+   |
+91 |     if takes_params(&vla1, &vla2)!= ((vla1[0] as i32) + (vla1[10] as i32) + (unsafe { **vla2[0] } as i32) + (unsafe { **vla2[16] } as i32)) {
+   |                                                                                                              ^^^^^^^^^^^^^^^^^^^^^
+
+error[E0614]: type `f32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:55:17
+   |
+55 |     if unsafe { **AFP[0] } as i32!= 100 || unsafe { **AFP[16] } as i32!= 116 {
+   |                 ^^^^^^^^ can't be dereferenced
+
+error[E0614]: type `f32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:55:53
+   |
+55 |     if unsafe { **AFP[0] } as i32!= 100 || unsafe { **AFP[16] } as i32!= 116 {
+   |                                                     ^^^^^^^^^ can't be dereferenced
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:91:8
+   |
+91 |     if takes_params(&vla1, &vla2)!= ((vla1[0] as i32) + (vla1[10] as i32) + (unsafe { **vla2[0] } as i32) + (unsafe { **vla2[16] } as i32)) {
+   |        ^^^^^^^^^^^^
+   |
+note: expected `&[f32; 11]`, found `&Vec<f32>`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:91:21
+   |
+91 |     if takes_params(&vla1, &vla2)!= ((vla1[0] as i32) + (vla1[10] as i32) + (unsafe { **vla2[0] } as i32) + (unsafe { **vla2[16] } as i32)) {
+   |                     ^^^^^
+   = note: expected reference `&[f32; 11]`
+              found reference `&Vec<f32>`
+note: expected `&[*mut f32; 17]`, found `&Vec<*mut f32>`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:91:28
+   |
+91 |     if takes_params(&vla1, &vla2)!= ((vla1[0] as i32) + (vla1[10] as i32) + (unsafe { **vla2[0] } as i32) + (unsafe { **vla2[16] } as i32)) {
+   |                            ^^^^^
+   = note: expected reference `&[*mut f32; 17]`
+              found reference `&Vec<*mut f32>`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:43:8
+   |
+43 |     fn takes_params(a: &[f32; 11], afp2: &[*mut f32; 17]) -> i32 {
+   |        ^^^^^^^^^^^^ -------------  ---------------------
+
+error[E0614]: type `f32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:91:87
+   |
+91 |     if takes_params(&vla1, &vla2)!= ((vla1[0] as i32) + (vla1[10] as i32) + (unsafe { **vla2[0] } as i32) + (unsafe { **vla2[16] } as i32)) {
+   |                                                                                       ^^^^^^^^^ can't be dereferenced
+
+error[E0614]: type `f32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:91:119
+   |
+91 |     if takes_params(&vla1, &vla2)!= ((vla1[0] as i32) + (vla1[10] as i32) + (unsafe { **vla2[0] } as i32) + (unsafe { **vla2[16] } as i32)) {
+   |                                                                                                                       ^^^^^^^^^^ can't be dereferenced
+
+error[E0614]: type `f32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:38:27
+   |
+38 |             s += unsafe { **pp[i] } as i32;
+   |                           ^^^^^^^ can't be dereferenced
+
+error[E0614]: type `f32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:45:27
+   |
+45 |         let s2 = unsafe { **afp2[0] } as i32 + unsafe { **afp2[16] } as i32;
+   |                           ^^^^^^^^^ can't be dereferenced
+
+error[E0614]: type `f32` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_1/sample_002/target.rs:45:57
+   |
+45 |         let s2 = unsafe { **afp2[0] } as i32 + unsafe { **afp2[16] } as i32;
+   |                                                         ^^^^^^^^^^ can't be dereferenced
+
+error: aborting due to 24 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0308, E0614.
+For more information about an error, try `rustc --explain E0308`.

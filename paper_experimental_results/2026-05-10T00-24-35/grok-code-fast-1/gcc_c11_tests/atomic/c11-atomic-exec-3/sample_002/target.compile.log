@@ -1,0 +1,15 @@
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_002/target.rs:290:5
+    |
+290 | /     unsafe {
+291 | |         let base = &IA[1] as *const i32 as usize;
+292 | |         test_ptr(base, true, false, true, 1);
+293 | |         test_ptr(base, true, false, true, -1);
+294 | |         test_ptr(base, false, true, false, 1);
+295 | |         test_ptr(base, false, true, false, -1);
+296 | |     }
+    | |_____^
+    |
+    = note: requested on the command line with `-F unsafe-code`
+
+error: aborting due to 1 previous error

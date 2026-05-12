@@ -1,0 +1,25 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/add_op_c9/sample_003/target.rs:6:20
+  |
+6 |     let one_past = unsafe { &a[4] }; // one past the last element
+  |                    ^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+warning: unnecessary `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/add_op_c9/sample_003/target.rs:6:20
+  |
+6 |     let one_past = unsafe { &a[4] }; // one past the last element
+  |                    ^^^^^^ unnecessary `unsafe` block
+  |
+  = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error: this operation will panic at runtime
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/expressions/add_op_c9/sample_003/target.rs:6:30
+  |
+6 |     let one_past = unsafe { &a[4] }; // one past the last element
+  |                              ^^^^ index out of bounds: the length is 4 but the index is 4
+  |
+  = note: `#[deny(unconditional_panic)]` on by default
+
+error: aborting due to 2 previous errors; 1 warning emitted

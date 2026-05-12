@@ -1,0 +1,198 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:6:5
+  |
+6 |     unsafe { CALLS += 1; }
+  |     ^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:21:9
+   |
+21 |         unsafe { FA[i] = (i as f32) + 1.0; }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:26:9
+   |
+26 | /         unsafe {
+27 | |             BACKING[i] = (100 + i) as f32;
+28 | |             AFP[i] = &BACKING[i];
+29 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:38:9
+   |
+38 |         unsafe { s += p.add(i as usize) as i32; }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:48:9
+   |
+48 |         unsafe { s += (*pp.add(i as usize)) as i32; }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:56:14
+   |
+56 |     let s2 = unsafe { (*afp2[0] as *const i32) } + unsafe { (*afp2[16] as *const i32) };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unnecessary parentheses around block return value
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:56:23
+   |
+56 |     let s2 = unsafe { (*afp2[0] as *const i32) } + unsafe { (*afp2[16] as *const i32) };
+   |                       ^                      ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+56 -     let s2 = unsafe { (*afp2[0] as *const i32) } + unsafe { (*afp2[16] as *const i32) };
+56 +     let s2 = unsafe { *afp2[0] as *const i32 } + unsafe { (*afp2[16] as *const i32) };
+   |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:56:52
+   |
+56 |     let s2 = unsafe { (*afp2[0] as *const i32) } + unsafe { (*afp2[16] as *const i32) };
+   |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unnecessary parentheses around block return value
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:56:61
+   |
+56 |     let s2 = unsafe { (*afp2[0] as *const i32) } + unsafe { (*afp2[16] as *const i32) };
+   |                                                             ^                       ^
+   |
+help: remove these parentheses
+   |
+56 -     let s2 = unsafe { (*afp2[0] as *const i32) } + unsafe { (*afp2[16] as *const i32) };
+56 +     let s2 = unsafe { (*afp2[0] as *const i32) } + unsafe { *afp2[16] as *const i32 };
+   |
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:63:5
+   |
+63 | /     unsafe {
+64 | |         if FA[0] != 1.0 || FA[10] != 11.0 {
+65 | |             return 1;
+...  |
+71 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:91:5
+    |
+ 91 | /     unsafe {
+ 92 | |         if CALLS != 2 {
+ 93 | |             return 3;
+...   |
+112 | |     }
+    | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:60:14
+   |
+60 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0369]: cannot add `*const i32` to `*const i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:56:50
+   |
+56 |     let s2 = unsafe { (*afp2[0] as *const i32) } + unsafe { (*afp2[16] as *const i32) };
+   |              ----------------------------------- ^ ------------------------------------ *const i32
+   |              |
+   |              *const i32
+
+error[E0606]: casting `f32` as `*const i32` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:56:23
+   |
+56 |     let s2 = unsafe { (*afp2[0] as *const i32) } + unsafe { (*afp2[16] as *const i32) };
+   |                       ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `f32` as `*const i32` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:56:61
+   |
+56 |     let s2 = unsafe { (*afp2[0] as *const i32) } + unsafe { (*afp2[16] as *const i32) };
+   |                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: the type `[f32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:81:22
+   |
+81 |         vla1.push(FA[i] * 2.0);
+   |                      ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[f32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[f32]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[f32; 11]` to implement `Index<i32>`
+
+error[E0277]: the type `[*const f32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:87:23
+   |
+87 |         vla2.push(AFP[i]);
+   |                       ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[*const f32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[*const f32]` to implement `Index<i32>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[*const f32; 17]` to implement `Index<i32>`
+
+error[E0308]: arguments to this function are incorrect
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:109:12
+    |
+109 |         if takes_params(&vla1, &vla2) != ((vla1[0] as i32) + (vla1[10] as i32) + (*vla2[0] as i32) + (*vla2[16] as i32)) {
+    |            ^^^^^^^^^^^^
+    |
+note: expected `&[f32; 11]`, found `&Vec<f32>`
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:109:25
+    |
+109 |         if takes_params(&vla1, &vla2) != ((vla1[0] as i32) + (vla1[10] as i32) + (*vla2[0] as i32) + (*vla2[16] as i32)) {
+    |                         ^^^^^
+    = note: expected reference `&[f32; 11]`
+               found reference `&Vec<f32>`
+note: expected `&[*const f32; 17]`, found `&Vec<*const f32>`
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:109:32
+    |
+109 |         if takes_params(&vla1, &vla2) != ((vla1[0] as i32) + (vla1[10] as i32) + (*vla2[0] as i32) + (*vla2[16] as i32)) {
+    |                                ^^^^^
+    = note: expected reference `&[*const f32; 17]`
+               found reference `&Vec<*const f32>`
+note: function defined here
+   --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:54:4
+    |
+ 54 | fn takes_params(a: &[f32; 11], afp2: &[*const f32; 17]) -> i32 {
+    |    ^^^^^^^^^^^^ -------------  -----------------------
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:21:9
+   |
+21 |         unsafe { FA[i] = (i as f32) + 1.0; }
+   |         ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error[E0594]: cannot assign to `FA[_]`, as `FA` is an immutable static item
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:21:18
+   |
+21 |         unsafe { FA[i] = (i as f32) + 1.0; }
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^ cannot assign
+
+error[E0594]: cannot assign to `BACKING[_]`, as `BACKING` is an immutable static item
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/array_decl_1/sample_003/target.rs:27:13
+   |
+27 |             BACKING[i] = (100 + i) as f32;
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot assign
+
+error: aborting due to 18 previous errors; 3 warnings emitted
+
+Some errors have detailed explanations: E0277, E0308, E0369, E0594, E0606.
+For more information about an error, try `rustc --explain E0277`.

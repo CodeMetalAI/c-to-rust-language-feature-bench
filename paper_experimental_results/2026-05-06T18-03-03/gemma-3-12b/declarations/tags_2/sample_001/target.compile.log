@@ -1,0 +1,53 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/tags_2/sample_001/target.rs:26:5
+   |
+26 | /     unsafe {
+27 | |         a.s2p = b_ptr;
+28 | |         b.s1p = a_ptr;
+...  |
+41 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/tags_2/sample_001/target.rs:31:20
+   |
+13 | fn main() {
+   |          - expected `()` because of default return type
+...
+31 |             return 1;
+   |                    ^ expected `()`, found integer
+
+error[E0369]: binary operation `!=` cannot be applied to type `S1`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/tags_2/sample_001/target.rs:38:28
+   |
+38 |         if (*(*a.s2p).s1p) != a {
+   |            --------------- ^^ - S1
+   |            |
+   |            S1
+   |
+note: an implementation of `PartialEq` might be missing for `S1`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/tags_2/sample_001/target.rs:2:1
+   |
+ 2 | struct S1 {
+   | ^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `S1` with `#[derive(PartialEq)]`
+   |
+ 2 + #[derive(PartialEq)]
+ 3 | struct S1 {
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/declarations/tags_2/sample_001/target.rs:43:5
+   |
+13 | fn main() {
+   |          - expected `()` because of default return type
+...
+43 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0369.
+For more information about an error, try `rustc --explain E0308`.

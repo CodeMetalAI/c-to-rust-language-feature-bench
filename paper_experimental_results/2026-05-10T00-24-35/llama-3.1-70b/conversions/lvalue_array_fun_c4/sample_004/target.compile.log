@@ -1,0 +1,375 @@
+error[E0599]: no method named `type_id` found for reference `&fn(i32) -> i32 {f1}` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c4/sample_004/target.rs:4:21
+   |
+ 4 |         match (&$x).type_id() {
+   |                     ^^^^^^^ method not found in `&fn(i32) -> i32 {f1}`
+...
+24 |     if type_id!(p1) != 1 {
+   |        ------------ in this macro invocation
+   |
+   = help: items from traits can only be used if the trait is in scope
+   = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: use parentheses to call this function
+   |
+ 4 |         match ((&$x))(/* i32 */).type_id() {
+   |               +     ++++++++++++
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::any::Any;
+   |
+
+error[E0599]: no method named `type_id` found for raw pointer `*const fn(i32) -> i32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c4/sample_004/target.rs:5:58
+    |
+  5 |             s if s == std::ptr::null::<fn(i32) -> i32>().type_id() => 1,
+    |                                                          ^^^^^^^ method not found in `*const fn(i32) -> i32`
+...
+ 24 |     if type_id!(p1) != 1 {
+    |        ------------ in this macro invocation
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/any.rs:134:8
+    |
+134 |     fn type_id(&self) -> TypeId;
+    |        ------- the method is available for `*const fn(i32) -> i32` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::any::Any;
+    |
+
+error[E0599]: no method named `type_id` found for raw pointer `*const fn(i32, i32) -> i32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c4/sample_004/target.rs:6:63
+    |
+  6 |             s if s == std::ptr::null::<fn(i32, i32) -> i32>().type_id() => 2,
+    |                                                               ^^^^^^^ method not found in `*const fn(i32, i32) -> i32`
+...
+ 24 |     if type_id!(p1) != 1 {
+    |        ------------ in this macro invocation
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/any.rs:134:8
+    |
+134 |     fn type_id(&self) -> TypeId;
+    |        ------- the method is available for `*const fn(i32, i32) -> i32` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::any::Any;
+    |
+
+error[E0599]: no method named `type_id` found for reference `&fn(i32) -> i32 {f1}` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c4/sample_004/target.rs:4:21
+   |
+ 4 |         match (&$x).type_id() {
+   |                     ^^^^^^^ method not found in `&fn(i32) -> i32 {f1}`
+...
+27 |     if type_id!(q1) != 1 {
+   |        ------------ in this macro invocation
+   |
+   = help: items from traits can only be used if the trait is in scope
+   = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: use parentheses to call this function
+   |
+ 4 |         match ((&$x))(/* i32 */).type_id() {
+   |               +     ++++++++++++
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::any::Any;
+   |
+
+error[E0599]: no method named `type_id` found for raw pointer `*const fn(i32) -> i32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c4/sample_004/target.rs:5:58
+    |
+  5 |             s if s == std::ptr::null::<fn(i32) -> i32>().type_id() => 1,
+    |                                                          ^^^^^^^ method not found in `*const fn(i32) -> i32`
+...
+ 27 |     if type_id!(q1) != 1 {
+    |        ------------ in this macro invocation
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/any.rs:134:8
+    |
+134 |     fn type_id(&self) -> TypeId;
+    |        ------- the method is available for `*const fn(i32) -> i32` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::any::Any;
+    |
+
+error[E0599]: no method named `type_id` found for raw pointer `*const fn(i32, i32) -> i32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c4/sample_004/target.rs:6:63
+    |
+  6 |             s if s == std::ptr::null::<fn(i32, i32) -> i32>().type_id() => 2,
+    |                                                               ^^^^^^^ method not found in `*const fn(i32, i32) -> i32`
+...
+ 27 |     if type_id!(q1) != 1 {
+    |        ------------ in this macro invocation
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/any.rs:134:8
+    |
+134 |     fn type_id(&self) -> TypeId;
+    |        ------- the method is available for `*const fn(i32, i32) -> i32` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::any::Any;
+    |
+
+error[E0599]: no method named `type_id` found for reference `&fn(i32) -> i32 {f1}` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c4/sample_004/target.rs:4:21
+   |
+ 4 |         match (&$x).type_id() {
+   |                     ^^^^^^^ method not found in `&fn(i32) -> i32 {f1}`
+...
+43 |     if type_id!(r1) != 1 {
+   |        ------------ in this macro invocation
+   |
+   = help: items from traits can only be used if the trait is in scope
+   = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: use parentheses to call this function
+   |
+ 4 |         match ((&$x))(/* i32 */).type_id() {
+   |               +     ++++++++++++
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::any::Any;
+   |
+
+error[E0599]: no method named `type_id` found for raw pointer `*const fn(i32) -> i32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c4/sample_004/target.rs:5:58
+    |
+  5 |             s if s == std::ptr::null::<fn(i32) -> i32>().type_id() => 1,
+    |                                                          ^^^^^^^ method not found in `*const fn(i32) -> i32`
+...
+ 43 |     if type_id!(r1) != 1 {
+    |        ------------ in this macro invocation
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/any.rs:134:8
+    |
+134 |     fn type_id(&self) -> TypeId;
+    |        ------- the method is available for `*const fn(i32) -> i32` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::any::Any;
+    |
+
+error[E0599]: no method named `type_id` found for raw pointer `*const fn(i32, i32) -> i32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c4/sample_004/target.rs:6:63
+    |
+  6 |             s if s == std::ptr::null::<fn(i32, i32) -> i32>().type_id() => 2,
+    |                                                               ^^^^^^^ method not found in `*const fn(i32, i32) -> i32`
+...
+ 43 |     if type_id!(r1) != 1 {
+    |        ------------ in this macro invocation
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/any.rs:134:8
+    |
+134 |     fn type_id(&self) -> TypeId;
+    |        ------- the method is available for `*const fn(i32, i32) -> i32` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::any::Any;
+    |
+
+error[E0599]: no method named `type_id` found for reference `&fn(i32, i32) -> i32 {f2}` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c4/sample_004/target.rs:4:21
+   |
+ 4 |         match (&$x).type_id() {
+   |                     ^^^^^^^ method not found in `&fn(i32, i32) -> i32 {f2}`
+...
+53 |     if type_id!(p2) != 2 {
+   |        ------------ in this macro invocation
+   |
+   = help: items from traits can only be used if the trait is in scope
+   = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: use parentheses to call this function
+   |
+ 4 |         match ((&$x))(/* i32 */, /* i32 */).type_id() {
+   |               +     +++++++++++++++++++++++
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::any::Any;
+   |
+
+error[E0599]: no method named `type_id` found for raw pointer `*const fn(i32) -> i32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c4/sample_004/target.rs:5:58
+    |
+  5 |             s if s == std::ptr::null::<fn(i32) -> i32>().type_id() => 1,
+    |                                                          ^^^^^^^ method not found in `*const fn(i32) -> i32`
+...
+ 53 |     if type_id!(p2) != 2 {
+    |        ------------ in this macro invocation
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/any.rs:134:8
+    |
+134 |     fn type_id(&self) -> TypeId;
+    |        ------- the method is available for `*const fn(i32) -> i32` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::any::Any;
+    |
+
+error[E0599]: no method named `type_id` found for raw pointer `*const fn(i32, i32) -> i32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c4/sample_004/target.rs:6:63
+    |
+  6 |             s if s == std::ptr::null::<fn(i32, i32) -> i32>().type_id() => 2,
+    |                                                               ^^^^^^^ method not found in `*const fn(i32, i32) -> i32`
+...
+ 53 |     if type_id!(p2) != 2 {
+    |        ------------ in this macro invocation
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/any.rs:134:8
+    |
+134 |     fn type_id(&self) -> TypeId;
+    |        ------- the method is available for `*const fn(i32, i32) -> i32` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::any::Any;
+    |
+
+error[E0599]: no method named `type_id` found for reference `&fn(i32, i32) -> i32 {f2}` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c4/sample_004/target.rs:4:21
+   |
+ 4 |         match (&$x).type_id() {
+   |                     ^^^^^^^ method not found in `&fn(i32, i32) -> i32 {f2}`
+...
+56 |     if type_id!(q2) != 2 {
+   |        ------------ in this macro invocation
+   |
+   = help: items from traits can only be used if the trait is in scope
+   = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: use parentheses to call this function
+   |
+ 4 |         match ((&$x))(/* i32 */, /* i32 */).type_id() {
+   |               +     +++++++++++++++++++++++
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::any::Any;
+   |
+
+error[E0599]: no method named `type_id` found for raw pointer `*const fn(i32) -> i32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c4/sample_004/target.rs:5:58
+    |
+  5 |             s if s == std::ptr::null::<fn(i32) -> i32>().type_id() => 1,
+    |                                                          ^^^^^^^ method not found in `*const fn(i32) -> i32`
+...
+ 56 |     if type_id!(q2) != 2 {
+    |        ------------ in this macro invocation
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/any.rs:134:8
+    |
+134 |     fn type_id(&self) -> TypeId;
+    |        ------- the method is available for `*const fn(i32) -> i32` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::any::Any;
+    |
+
+error[E0599]: no method named `type_id` found for raw pointer `*const fn(i32, i32) -> i32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c4/sample_004/target.rs:6:63
+    |
+  6 |             s if s == std::ptr::null::<fn(i32, i32) -> i32>().type_id() => 2,
+    |                                                               ^^^^^^^ method not found in `*const fn(i32, i32) -> i32`
+...
+ 56 |     if type_id!(q2) != 2 {
+    |        ------------ in this macro invocation
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/any.rs:134:8
+    |
+134 |     fn type_id(&self) -> TypeId;
+    |        ------- the method is available for `*const fn(i32, i32) -> i32` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::any::Any;
+    |
+
+error[E0599]: no method named `type_id` found for reference `&fn(i32, i32) -> i32 {f2}` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c4/sample_004/target.rs:4:21
+   |
+ 4 |         match (&$x).type_id() {
+   |                     ^^^^^^^ method not found in `&fn(i32, i32) -> i32 {f2}`
+...
+71 |     if type_id!(r2) != 2 {
+   |        ------------ in this macro invocation
+   |
+   = help: items from traits can only be used if the trait is in scope
+   = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: use parentheses to call this function
+   |
+ 4 |         match ((&$x))(/* i32 */, /* i32 */).type_id() {
+   |               +     +++++++++++++++++++++++
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::any::Any;
+   |
+
+error[E0599]: no method named `type_id` found for raw pointer `*const fn(i32) -> i32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c4/sample_004/target.rs:5:58
+    |
+  5 |             s if s == std::ptr::null::<fn(i32) -> i32>().type_id() => 1,
+    |                                                          ^^^^^^^ method not found in `*const fn(i32) -> i32`
+...
+ 71 |     if type_id!(r2) != 2 {
+    |        ------------ in this macro invocation
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/any.rs:134:8
+    |
+134 |     fn type_id(&self) -> TypeId;
+    |        ------- the method is available for `*const fn(i32) -> i32` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::any::Any;
+    |
+
+error[E0599]: no method named `type_id` found for raw pointer `*const fn(i32, i32) -> i32` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c4/sample_004/target.rs:6:63
+    |
+  6 |             s if s == std::ptr::null::<fn(i32, i32) -> i32>().type_id() => 2,
+    |                                                               ^^^^^^^ method not found in `*const fn(i32, i32) -> i32`
+...
+ 71 |     if type_id!(r2) != 2 {
+    |        ------------ in this macro invocation
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/any.rs:134:8
+    |
+134 |     fn type_id(&self) -> TypeId;
+    |        ------- the method is available for `*const fn(i32, i32) -> i32` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: this error originates in the macro `type_id` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: trait `Any` which provides `type_id` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::any::Any;
+    |
+
+error: aborting due to 18 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

@@ -1,0 +1,47 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/add_op_1b/sample_003/target.rs:6:5
+  |
+6 | /     unsafe {
+7 | |         *(*p.offset(1) as *mut [i32; 3]).get_unchecked_mut(2) = 99;
+8 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/add_op_1b/sample_003/target.rs:14:8
+   |
+14 |     if unsafe { p.offset(1) as usize - p as usize } != std::mem::size_of::<[i32; 3]>() {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `get_unchecked_mut` found for raw pointer `*mut [i32; 3]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/add_op_1b/sample_003/target.rs:7:42
+    |
+  7 |         *(*p.offset(1) as *mut [i32; 3]).get_unchecked_mut(2) = 99;
+    |                                          ^^^^^^^^^^^^^^^^^ method not found in `*mut [i32; 3]`
+    |
+note: the method `get_unchecked_mut` exists on the type `&mut [i32]`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/slice/mod.rs:682:5
+    |
+682 | /     pub const unsafe fn get_unchecked_mut<I>(&mut self, index: I) -> &mut I::Output
+683 | |     where
+684 | |         I: [const] SliceIndex<Self>,
+    | |____________________________________^
+    = note: you might want to use the unsafe method `<*mut T>::as_mut` to get an optional reference to the value behind the pointer
+    = note: read the documentation for `<*mut T>::as_mut` and ensure you satisfy its safety preconditions before calling it to avoid undefined behavior: https://doc.rust-lang.org/std/primitive.pointer.html#method.as_mut
+
+error[E0605]: non-primitive cast: `[i32; 3]` as `*mut [i32; 3]`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/add_op_1b/sample_003/target.rs:7:10
+  |
+7 |         *(*p.offset(1) as *mut [i32; 3]).get_unchecked_mut(2) = 99;
+  |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ invalid cast
+  |
+help: consider borrowing the value
+  |
+7 |         *(&mut *p.offset(1) as *mut [i32; 3]).get_unchecked_mut(2) = 99;
+  |           ++++
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0599, E0605.
+For more information about an error, try `rustc --explain E0599`.

@@ -1,0 +1,158 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_1/sample_005/target.rs:4:5
+  |
+4 | /     unsafe {
+5 | |         CALLS += 1;
+6 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_1/sample_005/target.rs:19:5
+   |
+19 | /     unsafe {
+20 | |         for i in 0..11 {
+21 | |             FA[i] = (i + 1) as f32;
+...  |
+27 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_1/sample_005/target.rs:63:5
+    |
+ 63 | /     unsafe {
+ 64 | |         init_globals();
+ 65 | |
+ 66 | |         if FA[0] != 1.0 || FA[10] != 11.0 {
+...   |
+120 | |     }
+    | |_____^
+
+error[E0277]: the trait bound `&'static mut f32: Copy` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_1/sample_005/target.rs:15:51
+   |
+15 | static mut AFP: [Option<&'static mut f32>; 17] = [None; 17];
+   |                                                   ^^^^ the trait `Copy` is not implemented for `&'static mut f32`
+   |
+   = help: the trait `Copy` is implemented for `f32`
+   = note: `Copy` is implemented for `&'static f32`, but not for `&'static mut f32`
+   = note: required for `Option<&'static mut f32>` to implement `Copy`
+   = note: the `Copy` trait is required because this value will be copied for each element of the array
+help: create an inline `const` block
+   |
+15 | static mut AFP: [Option<&'static mut f32>; 17] = [const { None }; 17];
+   |                                                   +++++++      +
+
+error[E0277]: the trait bound `Option<&mut f32>: Clone` is not satisfied
+    --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_1/sample_005/target.rs:90:52
+     |
+  90 |         let mut vla2: Vec<Option<&mut f32>> = vec![None; n2 as usize];
+     |                                               -----^^^^--------------
+     |                                               |    |
+     |                                               |    the trait `Clone` is not implemented for `Option<&mut f32>`
+     |                                               required by a bound introduced by this call
+     |
+     = note: required for `Option<&mut f32>` to implement `Clone`
+note: required by a bound in `from_elem`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:3464:21
+     |
+3464 | pub fn from_elem<T: Clone>(elem: T, n: usize) -> Vec<T> {
+     |                     ^^^^^ required by this bound in `from_elem`
+help: consider borrowing here
+     |
+  90 |         let mut vla2: Vec<Option<&mut f32>> = vec![&None; n2 as usize];
+     |                                                    +
+
+error[E0599]: no method named `try_into` found for slice `[f32]` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_1/sample_005/target.rs:117:37
+    |
+117 | ...   if takes_params(&vla1[..11].try_into().unwrap(), &vla2[..17].try_into().unwrap()) != (vla1[0] as i32 + vla1[10] as i32 + if let Some(v...
+    |                                   ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[f32]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+117 -         if takes_params(&vla1[..11].try_into().unwrap(), &vla2[..17].try_into().unwrap()) != (vla1[0] as i32 + vla1[10] as i32 + if let Some(val) = vla2[0] { *val as i32 } else { 0 } + if let Some(val) = vla2[16] { *val as i32 } else { 0 }) {
+117 +         if takes_params(&vla1[..11].into().unwrap(), &vla2[..17].try_into().unwrap()) != (vla1[0] as i32 + vla1[10] as i32 + if let Some(val) = vla2[0] { *val as i32 } else { 0 } + if let Some(val) = vla2[16] { *val as i32 } else { 0 }) {
+    |
+
+error[E0599]: no method named `try_into` found for slice `[Option<&mut f32>]` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_1/sample_005/target.rs:117:70
+    |
+117 | ...   if takes_params(&vla1[..11].try_into().unwrap(), &vla2[..17].try_into().unwrap()) != (vla1[0] as i32 + vla1[10] as i32 + if let Some(v...
+    |                                                                    ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[Option<&mut f32>]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+117 -         if takes_params(&vla1[..11].try_into().unwrap(), &vla2[..17].try_into().unwrap()) != (vla1[0] as i32 + vla1[10] as i32 + if let Some(val) = vla2[0] { *val as i32 } else { 0 } + if let Some(val) = vla2[16] { *val as i32 } else { 0 }) {
+117 +         if takes_params(&vla1[..11].try_into().unwrap(), &vla2[..17].into().unwrap()) != (vla1[0] as i32 + vla1[10] as i32 + if let Some(val) = vla2[0] { *val as i32 } else { 0 } + if let Some(val) = vla2[16] { *val as i32 } else { 0 }) {
+    |
+
+error[E0508]: cannot move out of type `[Option<&mut f32>]`, a non-copy slice
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_1/sample_005/target.rs:41:28
+   |
+41 |         if let Some(val) = pp[i] {
+   |                     ---    ^^^^^ cannot move out of here
+   |                     |
+   |                     data moved here
+   |                     move occurs because `val` has type `&mut f32`, which does not implement the `Copy` trait
+   |
+help: consider borrowing here
+   |
+41 |         if let Some(val) = &pp[i] {
+   |                            +
+
+error[E0508]: cannot move out of type `[Option<&mut f32>; 17]`, a non-copy array
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_1/sample_005/target.rs:50:33
+   |
+50 |     let s2 = if let Some(val) = afp2[0] {
+   |                          ---    ^^^^^^^ cannot move out of here
+   |                          |
+   |                          data moved here
+   |                          move occurs because `val` has type `&mut f32`, which does not implement the `Copy` trait
+   |
+help: consider borrowing here
+   |
+50 |     let s2 = if let Some(val) = &afp2[0] {
+   |                                 +
+
+error[E0508]: cannot move out of type `[Option<&mut f32>; 17]`, a non-copy array
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_1/sample_005/target.rs:54:28
+   |
+54 |     } + if let Some(val) = afp2[16] {
+   |                     ---    ^^^^^^^^ cannot move out of here
+   |                     |
+   |                     data moved here
+   |                     move occurs because `val` has type `&mut f32`, which does not implement the `Copy` trait
+   |
+help: consider borrowing here
+   |
+54 |     } + if let Some(val) = &afp2[16] {
+   |                            +
+
+error: aborting due to 10 previous errors
+
+Some errors have detailed explanations: E0277, E0508, E0599.
+For more information about an error, try `rustc --explain E0277`.

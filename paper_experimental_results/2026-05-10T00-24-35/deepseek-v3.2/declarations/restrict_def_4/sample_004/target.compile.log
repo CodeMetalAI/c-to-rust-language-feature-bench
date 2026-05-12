@@ -1,0 +1,28 @@
+error[E0499]: cannot borrow `x` as mutable more than once at a time
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_4/sample_004/target.rs:40:27
+   |
+36 |         let p1 = &mut x;
+   |                  ------ first mutable borrow occurs here
+...
+40 |             let p2 = &mut x[8..];
+   |                           ^ second mutable borrow occurs here
+...
+58 |         copy_restrict(&mut p1[..8], &q1[24..]);
+   |                            -- first borrow later used here
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_4/sample_004/target.rs:49:23
+   |
+36 |         let p1 = &mut x;
+   |                  ------ mutable borrow occurs here
+...
+49 |             if !same(&x[8..24], &expect) {
+   |                       ^ immutable borrow occurs here
+...
+58 |         copy_restrict(&mut p1[..8], &q1[24..]);
+   |                            -- mutable borrow later used here
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0499, E0502.
+For more information about an error, try `rustc --explain E0499`.

@@ -1,0 +1,52 @@
+error[E0425]: cannot find value `arr` in this scope
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/external_definitions/fun_defs_1/sample_002/target.rs:25:9
+    |
+ 25 |         arr[b as usize] = 1;
+    |         ^^^ help: a tuple variant with a similar name exists: `Err`
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/result.rs:558:5
+    |
+558 |     Err(#[stable(feature = "rust1", since = "1.0.0")] E),
+    |     --- similarly named tuple variant `Err` defined here
+
+error[E0425]: cannot find value `arr` in this scope
+   --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/external_definitions/fun_defs_1/sample_002/target.rs:32:9
+    |
+ 32 |         arr[(b as u8) as usize] += b as i32;
+    |         ^^^ help: a tuple variant with a similar name exists: `Err`
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/result.rs:558:5
+    |
+558 |     Err(#[stable(feature = "rust1", since = "1.0.0")] E),
+    |     --- similarly named tuple variant `Err` defined here
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/external_definitions/fun_defs_1/sample_002/target.rs:24:5
+   |
+24 | /     unsafe {
+25 | |         arr[b as usize] = 1;
+26 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/external_definitions/fun_defs_1/sample_002/target.rs:31:5
+   |
+31 | /     unsafe {
+32 | |         arr[(b as u8) as usize] += b as i32;
+33 | |     }
+   | |_____^
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/external_definitions/fun_defs_1/sample_002/target.rs:17:8
+   |
+17 |     if arr[ub as usize] != 0 {
+   |        ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0133, E0425.
+For more information about an error, try `rustc --explain E0133`.

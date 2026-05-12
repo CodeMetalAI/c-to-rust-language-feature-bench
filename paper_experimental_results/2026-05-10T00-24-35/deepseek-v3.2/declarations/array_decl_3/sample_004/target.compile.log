@@ -1,0 +1,70 @@
+error[E0425]: cannot find value `N` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_3/sample_004/target.rs:21:14
+   |
+21 |     let nn = N as usize;
+   |              ^ not found in this scope
+   |
+help: you might be missing a const parameter
+   |
+20 | unsafe fn fcompat<const N: /* Type */>() {
+   |                  +++++++++++++++++++++
+
+error[E0425]: cannot find value `M` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_3/sample_004/target.rs:22:14
+   |
+22 |     let mm = M as usize;
+   |              ^ not found in this scope
+   |
+help: you might be missing a const parameter
+   |
+20 | unsafe fn fcompat<const M: /* Type */>() {
+   |                  +++++++++++++++++++++
+
+error[E0425]: cannot find value `GATE` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_3/sample_004/target.rs:51:9
+   |
+51 |         GATE = 1;
+   |         ^^^^
+   |
+help: you might have meant to introduce a new binding
+   |
+51 |         let GATE = 1;
+   |         +++
+
+error[E0425]: cannot find value `GATE` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_3/sample_004/target.rs:57:9
+   |
+57 |         GATE = 2;
+   |         ^^^^
+   |
+help: you might have meant to introduce a new binding
+   |
+57 |         let GATE = 2;
+   |         +++
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_3/sample_004/target.rs:6:5
+   |
+ 6 | /     unsafe {
+ 7 | |         N = 6;
+ 8 | |         M = N + 1;
+...  |
+16 | |         std::process::exit(0);
+17 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_3/sample_004/target.rs:20:1
+   |
+20 | / unsafe fn fcompat() {
+21 | |     let nn = N as usize;
+22 | |     let mm = M as usize;
+...  |
+59 | | }
+   | |_^
+
+error: aborting due to 6 previous errors
+
+For more information about this error, try `rustc --explain E0425`.

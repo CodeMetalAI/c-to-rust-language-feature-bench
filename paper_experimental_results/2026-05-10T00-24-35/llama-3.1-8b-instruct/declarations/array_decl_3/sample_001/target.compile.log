@@ -1,0 +1,93 @@
+error[E0369]: cannot add `i32` to `Vec<i32>`
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:24:55
+    |
+ 24 |                 if a.data[i][j][k] != (*p).data[j][k] + (i as i32) {
+    |                                       --------------- ^ ---------- i32
+    |                                       |
+    |                                       Vec<i32>
+    |
+note: the foreign item type `Vec<i32>` doesn't implement `Add<i32>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:434:1
+    |
+434 | pub struct Vec<T, #[unstable(feature = "allocator_api", issue = "32838")] A: Allocator = Global> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not implement `Add<i32>`
+
+error[E0608]: cannot index into a value of type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:38:39
+   |
+38 |                     if c.data[i][j][u][v] != r.data[i][j][u][v] {
+   |                                       ^^^
+
+error[E0608]: cannot index into a value of type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:38:61
+   |
+38 |                     if c.data[i][j][u][v] != r.data[i][j][u][v] {
+   |                                                             ^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:57:38
+   |
+57 |                 a.set_value(i, j, k, (i + 1) * 10000 + (j + 1) * 100 + (k + 1));
+   |                   ---------          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found `usize`
+   |                   |
+   |                   arguments to this method are incorrect
+   |
+note: method defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:15:12
+   |
+15 |     pub fn set_value(&mut self, i: usize, j: usize, k: usize, value: i32) {
+   |            ^^^^^^^^^                                          ----------
+help: you can convert a `usize` to an `i32` and panic if the converted value doesn't fit
+   |
+57 |                 a.set_value(i, j, k, ((i + 1) * 10000 + (j + 1) * 100 + (k + 1)).try_into().unwrap());
+   |                                      +                                         +++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:66:99
+   |
+66 |                     c.set_value(i, j, u, v, (i + 1) * 1000000 + (j + 1) * 10000 + (u + 1) * 100 + (v + 1));
+   |                                                                                                   ^^^^^^^ expected `usize`, found `i32`
+
+error[E0061]: this method takes 4 arguments but 5 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:66:23
+   |
+66 |                     c.set_value(i, j, u, v, (i + 1) * 1000000 + (j + 1) * 10000 + (u + 1) * 100 + (v + 1));
+   |                       ^^^^^^^^^             ------------------------------------------------------------- unexpected argument #5 of type `usize`
+   |
+note: method defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:15:12
+   |
+15 |     pub fn set_value(&mut self, i: usize, j: usize, k: usize, value: i32) {
+   |            ^^^^^^^^^
+help: remove the extra argument
+   |
+66 -                     c.set_value(i, j, u, v, (i + 1) * 1000000 + (j + 1) * 10000 + (u + 1) * 100 + (v + 1));
+66 +                     c.set_value(i, j, u, v);
+   |
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:66:97
+   |
+66 |                     c.set_value(i, j, u, v, (i + 1) * 1000000 + (j + 1) * 10000 + (u + 1) * 100 + (v + 1));
+   |                                                                                                 ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+warning: value assigned to `gate` is never read
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_3/sample_001/target.rs:83:13
+   |
+83 |     let mut gate = 0;
+   |             ^^^^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 7 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0061, E0277, E0308, E0369, E0608.
+For more information about an error, try `rustc --explain E0061`.

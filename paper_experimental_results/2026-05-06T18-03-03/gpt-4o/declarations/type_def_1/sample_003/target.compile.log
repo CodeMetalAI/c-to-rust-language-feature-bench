@@ -1,0 +1,85 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_1/sample_003/target.rs:29:5
+   |
+29 |     unsafe { G_STORE }
+   |     ^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_1/sample_003/target.rs:32:14
+   |
+32 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_1/sample_003/target.rs:33:9
+   |
+33 |     let mut distance: i32 = 40;
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_1/sample_003/target.rs:68:9
+   |
+68 |     let mut z = Range { hi: 10.0, lo: -9.0 };
+   |         ----^
+   |         |
+   |         help: remove this `mut`
+
+error[E0382]: use of moved value: `x`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_1/sample_003/target.rs:63:37
+   |
+59 |     let x = Range { hi: 1.5, lo: -1.5 };
+   |         - move occurs because `x` has type `Range`, which does not implement the `Copy` trait
+...
+62 |         let y = takes_range(x);
+   |                             - value moved here
+63 |         if (y.hi + y.lo) != (x.hi + x.lo) {
+   |                                     ^^^^ value used here after move
+   |
+note: consider changing this parameter type in function `takes_range` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_1/sample_003/target.rs:17:19
+   |
+17 | fn takes_range(r: Range) -> Range {
+   |    -----------    ^^^^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `Range` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_1/sample_003/target.rs:1:1
+   |
+ 1 | struct Range {
+   | ^^^^^^^^^^^^ consider implementing `Clone` for this type
+...
+62 |         let y = takes_range(x);
+   |                             - you could clone this value
+
+error[E0507]: cannot move out of `*zp` which is behind a shared reference
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_1/sample_003/target.rs:76:20
+   |
+76 |         let copy = *zp;
+   |                    ^^^ move occurs because `*zp` has type `Range`, which does not implement the `Copy` trait
+   |
+note: if `Range` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/type_def_1/sample_003/target.rs:1:1
+   |
+ 1 | struct Range {
+   | ^^^^^^^^^^^^ consider implementing `Clone` for this type
+...
+76 |         let copy = *zp;
+   |                    --- you could clone this value
+help: consider removing the dereference here
+   |
+76 -         let copy = *zp;
+76 +         let copy = zp;
+   |
+
+error: aborting due to 4 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0277, E0382, E0507.
+For more information about an error, try `rustc --explain E0277`.

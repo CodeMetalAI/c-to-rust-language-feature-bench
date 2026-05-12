@@ -1,0 +1,23 @@
+warning: unused variable: `p0`
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/add_op_c8/sample_005/target.rs:4:9
+  |
+4 |     let p0 = &a[0];
+  |         ^^ help: if this is intentional, prefix it with an underscore: `_p0`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: this operation will panic at runtime
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/add_op_c8/sample_005/target.rs:8:18
+  |
+8 |     let p_end = &a[5];
+  |                  ^^^^ index out of bounds: the length is 5 but the index is 5
+  |
+  = note: `#[deny(unconditional_panic)]` on by default
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/expressions/add_op_c8/sample_005/target.rs:30:10
+   |
+30 |     if (&a[5]) != p_end {
+   |          ^^^^ index out of bounds: the length is 5 but the index is 5
+
+error: aborting due to 2 previous errors; 1 warning emitted

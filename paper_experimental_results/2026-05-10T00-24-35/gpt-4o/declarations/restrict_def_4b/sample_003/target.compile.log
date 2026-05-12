@@ -1,0 +1,65 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_003/target.rs:12:5
+   |
+12 | /     unsafe {
+13 | |         if n == 0 {
+14 | |             return POOL.as_mut_ptr().add(OFFSET);
+...  |
+27 | |         p
+28 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_003/target.rs:38:5
+   |
+38 | /     unsafe {
+39 | |         for i in 0..n {
+40 | |             *p.add(i) = base + i as f32;
+41 | |         }
+42 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_003/target.rs:46:5
+   |
+46 | /     unsafe {
+47 | |         let mut s = 0.0;
+48 | |         for i in 0..n {
+49 | |             s += *p.add(i);
+50 | |         }
+51 | |         s
+52 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_003/target.rs:95:5
+   |
+95 | /     unsafe {
+96 | |         if (H & 1) == 0 {
+97 | |             std::process::exit(6);
+98 | |         }
+99 | |     }
+   | |_____^
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_003/target.rs:14:20
+   |
+14 |             return POOL.as_mut_ptr().add(OFFSET);
+   |                    ^^^^^^^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+
+warning: creating a mutable reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4b/sample_003/target.rs:21:17
+   |
+21 |         let p = POOL.as_mut_ptr().add(OFFSET);
+   |                 ^^^^^^^^^^^^^^^^^ mutable reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+
+error: aborting due to 4 previous errors; 2 warnings emitted

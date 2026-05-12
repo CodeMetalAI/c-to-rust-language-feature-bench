@@ -1,0 +1,128 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_1/sample_004/target.rs:5:9
+  |
+5 | /         unsafe {
+6 | |             CALLS += 1;
+7 | |         }
+  | |_________^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_1/sample_004/target.rs:75:5
+   |
+75 | /     unsafe {
+76 | |         if CALLS != 2 {
+77 | |             std::process::exit(3);
+78 | |         }
+79 | |     }
+   | |_____^
+
+error[E0599]: no method named `try_into` found for slice `[f32]` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_1/sample_004/target.rs:94:33
+    |
+ 94 |     if takes_params(&vla1[..11].try_into().unwrap(), &vla2[..17].try_into().unwrap()) != (vla1[0] as i32 + vla1[10] as i32 + *vla2[0] as i32...
+    |                                 ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[f32]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 94 -     if takes_params(&vla1[..11].try_into().unwrap(), &vla2[..17].try_into().unwrap()) != (vla1[0] as i32 + vla1[10] as i32 + *vla2[0] as i32 + *vla2[16] as i32) {
+ 94 +     if takes_params(&vla1[..11].into().unwrap(), &vla2[..17].try_into().unwrap()) != (vla1[0] as i32 + vla1[10] as i32 + *vla2[0] as i32 + *vla2[16] as i32) {
+    |
+
+error[E0599]: no method named `try_into` found for slice `[&f32]` in the current scope
+   --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_1/sample_004/target.rs:94:66
+    |
+ 94 |     if takes_params(&vla1[..11].try_into().unwrap(), &vla2[..17].try_into().unwrap()) != (vla1[0] as i32 + vla1[10] as i32 + *vla2[0] as i32...
+    |                                                                  ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[&f32]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 94 -     if takes_params(&vla1[..11].try_into().unwrap(), &vla2[..17].try_into().unwrap()) != (vla1[0] as i32 + vla1[10] as i32 + *vla2[0] as i32 + *vla2[16] as i32) {
+ 94 +     if takes_params(&vla1[..11].try_into().unwrap(), &vla2[..17].into().unwrap()) != (vla1[0] as i32 + vla1[10] as i32 + *vla2[0] as i32 + *vla2[16] as i32) {
+    |
+
+error[E0277]: the trait bound `&mut f32: Copy` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_1/sample_004/target.rs:16:36
+   |
+16 |     let mut afp: [&mut f32; 17] = [&mut 0.0; 17];
+   |                                    ^^^^^^^^ the trait `Copy` is not implemented for `&mut f32`
+   |
+   = note: `Copy` is implemented for `&f32`, but not for `&mut f32`
+   = note: the `Copy` trait is required because this value will be copied for each element of the array
+   = help: consider using `core::array::from_fn` to initialize the array
+   = help: see https://doc.rust-lang.org/stable/std/array/fn.from_fn.html for more information
+help: consider removing the leading `&`-reference
+   |
+16 -     let mut afp: [&mut f32; 17] = [&mut 0.0; 17];
+16 +     let mut afp: [&mut f32; 17] = [0.0; 17];
+   |
+
+error[E0506]: cannot assign to `backing[_]` because it is borrowed
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_1/sample_004/target.rs:24:13
+   |
+19 |     fn init_globals(fa: &mut [f32; 11], afp: &mut [&mut f32; 17], backing: &mut [f32; 17]) {
+   |                                                    - let's call the lifetime of this reference `'2`
+...
+24 |             backing[i] = (100 + i) as f32;
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `backing[_]` is assigned to here but it was already borrowed
+25 |             afp[i] = &mut backing[i];
+   |             ------------------------
+   |             |        |
+   |             |        `backing[_]` is borrowed here
+   |             assignment requires that `backing[_]` is borrowed for `'2`
+
+error: lifetime may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_1/sample_004/target.rs:25:13
+   |
+19 |     fn init_globals(fa: &mut [f32; 11], afp: &mut [&mut f32; 17], backing: &mut [f32; 17]) {
+   |                                                    -                       - let's call the lifetime of this reference `'1`
+   |                                                    |
+   |                                                    let's call the lifetime of this reference `'2`
+...
+25 |             afp[i] = &mut backing[i];
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^ assignment requires that `'1` must outlive `'2`
+   |
+help: consider introducing a named lifetime parameter
+   |
+19 |     fn init_globals<'a>(fa: &mut [f32; 11], afp: &mut [&'a mut f32; 17], backing: &'a mut [f32; 17]) {
+   |                    ++++                                 ++                         ++
+
+error[E0499]: cannot borrow `backing[_]` as mutable more than once at a time
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/array_decl_1/sample_004/target.rs:25:22
+   |
+19 |     fn init_globals(fa: &mut [f32; 11], afp: &mut [&mut f32; 17], backing: &mut [f32; 17]) {
+   |                                                    - let's call the lifetime of this reference `'2`
+...
+25 |             afp[i] = &mut backing[i];
+   |             ---------^^^^^^^^^^^^^^^
+   |             |        |
+   |             |        `backing[_]` was mutably borrowed here in the previous iteration of the loop
+   |             assignment requires that `backing[_]` is borrowed for `'2`
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0277, E0499, E0506, E0599.
+For more information about an error, try `rustc --explain E0277`.

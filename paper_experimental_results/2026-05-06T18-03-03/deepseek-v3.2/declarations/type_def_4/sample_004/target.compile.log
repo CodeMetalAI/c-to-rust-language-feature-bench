@@ -1,0 +1,80 @@
+error: declaration of an `unsafe` function
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:4:5
+  |
+4 | /     unsafe fn handler_a(x: i32) {
+5 | |         HITS += x + 1;
+6 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:8:5
+   |
+ 8 | /     unsafe fn handler_b(x: i32) {
+ 9 | |         HITS += x + 2;
+10 | |     }
+   | |_____^
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:15:5
+   |
+15 | /     unsafe fn signal(s: i32, h: Fv) -> Fv {
+16 | |         if s & 1 != 0 {
+17 | |             handler_a
+18 | |         } else {
+...  |
+21 | |     }
+   | |_____^
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:23:5
+   |
+23 | /     unsafe fn signal_alias(s: i32, h: Pfv) -> Pfv {
+24 | |         signal(s, h)
+25 | |     }
+   | |_____^
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:27:5
+   |
+27 | /     unsafe fn call_signal_as_plain(s: i32, h: unsafe fn(i32), arg: i32) -> i32 {
+28 | |         let r = signal(s, h);
+29 | |         r(arg);
+30 | |         HITS
+31 | |     }
+   | |_____^
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:33:5
+   |
+33 | /     unsafe fn call_signal_as_fv(s: i32, h: Fv, arg: i32) -> i32 {
+34 | |         let r = signal(s, h);
+35 | |         r(arg);
+36 | |         HITS
+37 | |     }
+   | |_____^
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:39:5
+   |
+39 | /     unsafe fn call_signal_as_pfv(s: i32, h: Pfv, arg: i32) -> i32 {
+40 | |         let r = signal_alias(s, h);
+41 | |         r(arg);
+42 | |         HITS
+43 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/type_def_4/sample_004/target.rs:45:5
+   |
+45 | /     unsafe {
+46 | |         HITS = 0;
+47 | |         if call_signal_as_plain(1, handler_b, 3) != (3 + 1) {
+48 | |             std::process::exit(1);
+...  |
+61 | |         std::process::exit(0);
+62 | |     }
+   | |_____^
+
+error: aborting due to 8 previous errors

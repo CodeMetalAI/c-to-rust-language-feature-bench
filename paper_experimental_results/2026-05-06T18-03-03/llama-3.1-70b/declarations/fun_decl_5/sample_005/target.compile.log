@@ -1,0 +1,52 @@
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_5/sample_005/target.rs:1:43
+  |
+1 | fn maximum(n: usize, m: usize, a: &[[f64; m]; n]) -> f64 {
+  |                      -                    ^
+  |                      |
+  |                      this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_5/sample_005/target.rs:1:47
+  |
+1 | fn maximum(n: usize, m: usize, a: &[[f64; m]; n]) -> f64 {
+  |            - this would need to be a `const`  ^
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_5/sample_005/target.rs:14:94
+   |
+14 | fn call_as_6(pf: fn(usize, usize, &[[f64; 6]; usize]) -> f64, n: usize, m: usize, a: &[[f64; m]; n]) -> f64 {
+   |                                                                         -                    ^
+   |                                                                         |
+   |                                                                         this would need to be a `const`
+
+error[E0435]: attempt to use a non-constant value in a constant
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_5/sample_005/target.rs:14:98
+   |
+14 | fn call_as_6(pf: fn(usize, usize, &[[f64; 6]; usize]) -> f64, n: usize, m: usize, a: &[[f64; m]; n]) -> f64 {
+   |                                                               - this would need to be a `const`  ^
+
+error[E0423]: expected value, found builtin type `usize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_5/sample_005/target.rs:14:47
+   |
+14 | fn call_as_6(pf: fn(usize, usize, &[[f64; 6]; usize]) -> f64, n: usize, m: usize, a: &[[f64; m]; n]) -> f64 {
+   |                                               ^^^^^ not a value
+
+error[E0423]: expected value, found builtin type `usize`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_5/sample_005/target.rs:15:24
+   |
+15 |     let a: &[[f64; 6]; usize] = unsafe { std::mem::transmute(a) };
+   |                        ^^^^^ not a value
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/fun_decl_5/sample_005/target.rs:15:33
+   |
+15 |     let a: &[[f64; 6]; usize] = unsafe { std::mem::transmute(a) };
+   |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0423, E0435.
+For more information about an error, try `rustc --explain E0423`.

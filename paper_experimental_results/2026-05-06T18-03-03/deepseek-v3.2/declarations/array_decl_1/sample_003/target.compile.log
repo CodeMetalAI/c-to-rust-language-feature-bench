@@ -1,0 +1,81 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_003/target.rs:6:5
+  |
+6 | /     unsafe {
+7 | |         CALLS += 1;
+8 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_003/target.rs:22:5
+   |
+22 | /     unsafe {
+23 | |         let mut i = 0;
+24 | |         while i < 11 {
+25 | |             FA[i] = (i + 1) as f32;
+...  |
+34 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_003/target.rs:51:9
+   |
+51 | /         unsafe {
+52 | |             s += (*pp[i]) as i32;
+53 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_003/target.rs:61:5
+   |
+61 | /     unsafe {
+62 | |         let s2 = (*afp2[0]) as i32 + (*afp2[16]) as i32;
+63 | |         s1 + s2
+64 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_003/target.rs:70:5
+   |
+70 | /     unsafe {
+71 | |         if FA[0] != 1.0f32 || FA[10] != 11.0f32 {
+72 | |             std::process::exit(1);
+...  |
+78 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_003/target.rs:88:9
+   |
+88 | /         unsafe {
+89 | |             vla1[i] = FA[i] * 2.0f32;
+90 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_003/target.rs:96:9
+   |
+96 | /         unsafe {
+97 | |             vla2[i] = AFP[i];
+98 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_003/target.rs:102:5
+    |
+102 | /     unsafe {
+103 | |         if CALLS != 2 {
+104 | |             std::process::exit(3);
+105 | |         }
+106 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_1/sample_003/target.rs:124:74
+    |
+124 |     if takes_params(&vla1, &vla2) != (vla1[0] as i32 + vla1[10] as i32 + unsafe { (*vla2[0]) as i32 + (*vla2[16]) as i32 }) {
+    |                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 9 previous errors

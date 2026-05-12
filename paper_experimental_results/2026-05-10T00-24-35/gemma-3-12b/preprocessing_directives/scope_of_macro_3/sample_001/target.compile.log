@@ -1,0 +1,41 @@
+error: comparison operators cannot be chained
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:11:19
+   |
+11 |     let p = || Vec<i32>;
+   |             --    ^   ^
+   |             |
+   |             while parsing the body of this closure
+   |
+   = help: use `::<...>` instead of `<...>` to specify lifetime, type, or const arguments
+   = help: or use `(...)` if you meant to specify fn arguments
+help: you might have meant to open the body of the closure
+   |
+11 |     let p = || { Vec<i32>;
+   |                +
+
+warning: unnecessary parentheses around closure body
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:4:23
+  |
+4 |     let f1 = |a: i32| (a + x1);
+  |                       ^      ^
+  |
+  = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+  |
+4 -     let f1 = |a: i32| (a + x1);
+4 +     let f1 = |a: i32| a + x1;
+  |
+
+warning: unnecessary parentheses around closure body
+ --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/preprocessing_directives/scope_of_macro_3/sample_001/target.rs:6:23
+  |
+6 |     let f2 = |a: i32| (a + x2);
+  |                       ^      ^
+  |
+help: remove these parentheses
+  |
+6 -     let f2 = |a: i32| (a + x2);
+6 +     let f2 = |a: i32| a + x2;
+  |
+
+error: aborting due to 1 previous error; 2 warnings emitted

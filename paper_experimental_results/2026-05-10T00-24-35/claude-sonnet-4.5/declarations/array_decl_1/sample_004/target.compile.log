@@ -1,0 +1,66 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/array_decl_1/sample_004/target.rs:18:5
+   |
+18 | /     unsafe {
+19 | |         let mut i = 0;
+20 | |         while i < 11 {
+21 | |             FA[i] = (i + 1) as f32;
+...  |
+30 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/array_decl_1/sample_004/target.rs:47:14
+   |
+47 |         s += unsafe { *pp[i] } as i32;
+   |              ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/array_decl_1/sample_004/target.rs:55:14
+   |
+55 |     let s2 = unsafe { *afp2[0] } as i32 + unsafe { *afp2[16] } as i32;
+   |              ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/array_decl_1/sample_004/target.rs:55:43
+   |
+55 |     let s2 = unsafe { *afp2[0] } as i32 + unsafe { *afp2[16] } as i32;
+   |                                           ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/array_decl_1/sample_004/target.rs:62:5
+   |
+62 | /     unsafe {
+63 | |         if FA[0] != 1.0f32 || FA[10] != 11.0f32 {
+64 | |             std::process::exit(1);
+...  |
+70 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/array_decl_1/sample_004/target.rs:81:23
+   |
+81 |             vla1[i] = unsafe { FA[i] } * 2.0f32;
+   |                       ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/array_decl_1/sample_004/target.rs:87:23
+   |
+87 |             vla2[i] = unsafe { AFP[i] };
+   |                       ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/array_decl_1/sample_004/target.rs:110:78
+    |
+110 |         if takes_params(&vla1, &vla2) != (vla1[0] as i32 + vla1[10] as i32 + unsafe { *vla2[0] } as i32 + unsafe { *vla2[16] } as i32) {
+    |                                                                              ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/declarations/array_decl_1/sample_004/target.rs:110:107
+    |
+110 |         if takes_params(&vla1, &vla2) != (vla1[0] as i32 + vla1[10] as i32 + unsafe { *vla2[0] } as i32 + unsafe { *vla2[16] } as i32) {
+    |                                                                                                           ^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 9 previous errors

@@ -1,0 +1,80 @@
+error[E0412]: cannot find type `u4` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_3/sample_002/target.rs:4:8
+  |
+4 |     t: u4,
+  |        ^^ help: a builtin type with a similar name exists: `u64`
+
+error[E0412]: cannot find type `u5` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_3/sample_002/target.rs:5:14
+  |
+5 |     const_t: u5,
+  |              ^^ help: a builtin type with a similar name exists: `u8`
+
+error[E0412]: cannot find type `u5` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_3/sample_002/target.rs:6:8
+  |
+6 |     r: u5,
+  |        ^^ help: a builtin type with a similar name exists: `u8`
+
+error: invalid width `4` for integer literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_3/sample_002/target.rs:25:12
+   |
+25 |         t: 15u4,
+   |            ^^^^
+   |
+   = help: valid widths are 8, 16, 32, 64 and 128
+
+error: invalid width `5` for integer literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_3/sample_002/target.rs:26:18
+   |
+26 |         const_t: 0u5,
+   |                  ^^^
+   |
+   = help: valid widths are 8, 16, 32, 64 and 128
+
+error: invalid width `5` for integer literal
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_3/sample_002/target.rs:27:12
+   |
+27 |         r: 31u5,
+   |            ^^^^
+   |
+   = help: valid widths are 8, 16, 32, 64 and 128
+
+error[E0562]: `impl Trait` is not allowed in the type of variable bindings
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_3/sample_002/target.rs:35:16
+   |
+35 |         let f: impl Fn(i32) -> i32 = id;
+   |                ^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `impl Trait` is only allowed in arguments and return types of functions and methods
+   = note: see issue #63065 <https://github.com/rust-lang/rust/issues/63065> for more information
+   = help: add `#![feature(impl_trait_in_bindings)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_3/sample_002/target.rs:52:18
+   |
+ 9 | fn id(x: i32) -> i32 {
+   | -------------------- function `id` defined here
+...
+52 |     assert_eq!(f(id), 9);
+   |                - ^^ expected `i32`, found fn item
+   |                |
+   |                arguments to this function are incorrect
+   |
+   = note: expected type `i32`
+           found fn item `fn(i32) -> i32 {id}`
+note: closure parameter defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_3/sample_002/target.rs:51:14
+   |
+51 |     let f = |x: i32| -> i32 { call_cb(id, 9) };
+   |              ^^^^^^
+help: use parentheses to call this function
+   |
+52 |     assert_eq!(f(id(/* i32 */)), 9);
+   |                    +++++++++++
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0308, E0412, E0562.
+For more information about an error, try `rustc --explain E0308`.

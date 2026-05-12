@@ -1,0 +1,45 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_002/target.rs:11:17
+   |
+11 |                 unsafe { BACKING[i][j] = (i as i32 + 1) * 100 + (j as i32 + 1) }
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_002/target.rs:28:17
+   |
+28 |         let q = unsafe { &mut BACKING };
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_002/target.rs:40:9
+   |
+40 |         unsafe { SINK ^= checksum_2d(m, q) }
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_002/target.rs:81:8
+   |
+81 |     if unsafe { SINK == 0 } {
+   |        ^^^^^^^^^^^^^^^^^^^^
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_002/target.rs:64:24
+   |
+64 |     if checksum_2d(N, &BACKING)!= checksum_2d(N, &expect) {
+   |                        ^^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_002/target.rs:77:24
+   |
+77 |     if checksum_2d(N, &BACKING)!= checksum_2d(N, &expect2) {
+   |                        ^^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 6 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

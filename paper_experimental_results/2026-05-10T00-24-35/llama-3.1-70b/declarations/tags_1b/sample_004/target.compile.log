@@ -1,0 +1,31 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/tags_1b/sample_004/target.rs:31:8
+   |
+31 |     if unsafe { (*sp).left.as_ref().unwrap().count } != 2 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/tags_1b/sample_004/target.rs:39:8
+   |
+39 |     if unsafe { (*sp).left } == unsafe { (*sp).right } {
+   |        ^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/tags_1b/sample_004/target.rs:39:33
+   |
+39 |     if unsafe { (*sp).left } == unsafe { (*sp).right } {
+   |                                 ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0133]: call to unsafe function `std::ptr::mut_ptr::<impl *mut T>::as_ref` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/tags_1b/sample_004/target.rs:35:8
+   |
+35 |     if s.right.as_ref().unwrap().count != 3 {
+   |        ^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

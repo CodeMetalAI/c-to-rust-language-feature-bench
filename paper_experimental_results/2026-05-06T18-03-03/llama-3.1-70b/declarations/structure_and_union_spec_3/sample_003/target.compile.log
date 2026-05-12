@@ -1,0 +1,39 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_003/target.rs:28:13
+   |
+28 |     let p = unsafe { Box::from_raw(p) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_003/target.rs:20:27
+   |
+20 |     if std::ptr::addr_of!((*p).inner.i)!= p as *const _ as *const i32 {
+   |                           ^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0133]: dereference of raw pointer is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_003/target.rs:24:27
+   |
+24 |     if std::ptr::addr_of!((*p).a)!= (p as *const _ as usize + std::mem::size_of::<S>()) as *const _ {
+   |                           ^^^^ dereference of raw pointer
+   |
+   = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+
+error[E0596]: cannot borrow `*p` as mutable, as `p` is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/structure_and_union_spec_3/sample_003/target.rs:18:13
+   |
+18 |     let p = p.as_mut_ptr() as *mut S;
+   |             ^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+13 |     let mut p = Box::new([S {
+   |         +++
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0133, E0596.
+For more information about an error, try `rustc --explain E0133`.

@@ -1,0 +1,28 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_001/target.rs:15:16
+   |
+ 8 | fn main() {
+   |          - expected `()` because of default return type
+...
+15 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/structure_and_union_spec_3/sample_001/target.rs:22:19
+     |
+  22 |     Box::from_raw(p);
+     |     ------------- ^ expected `*mut _`, found `Box<S>`
+     |     |
+     |     arguments to this function are incorrect
+     |
+     = note: expected raw pointer `*mut _`
+                     found struct `Box<S>`
+note: associated function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/boxed.rs:1044:19
+     |
+1044 |     pub unsafe fn from_raw(raw: *mut T) -> Self {
+     |                   ^^^^^^^^
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

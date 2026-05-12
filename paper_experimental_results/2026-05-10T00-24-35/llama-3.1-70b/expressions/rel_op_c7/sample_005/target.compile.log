@@ -1,0 +1,33 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/rel_op_c7/sample_005/target.rs:9:28
+  |
+9 |   let p_end1: *const i32 = unsafe { p.offset(1) };
+  |                            ^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/rel_op_c7/sample_005/target.rs:10:28
+   |
+10 |   let p_end2: *const i32 = unsafe { &x as *const _ as *const i32 }.offset(1);
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::offset` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/rel_op_c7/sample_005/target.rs:10:28
+   |
+10 |   let p_end2: *const i32 = unsafe { &x as *const _ as *const i32 }.offset(1);
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/rel_op_c7/sample_005/target.rs:10:28
+   |
+10 |   let p_end2: *const i32 = unsafe { &x as *const _ as *const i32 }.offset(1);
+   |                            ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 3 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0133`.

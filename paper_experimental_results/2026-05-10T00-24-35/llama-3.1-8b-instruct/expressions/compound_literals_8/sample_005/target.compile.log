@@ -1,0 +1,31 @@
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_8/sample_005/target.rs:19:14
+   |
+19 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0369]: binary operation `==` cannot be applied to type `Option<&mut S>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_8/sample_005/target.rs:16:7
+   |
+16 |     p == q && p.unwrap().i == 1
+   |     - ^^ - Option<&mut S>
+   |     |
+   |     Option<&mut S>
+   |
+note: an implementation of `PartialEq` might be missing for `S`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_8/sample_005/target.rs:1:1
+   |
+ 1 | struct S {
+   | ^^^^^^^^ must implement `PartialEq`
+help: consider annotating `S` with `#[derive(PartialEq)]`
+   |
+ 1 + #[derive(PartialEq)]
+ 2 | struct S {
+   |
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0277, E0369.
+For more information about an error, try `rustc --explain E0277`.

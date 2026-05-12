@@ -1,0 +1,38 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/external_definitions/fun_defs_1/sample_005/target.rs:5:9
+  |
+5 | /         unsafe {
+6 | |             ARR[b as usize] = 1;
+7 | |         }
+  | |_________^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/external_definitions/fun_defs_1/sample_005/target.rs:12:9
+   |
+12 | /         unsafe {
+13 | |             let idx = b as u8 as usize;
+14 | |             ARR[idx] += b;
+15 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/external_definitions/fun_defs_1/sample_005/target.rs:32:5
+   |
+32 | /     unsafe {
+33 | |         if ARR[ub] != 0 {
+34 | |             std::process::exit(3);
+35 | |         }
+36 | |     }
+   | |_____^
+
+warning: unused variable: `a`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/external_definitions/fun_defs_1/sample_005/target.rs:4:10
+  |
+4 |     fn f(a: u8, b: u8) -> i32 {
+  |          ^ help: if this is intentional, prefix it with an underscore: `_a`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 3 previous errors; 1 warning emitted

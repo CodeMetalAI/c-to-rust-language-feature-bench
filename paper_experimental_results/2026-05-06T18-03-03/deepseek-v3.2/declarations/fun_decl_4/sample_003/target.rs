@@ -1,0 +1,74 @@
+fn mix_u64(mut x: u64) -> u64 {
+    x ^= x >> 33;
+    x = x.wrapping_mul(0xff51afd7ed558ccd);
+    x ^= x >> 33;
+    x = x.wrapping_mul(0xc4ceb9fe1a85ec53);
+    x ^= x >> 33;
+    x
+}
+
+fn hash_matrix(a: &[Vec<f64>]) -> u64 {
+    let mut h: u64 = 0x9e3779b97f4a7c15;
+    for (i, row) in a.iter().enumerate() {
+        for (j, &val) in row.iter().enumerate() {
+            let u = val.to_bits();
+            h = mix_u64(h ^ (u.wrapping_add((i * 131 + j * 17) as u64)));
+        }
+    }
+    h
+}
+
+fn addscalar(a: &mut [Vec<f64>], x: f64) {
+    for row in a.iter_mut() {
+        for val in row.iter_mut() {
+            *val += x;
+        }
+    }
+}
+
+fn main() {
+    static mut SINK: u64 = 0;
+
+    let n = 4;
+    let m = 2;
+    let k = n * m + 300;
+
+    let mut b = vec![vec![0.0; k]; n];
+
+    for i in 0..n {
+        for j in 0..k {
+            b[i][j] = (i * 1000 + j) as f64 * 0.25;
+        }
+    }
+
+    // First check: hash before and after should differ
+    let before = hash_matrix(&b);
+    addscalar(&mut b, 2.17);
+    let after = hash_matrix(&b);
+    if before == after {
+        std::process::exit(1);
+    }
+
+    // Second check: verify each element
+    let x = 2.17;
+    for i in 0..n {
+        for j in 0..k {
+            let expect = (i * 1000 + j) as f64 * 0.25 + x;
+            let got = b[i][j];
+            let diff = (got - expect).abs();
+            if diff > 0.0000001 {
+                std::process::exit(2);
+            }
+        }
+    }
+
+    // Third check: volatile sink
+    unsafe {
+        SINK ^= b[0][0].to_bits();
+        if SINK == 0 {
+            std::process::exit(3);
+        }
+    }
+
+    std::process::exit(0);
+}

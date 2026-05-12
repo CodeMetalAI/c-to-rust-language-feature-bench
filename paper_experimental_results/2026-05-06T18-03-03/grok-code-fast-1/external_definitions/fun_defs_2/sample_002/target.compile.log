@@ -1,0 +1,47 @@
+error[E0432]: unresolved import `lazy_static`
+ --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/external_definitions/fun_defs_2/sample_002/target.rs:1:5
+  |
+1 | use lazy_static::lazy_static;
+  |     ^^^^^^^^^^^ use of unresolved module or unlinked crate `lazy_static`
+  |
+help: you might be missing a crate named `lazy_static`, add it to your project and import it in your code
+  |
+1 + extern crate lazy_static;
+  |
+
+error[E0425]: cannot find value `COUNTER` in this scope
+ --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/external_definitions/fun_defs_2/sample_002/target.rs:9:17
+  |
+9 |     let mut c = COUNTER.lock().unwrap();
+  |                 ^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `COUNTER` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/external_definitions/fun_defs_2/sample_002/target.rs:27:6
+   |
+27 |     *COUNTER.lock().unwrap() = 0;
+   |      ^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `COUNTER` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/external_definitions/fun_defs_2/sample_002/target.rs:30:9
+   |
+30 |     if *COUNTER.lock().unwrap() != 14 {
+   |         ^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `COUNTER` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/external_definitions/fun_defs_2/sample_002/target.rs:38:9
+   |
+38 |     if *COUNTER.lock().unwrap() != 28 {
+   |         ^^^^^^^ not found in this scope
+
+warning: unused import: `std::sync::Mutex`
+ --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/external_definitions/fun_defs_2/sample_002/target.rs:2:5
+  |
+2 | use std::sync::Mutex;
+  |     ^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 5 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0425, E0432.
+For more information about an error, try `rustc --explain E0425`.

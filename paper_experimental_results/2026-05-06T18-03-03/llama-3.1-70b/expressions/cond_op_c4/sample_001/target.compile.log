@@ -1,0 +1,47 @@
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `:`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/cond_op_c4/sample_001/target.rs:14:45
+   |
+14 |         x = set_g_return(1, true)? (G == 1) : (set_g_return(2, true), false);
+   |                                             ^ expected one of `.`, `;`, `?`, `}`, or an operator
+
+error[E0425]: cannot find value `G` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/cond_op_c4/sample_001/target.rs:13:9
+   |
+13 |         G = 0;
+   |         ^
+   |
+help: a local variable with a similar name exists
+   |
+13 -         G = 0;
+13 +         x = 0;
+   |
+help: you might have meant to introduce a new binding
+   |
+13 |         let G = 0;
+   |         +++
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/cond_op_c4/sample_001/target.rs:3:5
+  |
+3 | /     unsafe {
+4 | |         G = gval;
+5 | |         ret
+6 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/cond_op_c4/sample_001/target.rs:12:5
+   |
+12 | /     unsafe {
+13 | |         G = 0;
+14 | |         x = set_g_return(1, true)? (G == 1) : (set_g_return(2, true), false);
+15 | |         if x!= true {
+...  |
+30 | |     }
+   | |_____^
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0425`.

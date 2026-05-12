@@ -1,0 +1,29 @@
+error[E0277]: the size for values of type `str` cannot be known at compilation time
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/cond_op_1/sample_004/target.rs:24:29
+   |
+24 |     f(if true { vp } else { c_cp });
+   |                             ^^^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `str`
+   = note: required for the cast from `&str` to `&(dyn Any + 'static)`
+help: consider borrowing the value, since `&&str` can be coerced into `&(dyn Any + 'static)`
+   |
+24 |     f(if true { vp } else { &c_cp });
+   |                             +
+
+error[E0277]: the size for values of type `str` cannot be known at compilation time
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/expressions/cond_op_1/sample_004/target.rs:25:17
+   |
+25 |     f(if true { c_cp } else { vp });
+   |                 ^^^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `str`
+   = note: required for the cast from `&str` to `&(dyn Any + 'static)`
+help: consider borrowing the value, since `&&str` can be coerced into `&(dyn Any + 'static)`
+   |
+25 |     f(if true { &c_cp } else { vp });
+   |                 +
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

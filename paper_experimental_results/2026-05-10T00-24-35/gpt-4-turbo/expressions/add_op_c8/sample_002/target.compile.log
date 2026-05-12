@@ -1,0 +1,19 @@
+warning: type annotations needed
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/add_op_c8/sample_002/target.rs:29:46
+   |
+29 |     if &a[5] as *const _ != (p0 as *const _).wrapping_offset(5) {
+   |                                              ^^^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2018!
+   = note: for more information, see issue #46906 <https://github.com/rust-lang/rust/issues/46906>
+   = note: `#[warn(tyvar_behind_raw_pointer)]` (part of `#[warn(rust_2018_compatibility)]`) on by default
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/expressions/add_op_c8/sample_002/target.rs:29:9
+   |
+29 |     if &a[5] as *const _ != (p0 as *const _).wrapping_offset(5) {
+   |         ^^^^ index out of bounds: the length is 5 but the index is 5
+   |
+   = note: `#[deny(unconditional_panic)]` on by default
+
+error: aborting due to 1 previous error; 1 warning emitted

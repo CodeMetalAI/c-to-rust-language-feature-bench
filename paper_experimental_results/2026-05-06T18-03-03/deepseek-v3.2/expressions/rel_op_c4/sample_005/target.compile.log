@@ -1,0 +1,45 @@
+error[E0369]: cannot add `{integer}` to `*const i32`
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/rel_op_c4/sample_005/target.rs:8:35
+  |
+8 |     let px_end = px as *const i32 + 1;
+  |                  ---------------- ^ - {integer}
+  |                  |
+  |                  *const i32
+  |
+help: consider using `wrapping_add` or `add` for pointer + {integer}
+  |
+8 -     let px_end = px as *const i32 + 1;
+8 +     let px_end = px as *const i32.wrapping_add(1);
+  |
+
+error[E0369]: cannot add `{integer}` to `*const i32`
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/rel_op_c4/sample_005/target.rs:9:35
+  |
+9 |     let py_end = py as *const i32 + 1;
+  |                  ---------------- ^ - {integer}
+  |                  |
+  |                  *const i32
+  |
+help: consider using `wrapping_add` or `add` for pointer + {integer}
+  |
+9 -     let py_end = py as *const i32 + 1;
+9 +     let py_end = py as *const i32.wrapping_add(1);
+  |
+
+error[E0369]: cannot add `{integer}` to `*const i32`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/rel_op_c4/sample_005/target.rs:19:36
+   |
+19 |     if px_end != (&x as *const i32 + 1) {
+   |                   ---------------- ^ - {integer}
+   |                   |
+   |                   *const i32
+   |
+help: consider using `wrapping_add` or `add` for pointer + {integer}
+   |
+19 -     if px_end != (&x as *const i32 + 1) {
+19 +     if px_end != (&x as *const i32.wrapping_add(1)) {
+   |
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0369`.

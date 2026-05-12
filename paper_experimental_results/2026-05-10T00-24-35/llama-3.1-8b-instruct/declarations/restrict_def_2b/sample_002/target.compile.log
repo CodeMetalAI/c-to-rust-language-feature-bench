@@ -1,0 +1,112 @@
+error: const trait bounds are not allowed in trait object types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_002/target.rs:16:39
+   |
+16 | fn safe_move(n: i32, p: &mut i32, q: &const i32) {
+   |                                       ^^^^^^^^^
+
+error[E0404]: expected trait, found builtin type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_002/target.rs:16:45
+   |
+16 | fn safe_move(n: i32, p: &mut i32, q: &const i32) {
+   |                                             ^^^ not a trait
+
+error[E0425]: cannot find value `d` in this scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_002/target.rs:96:21
+    |
+ 96 |     call_f_checked(&d[0], 100, 50, &mut d[50], &mut d[50]);
+    |                     ^ help: a static with a similar name exists: `D`
+...
+118 | static mut D: [i32; 100] = [0; 100];
+    | ------------------------------------ similarly named static `D` defined here
+
+error[E0425]: cannot find value `d` in this scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_002/target.rs:96:41
+    |
+ 96 |     call_f_checked(&d[0], 100, 50, &mut d[50], &mut d[50]);
+    |                                         ^ help: a static with a similar name exists: `D`
+...
+118 | static mut D: [i32; 100] = [0; 100];
+    | ------------------------------------ similarly named static `D` defined here
+
+error[E0425]: cannot find value `d` in this scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_002/target.rs:96:53
+    |
+ 96 |     call_f_checked(&d[0], 100, 50, &mut d[50], &mut d[50]);
+    |                                                     ^ help: a static with a similar name exists: `D`
+...
+118 | static mut D: [i32; 100] = [0; 100];
+    | ------------------------------------ similarly named static `D` defined here
+
+error[E0425]: cannot find value `d` in this scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_002/target.rs:97:21
+    |
+ 97 |     call_f_checked(&d[0], 100, 50, &mut d[1], &mut d[0]);
+    |                     ^ help: a static with a similar name exists: `D`
+...
+118 | static mut D: [i32; 100] = [0; 100];
+    | ------------------------------------ similarly named static `D` defined here
+
+error[E0425]: cannot find value `d` in this scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_002/target.rs:97:41
+    |
+ 97 |     call_f_checked(&d[0], 100, 50, &mut d[1], &mut d[0]);
+    |                                         ^ help: a static with a similar name exists: `D`
+...
+118 | static mut D: [i32; 100] = [0; 100];
+    | ------------------------------------ similarly named static `D` defined here
+
+error[E0425]: cannot find value `d` in this scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_002/target.rs:97:52
+    |
+ 97 |     call_f_checked(&d[0], 100, 50, &mut d[1], &mut d[0]);
+    |                                                    ^ help: a static with a similar name exists: `D`
+...
+118 | static mut D: [i32; 100] = [0; 100];
+    | ------------------------------------ similarly named static `D` defined here
+
+error[E0425]: cannot find value `d` in this scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_002/target.rs:103:15
+    |
+103 |     init(&mut d[0], 100);
+    |               ^ help: a static with a similar name exists: `D`
+...
+118 | static mut D: [i32; 100] = [0; 100];
+    | ------------------------------------ similarly named static `D` defined here
+
+error[E0425]: cannot find value `d` in this scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_002/target.rs:111:14
+    |
+111 |     if!same(&d[0], &expect[0], 100) {
+    |              ^ help: a static with a similar name exists: `D`
+...
+118 | static mut D: [i32; 100] = [0; 100];
+    | ------------------------------------ similarly named static `D` defined here
+
+error[E0658]: const trait impls are experimental
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_002/target.rs:16:39
+   |
+16 | fn safe_move(n: i32, p: &mut i32, q: &const i32) {
+   |                                       ^^^^^
+   |
+   = note: see issue #143874 <https://github.com/rust-lang/rust/issues/143874> for more information
+   = help: add `#![feature(const_trait_impl)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_002/target.rs:16:39
+   |
+16 | fn safe_move(n: i32, p: &mut i32, q: &const i32) {
+   |                                       ^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2021/warnings-promoted-to-error.html>
+   = note: `#[warn(bare_trait_objects)]` (part of `#[warn(rust_2021_compatibility)]`) on by default
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+16 | fn safe_move(n: i32, p: &mut i32, q: &dyn const i32) {
+   |                                       +++
+
+error: aborting due to 11 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0404, E0425, E0658.
+For more information about an error, try `rustc --explain E0404`.

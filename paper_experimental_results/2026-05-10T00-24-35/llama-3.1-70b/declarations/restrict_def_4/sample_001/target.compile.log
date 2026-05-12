@@ -1,0 +1,122 @@
+error[E0599]: no method named `try_into` found for slice `[i32]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_001/target.rs:23:51
+    |
+ 23 |         let expect: [i32; 16] = y_snapshot[4..20].try_into().unwrap();
+    |                                                   ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[i32]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 23 -         let expect: [i32; 16] = y_snapshot[4..20].try_into().unwrap();
+ 23 +         let expect: [i32; 16] = y_snapshot[4..20].into().unwrap();
+    |
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_001/target.rs:24:12
+   |
+24 |         if!same(&x[8..24], &expect) {
+   |            ^^^^-------------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_001/target.rs:70:4
+   |
+70 | fn same(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^                       --------
+help: provide the argument
+   |
+24 |         if!same(&x[8..24], &expect, /* usize */) {
+   |                                   +++++++++++++
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_001/target.rs:28:12
+   |
+28 |         if!same(&y, &y_snapshot) {
+   |            ^^^^----------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_001/target.rs:70:4
+   |
+70 | fn same(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^                       --------
+help: provide the argument
+   |
+28 |         if!same(&y, &y_snapshot, /* usize */) {
+   |                                +++++++++++++
+
+error[E0599]: no method named `try_into` found for slice `[i32]` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_001/target.rs:39:48
+    |
+ 39 |     let expect2: [i32; 8] = y_snapshot[24..32].try_into().unwrap();
+    |                                                ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `[i32]` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+ 39 -     let expect2: [i32; 8] = y_snapshot[24..32].try_into().unwrap();
+ 39 +     let expect2: [i32; 8] = y_snapshot[24..32].into().unwrap();
+    |
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_001/target.rs:40:8
+   |
+40 |     if!same(&x[..8], &expect2) {
+   |        ^^^^------------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_001/target.rs:70:4
+   |
+70 | fn same(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^                       --------
+help: provide the argument
+   |
+40 |     if!same(&x[..8], &expect2, /* usize */) {
+   |                              +++++++++++++
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_001/target.rs:44:8
+   |
+44 |     if!same(&y, &y_snapshot) {
+   |        ^^^^----------------- argument #3 of type `usize` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_001/target.rs:70:4
+   |
+70 | fn same(a: &[i32], b: &[i32], n: usize) -> bool {
+   |    ^^^^                       --------
+help: provide the argument
+   |
+44 |     if!same(&y, &y_snapshot, /* usize */) {
+   |                            +++++++++++++
+
+warning: unused variable: `n`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_001/target.rs:70:31
+   |
+70 | fn same(a: &[i32], b: &[i32], n: usize) -> bool {
+   |                               ^ help: if this is intentional, prefix it with an underscore: `_n`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 6 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0061, E0599.
+For more information about an error, try `rustc --explain E0061`.

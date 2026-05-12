@@ -1,0 +1,83 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_3/sample_004/target.rs:27:19
+   |
+27 |     if !check_row(y2[0], 1, 3, 5) {
+   |         --------- ^^^^^ expected `[i32; 3]`, found integer
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_3/sample_004/target.rs:1:4
+   |
+ 1 | fn check_row(a: [i32; 3], x: i32, y: i32, z: i32) -> bool {
+   |    ^^^^^^^^^ -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_3/sample_004/target.rs:30:19
+   |
+30 |     if !check_row(y2[1], 2, 4, 6) {
+   |         --------- ^^^^^ expected `[i32; 3]`, found integer
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_3/sample_004/target.rs:1:4
+   |
+ 1 | fn check_row(a: [i32; 3], x: i32, y: i32, z: i32) -> bool {
+   |    ^^^^^^^^^ -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_3/sample_004/target.rs:33:19
+   |
+33 |     if !check_row(y2[2], 3, 5, 7) {
+   |         --------- ^^^^^ expected `[i32; 3]`, found integer
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_3/sample_004/target.rs:1:4
+   |
+ 1 | fn check_row(a: [i32; 3], x: i32, y: i32, z: i32) -> bool {
+   |    ^^^^^^^^^ -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_3/sample_004/target.rs:36:19
+   |
+36 |     if !check_row(y2[3], 0, 0, 0) {
+   |         --------- ^^^^^ expected `[i32; 3]`, found integer
+   |         |
+   |         arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_3/sample_004/target.rs:1:4
+   |
+ 1 | fn check_row(a: [i32; 3], x: i32, y: i32, z: i32) -> bool {
+   |    ^^^^^^^^^ -----------
+
+error[E0614]: type `Option<&i32>` cannot be dereferenced
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_3/sample_004/target.rs:43:12
+   |
+43 |         if *p1.get(11) != 0 {
+   |            ^^^^^^^^^^^ can't be dereferenced
+
+error[E0599]: no method named `get` found for reference `&{integer}` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/initialization_3/sample_004/target.rs:46:16
+   |
+46 |         if *p2.get(11) != 0 {
+   |                ^^^
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `SliceIndex` which provides `get` is implemented but not in scope; perhaps you want to import it
+   |
+ 1 + use std::slice::SliceIndex;
+   |
+help: there is a method `ge` with a similar name
+   |
+46 -         if *p2.get(11) != 0 {
+46 +         if *p2.ge(11) != 0 {
+   |
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0308, E0599, E0614.
+For more information about an error, try `rustc --explain E0308`.

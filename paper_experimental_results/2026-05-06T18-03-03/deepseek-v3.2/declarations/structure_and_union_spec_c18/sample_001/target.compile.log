@@ -1,0 +1,98 @@
+error[E0412]: cannot find type `u8` in module `std::num`
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:3:21
+  |
+3 | type u8 = std::num::u8;
+  |                     ^^ not found in `std::num`
+  |
+help: consider importing this builtin type
+  |
+1 + use std::primitive::u8;
+  |
+help: if you import `u8`, refer to it directly
+  |
+3 - type u8 = std::num::u8;
+3 + type u8 = u8;
+  |
+
+error[E0412]: cannot find type `u32` in module `std::num`
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:4:22
+  |
+4 | type u32 = std::num::u32;
+  |                      ^^^ not found in `std::num`
+  |
+help: consider importing this builtin type
+  |
+1 + use std::primitive::u32;
+  |
+help: if you import `u32`, refer to it directly
+  |
+4 - type u32 = std::num::u32;
+4 + type u32 = u32;
+  |
+
+warning: type `u8` should have an upper camel case name
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:3:6
+  |
+3 | type u8 = std::num::u8;
+  |      ^^ help: convert the identifier to upper camel case (notice the capitalization): `U8`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: type `u32` should have an upper camel case name
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:4:6
+  |
+4 | type u32 = std::num::u32;
+  |      ^^^ help: convert the identifier to upper camel case (notice the capitalization): `U32`
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:8:22
+  |
+8 |     let member_ptr = unsafe { &(*base).member as *const U };
+  |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:41:13
+   |
+41 |     let p = unsafe { &mut *(storage.raw.as_mut_ptr() as *mut Packet) };
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:64:13
+   |
+64 | /             unsafe {
+65 | |                 let data_ptr = p.data.as_ptr() as *mut u32;
+66 | |                 *data_ptr.add(i) = v;
+67 | |                 *data_ptr.add(i) += 0;
+68 | |             }
+   | |_____________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:77:13
+   |
+77 | /             unsafe {
+78 | |                 let data_ptr = p.data.as_ptr() as *const u32;
+79 | |                 p.sum += *data_ptr.add(i);
+80 | |             }
+   | |_____________^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:106:13
+    |
+106 |     let p = unsafe { &mut *(storage.raw.as_mut_ptr() as *mut Packet) };
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0609]: no field `member` on type `T`
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_c18/sample_001/target.rs:8:40
+  |
+6 | fn offset_of<T, U>(_: &T, member: &U) -> usize {
+  |              - type parameter 'T' declared here
+7 |     let base = 0 as *const T;
+8 |     let member_ptr = unsafe { &(*base).member as *const U };
+  |                                        ^^^^^^ unknown field
+
+error: aborting due to 8 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0412, E0609.
+For more information about an error, try `rustc --explain E0412`.

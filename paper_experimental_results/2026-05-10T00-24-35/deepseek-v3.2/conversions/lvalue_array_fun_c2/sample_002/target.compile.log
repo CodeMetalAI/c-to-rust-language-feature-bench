@@ -1,0 +1,36 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/lvalue_array_fun_c2/sample_002/target.rs:25:5
+   |
+25 | /     unsafe {
+26 | |         let ptr = &x as *const i32;
+27 | |         if *ptr != 3 {
+28 | |             std::process::exit(3);
+29 | |         }
+30 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0599]: no method named `hash` found for struct `TypeId` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/conversions/lvalue_array_fun_c2/sample_002/target.rs:5:10
+    |
+  4 | /     std::any::TypeId::of::<T>()
+  5 | |         .hash(&mut std::collections::hash_map::DefaultHasher::new())
+    | |         -^^^^ method not found in `TypeId`
+    | |_________|
+    |
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/hash/mod.rs:199:8
+    |
+199 |       fn hash<H: Hasher>(&self, state: &mut H);
+    |          ---- the method is available for `TypeId` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Hash` which provides `hash` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::hash::Hash;
+    |
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

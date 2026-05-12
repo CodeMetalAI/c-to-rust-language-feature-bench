@@ -1,0 +1,114 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_2/sample_001/target.rs:25:5
+   |
+25 | /     unsafe {
+26 | |         (*p).x += 3;
+27 | |         (*p).x
+28 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_2/sample_001/target.rs:61:8
+   |
+61 |     if unsafe { takes_tp1(&mut p) }!= 13 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_2/sample_001/target.rs:83:8
+   |
+83 |     if unsafe { (*r).x }!= 30 {
+   |        ^^^^^^^^^^^^^^^^^
+
+error[E0609]: no field `x` on type `*mut S1`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_2/sample_001/target.rs:26:14
+   |
+26 |         (*p).x += 3;
+   |              ^ unknown field
+   |
+help: `(*p)` is a raw pointer; try dereferencing it
+   |
+26 |         (*(*p)).x += 3;
+   |         ++    +
+
+error[E0609]: no field `x` on type `*mut S1`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_2/sample_001/target.rs:27:14
+   |
+27 |         (*p).x
+   |              ^ unknown field
+   |
+help: `(*p)` is a raw pointer; try dereferencing it
+   |
+27 |         (*(*p)).x
+   |         ++    +
+
+error[E0599]: no method named `clone` found for struct `S1` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_2/sample_001/target.rs:43:19
+   |
+ 2 | struct S1 {
+   | --------- method `clone` not found for this struct
+...
+43 |     if takes_t1(a.clone())!= 11 {
+   |                   ^^^^^ method not found in `S1`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `clone`, perhaps you need to implement it:
+           candidate #1: `Clone`
+
+error[E0599]: no method named `clone` found for struct `S1` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_2/sample_001/target.rs:47:19
+   |
+ 2 | struct S1 {
+   | --------- method `clone` not found for this struct
+...
+47 |     if takes_s1(a.clone())!= 12 {
+   |                   ^^^^^ method not found in `S1`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `clone`, perhaps you need to implement it:
+           candidate #1: `Clone`
+
+error[E0599]: no method named `clone` found for struct `S1` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_2/sample_001/target.rs:51:19
+   |
+ 2 | struct S1 {
+   | --------- method `clone` not found for this struct
+...
+51 |     if takes_t1(b.clone())!= 21 {
+   |                   ^^^^^ method not found in `S1`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `clone`, perhaps you need to implement it:
+           candidate #1: `Clone`
+
+error[E0599]: no method named `clone` found for struct `S1` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_2/sample_001/target.rs:55:19
+   |
+ 2 | struct S1 {
+   | --------- method `clone` not found for this struct
+...
+55 |     if takes_s1(b.clone())!= 22 {
+   |                   ^^^^^ method not found in `S1`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `clone`, perhaps you need to implement it:
+           candidate #1: `Clone`
+
+error[E0599]: no method named `clone` found for struct `S2` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_2/sample_001/target.rs:87:19
+   |
+ 9 | struct S2 {
+   | --------- method `clone` not found for this struct
+...
+87 |     if takes_t2(c.clone())!= 35 {
+   |                   ^^^^^ method not found in `S2`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `clone`, perhaps you need to implement it:
+           candidate #1: `Clone`
+
+error: aborting due to 10 previous errors
+
+Some errors have detailed explanations: E0599, E0609.
+For more information about an error, try `rustc --explain E0599`.

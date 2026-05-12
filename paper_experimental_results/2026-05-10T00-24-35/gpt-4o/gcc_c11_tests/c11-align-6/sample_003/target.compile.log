@@ -1,0 +1,22 @@
+error[E0401]: can't use generic parameters from outer item
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/c11-align-6/sample_003/target.rs:5:16
+  |
+2 |     fn check_align<T>() {
+  |                    - type parameter from outer item
+3 |         struct Wrapper {
+  |                       - help: try introducing a local generic parameter here: `<T>`
+4 |             c: u8,
+5 |             v: T,
+  |                ^ use of generic parameter from outer item
+
+warning: unnecessary trailing semicolon
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/c11-align-6/sample_003/target.rs:6:10
+  |
+6 |         };
+  |          ^ help: remove this semicolon
+  |
+  = note: `#[warn(redundant_semicolons)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 1 previous error; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0401`.

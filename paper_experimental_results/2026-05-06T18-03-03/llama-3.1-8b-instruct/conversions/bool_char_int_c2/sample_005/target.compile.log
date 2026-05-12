@@ -1,0 +1,109 @@
+error[E0658]: the type `f128` is unstable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_005/target.rs:11:32
+   |
+11 |         std::any::TypeId::of::<f128>() => 9,
+   |                                ^^^^
+   |
+   = note: see issue #116909 <https://github.com/rust-lang/rust/issues/116909> for more information
+   = help: add `#![feature(f128)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0425]: cannot find function `type_id_of` in module `std::any`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_005/target.rs:2:21
+  |
+2 |     match std::any::type_id_of::<T>() {
+  |                     ^^^^^^^^^^ not found in `std::any`
+
+error[E0164]: expected tuple struct or tuple variant, found associated function `std::any::TypeId::of<i32>`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_005/target.rs:3:9
+  |
+3 |         std::any::TypeId::of::<i32>() => 1,
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `fn` calls are not allowed in patterns
+  |
+  = help: for more information, visit https://doc.rust-lang.org/book/ch19-00-patterns.html
+
+error[E0164]: expected tuple struct or tuple variant, found associated function `std::any::TypeId::of<u32>`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_005/target.rs:4:9
+  |
+4 |         std::any::TypeId::of::<u32>() => 2,
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `fn` calls are not allowed in patterns
+  |
+  = help: for more information, visit https://doc.rust-lang.org/book/ch19-00-patterns.html
+
+error[E0164]: expected tuple struct or tuple variant, found associated function `std::any::TypeId::of<i64>`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_005/target.rs:5:9
+  |
+5 |         std::any::TypeId::of::<i64>() => 3,
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `fn` calls are not allowed in patterns
+  |
+  = help: for more information, visit https://doc.rust-lang.org/book/ch19-00-patterns.html
+
+error[E0164]: expected tuple struct or tuple variant, found associated function `std::any::TypeId::of<u64>`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_005/target.rs:6:9
+  |
+6 |         std::any::TypeId::of::<u64>() => 4,
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `fn` calls are not allowed in patterns
+  |
+  = help: for more information, visit https://doc.rust-lang.org/book/ch19-00-patterns.html
+
+error[E0164]: expected tuple struct or tuple variant, found associated function `std::any::TypeId::of<i128>`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_005/target.rs:7:9
+  |
+7 |         std::any::TypeId::of::<i128>() => 5,
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `fn` calls are not allowed in patterns
+  |
+  = help: for more information, visit https://doc.rust-lang.org/book/ch19-00-patterns.html
+
+error[E0164]: expected tuple struct or tuple variant, found associated function `std::any::TypeId::of<u128>`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_005/target.rs:8:9
+  |
+8 |         std::any::TypeId::of::<u128>() => 6,
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `fn` calls are not allowed in patterns
+  |
+  = help: for more information, visit https://doc.rust-lang.org/book/ch19-00-patterns.html
+
+error[E0164]: expected tuple struct or tuple variant, found associated function `std::any::TypeId::of<f32>`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_005/target.rs:9:9
+  |
+9 |         std::any::TypeId::of::<f32>() => 7,
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `fn` calls are not allowed in patterns
+  |
+  = help: for more information, visit https://doc.rust-lang.org/book/ch19-00-patterns.html
+
+error[E0164]: expected tuple struct or tuple variant, found associated function `std::any::TypeId::of<f64>`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_005/target.rs:10:9
+   |
+10 |         std::any::TypeId::of::<f64>() => 8,
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `fn` calls are not allowed in patterns
+   |
+   = help: for more information, visit https://doc.rust-lang.org/book/ch19-00-patterns.html
+
+error[E0164]: expected tuple struct or tuple variant, found associated function `std::any::TypeId::of<f128>`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_005/target.rs:11:9
+   |
+11 |         std::any::TypeId::of::<f128>() => 9,
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `fn` calls are not allowed in patterns
+   |
+   = help: for more information, visit https://doc.rust-lang.org/book/ch19-00-patterns.html
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_005/target.rs:24:16
+   |
+22 | fn main() {
+   |          - expected `()` because of default return type
+23 |     if type_id((1i8 + 0) as i32) != 1 {
+24 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0369]: cannot add `{integer}` to `bool`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/conversions/bool_char_int_c2/sample_005/target.rs:48:22
+   |
+48 |     if type_id(bf.b1 + 0) != 1 {
+   |                ----- ^ - {integer}
+   |                |
+   |                bool
+
+error: aborting due to 13 previous errors
+
+Some errors have detailed explanations: E0164, E0308, E0369, E0425, E0658.
+For more information about an error, try `rustc --explain E0164`.

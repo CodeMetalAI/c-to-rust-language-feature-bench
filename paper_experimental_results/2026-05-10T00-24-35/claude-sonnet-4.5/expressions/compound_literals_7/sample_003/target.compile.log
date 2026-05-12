@@ -1,0 +1,76 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/compound_literals_7/sample_003/target.rs:14:5
+   |
+14 | /     unsafe {
+15 | |         if x.car != 0 {
+16 | |             return 1;
+...  |
+24 | |         0
+25 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/compound_literals_7/sample_003/target.rs:29:5
+   |
+29 | /     unsafe {
+30 | |         ENDLESS_ZEROS.cdr = &ENDLESS_ZEROS as *const IntList;
+31 | |         std::process::exit(eval(&ENDLESS_ZEROS));
+32 | |     }
+   | |_____^
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/compound_literals_7/sample_003/target.rs:18:21
+   |
+18 |         if x.cdr != &ENDLESS_ZEROS as *const IntList {
+   |                     ^^^^^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+   = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+help: use `&raw const` instead to create a raw pointer
+   |
+18 |         if x.cdr != &raw const ENDLESS_ZEROS as *const IntList {
+   |                      +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/compound_literals_7/sample_003/target.rs:21:28
+   |
+21 |         if (*x.cdr).cdr != &ENDLESS_ZEROS as *const IntList {
+   |                            ^^^^^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+21 |         if (*x.cdr).cdr != &raw const ENDLESS_ZEROS as *const IntList {
+   |                             +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/compound_literals_7/sample_003/target.rs:30:29
+   |
+30 |         ENDLESS_ZEROS.cdr = &ENDLESS_ZEROS as *const IntList;
+   |                             ^^^^^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+30 |         ENDLESS_ZEROS.cdr = &raw const ENDLESS_ZEROS as *const IntList;
+   |                              +++++++++
+
+warning: creating a shared reference to mutable static
+  --> benchmark_results/2026-05-10T00-24-35/claude-sonnet-4.5/expressions/compound_literals_7/sample_003/target.rs:31:33
+   |
+31 |         std::process::exit(eval(&ENDLESS_ZEROS));
+   |                                 ^^^^^^^^^^^^^^ shared reference to mutable static
+   |
+   = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+   = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+help: use `&raw const` instead to create a raw pointer
+   |
+31 |         std::process::exit(eval(&raw const ENDLESS_ZEROS));
+   |                                  +++++++++
+
+error: aborting due to 2 previous errors; 4 warnings emitted

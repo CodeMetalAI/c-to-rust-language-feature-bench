@@ -1,0 +1,31 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_1/sample_002/target.rs:64:5
+   |
+64 | /     unsafe {
+65 | |         if bank_a.left[0] != 101 {
+66 | |             std::process::exit(4);
+...  |
+72 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_1/sample_002/target.rs:3:19
+  |
+3 |         1 => &mut bank.right,
+  |                   ^^^^^^^^^^ access to union field
+  |
+  = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_1/sample_002/target.rs:4:19
+  |
+4 |         _ => &mut bank.left,
+  |                   ^^^^^^^^^ access to union field
+  |
+  = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

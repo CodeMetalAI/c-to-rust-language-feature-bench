@@ -1,0 +1,25 @@
+error[E0599]: no method named `is_array` found for array `[{integer}; 3]` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c3_b/sample_002/target.rs:4:8
+  |
+4 |   if!a.is_array() {
+  |        ^^^^^^^^ method not found in `[{integer}; 3]`
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c3_b/sample_002/target.rs:5:12
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+5 |     return 1;
+  |            ^ expected `()`, found integer
+
+error[E0599]: no method named `is_array` found for reference `&[{integer}; 3]` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/conversions/lvalue_array_fun_c3_b/sample_002/target.rs:7:11
+  |
+7 |   if!(&a).is_array() {
+  |           ^^^^^^^^ method not found in `&[{integer}; 3]`
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.

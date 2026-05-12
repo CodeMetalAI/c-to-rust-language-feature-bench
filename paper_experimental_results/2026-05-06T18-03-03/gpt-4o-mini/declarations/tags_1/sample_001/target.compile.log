@@ -1,0 +1,31 @@
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/tags_1/sample_001/target.rs:7:14
+  |
+7 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+error[E0369]: binary operation `==` cannot be applied to type `Option<&Box<TNode>>`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/tags_1/sample_001/target.rs:27:25
+   |
+27 |     if sp.left.as_ref() == sp.right.as_ref() {
+   |        ---------------- ^^ ----------------- Option<&Box<TNode>>
+   |        |
+   |        Option<&Box<TNode>>
+   |
+note: an implementation of `PartialEq` might be missing for `TNode`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/tags_1/sample_001/target.rs:1:1
+   |
+ 1 | struct TNode {
+   | ^^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `TNode` with `#[derive(PartialEq)]`
+   |
+ 1 + #[derive(PartialEq)]
+ 2 | struct TNode {
+   |
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0277, E0369.
+For more information about an error, try `rustc --explain E0277`.

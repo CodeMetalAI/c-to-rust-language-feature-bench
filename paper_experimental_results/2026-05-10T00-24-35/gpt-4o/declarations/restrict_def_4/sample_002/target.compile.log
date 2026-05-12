@@ -1,0 +1,29 @@
+error[E0412]: cannot find type `Volatile` in this scope
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4/sample_002/target.rs:2:19
+  |
+2 | static mut GATE4: Volatile<i32> = Volatile::new(1);
+  |                   ^^^^^^^^ not found in this scope
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4/sample_002/target.rs:46:5
+   |
+46 | /     unsafe {
+47 | |         if GATE4.read() != 0 {
+48 | |             let p2 = &mut (*p1)[8..];
+49 | |             let q2 = &(*q1)[4..];
+...  |
+71 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0433]: failed to resolve: use of undeclared type `Volatile`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/restrict_def_4/sample_002/target.rs:2:35
+  |
+2 | static mut GATE4: Volatile<i32> = Volatile::new(1);
+  |                                   ^^^^^^^^ use of undeclared type `Volatile`
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0412, E0433.
+For more information about an error, try `rustc --explain E0412`.

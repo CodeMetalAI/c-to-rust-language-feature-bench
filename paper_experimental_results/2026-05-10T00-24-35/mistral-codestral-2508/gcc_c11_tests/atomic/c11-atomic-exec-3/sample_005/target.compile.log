@@ -1,0 +1,484 @@
+warning: unused imports: `AtomicBool`, `AtomicI128`, `AtomicI16`, `AtomicI32`, `AtomicI64`, `AtomicI8`, `AtomicIsize`, `AtomicU128`, `AtomicU16`, `AtomicU32`, `AtomicU64`, `AtomicU8`, `AtomicUsize`, and `Ordering`
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:2:25
+  |
+2 | use std::sync::atomic::{AtomicBool, AtomicI8, AtomicU8, AtomicI16, AtomicU16, AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicI128, AtomicU128, AtomicIsize, AtomicUsize, Ordering};
+  |                         ^^^^^^^^^^  ^^^^^^^^  ^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^^  ^^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0658]: use of unstable library feature `integer_atomics`
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:2:123
+  |
+2 | use std::sync::atomic::{AtomicBool, AtomicI8, AtomicU8, AtomicI16, AtomicU16, AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicI128, AtomicU128, AtomicIsize, AtomicUsize, Ordering};
+  |                                                                                                                           ^^^^^^^^^^
+  |
+  = note: see issue #99069 <https://github.com/rust-lang/rust/issues/99069> for more information
+  = help: add `#![feature(integer_atomics)]` to the crate attributes to enable
+  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: use of unstable library feature `integer_atomics`
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:2:135
+  |
+2 | use std::sync::atomic::{AtomicBool, AtomicI8, AtomicU8, AtomicI16, AtomicU16, AtomicI32, AtomicU32, AtomicI64, AtomicU64, AtomicI128, AtomicU128, AtomicIsize, AtomicUsize, Ordering};
+  |                                                                                                                                       ^^^^^^^^^^
+  |
+  = note: see issue #99069 <https://github.com/rust-lang/rust/issues/99069> for more information
+  = help: add `#![feature(integer_atomics)]` to the crate attributes to enable
+  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0369]: cannot add `T` to `T`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:12:24
+   |
+12 |         if a != (value + change) {
+   |                  ----- ^ ------ T
+   |                  |
+   |                  T
+   |
+help: consider further restricting type parameter `T` with trait `Add`
+   |
+ 6 |     T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::fmt::Debug + std::ops::Add<Output = T>,
+   |                                                                                       +++++++++++++++++++++++++++
+
+error[E0369]: cannot add `T` to `T`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:23:24
+   |
+23 |         if a != (value + change) {
+   |                  ----- ^ ------ T
+   |                  |
+   |                  T
+   |
+help: consider further restricting type parameter `T` with trait `Add`
+   |
+ 6 |     T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::fmt::Debug + std::ops::Add<Output = T>,
+   |                                                                                       +++++++++++++++++++++++++++
+
+error[E0369]: cannot add `T` to `T`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:30:28
+   |
+30 |             if a != (value + change) {
+   |                      ----- ^ ------ T
+   |                      |
+   |                      T
+   |
+help: consider further restricting type parameter `T` with trait `Add`
+   |
+ 6 |     T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::fmt::Debug + std::ops::Add<Output = T>,
+   |                                                                                       +++++++++++++++++++++++++++
+
+error[E0369]: cannot add `T` to `T`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:36:28
+   |
+36 |             if a != (value + change) {
+   |                      ----- ^ ------ T
+   |                      |
+   |                      T
+   |
+help: consider further restricting type parameter `T` with trait `Add`
+   |
+ 6 |     T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::fmt::Debug + std::ops::Add<Output = T>,
+   |                                                                                       +++++++++++++++++++++++++++
+
+error[E0369]: cannot add `T` to `T`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:55:55
+   |
+55 |     test_incdec_arith(value, true, false, true, value + value);
+   |                                                 ----- ^ ----- T
+   |                                                 |
+   |                                                 T
+   |
+help: consider further restricting type parameter `T` with trait `Add`
+   |
+53 |     T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::fmt::Debug + std::ops::Add<Output = T>,
+   |                                                                                       +++++++++++++++++++++++++++
+
+error[E0369]: cannot subtract `T` from `T`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:56:55
+   |
+56 |     test_incdec_arith(value, true, false, true, value - value);
+   |                                                 ----- ^ ----- T
+   |                                                 |
+   |                                                 T
+   |
+help: consider further restricting type parameter `T` with trait `Sub`
+   |
+53 |     T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::fmt::Debug + std::ops::Sub<Output = T>,
+   |                                                                                       +++++++++++++++++++++++++++
+
+error[E0369]: cannot add `T` to `T`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:57:56
+   |
+57 |     test_incdec_arith(value, false, true, false, value + value);
+   |                                                  ----- ^ ----- T
+   |                                                  |
+   |                                                  T
+   |
+help: consider further restricting type parameter `T` with trait `Add`
+   |
+53 |     T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::fmt::Debug + std::ops::Add<Output = T>,
+   |                                                                                       +++++++++++++++++++++++++++
+
+error[E0369]: cannot subtract `T` from `T`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:58:56
+   |
+58 |     test_incdec_arith(value, false, true, false, value - value);
+   |                                                  ----- ^ ----- T
+   |                                                  |
+   |                                                  T
+   |
+help: consider further restricting type parameter `T` with trait `Sub`
+   |
+53 |     T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::fmt::Debug + std::ops::Sub<Output = T>,
+   |                                                                                       +++++++++++++++++++++++++++
+
+error[E0277]: the trait bound `&mut {integer}: Copy` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:70:5
+   |
+70 |     test_incdec(&mut ia[1], true, false, true, 1);
+   |     ^^^^^^^^^^^ the trait `Copy` is not implemented for `&mut {integer}`
+   |
+   = help: the following other types implement trait `Copy`:
+             f128
+             f16
+             f32
+             f64
+             i128
+             i16
+             i32
+             i64
+           and 8 others
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:6:8
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: bool, post_op: bool, pre_p: bool, change: T)
+   |    ----------- required by a bound in this function
+ 5 | where
+ 6 |     T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::fmt::Debug,
+   |        ^^^^ required by this bound in `test_incdec`
+
+error[E0277]: cannot add-assign `&mut {integer}` to `&mut {integer}`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:70:5
+   |
+70 |     test_incdec(&mut ia[1], true, false, true, 1);
+   |     ^^^^^^^^^^^ the trait `AddAssign` is not implemented for `&mut {integer}`
+   |
+   = note: the trait bound `&mut {integer}: AddAssign` is not satisfied
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:6:27
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: bool, post_op: bool, pre_p: bool, change: T)
+   |    ----------- required by a bound in this function
+ 5 | where
+ 6 |     T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::fmt::Debug,
+   |                           ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+help: consider mutably borrowing here
+   |
+70 |     &mut test_incdec(&mut ia[1], true, false, true, 1);
+   |     ++++
+
+error[E0277]: cannot subtract-assign `&mut {integer}` from `&mut {integer}`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:70:5
+   |
+70 |     test_incdec(&mut ia[1], true, false, true, 1);
+   |     ^^^^^^^^^^^ the trait `SubAssign` is not implemented for `&mut {integer}`
+   |
+   = note: the trait bound `&mut {integer}: SubAssign` is not satisfied
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:6:49
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: bool, post_op: bool, pre_p: bool, change: T)
+   |    ----------- required by a bound in this function
+ 5 | where
+ 6 |     T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::fmt::Debug,
+   |                                                 ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+help: consider mutably borrowing here
+   |
+70 |     &mut test_incdec(&mut ia[1], true, false, true, 1);
+   |     ++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:70:48
+   |
+70 |     test_incdec(&mut ia[1], true, false, true, 1);
+   |     ----------- ----------                     ^ expected `&mut {integer}`, found integer
+   |     |           |
+   |     |           expected some other arguments to be an `&mut {integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:4:4
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: bool, post_op: bool, pre_p: bool, change: T)
+   |    ^^^^^^^^^^^ -  --------                                            --------- this parameter needs to match the `&mut {integer}` type of `value`
+   |                |  |
+   |                |  `change` needs to match the `&mut {integer}` type of this parameter
+   |                `value` and `change` both reference this parameter `T`
+help: consider mutably borrowing here
+   |
+70 |     test_incdec(&mut ia[1], true, false, true, &mut 1);
+   |                                                ++++
+
+error[E0277]: the trait bound `&mut {integer}: Copy` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:71:5
+   |
+71 |     test_incdec(&mut ia[1], true, false, true, -1);
+   |     ^^^^^^^^^^^ the trait `Copy` is not implemented for `&mut {integer}`
+   |
+   = help: the following other types implement trait `Copy`:
+             f128
+             f16
+             f32
+             f64
+             i128
+             i16
+             i32
+             i64
+           and 8 others
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:6:8
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: bool, post_op: bool, pre_p: bool, change: T)
+   |    ----------- required by a bound in this function
+ 5 | where
+ 6 |     T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::fmt::Debug,
+   |        ^^^^ required by this bound in `test_incdec`
+
+error[E0277]: cannot add-assign `&mut {integer}` to `&mut {integer}`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:71:5
+   |
+71 |     test_incdec(&mut ia[1], true, false, true, -1);
+   |     ^^^^^^^^^^^ the trait `AddAssign` is not implemented for `&mut {integer}`
+   |
+   = note: the trait bound `&mut {integer}: AddAssign` is not satisfied
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:6:27
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: bool, post_op: bool, pre_p: bool, change: T)
+   |    ----------- required by a bound in this function
+ 5 | where
+ 6 |     T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::fmt::Debug,
+   |                           ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+help: consider mutably borrowing here
+   |
+71 |     &mut test_incdec(&mut ia[1], true, false, true, -1);
+   |     ++++
+
+error[E0277]: cannot subtract-assign `&mut {integer}` from `&mut {integer}`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:71:5
+   |
+71 |     test_incdec(&mut ia[1], true, false, true, -1);
+   |     ^^^^^^^^^^^ the trait `SubAssign` is not implemented for `&mut {integer}`
+   |
+   = note: the trait bound `&mut {integer}: SubAssign` is not satisfied
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:6:49
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: bool, post_op: bool, pre_p: bool, change: T)
+   |    ----------- required by a bound in this function
+ 5 | where
+ 6 |     T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::fmt::Debug,
+   |                                                 ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+help: consider mutably borrowing here
+   |
+71 |     &mut test_incdec(&mut ia[1], true, false, true, -1);
+   |     ++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:71:48
+   |
+71 |     test_incdec(&mut ia[1], true, false, true, -1);
+   |     ----------- ----------                     ^^ expected `&mut {integer}`, found integer
+   |     |           |
+   |     |           expected some other arguments to be an `&mut {integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:4:4
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: bool, post_op: bool, pre_p: bool, change: T)
+   |    ^^^^^^^^^^^ -  --------                                            --------- this parameter needs to match the `&mut {integer}` type of `value`
+   |                |  |
+   |                |  `change` needs to match the `&mut {integer}` type of this parameter
+   |                `value` and `change` both reference this parameter `T`
+help: consider mutably borrowing here
+   |
+71 |     test_incdec(&mut ia[1], true, false, true, &mut -1);
+   |                                                ++++
+
+error[E0277]: the trait bound `&mut {integer}: Copy` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:72:5
+   |
+72 |     test_incdec(&mut ia[1], false, true, false, 1);
+   |     ^^^^^^^^^^^ the trait `Copy` is not implemented for `&mut {integer}`
+   |
+   = help: the following other types implement trait `Copy`:
+             f128
+             f16
+             f32
+             f64
+             i128
+             i16
+             i32
+             i64
+           and 8 others
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:6:8
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: bool, post_op: bool, pre_p: bool, change: T)
+   |    ----------- required by a bound in this function
+ 5 | where
+ 6 |     T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::fmt::Debug,
+   |        ^^^^ required by this bound in `test_incdec`
+
+error[E0277]: cannot add-assign `&mut {integer}` to `&mut {integer}`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:72:5
+   |
+72 |     test_incdec(&mut ia[1], false, true, false, 1);
+   |     ^^^^^^^^^^^ the trait `AddAssign` is not implemented for `&mut {integer}`
+   |
+   = note: the trait bound `&mut {integer}: AddAssign` is not satisfied
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:6:27
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: bool, post_op: bool, pre_p: bool, change: T)
+   |    ----------- required by a bound in this function
+ 5 | where
+ 6 |     T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::fmt::Debug,
+   |                           ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+help: consider mutably borrowing here
+   |
+72 |     &mut test_incdec(&mut ia[1], false, true, false, 1);
+   |     ++++
+
+error[E0277]: cannot subtract-assign `&mut {integer}` from `&mut {integer}`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:72:5
+   |
+72 |     test_incdec(&mut ia[1], false, true, false, 1);
+   |     ^^^^^^^^^^^ the trait `SubAssign` is not implemented for `&mut {integer}`
+   |
+   = note: the trait bound `&mut {integer}: SubAssign` is not satisfied
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:6:49
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: bool, post_op: bool, pre_p: bool, change: T)
+   |    ----------- required by a bound in this function
+ 5 | where
+ 6 |     T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::fmt::Debug,
+   |                                                 ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+help: consider mutably borrowing here
+   |
+72 |     &mut test_incdec(&mut ia[1], false, true, false, 1);
+   |     ++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:72:49
+   |
+72 |     test_incdec(&mut ia[1], false, true, false, 1);
+   |     ----------- ----------                      ^ expected `&mut {integer}`, found integer
+   |     |           |
+   |     |           expected some other arguments to be an `&mut {integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:4:4
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: bool, post_op: bool, pre_p: bool, change: T)
+   |    ^^^^^^^^^^^ -  --------                                            --------- this parameter needs to match the `&mut {integer}` type of `value`
+   |                |  |
+   |                |  `change` needs to match the `&mut {integer}` type of this parameter
+   |                `value` and `change` both reference this parameter `T`
+help: consider mutably borrowing here
+   |
+72 |     test_incdec(&mut ia[1], false, true, false, &mut 1);
+   |                                                 ++++
+
+error[E0277]: the trait bound `&mut {integer}: Copy` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:73:5
+   |
+73 |     test_incdec(&mut ia[1], false, true, false, -1);
+   |     ^^^^^^^^^^^ the trait `Copy` is not implemented for `&mut {integer}`
+   |
+   = help: the following other types implement trait `Copy`:
+             f128
+             f16
+             f32
+             f64
+             i128
+             i16
+             i32
+             i64
+           and 8 others
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:6:8
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: bool, post_op: bool, pre_p: bool, change: T)
+   |    ----------- required by a bound in this function
+ 5 | where
+ 6 |     T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::fmt::Debug,
+   |        ^^^^ required by this bound in `test_incdec`
+
+error[E0277]: cannot add-assign `&mut {integer}` to `&mut {integer}`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:73:5
+   |
+73 |     test_incdec(&mut ia[1], false, true, false, -1);
+   |     ^^^^^^^^^^^ the trait `AddAssign` is not implemented for `&mut {integer}`
+   |
+   = note: the trait bound `&mut {integer}: AddAssign` is not satisfied
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:6:27
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: bool, post_op: bool, pre_p: bool, change: T)
+   |    ----------- required by a bound in this function
+ 5 | where
+ 6 |     T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::fmt::Debug,
+   |                           ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+help: consider mutably borrowing here
+   |
+73 |     &mut test_incdec(&mut ia[1], false, true, false, -1);
+   |     ++++
+
+error[E0277]: cannot subtract-assign `&mut {integer}` from `&mut {integer}`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:73:5
+   |
+73 |     test_incdec(&mut ia[1], false, true, false, -1);
+   |     ^^^^^^^^^^^ the trait `SubAssign` is not implemented for `&mut {integer}`
+   |
+   = note: the trait bound `&mut {integer}: SubAssign` is not satisfied
+note: required by a bound in `test_incdec`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:6:49
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: bool, post_op: bool, pre_p: bool, change: T)
+   |    ----------- required by a bound in this function
+ 5 | where
+ 6 |     T: Copy + PartialEq + std::ops::AddAssign + std::ops::SubAssign + std::fmt::Debug,
+   |                                                 ^^^^^^^^^^^^^^^^^^^ required by this bound in `test_incdec`
+help: consider mutably borrowing here
+   |
+73 |     &mut test_incdec(&mut ia[1], false, true, false, -1);
+   |     ++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:73:49
+   |
+73 |     test_incdec(&mut ia[1], false, true, false, -1);
+   |     ----------- ----------                      ^^ expected `&mut {integer}`, found integer
+   |     |           |
+   |     |           expected some other arguments to be an `&mut {integer}` type to match the type of this parameter
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_005/target.rs:4:4
+   |
+ 4 | fn test_incdec<T>(value: T, pre_op: bool, post_op: bool, pre_p: bool, change: T)
+   |    ^^^^^^^^^^^ -  --------                                            --------- this parameter needs to match the `&mut {integer}` type of `value`
+   |                |  |
+   |                |  `change` needs to match the `&mut {integer}` type of this parameter
+   |                `value` and `change` both reference this parameter `T`
+help: consider mutably borrowing here
+   |
+73 |     test_incdec(&mut ia[1], false, true, false, &mut -1);
+   |                                                 ++++
+
+error: aborting due to 26 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308, E0369, E0658.
+For more information about an error, try `rustc --explain E0277`.

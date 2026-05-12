@@ -1,0 +1,332 @@
+error[E0428]: the name `s` is defined multiple times
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:50:1
+   |
+ 9 | pub static s: [i16; 1];
+   | ----------------------- previous definition of the value `s` here
+...
+50 | pub struct s;
+   | ^^^^^^^^^^^^^ `s` redefined here
+   |
+   = note: `s` must be defined only once in the value namespace of this module
+
+error: free static item without body
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:6:1
+  |
+6 | pub static c: [u8; 1];
+  | ^^^^^^^^^^^^^^^^^^^^^-
+  |                      |
+  |                      help: provide a definition for the static: `= <expr>;`
+
+error: free static item without body
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:9:1
+  |
+9 | pub static s: [i16; 1];
+  | ^^^^^^^^^^^^^^^^^^^^^^-
+  |                       |
+  |                       help: provide a definition for the static: `= <expr>;`
+
+error: free static item without body
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:12:1
+   |
+12 | pub static i: i32;
+   | ^^^^^^^^^^^^^^^^^-
+   |                  |
+   |                  help: provide a definition for the static: `= <expr>;`
+
+error: free static item without body
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:15:1
+   |
+15 | pub static l: i64;
+   | ^^^^^^^^^^^^^^^^^-
+   |                  |
+   |                  help: provide a definition for the static: `= <expr>;`
+
+error: free static item without body
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:18:1
+   |
+18 | pub static ll: i64;
+   | ^^^^^^^^^^^^^^^^^^-
+   |                   |
+   |                   help: provide a definition for the static: `= <expr>;`
+
+error: free static item without body
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:21:1
+   |
+21 | pub static f: f32;
+   | ^^^^^^^^^^^^^^^^^-
+   |                  |
+   |                  help: provide a definition for the static: `= <expr>;`
+
+error: free static item without body
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:24:1
+   |
+24 | pub static d: f64;
+   | ^^^^^^^^^^^^^^^^^-
+   |                  |
+   |                  help: provide a definition for the static: `= <expr>;`
+
+error: free static item without body
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:27:1
+   |
+27 | pub static cld: complex128;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^-
+   |                           |
+   |                           help: provide a definition for the static: `= <expr>;`
+
+error: free static item without body
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:30:1
+   |
+30 | pub static ca: [u8; 10];
+   | ^^^^^^^^^^^^^^^^^^^^^^^-
+   |                        |
+   |                        help: provide a definition for the static: `= <expr>;`
+
+error: free static item without body
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:33:1
+   |
+33 | pub static x: i32;
+   | ^^^^^^^^^^^^^^^^^-
+   |                  |
+   |                  help: provide a definition for the static: `= <expr>;`
+
+error: free static item without body
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:41:1
+   |
+41 | pub static y: i32;
+   | ^^^^^^^^^^^^^^^^^-
+   |                  |
+   |                  help: provide a definition for the static: `= <expr>;`
+
+error[E0412]: cannot find type `complex128` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:27:17
+   |
+27 | pub static cld: complex128;
+   |                 ^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `max_align_t` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:37:20
+   |
+37 |     E = align_of::<max_align_t>(),
+   |                    ^^^^^^^^^^^ not found in this scope
+   |
+help: you might be missing a type parameter
+   |
+36 | pub enum E<max_align_t> {
+   |           +++++++++++++
+
+error[E0412]: cannot find type `max_align_t` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:53:37
+   |
+53 |     assert_eq!(std::mem::align_of::<max_align_t>(), std::mem::align_of::<E>());
+   |                                     ^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `max_align_t` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:54:37
+   |
+54 |     assert_eq!(std::mem::align_of::<max_align_t>(), std::mem::align_of::<s>());
+   |                                     ^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `max_align_t` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:55:37
+   |
+55 |     assert_eq!(std::mem::align_of::<max_align_t>(), std::mem::align_of::<s>());
+   |                                     ^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `max_align_t` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:56:37
+   |
+56 |     assert_eq!(std::mem::align_of::<max_align_t>(), std::mem::align_of::<s>());
+   |                                     ^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `max_align_t` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:57:37
+   |
+57 |     assert_eq!(std::mem::align_of::<max_align_t>(), std::mem::align_of::<s>());
+   |                                     ^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `max_align_t` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:58:37
+   |
+58 |     assert_eq!(std::mem::align_of::<max_align_t>(), std::mem::align_of::<s>());
+   |                                     ^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `max_align_t` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:59:37
+   |
+59 |     assert_eq!(std::mem::align_of::<max_align_t>(), std::mem::align_of::<s>());
+   |                                     ^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `max_align_t` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:60:37
+   |
+60 |     assert_eq!(std::mem::align_of::<max_align_t>(), std::mem::align_of::<s>());
+   |                                     ^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `max_align_t` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:61:37
+   |
+61 |     assert_eq!(std::mem::align_of::<max_align_t>(), std::mem::align_of::<s>());
+   |                                     ^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `max_align_t` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:62:37
+   |
+62 |     assert_eq!(std::mem::align_of::<max_align_t>(), std::mem::align_of::<s>());
+   |                                     ^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `max_align_t` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:63:37
+   |
+63 |     assert_eq!(std::mem::align_of::<max_align_t>(), std::mem::align_of::<s>());
+   |                                     ^^^^^^^^^^^ not found in this scope
+
+warning: type `s` should have an upper camel case name
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:50:12
+   |
+50 | pub struct s;
+   |            ^ help: convert the identifier to upper camel case (notice the capitalization): `S`
+   |
+   = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: expected identifier, found `<`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:5:24
+  |
+5 | #[repr(align(align_of::<max_align_t>()))]
+  |                        ^ expected identifier
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:8:14
+  |
+8 | #[repr(align(max_align_t))]
+  |              ^^^^^^^^^^^
+
+error: expected identifier, found `<`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:11:24
+   |
+11 | #[repr(align(align_of::<i32>()))]
+   |                        ^ expected identifier
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:14:14
+   |
+14 | #[repr(align(max_align_t))]
+   |              ^^^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:17:14
+   |
+17 | #[repr(align(max_align_t))]
+   |              ^^^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:20:14
+   |
+20 | #[repr(align(max_align_t))]
+   |              ^^^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:23:14
+   |
+23 | #[repr(align(max_align_t))]
+   |              ^^^^^^^^^^^
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:26:14
+   |
+26 | #[repr(align(max_align_t))]
+   |              ^^^^^^^^^^^
+
+error: expected identifier, found `<`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:29:24
+   |
+29 | #[repr(align(align_of::<i32>()))]
+   |                        ^ expected identifier
+
+error: expected a literal (`1u8`, `1.0f32`, `"string"`, etc.) here, found `(`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:32:14
+   |
+32 | #[repr(align((align_of::<max_align_t>() as usize) + 0))]
+   |              ^
+
+error: expected identifier, found `<`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:35:24
+   |
+35 | #[repr(align(align_of::<max_align_t>()))]
+   |                        ^ expected identifier
+
+error: expected identifier, found `<`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:40:24
+   |
+40 | #[repr(align(align_of::<max_align_t>()))]
+   |                        ^ expected identifier
+
+error[E0693]: incorrect `repr(align)` attribute format: `align` expects a literal integer as argument
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:44:18
+   |
+44 |     #[repr(align(max_align_t))]
+   |                  ^^^^^^^^^^^
+
+error[E0589]: invalid `repr(align)` attribute: not a power of two
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:49:14
+   |
+49 | #[repr(align(0))]
+   |              ^
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:8:1
+  |
+8 | #[repr(align(max_align_t))]
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+9 | pub static s: [i16; 1];
+  | ----------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:14:1
+   |
+14 | #[repr(align(max_align_t))]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+15 | pub static l: i64;
+   | ------------------ not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:17:1
+   |
+17 | #[repr(align(max_align_t))]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+18 | pub static ll: i64;
+   | ------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:20:1
+   |
+20 | #[repr(align(max_align_t))]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+21 | pub static f: f32;
+   | ------------------ not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:23:1
+   |
+23 | #[repr(align(max_align_t))]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+24 | pub static d: f64;
+   | ------------------ not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:26:1
+   |
+26 | #[repr(align(max_align_t))]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+27 | pub static cld: complex128;
+   | --------------------------- not a struct, enum, or union
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/gcc_c11_tests/c11-align-2/sample_005/target.rs:37:9
+   |
+37 |     E = align_of::<max_align_t>(),
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ expected `isize`, found `usize`
+
+error: aborting due to 46 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0308, E0412, E0428, E0517, E0589, E0693.
+For more information about an error, try `rustc --explain E0308`.

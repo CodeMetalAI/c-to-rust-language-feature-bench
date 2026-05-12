@@ -1,0 +1,138 @@
+warning: unused import: `std::mem`
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: type `usize` should have an upper camel case name
+ --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:3:6
+  |
+3 | type usize = std::os::raw::c_ulong;
+  |      ^^^^^ help: convert the identifier to upper camel case (notice the capitalization): `Usize`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:21:22
+   |
+21 |     let member_ptr = unsafe { &(*base).field(member) as *const _ };
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:31:9
+   |
+31 |         unsafe { &*(member) }
+   |         ^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:39:14
+   |
+39 |         s += unsafe { *p.add(i) };
+   |              ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:56:5
+   |
+56 | /     unsafe {
+57 | |         *p.add(1) += 5;
+58 | |         *p.add(0) + *p.add(1) + *p.add(2)
+59 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:63:5
+    |
+ 63 | /     unsafe {
+ 64 | |         X = BACKING.as_ptr();
+ 65 | |         Y[0] = 1;
+ 66 | |         Y[1] = 2;
+...   |
+122 | |         std::process::exit(0);
+123 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:91:16
+   |
+91 |             if unsafe { *t.add(6) } != 7 {
+   |                ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:99:16
+   |
+99 |             if unsafe { *hp.p } != 1 {
+   |                ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:105:25
+    |
+105 |             let a_ptr = unsafe { &(*ha).a } as *const _ as *const u8;
+    |                         ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:113:16
+    |
+113 |             if unsafe { (*ha).a.as_ptr().add(2).read() } != 3 {
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:39:30
+    |
+ 39 |         s += unsafe { *p.add(i) };
+    |                          --- ^ expected `usize`, found `u64`
+    |                          |
+    |                          arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:881:25
+    |
+881 |     pub const unsafe fn add(self, count: usize) -> Self
+    |                         ^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+    |
+ 39 |         s += unsafe { *p.add(i.try_into().unwrap()) };
+    |                               ++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:109:45
+     |
+ 109 |             if a_ptr != ha_ptr.wrapping_add(offset) {
+     |                                ------------ ^^^^^^ expected `usize`, found `u64`
+     |                                |
+     |                                arguments to this method are incorrect
+     |
+note: method defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:1105:18
+     |
+1105 |     pub const fn wrapping_add(self, count: usize) -> Self
+     |                  ^^^^^^^^^^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+     |
+ 109 |             if a_ptr != ha_ptr.wrapping_add(offset.try_into().unwrap()) {
+     |                                                   ++++++++++++++++++++
+
+error[E0015]: cannot call non-const method `<T as FieldOffset>::field::<U>` in constant functions
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:21:40
+   |
+21 |     let member_ptr = unsafe { &(*base).field(member) as *const _ };
+   |                                        ^^^^^^^^^^^^^
+   |
+   = note: calls in constant functions are limited to constant functions, tuple structs and tuple variants
+
+error: pointers cannot be cast to integers during const eval
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_2/sample_003/target.rs:22:5
+   |
+22 |     member_ptr as usize
+   |     ^^^^^^^^^^^^^^^^^^^
+   |
+   = note: at compile-time, pointers do not have an integer value
+   = note: avoiding this restriction via `transmute`, `union`, or raw pointers leads to compile-time undefined behavior
+
+error: aborting due to 13 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0015, E0308.
+For more information about an error, try `rustc --explain E0015`.

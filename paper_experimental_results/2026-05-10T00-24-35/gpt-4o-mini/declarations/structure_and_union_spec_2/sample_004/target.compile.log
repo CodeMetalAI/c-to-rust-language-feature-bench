@@ -1,0 +1,72 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_2/sample_004/target.rs:25:14
+   |
+25 |     let s1 = unsafe { alloc(layout1) as *mut S };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_2/sample_004/target.rs:26:14
+   |
+26 |     let s2 = unsafe { alloc(layout2) as *mut S };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_2/sample_004/target.rs:29:9
+   |
+29 | /         unsafe {
+30 | |             if !s1.is_null() {
+31 | |                 dealloc(s1 as *mut u8, layout1);
+...  |
+36 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_2/sample_004/target.rs:40:5
+   |
+40 | /     unsafe {
+41 | |         (*s1).d[0] = 42.0;
+42 | |         (*s2).d[0] = 24.0;
+...  |
+51 | |         dealloc(s2 as *mut u8, layout2);
+52 | |     }
+   | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_2/sample_004/target.rs:13:14
+   |
+13 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_2/sample_004/target.rs:41:9
+   |
+41 |         (*s1).d[0] = 42.0;
+   |         ^^^^^^^^^^ index out of bounds: the length is 0 but the index is 0
+   |
+   = note: `#[deny(unconditional_panic)]` on by default
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_2/sample_004/target.rs:42:9
+   |
+42 |         (*s2).d[0] = 24.0;
+   |         ^^^^^^^^^^ index out of bounds: the length is 0 but the index is 0
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_2/sample_004/target.rs:44:12
+   |
+44 |         if (*s1).d[0] != 42.0 || (*s2).d[0] != 24.0 {
+   |            ^^^^^^^^^^ index out of bounds: the length is 0 but the index is 0
+
+error: this operation will panic at runtime
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/structure_and_union_spec_2/sample_004/target.rs:44:34
+   |
+44 |         if (*s1).d[0] != 42.0 || (*s2).d[0] != 24.0 {
+   |                                  ^^^^^^^^^^ index out of bounds: the length is 0 but the index is 0
+
+error: aborting due to 9 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

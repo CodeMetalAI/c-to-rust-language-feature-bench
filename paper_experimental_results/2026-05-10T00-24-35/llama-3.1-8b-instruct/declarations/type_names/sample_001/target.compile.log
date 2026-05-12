@@ -1,0 +1,84 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_001/target.rs:11:23
+   |
+11 |     let g_arr_slice = unsafe { &g_arr[..] };
+   |                       ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0045]: C-variadic functions with the "Rust" calling convention are not supported
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_001/target.rs:8:23
+  |
+8 |     static mut F_VAR: fn(u32, ...) -> i32 = |x, x_| (x + 3) as i32;
+  |                       ^^^^^^^^^^^^^^^^^^^ C-variadic function must have a compatible calling convention
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_001/target.rs:8:45
+  |
+8 |     static mut F_VAR: fn(u32, ...) -> i32 = |x, x_| (x + 3) as i32;
+  |                                             ^^^^^^^^^^^^^^^^^^^^^^ expected variadic fn, found non-variadic function
+  |
+  = note: expected fn pointer `fn(u32, ...) -> i32`
+                found closure `{closure@benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_001/target.rs:8:45: 8:52}`
+  = note: closure has signature: `fn(_, _) -> i32`
+
+error[E0277]: the type `[i32]` cannot be indexed by `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_001/target.rs:28:20
+   |
+28 |     (p[0] * 10 + p[n - 1]) as i32
+   |                    ^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `i32`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[i32]` to implement `Index<i32>`
+
+warning: unused variable: `result`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_001/target.rs:12:9
+   |
+12 |     let result = use_vla(n, &g_arr_slice);
+   |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_result`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `fip`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_001/target.rs:14:9
+   |
+14 |     let fip = || g_arr_ref;
+   |         ^^^ help: if this is intentional, prefix it with an underscore: `_fip`
+
+warning: unused variable: `f_plain`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_001/target.rs:16:9
+   |
+16 |     let f_plain = F_PLAIN;
+   |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_f_plain`
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_001/target.rs:19:9
+   |
+19 |         F_VAR,
+   |         ^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_001/target.rs:20:9
+   |
+20 |         F_VAR,
+   |         ^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_names/sample_001/target.rs:11:23
+   |
+11 |     let g_arr_slice = unsafe { &g_arr[..] };
+   |                       ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 6 previous errors; 4 warnings emitted
+
+Some errors have detailed explanations: E0045, E0133, E0277, E0308.
+For more information about an error, try `rustc --explain E0045`.

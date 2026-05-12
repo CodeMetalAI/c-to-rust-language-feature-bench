@@ -1,0 +1,157 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:16:5
+   |
+16 | /     unsafe {
+17 | |         test_simple_assign_generic(&I as *const i32);
+18 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:26:12
+   |
+26 |     copy = unsafe { *s1.load(std::sync::atomic::Ordering::SeqCst) };
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:28:12
+   |
+28 |     copy = unsafe { *s2.load(std::sync::atomic::Ordering::SeqCst) };
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:30:12
+   |
+30 |     copy = unsafe { *s1.load(std::sync::atomic::Ordering::SeqCst) };
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:32:12
+   |
+32 |     copy = unsafe { *s2.load(std::sync::atomic::Ordering::SeqCst) };
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:41:13
+   |
+41 |     let a = std::sync::atomic::Atomic::new(T::from(0));
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0658]: use of unstable library feature `generic_atomic`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:42:13
+   |
+42 |     let b = std::sync::atomic::Atomic::new(value);
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: see issue #130539 <https://github.com/rust-lang/rust/issues/130539> for more information
+   = help: add `#![feature(generic_atomic)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0277]: the trait bound `Complex: Copy` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:13:30
+   |
+13 |     test_simple_assign_arith(Complex::new(2.5, 3.5));
+   |     ------------------------ ^^^^^^^^^^^^^^^^^^^^^^ the trait `Copy` is not implemented for `Complex`
+   |     |
+   |     required by a bound introduced by this call
+   |
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:36:44
+   |
+36 | fn test_simple_assign_arith<T: PartialEq + Copy + From<u8> + std::fmt::Debug>(value: T) {
+   |                                            ^^^^ required by this bound in `test_simple_assign_arith`
+help: consider annotating `Complex` with `#[derive(Copy)]`
+   |
+50 + #[derive(Copy)]
+51 | struct Complex {
+   |
+
+error[E0277]: the trait bound `Complex: From<u8>` is not satisfied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:13:30
+   |
+13 |     test_simple_assign_arith(Complex::new(2.5, 3.5));
+   |     ------------------------ ^^^^^^^^^^^^^^^^^^^^^^ unsatisfied trait bound
+   |     |
+   |     required by a bound introduced by this call
+   |
+help: the trait `From<u8>` is not implemented for `Complex`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:50:1
+   |
+50 | struct Complex {
+   | ^^^^^^^^^^^^^^
+note: required by a bound in `test_simple_assign_arith`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:36:51
+   |
+36 | fn test_simple_assign_arith<T: PartialEq + Copy + From<u8> + std::fmt::Debug>(value: T) {
+   |                                                   ^^^^^^^^ required by this bound in `test_simple_assign_arith`
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:41:40
+    |
+ 41 |     let a = std::sync::atomic::Atomic::new(T::from(0));
+    |                                        ^^^ function or associated item not found in `_`
+    |
+help: there is a method `neg` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:708:5
+    |
+708 |     fn neg(self) -> Self::Output;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:41:52
+    |
+ 40 | fn test_simple_assign_generic<T: PartialEq + Copy + std::fmt::Debug>(value: T) {
+    |                               - expected this type parameter
+ 41 |     let a = std::sync::atomic::Atomic::new(T::from(0));
+    |                                            ------- ^ expected type parameter `T`, found integer
+    |                                            |
+    |                                            arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:592:8
+    |
+592 |     fn from(value: T) -> Self;
+    |        ^^^^
+
+error[E0599]: no function or associated item named `new` found for type `_` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:42:40
+    |
+ 42 |     let b = std::sync::atomic::Atomic::new(value);
+    |                                        ^^^ function or associated item not found in `_`
+    |
+help: there is a method `neg` with a similar name, but with different arguments
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ops/arith.rs:708:5
+    |
+708 |     fn neg(self) -> Self::Output;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:43:69
+    |
+ 40 | fn test_simple_assign_generic<T: PartialEq + Copy + std::fmt::Debug>(value: T) {
+    |                               - expected this type parameter
+...
+ 43 |     assert_eq!(a.load(std::sync::atomic::Ordering::SeqCst), T::from(0));
+    |                                                             ------- ^ expected type parameter `T`, found integer
+    |                                                             |
+    |                                                             arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:592:8
+    |
+592 |     fn from(value: T) -> Self;
+    |        ^^^^
+
+error: aborting due to 13 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0599, E0658.
+For more information about an error, try `rustc --explain E0277`.

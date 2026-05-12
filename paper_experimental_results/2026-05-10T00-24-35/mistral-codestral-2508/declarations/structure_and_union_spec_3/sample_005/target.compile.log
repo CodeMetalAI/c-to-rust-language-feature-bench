@@ -1,0 +1,60 @@
+error: expected identifier, found `.`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_005/target.rs:41:84
+   |
+41 |         std::alloc::dealloc(p as *mut u8, std::alloc::Layout::from_size_align(mem::.size_of::<S>() + 4 * mem::size_of::<i32>(), 1).unwrap());
+   |                                                                                    ^ expected identifier
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_005/target.rs:13:20
+   |
+13 |     let i_offset = unsafe { &(*(0 as *const S)).i as *const i32 as usize };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_005/target.rs:19:20
+   |
+19 |     let a_offset = unsafe { &(*(0 as *const S)).a as *const [i32; 0] as usize };
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_005/target.rs:25:9
+   |
+25 |     p = unsafe { std::alloc::alloc(std::alloc::Layout::from_size_align(mem::size_of::<S>() + 4 * mem::size_of::<i32>(), 1).unwrap()) as *mut S };
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_005/target.rs:30:5
+   |
+30 | /     unsafe {
+31 | |         (*p).i = 7;
+32 | |         (*p).a.as_ptr().offset(0).write(11);
+33 | |         (*p).a.as_ptr().offset(3).write(22);
+...  |
+38 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_005/target.rs:40:5
+   |
+40 | /     unsafe {
+41 | |         std::alloc::dealloc(p as *mut u8, std::alloc::Layout::from_size_align(mem::.size_of::<S>() + 4 * mem::size_of::<i32>(), 1).unwrap());
+42 | |     }
+   | |_____^
+
+error[E0599]: no method named `write` found for raw pointer `*const i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_005/target.rs:32:35
+   |
+32 |         (*p).a.as_ptr().offset(0).write(11);
+   |                                   ^^^^^ method not found in `*const i32`
+
+error[E0599]: no method named `write` found for raw pointer `*const i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/declarations/structure_and_union_spec_3/sample_005/target.rs:33:35
+   |
+33 |         (*p).a.as_ptr().offset(3).write(22);
+   |                                   ^^^^^ method not found in `*const i32`
+
+error: aborting due to 8 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

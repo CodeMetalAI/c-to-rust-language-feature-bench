@@ -1,0 +1,33 @@
+warning: unused import: `std::cell::RefCell`
+ --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_4b/sample_001/target.rs:1:5
+  |
+1 | use std::cell::RefCell;
+  |     ^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0596]: cannot borrow `a.v` as mutable, as `a` is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_4b/sample_001/target.rs:88:14
+   |
+88 |     fill_vec(a.v.as_mut().unwrap(), 1.0);
+   |              ^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+74 |     let mut a = new_vector(16);
+   |         +++
+
+error[E0596]: cannot borrow `b.v` as mutable, as `b` is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_4b/sample_001/target.rs:89:14
+   |
+89 |     fill_vec(b.v.as_mut().unwrap(), 100.0);
+   |              ^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+75 |     let mut b = new_vector(16);
+   |         +++
+
+error: aborting due to 2 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0596`.

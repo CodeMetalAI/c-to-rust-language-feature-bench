@@ -1,0 +1,59 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/rel_op_c7/sample_003/target.rs:9:18
+  |
+9 |     let p_end1 = unsafe { p.add(1) };
+  |                  ^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/rel_op_c7/sample_003/target.rs:10:18
+   |
+10 |     let p_end2 = unsafe { &x.add(1) };
+   |                  ^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/rel_op_c7/sample_003/target.rs:6:16
+  |
+1 | fn main() {
+  |          - expected `()` because of default return type
+...
+6 |         return 1;
+  |                ^ expected `()`, found integer
+
+error[E0599]: no method named `add` found for reference `&{integer}` in the current scope
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/rel_op_c7/sample_003/target.rs:9:29
+  |
+9 |     let p_end1 = unsafe { p.add(1) };
+  |                             ^^^ method not found in `&{integer}`
+  |
+  = help: items from traits can only be used if the trait is in scope
+help: trait `Add` which provides `add` is implemented but not in scope; perhaps you want to import it
+  |
+1 + use std::ops::Add;
+  |
+
+error[E0689]: can't call method `add` on ambiguous numeric type `{integer}`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/rel_op_c7/sample_003/target.rs:10:30
+   |
+10 |     let p_end2 = unsafe { &x.add(1) };
+   |                              ^^^
+   |
+help: you must specify a type for this binding, like `i32`
+   |
+ 2 |     let x: i32 = 42;
+   |          +++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/expressions/rel_op_c7/sample_003/target.rs:20:5
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+20 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0308, E0599, E0689.
+For more information about an error, try `rustc --explain E0308`.

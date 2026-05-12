@@ -1,0 +1,31 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_2/sample_002/target.rs:47:12
+   |
+47 |         if unsafe { *hp.p.offset(0) } != 1 {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_2/sample_002/target.rs:56:12
+   |
+56 |         if unsafe { *ha.offset(1).offset(2) } != 3 {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0369]: binary operation `!=` cannot be applied to type `HoldA`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_2/sample_002/target.rs:56:47
+   |
+56 |         if unsafe { *ha.offset(1).offset(2) } != 3 {
+   |            ---------------------------------- ^^ - {integer}
+   |            |
+   |            HoldA
+   |
+note: an implementation of `PartialEq<{integer}>` might be missing for `HoldA`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/array_decl_2/sample_002/target.rs:41:9
+   |
+41 |         struct HoldA {
+   |         ^^^^^^^^^^^^ must implement `PartialEq<{integer}>`
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0369`.

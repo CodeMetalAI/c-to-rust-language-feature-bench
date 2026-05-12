@@ -1,0 +1,26 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/type_def_1/sample_002/target.rs:30:5
+   |
+30 |     unsafe { G_STORE }
+   |     ^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0061]: this function takes 0 arguments but 3 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/declarations/type_def_1/sample_002/target.rs:56:8
+   |
+56 |     if metricp(1, 2, 3) != 7 {
+   |        ^^^^^^^ -  -  - unexpected argument #3 of type `{integer}`
+   |                |  |
+   |                |  unexpected argument #2 of type `{integer}`
+   |                unexpected argument #1 of type `{integer}`
+   |
+help: remove the extra arguments
+   |
+56 -     if metricp(1, 2, 3) != 7 {
+56 +     if metricp() != 7 {
+   |
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0061`.

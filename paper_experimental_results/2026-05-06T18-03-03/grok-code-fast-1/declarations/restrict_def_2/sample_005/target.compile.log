@@ -1,0 +1,27 @@
+error[E0502]: cannot borrow `buf` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_005/target.rs:33:24
+   |
+31 |         let (p_slice, _) = buf.split_at_mut(off);
+   |                            --- mutable borrow occurs here
+32 |         let p_slice = &mut p_slice[0..n];
+33 |         let q_slice = &buf[off..off + n];
+   |                        ^^^ immutable borrow occurs here
+34 |
+35 |         f(n, p_slice, q_slice);
+   |              ------- mutable borrow later used here
+
+error[E0502]: cannot borrow `buf` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2/sample_005/target.rs:60:24
+   |
+58 |         let (_, p_slice) = buf.split_at_mut(off);
+   |                            --- mutable borrow occurs here
+59 |         let p_slice = &mut p_slice[0..n];
+60 |         let q_slice = &buf[0..n];
+   |                        ^^^ immutable borrow occurs here
+61 |
+62 |         f(n, p_slice, q_slice);
+   |              ------- mutable borrow later used here
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0502`.

@@ -1,0 +1,75 @@
+error[E0428]: the name `f_var` is defined multiple times
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_003/target.rs:76:1
+   |
+ 7 | fn f_var(x: u32, _args: ()) -> i32 { x as i32 + 3 }
+   | ---------------------------------- previous definition of the value `f_var` here
+...
+76 | fn f_var(x: u32) -> i32 {
+   | ^^^^^^^^^^^^^^^^^^^^^^^ `f_var` redefined here
+   |
+   = note: `f_var` must be defined only once in the value namespace of this module
+
+error[E0435]: attempt to use a non-constant value in a constant
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_003/target.rs:9:38
+  |
+9 | fn use_vla(n: usize, p: *const [i32; n]) -> i32 { p[0] * 10 + p[n - 1] }
+  |            -                         ^
+  |            |
+  |            this would need to be a `const`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_003/target.rs:20:8
+   |
+20 |     if unsafe { *p }!= 1 {
+   |        ^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_003/target.rs:27:8
+   |
+27 |     if unsafe { *q }!= 3 {
+   |        ^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_003/target.rs:34:8
+   |
+34 |     if unsafe { (*pa)[1] }!= 2 {
+   |        ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_003/target.rs:49:8
+   |
+49 |     if unsafe { *pf() }!= 2 {
+   |        ^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_003/target.rs:26:25
+   |
+26 |     let q: *const i32 = &[&g_arr[0], &g_arr[1], &g_arr[2]][2];
+   |            ----------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `*const i32`, found `&&i32`
+   |            |
+   |            expected due to this
+   |
+   = note: expected raw pointer `*const i32`
+                found reference `&&i32`
+help: consider dereferencing
+   |
+26 |     let q: *const i32 = &*[&g_arr[0], &g_arr[1], &g_arr[2]][2];
+   |                          +
+
+error[E0593]: function is expected to take 1 argument, but it takes 2 arguments
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_names/sample_003/target.rs:62:41
+   |
+ 7 | fn f_var(x: u32, _args: ()) -> i32 { x as i32 + 3 }
+   | ---------------------------------- takes 2 arguments
+...
+62 |     let af: [&dyn Fn(u32) -> i32; 2] = [&f_var, &f_var];
+   |                                         ^^^^^^ expected function that takes 1 argument
+   |
+   = note: required for the cast from `&fn(u32, ()) -> i32 {f_var}` to `&dyn Fn(u32) -> i32`
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0308, E0428, E0435, E0593.
+For more information about an error, try `rustc --explain E0308`.

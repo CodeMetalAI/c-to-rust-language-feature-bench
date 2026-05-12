@@ -1,0 +1,77 @@
+warning: type `s1` should have an upper camel case name
+ --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:2:8
+  |
+2 | struct s1 {
+  |        ^^ help: convert the identifier to upper camel case (notice the capitalization): `S1`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: type `t1` should have an upper camel case name
+ --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:6:6
+  |
+6 | type t1 = s1;
+  |      ^^ help: convert the identifier to upper camel case: `T1`
+
+warning: type `tp1` should have an upper camel case name
+ --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:7:6
+  |
+7 | type tp1 = *mut s1;
+  |      ^^^ help: convert the identifier to upper camel case: `Tp1`
+
+warning: type `s2` should have an upper camel case name
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:10:8
+   |
+10 | struct s2 {
+   |        ^^ help: convert the identifier to upper camel case (notice the capitalization): `S2`
+
+warning: type `t2` should have an upper camel case name
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:14:6
+   |
+14 | type t2 = s2;
+   |      ^^ help: convert the identifier to upper camel case: `T2`
+
+warning: type `tp2` should have an upper camel case name
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:15:6
+   |
+15 | type tp2 = *mut s2;
+   |      ^^^ help: convert the identifier to upper camel case: `Tp2`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:26:5
+   |
+26 | /     unsafe {
+27 | |         (*p).x += 3;
+28 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:29:5
+   |
+29 | /     unsafe {
+30 | |         (*p).x
+31 | |     }
+   | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:48:16
+   |
+42 | fn main() {
+   |          - expected `()` because of default return type
+...
+48 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-11T22-01-24/gemma-3-12b/declarations/type_def_2/sample_002/target.rs:93:5
+   |
+42 | fn main() {
+   |          - expected `()` because of default return type
+...
+93 |     0
+   |     ^ expected `()`, found integer
+
+error: aborting due to 4 previous errors; 6 warnings emitted
+
+For more information about this error, try `rustc --explain E0308`.

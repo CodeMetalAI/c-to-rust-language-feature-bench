@@ -1,0 +1,265 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:61:38
+   |
+61 |     test_simple_assign!(AtomicUsize, unsafe { &I as *const i32 as usize });
+   |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:90:22
+   |
+90 |       let init_bytes = unsafe {
+   |  ______________________^
+91 | |         std::slice::from_raw_parts(
+92 | |             &init as *const _ as *const u8,
+93 | |             mem::size_of::<S>()
+94 | |         )
+95 | |     };
+   | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:96:22
+    |
+ 96 |       let copy_bytes = unsafe {
+    |  ______________________^
+ 97 | |         std::slice::from_raw_parts(
+ 98 | |             &copy as *const _ as *const u8,
+ 99 | |             mem::size_of::<S>()
+100 | |         )
+101 | |     };
+    | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:14:44
+   |
+14 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `bool`, found integer
+   |                |
+   |                expected because this is `bool`
+...
+48 |     test_simple_assign_arith!(0);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:14:44
+   |
+14 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `bool`, found integer
+   |                |
+   |                expected because this is `bool`
+...
+49 |     test_simple_assign_arith!(1);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:14:44
+   |
+14 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `bool`, found integer
+   |                |
+   |                expected because this is `bool`
+...
+50 |     test_simple_assign_arith!(2);
+   |     ---------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:14:44
+   |
+14 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `bool`, found integer
+   |                |
+   |                expected because this is `bool`
+...
+51 |     test_simple_assign_arith!(-1);
+   |     ----------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0600]: cannot apply unary operator `-` to type `u8`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:51:31
+   |
+51 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u8`
+   |
+35 -         test_simple_assign!(AtomicU8, $value as u8);
+35 +         test_simple_assign!(AtomicU8, u8::MAX);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u16`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:51:31
+   |
+51 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u16`
+   |
+37 -         test_simple_assign!(AtomicU16, $value as u16);
+37 +         test_simple_assign!(AtomicU16, u16::MAX);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u32`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:51:31
+   |
+51 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u32`
+   |
+39 -         test_simple_assign!(AtomicU32, $value as u32);
+39 +         test_simple_assign!(AtomicU32, u32::MAX);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `u64`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:51:31
+   |
+51 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `u64`
+   |
+41 -         test_simple_assign!(AtomicU64, $value as u64);
+41 +         test_simple_assign!(AtomicU64, u64::MAX);
+   |
+
+error[E0600]: cannot apply unary operator `-` to type `usize`
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:51:31
+   |
+51 |     test_simple_assign_arith!(-1);
+   |                               ^^ cannot apply unary operator `-`
+   |
+   = note: unsigned values cannot be negated
+help: you may have meant the maximum value of `usize`
+   |
+43 -         test_simple_assign!(AtomicUsize, $value as usize);
+43 +         test_simple_assign!(AtomicUsize, usize::MAX);
+   |
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:14:44
+   |
+14 |             if A.load(Ordering::SeqCst) != 0 {
+   |                ------------------------    ^ expected `bool`, found integer
+   |                |
+   |                expected because this is `bool`
+...
+52 |     test_simple_assign_arith!(1i64 << 63);
+   |     ------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:11:58
+    |
+ 11 |             static A: $atomic_type = <$atomic_type>::new(0);
+    |                                      ------------------- ^ expected `bool`, found integer
+    |                                      |
+    |                                      arguments to this function are incorrect
+...
+ 48 |     test_simple_assign_arith!(0);
+    |     ---------------------------- in this macro invocation
+    |
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:528:18
+    |
+528 |     pub const fn new(v: bool) -> AtomicBool {
+    |                  ^^^
+    = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:11:58
+    |
+ 11 |             static A: $atomic_type = <$atomic_type>::new(0);
+    |                                      ------------------- ^ expected `bool`, found integer
+    |                                      |
+    |                                      arguments to this function are incorrect
+...
+ 49 |     test_simple_assign_arith!(1);
+    |     ---------------------------- in this macro invocation
+    |
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:528:18
+    |
+528 |     pub const fn new(v: bool) -> AtomicBool {
+    |                  ^^^
+    = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:11:58
+    |
+ 11 |             static A: $atomic_type = <$atomic_type>::new(0);
+    |                                      ------------------- ^ expected `bool`, found integer
+    |                                      |
+    |                                      arguments to this function are incorrect
+...
+ 50 |     test_simple_assign_arith!(2);
+    |     ---------------------------- in this macro invocation
+    |
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:528:18
+    |
+528 |     pub const fn new(v: bool) -> AtomicBool {
+    |                  ^^^
+    = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:11:58
+    |
+ 11 |             static A: $atomic_type = <$atomic_type>::new(0);
+    |                                      ------------------- ^ expected `bool`, found integer
+    |                                      |
+    |                                      arguments to this function are incorrect
+...
+ 51 |     test_simple_assign_arith!(-1);
+    |     ----------------------------- in this macro invocation
+    |
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:528:18
+    |
+528 |     pub const fn new(v: bool) -> AtomicBool {
+    |                  ^^^
+    = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:11:58
+    |
+ 11 |             static A: $atomic_type = <$atomic_type>::new(0);
+    |                                      ------------------- ^ expected `bool`, found integer
+    |                                      |
+    |                                      arguments to this function are incorrect
+...
+ 52 |     test_simple_assign_arith!(1i64 << 63);
+    |     ------------------------------------- in this macro invocation
+    |
+note: associated function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:528:18
+    |
+528 |     pub const fn new(v: bool) -> AtomicBool {
+    |                  ^^^
+    = note: this error originates in the macro `test_simple_assign` which comes from the expansion of the macro `test_simple_assign_arith` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: pointers cannot be cast to integers during const eval
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_005/target.rs:61:47
+   |
+61 |     test_simple_assign!(AtomicUsize, unsafe { &I as *const i32 as usize });
+   |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: at compile-time, pointers do not have an integer value
+   = note: avoiding this restriction via `transmute`, `union`, or raw pointers leads to compile-time undefined behavior
+
+error: aborting due to 19 previous errors
+
+Some errors have detailed explanations: E0308, E0600.
+For more information about an error, try `rustc --explain E0308`.

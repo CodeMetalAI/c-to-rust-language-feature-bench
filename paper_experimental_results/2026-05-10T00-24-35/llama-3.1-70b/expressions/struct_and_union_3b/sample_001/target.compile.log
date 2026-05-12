@@ -1,0 +1,41 @@
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_3b/sample_001/target.rs:21:10
+   |
+21 | #[derive(Debug, Copy, Clone)]
+   |          ^^^^^
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_3b/sample_001/target.rs:2:8
+  |
+2 |     if u.s1.m < 0 {
+  |        ^^^^ access to union field
+  |
+  = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_3b/sample_001/target.rs:3:19
+  |
+3 |         u.s2.m = -u.s2.m;
+  |                   ^^^^ access to union field
+  |
+  = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_3b/sample_001/target.rs:5:5
+  |
+5 |     u.s1.m
+  |     ^^^^ access to union field
+  |
+  = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_3b/sample_001/target.rs:35:8
+   |
+35 |     if u.s2.m!= -7 {
+   |        ^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

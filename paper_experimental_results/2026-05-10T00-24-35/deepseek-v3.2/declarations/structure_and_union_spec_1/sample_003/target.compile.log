@@ -1,0 +1,48 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_1/sample_003/target.rs:29:5
+   |
+29 | /     unsafe {
+30 | |         v1.u.inner.i = 2;
+31 | |         v1.u.w.k = 5;
+32 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_1/sample_003/target.rs:34:21
+   |
+34 |       let exit_code = unsafe {
+   |  _____________________^
+35 | |         if v1.u.inner.i != 2 {
+36 | |             return 1;
+...  |
+43 | |         0
+44 | |     };
+   | |_____^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_1/sample_003/target.rs:13:9
+   |
+13 |         inner: InnerUnion,
+   |         ^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+13 |         inner: std::mem::ManuallyDrop<InnerUnion>,
+   |                +++++++++++++++++++++++          +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/structure_and_union_spec_1/sample_003/target.rs:36:20
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+36 |             return 1;
+   |                    ^ expected `()`, found integer
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0740.
+For more information about an error, try `rustc --explain E0308`.

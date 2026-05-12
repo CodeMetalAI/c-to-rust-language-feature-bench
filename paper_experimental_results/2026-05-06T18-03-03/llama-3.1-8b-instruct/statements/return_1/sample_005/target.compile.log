@@ -1,0 +1,37 @@
+error: expected type, found keyword `struct`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/statements/return_1/sample_005/target.rs:6:9
+  |
+5 | union U {
+  |       - while parsing this union
+6 |     u1: struct {
+  |         ^^^^^^ expected type
+
+error: expected expression, found keyword `struct`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/statements/return_1/sample_005/target.rs:16:27
+   |
+16 | static mut G: U = U { u1: struct { f1: 0, f2: S { i: 0.0 } } };
+   |                   -       ^^^^^^ expected expression
+   |                   |
+   |                   while parsing this struct
+
+error: unions cannot have zero fields
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/statements/return_1/sample_005/target.rs:5:1
+   |
+ 5 | / union U {
+ 6 | |     u1: struct {
+ 7 | |         f1: i32,
+ 8 | |         f2: S,
+...  |
+13 | |     },
+14 | | }
+   | |_^
+
+error[E0784]: union expressions should have exactly one field
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/statements/return_1/sample_005/target.rs:16:19
+   |
+16 | static mut G: U = U { u1: struct { f1: 0, f2: S { i: 0.0 } } };
+   |                   ^
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0784`.

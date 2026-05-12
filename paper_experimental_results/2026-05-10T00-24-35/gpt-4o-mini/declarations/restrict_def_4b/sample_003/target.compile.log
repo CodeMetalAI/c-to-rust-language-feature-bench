@@ -1,0 +1,146 @@
+warning: type `usize` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_003/target.rs:1:6
+  |
+1 | type usize = u64;
+  |      ^^^^^ help: convert the identifier to upper camel case (notice the capitalization): `Usize`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_003/target.rs:14:5
+   |
+14 | /     unsafe {
+15 | |         if n == 0 {
+16 | |             return POOL.as_mut_ptr().add(OFF);
+...  |
+29 | |         return p;
+30 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_003/target.rs:42:5
+   |
+42 | /     unsafe {
+43 | |         while i < n {
+44 | |             *p.add(i as usize) = base + i as f32;
+45 | |             i += 1;
+46 | |         }
+47 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_003/target.rs:53:5
+   |
+53 | /     unsafe {
+54 | |         while i < n {
+55 | |             s += *p.add(i as usize);
+56 | |             i += 1;
+57 | |         }
+58 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_003/target.rs:94:5
+   |
+94 | /     unsafe {
+95 | |         if (H & 1) == 0 {
+96 | |             return 6;
+97 | |         }
+98 | |     }
+   | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_003/target.rs:67:14
+   |
+67 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_003/target.rs:16:42
+    |
+ 16 |             return POOL.as_mut_ptr().add(OFF);
+    |                                      --- ^^^ expected `usize`, found `u64`
+    |                                      |
+    |                                      arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mut_ptr.rs:975:25
+    |
+975 |     pub const unsafe fn add(self, count: usize) -> Self
+    |                         ^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+    |
+ 16 |             return POOL.as_mut_ptr().add(OFF.try_into().unwrap());
+    |                                             ++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_003/target.rs:23:39
+    |
+ 23 |         let p = POOL.as_mut_ptr().add(OFF);
+    |                                   --- ^^^ expected `usize`, found `u64`
+    |                                   |
+    |                                   arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mut_ptr.rs:975:25
+    |
+975 |     pub const unsafe fn add(self, count: usize) -> Self
+    |                         ^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+    |
+ 23 |         let p = POOL.as_mut_ptr().add(OFF.try_into().unwrap());
+    |                                          ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_003/target.rs:36:12
+   |
+36 |         v: alloc_bytes((n as usize) * std::mem::size_of::<f32>() as usize),
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `*mut f32`, found `*mut u8`
+   |
+   = note: expected raw pointer `*mut f32`
+              found raw pointer `*mut u8`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_003/target.rs:44:20
+    |
+ 44 |             *p.add(i as usize) = base + i as f32;
+    |                --- ^^^^^^^^^^ expected `usize`, found `u64`
+    |                |
+    |                arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mut_ptr.rs:975:25
+    |
+975 |     pub const unsafe fn add(self, count: usize) -> Self
+    |                         ^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+    |
+ 44 |             *p.add((i as usize).try_into().unwrap()) = base + i as f32;
+    |                    +          +++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/restrict_def_4b/sample_003/target.rs:55:25
+    |
+ 55 |             s += *p.add(i as usize);
+    |                     --- ^^^^^^^^^^ expected `usize`, found `u64`
+    |                     |
+    |                     arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:881:25
+    |
+881 |     pub const unsafe fn add(self, count: usize) -> Self
+    |                         ^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+    |
+ 55 |             s += *p.add((i as usize).try_into().unwrap());
+    |                         +          +++++++++++++++++++++
+
+error: aborting due to 10 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

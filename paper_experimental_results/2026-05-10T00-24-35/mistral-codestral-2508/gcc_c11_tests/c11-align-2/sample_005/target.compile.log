@@ -1,0 +1,45 @@
+error[E0412]: cannot find type `short` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/c11-align-2/sample_005/target.rs:11:25
+   |
+11 |     struct AlignedShort(short);
+   |                         ^^^^^
+   |                         |
+   |                         not found in this scope
+   |                         help: perhaps you intended to use this type: `i16`
+
+error[E0412]: cannot find type `Complex` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/c11-align-2/sample_005/target.rs:35:37
+   |
+35 |     struct AlignedComplexLongDouble(Complex<f64>);
+   |                                     ^^^^^^^ not found in this scope
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/c11-align-2/sample_005/target.rs:8:39
+  |
+8 |     let _c: AlignedChar = AlignedChar(0);
+  |                           ----------- ^ expected `char`, found `u8`
+  |                           |
+  |                           arguments to this struct are incorrect
+  |
+note: tuple struct defined here
+ --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/c11-align-2/sample_005/target.rs:7:12
+  |
+7 |     struct AlignedChar(char);
+  |            ^^^^^^^^^^^
+
+error[E0433]: failed to resolve: use of undeclared type `Complex`
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/c11-align-2/sample_005/target.rs:36:67
+   |
+36 |     let _cld: AlignedComplexLongDouble = AlignedComplexLongDouble(Complex::new(0.0, 0.0));
+   |                                                                   ^^^^^^^ use of undeclared type `Complex`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/mistral-codestral-2508/gcc_c11_tests/c11-align-2/sample_005/target.rs:40:51
+   |
+40 |     let _ca: AlignedCharArray = AlignedCharArray([0; 10]);
+   |                                                   ^ expected `char`, found `u8`
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0412, E0433.
+For more information about an error, try `rustc --explain E0308`.

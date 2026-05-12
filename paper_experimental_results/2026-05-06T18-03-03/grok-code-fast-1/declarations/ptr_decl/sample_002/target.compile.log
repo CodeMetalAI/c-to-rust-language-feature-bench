@@ -1,0 +1,114 @@
+error[E0606]: casting `&RefCell<i32>` as `*const ()` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_002/target.rs:33:18
+   |
+33 |     if same_addr(b.const_p as *const (), expected_const_p_target as *const ()) == 0 {
+   |                  ^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&RefCell<i32>` as `*const ()` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_002/target.rs:33:42
+   |
+33 |     if same_addr(b.const_p as *const (), expected_const_p_target as *const ()) == 0 {
+   |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&RefCell<i32>` as `*const ()` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_002/target.rs:36:18
+   |
+36 |     if same_addr(b.const_p_via_typedef as *const (), expected_const_p_target as *const ()) == 0 {
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&RefCell<i32>` as `*const ()` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_002/target.rs:36:54
+   |
+36 |     if same_addr(b.const_p_via_typedef as *const (), expected_const_p_target as *const ()) == 0 {
+   |                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: lifetime may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_002/target.rs:22:9
+   |
+20 | fn retarget_ptr_to_const(b: &mut Bundle, a: &RefCell<i32>, c: &RefCell<i32>, sel: i32) {
+   |                          -                  - let's call the lifetime of this reference `'1`
+   |                          |
+   |                          has type `&mut Bundle<'2>`
+21 |     if sel != 0 {
+22 |         b.p_to_const = a;
+   |         ^^^^^^^^^^^^^^^^ assignment requires that `'1` must outlive `'2`
+   |
+help: consider introducing a named lifetime parameter
+   |
+20 | fn retarget_ptr_to_const<'a>(b: &mut Bundle<'a>, a: &'a RefCell<i32>, c: &RefCell<i32>, sel: i32) {
+   |                         ++++               ++++      ++
+
+error: lifetime may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_002/target.rs:24:9
+   |
+20 | fn retarget_ptr_to_const(b: &mut Bundle, a: &RefCell<i32>, c: &RefCell<i32>, sel: i32) {
+   |                          - has type `&mut Bundle<'2>`         - let's call the lifetime of this reference `'3`
+...
+24 |         b.p_to_const = c;
+   |         ^^^^^^^^^^^^^^^^ assignment requires that `'3` must outlive `'2`
+   |
+help: consider introducing a named lifetime parameter
+   |
+20 | fn retarget_ptr_to_const<'a>(b: &mut Bundle<'a>, a: &RefCell<i32>, c: &'a RefCell<i32>, sel: i32) {
+   |                         ++++               ++++                        ++
+
+error[E0382]: borrow of moved value: `b`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_002/target.rs:80:6
+   |
+51 |     let mut b = Bundle {
+   |         ----- move occurs because `b` has type `Bundle<'_>`, which does not implement the `Copy` trait
+...
+57 |     if check_bundle(b, &x) != 0 {
+   |                     - value moved here
+...
+80 |     *b.const_p_via_typedef.borrow_mut() += 7;
+   |      ^^^^^^^^^^^^^^^^^^^^^ value borrowed here after move
+   |
+note: consider changing this parameter type in function `check_bundle` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_002/target.rs:32:20
+   |
+32 | fn check_bundle(b: Bundle, expected_const_p_target: &RefCell<i32>) -> i32 {
+   |    ------------    ^^^^^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `Bundle<'_>` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_002/target.rs:5:1
+   |
+ 5 | struct Bundle<'a> {
+   | ^^^^^^^^^^^^^^^^^ consider implementing `Clone` for this type
+...
+57 |     if check_bundle(b, &x) != 0 {
+   |                     - you could clone this value
+
+error[E0382]: borrow of moved value: `b`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_002/target.rs:89:9
+   |
+51 |     let mut b = Bundle {
+   |         ----- move occurs because `b` has type `Bundle<'_>`, which does not implement the `Copy` trait
+...
+85 |     if check_bundle(b, &x) != 0 {
+   |                     - value moved here
+...
+89 |     if *b.p_to_const.borrow() != 21 {
+   |         ^^^^^^^^^^^^ value borrowed here after move
+   |
+note: consider changing this parameter type in function `check_bundle` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_002/target.rs:32:20
+   |
+32 | fn check_bundle(b: Bundle, expected_const_p_target: &RefCell<i32>) -> i32 {
+   |    ------------    ^^^^^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `Bundle<'_>` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/ptr_decl/sample_002/target.rs:5:1
+   |
+ 5 | struct Bundle<'a> {
+   | ^^^^^^^^^^^^^^^^^ consider implementing `Clone` for this type
+...
+85 |     if check_bundle(b, &x) != 0 {
+   |                     - you could clone this value
+
+error: aborting due to 8 previous errors
+
+Some errors have detailed explanations: E0382, E0606.
+For more information about an error, try `rustc --explain E0382`.

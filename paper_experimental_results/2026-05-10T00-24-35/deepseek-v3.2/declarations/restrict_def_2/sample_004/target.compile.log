@@ -1,0 +1,37 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2/sample_004/target.rs:35:17
+   |
+35 |     let g_off = unsafe { G_OFF };
+   |                 ^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0502]: cannot borrow `buf` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2/sample_004/target.rs:41:24
+   |
+40 |         let p_slice = &mut buf[0..];
+   |                            --- mutable borrow occurs here
+41 |         let q_slice = &buf[off..];
+   |                        ^^^ immutable borrow occurs here
+42 |
+43 |         f(n as i32, &mut p_slice[0..n], &q_slice[0..n]);
+   |                          ------- mutable borrow later used here
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `buf` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/restrict_def_2/sample_004/target.rs:67:24
+   |
+66 |         let p_slice = &mut buf[off..];
+   |                            --- mutable borrow occurs here
+67 |         let q_slice = &buf[0..];
+   |                        ^^^ immutable borrow occurs here
+68 |
+69 |         f(n as i32, &mut p_slice[0..n], &q_slice[0..n]);
+   |                          ------- mutable borrow later used here
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0502`.

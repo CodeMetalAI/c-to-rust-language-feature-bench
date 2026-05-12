@@ -1,0 +1,47 @@
+error[E0502]: cannot borrow `*base` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2b/sample_002/target.rs:61:55
+   |
+61 |         safe_move(n, &mut base[ps..ps + n as usize], &base[qs..qs + n as usize], ps, qs);
+   |         ---------         ----                        ^^^^ immutable borrow occurs here
+   |         |                 |
+   |         |                 mutable borrow occurs here
+   |         mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `*base` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2b/sample_002/target.rs:63:47
+   |
+63 |         f(n, &mut base[ps..ps + n as usize], &base[qs..qs + n as usize]);
+   |         -         ----                        ^^^^ immutable borrow occurs here
+   |         |         |
+   |         |         mutable borrow occurs here
+   |         mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2b/sample_002/target.rs:96:39
+   |
+96 |     safe_move(50, &mut expect[50..], &expect[0..], 50, 0);
+   |     ---------          ------         ^^^^^^ immutable borrow occurs here
+   |     |                  |
+   |     |                  mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `expect` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/declarations/restrict_def_2b/sample_002/target.rs:97:38
+   |
+97 |     safe_move(50, &mut expect[1..], &expect[0..], 1, 0);
+   |     ---------          ------        ^^^^^^ immutable borrow occurs here
+   |     |                  |
+   |     |                  mutable borrow occurs here
+   |     mutable borrow later used by call
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0502`.

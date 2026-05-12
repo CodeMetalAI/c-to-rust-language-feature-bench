@@ -1,0 +1,48 @@
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_3a/sample_005/target.rs:3:5
+  |
+3 |     n: N,
+  |     ^^^^
+  |
+  = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+  |
+3 |     n: std::mem::ManuallyDrop<N>,
+  |        +++++++++++++++++++++++ +
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_3a/sample_005/target.rs:32:8
+   |
+32 |     if u.n.alltypes!= 1 {
+   |        ^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_3a/sample_005/target.rs:35:8
+   |
+35 |     if u.ni.type_!= 1 {
+   |        ^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_3a/sample_005/target.rs:38:8
+   |
+38 |     if u.nf.type_!= 1 {
+   |        ^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error[E0133]: access to union field is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/struct_and_union_3a/sample_005/target.rs:41:9
+   |
+41 |     if (u.nf.doublenode - 3.14).abs() > 1e-6 {
+   |         ^^^^ access to union field
+   |
+   = note: the field may not be properly initialized: using uninitialized data will cause undefined behavior
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0133, E0740.
+For more information about an error, try `rustc --explain E0133`.

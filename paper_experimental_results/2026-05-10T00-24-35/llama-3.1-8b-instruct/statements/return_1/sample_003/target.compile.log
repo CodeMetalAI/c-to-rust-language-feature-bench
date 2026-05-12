@@ -1,0 +1,59 @@
+error: expected type, found keyword `struct`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/statements/return_1/sample_003/target.rs:6:9
+  |
+5 | union U {
+  |       - while parsing this union
+6 |     u1: struct {
+  |         ^^^^^^ expected type
+
+error: expected expression, found keyword `struct`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/statements/return_1/sample_003/target.rs:16:27
+   |
+16 | static mut G: U = U { u1: struct { f1: 0, f2: S { i: 0.0 }, } };
+   |                   -       ^^^^^^ expected expression
+   |                   |
+   |                   while parsing this struct
+
+error: unions cannot have zero fields
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/statements/return_1/sample_003/target.rs:5:1
+   |
+ 5 | / union U {
+ 6 | |     u1: struct {
+ 7 | |         f1: i32,
+ 8 | |         f2: S,
+...  |
+13 | |     },
+14 | | }
+   | |_^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/statements/return_1/sample_003/target.rs:27:5
+   |
+27 | /     unsafe {
+28 | |         G.u1.f2.i = 1.0;
+29 | |         G.u2.f3.i = 1.0;
+30 | |         G.u1.f2 = f();
+...  |
+38 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/statements/return_1/sample_003/target.rs:26:14
+   |
+26 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0784]: union expressions should have exactly one field
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/statements/return_1/sample_003/target.rs:16:19
+   |
+16 | static mut G: U = U { u1: struct { f1: 0, f2: S { i: 0.0 }, } };
+   |                   ^
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0277, E0784.
+For more information about an error, try `rustc --explain E0277`.

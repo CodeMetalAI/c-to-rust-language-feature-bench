@@ -1,0 +1,188 @@
+error: expected one of `!`, `(`, `)`, `,`, `.`, `::`, `<`, or `?`, found `char`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/bool_char_int_c2/sample_005/target.rs:24:29
+   |
+24 |     if type_id((1 as signed char) + 0) != 1 {
+   |                            -^^^^ expected one of 8 possible tokens
+   |                            |
+   |                            help: missing `,`
+
+error: expected one of `!`, `(`, `)`, `,`, `.`, `::`, `<`, or `?`, found `char`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/bool_char_int_c2/sample_005/target.rs:27:31
+   |
+27 |     if type_id((1 as unsigned char) + 0) != 1 {
+   |                              -^^^^ expected one of 8 possible tokens
+   |                              |
+   |                              help: missing `,`
+
+error[E0658]: the type `f128` is unstable
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/bool_char_int_c2/sample_005/target.rs:18:37
+   |
+18 |         _ if std::any::TypeId::of::<f128>() == std::any::TypeId::of::<T>() => 9,
+   |                                     ^^^^
+   |
+   = note: see issue #116909 <https://github.com/rust-lang/rust/issues/116909> for more information
+   = help: add `#![feature(f128)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0412]: cannot find type `signed` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/bool_char_int_c2/sample_005/target.rs:24:22
+   |
+24 |     if type_id((1 as signed char) + 0) != 1 {
+   |                      ^^^^^^ not found in this scope
+
+error[E0423]: expected value, found builtin type `char`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/bool_char_int_c2/sample_005/target.rs:24:29
+   |
+24 |     if type_id((1 as signed char) + 0) != 1 {
+   |                             ^^^^ not a value
+
+error[E0412]: cannot find type `unsigned` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/bool_char_int_c2/sample_005/target.rs:27:22
+   |
+27 |     if type_id((1 as unsigned char) + 0) != 1 {
+   |                      ^^^^^^^^ not found in this scope
+
+error[E0423]: expected value, found builtin type `char`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/bool_char_int_c2/sample_005/target.rs:27:31
+   |
+27 |     if type_id((1 as unsigned char) + 0) != 1 {
+   |                               ^^^^ not a value
+
+error[E0369]: cannot add `{integer}` to `bool`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/bool_char_int_c2/sample_005/target.rs:49:22
+   |
+49 |     if type_id(bf.b1 + 0) != 1 {
+   |                ----- ^ - {integer}
+   |                |
+   |                bool
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/bool_char_int_c2/sample_005/target.rs:10:47
+   |
+10 |         _ if std::any::TypeId::of::<i32>() == std::any::TypeId::of::<T>() => 1,
+   |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                               |
+   |                                               the parameter type `T` must be valid for the static lifetime...
+   |                                               ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+ 8 | fn type_id<T: 'static>(x: T) -> i32 {
+   |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/bool_char_int_c2/sample_005/target.rs:11:47
+   |
+11 |         _ if std::any::TypeId::of::<u32>() == std::any::TypeId::of::<T>() => 2,
+   |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                               |
+   |                                               the parameter type `T` must be valid for the static lifetime...
+   |                                               ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+ 8 | fn type_id<T: 'static>(x: T) -> i32 {
+   |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/bool_char_int_c2/sample_005/target.rs:12:47
+   |
+12 |         _ if std::any::TypeId::of::<i64>() == std::any::TypeId::of::<T>() => 3,
+   |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                               |
+   |                                               the parameter type `T` must be valid for the static lifetime...
+   |                                               ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+ 8 | fn type_id<T: 'static>(x: T) -> i32 {
+   |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/bool_char_int_c2/sample_005/target.rs:13:47
+   |
+13 |         _ if std::any::TypeId::of::<u64>() == std::any::TypeId::of::<T>() => 4,
+   |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                               |
+   |                                               the parameter type `T` must be valid for the static lifetime...
+   |                                               ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+ 8 | fn type_id<T: 'static>(x: T) -> i32 {
+   |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/bool_char_int_c2/sample_005/target.rs:14:48
+   |
+14 |         _ if std::any::TypeId::of::<i128>() == std::any::TypeId::of::<T>() => 5,
+   |                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                                |
+   |                                                the parameter type `T` must be valid for the static lifetime...
+   |                                                ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+ 8 | fn type_id<T: 'static>(x: T) -> i32 {
+   |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/bool_char_int_c2/sample_005/target.rs:15:48
+   |
+15 |         _ if std::any::TypeId::of::<u128>() == std::any::TypeId::of::<T>() => 6,
+   |                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                                |
+   |                                                the parameter type `T` must be valid for the static lifetime...
+   |                                                ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+ 8 | fn type_id<T: 'static>(x: T) -> i32 {
+   |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/bool_char_int_c2/sample_005/target.rs:16:47
+   |
+16 |         _ if std::any::TypeId::of::<f32>() == std::any::TypeId::of::<T>() => 7,
+   |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                               |
+   |                                               the parameter type `T` must be valid for the static lifetime...
+   |                                               ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+ 8 | fn type_id<T: 'static>(x: T) -> i32 {
+   |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/bool_char_int_c2/sample_005/target.rs:17:47
+   |
+17 |         _ if std::any::TypeId::of::<f64>() == std::any::TypeId::of::<T>() => 8,
+   |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                               |
+   |                                               the parameter type `T` must be valid for the static lifetime...
+   |                                               ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+ 8 | fn type_id<T: 'static>(x: T) -> i32 {
+   |             +++++++++
+
+error[E0310]: the parameter type `T` may not live long enough
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/bool_char_int_c2/sample_005/target.rs:18:48
+   |
+18 |         _ if std::any::TypeId::of::<f128>() == std::any::TypeId::of::<T>() => 9,
+   |                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                                |
+   |                                                the parameter type `T` must be valid for the static lifetime...
+   |                                                ...so that the type `T` will meet its required lifetime bounds
+   |
+help: consider adding an explicit lifetime bound
+   |
+ 8 | fn type_id<T: 'static>(x: T) -> i32 {
+   |             +++++++++
+
+error: aborting due to 17 previous errors
+
+Some errors have detailed explanations: E0310, E0369, E0412, E0423, E0658.
+For more information about an error, try `rustc --explain E0310`.

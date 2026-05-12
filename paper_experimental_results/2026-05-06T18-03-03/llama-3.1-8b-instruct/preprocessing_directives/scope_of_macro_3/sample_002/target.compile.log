@@ -1,0 +1,106 @@
+error: no rules expected `,`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:36:17
+   |
+ 5 | macro_rules! F {
+   | -------------- when calling this macro
+...
+36 |     let u = F!(3, 4);
+   |                 ^ no rules expected this token in macro call
+   |
+note: while trying to match meta-variable `$a:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:6:6
+   |
+ 6 |     ($a:expr) => { $a + x!() };
+   |      ^^^^^^^
+
+error: unexpected end of macro invocation
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:42:14
+   |
+26 | macro_rules! r {
+   | -------------- when calling this macro
+...
+42 |         r!(4, ),
+   |              ^ missing tokens in macro arguments
+   |
+note: while trying to match meta-variable `$y:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:27:15
+   |
+27 |     ($x:expr, $y:expr) => { concat!($x, $y) };
+   |               ^^^^^^^
+
+error: no rules expected `,`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:43:12
+   |
+26 | macro_rules! r {
+   | -------------- when calling this macro
+...
+43 |         r!(, 5),
+   |            ^ no rules expected this token in macro call
+   |
+note: while trying to match meta-variable `$x:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:27:6
+   |
+27 |     ($x:expr, $y:expr) => { concat!($x, $y) };
+   |      ^^^^^^^
+
+error: no rules expected `,`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:44:12
+   |
+26 | macro_rules! r {
+   | -------------- when calling this macro
+...
+44 |         r!(, ),
+   |            ^ no rules expected this token in macro call
+   |
+note: while trying to match meta-variable `$x:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:27:6
+   |
+27 |     ($x:expr, $y:expr) => { concat!($x, $y) };
+   |      ^^^^^^^
+
+error: unexpected end of macro invocation
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:48:23
+   |
+30 | macro_rules! str {
+   | ---------------- when calling this macro
+...
+48 |         [str!(hello), str!()],
+   |                       ^^^^^^ missing tokens in macro arguments
+   |
+note: while trying to match meta-variable `$x:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:31:6
+   |
+31 |     ($x:expr) => { stringify!($x) };
+   |      ^^^^^^^
+
+error: unexpected end of macro invocation
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:49:10
+   |
+30 | macro_rules! str {
+   | ---------------- when calling this macro
+...
+49 |         [str!(), str!()],
+   |          ^^^^^^ missing tokens in macro arguments
+   |
+note: while trying to match meta-variable `$x:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:31:6
+   |
+31 |     ($x:expr) => { stringify!($x) };
+   |      ^^^^^^^
+
+error: unexpected end of macro invocation
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:49:18
+   |
+30 | macro_rules! str {
+   | ---------------- when calling this macro
+...
+49 |         [str!(), str!()],
+   |                  ^^^^^^ missing tokens in macro arguments
+   |
+note: while trying to match meta-variable `$x:expr`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:31:6
+   |
+31 |     ($x:expr) => { stringify!($x) };
+   |      ^^^^^^^
+
+error: aborting due to 7 previous errors

@@ -1,0 +1,129 @@
+error[E0425]: cannot find value `component` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:60:40
+   |
+60 |         if sum_arr7(Y) != (1 + 2 + 3 + component + 5 + 6 + 7) {
+   |                                        ^^^^^^^^^ not found in this scope
+
+warning: unused import: `std::mem`
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: type `usize` should have an upper camel case name
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:3:6
+  |
+3 | type usize = u64;
+  |      ^^^^^ help: convert the identifier to upper camel case (notice the capitalization): `Usize`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:27:14
+   |
+27 |         s += unsafe { *p.add(i) };
+   |              ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:44:5
+   |
+44 | /     unsafe {
+45 | |         p.add(1).write(*p.add(1) + 5);
+46 | |         *p.add(0) + *p.add(1) + *p.add(2)
+47 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:51:5
+    |
+ 51 | /     unsafe {
+ 52 | |         Y[0] = 1;
+ 53 | |         Y[1] = 2;
+ 54 | |         Y[2] = 3;
+...   |
+103 | |         std::process::exit(0);
+104 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:77:12
+   |
+77 |         if unsafe { *t.add(6) } != 7 {
+   |            ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:82:12
+   |
+82 |         if unsafe { *hp.p } != 1 {
+   |            ^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:87:22
+   |
+87 |         let ha_ref = unsafe { &*ha };
+   |                      ^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:95:12
+   |
+95 |         if unsafe { *a_ptr.add(2) } != 3 {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:27:30
+    |
+ 27 |         s += unsafe { *p.add(i) };
+    |                          --- ^ expected `usize`, found `u64`
+    |                          |
+    |                          arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:881:25
+    |
+881 |     pub const unsafe fn add(self, count: usize) -> Self
+    |                         ^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+    |
+ 27 |         s += unsafe { *p.add(i.try_into().unwrap()) };
+    |                               ++++++++++++++++++++
+
+error[E0277]: the type `[i32]` cannot be indexed by `u64`
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:37:16
+   |
+37 |         s += a[i as usize];
+   |                ^^^^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[i32]>` is not implemented for `u64`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[i32]` to implement `Index<u64>`
+   = note: 1 redundant requirement hidden
+   = note: required for `[i32; 7]` to implement `Index<u64>`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_2/sample_001/target.rs:91:45
+    |
+ 91 |         if a_ptr as *const u8 != ha_ptr.add(a_offset as usize) {
+    |                                         --- ^^^^^^^^^^^^^^^^^ expected `usize`, found `u64`
+    |                                         |
+    |                                         arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:881:25
+    |
+881 |     pub const unsafe fn add(self, count: usize) -> Self
+    |                         ^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+    |
+ 91 |         if a_ptr as *const u8 != ha_ptr.add((a_offset as usize).try_into().unwrap()) {
+    |                                             +                 +++++++++++++++++++++
+
+error: aborting due to 11 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0277, E0308, E0425.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,35 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_1b/sample_004/target.rs:18:18
+   |
+18 |     let offset = unsafe { current_ptr.offset_from(original_ptr) } as isize;
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0503]: cannot use `a[_][_]` because it was mutably borrowed
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_1b/sample_004/target.rs:11:8
+   |
+ 3 |     let mut p: &mut [[i32; 3]] = &mut a;
+   |                                  ------ `a` is borrowed here
+...
+11 |     if a[1][2] != 99 {
+   |        ^^^^^^^ use of borrowed `a`
+...
+17 |     let current_ptr = p.as_mut_ptr();
+   |                       - borrow later used here
+
+error[E0499]: cannot borrow `a` as mutable more than once at a time
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/expressions/add_op_1b/sample_004/target.rs:16:24
+   |
+ 3 |     let mut p: &mut [[i32; 3]] = &mut a;
+   |                                  ------ first mutable borrow occurs here
+...
+16 |     let original_ptr = a.as_mut_ptr();
+   |                        ^ second mutable borrow occurs here
+17 |     let current_ptr = p.as_mut_ptr();
+   |                       - first borrow later used here
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0499, E0503.
+For more information about an error, try `rustc --explain E0499`.

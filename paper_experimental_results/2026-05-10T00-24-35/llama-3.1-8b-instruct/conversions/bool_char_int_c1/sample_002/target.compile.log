@@ -1,0 +1,88 @@
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `=>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_002/target.rs:32:31
+   |
+32 |     if !expect_type(type_id(_ => 1u8 + 0u8 as u8), 7) {
+   |                               ^^ expected one of `)`, `,`, `.`, `?`, or an operator
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `=>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_002/target.rs:36:31
+   |
+36 |     if !expect_type(type_id(_ => 0i16 + 0u16), 7) {
+   |                               ^^ expected one of `)`, `,`, `.`, `?`, or an operator
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `=>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_002/target.rs:40:31
+   |
+40 |     if !expect_type(type_id(_ => 0isize + 0usize), 7) {
+   |                               ^^ expected one of `)`, `,`, `.`, `?`, or an operator
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `=>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_002/target.rs:46:31
+   |
+46 |     if !expect_type(type_id(_ => 0i32 + 0u32), 8) {
+   |                               ^^ expected one of `)`, `,`, `.`, `?`, or an operator
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `=>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_002/target.rs:50:31
+   |
+50 |     if !expect_type(type_id(_ => 0i64 + 0u64), 12) {
+   |                               ^^ expected one of `)`, `,`, `.`, `?`, or an operator
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `=>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_002/target.rs:56:31
+   |
+56 |     if !expect_type(type_id(_ => 0i32 + 0i64), 11) {
+   |                               ^^ expected one of `)`, `,`, `.`, `?`, or an operator
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `=>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_002/target.rs:60:31
+   |
+60 |     if !expect_type(type_id(_ => 0i64 + 0i64), 11) {
+   |                               ^^ expected one of `)`, `,`, `.`, `?`, or an operator
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `=>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_002/target.rs:64:31
+   |
+64 |     if !expect_type(type_id(_ => 0i32 + 0i64), 11) {
+   |                               ^^ expected one of `)`, `,`, `.`, `?`, or an operator
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `=>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_002/target.rs:70:31
+   |
+70 |     if !expect_type(type_id(_ => enum Foo { A = 0 }::A + 0u8 as enum Foo), 7) {
+   |                               ^^ expected one of `)`, `,`, `.`, `?`, or an operator
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `=>`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_002/target.rs:74:31
+   |
+74 |     if !expect_type(type_id(_ => enum Foo { A = 0 }::A + 0u16 as enum Foo), 7) {
+   |                               ^^ expected one of `)`, `,`, `.`, `?`, or an operator
+
+error[E0599]: no function or associated item named `default` found for type parameter `T` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_002/target.rs:21:14
+   |
+17 | fn type_id<T>(_: T) -> i32
+   |            - function or associated item `default` not found for this type parameter
+...
+21 |     match T::default() {
+   |              ^^^^^^^ function or associated item not found in `T`
+   |
+   = help: items from traits can only be used if the type parameter is bounded by the trait
+help: the following trait defines an item `default`, perhaps you need to restrict type parameter `T` with it:
+   |
+19 |     T: Copy + Eq + std::ops::Add<Output = T> + Default,
+   |                                              +++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/bool_char_int_c1/sample_002/target.rs:34:16
+   |
+30 | fn main() {
+   |          - expected `()` because of default return type
+...
+34 |         return 1;
+   |                ^ expected `()`, found integer
+
+error: aborting due to 12 previous errors
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.

@@ -1,0 +1,49 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/fun_decl_3/sample_005/target.rs:12:5
+   |
+12 |     unsafe { G_SEED + x + 1000 }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/fun_decl_3/sample_005/target.rs:16:5
+   |
+16 |     unsafe { G_SEED + x - 2000 }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/fun_decl_3/sample_005/target.rs:21:5
+   |
+21 | /     unsafe {
+22 | |         G_SEED = pf(t) + k;
+23 | |         if G_SEED & 1 == 0 {
+24 | |             v0
+...  |
+28 | |     }
+   | |_____^
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/fun_decl_3/sample_005/target.rs:38:14
+   |
+38 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0606]: casting `&fn(i32) -> i32 {v0}` as `*const fn(i32) -> i32` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/fun_decl_3/sample_005/target.rs:44:55
+   |
+44 |         if std::ptr::eq(&vf as *const fn(i32) -> i32, &v0 as *const fn(i32) -> i32) {
+   |                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `&fn(i32) -> i32 {v0}` as `*const fn(i32) -> i32` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/fun_decl_3/sample_005/target.rs:72:55
+   |
+72 |         if std::ptr::eq(&vf as *const fn(i32) -> i32, &v0 as *const fn(i32) -> i32) {
+   |                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0277, E0606.
+For more information about an error, try `rustc --explain E0277`.

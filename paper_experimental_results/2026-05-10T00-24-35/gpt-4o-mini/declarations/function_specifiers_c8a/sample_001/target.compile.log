@@ -1,0 +1,31 @@
+error: declaration of a `no_mangle` function
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/function_specifiers_c8a/sample_001/target.rs:6:1
+  |
+6 | #[no_mangle]
+  | ^^^^^^^^^^^^
+  |
+  = note: the linker's behavior with multiple libraries exporting duplicate symbol names is undefined and Rust cannot provide guarantees when you manually override them
+  = note: requested on the command line with `-F unsafe-code`
+
+error: declaration of a `no_mangle` function
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/function_specifiers_c8a/sample_001/target.rs:25:1
+   |
+25 | #[no_mangle]
+   | ^^^^^^^^^^^^
+   |
+   = note: the linker's behavior with multiple libraries exporting duplicate symbol names is undefined and Rust cannot provide guarantees when you manually override them
+
+error: unwinding panics are not supported without std
+  |
+  = help: using nightly cargo, use -Zbuild-std with panic="abort" to avoid unwinding
+  = note: since the core library is usually precompiled with panic="unwind", rebuilding your crate with panic="abort" may not be enough to fix the problem
+
+warning: unused variable: `code`
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/declarations/function_specifiers_c8a/sample_001/target.rs:7:25
+  |
+7 | pub extern "C" fn _exit(code: i32) -> ! {
+  |                         ^^^^ help: if this is intentional, prefix it with an underscore: `_code`
+  |
+  = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 3 previous errors; 1 warning emitted

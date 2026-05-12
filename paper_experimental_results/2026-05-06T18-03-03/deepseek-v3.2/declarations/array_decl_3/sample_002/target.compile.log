@@ -1,0 +1,35 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_3/sample_002/target.rs:42:16
+   |
+42 |     if check_a(&a, mm) != 0 {
+   |        ------- ^^ expected `&[Vec<Vec<i32>>]`, found `&Vec<Vec<Vec<usize>>>`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&[Vec<Vec<i32>>]`
+              found reference `&Vec<Vec<Vec<usize>>>`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_3/sample_002/target.rs:52:4
+   |
+52 | fn check_a(a: &[Vec<Vec<i32>>], mm: usize) -> i32 {
+   |    ^^^^^^^ -------------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_3/sample_002/target.rs:47:16
+   |
+47 |     if check_c(&c, mm) != 0 {
+   |        ------- ^^ expected `&[Vec<Vec<Vec<i32>>>]`, found `&Vec<Vec<Vec<Vec<usize>>>>`
+   |        |
+   |        arguments to this function are incorrect
+   |
+   = note: expected reference `&[Vec<Vec<Vec<i32>>>]`
+              found reference `&Vec<Vec<Vec<Vec<usize>>>>`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/array_decl_3/sample_002/target.rs:69:4
+   |
+69 | fn check_c(c: &[Vec<Vec<Vec<i32>>>], mm: usize) -> i32 {
+   |    ^^^^^^^ ------------------------
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

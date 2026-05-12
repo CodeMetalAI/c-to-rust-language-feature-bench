@@ -1,0 +1,30 @@
+warning: variable `sink` is assigned to, but never used
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_3/sample_003/target.rs:35:13
+   |
+35 |     let mut sink = 0;
+   |             ^^^^
+   |
+   = note: consider using `_sink` instead
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_3/sample_003/target.rs:37:33
+   |
+37 |         sink ^= x[i as usize] + OPAQUE;
+   |                                 ^^^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0499]: cannot borrow `b` as mutable more than once at a time
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_3/sample_003/target.rs:53:27
+   |
+53 |     h(64, &mut a, &mut b, &mut b);
+   |     -             ------  ^^^^^^ second mutable borrow occurs here
+   |     |             |
+   |     |             first mutable borrow occurs here
+   |     first borrow later used by call
+
+error: aborting due to 2 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0133, E0499.
+For more information about an error, try `rustc --explain E0133`.

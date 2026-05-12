@@ -1,0 +1,35 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/grok-code-fast-1/combined_programs/pathfinder/sample_004/target.rs:50:21
+   |
+50 |             let b = unsafe { *(*(x.as_ptr().add(i) as *const [i32; 5]).add(j)) };
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/grok-code-fast-1/combined_programs/pathfinder/sample_004/target.rs:57:14
+   |
+57 |     let p0 = unsafe { x.as_ptr() as *const i32 };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/grok-code-fast-1/combined_programs/pathfinder/sample_004/target.rs:58:14
+   |
+58 |     let p1 = unsafe { (x.as_ptr().add(1) as *const [i32; 5]) as *const i32 };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-11T22-01-24/grok-code-fast-1/combined_programs/pathfinder/sample_004/target.rs:59:16
+   |
+59 |     let diff = unsafe { (p1 as usize - p0 as usize) / mem::size_of::<i32>() };
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0614]: type `[i32; 5]` cannot be dereferenced
+  --> benchmark_results/2026-05-11T22-01-24/grok-code-fast-1/combined_programs/pathfinder/sample_004/target.rs:50:30
+   |
+50 |             let b = unsafe { *(*(x.as_ptr().add(i) as *const [i32; 5]).add(j)) };
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ can't be dereferenced
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0614`.

@@ -1,0 +1,15 @@
+error[E0401]: can't use generic parameters from outer item
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/gcc_c11_tests/c11-align-6/sample_001/target.rs:5:12
+  |
+1 | fn check_align<T>() {
+  |                - type parameter from outer item
+2 |     #[repr(C)]
+3 |     struct Aligned {
+  |                   - help: try introducing a local generic parameter here: `<T>`
+4 |         c: u8,
+5 |         v: T,
+  |            ^ use of generic parameter from outer item
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0401`.

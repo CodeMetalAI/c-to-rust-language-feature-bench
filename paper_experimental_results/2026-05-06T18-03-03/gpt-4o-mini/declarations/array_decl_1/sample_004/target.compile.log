@@ -1,0 +1,235 @@
+warning: type `usize` should have an upper camel case name
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:1:6
+  |
+1 | type usize = u64;
+  |      ^^^^^ help: convert the identifier to upper camel case (notice the capitalization): `Usize`
+  |
+  = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:6:5
+  |
+6 |     unsafe { CALLS += 1; }
+  |     ^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:21:5
+   |
+21 | /     unsafe {
+22 | |         for i in 0..FA_LEN {
+23 | |             FA[i as usize] = (i + 1) as f32;
+...  |
+29 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:57:5
+    |
+ 57 | /     unsafe {
+ 58 | |         if FA[0] != 1.0 || FA[10] != 11.0 {
+ 59 | |             return 1;
+...   |
+100 | |     }
+    | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:16:22
+   |
+16 | static mut FA: [f32; FA_LEN as usize] = [0.0; FA_LEN as usize];
+   |                      ^^^^^^^^^^^^^^^ expected `usize`, found `u64`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:17:32
+   |
+17 | static mut AFP: [&'static f32; AFP_LEN as usize] = [&0.0; AFP_LEN as usize];
+   |                                ^^^^^^^^^^^^^^^^ expected `usize`, found `u64`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:18:27
+   |
+18 | static mut BACKING: [f32; AFP_LEN as usize] = [0.0; AFP_LEN as usize];
+   |                           ^^^^^^^^^^^^^^^^ expected `usize`, found `u64`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:48:27
+   |
+48 | fn takes_params(a: &[f32; FA_LEN as usize], afp2: &[&f32; AFP_LEN as usize]) -> i32 {
+   |                           ^^^^^^^^^^^^^^^ expected `usize`, found `u64`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:48:59
+   |
+48 | fn takes_params(a: &[f32; FA_LEN as usize], afp2: &[&f32; AFP_LEN as usize]) -> i32 {
+   |                                                           ^^^^^^^^^^^^^^^^ expected `usize`, found `u64`
+
+error[E0277]: `main` has invalid return type `i32`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:54:14
+   |
+54 | fn main() -> i32 {
+   |              ^^^ `main` can only return types that implement `Termination`
+   |
+   = help: consider using `()`, or a `Result`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:16:47
+   |
+16 | static mut FA: [f32; FA_LEN as usize] = [0.0; FA_LEN as usize];
+   |                                               ^^^^^^^^^^^^^^^ expected `usize`, found `u64`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:17:59
+   |
+17 | static mut AFP: [&'static f32; AFP_LEN as usize] = [&0.0; AFP_LEN as usize];
+   |                                                           ^^^^^^^^^^^^^^^^ expected `usize`, found `u64`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:18:53
+   |
+18 | static mut BACKING: [f32; AFP_LEN as usize] = [0.0; AFP_LEN as usize];
+   |                                                     ^^^^^^^^^^^^^^^^ expected `usize`, found `u64`
+
+error[E0277]: the type `[f32]` cannot be indexed by `u64`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:35:16
+   |
+35 |         s += p[i] as i32;
+   |                ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[f32]>` is not implemented for `u64`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[f32]` to implement `Index<u64>`
+
+error[E0277]: the type `[&f32]` cannot be indexed by `u64`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:43:18
+   |
+43 |         s += *pp[i] as i32;
+   |                  ^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[&f32]>` is not implemented for `u64`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `[&f32]` to implement `Index<u64>`
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:69:34
+     |
+  69 |         let mut vla1 = vec![0.0; n1 as usize];
+     |                        ----------^^^^^^^^^^^-
+     |                        |         |
+     |                        |         expected `usize`, found `u64`
+     |                        arguments to this function are incorrect
+     |
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:3464:8
+     |
+3464 | pub fn from_elem<T: Clone>(elem: T, n: usize) -> Vec<T> {
+     |        ^^^^^^^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+     |
+  69 |         let mut vla1 = vec![0.0; (n1 as usize).try_into().unwrap()];
+     |                                  +           +++++++++++++++++++++
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:70:47
+     |
+  70 |         let mut vla2 = vec![std::ptr::null(); n2 as usize];
+     |                        -----------------------^^^^^^^^^^^-
+     |                        |                      |
+     |                        |                      expected `usize`, found `u64`
+     |                        arguments to this function are incorrect
+     |
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:3464:8
+     |
+3464 | pub fn from_elem<T: Clone>(elem: T, n: usize) -> Vec<T> {
+     |        ^^^^^^^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+     |
+  70 |         let mut vla2 = vec![std::ptr::null(); (n2 as usize).try_into().unwrap()];
+     |                                               +           +++++++++++++++++++++
+
+error[E0277]: the type `[{float}]` cannot be indexed by `u64`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:73:18
+   |
+73 |             vla1[i as usize] = FA[i as usize] * 2.0;
+   |                  ^^^^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[{float}]>` is not implemented for `u64`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `Vec<{float}>` to implement `Index<u64>`
+
+error[E0277]: the type `[*const _]` cannot be indexed by `u64`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:77:18
+   |
+77 |             vla2[i as usize] = AFP[i as usize];
+   |                  ^^^^^^^^^^ slice indices are of type `usize` or ranges of `usize`
+   |
+   = help: the trait `SliceIndex<[*const _]>` is not implemented for `u64`
+   = help: the following other types implement trait `SliceIndex<T>`:
+             `usize` implements `SliceIndex<ByteStr>`
+             `usize` implements `SliceIndex<[T]>`
+   = note: required for `Vec<*const _>` to implement `Index<u64>`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:84:39
+    |
+ 84 |         let span = (vla1.as_ptr().add(n1 as usize - 1) as usize) - (vla1.as_ptr() as usize);
+    |                                   --- ^^^^^^^^^^^^^^^ expected `usize`, found `u64`
+    |                                   |
+    |                                   arguments to this method are incorrect
+    |
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:881:25
+    |
+881 |     pub const unsafe fn add(self, count: usize) -> Self
+    |                         ^^^
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+    |
+ 84 |         let span = (vla1.as_ptr().add((n1 as usize - 1).try_into().unwrap()) as usize) - (vla1.as_ptr() as usize);
+    |                                       +               +++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:85:40
+   |
+85 |         if span != (n1 as usize - 1) * std::mem::size_of::<f32>() {
+   |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `u64`, found `usize`
+
+error[E0277]: cannot multiply `u64` by `usize`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:85:38
+   |
+85 |         if span != (n1 as usize - 1) * std::mem::size_of::<f32>() {
+   |                                      ^ no implementation for `u64 * usize`
+   |
+   = help: the trait `Mul<usize>` is not implemented for `u64`
+   = help: the following other types implement trait `Mul<Rhs>`:
+             `&u64` implements `Mul<u64>`
+             `&u64` implements `Mul`
+             `u64` implements `Mul<&u64>`
+             `u64` implements `Mul`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:93:29
+   |
+93 | ...   if sum_pointed_ints(&vla2, 17) != (100 + 101 + 102 + 103 + 104 + 105 + 106 + 107 + 108 + 109 + 110 + 111 + 112 + 113 + 114 + 115 + 116) {
+   |          ---------------- ^^^^^ expected `&[&f32]`, found `&Vec<*const _>`
+   |          |
+   |          arguments to this function are incorrect
+   |
+   = note: expected reference `&[&f32]`
+              found reference `&Vec<*const _>`
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/declarations/array_decl_1/sample_004/target.rs:40:4
+   |
+40 | fn sum_pointed_ints(pp: &[&f32], n: usize) -> i32 {
+   |    ^^^^^^^^^^^^^^^^ -----------
+
+error: aborting due to 22 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

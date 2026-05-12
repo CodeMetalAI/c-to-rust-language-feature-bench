@@ -1,0 +1,75 @@
+error: expected expression, found `+`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_004/target.rs:12:23
+   |
+12 |     unsafe { G_SEED } + x + 1000
+   |                       ^ expected expression
+   |
+help: parentheses are required to parse this as an expression
+   |
+12 |     (unsafe { G_SEED }) + x + 1000
+   |     +                 +
+
+error: expected expression, found `+`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_004/target.rs:16:23
+   |
+16 |     unsafe { G_SEED } + x - 2000
+   |                       ^ expected expression
+   |
+help: parentheses are required to parse this as an expression
+   |
+16 |     (unsafe { G_SEED }) + x - 2000
+   |     +                 +
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_004/target.rs:12:5
+   |
+12 |     unsafe { G_SEED } + x + 1000
+   |     ^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_004/target.rs:16:5
+   |
+16 |     unsafe { G_SEED } + x - 2000
+   |     ^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_004/target.rs:21:5
+   |
+21 | /     unsafe {
+22 | |         G_SEED = pf(t) + k;
+23 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_004/target.rs:24:9
+   |
+24 |     if (unsafe { G_SEED } & 1) == 0 {
+   |         ^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_004/target.rs:12:14
+   |
+12 |     unsafe { G_SEED } + x + 1000
+   |              ^^^^^^ expected `()`, found `i32`
+   |
+help: you might have meant to return this value
+   |
+12 |     unsafe { return G_SEED; } + x + 1000
+   |              ++++++       +
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/fun_decl_3/sample_004/target.rs:16:14
+   |
+16 |     unsafe { G_SEED } + x - 2000
+   |              ^^^^^^ expected `()`, found `i32`
+   |
+help: you might have meant to return this value
+   |
+16 |     unsafe { return G_SEED; } + x - 2000
+   |              ++++++       +
+
+error: aborting due to 8 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

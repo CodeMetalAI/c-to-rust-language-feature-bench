@@ -1,0 +1,434 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:14:40
+   |
+14 |     test_incdec_generic(&mut ia[1], 1, 1);
+   |     -------------------                ^ expected `bool`, found integer
+   |     |
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:20:4
+   |
+20 | fn test_incdec_generic<T>(a: &mut T, change: T, pre_p: bool) 
+   |    ^^^^^^^^^^^^^^^^^^^                          -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:15:41
+   |
+15 |     test_incdec_generic(&mut ia[1], -1, 1);
+   |     -------------------                 ^ expected `bool`, found integer
+   |     |
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:20:4
+   |
+20 | fn test_incdec_generic<T>(a: &mut T, change: T, pre_p: bool) 
+   |    ^^^^^^^^^^^^^^^^^^^                          -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:16:40
+   |
+16 |     test_incdec_generic(&mut ia[1], 1, 0);
+   |     -------------------                ^ expected `bool`, found integer
+   |     |
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:20:4
+   |
+20 | fn test_incdec_generic<T>(a: &mut T, change: T, pre_p: bool) 
+   |    ^^^^^^^^^^^^^^^^^^^                          -----------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:17:41
+   |
+17 |     test_incdec_generic(&mut ia[1], -1, 0);
+   |     -------------------                 ^ expected `bool`, found integer
+   |     |
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:20:4
+   |
+20 | fn test_incdec_generic<T>(a: &mut T, change: T, pre_p: bool) 
+   |    ^^^^^^^^^^^^^^^^^^^                          -----------
+
+error[E0369]: binary operation `>` cannot be applied to type `T`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:24:31
+   |
+24 |     let new_value = if change > old_value {
+   |                        ------ ^ --------- T
+   |                        |
+   |                        T
+   |
+help: consider further restricting type parameter `T` with trait `PartialOrd`
+   |
+22 |     T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::cmp::PartialOrd {
+   |                                                                                 ++++++++++++++++++++++
+
+error[E0368]: binary assignment operation `+=` cannot be applied to type `T`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:25:9
+   |
+25 |         *a += change;
+   |         --^^^^^^^^^^
+   |         |
+   |         cannot use `+=` on type `T`
+   |
+help: consider further restricting type parameter `T` with trait `AddAssign`
+   |
+22 |     T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::ops::AddAssign {
+   |                                                                                 +++++++++++++++++++++
+
+error[E0368]: binary assignment operation `-=` cannot be applied to type `T`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:27:9
+   |
+27 |         *a -= change;
+   |         --^^^^^^^^^^
+   |         |
+   |         cannot use `-=` on type `T`
+   |
+help: consider further restricting type parameter `T` with trait `SubAssign`
+   |
+22 |     T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::ops::SubAssign {
+   |                                                                                 +++++++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:35:5
+   |
+35 |     assert_eq!(*a, old_value + change);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+22 |     T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::fmt::Debug {
+   |                                                                                 +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:35:5
+   |
+35 |     assert_eq!(*a, old_value + change);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+22 |     T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::fmt::Debug {
+   |                                                                                 +++++++++++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:41:5
+   |
+38 | fn test_all_incdec_arith<T>(value: T) 
+   |                          - expected this type parameter
+...
+41 |     test_incdec_arith(value, 1, 1);
+   |     ^^^^^^^^^^^^^^^^^ -----     - expected `bool`, found integer
+   |                       |
+   |                       expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |
+note: expected type parameter `T`, found integer
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:41:30
+   |
+41 |     test_incdec_arith(value, 1, 1);
+   |                              ^
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:47:4
+   |
+47 | fn test_incdec_arith<T>(value: T, change: T, pre_p: bool) 
+   |    ^^^^^^^^^^^^^^^^^ -  --------  ---------  -----------
+   |                      |  |         |
+   |                      |  |         this parameter needs to match the type parameter `T` type of `value`
+   |                      |  `change` needs to match the type parameter `T` type of this parameter
+   |                      `value` and `change` both reference this parameter `T`
+help: call `Into::into` on this expression to convert `{integer}` into `T`
+   |
+41 |     test_incdec_arith(value, 1.into(), 1);
+   |                               +++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:42:5
+   |
+38 | fn test_all_incdec_arith<T>(value: T) 
+   |                          - expected this type parameter
+...
+42 |     test_incdec_arith(value, -1, 1);
+   |     ^^^^^^^^^^^^^^^^^ -----      - expected `bool`, found integer
+   |                       |
+   |                       expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |
+note: expected type parameter `T`, found integer
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:42:30
+   |
+42 |     test_incdec_arith(value, -1, 1);
+   |                              ^^
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:47:4
+   |
+47 | fn test_incdec_arith<T>(value: T, change: T, pre_p: bool) 
+   |    ^^^^^^^^^^^^^^^^^ -  --------  ---------  -----------
+   |                      |  |         |
+   |                      |  |         this parameter needs to match the type parameter `T` type of `value`
+   |                      |  `change` needs to match the type parameter `T` type of this parameter
+   |                      `value` and `change` both reference this parameter `T`
+help: call `Into::into` on this expression to convert `{integer}` into `T`
+   |
+42 |     test_incdec_arith(value, (-1).into(), 1);
+   |                              +  ++++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:43:5
+   |
+38 | fn test_all_incdec_arith<T>(value: T) 
+   |                          - expected this type parameter
+...
+43 |     test_incdec_arith(value, 1, 0);
+   |     ^^^^^^^^^^^^^^^^^ -----     - expected `bool`, found integer
+   |                       |
+   |                       expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |
+note: expected type parameter `T`, found integer
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:43:30
+   |
+43 |     test_incdec_arith(value, 1, 0);
+   |                              ^
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:47:4
+   |
+47 | fn test_incdec_arith<T>(value: T, change: T, pre_p: bool) 
+   |    ^^^^^^^^^^^^^^^^^ -  --------  ---------  -----------
+   |                      |  |         |
+   |                      |  |         this parameter needs to match the type parameter `T` type of `value`
+   |                      |  `change` needs to match the type parameter `T` type of this parameter
+   |                      `value` and `change` both reference this parameter `T`
+help: call `Into::into` on this expression to convert `{integer}` into `T`
+   |
+43 |     test_incdec_arith(value, 1.into(), 0);
+   |                               +++++++
+
+error[E0308]: arguments to this function are incorrect
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:44:5
+   |
+38 | fn test_all_incdec_arith<T>(value: T) 
+   |                          - expected this type parameter
+...
+44 |     test_incdec_arith(value, -1, 0);
+   |     ^^^^^^^^^^^^^^^^^ -----      - expected `bool`, found integer
+   |                       |
+   |                       expected some other arguments to be a type parameter `T` type to match the type of this parameter
+   |
+note: expected type parameter `T`, found integer
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:44:30
+   |
+44 |     test_incdec_arith(value, -1, 0);
+   |                              ^^
+   = note: expected type parameter `T`
+                        found type `{integer}`
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:47:4
+   |
+47 | fn test_incdec_arith<T>(value: T, change: T, pre_p: bool) 
+   |    ^^^^^^^^^^^^^^^^^ -  --------  ---------  -----------
+   |                      |  |         |
+   |                      |  |         this parameter needs to match the type parameter `T` type of `value`
+   |                      |  `change` needs to match the type parameter `T` type of this parameter
+   |                      `value` and `change` both reference this parameter `T`
+help: call `Into::into` on this expression to convert `{integer}` into `T`
+   |
+44 |     test_incdec_arith(value, (-1).into(), 0);
+   |                              +  ++++++++
+
+error[E0605]: non-primitive cast: `T` as `i8`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:51:22
+   |
+51 |     test_incdec_type(value as i8, change as i8, pre_p);
+   |                      ^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `i8`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:51:35
+   |
+51 |     test_incdec_type(value as i8, change as i8, pre_p);
+   |                                   ^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `u8`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:52:22
+   |
+52 |     test_incdec_type(value as u8, change as u8, pre_p);
+   |                      ^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `u8`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:52:35
+   |
+52 |     test_incdec_type(value as u8, change as u8, pre_p);
+   |                                   ^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `i16`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:53:22
+   |
+53 |     test_incdec_type(value as i16, change as i16, pre_p);
+   |                      ^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `i16`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:53:36
+   |
+53 |     test_incdec_type(value as i16, change as i16, pre_p);
+   |                                    ^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `u16`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:54:22
+   |
+54 |     test_incdec_type(value as u16, change as u16, pre_p);
+   |                      ^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `u16`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:54:36
+   |
+54 |     test_incdec_type(value as u16, change as u16, pre_p);
+   |                                    ^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:55:22
+   |
+55 |     test_incdec_type(value as i32, change as i32, pre_p);
+   |                      ^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `i32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:55:36
+   |
+55 |     test_incdec_type(value as i32, change as i32, pre_p);
+   |                                    ^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `u32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:56:22
+   |
+56 |     test_incdec_type(value as u32, change as u32, pre_p);
+   |                      ^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `u32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:56:36
+   |
+56 |     test_incdec_type(value as u32, change as u32, pre_p);
+   |                                    ^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `i64`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:57:22
+   |
+57 |     test_incdec_type(value as i64, change as i64, pre_p);
+   |                      ^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `i64`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:57:36
+   |
+57 |     test_incdec_type(value as i64, change as i64, pre_p);
+   |                                    ^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `u64`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:58:22
+   |
+58 |     test_incdec_type(value as u64, change as u64, pre_p);
+   |                      ^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `u64`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:58:36
+   |
+58 |     test_incdec_type(value as u64, change as u64, pre_p);
+   |                                    ^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `f32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:59:22
+   |
+59 |     test_incdec_type(value as f32, change as f32, pre_p);
+   |                      ^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `f32`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:59:36
+   |
+59 |     test_incdec_type(value as f32, change as f32, pre_p);
+   |                                    ^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `f64`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:60:22
+   |
+60 |     test_incdec_type(value as f64, change as f64, pre_p);
+   |                      ^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `T` as `f64`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:60:36
+   |
+60 |     test_incdec_type(value as f64, change as f64, pre_p);
+   |                                    ^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0369]: binary operation `>` cannot be applied to type `T`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:68:31
+   |
+68 |     let new_value = if change > old_value {
+   |                        ------ ^ --------- T
+   |                        |
+   |                        T
+   |
+help: consider further restricting type parameter `T` with trait `PartialOrd`
+   |
+65 |     T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::cmp::PartialOrd {
+   |                                                                                 ++++++++++++++++++++++
+
+error[E0368]: binary assignment operation `+=` cannot be applied to type `T`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:69:9
+   |
+69 |         a += change;
+   |         -^^^^^^^^^^
+   |         |
+   |         cannot use `+=` on type `T`
+   |
+help: consider further restricting type parameter `T` with trait `AddAssign`
+   |
+65 |     T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::ops::AddAssign {
+   |                                                                                 +++++++++++++++++++++
+
+error[E0368]: binary assignment operation `-=` cannot be applied to type `T`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:71:9
+   |
+71 |         a -= change;
+   |         -^^^^^^^^^^
+   |         |
+   |         cannot use `-=` on type `T`
+   |
+help: consider further restricting type parameter `T` with trait `SubAssign`
+   |
+65 |     T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::ops::SubAssign {
+   |                                                                                 +++++++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:79:5
+   |
+79 |     assert_eq!(a, old_value + change);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+65 |     T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::fmt::Debug {
+   |                                                                                 +++++++++++++++++
+
+error[E0277]: `T` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/gcc_c11_tests/atomic/c11-atomic-exec-3/sample_001/target.rs:79:5
+   |
+79 |     assert_eq!(a, old_value + change);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `T`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider further restricting type parameter `T` with trait `Debug`
+   |
+65 |     T: Copy + PartialEq + std::ops::Add<Output = T> + std::ops::Sub<Output = T> + std::fmt::Debug {
+   |                                                                                 +++++++++++++++++
+
+error: aborting due to 38 previous errors
+
+Some errors have detailed explanations: E0277, E0308, E0368, E0369, E0605.
+For more information about an error, try `rustc --explain E0277`.

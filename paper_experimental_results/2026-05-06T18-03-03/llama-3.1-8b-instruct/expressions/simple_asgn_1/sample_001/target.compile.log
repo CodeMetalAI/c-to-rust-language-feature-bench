@@ -1,0 +1,29 @@
+warning: unnecessary parentheses around assigned value
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/simple_asgn_1/sample_001/target.rs:10:26
+   |
+10 |     let char_is_signed = (i8::MIN < 0);
+   |                          ^           ^
+   |
+   = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+   |
+10 -     let char_is_signed = (i8::MIN < 0);
+10 +     let char_is_signed = i8::MIN < 0;
+   |
+
+error[E0308]: mismatched types
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/expressions/simple_asgn_1/sample_001/target.rs:6:21
+  |
+6 |     let mut c: i8 = f();
+  |                --   ^^^ expected `i8`, found `i32`
+  |                |
+  |                expected due to this
+  |
+help: you can convert an `i32` to an `i8` and panic if the converted value doesn't fit
+  |
+6 |     let mut c: i8 = f().try_into().unwrap();
+  |                        ++++++++++++++++++++
+
+error: aborting due to 1 previous error; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0308`.

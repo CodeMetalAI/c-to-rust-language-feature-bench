@@ -1,0 +1,67 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_1/sample_001/target.rs:30:5
+   |
+30 | /     unsafe {
+31 | |         v1.union_data.inner.i = 2;
+32 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_1/sample_001/target.rs:35:5
+   |
+35 | /     unsafe {
+36 | |         v1.union_data.w.k = 5;
+37 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_1/sample_001/target.rs:40:5
+   |
+40 | /     unsafe {
+41 | |         if v1.union_data.inner.i != 2 {
+42 | |             std::process::exit(1);
+43 | |         }
+44 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_1/sample_001/target.rs:47:5
+   |
+47 | /     unsafe {
+48 | |         if v1.union_data.w.k != 5 {
+49 | |             std::process::exit(1);
+50 | |         }
+51 | |     }
+   | |_____^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_1/sample_001/target.rs:13:9
+   |
+13 |         inner: Inner,
+   |         ^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+13 |         inner: std::mem::ManuallyDrop<Inner>,
+   |                +++++++++++++++++++++++     +
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_1/sample_001/target.rs:30:5
+   |
+30 |     unsafe {
+   |     ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/declarations/structure_and_union_spec_1/sample_001/target.rs:35:5
+   |
+35 |     unsafe {
+   |     ^^^^^^ unnecessary `unsafe` block
+
+error: aborting due to 5 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0740`.

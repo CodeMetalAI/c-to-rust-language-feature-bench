@@ -1,0 +1,14 @@
+error: `<` is interpreted as a start of generic arguments for `i32`, not a comparison
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/expressions/rel_op_c6a/sample_005/target.rs:10:22
+   |
+10 |   if!((a < b) as i32 < c as i32) {
+   |                      ^ ---- interpreted as generic arguments
+   |                      |
+   |                      not interpreted as comparison
+   |
+help: try comparing the cast value
+   |
+10 |   if!(((a < b) as i32) < c as i32) {
+   |       +              +
+
+error: aborting due to 1 previous error

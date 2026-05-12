@@ -1,0 +1,35 @@
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/compound_literals_6/sample_002/target.rs:12:34
+     |
+  12 |     if (std::ptr::eq(a.as_ptr(), b.as_ptr()) as i32) != 0 && (std::ptr::eq(a.as_ptr(), b.as_ptr()) as i32) != 1 {
+     |         ------------             ^^^^^^^^^^ expected `*const &str`, found `*const u8`
+     |         |
+     |         arguments to this function are incorrect
+     |
+     = note: expected raw pointer `*const &str`
+                found raw pointer `*const u8`
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:2442:8
+     |
+2442 | pub fn eq<T: PointeeSized>(a: *const T, b: *const T) -> bool {
+     |        ^^
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/compound_literals_6/sample_002/target.rs:12:88
+     |
+  12 |     if (std::ptr::eq(a.as_ptr(), b.as_ptr()) as i32) != 0 && (std::ptr::eq(a.as_ptr(), b.as_ptr()) as i32) != 1 {
+     |                                                               ------------             ^^^^^^^^^^ expected `*const &str`, found `*const u8`
+     |                                                               |
+     |                                                               arguments to this function are incorrect
+     |
+     = note: expected raw pointer `*const &str`
+                found raw pointer `*const u8`
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:2442:8
+     |
+2442 | pub fn eq<T: PointeeSized>(a: *const T, b: *const T) -> bool {
+     |        ^^
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

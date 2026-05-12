@@ -1,0 +1,56 @@
+error: defining functions with C-variadic arguments is only allowed for free functions with the "C" or "C-unwind" calling convention
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_names/sample_005/target.rs:1:18
+  |
+1 | fn f_var(x: u32, _: ...) -> i32 {
+  |                  ^^^^^^
+
+error[E0434]: can't capture dynamic environment in a fn item
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_names/sample_005/target.rs:53:14
+   |
+53 |             &g_arr[1]
+   |              ^^^^^
+   |
+   = help: use the `|| { ... }` closure form instead
+
+error[E0658]: C-variadic functions are unstable
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_names/sample_005/target.rs:1:1
+  |
+1 | / fn f_var(x: u32, _: ...) -> i32 {
+2 | |     (x + 3) as i32
+3 | | }
+  | |_^
+  |
+  = note: see issue #44930 <https://github.com/rust-lang/rust/issues/44930> for more information
+  = help: add `#![feature(c_variadic)]` to the crate attributes to enable
+  = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_names/sample_005/target.rs:16:12
+   |
+16 |         if unsafe { *p } != 1 {
+   |            ^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_names/sample_005/target.rs:33:12
+   |
+33 |         if unsafe { (*pa)[1] } != 2 {
+   |            ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_names/sample_005/target.rs:56:12
+   |
+56 |         if unsafe { *pf() } != 2 {
+   |            ^^^^^^^^^^^^^^^^
+
+error[E0045]: C-variadic functions with the "Rust" calling convention are not supported
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/type_names/sample_005/target.rs:76:18
+   |
+76 |         let af: [fn(u32, ...) -> i32; 2] = [f_var, f_var];
+   |                  ^^^^^^^^^^^^^^^^^^^ C-variadic function must have a compatible calling convention
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0045, E0434, E0658.
+For more information about an error, try `rustc --explain E0045`.

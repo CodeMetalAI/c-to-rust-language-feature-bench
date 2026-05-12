@@ -1,0 +1,49 @@
+error: this trait cannot be derived for unions
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_1/sample_001/target.rs:8:14
+  |
+8 |     #[derive(Default)]
+  |              ^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_1/sample_001/target.rs:28:5
+   |
+28 | /     unsafe {
+29 | |         v1.u.anon_struct.i = 2;
+30 | |         v1.u.w.k = 5;
+...  |
+39 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_1/sample_001/target.rs:10:9
+   |
+10 |         anon_struct: AnonStruct,
+   |         ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+10 |         anon_struct: std::mem::ManuallyDrop<AnonStruct>,
+   |                      +++++++++++++++++++++++          +
+
+error[E0277]: the trait bound `U: Default` is not satisfied
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/structure_and_union_spec_1/sample_001/target.rs:4:9
+  |
+2 |     #[derive(Default)]
+  |              ------- in this derive macro expansion
+3 |     struct V {
+4 |         u: U,
+  |         ^^^^ the trait `Default` is not implemented for `U`
+  |
+help: consider annotating `U` with `#[derive(Default)]`
+  |
+9 +     #[derive(Default)]
+10|     union U {
+  |
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0277, E0740.
+For more information about an error, try `rustc --explain E0277`.

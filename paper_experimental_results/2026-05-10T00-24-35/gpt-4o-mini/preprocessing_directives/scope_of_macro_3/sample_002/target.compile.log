@@ -1,0 +1,46 @@
+error: no rules expected `2`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:30:34
+   |
+17 | macro_rules! r {
+   | -------------- when calling this macro
+...
+30 |     let i: [i32; 4] = [q!(1), r!(2, 3).parse().unwrap(), r!(4, ).parse().unwrap(), r!(, 5).parse().unwrap()];
+   |                                  ^ no rules expected this token in macro call
+   |
+note: while trying to match meta-variable `$x:ident`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:18:6
+   |
+18 |     ($x:ident, $y:ident) => { stringify!($x$y) };
+   |      ^^^^^^^^
+
+error: no rules expected `4`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:30:61
+   |
+17 | macro_rules! r {
+   | -------------- when calling this macro
+...
+30 |     let i: [i32; 4] = [q!(1), r!(2, 3).parse().unwrap(), r!(4, ).parse().unwrap(), r!(, 5).parse().unwrap()];
+   |                                                             ^ no rules expected this token in macro call
+   |
+note: while trying to match meta-variable `$x:ident`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:18:6
+   |
+18 |     ($x:ident, $y:ident) => { stringify!($x$y) };
+   |      ^^^^^^^^
+
+error: no rules expected `,`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:30:87
+   |
+17 | macro_rules! r {
+   | -------------- when calling this macro
+...
+30 |     let i: [i32; 4] = [q!(1), r!(2, 3).parse().unwrap(), r!(4, ).parse().unwrap(), r!(, 5).parse().unwrap()];
+   |                                                                                       ^ no rules expected this token in macro call
+   |
+note: while trying to match meta-variable `$x:ident`
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o-mini/preprocessing_directives/scope_of_macro_3/sample_002/target.rs:18:6
+   |
+18 |     ($x:ident, $y:ident) => { stringify!($x$y) };
+   |      ^^^^^^^^
+
+error: aborting due to 3 previous errors

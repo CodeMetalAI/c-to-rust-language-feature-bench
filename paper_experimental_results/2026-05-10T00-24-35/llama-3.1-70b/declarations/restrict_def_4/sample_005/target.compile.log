@@ -1,0 +1,71 @@
+warning: variable does not need to be mutable
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_005/target.rs:2:9
+  |
+2 |     let mut gate4: i32 = 1;
+  |         ----^^^^^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_005/target.rs:45:13
+   |
+45 |         let mut p1 = &mut x[..];
+   |             ----^^
+   |             |
+   |             help: remove this `mut`
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_005/target.rs:46:13
+   |
+46 |         let mut q1 = &mut y[..];
+   |             ----^^
+   |             |
+   |             help: remove this `mut`
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_005/target.rs:49:17
+   |
+49 |             let mut p2 = &mut p1[8..];
+   |                 ----^^
+   |                 |
+   |                 help: remove this `mut`
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_005/target.rs:50:17
+   |
+50 |             let mut q2 = &mut q1[4..];
+   |                 ----^^
+   |                 |
+   |                 help: remove this `mut`
+
+error[E0502]: cannot borrow `x` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_005/target.rs:61:22
+   |
+45 |         let mut p1 = &mut x[..];
+   |                           - mutable borrow occurs here
+...
+61 |             if!same(&x[8..24], &expect, 16) {
+   |                      ^ immutable borrow occurs here
+...
+70 |         copy_restrict(8, &mut p1[..8], &q1[24..32]);
+   |                               -- mutable borrow later used here
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error[E0502]: cannot borrow `y` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/restrict_def_4/sample_005/target.rs:65:21
+   |
+46 |         let mut q1 = &mut y[..];
+   |                           - mutable borrow occurs here
+...
+65 |             if!same(&y, &y_snapshot, 32) {
+   |                     ^^ immutable borrow occurs here
+...
+70 |         copy_restrict(8, &mut p1[..8], &q1[24..32]);
+   |                                         -- mutable borrow later used here
+
+error: aborting due to 2 previous errors; 5 warnings emitted
+
+For more information about this error, try `rustc --explain E0502`.

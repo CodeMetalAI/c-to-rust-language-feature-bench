@@ -1,0 +1,59 @@
+error[E0382]: use of moved value: `a`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/type_def_2/sample_002/target.rs:42:17
+   |
+35 |     let mut a = T1 { x: 10 };
+   |         ----- move occurs because `a` has type `S1`, which does not implement the `Copy` trait
+...
+38 |     if takes_t1(a) != 11 {
+   |                 - value moved here
+...
+42 |     if takes_s1(a) != 12 {
+   |                 ^ value used here after move
+   |
+note: consider changing this parameter type in function `takes_t1` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/type_def_2/sample_002/target.rs:13:16
+   |
+13 | fn takes_t1(v: T1) -> i32 {
+   |    --------    ^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `S1` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/type_def_2/sample_002/target.rs:1:1
+   |
+ 1 | struct S1 {
+   | ^^^^^^^^^ consider implementing `Clone` for this type
+...
+38 |     if takes_t1(a) != 11 {
+   |                 - you could clone this value
+
+error[E0382]: use of moved value: `a`
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/type_def_2/sample_002/target.rs:60:8
+   |
+35 |     let mut a = T1 { x: 10 };
+   |         ----- move occurs because `a` has type `S1`, which does not implement the `Copy` trait
+...
+42 |     if takes_s1(a) != 12 {
+   |                 - value moved here
+...
+60 |     if a.x != 13 {
+   |        ^^^ value used here after move
+   |
+note: consider changing this parameter type in function `takes_s1` to borrow instead if owning the value isn't necessary
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/type_def_2/sample_002/target.rs:17:16
+   |
+17 | fn takes_s1(v: S1) -> i32 {
+   |    --------    ^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+note: if `S1` implemented `Clone`, you could clone the value
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/declarations/type_def_2/sample_002/target.rs:1:1
+   |
+ 1 | struct S1 {
+   | ^^^^^^^^^ consider implementing `Clone` for this type
+...
+42 |     if takes_s1(a) != 12 {
+   |                 - you could clone this value
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0382`.

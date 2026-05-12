@@ -1,0 +1,51 @@
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-generic-1/sample_001/target.rs:13:64
+     |
+  13 |     check(std::mem::discriminant(&n) == std::mem::discriminant(&0.0_f64));
+     |                                         ---------------------- ^^^^^^^^ expected `&i32`, found `&f64`
+     |                                         |
+     |                                         arguments to this function are incorrect
+     |
+     = note: expected reference `&i32`
+                found reference `&f64`
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:1185:14
+     |
+1185 | pub const fn discriminant<T>(v: &T) -> Discriminant<T> {
+     |              ^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-generic-1/sample_001/target.rs:30:64
+     |
+  30 |     check(std::mem::discriminant(&f) == std::mem::discriminant(&(|| {})));
+     |                                         ---------------------- ^^^^^^^^ expected `&fn() {f}`, found `&{closure@target.rs:30:66}`
+     |                                         |
+     |                                         arguments to this function are incorrect
+     |
+     = note: expected reference `&fn() {f}`
+                found reference `&{closure@benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-generic-1/sample_001/target.rs:30:66: 30:68}`
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:1185:14
+     |
+1185 | pub const fn discriminant<T>(v: &T) -> Discriminant<T> {
+     |              ^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+    --> benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-generic-1/sample_001/target.rs:33:81
+     |
+  33 |     check(std::mem::discriminant(&std::process::exit) == std::mem::discriminant(&(|| {})));
+     |                                                          ---------------------- ^^^^^^^^ expected `&fn(i32) -> ! {exit}`, found `&{closure@target.rs:33:83}`
+     |                                                          |
+     |                                                          arguments to this function are incorrect
+     |
+     = note: expected reference `&fn(i32) -> ! {exit}`
+                found reference `&{closure@benchmark_results/2026-05-06T18-03-03/deepseek-v3.2/gcc_c11_tests/c11-generic-1/sample_001/target.rs:33:83: 33:85}`
+note: function defined here
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/mem/mod.rs:1185:14
+     |
+1185 | pub const fn discriminant<T>(v: &T) -> Discriminant<T> {
+     |              ^^^^^^^^^^^^
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

@@ -1,0 +1,35 @@
+error[E0529]: expected an array or slice, found `dyn Any`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/lvalue_array_fun_c3_b/sample_004/target.rs:4:45
+  |
+4 |     if !matches!(&a as &dyn std::any::Any, &[_] if std::any::TypeId::of::<[_]>() == std::any::TypeId::of::<[i32; 3]>()) {
+  |                                             ^^^ pattern cannot match with input type `dyn Any`
+
+error[E0529]: expected an array or slice, found `dyn Any`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/lvalue_array_fun_c3_b/sample_004/target.rs:7:45
+  |
+7 |     if !matches!(&a as &dyn std::any::Any, &[_] if std::any::TypeId::of::<[_]>() == std::any::TypeId::of::<[i32; 3]>()) {
+  |                                             ^^^ pattern cannot match with input type `dyn Any`
+
+error[E0033]: type `&dyn Any` cannot be dereferenced
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/lvalue_array_fun_c3_b/sample_004/target.rs:29:43
+   |
+29 |     if !matches!(s as &dyn std::any::Any, &str) {
+   |                                           ^^^^ type `&dyn Any` cannot be dereferenced
+
+error[E0277]: the size for values of type `str` cannot be known at compilation time
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/conversions/lvalue_array_fun_c3_b/sample_004/target.rs:29:18
+   |
+29 |     if !matches!(s as &dyn std::any::Any, &str) {
+   |                  ^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `str`
+   = note: required for the cast from `&str` to `&(dyn Any + 'static)`
+help: consider borrowing the value, since `&&str` can be coerced into `&(dyn Any + 'static)`
+   |
+29 |     if !matches!(&s as &dyn std::any::Any, &str) {
+   |                  +
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0033, E0277, E0529.
+For more information about an error, try `rustc --explain E0033`.

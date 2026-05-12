@@ -1,0 +1,39 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/rel_op_c4/sample_001/target.rs:8:18
+  |
+8 |     let px_end = unsafe { (px as *const _ as usize + std::mem::size_of::<i32>()) as *const i32 };
+  |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/rel_op_c4/sample_001/target.rs:9:18
+  |
+9 |     let py_end = unsafe { (py as *const _ as usize + std::mem::size_of::<i32>()) as *const i32 };
+  |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/rel_op_c4/sample_001/target.rs:1:14
+  |
+1 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+warning: unnecessary `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/rel_op_c4/sample_001/target.rs:8:18
+  |
+8 |     let px_end = unsafe { (px as *const _ as usize + std::mem::size_of::<i32>()) as *const i32 };
+  |                  ^^^^^^ unnecessary `unsafe` block
+  |
+  = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/expressions/rel_op_c4/sample_001/target.rs:9:18
+  |
+9 |     let py_end = unsafe { (py as *const _ as usize + std::mem::size_of::<i32>()) as *const i32 };
+  |                  ^^^^^^ unnecessary `unsafe` block
+
+error: aborting due to 3 previous errors; 2 warnings emitted
+
+For more information about this error, try `rustc --explain E0277`.

@@ -1,0 +1,16 @@
+error[E0277]: can't compare `&usize` with `{integer}`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c3_b/sample_001/target.rs:7:16
+  |
+7 |     if &a.len()!= 3 {
+  |                ^^ no implementation for `&usize == {integer}`
+  |
+  = help: the trait `PartialEq<{integer}>` is not implemented for `&usize`
+help: consider removing the borrow
+  |
+7 -     if &a.len()!= 3 {
+7 +     if a.len()!= 3 {
+  |
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0277`.

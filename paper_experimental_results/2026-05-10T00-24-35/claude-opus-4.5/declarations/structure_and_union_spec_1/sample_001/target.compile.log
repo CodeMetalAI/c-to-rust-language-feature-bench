@@ -1,0 +1,47 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/structure_and_union_spec_1/sample_001/target.rs:66:22
+   |
+66 |     let i_val: i32 = unsafe { v1.inner.anon.i };
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/structure_and_union_spec_1/sample_001/target.rs:67:22
+   |
+67 |     let k_val: i64 = unsafe { v1.inner.w.k };
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: field `j` is never read
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/structure_and_union_spec_1/sample_001/target.rs:10:9
+   |
+ 8 |     struct AnonStruct1 {
+   |            ----------- field in this struct
+ 9 |         i: i32,
+10 |         j: i32,
+   |         ^
+   |
+   = note: `AnonStruct1` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `l` is never read
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/structure_and_union_spec_1/sample_001/target.rs:16:9
+   |
+14 |     struct AnonStruct2 {
+   |            ----------- field in this struct
+15 |         k: i64,
+16 |         l: i64,
+   |         ^
+   |
+   = note: `AnonStruct2` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: field `m` is never read
+  --> benchmark_results/2026-05-10T00-24-35/claude-opus-4.5/declarations/structure_and_union_spec_1/sample_001/target.rs:21:9
+   |
+19 |     struct V {
+   |            - field in this struct
+20 |         inner: Inner,
+21 |         m: i32,
+   |         ^
+
+error: aborting due to 2 previous errors; 3 warnings emitted

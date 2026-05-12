@@ -1,0 +1,140 @@
+error[E0277]: `Cell<S>` cannot be shared between threads safely
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/struct_and_union_2/sample_003/target.rs:8:12
+  |
+8 | static VS: std::cell::Cell<S> = std::cell::Cell::new(S { i: 5, ci: 6 });
+  |            ^^^^^^^^^^^^^^^^^^ `Cell<S>` cannot be shared between threads safely
+  |
+  = help: the trait `Sync` is not implemented for `Cell<S>`
+  = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock`
+  = note: shared static variables must have a type that implements `Sync`
+
+error[E0599]: the method `take` exists for struct `Cell<S>`, but its trait bounds were not satisfied
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/struct_and_union_2/sample_003/target.rs:22:12
+    |
+  1 | struct S {
+    | -------- doesn't satisfy `S: Default`
+...
+ 22 |     f2(&VS.take().i);
+    |            ^^^^ method cannot be called on `Cell<S>` due to unsatisfied trait bounds
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:312:1
+    |
+312 | pub struct Cell<T: ?Sized> {
+    | -------------------------- doesn't satisfy `Cell<S>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `S: Default`
+            `Cell<S>: Iterator`
+            which is required by `&mut Cell<S>: Iterator`
+help: consider annotating `S` with `#[derive(Default)]`
+    |
+  1 + #[derive(Default)]
+  2 | struct S {
+    |
+
+error[E0599]: the method `take` exists for struct `Cell<S>`, but its trait bounds were not satisfied
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/struct_and_union_2/sample_003/target.rs:23:11
+    |
+  1 | struct S {
+    | -------- doesn't satisfy `S: Default`
+...
+ 23 |     g(&VS.take().ci);
+    |           ^^^^ method cannot be called on `Cell<S>` due to unsatisfied trait bounds
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:312:1
+    |
+312 | pub struct Cell<T: ?Sized> {
+    | -------------------------- doesn't satisfy `Cell<S>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `S: Default`
+            `Cell<S>: Iterator`
+            which is required by `&mut Cell<S>: Iterator`
+help: consider annotating `S` with `#[derive(Default)]`
+    |
+  1 + #[derive(Default)]
+  2 | struct S {
+    |
+
+error[E0599]: the method `take` exists for struct `Cell<S>`, but its trait bounds were not satisfied
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/struct_and_union_2/sample_003/target.rs:37:11
+    |
+  1 | struct S {
+    | -------- doesn't satisfy `S: Default`
+...
+ 37 |     if VS.take().i!= 5 {
+    |           ^^^^ method cannot be called on `Cell<S>` due to unsatisfied trait bounds
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:312:1
+    |
+312 | pub struct Cell<T: ?Sized> {
+    | -------------------------- doesn't satisfy `Cell<S>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `S: Default`
+            `Cell<S>: Iterator`
+            which is required by `&mut Cell<S>: Iterator`
+help: consider annotating `S` with `#[derive(Default)]`
+    |
+  1 + #[derive(Default)]
+  2 | struct S {
+    |
+
+error[E0599]: the method `take` exists for struct `Cell<S>`, but its trait bounds were not satisfied
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/struct_and_union_2/sample_003/target.rs:40:11
+    |
+  1 | struct S {
+    | -------- doesn't satisfy `S: Default`
+...
+ 40 |     if VS.take().ci!= 6 {
+    |           ^^^^ method cannot be called on `Cell<S>` due to unsatisfied trait bounds
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:312:1
+    |
+312 | pub struct Cell<T: ?Sized> {
+    | -------------------------- doesn't satisfy `Cell<S>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `S: Default`
+            `Cell<S>: Iterator`
+            which is required by `&mut Cell<S>: Iterator`
+help: consider annotating `S` with `#[derive(Default)]`
+    |
+  1 + #[derive(Default)]
+  2 | struct S {
+    |
+
+error[E0599]: no method named `take_mut` found for struct `Cell<T>` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/struct_and_union_2/sample_003/target.rs:49:8
+   |
+49 |     VS.take_mut().i = 20;
+   |        ^^^^^^^^ method not found in `Cell<S>`
+
+error[E0599]: the method `take` exists for struct `Cell<S>`, but its trait bounds were not satisfied
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/struct_and_union_2/sample_003/target.rs:50:11
+    |
+  1 | struct S {
+    | -------- doesn't satisfy `S: Default`
+...
+ 50 |     if VS.take().i!= 20 {
+    |           ^^^^ method cannot be called on `Cell<S>` due to unsatisfied trait bounds
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:312:1
+    |
+312 | pub struct Cell<T: ?Sized> {
+    | -------------------------- doesn't satisfy `Cell<S>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `S: Default`
+            `Cell<S>: Iterator`
+            which is required by `&mut Cell<S>: Iterator`
+help: consider annotating `S` with `#[derive(Default)]`
+    |
+  1 + #[derive(Default)]
+  2 | struct S {
+    |
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0277, E0599.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,58 @@
+error[E0599]: no method named `borrow` found for struct `LocalKey<T>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/external_definitions/external_objs_2/sample_002/target.rs:9:19
+    |
+  9 |         let i = I.borrow();
+    |                   ^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/borrow.rs:179:8
+    |
+179 |     fn borrow(&self) -> &Borrowed;
+    |        ------ the method is available for `LocalKey<RefCell<Vec<i32>>>` here
+    |
+    = help: use `with` or `try_with` to access thread local storage
+note: the method `borrow` exists on the type `RefCell<Vec<i32>>`
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:989:5
+    |
+989 |     pub const fn borrow(&self) -> Ref<'_, T> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Borrow` which provides `borrow` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::borrow::Borrow;
+    |
+help: there is a method `borrow_mut` with a similar name
+    |
+  9 |         let i = I.borrow_mut();
+    |                         ++++
+
+error[E0599]: no method named `borrow_mut` found for struct `LocalKey<T>` in the current scope
+    --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/external_definitions/external_objs_2/sample_002/target.rs:15:23
+     |
+  15 |         let mut i = I.borrow_mut();
+     |                       ^^^^^^^^^^
+     |
+    ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/borrow.rs:207:8
+     |
+ 207 |     fn borrow_mut(&mut self) -> &mut Borrowed;
+     |        ---------- the method is available for `LocalKey<RefCell<Vec<i32>>>` here
+     |
+     = help: use `with` or `try_with` to access thread local storage
+note: the method `borrow_mut` exists on the type `RefCell<Vec<i32>>`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cell.rs:1087:5
+     |
+1087 |     pub const fn borrow_mut(&self) -> RefMut<'_, T> {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     = help: items from traits can only be used if the trait is in scope
+help: trait `BorrowMut` which provides `borrow_mut` is implemented but not in scope; perhaps you want to import it
+     |
+   1 + use std::borrow::BorrowMut;
+     |
+help: there is a method `borrow` with a similar name
+     |
+  15 -         let mut i = I.borrow_mut();
+  15 +         let mut i = I.borrow();
+     |
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

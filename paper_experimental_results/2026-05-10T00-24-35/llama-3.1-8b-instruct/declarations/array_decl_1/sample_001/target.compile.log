@@ -1,0 +1,147 @@
+error[E0435]: attempt to use a non-constant value in a constant
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_001/target.rs:105:87
+    |
+105 |     assert_eq!(std::mem::size_of::<[f32; 11]>() * (n1 - 1), std::mem::size_of::<[f32; n1]>());
+    |                                                                                       ^^ non-constant value
+    |
+help: consider using `const` instead of `let`
+    |
+ 92 -     let n1 = pos(11);
+ 92 +     const n1: /* Type */ = pos(11);
+    |
+
+warning: unused import: `std::mem::size_of`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_001/target.rs:1:5
+  |
+1 | use std::mem::size_of;
+  |     ^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0369]: binary operation `<=` cannot be applied to type `T`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_001/target.rs:45:10
+   |
+45 |     if x <= 0 {
+   |        - ^^ - {integer}
+   |        |
+   |        T
+   |
+help: consider further restricting type parameter `T` with trait `PartialOrd`
+   |
+41 |     T: Copy + std::ops::AddAssign<usize> + std::cmp::PartialOrd<i32>,
+   |                                          +++++++++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_001/target.rs:48:5
+   |
+39 | fn pos<T>(x: T) -> usize
+   |        -           ----- expected `usize` because of return type
+   |        |
+   |        found this type parameter
+...
+48 |     x
+   |     ^ expected `usize`, found type parameter `T`
+   |
+   = note:        expected type `usize`
+           found type parameter `T`
+
+error[E0606]: casting `f32` as `*const i32` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_001/target.rs:65:16
+   |
+65 |         sum += ((*pp as *const f32).read() as *const i32).read();
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `read` found for type `i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_001/target.rs:75:36
+   |
+75 |     let s1 = ((*(a as *const i32)).read() +
+   |                                    ^^^^ method not found in `i32`
+
+error[E0599]: no method named `read` found for type `i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_001/target.rs:76:61
+   |
+76 |              (*(a.offset((N1 - 1) as isize) as *const i32)).read()) as i32;
+   |                                                             ^^^^ method not found in `i32`
+
+error[E0599]: no method named `read` found for type `i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_001/target.rs:77:39
+   |
+77 |     let s2 = ((*(afp2 as *const i32)).read() +
+   |                                       ^^^^ method not found in `i32`
+
+error[E0599]: no method named `read` found for type `i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_001/target.rs:78:64
+   |
+78 |              (*(afp2.offset((N2 - 1) as isize) as *const i32)).read()) as i32;
+   |                                                                ^^^^ method not found in `i32`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_001/target.rs:102:19
+    |
+102 |         vla2[i] = afp.get(i);
+    |         -------   ^^^^^^^^^^ expected floating-point number, found `*const f32`
+    |         |
+    |         expected due to the type of this binding
+    |
+    = note:     expected type `{float}`
+            found raw pointer `*const f32`
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_001/target.rs:107:33
+    |
+107 |     assert_eq!(sum_pointed_ints(vla2.as_ptr()), 100 + 101 + 102 + 103 + 104 + 105 + 106 + 107 + 108 + 109 + 110 + 111 + 112 + 113 + 114 + 115 + 116);
+    |                ---------------- ^^^^^^^^^^^^^ expected `*const *const f32`, found `*const {float}`
+    |                |
+    |                arguments to this function are incorrect
+    |
+    = note: expected raw pointer `*const *const f32`
+               found raw pointer `*const {float}`
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_001/target.rs:61:4
+    |
+ 61 | fn sum_pointed_ints<const N: usize>(pp: *const *const f32) -> i32 {
+    |    ^^^^^^^^^^^^^^^^                 ---------------------
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_001/target.rs:108:44
+    |
+108 |     assert_eq!(takes_params(vla1.as_ptr(), vla2.as_ptr()), 2 + 22 + 116);
+    |                ------------                ^^^^^^^^^^^^^ expected `*const *const f32`, found `*const {float}`
+    |                |
+    |                arguments to this function are incorrect
+    |
+    = note: expected raw pointer `*const *const f32`
+               found raw pointer `*const {float}`
+note: function defined here
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_001/target.rs:71:4
+    |
+ 71 | fn takes_params<const N1: usize, const N2: usize>(
+    |    ^^^^^^^^^^^^
+ 72 |     a: *const f32,
+ 73 |     afp2: *const *const f32,
+    |     -----------------------
+
+error[E0606]: casting `f32` as `*const i32` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_001/target.rs:89:16
+   |
+89 |     assert_eq!((*afp.get(0) as *const i32).read(), 100);
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0606]: casting `f32` as `*const i32` is invalid
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_001/target.rs:90:16
+   |
+90 |     assert_eq!((*afp.get(16) as *const i32).read(), 116);
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0133]: call to unsafe function `std::ptr::const_ptr::<impl *const T>::read` is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/array_decl_1/sample_001/target.rs:55:16
+   |
+55 |         sum += (p as *const i32).read();
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+error: aborting due to 14 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0133, E0308, E0369, E0435, E0599, E0606.
+For more information about an error, try `rustc --explain E0133`.

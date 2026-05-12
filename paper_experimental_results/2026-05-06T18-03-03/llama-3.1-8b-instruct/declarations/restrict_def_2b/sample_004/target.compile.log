@@ -1,0 +1,209 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_004/target.rs:31:17
+   |
+31 |     let mut g = unsafe { &mut GATE };
+   |                 ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: the type `[i32]` cannot be indexed by `i32`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_004/target.rs:7:11
+  |
+7 |         p[i] = q[i];
+  |           ^ slice indices are of type `usize` or ranges of `usize`
+  |
+  = help: the trait `SliceIndex<[i32]>` is not implemented for `i32`
+  = help: the following other types implement trait `SliceIndex<T>`:
+            `usize` implements `SliceIndex<ByteStr>`
+            `usize` implements `SliceIndex<[T]>`
+  = note: required for `[i32]` to implement `Index<i32>`
+
+error[E0277]: the type `[i32]` cannot be indexed by `i32`
+ --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_004/target.rs:7:18
+  |
+7 |         p[i] = q[i];
+  |                  ^ slice indices are of type `usize` or ranges of `usize`
+  |
+  = help: the trait `SliceIndex<[i32]>` is not implemented for `i32`
+  = help: the following other types implement trait `SliceIndex<T>`:
+            `usize` implements `SliceIndex<ByteStr>`
+            `usize` implements `SliceIndex<[T]>`
+  = note: required for `[i32]` to implement `Index<i32>`
+
+error[E0277]: the trait bound `[i32; 100]: Default` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_004/target.rs:63:5
+   |
+61 | #[derive(Default)]
+   |          ------- in this derive macro expansion
+62 | struct D {
+63 |     data: [i32; 100],
+   |     ^^^^^^^^^^^^^^^^ the trait `Default` is not implemented for `[i32; 100]`
+   |
+   = help: the following other types implement trait `Default`:
+             &[T]
+             &mut [T]
+             [T; 0]
+             [T; 10]
+             [T; 11]
+             [T; 12]
+             [T; 13]
+             [T; 14]
+           and 27 others
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_004/target.rs:69:28
+   |
+69 |             self.data[i] = i * 13 + 5;
+   |             ------------   ^^^^^^^^^^ expected `i32`, found `usize`
+   |             |
+   |             expected due to the type of this binding
+
+warning: variable does not need to be mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_004/target.rs:31:9
+   |
+31 |     let mut g = unsafe { &mut GATE };
+   |         ----^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error[E0384]: cannot assign twice to immutable variable `ps`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_004/target.rs:36:9
+   |
+32 |     let ps = p.as_ptr() as i32 - base.as_ptr() as i32;
+   |         -- first assignment to `ps`
+...
+36 |         ps += 0;
+   |         ^^^^^^^ cannot assign twice to immutable variable
+   |
+help: consider making this binding mutable
+   |
+32 |     let mut ps = p.as_ptr() as i32 - base.as_ptr() as i32;
+   |         +++
+
+error[E0384]: cannot assign twice to immutable variable `qs`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_004/target.rs:37:9
+   |
+33 |     let qs = q.as_ptr() as i32 - base.as_ptr() as i32;
+   |         -- first assignment to `qs`
+...
+37 |         qs += 0;
+   |         ^^^^^^^ cannot assign twice to immutable variable
+   |
+help: consider making this binding mutable
+   |
+33 |     let mut qs = q.as_ptr() as i32 - base.as_ptr() as i32;
+   |         +++
+
+error[E0596]: cannot borrow `expect` as mutable, as it is not declared as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_004/target.rs:86:9
+   |
+86 |     let expect = D::default();
+   |         ^^^^^^ not mutable
+87 |     expect.init();
+   |     ------ cannot borrow as mutable
+88 |
+89 |     safe_move(50, &mut expect.data[50..], &expect.data[50..]);
+   |                        ----------- cannot borrow as mutable
+90 |     safe_move(50, &mut expect.data[1..], &expect.data[1..]);
+   |                        ----------- cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+86 |     let mut expect = D::default();
+   |         +++
+
+error[E0502]: cannot borrow `expect.data` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_004/target.rs:89:44
+   |
+89 |     safe_move(50, &mut expect.data[50..], &expect.data[50..]);
+   |     ---------          -----------         ^^^^^^^^^^^ immutable borrow occurs here
+   |     |                  |
+   |     |                  mutable borrow occurs here
+   |     mutable borrow later used by call
+
+error[E0502]: cannot borrow `expect.data` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_004/target.rs:90:43
+   |
+90 |     safe_move(50, &mut expect.data[1..], &expect.data[1..]);
+   |     ---------          -----------        ^^^^^^^^^^^ immutable borrow occurs here
+   |     |                  |
+   |     |                  mutable borrow occurs here
+   |     mutable borrow later used by call
+
+error[E0502]: cannot borrow `d.data` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_004/target.rs:92:43
+   |
+92 |     call_f_checked(&d.data, 100, 50, &mut d.data[50..], &mut d.data);
+   |     -------------- -------                ^^^^^^ mutable borrow occurs here
+   |     |              |
+   |     |              immutable borrow occurs here
+   |     immutable borrow later used by call
+
+error[E0502]: cannot borrow `d.data` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_004/target.rs:92:57
+   |
+92 |     call_f_checked(&d.data, 100, 50, &mut d.data[50..], &mut d.data);
+   |     -------------- ------- immutable borrow occurs here ^^^^^^^^^^^ mutable borrow occurs here
+   |     |
+   |     immutable borrow later used by call
+
+error[E0502]: cannot borrow `d.data` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_004/target.rs:93:43
+   |
+93 |     call_f_checked(&d.data, 100, 50, &mut d.data[1..], &mut d.data);
+   |     -------------- -------                ^^^^^^ mutable borrow occurs here
+   |     |              |
+   |     |              immutable borrow occurs here
+   |     immutable borrow later used by call
+
+error[E0502]: cannot borrow `d.data` as mutable because it is also borrowed as immutable
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_004/target.rs:93:56
+   |
+93 |     call_f_checked(&d.data, 100, 50, &mut d.data[1..], &mut d.data);
+   |     -------------- -------                             ^^^^^^^^^^^ mutable borrow occurs here
+   |     |              |
+   |     |              immutable borrow occurs here
+   |     immutable borrow later used by call
+
+error[E0596]: cannot borrow `expect` as mutable, as it is not declared as mutable
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_004/target.rs:99:9
+    |
+ 99 |     let expect = D::default();
+    |         ^^^^^^ not mutable
+100 |     expect.init();
+    |     ------ cannot borrow as mutable
+101 |
+102 |     safe_move(50, &mut expect.data[50..], &expect.data[50..]);
+    |                        ----------- cannot borrow as mutable
+103 |     safe_move(50, &mut expect.data[1..], &expect.data[1..]);
+    |                        ----------- cannot borrow as mutable
+    |
+help: consider changing this to be mutable
+    |
+ 99 |     let mut expect = D::default();
+    |         +++
+
+error[E0502]: cannot borrow `expect.data` as immutable because it is also borrowed as mutable
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_004/target.rs:102:44
+    |
+102 |     safe_move(50, &mut expect.data[50..], &expect.data[50..]);
+    |     ---------          -----------         ^^^^^^^^^^^ immutable borrow occurs here
+    |     |                  |
+    |     |                  mutable borrow occurs here
+    |     mutable borrow later used by call
+
+error[E0502]: cannot borrow `expect.data` as immutable because it is also borrowed as mutable
+   --> benchmark_results/2026-05-06T18-03-03/llama-3.1-8b-instruct/declarations/restrict_def_2b/sample_004/target.rs:103:43
+    |
+103 |     safe_move(50, &mut expect.data[1..], &expect.data[1..]);
+    |     ---------          -----------        ^^^^^^^^^^^ immutable borrow occurs here
+    |     |                  |
+    |     |                  mutable borrow occurs here
+    |     mutable borrow later used by call
+
+error: aborting due to 17 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0308, E0384, E0502, E0596.
+For more information about an error, try `rustc --explain E0277`.

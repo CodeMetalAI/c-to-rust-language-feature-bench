@@ -1,0 +1,105 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:34:29
+   |
+34 |         Some(Vector { n, v: unsafe { std::mem::transmute(v) } })
+   |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+warning: variable `h` is assigned to, but never used
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:25:17
+   |
+25 |         let mut h = H;
+   |                 ^
+   |
+   = note: consider using `_h` instead
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+help: you might have meant to pattern match on the similarly named constant `H_MUL`
+   |
+25 -         let mut h = H;
+25 +         let mut main::H_MUL = H;
+   |
+
+warning: value assigned to `h` is never read
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:27:9
+   |
+27 |         h *= H_MUL;
+   |         ^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:18:12
+   |
+18 |         if OFF + n > POOL.len() {
+   |            ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:18:22
+   |
+18 |         if OFF + n > POOL.len() {
+   |                      ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:22:22
+   |
+22 |         let p = &mut POOL[OFF..OFF + n];
+   |                      ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:22:27
+   |
+22 |         let p = &mut POOL[OFF..OFF + n];
+   |                           ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:22:32
+   |
+22 |         let p = &mut POOL[OFF..OFF + n];
+   |                                ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:23:9
+   |
+23 |         OFF += n;
+   |         ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:26:15
+   |
+26 |         h ^= (OFF as u64) ^ H;
+   |               ^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error[E0384]: cannot assign twice to immutable variable `d`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/declarations/restrict_def_4b/sample_002/target.rs:50:13
+   |
+48 |         let d = x - y;
+   |             - first assignment to `d`
+49 |         if d < 0.0 {
+50 |             d = -d;
+   |             ^^^^^^ cannot assign twice to immutable variable
+   |
+help: consider making this binding mutable
+   |
+48 |         let mut d = x - y;
+   |             +++
+
+error: aborting due to 9 previous errors; 2 warnings emitted
+
+Some errors have detailed explanations: E0133, E0384.
+For more information about an error, try `rustc --explain E0133`.

@@ -1,0 +1,76 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c4/sample_005/target.rs:10:31
+   |
+10 |     let fp0: fn(i32) -> i32 = unsafe { std::mem::transmute(std::ptr::null::<fn(i32) -> i32>()) };
+   |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c4/sample_005/target.rs:11:31
+   |
+11 |     let fp1: fn(i32) -> i32 = unsafe { std::mem::transmute(std::ptr::null::<fn(i32) -> i32>()) };
+   |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c4/sample_005/target.rs:12:31
+   |
+12 |     let fp2: fn(i32) -> i32 = unsafe { std::mem::transmute(v0) };
+   |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c4/sample_005/target.rs:34:17
+   |
+34 |     if !fp0.eq(&unsafe { std::mem::transmute(std::ptr::null::<fn(i32) -> i32>()) }) {
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c4/sample_005/target.rs:24:15
+    |
+ 24 |     if !v0.eq(&p0 as *const () as *const ()) {
+    |            -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&*const ()`, found `*const ()`
+    |            |
+    |            arguments to this method are incorrect
+    |
+    = note: expected reference `&_`
+             found raw pointer `_`
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cmp.rs:256:8
+    |
+256 |     fn eq(&self, other: &Rhs) -> bool;
+    |        ^^
+help: consider borrowing here
+    |
+ 24 |     if !v0.eq(&(&p0 as *const () as *const ())) {
+    |               ++                             +
+
+error[E0308]: mismatched types
+   --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c4/sample_005/target.rs:38:15
+    |
+ 38 |     if !p0.eq(&fp0 as *const fn(i32) -> i32 as *const i32) {
+    |            -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&*const i32`, found `*const i32`
+    |            |
+    |            arguments to this method are incorrect
+    |
+    = note: expected reference `&_`
+             found raw pointer `_`
+note: method defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/cmp.rs:256:8
+    |
+256 |     fn eq(&self, other: &Rhs) -> bool;
+    |        ^^
+help: consider borrowing here
+    |
+ 38 |     if !p0.eq(&(&fp0 as *const fn(i32) -> i32 as *const i32)) {
+    |               ++                                           +
+
+error[E0606]: casting `&*const i32` as `*const ()` is invalid
+  --> benchmark_results/2026-05-06T18-03-03/mistral-codestral-2508/conversions/pointers_c4/sample_005/target.rs:24:15
+   |
+24 |     if !v0.eq(&p0 as *const () as *const ()) {
+   |               ^^^^^^^^^^^^^^^^
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0308, E0606.
+For more information about an error, try `rustc --explain E0308`.

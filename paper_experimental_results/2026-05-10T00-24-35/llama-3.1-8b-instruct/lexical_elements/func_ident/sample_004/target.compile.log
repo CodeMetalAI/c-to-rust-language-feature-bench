@@ -1,0 +1,40 @@
+error[E0425]: cannot find function `__func_name` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/lexical_elements/func_ident/sample_004/target.rs:17:20
+   |
+17 |     if !check_name(__func_name(), "f") {
+   |                    ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `__func_name` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/lexical_elements/func_ident/sample_004/target.rs:25:20
+   |
+25 |     if !check_name(__func_name(), "g") {
+   |                    ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `__func_name` in this scope
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/lexical_elements/func_ident/sample_004/target.rs:33:20
+   |
+33 |     if !check_name(__func_name(), "main") {
+   |                    ^^^^^^^^^^^ not found in this scope
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/lexical_elements/func_ident/sample_004/target.rs:34:9
+   |
+32 | fn main() {
+   |          - expected `()` because of default return type
+33 |     if !check_name(__func_name(), "main") {
+34 |         1
+   |         ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/lexical_elements/func_ident/sample_004/target.rs:36:9
+   |
+32 | fn main() {
+   |          - expected `()` because of default return type
+...
+36 |         f() + g()
+   |         ^^^^^^^^^ expected `()`, found `i32`
+
+error: aborting due to 5 previous errors
+
+Some errors have detailed explanations: E0308, E0425.
+For more information about an error, try `rustc --explain E0308`.

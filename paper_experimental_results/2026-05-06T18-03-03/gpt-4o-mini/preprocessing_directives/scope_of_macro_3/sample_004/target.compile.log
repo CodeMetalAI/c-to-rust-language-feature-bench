@@ -1,0 +1,31 @@
+error: unexpected end of macro invocation
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:32:46
+   |
+19 | macro_rules! r {
+   | -------------- when calling this macro
+...
+32 |     let i: [i32; 4] = [q!(1), r!(2, 3), r!(4, ), r!(, 5)];
+   |                                              ^ missing tokens in macro arguments
+   |
+note: while trying to match meta-variable `$y:expr`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:20:15
+   |
+20 |     ($x:expr, $y:expr) => { concat_idents!($x, $y) };
+   |               ^^^^^^^
+
+error: no rules expected `,`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:32:53
+   |
+19 | macro_rules! r {
+   | -------------- when calling this macro
+...
+32 |     let i: [i32; 4] = [q!(1), r!(2, 3), r!(4, ), r!(, 5)];
+   |                                                     ^ no rules expected this token in macro call
+   |
+note: while trying to match meta-variable `$x:expr`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/preprocessing_directives/scope_of_macro_3/sample_004/target.rs:20:6
+   |
+20 |     ($x:expr, $y:expr) => { concat_idents!($x, $y) };
+   |      ^^^^^^^
+
+error: aborting due to 2 previous errors

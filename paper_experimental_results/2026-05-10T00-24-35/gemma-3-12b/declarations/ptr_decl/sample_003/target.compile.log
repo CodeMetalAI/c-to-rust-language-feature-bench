@@ -1,0 +1,50 @@
+error[E0106]: missing lifetime specifier
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_003/target.rs:87:17
+   |
+87 |     p_to_const: &i32,
+   |                 ^ expected named lifetime parameter
+   |
+help: consider introducing a named lifetime parameter
+   |
+86 ~ struct bundle<'a> {
+87 ~     p_to_const: &'a i32,
+   |
+
+error[E0106]: missing lifetime specifier
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_003/target.rs:88:14
+   |
+88 |     const_p: &mut i32,
+   |              ^ expected named lifetime parameter
+   |
+help: consider introducing a named lifetime parameter
+   |
+86 ~ struct bundle<'a> {
+87 |     p_to_const: &i32,
+88 ~     const_p: &'a mut i32,
+   |
+
+error[E0106]: missing lifetime specifier
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_003/target.rs:89:26
+   |
+89 |     const_p_via_typedef: &i32,
+   |                          ^ expected named lifetime parameter
+   |
+help: consider introducing a named lifetime parameter
+   |
+86 ~ struct bundle<'a> {
+87 |     p_to_const: &i32,
+88 |     const_p: &mut i32,
+89 ~     const_p_via_typedef: &'a i32,
+   |
+
+warning: type `bundle` should have an upper camel case name
+  --> benchmark_results/2026-05-10T00-24-35/gemma-3-12b/declarations/ptr_decl/sample_003/target.rs:86:8
+   |
+86 | struct bundle {
+   |        ^^^^^^ help: convert the identifier to upper camel case: `Bundle`
+   |
+   = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+error: aborting due to 3 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0106`.

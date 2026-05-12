@@ -1,0 +1,53 @@
+error[E0434]: can't capture dynamic environment in a fn item
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_4/sample_004/target.rs:4:28
+  |
+4 |     fn handler_a(x: i32) { hits += x + 1; }
+  |                            ^^^^
+  |
+  = help: use the `|| { ... }` closure form instead
+
+error[E0434]: can't capture dynamic environment in a fn item
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_4/sample_004/target.rs:5:28
+  |
+5 |     fn handler_b(x: i32) { hits += x + 2; }
+  |                            ^^^^
+  |
+  = help: use the `|| { ... }` closure form instead
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_4/sample_004/target.rs:17:36
+   |
+17 |     if (signal(1, handler_b))(3)!= (3 + 1) {
+   |        -------------------------   ^^^^^^^ expected `()`, found integer
+   |        |
+   |        expected because this is `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_4/sample_004/target.rs:18:16
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+18 |         return 1;
+   |                ^ expected `()`, found integer
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_4/sample_004/target.rs:22:36
+   |
+22 |     if (signal(2, handler_b))(4)!= (4 + 2) {
+   |        -------------------------   ^^^^^^^ expected `()`, found integer
+   |        |
+   |        expected because this is `()`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/type_def_4/sample_004/target.rs:27:36
+   |
+27 |     if (signal(3, handler_b))(5)!= (5 + 1) {
+   |        -------------------------   ^^^^^^^ expected `()`, found integer
+   |        |
+   |        expected because this is `()`
+
+error: aborting due to 6 previous errors
+
+Some errors have detailed explanations: E0308, E0434.
+For more information about an error, try `rustc --explain E0308`.

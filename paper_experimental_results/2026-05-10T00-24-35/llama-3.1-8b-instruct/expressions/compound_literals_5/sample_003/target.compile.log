@@ -1,0 +1,61 @@
+error[E0277]: a value of type `String` cannot be built from an iterator over elements of type `&&[u8]`
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_5/sample_003/target.rs:4:67
+     |
+   4 |     let s2 = ["/tmp/fileXXXXXX".as_bytes()].into_iter().collect::<String>();
+     |                                                         -------   ^^^^^^ value of type `String` cannot be built from `std::iter::Iterator<Item=&&[u8]>`
+     |                                                         |
+     |                                                         required by a bound introduced by this call
+     |
+     = help: the trait `FromIterator<&&[u8]>` is not implemented for `String`
+     = help: the following other types implement trait `FromIterator<A>`:
+               `String` implements `FromIterator<&char>`
+               `String` implements `FromIterator<&str>`
+               `String` implements `FromIterator<Box<str, A>>`
+               `String` implements `FromIterator<Cow<'_, str>>`
+               `String` implements `FromIterator<String>`
+               `String` implements `FromIterator<char>`
+note: the method call chain might not have had the expected associated types
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_5/sample_003/target.rs:4:45
+     |
+   4 |     let s2 = ["/tmp/fileXXXXXX".as_bytes()].into_iter().collect::<String>();
+     |              ------------------------------ ^^^^^^^^^^^ `Iterator::Item` is `&&[u8]` here
+     |              |
+     |              this expression has type `[&[u8]; 1]`
+note: required by a bound in `collect`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/iter/traits/iterator.rs:2014:19
+     |
+2014 |     fn collect<B: FromIterator<Self::Item>>(self) -> B
+     |                   ^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `Iterator::collect`
+
+error[E0277]: a value of type `String` cannot be built from an iterator over elements of type `&&[u8]`
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_5/sample_003/target.rs:7:67
+     |
+   7 |     let s3 = ["/tmp/fileXXXXXX".as_bytes()].into_iter().collect::<String>();
+     |                                                         -------   ^^^^^^ value of type `String` cannot be built from `std::iter::Iterator<Item=&&[u8]>`
+     |                                                         |
+     |                                                         required by a bound introduced by this call
+     |
+     = help: the trait `FromIterator<&&[u8]>` is not implemented for `String`
+     = help: the following other types implement trait `FromIterator<A>`:
+               `String` implements `FromIterator<&char>`
+               `String` implements `FromIterator<&str>`
+               `String` implements `FromIterator<Box<str, A>>`
+               `String` implements `FromIterator<Cow<'_, str>>`
+               `String` implements `FromIterator<String>`
+               `String` implements `FromIterator<char>`
+note: the method call chain might not have had the expected associated types
+    --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/compound_literals_5/sample_003/target.rs:7:45
+     |
+   7 |     let s3 = ["/tmp/fileXXXXXX".as_bytes()].into_iter().collect::<String>();
+     |              ------------------------------ ^^^^^^^^^^^ `Iterator::Item` is `&&[u8]` here
+     |              |
+     |              this expression has type `[&[u8]; 1]`
+note: required by a bound in `collect`
+    --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/iter/traits/iterator.rs:2014:19
+     |
+2014 |     fn collect<B: FromIterator<Self::Item>>(self) -> B
+     |                   ^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `Iterator::collect`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

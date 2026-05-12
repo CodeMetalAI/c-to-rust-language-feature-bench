@@ -1,0 +1,16 @@
+warning: calls to `std::mem::drop` with a value that implements `Copy` does nothing
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/function_specifiers_c8a/sample_005/target.rs:7:3
+  |
+7 |   std::mem::drop(v);
+  |   ^^^^^^^^^^^^^^^-^
+  |                  |
+  |                  argument has type `i32`
+  |
+  = note: `#[warn(dropping_copy_types)]` on by default
+help: use `let _ = ...` to ignore the expression or result
+  |
+7 -   std::mem::drop(v);
+7 +   let _ = v;
+  |
+
+warning: 1 warning emitted

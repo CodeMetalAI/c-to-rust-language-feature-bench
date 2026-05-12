@@ -1,0 +1,28 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/restrict_def_2/sample_001/target.rs:27:5
+   |
+27 | /     unsafe {
+28 | |         let off = G_OFF as usize;
+29 | |         let n = 8;
+...  |
+64 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0502]: cannot borrow `buf` as immutable because it is also borrowed as mutable
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o/declarations/restrict_def_2/sample_001/target.rs:56:22
+   |
+55 |             let p = &mut buf[off..off + n];
+   |                          --- mutable borrow occurs here
+56 |             let q = &buf[0..n];
+   |                      ^^^ immutable borrow occurs here
+57 |
+58 |             f(n, p, q);
+   |                  - mutable borrow later used here
+   |
+   = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0502`.

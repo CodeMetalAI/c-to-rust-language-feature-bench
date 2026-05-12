@@ -1,0 +1,108 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_1/sample_001/target.rs:6:5
+  |
+6 | /     unsafe {
+7 | |         CALLS += 1;
+8 | |     }
+  | |_____^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error: declaration of an `unsafe` function
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_1/sample_001/target.rs:20:1
+   |
+20 | / unsafe fn init_globals() {
+21 | |     let mut i = 0;
+22 | |     while i < 11 {
+23 | |         FA[i] = (i + 1) as f32;
+...  |
+32 | | }
+   | |_^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_1/sample_001/target.rs:48:9
+   |
+48 | /         unsafe {
+49 | |             s += (*pp[i]) as i32;
+50 | |         }
+   | |_________^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_1/sample_001/target.rs:58:5
+   |
+58 | /     unsafe {
+59 | |         let s2 = (*afp2[0]) as i32 + (*afp2[16]) as i32;
+60 | |         s1 + s2
+61 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_1/sample_001/target.rs:65:5
+    |
+ 65 | /     unsafe {
+ 66 | |         init_globals();
+ 67 | |
+ 68 | |         if FA[0] != 1.0 || FA[10] != 11.0 {
+...   |
+142 | |         std::process::exit(0);
+143 | |     }
+    | |_____^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_1/sample_001/target.rs:135:52
+    |
+135 |               != (vla1[0] as i32 + vla1[10] as i32 + unsafe {
+    |  ____________________________________________________^
+136 | |                 (*vla2[0]) as i32 + (*vla2[16]) as i32
+137 | |             })
+    | |_____________^
+
+error[E0599]: no method named `try_into` found for struct `Vec<f32>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_1/sample_001/target.rs:132:42
+    |
+132 |         let vla1_array: [f32; 11] = vla1.try_into().unwrap();
+    |                                          ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<f32>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+132 -         let vla1_array: [f32; 11] = vla1.try_into().unwrap();
+132 +         let vla1_array: [f32; 11] = vla1.into().unwrap();
+    |
+
+error[E0599]: no method named `try_into` found for struct `Vec<*mut f32>` in the current scope
+   --> benchmark_results/2026-05-10T00-24-35/deepseek-v3.2/declarations/array_decl_1/sample_001/target.rs:133:47
+    |
+133 |         let vla2_array: [*mut f32; 17] = vla2.try_into().unwrap();
+    |                                               ^^^^^^^^
+    |
+   ::: /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/convert/mod.rs:622:8
+    |
+622 |     fn try_into(self) -> Result<T, Self::Error>;
+    |        -------- the method is available for `Vec<*mut f32>` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: trait `TryInto` which provides `try_into` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use std::convert::TryInto;
+    |
+help: there is a method `into` with a similar name
+    |
+133 -         let vla2_array: [*mut f32; 17] = vla2.try_into().unwrap();
+133 +         let vla2_array: [*mut f32; 17] = vla2.into().unwrap();
+    |
+
+error: aborting due to 8 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

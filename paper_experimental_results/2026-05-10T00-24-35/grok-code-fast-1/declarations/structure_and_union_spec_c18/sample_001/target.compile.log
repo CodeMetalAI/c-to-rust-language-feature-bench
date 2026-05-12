@@ -1,0 +1,68 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_001/target.rs:34:5
+   |
+34 | /     unsafe {
+35 | |         (*p).tag = 0xA1B2C3D4;
+36 | |         (*p).n = N as U32;
+...  |
+65 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_001/target.rs:67:8
+   |
+67 |     if unsafe { (*p).sum } != compute_sum(N as U32) {
+   |        ^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+   --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_001/target.rs:85:5
+    |
+ 85 | /     unsafe {
+ 86 | |         (*p).tag = 0;
+ 87 | |         (*p).n = 0;
+ 88 | |         (*p).sum = 0;
+...   |
+101 | |     }
+    | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_001/target.rs:43:20
+   |
+43 |         if got1 != expected {
+   |                    ^^^^^^^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut u8`
+              found raw pointer `*const u8`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_001/target.rs:46:20
+   |
+46 |         if got2 != expected {
+   |                    ^^^^^^^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut u8`
+              found raw pointer `*const u8`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_001/target.rs:95:20
+   |
+95 |         if got1 != expected {
+   |                    ^^^^^^^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut u8`
+              found raw pointer `*const u8`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/declarations/structure_and_union_spec_c18/sample_001/target.rs:98:20
+   |
+98 |         if got2 != expected {
+   |                    ^^^^^^^^ types differ in mutability
+   |
+   = note: expected raw pointer `*mut u8`
+              found raw pointer `*const u8`
+
+error: aborting due to 7 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

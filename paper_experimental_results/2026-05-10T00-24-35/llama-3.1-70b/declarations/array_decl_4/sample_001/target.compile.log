@@ -1,0 +1,19 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_001/target.rs:76:8
+   |
+76 |     if unsafe { sink } == 0 {
+   |        ^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0133]: use of mutable static is unsafe and requires unsafe function or block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/array_decl_4/sample_001/target.rs:31:5
+   |
+31 |     sink ^= checksum_2d(backing);
+   |     ^^^^ use of mutable static
+   |
+   = note: mutable statics can be mutated by multiple threads: aliasing violations or data races will cause undefined behavior
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0133`.

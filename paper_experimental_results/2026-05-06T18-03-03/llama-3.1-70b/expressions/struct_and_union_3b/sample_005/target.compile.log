@@ -1,0 +1,101 @@
+error: expected expression, found `=`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/struct_and_union_3b/sample_005/target.rs:19:30
+   |
+19 |         unsafe { (*u).s2.m } = -unsafe { (*u).s2.m };
+   |                              ^ expected expression
+   |
+help: parentheses are required to parse this as an expression
+   |
+19 |         (unsafe { (*u).s2.m }) = -unsafe { (*u).s2.m };
+   |         +                    +
+
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/struct_and_union_3b/sample_005/target.rs:11:10
+   |
+11 | #[derive(Debug, Default)]
+   |          ^^^^^
+
+error: this trait cannot be derived for unions
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/struct_and_union_3b/sample_005/target.rs:11:17
+   |
+11 | #[derive(Debug, Default)]
+   |                 ^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/struct_and_union_3b/sample_005/target.rs:18:8
+   |
+18 |     if unsafe { (*u).s1.m } < 0 {
+   |        ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/struct_and_union_3b/sample_005/target.rs:19:9
+   |
+19 |         unsafe { (*u).s2.m } = -unsafe { (*u).s2.m };
+   |         ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/struct_and_union_3b/sample_005/target.rs:19:33
+   |
+19 |         unsafe { (*u).s2.m } = -unsafe { (*u).s2.m };
+   |                                 ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/struct_and_union_3b/sample_005/target.rs:21:5
+   |
+21 |     unsafe { (*u).s1.m }
+   |     ^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/struct_and_union_3b/sample_005/target.rs:27:5
+   |
+27 | /     unsafe {
+28 | |         (*u).s1.m = -7;
+29 | |         (*u).s2.m = 7;
+30 | |     }
+   | |_____^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/struct_and_union_3b/sample_005/target.rs:35:8
+   |
+35 |     if unsafe { (*u).s2.m }!= -7 {
+   |        ^^^^^^^^^^^^^^^^^^^^
+
+error[E0740]: field must implement `Copy` or be wrapped in `ManuallyDrop<...>` to be used in a union
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/struct_and_union_3b/sample_005/target.rs:13:5
+   |
+13 |     s1: T1,
+   |     ^^^^^^
+   |
+   = note: union fields must not have drop side-effects, which is currently enforced via either `Copy` or `ManuallyDrop<...>`
+help: wrap the field type in `ManuallyDrop<...>`
+   |
+13 |     s1: std::mem::ManuallyDrop<T1>,
+   |         +++++++++++++++++++++++  +
+
+error[E0070]: invalid left-hand side of assignment
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/struct_and_union_3b/sample_005/target.rs:19:30
+   |
+19 |         unsafe { (*u).s2.m } = -unsafe { (*u).s2.m };
+   |         -------------------- ^
+   |         |
+   |         cannot assign to this expression
+
+error[E0599]: no function or associated item named `default` found for union `U12` in the current scope
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/expressions/struct_and_union_3b/sample_005/target.rs:25:22
+   |
+12 | union U12 {
+   | --------- function or associated item `default` not found for this union
+...
+25 |     let mut u = U12::default();
+   |                      ^^^^^^^ function or associated item not found in `U12`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `default`, perhaps you need to implement it:
+           candidate #1: `Default`
+
+error: aborting due to 12 previous errors
+
+Some errors have detailed explanations: E0070, E0599, E0740.
+For more information about an error, try `rustc --explain E0070`.

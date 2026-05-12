@@ -1,0 +1,61 @@
+warning: unused macro definition: `ok_mod`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_001/target.rs:6:18
+  |
+6 |     macro_rules! ok_mod {
+  |                  ^^^^^^
+  |
+  = note: `#[warn(unused_macros)]` (part of `#[warn(unused)]`) on by default
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_001/target.rs:87:9
+   |
+87 |         unsafe { *bp = *bp; }
+   |         ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error[E0277]: `main` has invalid return type `i32`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_001/target.rs:2:14
+  |
+2 | fn main() -> i32 {
+  |              ^^^ `main` can only return types that implement `Termination`
+  |
+  = help: consider using `()`, or a `Result`
+
+error[E0423]: expected function, found macro `ok_mod`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_001/target.rs:33:9
+   |
+33 |     if !ok_mod(1) {
+   |         ^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+33 |     if !ok_mod!(1) {
+   |               +
+
+error[E0423]: expected function, found macro `ok_mod`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_001/target.rs:36:9
+   |
+36 |     if !ok_mod(&1) {
+   |         ^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+36 |     if !ok_mod!(&1) {
+   |               +
+
+error[E0423]: expected function, found macro `ok_mod`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/conversions/lvalue_array_fun_c1/sample_001/target.rs:59:9
+   |
+59 |     if !ok_mod(s3.a) {
+   |         ^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+59 |     if !ok_mod!(s3.a) {
+   |               +
+
+error: aborting due to 5 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0277, E0423.
+For more information about an error, try `rustc --explain E0277`.

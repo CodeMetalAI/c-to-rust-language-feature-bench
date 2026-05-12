@@ -1,0 +1,95 @@
+error[E0277]: the type `[i32]` cannot be indexed by `i32`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:5:11
+  |
+5 |         p[i] = q[i];
+  |           ^ slice indices are of type `usize` or ranges of `usize`
+  |
+  = help: the trait `SliceIndex<[i32]>` is not implemented for `i32`
+  = help: the following other types implement trait `SliceIndex<T>`:
+            `usize` implements `SliceIndex<ByteStr>`
+            `usize` implements `SliceIndex<[T]>`
+  = note: required for `[i32]` to implement `Index<i32>`
+
+error[E0277]: the type `[i32]` cannot be indexed by `i32`
+ --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:5:18
+  |
+5 |         p[i] = q[i];
+  |                  ^ slice indices are of type `usize` or ranges of `usize`
+  |
+  = help: the trait `SliceIndex<[i32]>` is not implemented for `i32`
+  = help: the following other types implement trait `SliceIndex<T>`:
+            `usize` implements `SliceIndex<ByteStr>`
+            `usize` implements `SliceIndex<[T]>`
+  = note: required for `[i32]` to implement `Index<i32>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:35:71
+   |
+35 |         if !check_range_eq(&buf[0..n as usize], &snapshot[off..(off + n) as usize]) {
+   |                                                                       ^ expected `usize`, found `i32`
+
+error[E0277]: cannot add `i32` to `usize`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:35:69
+   |
+35 |         if !check_range_eq(&buf[0..n as usize], &snapshot[off..(off + n) as usize]) {
+   |                                                                     ^ no implementation for `usize + i32`
+   |
+   = help: the trait `Add<i32>` is not implemented for `usize`
+   = help: the following other types implement trait `Add<Rhs>`:
+             `&usize` implements `Add<usize>`
+             `&usize` implements `Add`
+             `usize` implements `Add<&usize>`
+             `usize` implements `Add`
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:35:13
+   |
+35 |         if !check_range_eq(&buf[0..n as usize], &snapshot[off..(off + n) as usize]) {
+   |             ^^^^^^^^^^^^^^--------------------------------------------------------- argument #3 of type `i32` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:9:4
+   |
+ 9 | fn check_range_eq(a: &[i32], b: &[i32], n: i32) -> bool {
+   |    ^^^^^^^^^^^^^^                       ------
+help: provide the argument
+   |
+35 |         if !check_range_eq(&buf[0..n as usize], &snapshot[off..(off + n) as usize], /* i32 */) {
+   |                                                                                   +++++++++++
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:39:13
+   |
+39 |         if !check_range_eq(&buf[off..], &snapshot[off..n as usize]) {
+   |             ^^^^^^^^^^^^^^----------------------------------------- argument #3 of type `i32` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:9:4
+   |
+ 9 | fn check_range_eq(a: &[i32], b: &[i32], n: i32) -> bool {
+   |    ^^^^^^^^^^^^^^                       ------
+help: provide the argument
+   |
+39 |         if !check_range_eq(&buf[off..], &snapshot[off..n as usize], /* i32 */) {
+   |                                                                   +++++++++++
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:60:13
+   |
+60 |         if !check_range_eq(&buf[off..n as usize], &buf[0..n as usize]) {
+   |             ^^^^^^^^^^^^^^-------------------------------------------- argument #3 of type `i32` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/restrict_def_2/sample_004/target.rs:9:4
+   |
+ 9 | fn check_range_eq(a: &[i32], b: &[i32], n: i32) -> bool {
+   |    ^^^^^^^^^^^^^^                       ------
+help: provide the argument
+   |
+60 |         if !check_range_eq(&buf[off..n as usize], &buf[0..n as usize], /* i32 */) {
+   |                                                                      +++++++++++
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0061, E0277, E0308.
+For more information about an error, try `rustc --explain E0061`.

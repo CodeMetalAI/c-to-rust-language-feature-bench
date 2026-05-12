@@ -1,0 +1,25 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c4/sample_005/target.rs:12:12
+   |
+ 1 | fn main() {
+   |          - expected `()` because of default return type
+...
+12 |     return 1;
+   |            ^ expected `()`, found integer
+
+error[E0277]: can't compare `&{integer}` with `{integer}`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/expressions/rel_op_c4/sample_005/target.rs:19:13
+   |
+19 |   if px_end == (&x + 1) {
+   |             ^^ no implementation for `&{integer} == {integer}`
+   |
+   = help: the trait `PartialEq<{integer}>` is not implemented for `&{integer}`
+help: consider dereferencing here
+   |
+19 |   if *px_end == (&x + 1) {
+   |      +
+
+error: aborting due to 2 previous errors
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.

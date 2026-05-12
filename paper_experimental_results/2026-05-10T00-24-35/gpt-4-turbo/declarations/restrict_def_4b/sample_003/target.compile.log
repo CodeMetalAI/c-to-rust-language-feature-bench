@@ -1,0 +1,33 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_4b/sample_003/target.rs:14:5
+   |
+14 | /     unsafe {
+15 | |         let ptr = vec.v.as_mut_ptr() as u64;
+16 | |         H ^= ptr + 0x9e3779b97f4a7c15;
+17 | |         H = H.wrapping_mul(0x5851f42d4c957f2d);
+18 | |     }
+   | |_____^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_4b/sample_003/target.rs:67:5
+   |
+67 | /     unsafe {
+68 | |         if (H & 1) == 0 {
+69 | |             std::process::exit(6);
+70 | |         }
+71 | |     }
+   | |_____^
+
+warning: field `n` is never read
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4-turbo/declarations/restrict_def_4b/sample_003/target.rs:2:5
+  |
+1 | struct Vector {
+  |        ------ field in this struct
+2 |     n: i32,
+  |     ^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 2 previous errors; 1 warning emitted

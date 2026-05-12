@@ -1,0 +1,83 @@
+error: usage of an `unsafe` block
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/add_op_c9/sample_004/target.rs:6:20
+  |
+6 |     let one_past = unsafe { q.add(1) };
+  |                    ^^^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-F unsafe-code`
+
+error[E0599]: no method named `wrapping_offset_from` found for raw pointer `*const i32` in the current scope
+ --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/add_op_c9/sample_004/target.rs:8:18
+  |
+8 |     let d_pq = p.wrapping_offset_from(q);
+  |                  ^^^^^^^^^^^^^^^^^^^^
+  |
+help: there is a method `wrapping_offset` with a similar name
+  |
+8 -     let d_pq = p.wrapping_offset_from(q);
+8 +     let d_pq = p.wrapping_offset(q);
+  |
+
+error[E0599]: no method named `wrapping_offset_from` found for raw pointer `*const i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/add_op_c9/sample_004/target.rs:13:18
+   |
+13 |     let d_qp = q.wrapping_offset_from(p);
+   |                  ^^^^^^^^^^^^^^^^^^^^
+   |
+help: there is a method `wrapping_offset` with a similar name
+   |
+13 -     let d_qp = q.wrapping_offset_from(p);
+13 +     let d_qp = q.wrapping_offset(p);
+   |
+
+error[E0599]: no method named `wrapping_offset_from` found for raw pointer `*const i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/add_op_c9/sample_004/target.rs:18:24
+   |
+18 |     let lhs = one_past.wrapping_offset_from(p);
+   |                        ^^^^^^^^^^^^^^^^^^^^
+   |
+help: there is a method `wrapping_offset` with a similar name
+   |
+18 -     let lhs = one_past.wrapping_offset_from(p);
+18 +     let lhs = one_past.wrapping_offset(p);
+   |
+
+error[E0599]: no method named `wrapping_offset_from` found for raw pointer `*const i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/add_op_c9/sample_004/target.rs:19:18
+   |
+19 |     let rhs1 = q.wrapping_offset_from(p) + 1;
+   |                  ^^^^^^^^^^^^^^^^^^^^
+   |
+help: there is a method `wrapping_offset` with a similar name
+   |
+19 -     let rhs1 = q.wrapping_offset_from(p) + 1;
+19 +     let rhs1 = q.wrapping_offset(p) + 1;
+   |
+
+error[E0599]: no method named `wrapping_offset_from` found for raw pointer `*const i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/add_op_c9/sample_004/target.rs:24:20
+   |
+24 |     let rhs2 = -(p.wrapping_offset_from(one_past));
+   |                    ^^^^^^^^^^^^^^^^^^^^
+   |
+help: there is a method `wrapping_offset` with a similar name
+   |
+24 -     let rhs2 = -(p.wrapping_offset_from(one_past));
+24 +     let rhs2 = -(p.wrapping_offset(one_past));
+   |
+
+error[E0599]: no method named `wrapping_offset_from` found for raw pointer `*const i32` in the current scope
+  --> benchmark_results/2026-05-10T00-24-35/gpt-4o/expressions/add_op_c9/sample_004/target.rs:29:17
+   |
+29 |     if one_past.wrapping_offset_from(one_past) != 0 {
+   |                 ^^^^^^^^^^^^^^^^^^^^
+   |
+help: there is a method `wrapping_offset` with a similar name
+   |
+29 -     if one_past.wrapping_offset_from(one_past) != 0 {
+29 +     if one_past.wrapping_offset(one_past) != 0 {
+   |
+
+error: aborting due to 7 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

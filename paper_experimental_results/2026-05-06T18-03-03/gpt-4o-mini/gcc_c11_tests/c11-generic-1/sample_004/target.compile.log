@@ -1,0 +1,279 @@
+error[E0425]: cannot find value `f` in this scope
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:29:28
+   |
+29 |     check(generic_function(f as *const (), 0, n += 1));
+   |                            ^ help: a local variable with a similar name exists: `a`
+
+error: declaration of a `no_mangle` function
+ --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:6:1
+  |
+6 | #[no_mangle]
+  | ^^^^^^^^^^^^
+  |
+  = note: the linker's behavior with multiple libraries exporting duplicate symbol names is undefined and Rust cannot provide guarantees when you manually override them
+  = note: requested on the command line with `-F unsafe-code`
+
+error: unwinding panics are not supported without std
+  |
+  = help: using nightly cargo, use -Zbuild-std with panic="abort" to avoid unwinding
+  = note: since the core library is usually precompiled with panic="unwind", rebuilding your crate with panic="abort" may not be enough to fix the problem
+
+error[E0277]: the trait bound `i32: From<()>` is not satisfied
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:10:23
+   |
+10 |     check(generic_int(n += 1, 0));
+   |           ----------- ^^^^^^ the trait `From<()>` is not implemented for `i32`
+   |           |
+   |           required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `From<T>`:
+             `i32` implements `From<bool>`
+             `i32` implements `From<i16>`
+             `i32` implements `From<i8>`
+             `i32` implements `From<u16>`
+             `i32` implements `From<u8>`
+   = note: required for `()` to implement `Into<i32>`
+note: required by a bound in `generic_int`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:48:19
+   |
+48 | fn generic_int<T: Into<i32>>(value: T, true_case: i32, false_case: i32) -> i32 {
+   |                   ^^^^^^^^^ required by this bound in `generic_int`
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:10:11
+   |
+10 |     check(generic_int(n += 1, 0));
+   |           ^^^^^^^^^^^----------- argument #3 of type `i32` is missing
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:48:4
+   |
+48 | fn generic_int<T: Into<i32>>(value: T, true_case: i32, false_case: i32) -> i32 {
+   |    ^^^^^^^^^^^                                         ---------------
+help: provide the argument
+   |
+10 |     check(generic_int(n += 1, 0, /* i32 */));
+   |                                +++++++++++
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:13:29
+   |
+13 |     check(generic_double(n, n += 1, 0));
+   |           --------------    ^^^^^^ expected `i32`, found `()`
+   |           |
+   |           arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:52:4
+   |
+52 | fn generic_double<T: Into<i32>>(value: T, true_case: i32, false_case: i32) -> i32 {
+   |    ^^^^^^^^^^^^^^                         --------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:17:30
+   |
+17 |     check(generic_int(CN, 0, n += 1));
+   |           -----------        ^^^^^^ expected `i32`, found `()`
+   |           |
+   |           arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:48:4
+   |
+48 | fn generic_int<T: Into<i32>>(value: T, true_case: i32, false_case: i32) -> i32 {
+   |    ^^^^^^^^^^^                                         ---------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:19:37
+   |
+19 |     check(generic_int(CN as i32, 0, n += 1));
+   |           -----------               ^^^^^^ expected `i32`, found `()`
+   |           |
+   |           arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:48:4
+   |
+48 | fn generic_int<T: Into<i32>>(value: T, true_case: i32, false_case: i32) -> i32 {
+   |    ^^^^^^^^^^^                                         ---------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:24:60
+   |
+24 |     check(generic_pointer(&a as *const _ as *const i32, 0, n += 1));
+   |           ---------------                                  ^^^^^^ expected `i32`, found `()`
+   |           |
+   |           arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:56:4
+   |
+56 | fn generic_pointer<T>(value: *const T, true_case: i32, false_case: i32) -> i32 {
+   |    ^^^^^^^^^^^^^^^                                     ---------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:26:58
+   |
+26 |     check(generic_pointer(&CA as *const _ as *const i32, n += 1, 0));
+   |           ---------------                                ^^^^^^ expected `i32`, found `()`
+   |           |
+   |           arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:56:4
+   |
+56 | fn generic_pointer<T>(value: *const T, true_case: i32, false_case: i32) -> i32 {
+   |    ^^^^^^^^^^^^^^^                     --------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:29:47
+   |
+29 |     check(generic_function(f as *const (), 0, n += 1));
+   |           ----------------                    ^^^^^^ expected `i32`, found `()`
+   |           |
+   |           arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:60:4
+   |
+60 | fn generic_function<T>(value: *const T, true_case: i32, false_case: i32) -> i32 {
+   |    ^^^^^^^^^^^^^^^^                                     ---------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:32:51
+   |
+32 |     check(generic_function(abort as *const (), 0, n += 1));
+   |           ----------------                        ^^^^^^ expected `i32`, found `()`
+   |           |
+   |           arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:60:4
+   |
+60 | fn generic_function<T>(value: *const T, true_case: i32, false_case: i32) -> i32 {
+   |    ^^^^^^^^^^^^^^^^                                     ---------------
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:36:29
+   |
+36 |     check(generic_int(s, 0, n += 1));
+   |           -----------       ^^^^^^ expected `i32`, found `()`
+   |           |
+   |           arguments to this function are incorrect
+   |
+note: function defined here
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:48:4
+   |
+48 | fn generic_int<T: Into<i32>>(value: T, true_case: i32, false_case: i32) -> i32 {
+   |    ^^^^^^^^^^^                                         ---------------
+
+warning: unused variable: `value`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:48:30
+   |
+48 | fn generic_int<T: Into<i32>>(value: T, true_case: i32, false_case: i32) -> i32 {
+   |                              ^^^^^ help: if this is intentional, prefix it with an underscore: `_value`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `false_case`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:48:56
+   |
+48 | fn generic_int<T: Into<i32>>(value: T, true_case: i32, false_case: i32) -> i32 {
+   |                                                        ^^^^^^^^^^
+   |
+help: if this is intentional, prefix it with an underscore
+   |
+48 | fn generic_int<T: Into<i32>>(value: T, true_case: i32, _false_case: i32) -> i32 {
+   |                                                        +
+help: you might have meant to pattern match on the similarly named constant `CN`
+   |
+48 - fn generic_int<T: Into<i32>>(value: T, true_case: i32, false_case: i32) -> i32 {
+48 + fn generic_int<T: Into<i32>>(value: T, true_case: i32, main::CN: i32) -> i32 {
+   |
+
+warning: unused variable: `value`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:52:33
+   |
+52 | fn generic_double<T: Into<i32>>(value: T, true_case: i32, false_case: i32) -> i32 {
+   |                                 ^^^^^ help: if this is intentional, prefix it with an underscore: `_value`
+
+warning: unused variable: `true_case`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:52:43
+   |
+52 | fn generic_double<T: Into<i32>>(value: T, true_case: i32, false_case: i32) -> i32 {
+   |                                           ^^^^^^^^^
+   |
+help: if this is intentional, prefix it with an underscore
+   |
+52 | fn generic_double<T: Into<i32>>(value: T, _true_case: i32, false_case: i32) -> i32 {
+   |                                           +
+help: you might have meant to pattern match on the similarly named constant `CN`
+   |
+52 - fn generic_double<T: Into<i32>>(value: T, true_case: i32, false_case: i32) -> i32 {
+52 + fn generic_double<T: Into<i32>>(value: T, main::CN: i32, false_case: i32) -> i32 {
+   |
+
+warning: unused variable: `value`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:56:23
+   |
+56 | fn generic_pointer<T>(value: *const T, true_case: i32, false_case: i32) -> i32 {
+   |                       ^^^^^ help: if this is intentional, prefix it with an underscore: `_value`
+
+warning: unused variable: `true_case`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:56:40
+   |
+56 | fn generic_pointer<T>(value: *const T, true_case: i32, false_case: i32) -> i32 {
+   |                                        ^^^^^^^^^
+   |
+help: if this is intentional, prefix it with an underscore
+   |
+56 | fn generic_pointer<T>(value: *const T, _true_case: i32, false_case: i32) -> i32 {
+   |                                        +
+help: you might have meant to pattern match on the similarly named constant `CN`
+   |
+56 - fn generic_pointer<T>(value: *const T, true_case: i32, false_case: i32) -> i32 {
+56 + fn generic_pointer<T>(value: *const T, main::CN: i32, false_case: i32) -> i32 {
+   |
+
+warning: unused variable: `value`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:60:24
+   |
+60 | fn generic_function<T>(value: *const T, true_case: i32, false_case: i32) -> i32 {
+   |                        ^^^^^ help: if this is intentional, prefix it with an underscore: `_value`
+
+warning: unused variable: `false_case`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:60:57
+   |
+60 | fn generic_function<T>(value: *const T, true_case: i32, false_case: i32) -> i32 {
+   |                                                         ^^^^^^^^^^
+   |
+help: if this is intentional, prefix it with an underscore
+   |
+60 | fn generic_function<T>(value: *const T, true_case: i32, _false_case: i32) -> i32 {
+   |                                                         +
+help: you might have meant to pattern match on the similarly named constant `CN`
+   |
+60 - fn generic_function<T>(value: *const T, true_case: i32, false_case: i32) -> i32 {
+60 + fn generic_function<T>(value: *const T, true_case: i32, main::CN: i32) -> i32 {
+   |
+
+warning: unused variable: `code`
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4o-mini/gcc_c11_tests/c11-generic-1/sample_004/target.rs:64:9
+   |
+64 | fn exit(code: i32) -> ! {
+   |         ^^^^
+   |
+help: if this is intentional, prefix it with an underscore
+   |
+64 | fn exit(_code: i32) -> ! {
+   |         +
+help: you might have meant to pattern match on the similarly named constant `CN`
+   |
+64 - fn exit(code: i32) -> ! {
+64 + fn exit(main::CN: i32) -> ! {
+   |
+
+error: aborting due to 13 previous errors; 9 warnings emitted
+
+Some errors have detailed explanations: E0061, E0277, E0308, E0425.
+For more information about an error, try `rustc --explain E0061`.

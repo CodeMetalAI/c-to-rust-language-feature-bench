@@ -1,0 +1,63 @@
+error: comparison operators cannot be chained
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/eq_op_c3/sample_004/target.rs:11:12
+   |
+11 |     if !(a < b == c < d) {
+   |            ^   ^^
+   |
+help: parenthesize the comparison
+   |
+11 |     if !((a < b) == c < d) {
+   |          +     +
+
+error: comparison operators cannot be chained
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/eq_op_c3/sample_004/target.rs:19:12
+   |
+19 |     if !(a < b == c < d) {
+   |            ^   ^^
+   |
+help: parenthesize the comparison
+   |
+19 |     if !((a < b) == c < d) {
+   |          +     +
+
+error: expected one of `,`, `:`, or `}`, found `::`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/eq_op_c3/sample_004/target.rs:28:12
+   |
+27 |     if a < b == c < d {
+   |                     - while parsing this struct
+28 |         std::process::exit(3);
+   |         ---^^ expected one of `,`, `:`, or `}`
+   |         |
+   |         while parsing this struct field
+
+error: comparison operators cannot be chained
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/eq_op_c3/sample_004/target.rs:27:10
+   |
+27 |     if a < b == c < d {
+   |          ^   ^^
+   |
+help: parenthesize the comparison
+   |
+27 |     if (a < b) == c < d {
+   |        +     +
+
+error: expected `{`, found `a`
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/eq_op_c3/sample_004/target.rs:31:5
+   |
+31 |     a = 2;
+   |     ^ expected `{`
+   |
+note: the `if` expression is missing a block after this condition
+  --> benchmark_results/2026-05-06T18-03-03/grok-code-fast-1/expressions/eq_op_c3/sample_004/target.rs:27:8
+   |
+27 |       if a < b == c < d {
+   |  ________^
+28 | |         std::process::exit(3);
+29 | |     }
+   | |_____^
+help: you might have meant to write this as part of a block
+   |
+31 |     { a = 2; }
+   |     +        +
+
+error: aborting due to 5 previous errors

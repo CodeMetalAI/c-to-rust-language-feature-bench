@@ -1,0 +1,41 @@
+error[E0658]: specialization is unstable
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/lvalue_array_fun_c2/sample_004/target.rs:10:5
+   |
+10 |     default const ID: i32 = 99;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: see issue #31844 <https://github.com/rust-lang/rust/issues/31844> for more information
+   = help: add `#![feature(specialization)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-09; consider upgrading it if it is out of date
+
+error[E0119]: conflicting implementations of trait `TypeId` for type `i32`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/lvalue_array_fun_c2/sample_004/target.rs:13:1
+   |
+ 9 | impl<T> TypeId for T {
+   | -------------------- first implementation here
+...
+13 | impl TypeId for i32 {
+   | ^^^^^^^^^^^^^^^^^^^ conflicting implementation for `i32`
+
+error[E0119]: conflicting implementations of trait `TypeId` for type `u32`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/lvalue_array_fun_c2/sample_004/target.rs:17:1
+   |
+ 9 | impl<T> TypeId for T {
+   | -------------------- first implementation here
+...
+17 | impl TypeId for u32 {
+   | ^^^^^^^^^^^^^^^^^^^ conflicting implementation for `u32`
+
+error[E0119]: conflicting implementations of trait `TypeId` for type `AtomicI32`
+  --> benchmark_results/2026-05-10T00-24-35/grok-code-fast-1/conversions/lvalue_array_fun_c2/sample_004/target.rs:21:1
+   |
+ 9 | impl<T> TypeId for T {
+   | -------------------- first implementation here
+...
+21 | impl TypeId for AtomicI32 {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^ conflicting implementation for `AtomicI32`
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0119, E0658.
+For more information about an error, try `rustc --explain E0119`.

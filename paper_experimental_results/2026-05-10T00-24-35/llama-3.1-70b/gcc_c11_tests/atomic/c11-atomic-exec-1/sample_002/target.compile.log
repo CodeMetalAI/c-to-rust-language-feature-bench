@@ -1,0 +1,135 @@
+error[E0428]: the name `test_simple_assign` is defined multiple times
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:43:1
+   |
+ 5 | fn test_simple_assign() {
+   | ----------------------- previous definition of the value `test_simple_assign` here
+...
+43 | fn test_simple_assign<T: Copy + PartialEq + std::fmt::Debug>(value: T) {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `test_simple_assign` redefined here
+   |
+   = note: `test_simple_assign` must be defined only once in the value namespace of this module
+
+error[E0433]: failed to resolve: could not find `AtomicCell` in `atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:35:36
+   |
+35 |     let mut a = std::sync::atomic::AtomicCell::new(value);
+   |                                    ^^^^^^^^^^
+   |                                    |
+   |                                    could not find `AtomicCell` in `atomic`
+   |                                    help: a struct with a similar name exists: `AtomicBool`
+
+error[E0433]: failed to resolve: could not find `AtomicCell` in `atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:36:32
+   |
+36 |     let b = std::sync::atomic::AtomicCell::new(value);
+   |                                ^^^^^^^^^^
+   |                                |
+   |                                could not find `AtomicCell` in `atomic`
+   |                                help: a struct with a similar name exists: `AtomicBool`
+
+error[E0433]: failed to resolve: could not find `AtomicCell` in `atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:44:36
+   |
+44 |     let mut a = std::sync::atomic::AtomicCell::new(value);
+   |                                    ^^^^^^^^^^
+   |                                    |
+   |                                    could not find `AtomicCell` in `atomic`
+   |                                    help: a struct with a similar name exists: `AtomicBool`
+
+error[E0433]: failed to resolve: could not find `AtomicCell` in `atomic`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:45:32
+   |
+45 |     let b = std::sync::atomic::AtomicCell::new(value);
+   |                                ^^^^^^^^^^
+   |                                |
+   |                                could not find `AtomicCell` in `atomic`
+   |                                help: a struct with a similar name exists: `AtomicBool`
+
+error[E0277]: `S` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:27:5
+   |
+27 |     assert_eq!(init, s2);
+   |     ^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `S`
+   |
+   = note: add `#[derive(Debug)]` to `S` or manually `impl Debug for S`
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `S` with `#[derive(Debug)]`
+   |
+18 +     #[derive(Debug)]
+19 |     struct S([i16; 1024]);
+   |
+
+error[E0277]: `S` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:27:5
+   |
+27 |     assert_eq!(init, s2);
+   |     ^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `S`
+   |
+   = note: add `#[derive(Debug)]` to `S` or manually `impl Debug for S`
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `S` with `#[derive(Debug)]`
+   |
+18 +     #[derive(Debug)]
+19 |     struct S([i16; 1024]);
+   |
+
+error[E0277]: `S` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:29:5
+   |
+29 |     assert_eq!(init, s3);
+   |     ^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `S`
+   |
+   = note: add `#[derive(Debug)]` to `S` or manually `impl Debug for S`
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `S` with `#[derive(Debug)]`
+   |
+18 +     #[derive(Debug)]
+19 |     struct S([i16; 1024]);
+   |
+
+error[E0277]: `S` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:29:5
+   |
+29 |     assert_eq!(init, s3);
+   |     ^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `S`
+   |
+   = note: add `#[derive(Debug)]` to `S` or manually `impl Debug for S`
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `S` with `#[derive(Debug)]`
+   |
+18 +     #[derive(Debug)]
+19 |     struct S([i16; 1024]);
+   |
+
+error[E0277]: `S` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:31:5
+   |
+31 |     assert_eq!(init, s4);
+   |     ^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `S`
+   |
+   = note: add `#[derive(Debug)]` to `S` or manually `impl Debug for S`
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `S` with `#[derive(Debug)]`
+   |
+18 +     #[derive(Debug)]
+19 |     struct S([i16; 1024]);
+   |
+
+error[E0277]: `S` doesn't implement `Debug`
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/gcc_c11_tests/atomic/c11-atomic-exec-1/sample_002/target.rs:31:5
+   |
+31 |     assert_eq!(init, s4);
+   |     ^^^^^^^^^^^^^^^^^^^^ the trait `Debug` is not implemented for `S`
+   |
+   = note: add `#[derive(Debug)]` to `S` or manually `impl Debug for S`
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `S` with `#[derive(Debug)]`
+   |
+18 +     #[derive(Debug)]
+19 |     struct S([i16; 1024]);
+   |
+
+error: aborting due to 11 previous errors
+
+Some errors have detailed explanations: E0277, E0428, E0433.
+For more information about an error, try `rustc --explain E0277`.

@@ -1,0 +1,45 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/preprocessing_directives/scope_of_macro_3/sample_005/target.rs:20:17
+   |
+20 |     i[2] = r(4, "").parse::<i32>().unwrap();
+   |            -    ^^ expected integer, found `&str`
+   |            |
+   |            arguments to this function are incorrect
+   |
+note: expected because the closure was earlier called with an argument of type `{integer}`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/preprocessing_directives/scope_of_macro_3/sample_005/target.rs:19:17
+   |
+19 |     i[1] = r(2, 3).parse::<i32>().unwrap();
+   |            -    ^ expected because this argument is of type `{integer}`
+   |            |
+   |            in this closure call
+note: closure parameter defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/preprocessing_directives/scope_of_macro_3/sample_005/target.rs:10:17
+   |
+10 |     let r = |x, y| format!("{}{}", x, y);
+   |                 ^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/preprocessing_directives/scope_of_macro_3/sample_005/target.rs:21:14
+   |
+21 |     i[3] = r("", 5).parse::<i32>().unwrap();
+   |            - ^^ expected integer, found `&str`
+   |            |
+   |            arguments to this function are incorrect
+   |
+note: expected because the closure was earlier called with an argument of type `{integer}`
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/preprocessing_directives/scope_of_macro_3/sample_005/target.rs:19:14
+   |
+19 |     i[1] = r(2, 3).parse::<i32>().unwrap();
+   |            - ^ expected because this argument is of type `{integer}`
+   |            |
+   |            in this closure call
+note: closure parameter defined here
+  --> benchmark_results/2026-05-06T18-03-03/llama-3.1-70b/preprocessing_directives/scope_of_macro_3/sample_005/target.rs:10:14
+   |
+10 |     let r = |x, y| format!("{}{}", x, y);
+   |              ^
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.

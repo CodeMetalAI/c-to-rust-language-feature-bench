@@ -1,0 +1,91 @@
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_004/target.rs:21:14
+   |
+21 |     let s1 = unsafe { std::alloc::alloc(std::mem::size_of::<S>() + std::mem::size_of::<f64>() * 8) };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: requested on the command line with `-F unsafe-code`
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_004/target.rs:22:14
+   |
+22 |     let s2 = unsafe { std::alloc::alloc(std::mem::size_of::<S>() + std::mem::size_of::<f64>() * 5) };
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: usage of an `unsafe` block
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_004/target.rs:28:5
+   |
+28 | /     unsafe {
+29 | |         let s1 = s1 as *mut S;
+30 | |         let s2 = s2 as *mut S;
+...  |
+40 | |         std::alloc::dealloc(s2 as _, std::mem::size_of::<S>() + std::mem::size_of::<f64>() * 5, std::alloc::Layout::from_size_align(std::mem::size_of::<S>() + std::mem::size_of::<f64>...
+41 | |     }
+   | |_____^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_004/target.rs:21:41
+   |
+21 |     let s1 = unsafe { std::alloc::alloc(std::mem::size_of::<S>() + std::mem::size_of::<f64>() * 8) };
+   |                       ----------------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Layout`, found `usize`
+   |                       |
+   |                       arguments to this function are incorrect
+   |
+note: function defined here
+  --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/alloc.rs:89:15
+   |
+89 | pub unsafe fn alloc(layout: Layout) -> *mut u8 {
+   |               ^^^^^
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_004/target.rs:22:41
+   |
+22 |     let s2 = unsafe { std::alloc::alloc(std::mem::size_of::<S>() + std::mem::size_of::<f64>() * 5) };
+   |                       ----------------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Layout`, found `usize`
+   |                       |
+   |                       arguments to this function are incorrect
+   |
+note: function defined here
+  --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/alloc.rs:89:15
+   |
+89 | pub unsafe fn alloc(layout: Layout) -> *mut u8 {
+   |               ^^^^^
+
+error[E0061]: this function takes 2 arguments but 3 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_004/target.rs:39:9
+    |
+ 39 | ...   std::alloc::dealloc(s1 as _, std::mem::size_of::<S>() + std::mem::size_of::<f64>() * 8, std::alloc::Layout::from_size_align(std::mem::size_of::<S>() + std::mem::size_of::<f64>() ...
+    |       ^^^^^^^^^^^^^^^^^^^          --------------------------------------------------------- unexpected argument #2 of type `usize`
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/alloc.rs:114:15
+    |
+114 | pub unsafe fn dealloc(ptr: *mut u8, layout: Layout) {
+    |               ^^^^^^^
+help: remove the extra argument
+    |
+ 39 -         std::alloc::dealloc(s1 as _, std::mem::size_of::<S>() + std::mem::size_of::<f64>() * 8, std::alloc::Layout::from_size_align(std::mem::size_of::<S>() + std::mem::size_of::<f64>() * 8, 1).unwrap());
+ 39 +         std::alloc::dealloc(s1 as _, std::alloc::Layout::from_size_align(std::mem::size_of::<S>() + std::mem::size_of::<f64>() * 8, 1).unwrap());
+    |
+
+error[E0061]: this function takes 2 arguments but 3 arguments were supplied
+   --> benchmark_results/2026-05-10T00-24-35/llama-3.1-70b/declarations/structure_and_union_spec_2/sample_004/target.rs:40:9
+    |
+ 40 | ...   std::alloc::dealloc(s2 as _, std::mem::size_of::<S>() + std::mem::size_of::<f64>() * 5, std::alloc::Layout::from_size_align(std::mem::size_of::<S>() + std::mem::size_of::<f64>() ...
+    |       ^^^^^^^^^^^^^^^^^^^          --------------------------------------------------------- unexpected argument #2 of type `usize`
+    |
+note: function defined here
+   --> /Users/arielkellison/.rustup/toolchains/nightly-2025-09-10-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/alloc.rs:114:15
+    |
+114 | pub unsafe fn dealloc(ptr: *mut u8, layout: Layout) {
+    |               ^^^^^^^
+help: remove the extra argument
+    |
+ 40 -         std::alloc::dealloc(s2 as _, std::mem::size_of::<S>() + std::mem::size_of::<f64>() * 5, std::alloc::Layout::from_size_align(std::mem::size_of::<S>() + std::mem::size_of::<f64>() * 5, 1).unwrap());
+ 40 +         std::alloc::dealloc(s2 as _, std::alloc::Layout::from_size_align(std::mem::size_of::<S>() + std::mem::size_of::<f64>() * 5, 1).unwrap());
+    |
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0061, E0308.
+For more information about an error, try `rustc --explain E0061`.

@@ -1,0 +1,179 @@
+error: expected item, found `;`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:49:12
+   |
+49 | struct S {};
+   |            ^
+   |
+   = help: braced struct declarations are not followed by a semicolon
+help: remove this semicolon
+   |
+49 - struct S {};
+49 + struct S {}
+   |
+
+error[E0412]: cannot find type `Complex` in module `std::num`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:81:30
+   |
+81 | type _Complex<T> = std::num::Complex<T>;
+   |                              ^^^^^^^ not found in `std::num`
+
+warning: unused import: `std::mem::align_of`
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:2:5
+  |
+2 | use std::mem::align_of;
+  |     ^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: type `int` should have an upper camel case name
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:75:6
+   |
+75 | type int = i32;
+   |      ^^^ help: convert the identifier to upper camel case (notice the capitalization): `Int`
+   |
+   = note: `#[warn(non_camel_case_types)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: type `long` should have an upper camel case name
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:76:6
+   |
+76 | type long = i64;
+   |      ^^^^ help: convert the identifier to upper camel case: `Long`
+
+warning: type `long_long` should have an upper camel case name
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:77:6
+   |
+77 | type long_long = i64;
+   |      ^^^^^^^^^ help: convert the identifier to upper camel case: `LongLong`
+
+warning: type `short` should have an upper camel case name
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:78:6
+   |
+78 | type short = i16;
+   |      ^^^^^ help: convert the identifier to upper camel case (notice the capitalization): `Short`
+
+warning: type `float` should have an upper camel case name
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:79:6
+   |
+79 | type float = f32;
+   |      ^^^^^ help: convert the identifier to upper camel case (notice the capitalization): `Float`
+
+warning: type `double` should have an upper camel case name
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:80:6
+   |
+80 | type double = f64;
+   |      ^^^^^^ help: convert the identifier to upper camel case: `Double`
+
+warning: type `long_double` should have an upper camel case name
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:82:6
+   |
+82 | type long_double = f64;
+   |      ^^^^^^^^^^^ help: convert the identifier to upper camel case: `LongDouble`
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:4:8
+  |
+4 | #[repr(align(16))] // Assuming max_align_t is 16, as it's commonly the case.  Adjust if needed.
+  |        ^^^^^^^^^
+5 | static mut C: char = ' ';
+  | ------------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+ --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:7:8
+  |
+7 | #[repr(align(16))]
+  |        ^^^^^^^^^
+8 | static mut S: short = 0;
+  | ------------------------ not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:10:8
+   |
+10 | #[repr(align(4))]
+   |        ^^^^^^^^
+11 | static mut I: int = 0;
+   | ---------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:13:8
+   |
+13 | #[repr(align(16))]
+   |        ^^^^^^^^^
+14 | static mut L: long = 0;
+   | ----------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:16:8
+   |
+16 | #[repr(align(16))]
+   |        ^^^^^^^^^
+17 | static mut LL: long_long = 0;
+   | ----------------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:19:8
+   |
+19 | #[repr(align(4))]
+   |        ^^^^^^^^
+20 | static mut F: float = 0.0;
+   | -------------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:22:8
+   |
+22 | #[repr(align(8))]
+   |        ^^^^^^^^
+23 | static mut D: double = 0.0;
+   | --------------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:25:8
+   |
+25 | #[repr(align(16))]
+   |        ^^^^^^^^^
+26 | static mut CLD: _Complex<long_double> = _Complex { re: 0.0, im: 0.0 };
+   | ---------------------------------------------------------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:28:8
+   |
+28 | #[repr(align(1))]
+   |        ^^^^^^^^
+29 | static mut CA: [char; 10] = [' '; 10];
+   | -------------------------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:31:8
+   |
+31 | #[repr(align(16))]
+   |        ^^^^^^^^^
+32 | static mut X: int = 0;
+   | ---------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:40:8
+   |
+40 | #[repr(align(16))]
+   |        ^^^^^^^^^
+41 | static mut Y: int = 0;
+   | ---------------------- not a struct, enum, or union
+
+error[E0517]: attribute should be applied to a struct, enum, or union
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:44:12
+   |
+44 |     #[repr(align(16))]
+   |            ^^^^^^^^^
+45 |     let auto_ll: long_long = 0;
+   |     --------------------------- not a struct, enum, or union
+
+warning: unused variable: `auto_ll`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/gcc_c11_tests/c11-align-2/sample_005/target.rs:45:9
+   |
+45 |     let auto_ll: long_long = 0;
+   |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_auto_ll`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 14 previous errors; 9 warnings emitted
+
+Some errors have detailed explanations: E0412, E0517.
+For more information about an error, try `rustc --explain E0412`.

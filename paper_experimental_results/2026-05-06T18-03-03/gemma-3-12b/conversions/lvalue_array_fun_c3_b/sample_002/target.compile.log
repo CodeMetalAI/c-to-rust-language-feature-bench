@@ -1,0 +1,43 @@
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3_b/sample_002/target.rs:49:12
+   |
+49 |     if let Some(_) = x.as_ptr() as *const [i32] {
+   |            ^^^^^^^   -------------------------- this expression has type `*const [i32]`
+   |            |
+   |            expected `*const [i32]`, found `Option<_>`
+   |
+   = note: expected raw pointer `*const [i32]`
+                     found enum `Option<_>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3_b/sample_002/target.rs:51:19
+   |
+51 |     } else if let Some(_) = x.as_ptr() as *const [i32; 3] {
+   |                   ^^^^^^^   ----------------------------- this expression has type `*const [i32; 3]`
+   |                   |
+   |                   expected `*const [i32; 3]`, found `Option<_>`
+   |
+   = note: expected raw pointer `*const [i32; 3]`
+                     found enum `Option<_>`
+
+error[E0308]: mismatched types
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3_b/sample_002/target.rs:53:19
+   |
+53 |     } else if let Some(_) = x.as_ptr() as *const &str {
+   |                   ^^^^^^^   ------------------------- this expression has type `*const &str`
+   |                   |
+   |                   expected `*const &str`, found `Option<_>`
+   |
+   = note: expected raw pointer `*const &str`
+                     found enum `Option<_>`
+
+error[E0607]: cannot cast thin pointer `*const u8` to wide pointer `*const [i32]`
+  --> benchmark_results/2026-05-06T18-03-03/gemma-3-12b/conversions/lvalue_array_fun_c3_b/sample_002/target.rs:49:22
+   |
+49 |     if let Some(_) = x.as_ptr() as *const [i32] {
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0607.
+For more information about an error, try `rustc --explain E0308`.

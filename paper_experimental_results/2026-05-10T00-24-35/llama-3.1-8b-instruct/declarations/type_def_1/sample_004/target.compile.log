@@ -1,0 +1,43 @@
+error[E0061]: this function takes 0 arguments but 3 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_1/sample_004/target.rs:23:8
+   |
+23 |     if metricp(3, 4, 5) != 7 {
+   |        ^^^^^^^ -  -  - unexpected argument #3 of type `{integer}`
+   |                |  |
+   |                |  unexpected argument #2 of type `{integer}`
+   |                unexpected argument #1 of type `{integer}`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_1/sample_004/target.rs:63:4
+   |
+63 | fn f_plain() -> i32 {
+   |    ^^^^^^^
+help: remove the extra arguments
+   |
+23 -     if metricp(3, 4, 5) != 7 {
+23 +     if metricp() != 7 {
+   |
+
+error[E0061]: this function takes 0 arguments but 3 arguments were supplied
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_1/sample_004/target.rs:51:16
+   |
+51 |     assert_eq!(metricp(3, 4, 5), 7);
+   |                ^^^^^^^ -  -  - unexpected argument #3 of type `{integer}`
+   |                        |  |
+   |                        |  unexpected argument #2 of type `{integer}`
+   |                        unexpected argument #1 of type `{integer}`
+   |
+note: function defined here
+  --> benchmark_results/2026-05-10T00-24-35/llama-3.1-8b-instruct/declarations/type_def_1/sample_004/target.rs:63:4
+   |
+63 | fn f_plain() -> i32 {
+   |    ^^^^^^^
+help: remove the extra arguments
+   |
+51 -     assert_eq!(metricp(3, 4, 5), 7);
+51 +     assert_eq!(metricp(), 7);
+   |
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0061`.

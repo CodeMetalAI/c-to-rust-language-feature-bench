@@ -1,0 +1,36 @@
+warning: ambiguous wide pointer comparison, the comparison includes metadata which may not be expected
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/compound_literals_6/sample_003/target.rs:12:8
+   |
+12 |     if (a as *const str == b as *const str) != true && (a as *const str == b as *const str) != false {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(ambiguous_wide_pointer_comparisons)]` on by default
+help: use `std::ptr::addr_eq` or untyped pointers to only compare their addresses
+   |
+12 -     if (a as *const str == b as *const str) != true && (a as *const str == b as *const str) != false {
+12 +     if std::ptr::addr_eq(a as *const str, b as *const str) != true && (a as *const str == b as *const str) != false {
+   |
+help: use explicit `std::ptr::eq` method to compare metadata and addresses
+   |
+12 -     if (a as *const str == b as *const str) != true && (a as *const str == b as *const str) != false {
+12 +     if std::ptr::eq(a as *const str, b as *const str) != true && (a as *const str == b as *const str) != false {
+   |
+
+warning: ambiguous wide pointer comparison, the comparison includes metadata which may not be expected
+  --> benchmark_results/2026-05-06T18-03-03/gpt-4-turbo/expressions/compound_literals_6/sample_003/target.rs:12:56
+   |
+12 |     if (a as *const str == b as *const str) != true && (a as *const str == b as *const str) != false {
+   |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: use `std::ptr::addr_eq` or untyped pointers to only compare their addresses
+   |
+12 -     if (a as *const str == b as *const str) != true && (a as *const str == b as *const str) != false {
+12 +     if (a as *const str == b as *const str) != true && std::ptr::addr_eq(a as *const str, b as *const str) != false {
+   |
+help: use explicit `std::ptr::eq` method to compare metadata and addresses
+   |
+12 -     if (a as *const str == b as *const str) != true && (a as *const str == b as *const str) != false {
+12 +     if (a as *const str == b as *const str) != true && std::ptr::eq(a as *const str, b as *const str) != false {
+   |
+
+warning: 2 warnings emitted
