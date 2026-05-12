@@ -19,10 +19,8 @@ class ModelConfig(BaseModel):
     provider: Literal["openai", "anthropic", "vllm"] = Field(description="LLM provider")
     api_key: str = Field(description="API key, literal or ${ENV_VAR}")
     base_url: str | None = Field(default=None, description="Base URL for API, literal or ${ENV_VAR}")
-    temperature: float = Field(description="Sampling temperature")
     meta: dict[str, Any] | None = Field(
-        default=None,
-        description="Optional model metadata (e.g. domains/tags/size buckets) used for selection/grouping"
+        default=None, description="Optional model metadata (e.g. domains/tags/size buckets) used for selection/grouping"
     )
 
 
@@ -35,7 +33,11 @@ class BenchmarkConfig(BaseModel):
     models_to_run: list[str] = Field(description="Model keys to benchmark")
     stdout_match_threshold: float = Field(ge=0.0, le=1.0, description="Similarity threshold for stdout match")
     concurrency: int = Field(ge=1, description="Max concurrent LLM calls")
-    samples: int = Field(ge=1, description="Number of samples per test; first match wins")
+    samples: int = Field(ge=1, description="Number of samples per test; all samples run regardless of early matches")
+    max_retries: int = Field(
+        default=3, ge=0, description="Max additional attempts allowed when the provider returns no response"
+    )
+    temperature: float = Field(ge=0.0, le=2.0, description="Sampling temperature applied to all models")
     output_dir: Path = Field(description="Output directory for results")
     executable_timeout: float = Field(ge=1.0, description="Timeout in seconds for running executables")
     llm_timeout: float = Field(ge=10.0, description="Timeout in seconds for LLM API calls")
@@ -110,6 +112,7 @@ class SampleResult(BaseModel):
     match: bool = Field(description="True if exit_codes_match and stdout_match")
     stub_detected: bool = Field(default=False, description="Whether stub patterns were detected")
     stub_reasons: list[str] | None = Field(default=None, description="Reasons for stub detection")
+    provider_error: bool = Field(default=False, description="Provider returned no usable response; slot was retried")
 
 
 class TestFeatures(BaseModel):
@@ -123,7 +126,7 @@ class SourceInfo(BaseModel):
     """Source information for a test."""
 
     section: list[str] = Field(default_factory=list, description="Section from C11 standard the test is derived from")
-    clause:  list[int] = Field(default_factory=list, description="Clause from C11 standard the test is derived from")
+    clause: list[int] = Field(default_factory=list, description="Clause from C11 standard the test is derived from")
     example: list[int] = Field(default_factory=list, description="Example from C11 standard the test is derived from")
 
 
@@ -164,7 +167,6 @@ class ModelSummary(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     model_name: str = Field(description="Model key from config")
-    temperature: float = Field(description="Temperature for all tests run")
     total_tests: int = Field(description="Number of tests run")
     source_compiled: int = Field(description="Tests where C/C++ compiled")
     timed_out: int = Field(description="Tests that took longer than allocated timed")
@@ -172,6 +174,8 @@ class ModelSummary(BaseModel):
     exit_codes_matched: int = Field(description="Tests where any sample's exit code matched")
     stub_detected_samples: int = Field(description="Total number of samples where stubs were detected")
     stub_detected_tests: int = Field(description="Number of tests where at least one sample had stubs detected")
+    provider_error_samples: int = Field(description="Total number of samples lost to provider errors")
+    provider_error_tests: int = Field(description="Number of tests where at least one sample hit a provider error")
     duration_seconds: float = Field(description="Total time for this model")
     passed: list[str] = Field(description="Test names that passed")
     failed: list[str] = Field(description="Test names that failed")
@@ -228,6 +232,7 @@ class BenchmarkSummary(BaseModel):
     duration_seconds: float = Field(description="Total benchmark duration")
     concurrency: int = Field(description="Max concurrent LLM calls")
     samples: int = Field(description="Samples per test setting used")
+    temperature: float = Field(description="Sampling temperature used for all models")
     tests_total: int = Field(description="Total test executions across all models")
     models_tested: list[str] = Field(description="Model keys that were tested")
     results_by_model: dict[str, ModelSummary] = Field(description="Per-model summary results")
