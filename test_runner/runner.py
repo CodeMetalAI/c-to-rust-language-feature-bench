@@ -66,8 +66,8 @@ def default_stub_detector(
 stub_detector: Callable[[str, Path, list[str], Path], StubDecision] = default_stub_detector
 
 
-DATASETS_ROOT = Path("datasets/language_features/c_language_features")
-FEATURE_TO_CAT_MAP_PATH = Path("tests/language_features/language_features_c.yaml")
+DATASETS_ROOT = Path("c11_language_features_benchmark")
+FEATURE_TO_CAT_MAP_PATH = Path(__file__).parent / "language_features_c.yaml"
 SYSTEM_PROMPT_PATH = Path(__file__).parent / "system_prompt.txt"
 
 # Precompiled regexes for extracting Rust code
