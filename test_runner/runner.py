@@ -14,10 +14,8 @@ from pathlib import Path
 from typing import Callable, NamedTuple
 
 import yaml
-from langchain_core.language_models import BaseChatModel
-from langchain_core.messages import HumanMessage, SystemMessage
 
-from .llm import create_chat_model
+from .llm import ChatModel, ProviderError, create_chat_model
 from .models import (
     BenchmarkConfig,
     BenchmarkSummary,
@@ -40,7 +38,7 @@ logger = logging.getLogger(__name__)
 
 # The stub detector is proprietary for Code Metal
 # you can instantiate the funciton default_stub_detector
-# to implement your own stub detector for Rust following the 
+# to implement your own stub detector for Rust following the
 # description in the paper.
 @dataclass
 class StubDecision:
@@ -68,7 +66,7 @@ def default_stub_detector(
 stub_detector: Callable[[str, Path, list[str], Path], StubDecision] = default_stub_detector
 
 
-DATASETS_ROOT = Path(__file__).parent.parent / "c11_language_features_benchmark"
+DATASETS_ROOT = Path("c11_language_features_benchmark")
 FEATURE_TO_CAT_MAP_PATH = Path(__file__).parent / "language_features_c.yaml"
 SYSTEM_PROMPT_PATH = Path(__file__).parent / "system_prompt.txt"
 
@@ -116,23 +114,24 @@ def features_map_to_cats(
             continue
 
         if feature not in feature_to_cat:
-            errors.append(
-                f"{test}: primary feature '{feature}' missing from language_features_c.yaml"
-            )
+            errors.append(f"{test}: primary feature '{feature}' missing from language_features_c.yaml")
         elif not feature_to_cat[feature]:
-            errors.append(
-                f"{test}: primary feature '{feature}' has no category in language_features_c.yaml"
-            )
+            errors.append(f"{test}: primary feature '{feature}' has no category in language_features_c.yaml")
 
     return errors
 
 
+_DISCOVER_EXCLUDE_DIRS: frozenset[str] = frozenset({"combined_programs"})
+
+
 def discover_tests(root: Path = DATASETS_ROOT) -> list[str]:
-    """Discover all tests by presence of description.md."""
+    """Discover all tests by presence of description.md, skipping combined_programs."""
     if not root.exists():
         return []
     return sorted(
-        str(f.parent.relative_to(root)) for f in root.rglob("description.md") if f.is_file() and f.parent != root
+        str(f.parent.relative_to(root))
+        for f in root.rglob("description.md")
+        if f.is_file() and f.parent != root and not any(part in _DISCOVER_EXCLUDE_DIRS for part in f.parts)
     )
 
 
@@ -252,33 +251,28 @@ async def run_single_sample(
     src_exit: int | None,
     src_stdout: str,
     sample_dir: Path,
-    chat: BaseChatModel,
+    chat: ChatModel,
     system_prompt: str,
     config: BenchmarkConfig,
     llm_sem: asyncio.Semaphore,
-    stop: asyncio.Event,
-) -> SampleResult | None:
-    """Run a single sample: LLM call, compile, run, compare. Returns None if stopped."""
-    # Check stop before acquiring semaphore (avoids starting new work after winner found)
-    if stop.is_set():
-        return None
-
+) -> SampleResult:
+    """Run a single sample: LLM call, compile, run, compare."""
     start = time.perf_counter()
     sample_dir.mkdir(parents=True, exist_ok=True)
 
     try:
         # Generate Rust via LLM (semaphore prevents stampeding the LLM)
         async with llm_sem:
-            # Re-check after acquiring - another sample may have won while waiting
-            if stop.is_set():
-                return None
             try:
                 async with asyncio.timeout(config.llm_timeout):
                     resp = await asyncio.to_thread(
                         chat.invoke,
                         [
-                            SystemMessage(content=system_prompt),
-                            HumanMessage(content=f"Convert this C/C++ code to Rust:\n\n```c\n{source_code}\n```"),
+                            {"role": "system", "content": system_prompt},
+                            {
+                                "role": "user",
+                                "content": f"Convert this C/C++ code to Rust:\n\n```c\n{source_code}\n```",
+                            },
                         ],
                     )
             except TimeoutError:
@@ -286,6 +280,26 @@ async def run_single_sample(
                     sample_index=sample_index,
                     duration_seconds=time.perf_counter() - start,
                     timeout_error=True,
+                    target_compiled=False,
+                    target_compile_errors=None,
+                    target_exit_code=None,
+                    exit_codes_match=False,
+                    stdout_similarity=None,
+                    stdout_match=False,
+                    match=False,
+                )
+            except ProviderError as e:
+                logger.warning(
+                    "Provider error in sample %d for %s: %s",
+                    sample_index,
+                    sample_dir.parent.name,
+                    e,
+                )
+                return SampleResult(
+                    sample_index=sample_index,
+                    duration_seconds=time.perf_counter() - start,
+                    provider_error=True,
+                    timeout_error=False,
                     target_compiled=False,
                     target_compile_errors=None,
                     target_exit_code=None,
@@ -315,7 +329,9 @@ async def run_single_sample(
         # Write and compile Rust
         tgt_rs = sample_dir / "target.rs"
         tgt_rs.write_text(rust_code)
-        tgt = await compile_and_run("rustc", [], tgt_rs, sample_dir / "target", config.executable_timeout)
+        tgt = await compile_and_run(
+            "rustc", ["-F", "unsafe_code"], tgt_rs, sample_dir / "target", config.executable_timeout
+        )
         (sample_dir / "target.compile.log").write_text(tgt.compile.log)
         if tgt.exec:
             (sample_dir / "target.stdout").write_text(tgt.exec.stdout)
@@ -371,6 +387,66 @@ async def run_single_sample(
         )
 
 
+async def _run_samples_until_match(
+    *,
+    source_code: str,
+    source_file: Path,
+    source_compile_args: list[str],
+    src_exit: int | None,
+    src_stdout: str,
+    result_dir: Path,
+    chat: ChatModel,
+    system_prompt: str,
+    config: BenchmarkConfig,
+    llm_sem: asyncio.Semaphore,
+) -> tuple[list[SampleResult], SampleResult | None]:
+    """Spawn samples concurrently, replacing provider-errored ones until max_retries is exhausted."""
+    max_total = config.samples + config.max_retries
+    next_idx = 1
+    in_flight: set[asyncio.Task[SampleResult]] = set()
+
+    def _spawn() -> None:
+        nonlocal next_idx
+        if next_idx <= max_total:
+            in_flight.add(
+                asyncio.create_task(
+                    run_single_sample(
+                        sample_index=next_idx,
+                        source_code=source_code,
+                        source_file_path=source_file,
+                        source_compile_args=source_compile_args,
+                        src_exit=src_exit,
+                        src_stdout=src_stdout,
+                        sample_dir=result_dir / f"sample_{next_idx:03d}",
+                        chat=chat,
+                        system_prompt=system_prompt,
+                        config=config,
+                        llm_sem=llm_sem,
+                    )
+                )
+            )
+            next_idx += 1
+
+    for _ in range(config.samples):
+        _spawn()
+
+    samples: list[SampleResult] = []
+    winning: SampleResult | None = None
+
+    while in_flight:
+        done, _ = await asyncio.wait(in_flight, return_when=asyncio.FIRST_COMPLETED)
+        in_flight -= done
+        for task in done:
+            sample = task.result()
+            samples.append(sample)
+            if sample.provider_error:
+                _spawn()  # no-op once max_total is exhausted
+            elif sample.match and not winning:
+                winning = sample
+
+    return sorted(samples, key=lambda s: s.sample_index), winning
+
+
 async def run_single_test(
     test_name: str,
     model_config: ModelConfig,
@@ -378,7 +454,7 @@ async def run_single_test(
     system_prompt: str,
     config: BenchmarkConfig,
     llm_sem: asyncio.Semaphore,
-    chat: BaseChatModel,
+    chat: ChatModel,
 ) -> TestResult:
     """Run a single benchmark test with multiple samples."""
     start = time.perf_counter()
@@ -387,18 +463,14 @@ async def run_single_test(
     result_dir = output_dir / test_name
     result_dir.mkdir(parents=True, exist_ok=True)
 
-    # Load test metadata
     primary_feature = get_primary_feature(test_dir)
 
-    # Find and copy C/C++ source
     source_file = find_source(test_dir)
     if not source_file:
         raise FileNotFoundError(f"No C/C++ source in {test_dir}")
     source_code = source_file.read_text()
-    source_ext = source_file.suffix
-    (result_dir / f"source{source_ext}").write_text(source_code)
+    (result_dir / f"source{source_file.suffix}").write_text(source_code)
 
-    # Compile and run C/C++ with appropriate compiler
     if is_c_source(source_file):
         compiler, std_flag = "gcc", get_c_standard(test_dir)
     else:
@@ -408,7 +480,6 @@ async def run_single_test(
     if src.exec:
         (result_dir / "source.stdout").write_text(src.exec.stdout)
 
-    # Skip transpilation if source doesn't compile
     if not src.compile.success:
         result = TestResult(
             test_name=test_name,
@@ -430,43 +501,18 @@ async def run_single_test(
     src_exit = src.exec.exit_code if src.exec else None
     src_stdout = src.exec.stdout if src.exec else ""
 
-    stop = asyncio.Event()  # Signal to stop new samples after winner found
-
-    # Create all sample tasks; they check stop flag before acquiring LLM semaphore
-    source_compile_args = [std_flag]
-    tasks = [
-        asyncio.create_task(
-            run_single_sample(
-                sample_index=i,
-                source_code=source_code,
-                source_file_path=source_file,
-                source_compile_args=source_compile_args,
-                src_exit=src_exit,
-                src_stdout=src_stdout,
-                sample_dir=result_dir / f"sample_{i:03d}",
-                chat=chat,
-                system_prompt=system_prompt,
-                config=config,
-                llm_sem=llm_sem,
-                stop=stop,
-            )
-        )
-        for i in range(1, config.samples + 1)
-    ]
-
-    # Collect results - stop new samples after winner, let in-flight complete
-    samples: list[SampleResult] = []
-    winning: SampleResult | None = None
-    for coro in asyncio.as_completed(tasks):
-        sample = await coro
-        if sample is None:
-            continue  # Skipped due to stop flag
-        samples.append(sample)
-        if sample.match and not winning:
-            winning = sample
-            stop.set()  # Prevents waiting samples from starting LLM call
-
-    attempted = [s for s in samples]
+    attempted, winning = await _run_samples_until_match(
+        source_code=source_code,
+        source_file=source_file,
+        source_compile_args=[std_flag],
+        src_exit=src_exit,
+        src_stdout=src_stdout,
+        result_dir=result_dir,
+        chat=chat,
+        system_prompt=system_prompt,
+        config=config,
+        llm_sem=llm_sem,
+    )
     timed_out = (winning is None) and all(s.timeout_error for s in attempted)
 
     result = TestResult(
@@ -479,7 +525,7 @@ async def run_single_test(
         source_compiled=True,
         source_compile_errors=None,
         source_exit_code=src_exit,
-        samples=samples,
+        samples=attempted,
         winning_sample=winning.sample_index if winning else None,
         match=winning is not None,
     )
@@ -509,13 +555,14 @@ def _build_category_summary(items: list[FeaturePass]) -> dict[str, FeatureSummar
         for feat, total in sorted(totals.items())
     }
 
+
 async def run_model_benchmark(
     tests: list[str], model_name: str, output_dir: Path, config: BenchmarkConfig, progress: bool = True
 ) -> ModelBenchmarkResult:
     start = time.perf_counter()
     model_config = config.get_model(model_name)
     prompt = SYSTEM_PROMPT_PATH.read_text()
-    chat = create_chat_model(model_config)
+    chat = create_chat_model(model_config, config.temperature)
     llm_sem = asyncio.Semaphore(config.concurrency)
     test_sem = asyncio.Semaphore(config.concurrency)
     total = len(tests)
@@ -566,9 +613,12 @@ async def run_model_benchmark(
     stub_detected_samples = sum(sum(1 for s in r.samples if s.stub_detected) for r in results)
     stub_detected_tests = sum(1 for r in results if any(s.stub_detected for s in r.samples))
 
+    # Aggregate provider error stats
+    provider_error_samples = sum(sum(1 for s in r.samples if s.provider_error) for r in results)
+    provider_error_tests = sum(1 for r in results if any(s.provider_error for s in r.samples))
+
     summary = ModelSummary(
         model_name=model_name,
-        temperature=model_config.temperature,
         total_tests=len(results),
         source_compiled=sum(r.source_compiled for r in results),
         timed_out=sum(r.timeout_error for r in results),
@@ -576,6 +626,8 @@ async def run_model_benchmark(
         exit_codes_matched=exit_codes_matched,
         stub_detected_samples=stub_detected_samples,
         stub_detected_tests=stub_detected_tests,
+        provider_error_samples=provider_error_samples,
+        provider_error_tests=provider_error_tests,
         duration_seconds=time.perf_counter() - start,
         passed=passed,
         failed=failed,
@@ -637,9 +689,7 @@ async def run_full_benchmark(tests: list[str] | None, config: BenchmarkConfig) -
     errors = features_map_to_cats(tests, FEATURE_TO_CAT_MAP_PATH)
     if errors:
         msg = "\n".join(errors)
-        raise RuntimeError(
-            f"Feature maps to category check failed ({len(errors)} error(s)):\n{msg}"
-        )
+        raise RuntimeError(f"Feature maps to category check failed ({len(errors)} error(s)):\n{msg}")
 
     run_dir = config.output_dir / run_id
     run_dir.mkdir(parents=True, exist_ok=True)
@@ -669,6 +719,7 @@ async def run_full_benchmark(tests: list[str] | None, config: BenchmarkConfig) -
         duration_seconds=time.perf_counter() - start,
         concurrency=config.concurrency,
         samples=config.samples,
+        temperature=config.temperature,
         tests_total=total,
         models_tested=config.models_to_run,
         results_by_model=results_by_model,
