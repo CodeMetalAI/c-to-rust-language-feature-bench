@@ -1,6 +1,7 @@
 # C-to-Rust LLM Transpiler Benchmark
 
-Benchmark suite and evaluation tool for the paper [*"Am I a Compiler Yet? A Benchmark for Feature Support in LLM-Based C-to-Rust Translation"*](https://github.com/CodeMetalAI/c-to-rust-language-feature-bench/blob/main/cm_cav_submission.pdf).
+Benchmark suite and evaluation tool as described in [*"Can Feature-Level Tests Predict LLM-Based
+C-to-Rust Translation Reliability?"*](https://github.com/CodeMetalAI/c-to-rust-language-feature-bench/blob/main/paper.pdf).
 The folder `paper_experimental_results` contains the results of the experiments presented in the paper.
 
 ## Overview
