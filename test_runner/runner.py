@@ -62,8 +62,20 @@ def default_stub_detector(
     return StubDecision(triggered=False, reasons=None)
 
 
-# User-replaceable stub detection function
+# User-replaceable stub detection function. Used when config.stub_detector is "none" (the
+# default), so assigning your own function here keeps working as before.
 stub_detector: Callable[[str, Path, list[str], Path], StubDecision] = default_stub_detector
+
+
+def resolve_stub_detector(name: str) -> Callable[..., StubDecision]:
+    """Map the ``stub_detector`` config value to a detector function."""
+    if name == "structural":
+        from .stub_detection import structural_stub_detector
+
+        return structural_stub_detector
+    if name == "none":
+        return stub_detector
+    raise ValueError(f"Unknown stub detector: {name!r}")
 
 
 DATASETS_ROOT = Path("c11_language_features_benchmark")
@@ -311,8 +323,8 @@ async def run_single_sample(
 
         rust_code = extract_rust_code(str(resp.content)) or "// Failed to extract"
 
-        # Run stub detection (user-replaceable via stub_detector)
-        stub_decision = stub_detector(
+        # Run stub detection (config.stub_detector, or the user-replaceable stub_detector)
+        stub_decision = resolve_stub_detector(config.stub_detector)(
             rust_code=rust_code,
             source_file_path=source_file_path,
             source_compile_args=source_compile_args,
@@ -720,6 +732,7 @@ async def run_full_benchmark(tests: list[str] | None, config: BenchmarkConfig) -
         concurrency=config.concurrency,
         samples=config.samples,
         temperature=config.temperature,
+        stub_detector=config.stub_detector,
         tests_total=total,
         models_tested=config.models_to_run,
         results_by_model=results_by_model,

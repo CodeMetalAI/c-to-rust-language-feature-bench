@@ -77,6 +77,16 @@ Edit `test_runner/config.json` to add models or adjust settings:
 The stub detector used in this work is proprietary to Code Metal.
 However, users can instantiate the `default_stub_detector` function to implement their own Rust stub detector, following the methodology described in the paper.
 
+An open, dependency-free detector following the paper's criteria (Appendix A-C) ships in `test_runner/stub_detection.py`. It flags a translation when it contains explicit placeholders (`todo!`, `unimplemented!`, not-implemented panics), when the C program defines `n` functions and the Rust program defines fewer than `ceil(0.75 * n)`, or when the C `main` has control flow but the Rust `main` only prints or exits with a literal. Enable it with:
+
+```bash
+uv run -m test_runner --all-tests --stub-detector structural
+```
+
+or `"stub_detector": "structural"` in `config.json`. The default stays `"none"`, and assigning your own function to `test_runner.runner.stub_detector` still works.
+
+On the published results (15,613 samples with saved Rust), the open detector agrees with the proprietary labels on 99.44% of samples. All 53 samples only the proprietary detector flags fail to compile, so they do not change any score. The 35 samples only the open detector flags include 28 published passes, all from Grok Code Fast 1, whose `main` is empty or just exits with a literal. Applying it on top of the published verdicts changes Grok Code Fast 1's success rate from 58.6% to 56.8% (temperature 0.2) and from 58.3% to 55.9% (temperature 0.8); the other eleven models are unchanged. Reproduce with `uv run python paper_experimental_results/scripts/compare_stub_detector.py`.
+
 ## Output Structure
 
 Results are written to `benchmark_results/<timestamp>/` with a unique timestamp per run. Each run produces a top-level `summary.json` with aggregate statistics, plus per-model/per-test directories containing the source code, generated Rust, compilation logs, and stdout captures for manual inspection and debugging.
