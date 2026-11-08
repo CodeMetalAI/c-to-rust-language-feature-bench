@@ -38,6 +38,11 @@ Examples:
         "--model", type=str, action="append", help="Model to run (can specify multiple, overrides config)"
     )
     parser.add_argument("--concurrency", type=int, help="Max concurrent tests (overrides config)")
+    parser.add_argument(
+        "--stub-detector",
+        choices=["none", "structural"],
+        help="Stub detector for generated Rust (overrides config; 'structural' = open detector)",
+    )
 
     # Utility commands
     parser.add_argument("--list-tests", action="store_true", help="List all discovered tests and exit")
@@ -139,6 +144,8 @@ def main() -> int:
         overrides["models_to_run"] = args.model
     if args.concurrency:
         overrides["concurrency"] = args.concurrency
+    if args.stub_detector:
+        overrides["stub_detector"] = args.stub_detector
     if overrides:
         config = config.model_copy(update=overrides)
 
@@ -153,6 +160,7 @@ def main() -> int:
     print(f"  Models: {', '.join(config.models_to_run)}")
     print(f"  Samples: {config.samples}")
     print(f"  Concurrency: {config.concurrency}")
+    print(f"  Stub detector: {config.stub_detector}")
 
     # Run benchmark
     summary = asyncio.run(run_full_benchmark(tests=tests, config=config))

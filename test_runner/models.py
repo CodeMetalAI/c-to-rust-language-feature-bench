@@ -41,6 +41,13 @@ class BenchmarkConfig(BaseModel):
     output_dir: Path = Field(description="Output directory for results")
     executable_timeout: float = Field(ge=1.0, description="Timeout in seconds for running executables")
     llm_timeout: float = Field(ge=10.0, description="Timeout in seconds for LLM API calls")
+    stub_detector: Literal["none", "structural"] = Field(
+        default="none",
+        description=(
+            "Stub detector applied to generated Rust: 'none' (accept every translation) or 'structural' "
+            "(the open detector in test_runner/stub_detection.py)"
+        ),
+    )
 
     @model_validator(mode="after")
     def validate_models_to_run(self) -> BenchmarkConfig:
@@ -233,6 +240,7 @@ class BenchmarkSummary(BaseModel):
     concurrency: int = Field(description="Max concurrent LLM calls")
     samples: int = Field(description="Samples per test setting used")
     temperature: float = Field(description="Sampling temperature used for all models")
+    stub_detector: str = Field(default="none", description="Stub detector setting used for this run")
     tests_total: int = Field(description="Total test executions across all models")
     models_tested: list[str] = Field(description="Model keys that were tested")
     results_by_model: dict[str, ModelSummary] = Field(description="Per-model summary results")
